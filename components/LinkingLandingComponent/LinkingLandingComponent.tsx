@@ -1,8 +1,5 @@
 import { PureComponent } from 'react';
 
-// import desktopImg from 'images/deep-linking/deeplinking-desktop-img.png'
-// import mobileImg from 'images/deep-linking/deeplinking-mobile-img.png'
-
 type LinkingLandingComponentProps = {
 
 }
@@ -16,19 +13,19 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
         super(props)
     }
 
-    // renderGraphic = () => {
-    //     const isMobile = false //UserAgent.isMobile();
+    renderGraphic = () => {
+        const isMobile = true //UserAgent.isMobile();
 
-    //     if (isMobile) {
-    //         return (
-    //             <img src={mobileImg}/>
-    //         );
-    //     }
+        if (isMobile) {
+            return (
+                <img src='/images/deep-linking/deeplinking-mobile-img.png'/>
+            );
+        }
 
-    //     return (
-    //         <img src={desktopImg}/>
-    //     );
-    // }
+        return (
+            <img src='/images/deep-linking/deeplinking-desktop-img.png'/>
+        );
+    }
 
     render() {
         const isMobile = false //UserAgent.isMobile();
@@ -39,8 +36,7 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
                     <div
                         className={`get-app__graphic ${isMobile ? 'mobile' : ''}`}
                     >
-                        hello from linking landing
-                        {/* {this.renderGraphic()} */}
+                        {this.renderGraphic()}
                     </div>
                     {/* {this.renderDialogBody()} */}
                 </div>
