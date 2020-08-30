@@ -1,0 +1,36 @@
+
+@import "../../common/variables";
+
+.#{$ns}-linking-landing {
+    min-height: 100vh;
+    background-color: #fff;
+
+    > .#{$ns}-dialog {
+        flex-direction: column-reverse;
+        text-align: center;
+        margin: 40px 0 0 0;
+        padding: 0;
+    }
+
+    > .#{$ns}-dialog-body {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        margin-top: 0;
+        align-self: center;
+        flex: 0 1 270px;
+    }
+
+    .#{$ns}-graphic {
+        flex: 0 0 600px;
+        background-color: $sidebar-background-color;
+
+        &.#{$ns}-mobile {
+            flex: 0 1 300px;
+        }
+        
+        > img {
+            max-width: 100%;
+        }
+    }
+}

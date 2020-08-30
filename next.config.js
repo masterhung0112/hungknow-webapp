@@ -1,6 +1,27 @@
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 module.exports = (phase, { defaultConfig }) => {
+  // Module loaders for .scss files, used in reverse order:
+  // compile Sass, apply PostCSS, interpret CSS as modules.
+  // const scssLoaders = [
+  //   // Only extract CSS to separate file in production mode.
+  //   phase === PHASE_DEVELOPMENT_SERVER ?  require.resolve("style-loader") : extractPlugin,
+  //   {
+  //       loader: require.resolve("css-loader"),
+  //       options: {
+  //           // necessary to minify @import-ed files using cssnano
+  //           importLoaders: 1,
+  //       },
+  //   },
+  //   {
+  //       loader: require.resolve("postcss-loader"),
+  //       options: {
+  //           plugins: [require("autoprefixer"), require("cssnano")({ preset: "default" })],
+  //       },
+  //   },
+  //   require.resolve("sass-loader"),
+  // ]
+
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return {
       /* development only config options here */
@@ -10,9 +31,25 @@ module.exports = (phase, { defaultConfig }) => {
         config.module.rules.push({
             test: /\.(png|svg|jpg|gif)$/,
             use: [
-                'file-loader',
+              {
+                loader: 'file-loader',
+                options: {
+                  name: '[hash].[ext]',
+                  publicPath: '/_next/static/images/',
+                  outputPath: 'static/images/',
+                },
+              },
+              {
+                loader: 'image-webpack-loader',
+                options: {},
+              },
             ],
           })
+
+          // config.module.rules.push({
+          //   test: /\.scss$/,
+          //   use: scssLoaders,
+          // })
     
         // Important: return the modified config
         return config
@@ -28,9 +65,25 @@ module.exports = (phase, { defaultConfig }) => {
         config.module.rules.push({
             test: /\.(png|svg|jpg|gif)$/,
             use: [
-                'file-loader',
+              {
+                loader: 'file-loader',
+                options: {
+                  name: '[hash].[ext]',
+                  publicPath: '/_next/static/images/',
+                  outputPath: 'static/images/',
+                },
+              },
+              {
+                loader: 'image-webpack-loader',
+                options: {},
+              },
             ],
           })
+
+          // config.module.rules.push({
+          //   test: /\.scss$/,
+          //   use: scssLoaders,
+          // })
     
         // Important: return the modified config
         return config

@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 import wrapper from 'stores/redux_store.tsx'
 import makeAsyncComponent from 'components/async_load'
 // import {Provider} from 'react-redux'
