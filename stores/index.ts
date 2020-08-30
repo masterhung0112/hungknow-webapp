@@ -1,6 +1,6 @@
 import configureServiceStore from 'hkclient-ts/store'
 import appReducer from 'reducers'
-import {createTransform, persistStore} from 'redux-persist'
+import {createTransform} from 'redux-persist'
 import {transformSet} from 'stores/utils'
 import localForage from 'localforage'
 import {extendPrototype} from 'localforage-observable'
@@ -28,10 +28,14 @@ const setTransforms = [
 
 // This is a hack to get the whitelist to work with our storage keys
 // We will implement it properly when we eventually upgrade redux-persist
-const whitelist = {
+const whitelist: {
+    keys: string[],
+    prefixes: string[],
+    indexOf: (key: string) => number
+} = {
     keys: [], // add normal whitelist keys here
     prefixes: ['storage'], // add any whitelist prefixes here
-    indexOf: function indexOf(key: any) {
+    indexOf: function indexOf(key: string) {
         if (this.keys.indexOf(key) !== -1) {
             return 0;
         }

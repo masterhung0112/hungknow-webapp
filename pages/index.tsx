@@ -1,8 +1,8 @@
-import styles from '../styles/Home.module.css'
-import Root from 'components/root'
+// import styles from '../styles/Home.module.css'
+// import Root from 'components/root'
 import React from 'react'
 import { connect } from 'react-redux'
-import { NextPageContext } from "next";
+// import { NextPageContext } from "next";
 import { GlobalState } from 'hkclient-ts/types/store'
 
 export interface PageProps extends GlobalState {
@@ -40,7 +40,7 @@ class Index extends React.Component<PageProps> {
 
   public render() {
     // console.log('5. Page.render');
-    const { pageProp, appProp, entities } = this.props;
+    // const { pageProp, appProp, entities } = this.props;
     return (
       <p>Hello</p>
     )
