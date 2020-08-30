@@ -1,6 +1,7 @@
 // import styles from '../styles/Home.module.css'
 import wrapper from 'stores/redux_store.tsx'
 import makeAsyncComponent from 'components/async_load'
+import { IntlProvider } from 'react-intl'
 // import {Provider} from 'react-redux'
 // import Root from 'components/root'
 
@@ -9,10 +10,9 @@ import makeAsyncComponent from 'components/async_load'
 
 function MyApp({Component, pageProps }) {
   return (
-    // <Provider store={store}>
-        // <h1>Hello from me</h1>
+    <IntlProvider>
         <Component {...pageProps} />
-    // </Provider>
+    </IntlProvider>
 )
 }
 

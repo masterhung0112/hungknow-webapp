@@ -1,0 +1,144 @@
+import React, { PureComponent } from 'react';
+import { FormattedMessage } from 'react-intl'
+import classNames from 'classnames'
+
+import mobileImg from 'images/deep-linking/deeplinking-mobile-img.png';
+import desktopImg from 'images/deep-linking/deeplinking-desktop-img.png';
+
+import styles from './LinkingLandingComponent.module.scss'
+import { NS } from 'common'
+import * as UserAgent from 'utils/UserAgent'
+
+export type LinkingLandingComponentProps = {
+
+}
+
+export type LinkingLandingComponentState = {
+    redirectPage: boolean
+}
+
+export const LINKING_LANDING = `${NS}-linking-landing`;
+export const LINKING_LANDING_DIALOG = `${NS}-dialog`;
+export const LINKING_LANDING_DIALOG_BODY = `${NS}-dialog-body`;
+export const LINKING_LANDING_GRAPHIC = `${NS}-graphic`;
+export const LINKING_LANDING_MOBILE = `${NS}-mobile`;
+export const LINKING_LANDING_BUTTONS = `${NS}-buttons`;
+export const LINKING_LANDING_STATUS = `${NS}-status`;
+
+export default class LinkingLandingComponent extends PureComponent<LinkingLandingComponentProps, LinkingLandingComponentState> {
+    constructor(props: LinkingLandingComponentProps) {
+        super(props)
+
+        this.state = {
+            redirectPage: false
+        }
+    }
+
+    renderGraphic = () => {
+        const isMobile = UserAgent.isMobile();
+
+        if (isMobile) {
+            return (
+                <img src={mobileImg} />
+            );
+        }
+
+        return (
+            <img src={desktopImg} />
+        );
+    }
+
+    renderDialogHeader = () => {
+
+    }
+
+    renderSystemDialogMessage = () => {
+        const isMobile = UserAgent.isMobile();
+
+        if (isMobile) {
+            return (
+                <FormattedMessage
+                    id='get_app.systemDialogMessageMobile'
+                    defaultMessage='View in App'
+                />
+            );
+        }
+
+        return (
+            <FormattedMessage
+                id='get_app.systemDialogMessage'
+                defaultMessage='View in Desktop App'
+            />
+        );
+    }
+
+    renderGoNativeAppMessage = () => {
+        return (
+            <a
+                // href={Utils.isMobile() ? '#' : this.state.nativeLocation}
+                onMouseDown={() => {
+                    // this.setPreference(LandingPreferenceTypes.MATTERMOSTAPP, true);
+                }}
+                onClick={() => {
+                    // this.setState({redirectPage: true, navigating: true});
+                    // if (Utils.isMobile()) {
+                    //     if (UserAgent.isAndroidWeb()) {
+                    //         const timeout = setTimeout(() => {
+                    //             window.location.replace(this.getDownloadLink()!);
+                    //         }, 2000);
+                    //         window.addEventListener('blur', () => {
+                    //             clearTimeout(timeout);
+                    //         });
+                    //     }
+                    //     window.location.replace(this.state.nativeLocation);
+                    // }
+                }}
+                className='btn btn-primary btn-lg get-app__download'
+            >
+                {this.renderSystemDialogMessage()}
+            </a>
+        );
+    }
+
+    renderDialogBody() {
+        if (this.state.redirectPage) {
+        }
+
+        return (
+            <div className={styles[LINKING_LANDING_DIALOG_BODY]}>
+                {this.renderDialogHeader()}
+                <div className={styles[LINKING_LANDING_BUTTONS]}>
+                    <div className={styles[LINKING_LANDING_STATUS]}>
+                        {this.renderGoNativeAppMessage()}
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    render() {
+        const isMobile = UserAgent.isMobile();
+
+        const graphicClassName = classNames(
+            styles[LINKING_LANDING_GRAPHIC],
+            {
+                [styles[LINKING_LANDING_MOBILE]]: isMobile
+            }
+        )
+
+        return (
+            <div className={styles[LINKING_LANDING]}>
+                <div className={styles[LINKING_LANDING_DIALOG]}>
+                    <div className={classNames(styles[LINKING_LANDING_GRAPHIC],
+                        {
+                            [styles[LINKING_LANDING_MOBILE]]: isMobile
+                        }
+                    )}>
+                        {this.renderGraphic()}
+                    </div>
+                    {this.renderDialogBody()}
+                </div>
+            </div>
+        )
+    }
+}
