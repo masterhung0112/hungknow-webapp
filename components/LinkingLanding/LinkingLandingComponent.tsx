@@ -24,6 +24,8 @@ export const LINKING_LANDING_GRAPHIC = `${NS}-graphic`;
 export const LINKING_LANDING_MOBILE = `${NS}-mobile`;
 export const LINKING_LANDING_BUTTONS = `${NS}-buttons`;
 export const LINKING_LANDING_STATUS = `${NS}-status`;
+export const LINKING_LANDING_DOWNLOAD = `${NS}-download`;
+
 
 export default class LinkingLandingComponent extends PureComponent<LinkingLandingComponentProps, LinkingLandingComponentState> {
     constructor(props: LinkingLandingComponentProps) {
@@ -93,7 +95,7 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
                     //     window.location.replace(this.state.nativeLocation);
                     // }
                 }}
-                className='btn btn-primary btn-lg get-app__download'
+                className={classNames('btn', 'btn-primary', 'btn-lg', styles[LINKING_LANDING_DOWNLOAD])}
             >
                 {this.renderSystemDialogMessage()}
             </a>

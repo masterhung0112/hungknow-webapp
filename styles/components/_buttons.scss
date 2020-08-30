@@ -1,0 +1,14 @@
+@import '../variables';
+
+.btn {
+    &.btn-primary {
+        background: $primary-color;
+        border-color: transparent;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background: $primary-color--hover;
+        }
+    }
+}

@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LinkingLandingComponent, { LinkingLandingComponentProps } from './LinkingLandingComponent';
 import IntlProvider from 'components/IntlProvider';
-
+import 'styles/styles.scss'
 
 // export default {
 //   title: 'Components/LinkingLandingComponent',
