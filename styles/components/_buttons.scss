@@ -1,14 +1,57 @@
-@import '../variables';
+@import "button_common";
+
+
+@mixin pt-button-base() {
+  @include pt-flex-container(row, $button-icon-spacing, $inline: inline);
+  align-items: center;
+
+  border: none;
+  border-radius: $pt-border-radius;
+  cursor: pointer;
+  font-size: $pt-font-size;
+  justify-content: center;
+  padding: $button-padding;
+  text-align: left;
+  vertical-align: middle;
+}
+
+@mixin pt-button() {
+  background-color: $button-background-color;
+  background-image: $button-gradient;
+  box-shadow: $button-box-shadow;
+  color: $pt-text-color;
+
+  &:hover {
+    @include pt-button-hover();
+  }
+
+  &:active,
+  &.#{$ns}-active {
+    @include pt-button-active();
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    @include pt-button-disabled();
+  }
+}
 
 .btn {
-    &.btn-primary {
-        background: $primary-color;
-        border-color: transparent;
+  @include pt-button-base();
+  @include pt-button-height($pt-button-height);
 
-        &:hover,
-        &:focus,
-        &:active {
-            background: $primary-color--hover;
-        }
-    }
+  // &.btn-primary {
+  //     background: $primary-color;
+  //     border-color: transparent;
+
+  //     &:hover,
+  //     &:focus,
+  //     &:active {
+  //         background: $primary-color--hover;
+  //     }
+  // }
+  // default styles
+  &:not([class*="#{$ns}-intent-"]) {
+    @include pt-button();
+  }
 }

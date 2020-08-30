@@ -1,8 +1,0 @@
-// Namespace appended to the beginning of each CSS class: `.#{$ns}-button`.
-// Do not quote this value, for Less consumers.
-$ns: hk !default;
-
-$primary-color: #166de0;
-$primary-color--hover: darken($primary-color, 10%);
-
-$sidebar-background-color: #145dbf;
