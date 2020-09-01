@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import mobileImg from 'images/deep-linking/deeplinking-mobile-img.png';
 import desktopImg from 'images/deep-linking/deeplinking-desktop-img.png';
 
-import styles from './LinkingLandingComponent.module.scss'
+import styles from './linkingLandingComponent.module.scss'
 import { NS } from 'common'
 import * as UserAgent from 'utils/UserAgent'
 

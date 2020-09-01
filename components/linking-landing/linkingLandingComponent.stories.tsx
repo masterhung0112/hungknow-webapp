@@ -1,8 +1,8 @@
 import React from 'react';
 // import { Story, Meta } from '@storybook/react/types-6-0';
 import { storiesOf } from '@storybook/react';
-import LinkingLandingComponent, { LinkingLandingComponentProps } from './LinkingLandingComponent';
-import IntlProvider from 'components/IntlProvider';
+import LinkingLandingComponent, { LinkingLandingComponentProps } from './linkingLandingComponent';
+import IntlProvider from 'components/intl-provider';
 import 'styles/styles.scss'
 
 // export default {

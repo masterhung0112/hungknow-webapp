@@ -1,1 +1,16 @@
+@import "colors";
 @import "flex";
+
+$pt-intent-text-colors: (
+  "primary": $blue2,
+  "success": $green2,
+  "warning": $orange2,
+  "danger" : $red2,
+) !default;
+
+$pt-dark-intent-text-colors: (
+  "primary": $blue5,
+  "success": $green5,
+  "warning": $orange5,
+  "danger" : $red5,
+) !default;
