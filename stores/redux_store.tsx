@@ -18,6 +18,6 @@ import { GlobalState } from 'hkclient-ts/types/store';
 
 export const makeStore: MakeStore<GlobalState> = (context: Context) => configureStore()
 
-const wrapper = createWrapper<GlobalState>(makeStore, { debug: true });
+export const wrapper = createWrapper<GlobalState>(makeStore, { debug: true });
 
-export default wrapper
+// export default wrapper

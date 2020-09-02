@@ -59,6 +59,9 @@
       "images/*": [
         "images/*"
       ],
+      "common": [
+        "common"
+      ],
       "common/*": [
         "common/*"
       ],
@@ -70,6 +73,12 @@
       ],
       "styles/*": [
         "styles/*"
+      ],
+      "actions": [
+        "actions"
+      ],
+      "actions/*": [
+        "actions/*"
       ]
     }
   },
