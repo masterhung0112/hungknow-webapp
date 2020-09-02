@@ -7,7 +7,9 @@ storiesOf('Icon', module)
     'default',
     () => {
       return (
-        <Icon icon='calendar' />
+        <div>
+          <Icon icon='calendar' />
+        </div>
       )
     }
   )
