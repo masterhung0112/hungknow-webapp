@@ -1,3 +1,5 @@
+import { Constants } from './constants';
+
 export function localizeMessage(id: string, defaultMessage: string): string {
     // const state = store.getState();
 
@@ -9,4 +11,10 @@ export function localizeMessage(id: string, defaultMessage: string): string {
     // }
 
     return '' //translations[id];
+}
+
+export const isServer = typeof window === 'undefined';
+
+export function isMobile() {
+    return isServer ? false : window.innerWidth <= Constants.MOBILE_SCREEN_WIDTH;
 }

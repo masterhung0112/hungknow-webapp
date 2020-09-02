@@ -4,6 +4,7 @@ import {createTransform} from 'redux-persist'
 import {transformSet} from 'stores/utils'
 import localForage from 'localforage'
 import {extendPrototype} from 'localforage-observable'
+import { GlobalState } from 'hkclient-ts/types/store'
 
 function getAppReducer() {
     return require('../reducers')
@@ -52,7 +53,7 @@ const whitelist: {
 
 // window.Observable = Observable;
 
-export default function configureStore(initialState = undefined) {
+export default function configureStore(initialState: GlobalState = undefined) {
     const setTransformer = createTransform(
         (inboundState: any, key) => {
             if (key === 'entities') {

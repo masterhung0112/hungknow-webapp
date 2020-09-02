@@ -1,4 +1,4 @@
-const userAgent = () => window.navigator.userAgent;
+const userAgent = () => typeof window !== 'undefined' ? window.navigator.userAgent : 'server';
 
 export function isChrome(): boolean {
     return userAgent().indexOf('Chrome') > -1 && userAgent().indexOf('Edge') === -1;
