@@ -64,7 +64,7 @@ export class Icon extends AbstractPureComponent<IIconProps & React.DOMAttributes
     public static readonly SIZE_LARGE = 20;
 
     public render(): JSX.Element | null {
-        const { icon, iconSize, tagName = "span", intent, className, color, title = icon, htmlTitle, ...htmlprops } = this.props
+        const { icon, iconSize = Icon.SIZE_STANDARD, tagName = "span", intent, className, color, title = icon, htmlTitle, ...htmlprops } = this.props
         if (icon == null || typeof icon === "boolean") {
             return null;
         } else if (typeof icon !== "string") {
@@ -86,7 +86,7 @@ export class Icon extends AbstractPureComponent<IIconProps & React.DOMAttributes
                 className: classes,
                 title: htmlTitle,
             },
-            <svg fill={color} data-icon={icon} width={iconSize} height={iconSize} viewBox={viewBox}>
+            <svg fill={color} data-icon={icon} width="16px" height={iconSize} viewBox={viewBox}>
                 {title && <desc>{title}</desc>}
                 {paths}
             </svg>,

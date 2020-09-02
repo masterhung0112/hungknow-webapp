@@ -1,6 +1,5 @@
 @import "button_common";
 
-
 @mixin pt-button-base() {
   @include pt-flex-container(row, $button-icon-spacing, $inline: inline);
   align-items: center;
@@ -51,6 +50,21 @@
   //     }
   // }
   // default styles
+  &:not([class*="#{$ns}-intent-"]) {
+    @include pt-button();
+  }
+}
+
+.#{$ns}-button {
+  @include pt-button-base();
+  @include pt-button-height($pt-button-height);
+
+  // &:empty {
+  //   // override padding from other modifiers (for CSS icon support)
+  //   // stylelint-disable-next-line declaration-no-important
+  //   // padding: 0;// !important;
+  // }
+
   &:not([class*="#{$ns}-intent-"]) {
     @include pt-button();
   }

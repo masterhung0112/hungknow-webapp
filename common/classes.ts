@@ -19,6 +19,8 @@ export const ALIGN_RIGHT = `${NS}-align-right`;
  * COMPONENTS
  */
 export const BUTTON = `${NS}-button`;
+export const BUTTON_SPINNER = `${BUTTON}-spinner`;
+export const BUTTON_TEXT = `${BUTTON}-text`;
 
 export const ICON = `${NS}-icon`;
 export const ICON_STANDARD = `${ICON}-standard`;

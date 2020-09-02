@@ -5,6 +5,10 @@ export interface IRefObject<T = HTMLElement> {
     readonly current: T | null;
 }
 
+export function isRefObject<T extends HTMLElement>(value: IRef<T> | undefined | null): value is IRefObject<T> {
+    return value != null && typeof (value as IRefObject<T>).current !== "undefined";
+}
+
 export type IRefCallback<T = HTMLElement> = (ref: T | null) => any;
 
 export function getRef<T = HTMLElement>(ref: T | IRefObject<T>) {
