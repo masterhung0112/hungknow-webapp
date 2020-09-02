@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { Alignment, Classes, AbstractPureComponent, IRef, IActionProps, MaybeElement, Keys, IRefObject, getRef, Utils } from 'common';
 import { IconName } from '@blueprintjs/icons';
 import Icon from '../icon';
+import { Spinner } from '../spinner';
 
 export interface IButtonProps extends IActionProps {
     /**
@@ -135,7 +136,7 @@ export abstract class AbstractButton<H extends React.HTMLAttributes<HTMLElement>
     protected renderChildren(): React.ReactNode {
         const { children, icon, loading, rightIcon, text } = this.props;
         return [
-            // loading && <Spinner key="loading" className={Classes.BUTTON_SPINNER} size={Icon.SIZE_LARGE} />,
+            loading && <Spinner key="loading" className={Classes.BUTTON_SPINNER} size={Icon.SIZE_LARGE} />,
             <Icon key="leftIcon" icon={icon} />,
             (!Utils.isReactNodeEmpty(text) || !Utils.isReactNodeEmpty(children)) && (
                 <span key="text" className={Classes.BUTTON_TEXT}>
