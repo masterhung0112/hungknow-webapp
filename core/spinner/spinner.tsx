@@ -72,22 +72,26 @@ export class Spinner extends AbstractPureComponent<ISpinnerProps> {
         // - SPINNER_ANIMATION isolates svg from parent display and is always centered inside root element.
         return React.createElement(
             tagName,
-            { className: 'hk-spinner' },
-            <svg
-                width={size}
-                height={size}
-                strokeWidth={strokeWidth.toFixed(2)}
-                viewBox={this.getViewBox(strokeWidth)}
-            >
-                <path className={Classes.SPINNER_TRACK} d={SPINNER_TRACK} />
-                <path
-                    className={Classes.SPINNER_HEAD}
-                    d={SPINNER_TRACK}
-                    pathLength={PATH_LENGTH}
-                    strokeDasharray={`${PATH_LENGTH} ${PATH_LENGTH}`}
-                    strokeDashoffset={strokeOffset}
-                />
-            </svg>
+            { className: classes },
+            React.createElement(
+                tagName,
+                { className: Classes.SPINNER_ANIMATION },
+                <svg
+                    width={size}
+                    height={size}
+                    strokeWidth={strokeWidth.toFixed(2)}
+                    viewBox={this.getViewBox(strokeWidth)}
+                >
+                    <path className={Classes.SPINNER_TRACK} d={SPINNER_TRACK} />
+                    <path
+                        className={Classes.SPINNER_HEAD}
+                        d={SPINNER_TRACK}
+                        pathLength={PATH_LENGTH}
+                        strokeDasharray={`${PATH_LENGTH} ${PATH_LENGTH}`}
+                        strokeDashoffset={strokeOffset}
+                    />
+                </svg>
+            )
         )
     }
 

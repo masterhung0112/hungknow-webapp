@@ -39,3 +39,28 @@ $dark-spinner-head-color: $gray3 !default;
     stroke: $spinner-track-color;
   }
 }
+
+// put the animation on a child HTML element to isolate it from display of parent
+.#{$ns}-spinner-animation {
+  animation: pt-spinner-animation ($pt-transition-duration * 5) linear infinite;
+
+  .#{$ns}-no-spin > & {
+    animation: none;
+  }
+}
+
+.#{$ns}-dark .#{$ns}-spinner {
+  .#{$ns}-spinner-head {
+    stroke: $dark-spinner-head-color;
+  }
+
+  .#{$ns}-spinner-track {
+    stroke: $dark-spinner-track-color;
+  }
+}
+
+@each $intent, $color in $pt-intent-colors {
+  .#{$ns}-spinner.#{$ns}-intent-#{$intent} .#{$ns}-spinner-head {
+    stroke: $color;
+  }
+}
