@@ -35,26 +35,6 @@
   }
 }
 
-.btn {
-  @include pt-button-base();
-  @include pt-button-height($pt-button-height);
-
-  // &.btn-primary {
-  //     background: $primary-color;
-  //     border-color: transparent;
-
-  //     &:hover,
-  //     &:focus,
-  //     &:active {
-  //         background: $primary-color--hover;
-  //     }
-  // }
-  // default styles
-  &:not([class*="#{$ns}-intent-"]) {
-    @include pt-button();
-  }
-}
-
 .#{$ns}-button {
   @include pt-button-base();
   @include pt-button-height($pt-button-height);
@@ -67,5 +47,12 @@
 
   &:not([class*="#{$ns}-intent-"]) {
     @include pt-button();
+  }
+
+  // intents
+  @each $intent, $colors in $button-intents {
+    &.#{$ns}-intent-#{$intent} {
+      @include pt-button-intent($colors...);
+    }
   }
 }

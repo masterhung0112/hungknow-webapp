@@ -26,6 +26,12 @@ export const ICON = `${NS}-icon`;
 export const ICON_STANDARD = `${ICON}-standard`;
 export const ICON_LARGE = `${ICON}-large`;
 
+export const SPINNER = `${NS}-spinner`;
+export const SPINNER_ANIMATION = `${SPINNER}-animation`;
+export const SPINNER_HEAD = `${SPINNER}-head`;
+export const SPINNER_NO_SPIN = `${NS}-no-spin`;
+export const SPINNER_TRACK = `${SPINNER}-track`;
+
 
 /** Return CSS class for alignment. */
 export function alignmentClass(alignment: Alignment) {

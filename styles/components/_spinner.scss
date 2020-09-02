@@ -1,0 +1,41 @@
+@import "../common/variables";
+
+$spinner-track-color: rgba($gray1, 0.2) !default;
+$spinner-head-color: rgba($gray1, 0.8) !default;
+$dark-spinner-track-color: rgba($black, 0.5) !default;
+$dark-spinner-head-color: $gray3 !default;
+
+@keyframes pt-spinner-animation {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.#{$ns}-spinner {
+  align-items: center;
+  // center animation container inside parent element to isolate layout
+  display: flex;
+  justify-content: center;
+
+  // allow paths to overflow container -- critical for edges of circles!
+  overflow: visible;
+  vertical-align: middle;
+ 
+  svg {
+    display: block;
+  }
+
+  path {
+    fill-opacity: 0;
+  }
+
+  .#{$ns}-spinner-head {
+    stroke: $spinner-head-color;
+    stroke-linecap: round;
+    transform-origin: center;
+    transition: stroke-dashoffset ($pt-transition-duration * 2) $pt-transition-ease;
+  }
+
+  .#{$ns}-spinner-track {
+    stroke: $spinner-track-color;
+  }
+}

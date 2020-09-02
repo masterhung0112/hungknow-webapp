@@ -34,8 +34,6 @@ $pt-button-height-small: $pt-grid-size * 2.4 !default;
 $pt-button-height-smaller: $pt-grid-size * 2 !default;
 $pt-button-height-large: $pt-grid-size * 4 !default;
 
-
-
 $primary-color: #166de0;
 $primary-color--hover: darken($primary-color, 10%);
 
@@ -43,3 +41,8 @@ $sidebar-background-color: #145dbf;
 
 // Random variables
 $border-rad: 2px;
+
+// Transitions
+$pt-transition-ease: cubic-bezier(0.4, 1, 0.75, 0.9) !default;
+$pt-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11) !default;
+$pt-transition-duration: 100ms !default;
