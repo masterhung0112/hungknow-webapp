@@ -1,17 +1,21 @@
+import { Store } from 'redux';
 import { wrapper } from 'stores/redux_store.jsx'
-
+import { GlobalState } from 'hkclient-ts/types/store';
+import { getCurrentUser } from 'hkclient-ts/selectors/entities/common'
+import { getTeamMemberships } from 'hkclient-ts/selectors/entities/teams'
+import { Utils } from 'utils';
 // const getState = wrapper;
 
-export async function redirectUserToDefaultTeam() {
-    let state = getState();
+export async function redirectUserToDefaultTeam(store: Store<GlobalState>) {
+    let state = store.getState();
 
     // Assume we need to load the user if they don't have any team memberships loaded or the user loaded
     let user = getCurrentUser(state);
     const shouldLoadUser = Utils.isEmptyObject(getTeamMemberships(state)) || !user;
 
     if (shouldLoadUser) {
-        await dispatch(loadMe());
-        state = getState();
+        await store.dispatch(loadMe());
+        state = store.getState();
         user = getCurrentUser(state);
     }
 
