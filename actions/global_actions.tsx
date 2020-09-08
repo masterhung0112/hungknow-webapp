@@ -3,6 +3,7 @@ import { wrapper } from 'stores/redux_store.jsx'
 import { GlobalState } from 'hkclient-ts/types/store';
 import { getCurrentUser } from 'hkclient-ts/selectors/entities/common'
 import { getTeamMemberships } from 'hkclient-ts/selectors/entities/teams'
+import { loadMe } from 'hkclient-ts/actions/users'
 import { Utils } from 'utils';
 // const getState = wrapper;
 
