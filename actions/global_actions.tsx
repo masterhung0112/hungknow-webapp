@@ -5,7 +5,24 @@ import { getCurrentUser } from 'hkclient-ts/selectors/entities/common'
 import { getTeamMemberships } from 'hkclient-ts/selectors/entities/teams'
 import { loadMe } from 'hkclient-ts/actions/users'
 import { Utils } from 'utils';
+import { getCurrentLocale } from 'selectors/i18n';
+import LocalStorageStore from 'stores/local_storage_store'
+// import 'hkclient-ts/types/actions'
 // const getState = wrapper;
+
+// import { ActionFunc } from 'hkclient-ts/types/actions'
+
+// declare module 'redux' {
+//     /*
+//     * Overload to add thunk support to Redux's dispatch() function.
+//     * Useful for react-redux or any other library which could use this type.
+//     */
+//    export interface Dispatch<A extends Action = AnyAction> {
+//      <TReturnType = any>(
+//        actionFunc: ActionFunc,
+//      ): TReturnType;
+//    }
+//  }
 
 export async function redirectUserToDefaultTeam(store: Store<GlobalState>) {
     let state = store.getState();
@@ -25,7 +42,7 @@ export async function redirectUserToDefaultTeam(store: Store<GlobalState>) {
     }
 
     const locale = getCurrentLocale(state);
-    const teamId = LocalStorageStore.getPreviousTeamId(user.id);
+    const teamId = LocalStorageStore.getPreviousTeamId(user.id, state);
 
     let myTeams = getMyTeams(state);
     if (myTeams.length === 0) {
@@ -49,7 +66,7 @@ export async function redirectUserToDefaultTeam(store: Store<GlobalState>) {
         // This should execute async behavior in a pretty limited set of situations, so shouldn't be a problem
         const channel = await getTeamRedirectChannelIfIsAccesible(user, myTeam); // eslint-disable-line no-await-in-loop
         if (channel) {
-            dispatch(selectChannel(channel.id));
+            store.dispatch(selectChannel(channel.id));
             browserHistory.push(`/${myTeam.name}/channels/${channel.name}`);
             return;
         }
