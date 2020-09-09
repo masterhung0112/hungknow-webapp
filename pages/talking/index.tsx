@@ -19,6 +19,7 @@ type TalkingProps = {
     actions: {
         loadMeAndConfig: Function,
         // getWarnMetricsStatus: Function,
+        redirectUserToDefaultTeam: Function,
     }
 }
 
@@ -91,7 +92,7 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
 
         this.props.actions.loadMeAndConfig().then((response: any) => {
             if (pathname === '/talking' && response[2] && response[2].data) {
-                GlobalActions.redirectUserToDefaultTeam();
+                this.props.actions.redirectUserToDefaultTeam();
             }
             this.onConfigLoaded();
         }).then(() => {
@@ -142,6 +143,7 @@ function mapDispatchToProps(dispatch: any) {
         actions: bindActionCreators({
             loadMeAndConfig,
             // null, //getWarnMetricsStatus,
+            redirectUserToDefaultTeam: GlobalActions.redirectUserToDefaultTeam,
         }, dispatch),
     };
 }

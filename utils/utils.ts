@@ -18,3 +18,15 @@ export const isServer = typeof window === 'undefined';
 export function isMobile() {
     return isServer ? false : window.innerWidth <= Constants.MOBILE_SCREEN_WIDTH;
 }
+
+export function isEmptyObject(object: any) {
+    if (!object) {
+        return true;
+    }
+
+    if (Object.keys(object).length === 0) {
+        return true;
+    }
+
+    return false;
+}
