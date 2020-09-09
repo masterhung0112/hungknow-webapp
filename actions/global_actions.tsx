@@ -2,29 +2,20 @@ import { Store } from 'redux';
 import { wrapper } from 'stores/redux_store.jsx'
 import { GlobalState } from 'hkclient-ts/types/store';
 import { getCurrentUser } from 'hkclient-ts/selectors/entities/common'
-import { getTeamMemberships, getMyTeams } from 'hkclient-ts/selectors/entities/teams'
+import { getTeamMemberships, getMyTeams, getTeam, getMyTeamMember } from 'hkclient-ts/selectors/entities/teams'
+import { getAllChannels, getAllDirectChannels, getChannelsNameMapInTeam, getRedirectChannelNameForTeam, getMyChannelMember } from 'hkclient-ts/selectors/entities/channels'
+import { fetchMyChannelsAndMembers, getChannelByNameAndTeamName } from 'hkclient-ts/actions/channels'
+
+
 import { loadMe } from 'hkclient-ts/actions/users'
 import { Utils } from 'utils';
 import { getCurrentLocale } from 'selectors/i18n';
 import LocalStorageStore from 'stores/local_storage_store'
 import { DispatchFunc, GetStateFunc } from 'hkclient-ts/types/actions'
 import Router from 'next/router';
-
-// const getState = wrapper;
-
-// import { ActionFunc } from 'hkclient-ts/types/actions'
-
-// declare module 'redux' {
-//     /*
-//     * Overload to add thunk support to Redux's dispatch() function.
-//     * Useful for react-redux or any other library which could use this type.
-//     */
-//    export interface Dispatch<A extends Action = AnyAction> {
-//      <TReturnType = any>(
-//        actionFunc: ActionFunc,
-//      ): TReturnType;
-//    }
-//  }
+import { filterAndSortTeamsByDisplayName } from 'utils/team_utils';
+import { UserProfile } from 'hkclient-ts/types/users';
+import { Team } from 'hkclient-ts/types/teams';
 
 export function redirectUserToDefaultTeam() {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
@@ -57,7 +48,8 @@ export function redirectUserToDefaultTeam() {
         if (team && team.delete_at === 0) {
             const channel = await getTeamRedirectChannelIfIsAccesible(user, team);
             if (channel) {
-                dispatch(selectChannel(channel.id));
+                //TODO: Open this
+                // dispatch(selectChannel(channel.id));
                 Router.push(`/talking/${team.name}/channels/${channel.name}`);
                 return;
             }
@@ -69,7 +61,8 @@ export function redirectUserToDefaultTeam() {
             // This should execute async behavior in a pretty limited set of situations, so shouldn't be a problem
             const channel = await getTeamRedirectChannelIfIsAccesible(user, myTeam); // eslint-disable-line no-await-in-loop
             if (channel) {
-                dispatch(selectChannel(channel.id));
+                //TODO: Open this
+                // dispatch(selectChannel(channel.id));
                 Router.push(`/talking/${myTeam.name}/channels/${channel.name}`);
                 return;
             }
@@ -79,7 +72,7 @@ export function redirectUserToDefaultTeam() {
     }
 }
 
-export function getTeamRedirectChannelIfIsAccesible(user, team) {
+export function getTeamRedirectChannelIfIsAccesible(user: UserProfile, team: Team) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         let state = getState();
         let channel = null;
@@ -97,7 +90,7 @@ export function getTeamRedirectChannelIfIsAccesible(user, team) {
             teamChannels = getChannelsNameMapInTeam(state, team.id);
         }
 
-        const channelName = LocalStorageStore.getPreviousChannelName(user.id, team.id);
+        const channelName = LocalStorageStore.getPreviousChannelName(user.id, team.id, getState());
         channel = teamChannels[channelName];
 
         if (typeof channel === 'undefined') {

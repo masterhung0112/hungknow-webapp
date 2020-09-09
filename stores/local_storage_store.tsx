@@ -1,7 +1,9 @@
 import { getBasePath } from 'selectors/general'
 import { GlobalState } from 'hkclient-ts/types/store';
+import { getRedirectChannelNameForTeam } from 'hkclient-ts/selectors/entities/channels';
 
 const getPreviousTeamIdKey = (userId: string) => ['user_prev_team', userId].join(':')
+const getPreviousChannelNameKey = (userId: string, teamId: string) => ['user_team_prev_channel', userId, teamId].join(':');
 
 const getPathScopedKey = (path: string, key: string) => {
     if (path === '' || path === '/') {
@@ -28,6 +30,10 @@ class LocalStorageStoreClass {
 
     getPreviousTeamId(userId: string, state: GlobalState) {
         return this.getItem(getPreviousTeamIdKey(userId), state);
+    }
+
+    getPreviousChannelName(userId: string, teamId: string, state: GlobalState) {
+        return this.getItem(getPreviousChannelNameKey(userId, teamId), state) || getRedirectChannelNameForTeam(state, teamId);
     }
 }
 
