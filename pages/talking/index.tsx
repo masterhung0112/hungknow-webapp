@@ -91,6 +91,8 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
         var { pathname, router } = Router
 
         this.props.actions.loadMeAndConfig().then((response: any) => {
+            console.log('response', response)
+            // User have loggined before
             if (pathname === '/talking' && response[2] && response[2].data) {
                 this.props.actions.redirectUserToDefaultTeam();
             }
@@ -130,7 +132,7 @@ function mapStateToProps(state: GlobalState) {
 
     return {
         diagnosticsEnabled: false, //config.DiagnosticsEnabled === 'true',
-        noAccounts: false, //config.NoAccounts === 'true',
+        noAccounts: config.NoAccounts === 'true',
         diagnosticId: '', //config.DiagnosticId,
         permalinkRedirectTeamName: '', //permalinkRedirectTeam ? permalinkRedirectTeam.name : '',
         showTermsOfService,
