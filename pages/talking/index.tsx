@@ -1,8 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import Router from 'next/router'
-import { UserAgent } from 'utils'
-import { Utils } from 'utils'
+import { UserAgent, Utils } from 'utils'
 import { DispatchFunc } from 'hkclient-ts/types/actions'
 import * as GlobalActions from 'actions/global_actions';
 import { connect } from 'react-redux';
