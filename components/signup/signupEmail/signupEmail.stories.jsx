@@ -1,15 +1,18 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import SignupController from './signupController'
+import SignupEmail from './signupEmail'
 import IntlProvider from 'components/intl-provider';
 
-storiesOf('Sign Up Controller', module)
+const baseProps = {
+}
+
+storiesOf('Sign Up Email', module)
     .addDecorator((story) => <IntlProvider>{story()}</IntlProvider>)
     .add(
         'default',
         () => {
             return (
-                <SignupController />
+                <SignupEmail {...baseProps} />
             )
         }
     )

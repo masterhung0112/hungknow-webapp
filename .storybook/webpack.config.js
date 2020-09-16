@@ -54,6 +54,8 @@ module.exports = async ({config, mode}) => {
     // config.resolve.alias.sounds = path.join(path.resolve(__dirname), '..', 'sounds')
     config.resolve.alias.styles = path.join(path.resolve(__dirname), '..', 'styles')
     config.resolve.alias.core = path.join(path.resolve(__dirname), '..', 'core')
+    config.resolve.alias.mocks = path.join(path.resolve(__dirname), '..', 'mocks')
+
 
 
     return config;

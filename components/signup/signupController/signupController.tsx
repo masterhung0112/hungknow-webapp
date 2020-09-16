@@ -4,7 +4,9 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl';
 import { Utils as WebUtils } from 'utils'
 import Router from 'next/router'
-
+import Link from 'next/link'
+import LocalizedIcon from 'components/localizedIcon';
+import { t } from 'utils/i18n';
 
 type SignupControllerProps = {
     isLicensed: boolean
@@ -39,6 +41,28 @@ export default class SignupController extends React.PureComponent<SignupControll
     renderSignupControls = () => {
         let signupControls: any[] = [];
 
+        if (this.props.enableSignUpWithEmail) {
+            signupControls.push(
+                <Link
+                className='btn btn-custom-login btn--full email'
+                key='email'
+                href={'/signup_email' + window.location.search}
+            >
+                <span>
+                    <LocalizedIcon
+                        className='icon fa fa-envelope'
+                        component='span'
+                        title={{id: t('signup.email.icon'), defaultMessage: 'Email Icon'}}
+                    />
+                    <FormattedMessage
+                        id='signup.email'
+                        defaultMessage='Email and Password'
+                    />
+                </span>
+            </Link>,
+            )
+        }
+
         if (signupControls.length === 0) {
             const signupDisabledError = (
                 <FormattedMessage
@@ -53,10 +77,13 @@ export default class SignupController extends React.PureComponent<SignupControll
                 />
             )]
         } else if (signupControls.length === 1) {
-            var { pathname, router } = Router
+            let { router } = Router
 
+            // In case there is only one method of login and that is using with email, jump directly to page
             if (this.props.enableSignUpWithEmail) {
-                return router.push('/signup_email' + window.location.search);
+                //TODO: Fix this for flicker
+                router.push('/signup-email' + window.location.search)
+                return signupControls
             } 
            
             //TODO: Open
