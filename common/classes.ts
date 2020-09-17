@@ -60,3 +60,16 @@ export function iconClass(iconName?: string) {
     }
     return iconName.indexOf(`${NS}-icon-`) === 0 ? iconName : `${NS}-icon-${iconName}`;
 }
+
+/*****
+ * forms
+ */
+export const FORMGROUP = `${NS}-form-group`;
+export const FORMGROUP_SMALL = `${FORMGROUP}--small`;
+
+export const FORMGROUP_HAS_ERROR = `${NS}-has-error`;
+
+export const FORMCONTROL = `${NS}-form-control`;
+export const FORMCONTROL_SMALL = `${FORMCONTROL}--sm`;
+
+export const FORMLEGEND = `${NS}-form-legend`;

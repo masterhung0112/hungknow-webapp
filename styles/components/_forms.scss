@@ -1,0 +1,53 @@
+.#{$ns}-form-group {
+    max-width: 100%;
+    background-color: red;
+
+    &--small {
+        margin-bottom: 10px;
+    }
+
+    &.#{$ns}-has-error {
+        .help-block,
+        .radio,
+        .checkbox,
+        .radio-inline,
+        .checkbox-inline {
+            color: $red1;
+        }
+    
+        .form__label {
+            &.control-label {
+                color: inherit !important;
+            }
+        }
+    
+        &.radio,
+        &.checkbox,
+        &.radio-inline,
+        &.checkbox-inline {
+            label {
+                color: $red1;
+            }
+        }
+    }
+}
+
+.#{$ns}-form-control {
+    background-color: violet;
+    // @include input-placeholder {
+    //     color: inherit;
+    // }
+
+    &--sm {
+        font-size: 13px;
+        height: 32px;
+    }
+}
+
+.#{$ns}-form-legend {
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    margin: 0 0 0.8rem;
+}

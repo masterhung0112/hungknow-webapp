@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProps, IIntentProps, AbstractPureComponent, Classes, MaybeElement } from 'common';
+import { IProps, IIntentProps, AbstractPureComponent, CssClasses, MaybeElement } from 'common';
 import classNames from 'classnames';
 import { IconName, IconSvgPaths16, IconSvgPaths20 } from '@blueprintjs/icons';
 
@@ -76,7 +76,7 @@ export class Icon extends AbstractPureComponent<IIconProps & React.DOMAttributes
         // render path elements, or nothing if icon name is unknown.
         const paths = this.renderSvgPaths(pixelGridSize, icon);
 
-        const classes = classNames(Classes.ICON, Classes.iconClass(icon), Classes.intentClass(intent), className);
+        const classes = classNames(CssClasses.ICON, CssClasses.iconClass(icon), CssClasses.intentClass(intent), className);
         const viewBox = `0 0 ${pixelGridSize} ${pixelGridSize}`;
 
         return React.createElement(

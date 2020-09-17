@@ -4,10 +4,10 @@ export * from './intent'
 export * from './refs'
 export * from './props'
 
-import * as Classes from "./classes"
+import * as CssClasses from "./classes"
 import * as Keys from './keys'
 import * as Utils from './utils'
 
-export { Classes, Keys, Utils }
+export { CssClasses, Keys, Utils }
 
-export const NS = Classes.NS
+export const NS = CssClasses.NS

@@ -5,7 +5,9 @@ import logoImage from 'images/logo.png';
 import SiteNameAndDescription from 'components/siteNameAndDescription'
 import { Constants } from 'utils/constants';
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
+import cx from 'classnames'
 import styles from './signupEmail.module.scss'
+import { CssClasses } from 'common'
 
 type Props = {
     location: any
@@ -61,11 +63,17 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                 />
             </span>
         );
-        let emailDivStyle = 'form-group';
+
+        let emailDivStyle = cx(
+            CssClasses.FORMGROUP,
+            {
+                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.emailError
+            }
+        )
+
         if (this.state.emailError) {
-            emailError = (<label className='control-label'>{this.state.emailError}</label>);
+            emailError = (<label className={styles['control-label']}>{this.state.emailError}</label>);
             emailHelpText = null;
-            emailDivStyle += ' has-error';
         }
 
         let nameError = null;
@@ -80,17 +88,27 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                 />
             </span>
         );
-        let nameDivStyle = 'form-group';
+        
+        let nameDivStyle = cx(
+            CssClasses.FORMGROUP,
+            {
+                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.nameError
+            }
+        )
         if (this.state.nameError) {
-            nameError = <label className='control-label'>{this.state.nameError}</label>;
+            nameError = <label className={styles['control-label']}>{this.state.nameError}</label>;
             nameHelpText = null;
-            nameDivStyle += ' has-error';
         }
 
         let passwordError = null;
-        let passwordDivStyle = 'form-group';
+        let passwordDivStyle = cx(
+            CssClasses.FORMGROUP,
+            {
+                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.passwordError
+            }
+        )
         if (this.state.passwordError) {
-            passwordError = <label className='control-label'>{this.state.passwordError}</label>;
+            passwordError = <label className={styles['control-label']}>{this.state.passwordError}</label>;
             passwordDivStyle += ' has-error';
         }
 
@@ -130,7 +148,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 id='email'
                                 type='email'
                                 ref='email'
-                                className='form-control'
+                                className={CssClasses.FORMCONTROL}
                                 defaultValue={this.state.email}
                                 placeholder=''
                                 maxLength={128}
@@ -226,7 +244,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                     id='existingEmailErrorContainer'
                     className={'form-group has-error'}
                 >
-                    <label className='control-label'>{this.state.serverError}</label>
+                    <label className={styles['control-label']}>{this.state.serverError}</label>
                 </div>
             );
         }
@@ -237,7 +255,6 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         } else {
             return null;
         }
-        // styles.
 
         return (
             <div>
@@ -247,7 +264,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                     className='col-sm-12'
                 >
                      {/* ,'signup-team__container padding--less' */}
-                    <div className={`${styles['signup-team__container']} ${styles['padding--less']}`}>
+                    <div className={cx(styles['signup-team__container'], styles['padding--less'])}>
                         <img
                             alt={'signup team logo'}
                             className={styles['signup-team-logo']}

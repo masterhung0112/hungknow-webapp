@@ -6,17 +6,19 @@ body {
     }
 }
 
-.signup-team__container {
-    margin: 0 auto;
-    max-width: 400px;
-    padding: 100px 0 50px;
-    position: relative;
+.signup-team {
+    &__container {
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 100px 0 50px;
+        position: relative;
+    }
 
     &.padding--less {
         padding-top: 70px;
     }
 
-    .signup-team-logo {
+    &-logo {
         display: none;
         margin: 0 0 2em;
         width: 210px;
@@ -48,5 +50,15 @@ body {
 
     .color--light {
         color: #777777;
+    }
+
+    .has-error {
+        &.no-padding {
+            padding: 0;
+        }
+
+        .control-label {
+            background: #f2f2f2;
+        }
     }
 }

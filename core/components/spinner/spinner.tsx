@@ -1,4 +1,4 @@
-import { AbstractPureComponent, IProps, IIntentProps, Classes } from 'common';
+import { AbstractPureComponent, IProps, IIntentProps, CssClasses } from 'common';
 import React from 'react';
 import classNames from 'classnames';
 import { clamp } from 'common/utils';
@@ -57,9 +57,9 @@ export class Spinner extends AbstractPureComponent<ISpinnerProps> {
         const size = this.getSize();
 
         const classes = classNames(
-            Classes.SPINNER,
-            Classes.intentClass(intent),
-            { [Classes.SPINNER_NO_SPIN]: value != null },
+            CssClasses.SPINNER,
+            CssClasses.intentClass(intent),
+            { [CssClasses.SPINNER_NO_SPIN]: value != null },
             className,
         );
 
@@ -75,16 +75,16 @@ export class Spinner extends AbstractPureComponent<ISpinnerProps> {
             { className: classes },
             React.createElement(
                 tagName,
-                { className: Classes.SPINNER_ANIMATION },
+                { className: CssClasses.SPINNER_ANIMATION },
                 <svg
                     width={size}
                     height={size}
                     strokeWidth={strokeWidth.toFixed(2)}
                     viewBox={this.getViewBox(strokeWidth)}
                 >
-                    <path className={Classes.SPINNER_TRACK} d={SPINNER_TRACK} />
+                    <path className={CssClasses.SPINNER_TRACK} d={SPINNER_TRACK} />
                     <path
-                        className={Classes.SPINNER_HEAD}
+                        className={CssClasses.SPINNER_HEAD}
                         d={SPINNER_TRACK}
                         pathLength={PATH_LENGTH}
                         strokeDasharray={`${PATH_LENGTH} ${PATH_LENGTH}`}
@@ -102,10 +102,10 @@ export class Spinner extends AbstractPureComponent<ISpinnerProps> {
     private getSize() {
         const { className = "", size } = this.props;
         if (size == null) {
-            // allow Classes constants to determine default size.
-            if (className.indexOf(Classes.SMALL) >= 0) {
+            // allow CssClasses constants to determine default size.
+            if (className.indexOf(CssClasses.SMALL) >= 0) {
                 return Spinner.SIZE_SMALL;
-            } else if (className.indexOf(Classes.LARGE) >= 0) {
+            } else if (className.indexOf(CssClasses.LARGE) >= 0) {
                 return Spinner.SIZE_LARGE;
             }
             return Spinner.SIZE_STANDARD;
