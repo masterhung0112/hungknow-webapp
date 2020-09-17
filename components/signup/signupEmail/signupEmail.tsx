@@ -55,7 +55,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         let emailHelpText = (
             <span
                 id='valid_email'
-                className='help-block'
+                className={styles['help-block']}
             >
                 <FormattedMessage
                     id='signup_user_completed.emailHelp'
@@ -80,7 +80,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         let nameHelpText = (
             <span
                 id='valid_name'
-                className='help-block'
+                className={styles['help-block']}
             >
                 <FormattedMessage
                     id='signup_user_completed.userHelp'
