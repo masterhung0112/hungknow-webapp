@@ -1,9 +1,11 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
 import logoImage from 'images/logo.png';
 import SiteNameAndDescription from 'components/siteNameAndDescription'
 import { Constants } from 'utils/constants';
+import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
+import styles from './signupEmail.module.scss'
 
 type Props = {
     location: any
@@ -19,13 +21,15 @@ type State = {
     nameError: boolean,
     passwordError: boolean,
     inviteId: string,
-    email: string
+    email: string,
+    isSubmitting: boolean,
+    serverError: string
 }
 
 export default class SignupEmail extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props)
-
+        // styles.
         const inviteId = (new URLSearchParams(this.props.location.search)).get('id');
 
         this.state = {
@@ -34,9 +38,16 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
             nameError: false,
             passwordError: false,
             inviteId,
-            email: ''
+            email: '',
+            isSubmitting: false,
+            serverError: ''
         }
     }
+
+    handleSubmit = (e: SyntheticEvent) => {
+        e.preventDefault();
+    }
+
     renderEmailSignup() {
         let emailError = null;
         let emailHelpText = (
@@ -53,7 +64,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         let emailDivStyle = 'form-group';
         if (this.state.emailError) {
             emailError = (<label className='control-label'>{this.state.emailError}</label>);
-            emailHelpText = '';
+            emailHelpText = null;
             emailDivStyle += ' has-error';
         }
 
@@ -72,7 +83,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         let nameDivStyle = 'form-group';
         if (this.state.nameError) {
             nameError = <label className='control-label'>{this.state.nameError}</label>;
-            nameHelpText = '';
+            nameHelpText = null;
             nameDivStyle += ' has-error';
         }
 
@@ -201,12 +212,24 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         const {
             customDescriptionText,
             enableSignUpWithEmail,
-            // location,
+            location,
             // privacyPolicyLink,
             siteName,
             // termsOfServiceLink,
             hasAccounts,
         } = this.props;
+
+        let serverError = null;
+        if (this.state.serverError) {
+            serverError = (
+                <div
+                    id='existingEmailErrorContainer'
+                    className={'form-group has-error'}
+                >
+                    <label className='control-label'>{this.state.serverError}</label>
+                </div>
+            );
+        }
 
         let emailSignup;
         if (enableSignUpWithEmail) {
@@ -214,6 +237,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         } else {
             return null;
         }
+        // styles.
 
         return (
             <div>
@@ -222,10 +246,11 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                     id='signup_email_section'
                     className='col-sm-12'
                 >
-                    <div className='signup-team__container padding--less'>
+                     {/* ,'signup-team__container padding--less' */}
+                    <div className={`${styles['signup-team__container']} ${styles['padding--less']}`}>
                         <img
                             alt={'signup team logo'}
-                            className='signup-team-logo'
+                            className={styles['signup-team-logo']}
                             src={logoImage}
                         />
                         <SiteNameAndDescription
@@ -234,7 +259,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                         />
                         <h4
                             id='create_account'
-                            className='color--light'
+                            className={styles['color--light']}
                         >
                             <FormattedMessage
                                 id='signup_user_completed.lets'
@@ -243,7 +268,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                         </h4>
                         <span
                             id='signin_account'
-                            className='color--light'
+                            className={styles['color--light']}
                         >
                             <FormattedMessage
                                 id='signup_user_completed.haveAccount'
@@ -261,9 +286,9 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 />
                             </Link>
                         </span>
-                        {/* {emailSignup}
+                        {emailSignup}
                         {serverError}
-                        {terms} */}
+                        {/* {terms} */}
                     </div>
                 </div>
             </div>

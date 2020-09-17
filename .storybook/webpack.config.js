@@ -24,6 +24,12 @@ module.exports = async ({config, mode}) => {
           'style-loader',
           {
               loader: 'css-loader',
+              options: {
+                modules: {
+                    localIdentName: "[local]_[hash:base64:5]",
+                },
+                sourceMap: true,
+              }
           },
           {
               loader: 'sass-loader',
@@ -31,6 +37,7 @@ module.exports = async ({config, mode}) => {
                   sassOptions: {
                       includePaths: ['node_modules/compass-mixins/lib', 'sass'],
                   },
+                  sourceMap: true,
               },
           },
       ],

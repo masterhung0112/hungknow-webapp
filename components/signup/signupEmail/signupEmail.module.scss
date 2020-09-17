@@ -1,0 +1,52 @@
+body {
+    &.announcement-bar--fixed {
+        .signup-header {
+            top: 24px;
+        }
+    }
+}
+
+.signup-team__container {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 100px 0 50px;
+    position: relative;
+
+    &.padding--less {
+        padding-top: 70px;
+    }
+
+    .signup-team-logo {
+        display: none;
+        margin: 0 0 2em;
+        width: 210px;
+    }
+
+    // Modifier Styles
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &.sub-heading {
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        &.color--light {
+            font-weight: 300;
+        }
+    }
+
+    p {
+        .black,
+        &.black {
+            color: #000000;
+        }
+    }
+
+    .color--light {
+        color: #777777;
+    }
+}
