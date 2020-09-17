@@ -1,4 +1,5 @@
 
+@mixin input-placeholder {
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: inherit;
     opacity: 0.5;
@@ -17,4 +18,11 @@
 :-moz-placeholder { /* Firefox 18- */
     color: inherit;
     opacity: 0.5;
+}
+
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
 }

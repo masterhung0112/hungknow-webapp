@@ -6,13 +6,11 @@ body {
     }
 }
 
-.signup-team {
-    &__container {
-        margin: 0 auto;
-        max-width: 400px;
-        padding: 100px 0 50px;
-        position: relative;
-    }
+.signup-team__container {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 100px 0 50px;
+    position: relative;
 
     &.padding--less {
         padding-top: 70px;

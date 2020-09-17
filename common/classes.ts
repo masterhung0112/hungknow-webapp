@@ -61,6 +61,13 @@ export function iconClass(iconName?: string) {
     return iconName.indexOf(`${NS}-icon-`) === 0 ? iconName : `${NS}-icon-${iconName}`;
 }
 
+export const INTENT_PRIMARY = intentClass(Intent.PRIMARY);
+export const INTENT_SUCCESS = intentClass(Intent.SUCCESS);
+export const INTENT_WARNING = intentClass(Intent.WARNING);
+export const INTENT_DANGER = intentClass(Intent.DANGER);
+
+export const FOCUS_DISABLED = `${NS}-focus-disabled`;
+
 /*****
  * forms
  */

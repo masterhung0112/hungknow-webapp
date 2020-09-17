@@ -32,7 +32,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props)
         // styles.
-        const inviteId = (new URLSearchParams(this.props.location.search)).get('id');
+        const inviteId = ''// (new URLSearchParams(this.props.location.search)).get('id');
 
         this.state = {
             loading: true,
@@ -175,7 +175,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 id='name'
                                 type='text'
                                 ref='name'
-                                className='form-control'
+                                className={CssClasses.FORMCONTROL}
                                 placeholder=''
                                 maxLength={Constants.MAX_USERNAME_LENGTH}
                                 spellCheck='false'
@@ -199,7 +199,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 id='password'
                                 type='password'
                                 ref='password'
-                                className='form-control'
+                                className={CssClasses.FORMCONTROL}
                                 placeholder=''
                                 maxLength={128}
                                 spellCheck='false'
@@ -212,7 +212,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                             id='createAccountButton'
                             type='submit'
                             onClick={this.handleSubmit}
-                            className='btn-primary btn'
+                            className={cx(CssClasses.BUTTON, CssClasses.INTENT_PRIMARY)}
                             disabled={this.state.isSubmitting}
                         >
                             <FormattedMessage
@@ -293,14 +293,15 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                             />
                             {' '}
                             <Link
-                                id='signin_account_link'
-                                href={'/login' + location.search}
+                                href={'/login'}//</span> + location.search}
                             // onClick={() => trackEvent('signup_email', 'click_signin_account')}
                             >
-                                <FormattedMessage
+                                {/* <FormattedMessage
                                     id='signup_user_completed.signIn'
+                                    tagName='a'
                                     defaultMessage='Click here to sign in.'
-                                />
+                                /> */}
+                                Click here to sign in.
                             </Link>
                         </span>
                         {emailSignup}

@@ -15,6 +15,7 @@
     "@formatjs/intl-pluralrules": "^3.4.6",
     "@formatjs/intl-relativetimeformat": "^7.2.6",
     "classnames": "^2.2.6",
+    "compass-mixins": "^0.12.10",
     "hkclient-ts": "github:masterhung0112/hkclient-ts#master",
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",

@@ -1,6 +1,5 @@
 .#{$ns}-form-group {
     max-width: 100%;
-    background-color: red;
 
     &--small {
         margin-bottom: 10px;
@@ -33,10 +32,7 @@
 }
 
 .#{$ns}-form-control {
-    background-color: violet;
-    // @include input-placeholder {
-    //     color: inherit;
-    // }
+    @include input-placeholder;
 
     &--sm {
         font-size: 13px;
