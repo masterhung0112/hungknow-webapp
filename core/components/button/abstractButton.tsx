@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
-import { Alignment, Classes, AbstractPureComponent, IRef, IActionProps, MaybeElement, Keys, IRefObject, getRef, Utils } from 'common';
+import { Alignment, CssClasses, AbstractPureComponent, IRef, IActionProps, MaybeElement, Keys, IRefObject, getRef, Utils } from 'common';
 import { IconName } from '@blueprintjs/icons';
 import Icon from '../icon';
 import { Spinner } from '../spinner';
@@ -8,7 +8,7 @@ import { Spinner } from '../spinner';
 export interface IButtonProps extends IActionProps {
     /**
      * If set to `true`, the button will display in an active state.
-     * This is equivalent to setting `className={Classes.ACTIVE}`.
+     * This is equivalent to setting `className={CssClasses.ACTIVE}`.
      * @default false
      */
     active?: boolean;
@@ -79,19 +79,19 @@ export abstract class AbstractButton<H extends React.HTMLAttributes<HTMLElement>
         const disabled = this.props.disabled || loading;
 
         const className = classNames(
-            Classes.BUTTON,
+            CssClasses.BUTTON,
             {
-                [Classes.ACTIVE]: this.state.isActive || this.props.active,
-                [Classes.DISABLED]: disabled,
-                [Classes.FILL]: fill,
-                [Classes.LARGE]: large,
-                [Classes.LOADING]: loading,
-                [Classes.MINIMAL]: minimal,
-                [Classes.OUTLINED]: outlined,
-                [Classes.SMALL]: small,
+                [CssClasses.ACTIVE]: this.state.isActive || this.props.active,
+                [CssClasses.DISABLED]: disabled,
+                [CssClasses.FILL]: fill,
+                [CssClasses.LARGE]: large,
+                [CssClasses.LOADING]: loading,
+                [CssClasses.MINIMAL]: minimal,
+                [CssClasses.OUTLINED]: outlined,
+                [CssClasses.SMALL]: small,
             },
-            Classes.alignmentClass(alignText),
-            Classes.intentClass(this.props.intent),
+            CssClasses.alignmentClass(alignText),
+            CssClasses.intentClass(this.props.intent),
             this.props.className,
         );
 
@@ -136,10 +136,10 @@ export abstract class AbstractButton<H extends React.HTMLAttributes<HTMLElement>
     protected renderChildren(): React.ReactNode {
         const { children, icon, loading, rightIcon, text } = this.props;
         return [
-            loading && <Spinner key="loading" className={Classes.BUTTON_SPINNER} size={Icon.SIZE_LARGE} />,
+            loading && <Spinner key="loading" className={CssClasses.BUTTON_SPINNER} size={Icon.SIZE_LARGE} />,
             <Icon key="leftIcon" icon={icon} />,
             (!Utils.isReactNodeEmpty(text) || !Utils.isReactNodeEmpty(children)) && (
-                <span key="text" className={Classes.BUTTON_TEXT}>
+                <span key="text" className={CssClasses.BUTTON_TEXT}>
                     {text}
                     {children}
                 </span>

@@ -79,6 +79,12 @@
       ],
       "actions/*": [
         "actions/*"
+      ],
+      "mocks": [
+        "mocks"
+      ],
+      "mocks/*": [
+        "mocks/*"
       ]
     }
   },

@@ -1,3 +1,6 @@
+@import '../common/modules';
+@import 'inputs';
+
 $button-border-width: 1px !default;
 $button-padding: ($hb-grid-size / 2) $hb-grid-size !default;
 $button-padding-small: 0 ($hb-grid-size * 0.7) !default;

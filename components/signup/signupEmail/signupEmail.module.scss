@@ -1,0 +1,117 @@
+@import "../../../styles/common/modules";
+
+body {
+    &.announcement-bar--fixed {
+        .signup-header {
+            top: 24px;
+        }
+    }
+}
+
+.signup-team__container {
+    margin: 0 auto;
+    max-width: 400px;
+    padding: 100px 0 50px;
+    position: relative;
+
+    &.padding--less {
+        padding-top: 70px;
+    }
+
+    &-logo {
+        display: none;
+        margin: 0 0 2em;
+        width: 210px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        line-height: 1.3;
+    }
+
+    h1 {
+        font-weight: 600;
+    }
+
+    h2 {
+        font-size: em(30px);
+        font-weight: 600;
+        letter-spacing: -.5px;
+        margin-bottom: .8em;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin: 0 0 1.3em;
+    }
+
+    h4 {
+        font-size: em(20px);
+        font-weight: 600;
+        margin-bottom: 1em;
+    }
+
+    h5 {
+        font-size: em(16px);
+    }
+
+    hr {
+        margin: 2em 0;
+    }
+
+    p {
+        color: #555555;
+        line-height: 1.5;
+        margin-bottom: 1em;
+    }
+
+    // Modifier Styles
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &.sub-heading {
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        &.signup-create-action {
+            font-weight: 300;
+        }
+    }
+
+    p {
+        .black,
+        &.black {
+            color: $black;
+        }
+    }
+
+    .signup-create-action--light {
+        color: $hb-text-color-muted;
+    }
+
+    .has-error {
+        &.no-padding {
+            padding: 0;
+        }
+
+        .control-label {
+            background: #f2f2f2;
+        }
+    }
+
+    .form-input-help-text {
+        color: $dark-gray4;
+        font-size: .95em;
+        margin: 10px 0 0;
+    }
+}

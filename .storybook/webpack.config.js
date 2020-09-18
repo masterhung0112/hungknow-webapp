@@ -19,11 +19,17 @@ module.exports = async ({config, mode}) => {
     config.resolve.extensions.push('.ts', '.tsx');
 
     config.module.rules.push({
-      test: /\.scss$/,
+      test: /\.(css|scss)$/,
       use: [
           'style-loader',
           {
               loader: 'css-loader',
+              options: {
+                modules: {
+                    localIdentName: "[local]__[hash:base64:5]",
+                },
+                sourceMap: true,
+              },
           },
           {
               loader: 'sass-loader',
@@ -31,10 +37,35 @@ module.exports = async ({config, mode}) => {
                   sassOptions: {
                       includePaths: ['node_modules/compass-mixins/lib', 'sass'],
                   },
+                  sourceMap: true,
               },
           },
       ],
+      include: /\.module\.(css|scss)$/,
     });
+
+    config.module.rules.push({
+        test: /\.(css|scss)$/,
+        use: [
+            'style-loader',
+            {
+                loader: 'css-loader',
+                options: {
+                  sourceMap: true,
+                },
+            },
+            {
+                loader: 'sass-loader',
+                options: {
+                    sassOptions: {
+                        includePaths: ['node_modules/compass-mixins/lib', 'sass'],
+                    },
+                    sourceMap: true,
+                },
+            },
+        ],
+        exclude: /\.module\.(css|scss)$/,
+      });
 
     config.resolve.alias.common = path.join(path.resolve(__dirname), '..', 'common')
     // config.resolve.alias.actions = path.join(path.resolve(__dirname), '..', 'actions')
@@ -54,6 +85,8 @@ module.exports = async ({config, mode}) => {
     // config.resolve.alias.sounds = path.join(path.resolve(__dirname), '..', 'sounds')
     config.resolve.alias.styles = path.join(path.resolve(__dirname), '..', 'styles')
     config.resolve.alias.core = path.join(path.resolve(__dirname), '..', 'core')
+    config.resolve.alias.mocks = path.join(path.resolve(__dirname), '..', 'mocks')
+
 
 
     return config;
