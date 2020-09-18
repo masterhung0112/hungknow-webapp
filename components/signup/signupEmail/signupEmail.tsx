@@ -51,18 +51,6 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
     }
 
     renderEmailSignup() {
-        let emailError = null;
-        let emailHelpText = (
-            <span
-                id='valid_email'
-                className={styles['help-block']}
-            >
-                <FormattedMessage
-                    id='signup_user_completed.emailHelp'
-                    defaultMessage='Valid email required for sign-up'
-                />
-            </span>
-        );
 
         let emailDivStyle = cx(
             CssClasses.FORMGROUP,
@@ -71,60 +59,19 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
             }
         )
 
-        if (this.state.emailError) {
-            emailError = (<label className={styles['control-label']}>{this.state.emailError}</label>);
-            emailHelpText = null;
-        }
-
-        let nameError = null;
-        let nameHelpText = (
-            <span
-                id='valid_name'
-                className={styles['help-block']}
-            >
-                <FormattedMessage
-                    id='signup_user_completed.userHelp'
-                    defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
-                />
-            </span>
-        );
-        
         let nameDivStyle = cx(
             CssClasses.FORMGROUP,
             {
                 [CssClasses.FORMGROUP_HAS_ERROR]: this.state.nameError
             }
         )
-        if (this.state.nameError) {
-            nameError = <label className={styles['control-label']}>{this.state.nameError}</label>;
-            nameHelpText = null;
-        }
 
-        let passwordError = null;
         let passwordDivStyle = cx(
             CssClasses.FORMGROUP,
             {
                 [CssClasses.FORMGROUP_HAS_ERROR]: this.state.passwordError
             }
         )
-        if (this.state.passwordError) {
-            passwordError = <label className={styles['control-label']}>{this.state.passwordError}</label>;
-            passwordDivStyle += ' has-error';
-        }
-
-        let yourEmailIs = null;
-        if (this.state.email) {
-            yourEmailIs = (
-                <FormattedMarkdownMessage
-                    id='signup_user_completed.emailIs'
-                    defaultMessage="Your email address is **{email}**. You'll use this address to sign in to {siteName}."
-                    values={{
-                        email: this.state.email,
-                        siteName: this.props.siteName,
-                    }}
-                />
-            );
-        }
 
         let emailContainerStyle = 'mt-8';
         if (this.state.email) {
@@ -156,11 +103,28 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 spellCheck='false'
                                 autoCapitalize='off'
                             />
-                            {emailError}
-                            {emailHelpText}
+                            {this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
+                            {!this.state.emailError ? <span
+                                id='valid_email'
+                                className={styles['form-input-help-text']}
+                            >
+                                <FormattedMessage
+                                    id='signup_user_completed.emailHelp'
+                                    defaultMessage='Valid email required for sign-up'
+                                />
+                            </span> : null}
                         </div>
                     </div>
-                    {yourEmailIs}
+                    {this.state.email ?
+                        <FormattedMarkdownMessage
+                            id='signup_user_completed.emailIs'
+                            defaultMessage="Your email address is **{email}**. You'll use this address to sign in to {siteName}."
+                            values={{
+                                email: this.state.email,
+                                siteName: this.props.siteName,
+                            }}
+                        />
+                        : null}
                     <div className='mt-8'>
                         <h5 id='name_label'>
                             <strong>
@@ -181,8 +145,16 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 spellCheck='false'
                                 autoCapitalize='off'
                             />
-                            {nameError}
-                            {nameHelpText}
+                            {this.state.nameError ? <label className={styles['control-label']}>{this.state.nameError}</label> : null}
+                            {!this.state.nameError ? <span
+                                id='valid_name'
+                                className={styles['form-input-help-text']}
+                            >
+                                <FormattedMessage
+                                    id='signup_user_completed.userHelp'
+                                    defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
+                                />
+                            </span> : null}
                         </div>
                     </div>
                     <div className='mt-8'>
@@ -204,7 +176,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                 maxLength={128}
                                 spellCheck='false'
                             />
-                            {passwordError}
+                            {this.state.passwordError ? <label className={styles['control-label']}>{this.state.passwordError}</label> : null}
                         </div>
                     </div>
                     <p className='mt-5'>
@@ -263,7 +235,6 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                     id='signup_email_section'
                     className='col-sm-12'
                 >
-                     {/* ,'signup-team__container padding--less' */}
                     <div className={cx(styles['signup-team__container'], styles['padding--less'])}>
                         <img
                             alt={'signup team logo'}
@@ -276,7 +247,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                         />
                         <h4
                             id='create_account'
-                            className={styles['color--light']}
+                            className={styles['signup-create-action']}
                         >
                             <FormattedMessage
                                 id='signup_user_completed.lets'
@@ -285,7 +256,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                         </h4>
                         <span
                             id='signin_account'
-                            className={styles['color--light']}
+                            className={styles['signup-create-action']}
                         >
                             <FormattedMessage
                                 id='signup_user_completed.haveAccount'
