@@ -1,3 +1,4 @@
+import React from 'react'
 import '../styles/styles.scss'
 import { wrapper } from 'stores/redux_store.tsx'
 import makeAsyncComponent from 'components/async_load'
