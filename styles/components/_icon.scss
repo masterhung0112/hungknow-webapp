@@ -11,7 +11,7 @@
   // sit nicely with inline text
   vertical-align: text-bottom;
 
-  &:not(:empty)::before {
+  &:not(:emhby)::before {
     // clear font icon when there's an <svg> image
     /* stylelint-disable */
     content: "" !important; // fallback for IE11
@@ -41,4 +41,28 @@
       }
     }
   }
+}
+
+@mixin hb-icon-sized(
+  $font-size: $hb-icon-size-standard,
+  $font-family-size: strip-unit($font-size)
+) {
+  font-family: "Icons#{$font-family-size}", sans-serif;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+@mixin hb-icon-font-smoothing() {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin hb-icon(
+  $font-size: $hb-icon-size-standard,
+  $font-family-size: strip-unit($font-size)
+) {
+  @include hb-icon-sized($font-size, $font-family-size);
+  @include hb-icon-font-smoothing();
 }

@@ -1,0 +1,13 @@
+@import "../../common/modules";
+@import "./common";
+
+/*
+Text inputs
+*/
+.#{$ns}-input {
+  @include hb-input();
+
+  &::-ms-clear {
+    display: none;
+  }
+}

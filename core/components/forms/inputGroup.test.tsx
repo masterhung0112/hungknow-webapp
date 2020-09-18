@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { InputGroup } from './inputGroup'
+import InputGroup from './inputGroup'
 import Icon from '../icon'
 import { CssClasses } from 'common'
 

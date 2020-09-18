@@ -34,6 +34,12 @@ $hb-button-height-small: $hb-grid-size * 2.4 !default;
 $hb-button-height-smaller: $hb-grid-size * 2 !default;
 $hb-button-height-large: $hb-grid-size * 4 !default;
 
+// Shadow opacities
+$hb-border-shadow-opacity: 0.1 !default;
+$hb-drop-shadow-opacity: 0.2 !default;
+$hb-dark-border-shadow-opacity: $hb-border-shadow-opacity * 2 !default;
+$hb-dark-drop-shadow-opacity: $hb-drop-shadow-opacity * 2 !default;
+
 $primary-color: #166de0;
 $primary-color--hover: darken($primary-color, 10%);
 
@@ -46,3 +52,13 @@ $border-rad: 2px;
 $hb-transition-ease: cubic-bezier(0.4, 1, 0.75, 0.9) !default;
 $hb-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11) !default;
 $hb-transition-duration: 100ms !default;
+
+// Inputs
+$hb-input-height: $hb-grid-size * 3 !default;
+$hb-input-height-large: $hb-grid-size * 4 !default;
+$hb-input-height-small: $hb-grid-size * 2.4 !default;
+
+// Light theme styles
+
+$hb-input-box-shadow: inset border-shadow(0.15),
+                      inset 0 1px 1px rgba($black, $hb-drop-shadow-opacity) !default;
