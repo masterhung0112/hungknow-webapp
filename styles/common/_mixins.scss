@@ -1,21 +1,21 @@
 @import "colors";
 @import "flex";
 
-$pt-intent-colors: (
-  "primary": $pt-intent-primary,
-  "success": $pt-intent-success,
-  "warning": $pt-intent-warning,
-  "danger" : $pt-intent-danger,
+$hb-intent-colors: (
+  "primary": $hb-intent-primary,
+  "success": $hb-intent-success,
+  "warning": $hb-intent-warning,
+  "danger" : $hb-intent-danger,
 ) !default;
 
-$pt-intent-text-colors: (
+$hb-intent-text-colors: (
   "primary": $blue2,
   "success": $green2,
   "warning": $orange2,
   "danger" : $red2,
 ) !default;
 
-$pt-dark-intent-text-colors: (
+$hb-dark-intent-text-colors: (
   "primary": $blue5,
   "success": $green5,
   "warning": $orange5,

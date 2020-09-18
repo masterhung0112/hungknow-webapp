@@ -1,5 +1,6 @@
 import { DispatchFunc } from 'hkclient-ts/types/actions';
 import { getClientConfig } from 'hkclient-ts/actions/general'
+import { UserActions } from 'hkclient-ts/actions'
 
 export function loadMeAndConfig() {
     return async (dispatch: DispatchFunc) => {
@@ -10,8 +11,8 @@ export function loadMeAndConfig() {
 
         // need to await for clientConfig first as it is required for loadMe
         const resolvedPromises = await Promise.all(promises);
-        if (document.cookie.indexOf('MMUSERID=') > -1) {
-            // resolvedPromises.push(await dispatch(UserActions.loadMe()));
+        if (document.cookie.indexOf('HKUSERID=') > -1) {
+            resolvedPromises.push(await dispatch(UserActions.loadMe()));
         }
 
         return resolvedPromises;

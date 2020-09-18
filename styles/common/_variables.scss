@@ -7,11 +7,11 @@ $ns: hk !default;
 
 // easily the most important variable, so it comes up top
 // (so other variables can use it to define themselves)
-$pt-grid-size: 10px !default;
+$hb-grid-size: 10px !default;
 
-$pt-font-size: $pt-grid-size * 1.4 !default;
-$pt-font-size-large: $pt-grid-size * 1.6 !default;
-$pt-font-size-small: $pt-grid-size * 1.2 !default;
+$hb-font-size: $hb-grid-size * 1.4 !default;
+$hb-font-size-large: $hb-grid-size * 1.6 !default;
+$hb-font-size-small: $hb-grid-size * 1.2 !default;
 
 // Icon variables
 
@@ -19,20 +19,20 @@ $icons16-family: "Icons16" !default;
 $icons20-family: "Icons20" !default;
 
 // a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
-$pt-line-height: ($pt-grid-size * 1.8) / $pt-font-size + 0.0001 !default;
+$hb-line-height: ($hb-grid-size * 1.8) / $hb-font-size + 0.0001 !default;
 
-$pt-icon-size-standard: 16px !default;
-$pt-icon-size-large: 20px !default;
+$hb-icon-size-standard: 16px !default;
+$hb-icon-size-large: 20px !default;
 
 // Grids & dimensions
 
-$pt-border-radius: floor($pt-grid-size / 3) !default;
+$hb-border-radius: floor($hb-grid-size / 3) !default;
 
 // Buttons
-$pt-button-height: $pt-grid-size * 3 !default;
-$pt-button-height-small: $pt-grid-size * 2.4 !default;
-$pt-button-height-smaller: $pt-grid-size * 2 !default;
-$pt-button-height-large: $pt-grid-size * 4 !default;
+$hb-button-height: $hb-grid-size * 3 !default;
+$hb-button-height-small: $hb-grid-size * 2.4 !default;
+$hb-button-height-smaller: $hb-grid-size * 2 !default;
+$hb-button-height-large: $hb-grid-size * 4 !default;
 
 $primary-color: #166de0;
 $primary-color--hover: darken($primary-color, 10%);
@@ -43,6 +43,6 @@ $sidebar-background-color: #145dbf;
 $border-rad: 2px;
 
 // Transitions
-$pt-transition-ease: cubic-bezier(0.4, 1, 0.75, 0.9) !default;
-$pt-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11) !default;
-$pt-transition-duration: 100ms !default;
+$hb-transition-ease: cubic-bezier(0.4, 1, 0.75, 0.9) !default;
+$hb-transition-ease-bounce: cubic-bezier(0.54, 1.12, 0.38, 1.11) !default;
+$hb-transition-duration: 100ms !default;
