@@ -1,16 +1,21 @@
 module.exports = async () => {
     return {
-      globals: {
-        'ts-jest': {
-          tsConfig: 'tsconfig.json',
-          diagnostics: true,
-        },
-        NODE_ENV: 'test',
-      },
+      setupFilesAfterEnv: ['<rootDir>/tests/testEnvSetup.js'],
       moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
       verbose: true,
       rootDir: '.',
-      preset: 'ts-jest',
+      snapshotSerializers: [
+        'enzyme-to-json/serializer'
+      ],
+      testPathIgnorePatterns: [
+        '/node_modules/'
+      ],
+      moduleNameMapper: {
+        '^.+\\.(jpg|jpeg|png|apng|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': 'identity-obj-proxy',
+        '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
+        '^.*i18n.*\\.(json)$': '<rootDir>/tests/i18n_mock.json',
+        '^bundle-loader\\?lazy\\!(.*)$': '$1'
+      },
       moduleNameMapper: {
         '^store/(.*)$': '<rootDir>/store/$1',
         '^utils$': '<rootDir>/utils',
@@ -24,6 +29,8 @@ module.exports = async () => {
         '^selectors/(.*)$': '<rootDir>/selectors/$1',
         '^components$': '<rootDir>/components',
         '^components/(.*)$': '<rootDir>/components/$1',
+        '^common$': '<rootDir>/common',
+        '^common/(.*)$': '<rootDir>/common/$1',
       },
     }
   }
