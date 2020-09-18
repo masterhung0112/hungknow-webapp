@@ -80,3 +80,10 @@ export const FORMCONTROL = `${NS}-form-control`;
 export const FORMCONTROL_SMALL = `${FORMCONTROL}--sm`;
 
 export const FORMLEGEND = `${NS}-form-legend`;
+
+
+export const INPUT = `${NS}-input`;
+export const INPUT_GHOST = `${INPUT}-ghost`;
+export const INPUT_GROUP = `${INPUT}-group`;
+export const INPUT_LEFT_CONTAINER = `${INPUT}-left-container`;
+export const INPUT_ACTION = `${INPUT}-action`;
