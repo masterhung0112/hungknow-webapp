@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "css-def": "tsm \"styles/components/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons "./node_modules/@blueprintjs/icons/src/icons" --exportType default"
   },
   "dependencies": {
     "@blueprintjs/icons": "^3.20.1",
