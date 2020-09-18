@@ -267,7 +267,7 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                     <div className={cx(styles['signup-team__container'], styles['padding--less'])}>
                         <img
                             alt={'signup team logo'}
-                            className={styles['signup-team-logo']}
+                            className={styles['signup-team__container-logo']}
                             src={logoImage}
                         />
                         <SiteNameAndDescription

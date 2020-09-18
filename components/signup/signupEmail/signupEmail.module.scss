@@ -91,12 +91,12 @@ body {
     p {
         .black,
         &.black {
-            color: #000000;
+            color: $black;
         }
     }
 
     .color--light {
-        color: #777777;
+        color: $pt-text-color-muted;
     }
 
     .has-error {
