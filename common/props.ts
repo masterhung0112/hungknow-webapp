@@ -1,5 +1,18 @@
+import React from 'react';
 import { Intent } from './intent';
 import { IconName } from "@blueprintjs/icons";
+
+/**
+ * Alias for all valid HTML props for `<div>` element.
+ * Does not include React's `ref` or `key`.
+ */
+export type HTMLDivProps = React.HTMLAttributes<HTMLDivElement>;
+
+/**
+ * Alias for all valid HTML props for `<input>` element.
+ * Does not include React's `ref` or `key`.
+ */
+export type HTMLInputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Alias for a `JSX.Element` or a value that renders nothing.
