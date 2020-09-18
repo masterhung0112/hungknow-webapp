@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "git:branch-clean": "git branch -vv | grep ': gone]'|  grep -v \"\\*\" | awk '{ print $1; }' | xargs git branch -D"
   },
   "dependencies": {
     "@blueprintjs/icons": "^3.20.1",
