@@ -31,12 +31,12 @@
 
 // intent support for both SVG and legacy font icons
 #{$icon-classes} {
-  @each $intent, $color in $pt-intent-text-colors {
+  @each $intent, $color in $hb-intent-text-colors {
     &.#{$ns}-intent-#{$intent} {
       color: $color;
 
       .#{$ns}-dark & {
-        color: map-get($pt-dark-intent-text-colors, $intent);
+        color: map-get($hb-dark-intent-text-colors, $intent);
       }
     }
   }
