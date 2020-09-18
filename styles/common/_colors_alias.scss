@@ -46,10 +46,16 @@ $hb-dark-icon-color-hover: $hb-dark-text-color !default;
 $hb-dark-icon-color-disabled: $hb-dark-text-color-disabled !default;
 $hb-dark-icon-color-selected: $hb-intent-primary !default;
 
+/***
+ * Divider
+ */
 $hb-divider-black: rgba($black, 0.15) !default;
 $hb-dark-divider-black: rgba($black, 0.4) !default;
 $hb-dark-divider-white: rgba($white, 0.15) !default;
 
+/***
+ * Code-related color
+ */
 $hb-code-text-color: $hb-text-color-muted !default;
 $hb-dark-code-text-color: $hb-dark-text-color-muted !default;
 $hb-code-background-color: rgba($white, 0.7) !default;
