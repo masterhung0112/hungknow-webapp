@@ -14,10 +14,10 @@ storiesOf('Form - InputGroup', module)
         'No special props',
         () => {
             return (
-                <div style={{"display": "flex", "flexDirection": "column"}}>
+                <div style={{"display": "flex", "flexDirection": "column", "maxWidth": "140px"}}>
                     <InputGroup {...baseProps} />
                     <InputGroup {...baseProps} leftIcon="star" />
-                    <InputGroup {...baseProps} rightElement={<span>Hello</span>} />
+                    <InputGroup {...baseProps} rightElement={<button className="hk-button">Hello</button>} />
                 </div>
             )
         }

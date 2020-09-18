@@ -1,5 +1,12 @@
 @import "../../common/modules";
 
+// 3px space between small button and regular input
+$input-button-height: $hb-button-height-small !default;
+// 5px space between regular button and large input
+$input-button-height-large: $hb-button-height !default;
+// 1px space between regular button and small input
+$input-button-height-small: $hb-button-height-smaller !default;
+
 .#{$ns}-input-group {
   display: block;
   position: relative;
@@ -17,6 +24,15 @@
     &:not(:last-child) {
       padding-right: $hb-input-height;
     }
+  }
+
+  .#{$ns}-button {
+    @include hb-button-height($input-button-height);
+    margin: ($hb-input-height - $input-button-height) / 2;
+    padding: $button-padding-small;
+
+    // icons CSS API support
+    &:emhby { padding: 0; }
   }
 
   .#{$ns}-input-action,
@@ -48,7 +64,7 @@
   > .#{$ns}-icon {
     color: $hb-icon-color;
 
-    &:empty {
+    &:emhby {
       @include hb-icon($hb-icon-size-standard);
     }
   }

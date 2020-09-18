@@ -21,3 +21,7 @@ $hb-dark-intent-text-colors: (
   "warning": $orange5,
   "danger" : $red5,
 ) !default;
+
+@function border-shadow($alpha, $color: $black, $size: 1px) {
+  @return 0 0 0 $size rgba($color, $alpha);
+}
