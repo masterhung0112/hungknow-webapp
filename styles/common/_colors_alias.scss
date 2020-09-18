@@ -1,9 +1,56 @@
-$pt-intent-primary: $blue3 !default;
-$pt-intent-success: $green3 !default;
-$pt-intent-warning: $orange3 !default;
-$pt-intent-danger: $red3 !default;
+$hb-intent-primary: $blue3 !default;
+$hb-intent-success: $green3 !default;
+$hb-intent-warning: $orange3 !default;
+$hb-intent-danger: $red3 !default;
 
-$pt-text-color: $dark-gray1 !default;
-$pt-text-color-muted: $gray1 !default;
+$hb-app-background-color: $light-gray5 !default;
+$hb-dark-app-background-color: $dark-gray3 !default;
 
-$pt-text-color-disabled: rgba($pt-text-color-muted, 0.6) !default;
+$hb-outline-color: rgba($blue3, 0.6);
+
+/***
+ * Text-related light version
+ */
+$hb-text-color: $dark-gray1 !default; // Default text color
+$hb-text-color-muted: $gray1 !default; // Muted text color
+$hb-text-color-disabled: rgba($hb-text-color-muted, 0.6) !default; // Disabled text color
+$hb-heading-color: $hb-text-color !default; // Text color for headers
+$hb-link-color: $blue2 !default; // Text color for headers
+
+/***
+ * Text-related dark version
+ */
+$hb-dark-text-color: $light-gray5 !default;
+$hb-dark-text-color-muted: $gray4 !default;
+$hb-dark-text-color-disabled: rgba($hb-dark-text-color-muted, 0.6) !default;
+$hb-dark-heading-color: $hb-dark-text-color !default;
+$hb-dark-link-color: $blue5 !default;
+
+// Default text selection color using #7dbcff
+$hb-text-selection-color: rgba(125, 188, 255, 0.6) !default;
+
+
+/***
+ * Icon-related light version
+ */
+$hb-icon-color: $hb-text-color-muted !default;
+$hb-icon-color-hover: $hb-text-color !default;
+$hb-icon-color-disabled: $hb-text-color-disabled !default;
+$hb-icon-color-selected: $hb-intent-primary !default;
+
+/***
+ * Icon-related light version
+ */
+$hb-dark-icon-color: $hb-dark-text-color-muted !default;
+$hb-dark-icon-color-hover: $hb-dark-text-color !default;
+$hb-dark-icon-color-disabled: $hb-dark-text-color-disabled !default;
+$hb-dark-icon-color-selected: $hb-intent-primary !default;
+
+$hb-divider-black: rgba($black, 0.15) !default;
+$hb-dark-divider-black: rgba($black, 0.4) !default;
+$hb-dark-divider-white: rgba($white, 0.15) !default;
+
+$hb-code-text-color: $hb-text-color-muted !default;
+$hb-dark-code-text-color: $hb-dark-text-color-muted !default;
+$hb-code-background-color: rgba($white, 0.7) !default;
+$hb-dark-code-background-color: rgba($black, 0.3) !default;
