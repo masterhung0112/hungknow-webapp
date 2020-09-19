@@ -85,6 +85,12 @@
       ],
       "mocks/*": [
         "mocks/*"
+      ],
+      "showroom": [
+        "core/showroom"
+      ],
+      "showroom/*": [
+        "core/showroom/*"
       ]
     }
   },

@@ -1,0 +1,14 @@
+@import "../common/modules";
+
+$container-width: $hb-grid-size * 110;
+$container-padding: $hb-grid-size / 2;
+
+$sidebar-width: $hb-grid-size * 27;
+$sidebar-padding: $hb-grid-size * 1.5;
+$sidebar-background-color: $white;
+$dark-sidebar-background-color: $dark-gray5;
+
+$content-width: $container-width - $sidebar-width;
+$content-padding: $hb-grid-size * 2;
+$content-background-color: $hb-app-background-color;
+$dark-content-background-color: $hb-dark-app-background-color;
