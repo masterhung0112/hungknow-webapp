@@ -13,9 +13,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "npx cross-env NODE_ENV='development' jest",
-    "css-def": "npx npm-run-all --parallel css-def:component css-def:style",
+    "css-def": "npx npm-run-all --parallel css-def:component css-def:style css-def:style-2nd",
     "css-def:component": "tsm \"components/**/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons \"./node_modules/@blueprintjs/icons/src/icons\" --exportType default",
-    "css-def:style": "tsm \"styles/**/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons \"./node_modules/@blueprintjs/icons/src/icons\" --exportType default",
+    "css-def:style": "tsm \"styles/*/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons \"./node_modules/@blueprintjs/icons/src/icons\" --exportType default",
+    "css-def:style-2nd": "tsm \"styles/*/*/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons \"./node_modules/@blueprintjs/icons/src/icons\" --exportType default",
     "git:branch-clean": "git branch -vv | grep ': gone]'|  grep -v \"\\*\" | awk '{ print $1; }' | xargs git branch -D"
   },
   "dependencies": {
@@ -50,6 +51,7 @@
     "@storybook/addon-essentials": "^6.0.20",
     "@storybook/addon-links": "^6.0.20",
     "@storybook/react": "^6.0.20",
+    "@testing-library/react": "^11.0.4",
     "@types/classnames": "^2.2.10",
     "@types/enzyme": "^3.10.6",
     "@types/history": "^4.7.7",
@@ -76,6 +78,7 @@
     "image-webpack-loader": "^6.0.0",
     "jest": "^26.4.2",
     "mini-css-extract-plugin": "^0.11.2",
+    "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
     "react-hot-loader": "^4.12.21",
     "react-is": "^16.13.1",

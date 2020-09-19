@@ -1,0 +1,154 @@
+@import "../../common/modules";
+
+$input-padding-horizontal: $hb-grid-size !default;
+$input-small-padding: $hb-input-height-small - $hb-icon-size-standard !default;
+$input-font-weight: 400 !default;
+$input-transition: box-shadow $hb-transition-duration $hb-transition-ease;
+
+$input-color: $hb-text-color !default;
+$input-color-disabled: $hb-text-color-disabled !default;
+$input-placeholder-color: $hb-text-color-disabled !default;
+$input-background-color: $white !default;
+$input-background-color-disabled: rgba($light-gray1, 0.5) !default;
+$input-shadow-color-focus: $hb-intent-primary !default;
+
+$dark-input-color: $hb-dark-text-color !default;
+$dark-input-color-disabled: $hb-dark-text-color-disabled !default;
+$dark-input-placeholder-color: $hb-dark-text-color-disabled !default;
+$dark-input-background-color: rgba($black, 0.3) !default;
+$dark-input-background-color-disabled: rgba($dark-gray5, 0.5) !default;
+$dark-input-shadow-color-focus: $hb-intent-primary !default;
+
+// avoids edge blurriness for light theme focused default input
+// second box-shadow of $hb-input-box-shadow
+$input-box-shadow-focus: inset 0 1px 1px rgba($black, $hb-drop-shadow-opacity) !default;
+
+// animating shadows requires the same number of shadows in different states
+@function input-transition-shadow(
+  $color: $input-shadow-color-focus,
+  $focus: false
+) {
+  @if $focus {
+    @return border-shadow(1, $color, 1px), border-shadow(0.3, $color, 3px);
+  } @else {
+    @return border-shadow(0, $color, 0), border-shadow(0, $color, 0);
+  }
+}
+
+@mixin hb-input-disabled() {
+  background: $input-background-color-disabled;
+  box-shadow: none;
+  color: $input-color-disabled;
+  cursor: not-allowed;
+  resize: none;
+}
+
+@mixin hb-input-placeholder() {
+  &::placeholder {
+    color: $input-placeholder-color;
+    // normalize.css sets an opacity less than 1, we don't want this
+    opacity: 1;
+  }
+}
+
+@mixin hb-input() {
+  @include hb-input-placeholder();
+  appearance: none;
+  background: $input-background-color;
+  border: none;
+  border-radius: $hb-border-radius;
+  box-shadow: input-transition-shadow($input-shadow-color-focus),
+    $hb-input-box-shadow;
+  color: $input-color;
+  font-size: $hb-font-size;
+  font-weight: $input-font-weight;
+  height: $hb-input-height;
+  line-height: $hb-input-height;
+
+  outline: none;
+  padding: 0 $input-padding-horizontal;
+  transition: $input-transition;
+  vertical-align: middle;
+
+  // Highlight the focus or active element
+  &:focus,
+  &.#{$ns}-active {
+    box-shadow: input-transition-shadow($input-shadow-color-focus, true),
+      $input-box-shadow-focus;
+  }
+
+  &[readonly] {
+    box-shadow: inset 0 0 0 1px $hb-divider-black;
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    @include hb-input-disabled();
+  }
+}
+
+@mixin hb-input-large() {
+  font-size: $hb-font-size-large;
+  height: $hb-input-height-large;
+  line-height: $hb-input-height-large;
+
+  &[type="search"],
+  &.#{$ns}-round {
+    padding: 0 ($input-padding-horizontal * 1.5);
+  }
+}
+
+@mixin hb-input-small() {
+  font-size: $hb-font-size-small;
+  height: $hb-input-height-small;
+  line-height: $hb-input-height-small;
+  padding-left: $input-small-padding;
+  padding-right: $input-small-padding;
+
+  &[type="search"],
+  &.#{$ns}-round {
+    padding: 0 ($input-small-padding * 1.5);
+  }
+}
+
+/****
+ * Dark input
+ */
+
+@mixin hb-dark-input-disabled() {
+  background: $dark-input-background-color-disabled;
+  box-shadow: none;
+  color: $dark-input-color-disabled;
+}
+
+@mixin hb-dark-input-placeholder() {
+  &::placeholder {
+    color: $dark-input-placeholder-color;
+  }
+}
+
+@mixin hb-dark-input() {
+  @include hb-dark-input-placeholder();
+  background: $dark-input-background-color;
+
+  box-shadow: dark-input-transition-shadow($dark-input-shadow-color-focus),
+    $hb-dark-input-box-shadow;
+  color: $dark-input-color;
+
+  &:focus {
+    box-shadow: dark-input-transition-shadow(
+        $dark-input-shadow-color-focus,
+        true
+      ),
+      $hb-dark-input-box-shadow;
+  }
+
+  &[readonly] {
+    box-shadow: inset 0 0 0 1px $hb-dark-divider-black;
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    @include hb-dark-input-disabled();
+  }
+}

@@ -1,0 +1,30 @@
+@import "../../common/modules";
+@import "./common";
+
+/*
+Text inputs
+*/
+.#{$ns}-input {
+  @include hb-input();
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &.#{$ns}-large {
+    @include hb-input-large();
+  }
+
+  &.#{$ns}-small {
+    @include hb-input-small();
+  }
+
+  &.#{$ns}-fill {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .#{$ns}-dark & {
+    @include hb-dark-input();
+  }
+}

@@ -1,5 +1,18 @@
+import React from 'react';
 import { Intent } from './intent';
 import { IconName } from "@blueprintjs/icons";
+
+/**
+ * Alias for all valid HTML props for `<div>` element.
+ * Does not include React's `ref` or `key`.
+ */
+export type HTMLDivProps = React.HTMLAttributes<HTMLDivElement>;
+
+/**
+ * Alias for all valid HTML props for `<input>` element.
+ * Does not include React's `ref` or `key`.
+ */
+export type HTMLInputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 /**
  * Alias for a `JSX.Element` or a value that renders nothing.
@@ -19,6 +32,18 @@ export interface IProps {
 export interface IIntentProps {
     /** Visual intent color to apply to element. */
     intent?: Intent;
+}
+
+/** Interface for a controlled input. */
+export interface IControlledProps {
+    /** Initial value of the input, for uncontrolled usage. */
+    defaultValue?: string;
+
+    /** Change event handler. Use `event.target.value` for new value. */
+    onChange?: React.FormEventHandler<HTMLElement>;
+
+    /** Form value of the input, for controlled usage. */
+    value?: string;
 }
 
 /**

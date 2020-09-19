@@ -1,0 +1,24 @@
+@import "../../common/modules";
+
+label.#{$ns}-label {
+  display: block;
+  margin-bottom: ($hb-grid-size * 1.5);
+  margin-top: 0;
+
+  .#{$ns}-html-select,
+  .#{$ns}-input,
+  .#{$ns}-select,
+  .#{$ns}-slider,
+  .#{$ns}-popover-wrapper {
+    display: block;
+    margin-top: $hb-grid-size / 2;
+    text-transform: none;
+  }
+
+  &.#{$ns}-disabled {
+    &,
+    .#{$ns}-text-muted {
+      color: $hb-text-color-disabled;
+    }
+  }
+}

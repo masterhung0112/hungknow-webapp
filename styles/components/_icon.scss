@@ -1,5 +1,5 @@
 @import "~@blueprintjs/icons/src/icons";
-@import '../common/modules';
+@import 'icon_common';
 
 // the icon class which will contain an SVG icon
 .#{$ns}-icon {
@@ -11,7 +11,7 @@
   // sit nicely with inline text
   vertical-align: text-bottom;
 
-  &:not(:empty)::before {
+  &:not(:emhby)::before {
     // clear font icon when there's an <svg> image
     /* stylelint-disable */
     content: "" !important; // fallback for IE11

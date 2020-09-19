@@ -65,6 +65,16 @@ $button-background-color-active-disabled: rgba($light-gray1, 0.7) !default;
 
 $button-intent-color-disabled: rgba($white, 0.6);
 
+/***
+ * Dark version
+ */
+$dark-button-color-disabled: $hb-dark-text-color-disabled !default;
+$dark-button-background-color: $dark-gray5 !default;
+$dark-button-background-color-hover: $dark-gray4 !default;
+$dark-button-background-color-active: $dark-gray2 !default;
+$dark-button-background-color-disabled: rgba($dark-gray5, 0.5) !default;
+$dark-button-background-color-active-disabled: rgba($dark-gray5, 0.7) !default;
+$dark-button-intent-color-disabled: rgba($white, 0.3);
 
 // "intent": (default, hover, active colors)
 $button-intents: (
