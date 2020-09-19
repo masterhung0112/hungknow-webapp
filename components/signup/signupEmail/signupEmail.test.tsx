@@ -49,8 +49,8 @@ describe('components/SignupEmail', () => {
     })
 
     test('field has error message when invalid input', async () => {
-        const loginByIdMock = jest.fn().mockResolvedValue({data: 'hung here 1'})
         const createUserMock = jest.fn().mockResolvedValue({data: { id: 'hung'} as UserProfile})
+        const loginByIdMock = jest.fn().mockResolvedValue({data: 'hung here 1'})
 
         const props = {
             ...baseProps,
@@ -60,7 +60,7 @@ describe('components/SignupEmail', () => {
             }
         }
 
-        const { getByText, queryByText, getByLabelText, unmount, container } = render(wrapIntlProvider(<SignupEmail {...props} />));
+        let { getByText, queryByText, getByLabelText, unmount, container, rerender } = render(wrapIntlProvider(<SignupEmail {...props} />));
 
         // Check email help text display by default
         expect(queryByText(translationData['signup_user_completed.emailHelp'])).toBeInTheDocument()
@@ -125,7 +125,7 @@ describe('components/SignupEmail', () => {
         const passwordInput = getByLabelText(translationData['signup_user_completed.choosePwd'])
         userEvent.clear(passwordInput)
         userEvent.type(passwordInput, 'password@')
-        
+
         // Never call createUser method before
         expect(createUserMock).toHaveBeenCalledTimes(0)
         fireEvent.click(createButton)
@@ -134,8 +134,11 @@ describe('components/SignupEmail', () => {
         expect(container.querySelector('#password-error')).toBeNull()
 
         // After click, createUser need to do its Promise
-        await waitFor(() => expect(createUserMock).toHaveBeenCalledTimes(1))
+        await waitFor(() => {
+            expect(createUserMock).toHaveBeenCalledTimes(1)
+        })
 
+        // After login, expect loginById immediately
         expect(loginByIdMock).toHaveBeenCalledTimes(1)
 
         unmount()

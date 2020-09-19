@@ -15,6 +15,7 @@ import { UserActions } from 'hkclient-ts/actions';
 import { UserProfile } from 'hkclient-ts/src/types/users';
 import { ActionResult } from 'hkclient-ts/types/actions';
 import Router from 'next/router'
+import { act } from '@testing-library/react';
 export type SignupEmailProps = {
     location: { search: string }
     hasAccounts: boolean
@@ -48,7 +49,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
 
     constructor(props: SignupEmailProps) {
         super(props)
-        
+
         const data = (new URLSearchParams(this.props.location.search)).get('d');
         const token = (new URLSearchParams(this.props.location.search)).get('t');
         const inviteId = (new URLSearchParams(this.props.location.search)).get('id');
@@ -152,8 +153,10 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
 
         this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
+            console.log('loginby:', actionResult)
             if (actionResult.error) {
                 if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
+                    console.log('here was call')
                     let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email);
                     if (this.state.teamName) {
                         verifyUrl += '&teamname=' + encodeURIComponent(this.state.teamName);
@@ -161,7 +164,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                     if (redirectTo) {
                         verifyUrl += '&redirect_to=' + redirectTo;
                     }
-                    // router.push(verifyUrl);
+                    router.push(verifyUrl);
                 } else {
                     this.setState({
                         serverError: error.message,
@@ -177,7 +180,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             // }
 
             if (redirectTo) {
-                // router.push(redirectTo);
+                router.push(redirectTo);
             } else {
                 // GlobalActions.redirectUserToDefaultTeam();
             }
@@ -185,11 +188,12 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     }
 
     handleSubmit = (e: SyntheticEvent) => {
+        console.log('submit')
         e.preventDefault();
 
         // bail out if a submission is already in progress
         if (this.state.isSubmitting) {
-            return;
+            // return;
         }
 
         if (this.isUserValid()) {
@@ -211,6 +215,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
 
             this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
+                console.log('r', result)
                 if (result.error) {
                     this.setState({
                         serverError: result.error.message,
@@ -225,33 +230,6 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     }
 
     renderEmailSignup() {
-
-        let emailDivStyle = cx(
-            CssClasses.FORMGROUP,
-            {
-                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.emailError
-            }
-        )
-
-        let nameDivStyle = cx(
-            CssClasses.FORMGROUP,
-            {
-                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.nameError
-            }
-        )
-
-        let passwordDivStyle = cx(
-            CssClasses.FORMGROUP,
-            {
-                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.passwordError
-            }
-        )
-
-        let emailContainerStyle = 'mt-8';
-        if (this.state.email) {
-            emailContainerStyle = 'hidden';
-        }
-
         return (
             <form>
                 <div className='inner__content'>
@@ -293,17 +271,17 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                     defaultMessage='Choose your username'
                                 />
                             </strong>
-                        } 
-                        labelFor="name"
-                        helperText={<>
-                            {this.state.nameError ? <span id="name-error">{this.state.nameError}</span> : null}
-                            {!this.state.nameError ? <span id='valid_name'>
-                                <FormattedMessage
-                                    id='signup_user_completed.userHelp'
-                                    defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
-                                />
-                            </span> : null}
-                        </>}>
+                        }
+                            labelFor="name"
+                            helperText={<>
+                                {this.state.nameError ? <span id="name-error">{this.state.nameError}</span> : null}
+                                {!this.state.nameError ? <span id='valid_name'>
+                                    <FormattedMessage
+                                        id='signup_user_completed.userHelp'
+                                        defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
+                                    />
+                                </span> : null}
+                            </>}>
                             <InputGroup id="name" type="text" inputRef={this.usernameRef} maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" />
                         </FormGroup>
                     </div>
@@ -315,9 +293,9 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                     defaultMessage='Choose your password'
                                 />
                             </strong>
-                        } 
-                        labelFor="password" 
-                        helperText={this.state.passwordError ? <span id='password-error'>{this.state.passwordError}</span> : null}>
+                        }
+                            labelFor="password"
+                            helperText={this.state.passwordError ? <span id='password-error'>{this.state.passwordError}</span> : null}>
                             <InputGroup id="password" type="password" inputRef={this.passwordRef} maxLength={128} spellCheck={false} autoCapitalize="off" />
                         </FormGroup>
                     </div>
