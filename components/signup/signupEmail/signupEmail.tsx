@@ -14,7 +14,7 @@ import { PasswordConfig } from 'hkclient-ts/types/config';
 import { UserActions } from 'hkclient-ts/actions';
 import { UserProfile } from 'hkclient-ts/src/types/users';
 import { ActionResult } from 'hkclient-ts/types/actions';
-
+import Router from 'next/router'
 export type SignupEmailProps = {
     location: { search: string }
     hasAccounts: boolean
@@ -24,6 +24,7 @@ export type SignupEmailProps = {
     passwordConfig: PasswordConfig,
     actions: {
         createUser: (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
+        loginById: (userId: string, password: string, mfaToken: string) => Promise<ActionResult>
     }
 }
 
@@ -36,7 +37,8 @@ export type SignupEmailState = {
     email: string,
     isSubmitting: boolean,
     serverError: string,
-    token: string
+    token: string,
+    teamName: string
 }
 
 export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
@@ -60,7 +62,8 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             email: '',
             isSubmitting: false,
             serverError: '',
-            token
+            token,
+            teamName: ''
         }
     }
 
@@ -143,6 +146,44 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         return true;
     }
 
+    handleSignupSuccess = (user: UserProfile, data: UserProfile) => {
+        let { router } = Router
+        // trackEvent('signup', 'signup_user_02_complete');
+        const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
+
+        this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
+            if (actionResult.error) {
+                if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
+                    let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email);
+                    if (this.state.teamName) {
+                        verifyUrl += '&teamname=' + encodeURIComponent(this.state.teamName);
+                    }
+                    if (redirectTo) {
+                        verifyUrl += '&redirect_to=' + redirectTo;
+                    }
+                    // router.push(verifyUrl);
+                } else {
+                    this.setState({
+                        serverError: error.message,
+                        isSubmitting: false,
+                    });
+                }
+
+                return;
+            }
+
+            // if (this.state.token > 0) {
+            //     this.props.actions.setGlobalItem(this.state.token, JSON.stringify({usedBefore: true}));
+            // }
+
+            if (redirectTo) {
+                // router.push(redirectTo);
+            } else {
+                // GlobalActions.redirectUserToDefaultTeam();
+            }
+        });
+    }
+
     handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
 
@@ -178,7 +219,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                     return;
                 }
 
-                // this.handleSignupSuccess(user, result.data);
+                this.handleSignupSuccess(user, result.data);
             })
         }
     }

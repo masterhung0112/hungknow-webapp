@@ -1,12 +1,13 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import SignupEmail, { SignupEmailProps } from './signupEmail'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 import { defaultIntl, wrapIntlProvider, translationData } from 'hktest/intlProvider'
 import '@testing-library/jest-dom'
 import { PasswordConfig } from 'hkclient-ts/types/config'
 import userEvent from '@testing-library/user-event'
 import { General } from 'hkclient-ts/constants'
+import { UserProfile } from 'hkclient-ts/types/users'
 
 describe('components/SignupEmail', () => {
     const baseProps = {
@@ -23,7 +24,8 @@ describe('components/SignupEmail', () => {
             requireUppercase: false
         } as PasswordConfig,
         actions: {
-            createUser: jest.fn()
+            createUser: jest.fn(),
+            loginById: jest.fn()
         }
     } as SignupEmailProps
 
@@ -46,10 +48,19 @@ describe('components/SignupEmail', () => {
         expect(passwordInputGroup.exists()).toBeTruthy()
     })
 
-    test('field has error message when invalid input', () => {
-        const createUser = jest.fn().mockResolvedValue({data: true});
+    test('field has error message when invalid input', async () => {
+        const loginByIdMock = jest.fn().mockResolvedValue({data: 'hung here 1'})
+        const createUserMock = jest.fn().mockResolvedValue({data: { id: 'hung'} as UserProfile})
 
-        const { getByText, queryByText, getByLabelText, unmount, container } = render(wrapIntlProvider(<SignupEmail {...baseProps} actions={{createUser: createUser}} />));
+        const props = {
+            ...baseProps,
+            actions: {
+                createUser: createUserMock,
+                loginById: loginByIdMock
+            }
+        }
+
+        const { getByText, queryByText, getByLabelText, unmount, container } = render(wrapIntlProvider(<SignupEmail {...props} />));
 
         // Check email help text display by default
         expect(queryByText(translationData['signup_user_completed.emailHelp'])).toBeInTheDocument()
@@ -116,12 +127,16 @@ describe('components/SignupEmail', () => {
         userEvent.type(passwordInput, 'password@')
         
         // Never call createUser method before
-        expect(createUser).toBeCalledTimes(0)
+        expect(createUserMock).toHaveBeenCalledTimes(0)
         fireEvent.click(createButton)
         expect(container.querySelector('#email-error')).toBeNull()
         expect(container.querySelector('#name-error')).toBeNull()
         expect(container.querySelector('#password-error')).toBeNull()
-        expect(createUser).toBeCalledTimes(1)
+
+        // After click, createUser need to do its Promise
+        await waitFor(() => expect(createUserMock).toHaveBeenCalledTimes(1))
+
+        expect(loginByIdMock).toHaveBeenCalledTimes(1)
 
         unmount()
     })
