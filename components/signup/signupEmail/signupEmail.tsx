@@ -7,7 +7,7 @@ import SiteNameAndDescription from 'components/siteNameAndDescription'
 import { Constants } from 'utils/constants'
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
-import { CssClasses, Intent, IRef } from 'common'
+import { Intent } from 'common'
 import { Button, FormGroup, InputGroup } from 'core/components'
 import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/utils/helpers'
 import { PasswordConfig } from 'hkclient-ts/types/config';
@@ -386,15 +386,15 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                             />
                             {' '}
                             <Link
-                                href={'/login'}//</span> + location.search}
+                                href={'/login' + location.search}
                             // onClick={() => trackEvent('signup_email', 'click_signin_account')}
                             >
-                                {/* <FormattedMessage
-                                    id='signup_user_completed.signIn'
-                                    tagName='a'
-                                    defaultMessage='Click here to sign in.'
-                                /> */}
-                                Click here to sign in.
+                                <a>
+                                    <FormattedMessage
+                                        id='signup_user_completed.signIn'
+                                        defaultMessage='Click here to sign in.'
+                                    />
+                                </a>
                             </Link>
                         </span>
                         {emailSignup}
