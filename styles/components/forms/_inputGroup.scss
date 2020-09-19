@@ -155,4 +155,20 @@ $input-button-height-small: $hb-button-height-smaller !default;
       border-radius: $hb-input-height;
     }
   }
+
+  @each $intent, $color in $hb-intent-colors {
+    &.#{$ns}-intent-#{$intent} {
+      .#{$ns}-input {
+        @include hb-input-intent($color);
+      }
+
+      > .#{$ns}-icon {
+        color: map-get($hb-intent-text-colors, $intent);
+
+        .#{$ns}-dark & {
+          color: map-get($hb-dark-intent-text-colors, $intent);
+        }
+      }
+    }
+  }
 }

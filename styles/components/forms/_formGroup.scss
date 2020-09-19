@@ -9,13 +9,18 @@
     margin-bottom: $hb-grid-size / 2;
   }
 
-  &__content {
-  }
-
   &__helper-text {
     color: $hb-text-color-muted;
     font-size: $hb-font-size-small;
     margin-top: $hb-grid-size / 2;
+  }
+
+  @each $intent, $color in $hb-intent-text-colors {
+    &.#{$ns}-intent-#{$intent} {
+      .#{$ns}-form-group__helper-text {
+        color: $color;
+      }
+    }
   }
 
   &.#{$ns}-disabled {
