@@ -34,6 +34,18 @@ export interface IIntentProps {
     intent?: Intent;
 }
 
+/** Interface for a controlled input. */
+export interface IControlledProps {
+    /** Initial value of the input, for uncontrolled usage. */
+    defaultValue?: string;
+
+    /** Change event handler. Use `event.target.value` for new value. */
+    onChange?: React.FormEventHandler<HTMLElement>;
+
+    /** Form value of the input, for controlled usage. */
+    value?: string;
+}
+
 /**
  * Interface for a clickable action, such as a button or menu item.
  * These props can be spready directly to a `<Button>` or `<MenuItem>` element.

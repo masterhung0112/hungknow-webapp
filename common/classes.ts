@@ -7,6 +7,7 @@ export const NS = process.env.HUNGKNOW_NAMESPACE || process.env.REACT_APP_HUNGKN
 export const ACTIVE = `${NS}-active`;
 export const DISABLED = `${NS}-disabled`;
 export const FILL = `${NS}-fill`;
+export const INLINE = `${NS}-inline`;
 export const LARGE = `${NS}-large`;
 export const LOADING = `${NS}-loading`;
 export const MINIMAL = `${NS}-minimal`;
@@ -15,6 +16,8 @@ export const ROUND = `${NS}-round`;
 export const SMALL = `${NS}-small`;
 export const ALIGN_LEFT = `${NS}-align-left`;
 export const ALIGN_RIGHT = `${NS}-align-right`;
+
+export const TEXT_MUTED = `${NS}-text-muted`;
 
 /***********
  * COMPONENTS
@@ -72,7 +75,10 @@ export const FOCUS_DISABLED = `${NS}-focus-disabled`;
 /*****
  * forms
  */
+export const LABEL = `${NS}-label`;
 export const FORMGROUP = `${NS}-form-group`;
+export const FORMGROUP_CONTENT = `${FORMGROUP}__content`;
+export const FORMGROUP_HELPER_TEXT = `${FORMGROUP}__helper-text`;
 export const FORMGROUP_SMALL = `${FORMGROUP}--small`;
 
 export const FORMGROUP_HAS_ERROR = `${NS}-has-error`;

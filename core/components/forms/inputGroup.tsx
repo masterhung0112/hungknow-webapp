@@ -1,11 +1,11 @@
 import React from 'react';
-import { AbstractPureComponent, CssClasses, HTMLInputProps, IIntentProps, IProps, IRef, MaybeElement, removeNonHTMLProps } from 'common';
+import { AbstractPureComponent, CssClasses, HTMLInputProps, IControlledProps, IIntentProps, IProps, IRef, MaybeElement, removeNonHTMLProps } from 'common';
 import { AsyncControllableInput } from './asyncControllableInput';
 import { IconName } from '@blueprintjs/icons';
 import Icon from '../icon';
 import cx from 'classnames'
 
-export interface IInputGroupProps extends IIntentProps, IProps {
+export interface IInputGroupProps extends IControlledProps, IIntentProps, IProps {
     /** Ref handler or a ref object that receives HTML `<input>` element backing this component. */
     inputRef?: IRef<HTMLInputElement>;
 
