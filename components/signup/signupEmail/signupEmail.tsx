@@ -20,9 +20,9 @@ export type SignupEmailProps = {
 
 export type SignupEmailState = {
     loading: boolean,
-    emailError: boolean,
-    nameError: boolean,
-    passwordError: boolean,
+    emailError: string,
+    nameError: string,
+    passwordError: string,
     inviteId: string,
     email: string,
     isSubmitting: boolean,
@@ -37,9 +37,9 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
 
         this.state = {
             loading: true,
-            emailError: false,
-            nameError: false,
-            passwordError: false,
+            emailError: '',
+            nameError: '',
+            passwordError: '',
             inviteId,
             email: '',
             isSubmitting: false,
@@ -89,12 +89,11 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                 defaultMessage="What's your email address?"
                             />
                         </strong>
-                    } labelFor="email" helperText={<>
-                        {this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
-                        {!this.state.emailError ? <span
-                            id='valid_email'
-                            className={styles['form-input-help-text']}
-                        >
+                    } 
+                    labelFor="email" 
+                    helperText={<>
+                        {this.state.emailError ? <span>{this.state.emailError}</span> : null}
+                        {!this.state.emailError ? <span>
                             <FormattedMessage
                                 id='signup_user_completed.emailHelp'
                                 defaultMessage='Valid email required for sign-up'

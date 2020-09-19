@@ -11,9 +11,9 @@ describe('components/SignupEmail', () => {
         siteName: 'Hung Know'
     } as SignupEmailProps
 
-    test('has enough fields', () => {
+    it('has enough fields', () => {
         const wrapper = shallow(<SignupEmail {...baseProps}/>);
-        console.log(wrapper.debug())
+        // console.log(wrapper.debug())
         const emailFormGroup = wrapper.find('FormGroup[labelFor="email"]')
         expect(emailFormGroup.exists()).toBeTruthy()
         const emailInputGroup = emailFormGroup.find('InputGroup[type="email"]')
@@ -28,5 +28,14 @@ describe('components/SignupEmail', () => {
         expect(passwordFormGroup.exists()).toBeTruthy()
         const passwordInputGroup = passwordFormGroup.find('InputGroup[type="password"]')
         expect(passwordInputGroup.exists()).toBeTruthy()
+    })
+
+    test('field has intent-danger for error', () => {
+        const wrapper = shallow(<SignupEmail {...baseProps}/>);
+        const emailFormGroup = wrapper.find('FormGroup[labelFor="email"]')
+        const emailInputGroup = emailFormGroup.find('InputGroup[type="email"]')
+        // Check 
+        wrapper.setState({ emailError: true })
+        
     })
 })
