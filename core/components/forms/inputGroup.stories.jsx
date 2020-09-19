@@ -17,10 +17,16 @@ storiesOf('Form - InputGroup', module)
             return (
                 <ShowroomWin id="form-inputgroup-no-special-props">
                     <InputGroup {...baseProps} />
-                    <InputGroup {...baseProps} leftIcon="star" />
-                    <InputGroup {...baseProps} rightElement={<button className="hk-button">Hello</button>} />
-                    <InputGroup {...baseProps} leftIcon="star" large placeholder="Placeholder" />
-                    <InputGroup {...baseProps} leftIcon="star" round placeholder="Placeholder" />
+                    <InputGroup {...baseProps} leftIcon="star" placeholder="leftIcon" />
+                    <InputGroup {...baseProps} leftElement={<button className="hk-button">Left</button>} placeholder="leftElement" />
+                    <InputGroup {...baseProps} rightElement={<button className="hk-button">Right</button>} placeholder="rightElement"/>
+                    <InputGroup {...baseProps} leftIcon="star" large placeholder="Large" />
+                    <InputGroup {...baseProps} leftIcon="star" small placeholder="Small" />
+                    <InputGroup {...baseProps} leftIcon="star" round placeholder="Round" />
+                    <InputGroup {...baseProps} leftIcon="star" disabled placeholder="Disabled" value="Disabled value" />
+                    <InputGroup {...baseProps} leftIcon="star" fill placeholder="fill" />
+                    <InputGroup {...baseProps} type="month" placeholder="type month" />
+
                 </ShowroomWin>
             )
         }

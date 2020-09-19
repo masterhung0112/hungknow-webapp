@@ -1,5 +1,5 @@
 @import "~@blueprintjs/icons/src/icons";
-@import '../common/modules';
+@import 'icon_common';
 
 // the icon class which will contain an SVG icon
 .#{$ns}-icon {
@@ -41,28 +41,4 @@
       }
     }
   }
-}
-
-@mixin hb-icon-sized(
-  $font-size: $hb-icon-size-standard,
-  $font-family-size: strip-unit($font-size)
-) {
-  font-family: "Icons#{$font-family-size}", sans-serif;
-  font-size: $font-size;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1;
-}
-
-@mixin hb-icon-font-smoothing() {
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-}
-
-@mixin hb-icon(
-  $font-size: $hb-icon-size-standard,
-  $font-family-size: strip-unit($font-size)
-) {
-  @include hb-icon-sized($font-size, $font-family-size);
-  @include hb-icon-font-smoothing();
 }

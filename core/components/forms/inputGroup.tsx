@@ -42,6 +42,7 @@ export interface IInputGroupProps extends IIntentProps, IProps {
 
     /** Whether this input should use large styles. */
     large?: boolean;
+    
     /** Whether this input should use small styles. */
     small?: boolean;
 
