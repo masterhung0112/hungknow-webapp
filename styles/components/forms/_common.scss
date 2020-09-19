@@ -111,6 +111,43 @@ $input-box-shadow-focus: inset 0 1px 1px rgba($black, $hb-drop-shadow-opacity) !
   }
 }
 
+@mixin hb-input-intent($color) {
+  box-shadow: input-transition-shadow($color), inset border-shadow(1, $color),
+    $hb-input-box-shadow;
+
+  &:focus {
+    box-shadow: input-transition-shadow($color, true), $input-box-shadow-focus;
+  }
+
+  &[readonly] {
+    box-shadow: inset 0 0 0 1px $color;
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    box-shadow: none;
+  }
+}
+
+@mixin hb-dark-input-intent($color) {
+  box-shadow: dark-input-transition-shadow($color),
+    inset border-shadow(1, $color), $hb-dark-input-box-shadow;
+
+  &:focus {
+    box-shadow: dark-input-transition-shadow($color, true),
+      $hb-dark-input-box-shadow;
+  }
+
+  &[readonly] {
+    box-shadow: inset 0 0 0 1px $color;
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    box-shadow: none;
+  }
+}
+
 /****
  * Dark input
  */

@@ -27,4 +27,14 @@ Text inputs
   .#{$ns}-dark & {
     @include hb-dark-input();
   }
+
+  @each $intent, $color in $hb-intent-colors {
+    &.#{$ns}-intent-#{$intent} {
+      @include hb-input-intent($color);
+
+      .#{$ns}-dark & {
+        @include hb-dark-input-intent($color);
+      }
+    }
+  }
 }
