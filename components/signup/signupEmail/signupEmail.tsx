@@ -7,33 +7,49 @@ import SiteNameAndDescription from 'components/siteNameAndDescription'
 import { Constants } from 'utils/constants'
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
-import { CssClasses, Intent } from 'common'
-import { Button, FormGroup, InputGroup } from 'core/components';
+import { CssClasses, Intent, IRef } from 'common'
+import { Button, FormGroup, InputGroup } from 'core/components'
+import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/utils/helpers'
+import { PasswordConfig } from 'hkclient-ts/types/config';
+import { UserActions } from 'hkclient-ts/actions';
+import { UserProfile } from 'hkclient-ts/src/types/users';
+import { ActionResult } from 'hkclient-ts/types/actions';
 
 export type SignupEmailProps = {
     location: { search: string }
     hasAccounts: boolean
     enableSignUpWithEmail: boolean
     customDescriptionText?: string
-    siteName?: string
+    siteName?: string,
+    passwordConfig: PasswordConfig,
+    actions: {
+        createUser: (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
+    }
 }
 
 export type SignupEmailState = {
     loading: boolean,
-    emailError: string,
-    nameError: string,
-    passwordError: string,
+    emailError: string | React.ReactNode,
+    nameError: string | React.ReactNode,
+    passwordError: string | React.ReactNode,
     inviteId: string,
     email: string,
     isSubmitting: boolean,
-    serverError: string
+    serverError: string,
+    token: string
 }
 
 export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
+    emailRef = React.createRef<HTMLInputElement>();
+    usernameRef = React.createRef<HTMLInputElement>();
+    passwordRef = React.createRef<HTMLInputElement>();
+
     constructor(props: SignupEmailProps) {
         super(props)
-        // styles.
-        const inviteId = ''// (new URLSearchParams(this.props.location.search)).get('id');
+        
+        const data = (new URLSearchParams(this.props.location.search)).get('d');
+        const token = (new URLSearchParams(this.props.location.search)).get('t');
+        const inviteId = (new URLSearchParams(this.props.location.search)).get('id');
 
         this.state = {
             loading: true,
@@ -43,12 +59,128 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             inviteId,
             email: '',
             isSubmitting: false,
-            serverError: ''
+            serverError: '',
+            token
         }
+    }
+
+    isUserValid = () => {
+        const providedEmail = this.emailRef.current.value.trim();
+        if (!providedEmail) {
+            this.setState({
+                nameError: '',
+                emailError: (<FormattedMessage id='signup_user_completed.required' />),
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        if (!isEmail(providedEmail)) {
+            this.setState({
+                nameError: '',
+                emailError: (<FormattedMessage id='signup_user_completed.validEmail' />),
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        const providedUsername = this.usernameRef.current.value.trim().toLowerCase();
+        if (!providedUsername) {
+            this.setState({
+                nameError: (<FormattedMessage id='signup_user_completed.required' />),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        const usernameError = isValidUsername(providedUsername);
+        if (usernameError === 'Cannot use a reserved word as a username.') {
+            this.setState({
+                nameError: (<FormattedMessage id='signup_user_completed.reserved' />),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        } else if (usernameError) {
+            this.setState({
+                nameError: (
+                    <FormattedMessage
+                        id='signup_user_completed.usernameLength'
+                        values={{
+                            min: Constants.MIN_USERNAME_LENGTH,
+                            max: Constants.MAX_USERNAME_LENGTH,
+                        }}
+                    />
+                ),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        const providedPassword = this.passwordRef.current.value;
+        const { valid, error } = isValidPassword(providedPassword, this.props.passwordConfig);
+        if (!valid && error) {
+            this.setState({
+                nameError: '',
+                emailError: '',
+                passwordError: (
+                    <FormattedMessage
+                        id={error.intl.id}
+                    />
+                ),
+                serverError: '',
+            });
+            return false;
+        }
+
+        return true;
     }
 
     handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
+
+        // bail out if a submission is already in progress
+        if (this.state.isSubmitting) {
+            return;
+        }
+
+        if (this.isUserValid()) {
+            this.setState({
+                nameError: '',
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+                isSubmitting: true,
+            })
+
+            const user = {
+                email: this.emailRef.current.value.trim(),
+                username: this.usernameRef.current.value.trim().toLowerCase(),
+                password: this.passwordRef.current.value,
+                allow_marketing: true,
+            } as UserProfile
+
+            const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
+
+            this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
+                if (result.error) {
+                    this.setState({
+                        serverError: result.error.message,
+                        isSubmitting: false,
+                    });
+                    return;
+                }
+
+                // this.handleSignupSuccess(user, result.data);
+            })
+        }
     }
 
     renderEmailSignup() {
@@ -89,18 +221,18 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                 defaultMessage="What's your email address?"
                             />
                         </strong>
-                    } 
-                    labelFor="email" 
-                    helperText={<>
-                        {this.state.emailError ? <span>{this.state.emailError}</span> : null}
-                        {!this.state.emailError ? <span>
-                            <FormattedMessage
-                                id='signup_user_completed.emailHelp'
-                                defaultMessage='Valid email required for sign-up'
-                            />
-                        </span> : null}
-                    </>}>
-                        <InputGroup id="email" type="email" ref="email" defaultValue={this.state.email} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" />
+                    }
+                        labelFor="email"
+                        helperText={<>
+                            {this.state.emailError ? <span id="email-error">{this.state.emailError}</span> : null}
+                            {!this.state.emailError ? <span id="email-help">
+                                <FormattedMessage
+                                    id='signup_user_completed.emailHelp'
+                                    defaultMessage='Valid email required for sign-up'
+                                />
+                            </span> : null}
+                        </>}>
+                        <InputGroup id="email" type="email" inputRef={this.emailRef} defaultValue={this.state.email} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" />
                     </FormGroup>
                     {this.state.email ?
                         <FormattedMarkdownMessage
@@ -120,19 +252,18 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                     defaultMessage='Choose your username'
                                 />
                             </strong>
-                        } labelFor="name" helperText={<>
-                            {this.state.nameError ? <label className={styles['control-label']}>{this.state.nameError}</label> : null}
-                            {!this.state.nameError ? <span
-                                id='valid_name'
-                                className={styles['form-input-help-text']}
-                            >
+                        } 
+                        labelFor="name"
+                        helperText={<>
+                            {this.state.nameError ? <span id="name-error">{this.state.nameError}</span> : null}
+                            {!this.state.nameError ? <span id='valid_name'>
                                 <FormattedMessage
                                     id='signup_user_completed.userHelp'
                                     defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
                                 />
                             </span> : null}
                         </>}>
-                            <InputGroup id="name" type="text" ref="name" maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" />
+                            <InputGroup id="name" type="text" inputRef={this.usernameRef} maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" />
                         </FormGroup>
                     </div>
                     <div className='mt-8'>
@@ -143,8 +274,10 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                     defaultMessage='Choose your password'
                                 />
                             </strong>
-                        } labelFor="password" helperText={this.state.passwordError ? <label className={styles['control-label']}>{this.state.passwordError}</label> : null}>
-                            <InputGroup id="password" type="password" ref="password" maxLength={128} spellCheck={false} autoCapitalize="off" />
+                        } 
+                        labelFor="password" 
+                        helperText={this.state.passwordError ? <span id='password-error'>{this.state.passwordError}</span> : null}>
+                            <InputGroup id="password" type="password" inputRef={this.passwordRef} maxLength={128} spellCheck={false} autoCapitalize="off" />
                         </FormGroup>
                     </div>
                     <p className='mt-5'>
