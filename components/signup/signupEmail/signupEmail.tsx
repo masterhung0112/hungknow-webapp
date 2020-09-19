@@ -8,6 +8,7 @@ import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
 import styles from './signupEmail.module.scss'
 import { CssClasses } from 'common'
+import { FormGroup, InputGroup } from 'core/components';
 
 type Props = {
     location: any
@@ -81,6 +82,26 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
         return (
             <form>
                 <div className='inner__content'>
+                    <FormGroup label={
+                         <strong>
+                            <FormattedMessage
+                                id='signup_user_completed.whatis'
+                                defaultMessage="What's your email address?"
+                            />
+                        </strong>
+                    } helperElement={this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
+                            {!this.state.emailError ? <span
+                                id='valid_email'
+                                className={styles['form-input-help-text']}
+                            >
+                                <FormattedMessage
+                                    id='signup_user_completed.emailHelp'
+                                    defaultMessage='Valid email required for sign-up'
+                                />
+                            </span> : null}
+                    }>
+                        <InputGroup id="email" type="email" ref="email" className={CssClasses.FORMCONTROL} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" />
+                    </FormGroup>
                     <div className={emailContainerStyle}>
                         <h5 id='email_label'>
                             <strong>
