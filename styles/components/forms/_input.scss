@@ -10,4 +10,8 @@ Text inputs
   &::-ms-clear {
     display: none;
   }
+
+  &.#{$ns}-large {
+    @include hb-input-large();
+  }
 }

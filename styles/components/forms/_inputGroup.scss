@@ -32,7 +32,7 @@ $input-button-height-small: $hb-button-height-smaller !default;
     padding: $button-padding-small;
 
     // icons CSS API support
-    &:emhby { padding: 0; }
+    &:empty { padding: 0; }
   }
 
   .#{$ns}-input-action,
@@ -75,5 +75,35 @@ $input-button-height-small: $hb-button-height-smaller !default;
   > .#{$ns}-icon,
   .#{$ns}-input-action > .#{$ns}-spinner {
     margin: ($hb-input-height - $hb-icon-size-standard) / 2;
+  }
+
+  &.#{$ns}-large {
+    
+    // Keep the icon bounding box to be square
+    > .#{$ns}-input-left-container > .#{$ns}-icon,
+    > .#{$ns}-icon,
+    .#{$ns}-input-action > .#{$ns}-spinner {
+      margin: ($hb-input-height-large - $hb-icon-size-standard) / 2;
+    }
+
+    .#{$ns}-input {
+      @include hb-input-large();
+
+      &:not(:first-child) {
+        padding-left: $hb-button-height-large;
+      }
+
+      &:not(:last-child) {
+        padding-right: $hb-button-height-large;
+      }
+    }
+  }
+
+  &.#{$ns}-round {
+    .#{$ns}-button,
+    .#{$ns}-input,
+    .#{$ns}-tag {
+      border-radius: $hb-input-height;
+    }
   }
 }

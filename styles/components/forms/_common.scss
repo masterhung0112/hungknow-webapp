@@ -12,6 +12,10 @@ $input-background-color: $white !default;
 $input-background-color-disabled: rgba($light-gray1, 0.5) !default;
 $input-shadow-color-focus: $hb-intent-primary !default;
 
+// avoids edge blurriness for light theme focused default input
+// second box-shadow of $hb-input-box-shadow
+$input-box-shadow-focus: inset 0 1px 1px rgba($black, $hb-drop-shadow-opacity) !default;
+
 // animating shadows requires the same number of shadows in different states
 @function input-transition-shadow(
   $color: $input-shadow-color-focus,
@@ -45,4 +49,26 @@ $input-shadow-color-focus: $hb-intent-primary !default;
   font-weight: $input-font-weight;
   height: $hb-input-height;
   line-height: $hb-input-height;
+
+  outline: none;
+  padding: 0 $input-padding-horizontal;
+  transition: $input-transition;
+  vertical-align: middle;
+
+  // Highlight the focus or active element
+  &:focus,
+  &.#{$ns}-active {
+    box-shadow: input-transition-shadow($input-shadow-color-focus, true), $input-box-shadow-focus;
+  }
+}
+
+@mixin hb-input-large() {
+  font-size: $hb-font-size-large;
+  height: $hb-input-height-large;
+  line-height: $hb-input-height-large;
+
+  &[type="search"],
+  &.#{$ns}-round {
+    padding: 0 ($input-padding-horizontal * 1.5);
+  }
 }

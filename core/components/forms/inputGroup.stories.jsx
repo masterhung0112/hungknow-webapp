@@ -18,6 +18,8 @@ storiesOf('Form - InputGroup', module)
                     <InputGroup {...baseProps} />
                     <InputGroup {...baseProps} leftIcon="star" />
                     <InputGroup {...baseProps} rightElement={<button className="hk-button">Hello</button>} />
+                    <InputGroup {...baseProps} leftIcon="star" large placeholder="Placeholder" />
+                    <InputGroup {...baseProps} leftIcon="star" round placeholder="Placeholder" />
                 </div>
             )
         }
