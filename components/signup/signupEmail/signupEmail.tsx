@@ -153,10 +153,8 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
 
         this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-            console.log('loginby:', actionResult)
             if (actionResult.error) {
                 if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
-                    console.log('here was call')
                     let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email);
                     if (this.state.teamName) {
                         verifyUrl += '&teamname=' + encodeURIComponent(this.state.teamName);
@@ -188,7 +186,6 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     }
 
     handleSubmit = (e: SyntheticEvent) => {
-        console.log('submit')
         e.preventDefault();
 
         // bail out if a submission is already in progress
@@ -215,7 +212,6 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
 
             this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
-                console.log('r', result)
                 if (result.error) {
                     this.setState({
                         serverError: result.error.message,

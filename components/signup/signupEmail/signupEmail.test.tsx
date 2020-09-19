@@ -8,6 +8,7 @@ import { PasswordConfig } from 'hkclient-ts/types/config'
 import userEvent from '@testing-library/user-event'
 import { General } from 'hkclient-ts/constants'
 import { UserProfile } from 'hkclient-ts/types/users'
+import Router from 'next/router'
 
 describe('components/SignupEmail', () => {
     const baseProps = {
@@ -29,6 +30,24 @@ describe('components/SignupEmail', () => {
         }
     } as SignupEmailProps
 
+    const validEmail = 'validemail@gmail.com'
+    const validUserName = 'HungBui'
+    const validPassword = 'password@'
+
+    const inputCorrectValue = (getByLabelText: Function) => {
+        const emailInput = getByLabelText(translationData['signup_user_completed.whatis'])
+        userEvent.clear(emailInput)
+        userEvent.type(emailInput, validEmail)
+
+        const usernameInput = getByLabelText(translationData['signup_user_completed.chooseUser'])
+        userEvent.clear(usernameInput)
+        userEvent.type(usernameInput, validUserName)
+        
+        const passwordInput = getByLabelText(translationData['signup_user_completed.choosePwd'])
+        userEvent.clear(passwordInput)
+        userEvent.type(passwordInput, validPassword)
+    }
+
     it('has enough fields', () => {
         const wrapper = shallow(<SignupEmail {...baseProps} />);
         // console.log(wrapper.debug())
@@ -49,8 +68,8 @@ describe('components/SignupEmail', () => {
     })
 
     test('field has error message when invalid input', async () => {
-        const createUserMock = jest.fn().mockResolvedValue({data: { id: 'hung'} as UserProfile})
-        const loginByIdMock = jest.fn().mockResolvedValue({data: 'hung here 1'})
+        const createUserMock = jest.fn().mockResolvedValue({data: { id: 'hung' } as UserProfile})
+        const loginByIdMock = jest.fn().mockResolvedValue({data: 'login test'})
 
         const props = {
             ...baseProps,
@@ -140,6 +159,41 @@ describe('components/SignupEmail', () => {
 
         // After login, expect loginById immediately
         expect(loginByIdMock).toHaveBeenCalledTimes(1)
+
+        unmount()
+    })
+
+    test('push correct url when login return not_verified', async () => {
+        const createUserMock = jest.fn().mockResolvedValue({data: { id: 'hung' } as UserProfile})
+        const loginByIdMock = jest.fn().mockResolvedValue({error: { server_error_id: 'api.user.login.not_verified.app_error'}})
+
+        const props = {
+            ...baseProps,
+            actions: {
+                createUser: createUserMock,
+                loginById: loginByIdMock
+            }
+        }
+
+        let { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />));
+        inputCorrectValue(getByLabelText)
+
+        // Mock for router push function
+        const { router } = Router
+        router.push = jest.fn()
+
+        // With valid data, click create button
+        const createButton = getByText(translationData['signup_user_completed.create'])        
+        fireEvent.click(createButton)
+
+        // Wait for function to be called
+        await waitFor(() => {
+            expect(loginByIdMock).toHaveBeenCalledTimes(1)
+        })
+
+        // Verify the correct URL was pushed to router
+        const normalizedUrl = '/should_verify_email?email=' + encodeURIComponent(validEmail)
+        expect(router.push).toBeCalledWith(normalizedUrl)
 
         unmount()
     })
