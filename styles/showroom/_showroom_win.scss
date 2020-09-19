@@ -1,0 +1,42 @@
+@import 'variables';
+
+$showroomwin-frame-spacing: $hb-grid-size;
+$showroomwin-frame-border-radius: $hb-border-radius * 2;
+$showroomwin-spacing: $hb-grid-size * 4;
+
+$showroomwin-background-color: $hb-app-background-color;
+$code-background-color: $hb-code-background-color;
+$options-background-color: $light-gray4;
+
+$dark-showroomwin-background-color: $hb-dark-app-background-color;
+$dark-code-background-color: $hb-dark-code-background-color;
+$dark-options-background-color: $dark-gray5;
+
+.#{$ns}-showroom-win {
+  // full-bleed wrapper for frame
+  margin-top: $content-padding * 2;
+  position: relative;
+  width: 100%;
+
+  &__content {
+    align-items: center;
+    background: $showroomwin-background-color;
+    border-radius: $showroomwin-frame-border-radius;
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    // https://css-tricks.com/flexbox-truncated-text/#article-header-id-3
+    min-width: 0;
+    padding: $showroomwin-spacing / 2;
+
+    .#{$ns}-dark & {
+      background: $dark-showroomwin-background-color;
+    }
+
+    > * {
+      margin: $showroomwin-spacing / 2;
+    }
+  }
+}
