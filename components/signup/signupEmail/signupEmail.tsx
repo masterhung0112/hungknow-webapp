@@ -1,24 +1,24 @@
 import Link from 'next/link';
 import React, { SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
+import styles from './signupEmail.module.scss'
 import logoImage from 'images/logo.png';
 import SiteNameAndDescription from 'components/siteNameAndDescription'
-import { Constants } from 'utils/constants';
+import { Constants } from 'utils/constants'
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
-import styles from './signupEmail.module.scss'
-import { CssClasses } from 'common'
-import { FormGroup, InputGroup } from 'core/components';
+import { CssClasses, Intent } from 'common'
+import { Button, FormGroup, InputGroup } from 'core/components';
 
-type Props = {
-    location: any
+export type SignupEmailProps = {
+    location: { search: string }
     hasAccounts: boolean
     enableSignUpWithEmail: boolean
     customDescriptionText?: string
     siteName?: string
 }
 
-type State = {
+export type SignupEmailState = {
     loading: boolean,
     emailError: boolean,
     nameError: boolean,
@@ -29,8 +29,8 @@ type State = {
     serverError: string
 }
 
-export default class SignupEmail extends React.PureComponent<Props, State> {
-    constructor(props: Props) {
+export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
+    constructor(props: SignupEmailProps) {
         super(props)
         // styles.
         const inviteId = ''// (new URLSearchParams(this.props.location.search)).get('id');
@@ -83,59 +83,26 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
             <form>
                 <div className='inner__content'>
                     <FormGroup label={
-                         <strong>
+                        <strong>
                             <FormattedMessage
                                 id='signup_user_completed.whatis'
                                 defaultMessage="What's your email address?"
                             />
                         </strong>
-                    } helperElement={this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
-                            {!this.state.emailError ? <span
-                                id='valid_email'
-                                className={styles['form-input-help-text']}
-                            >
-                                <FormattedMessage
-                                    id='signup_user_completed.emailHelp'
-                                    defaultMessage='Valid email required for sign-up'
-                                />
-                            </span> : null}
-                    }>
-                        <InputGroup id="email" type="email" ref="email" className={CssClasses.FORMCONTROL} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" />
-                    </FormGroup>
-                    <div className={emailContainerStyle}>
-                        <h5 id='email_label'>
-                            <strong>
-                                <FormattedMessage
-                                    id='signup_user_completed.whatis'
-                                    defaultMessage="What's your email address?"
-                                />
-                            </strong>
-                        </h5>
-                        <div className={emailDivStyle}>
-                            <input
-                                id='email'
-                                type='email'
-                                ref='email'
-                                className={CssClasses.FORMCONTROL}
-                                defaultValue={this.state.email}
-                                placeholder=''
-                                maxLength={128}
-                                autoFocus={true}
-                                spellCheck='false'
-                                autoCapitalize='off'
+                    } labelFor="email" helperText={<>
+                        {this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
+                        {!this.state.emailError ? <span
+                            id='valid_email'
+                            className={styles['form-input-help-text']}
+                        >
+                            <FormattedMessage
+                                id='signup_user_completed.emailHelp'
+                                defaultMessage='Valid email required for sign-up'
                             />
-                            {this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
-                            {!this.state.emailError ? <span
-                                id='valid_email'
-                                className={styles['form-input-help-text']}
-                            >
-                                <FormattedMessage
-                                    id='signup_user_completed.emailHelp'
-                                    defaultMessage='Valid email required for sign-up'
-                                />
-                            </span> : null}
-                        </div>
-                    </div>
+                        </span> : null}
+                    </>}>
+                        <InputGroup id="email" type="email" ref="email" defaultValue={this.state.email} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" />
+                    </FormGroup>
                     {this.state.email ?
                         <FormattedMarkdownMessage
                             id='signup_user_completed.emailIs'
@@ -147,25 +114,14 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                         />
                         : null}
                     <div className='mt-8'>
-                        <h5 id='name_label'>
+                        <FormGroup label={
                             <strong>
                                 <FormattedMessage
                                     id='signup_user_completed.chooseUser'
                                     defaultMessage='Choose your username'
                                 />
                             </strong>
-                        </h5>
-                        <div className={nameDivStyle}>
-                            <input
-                                id='name'
-                                type='text'
-                                ref='name'
-                                className={CssClasses.FORMCONTROL}
-                                placeholder=''
-                                maxLength={Constants.MAX_USERNAME_LENGTH}
-                                spellCheck='false'
-                                autoCapitalize='off'
-                            />
+                        } labelFor="name" helperText={<>
                             {this.state.nameError ? <label className={styles['control-label']}>{this.state.nameError}</label> : null}
                             {!this.state.nameError ? <span
                                 id='valid_name'
@@ -176,43 +132,35 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                                     defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
                                 />
                             </span> : null}
-                        </div>
+                        </>}>
+                            <InputGroup id="name" type="text" ref="name" maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" />
+                        </FormGroup>
                     </div>
                     <div className='mt-8'>
-                        <h5 id='password_label'>
+                        <FormGroup label={
                             <strong>
                                 <FormattedMessage
                                     id='signup_user_completed.choosePwd'
                                     defaultMessage='Choose your password'
                                 />
                             </strong>
-                        </h5>
-                        <div className={passwordDivStyle}>
-                            <input
-                                id='password'
-                                type='password'
-                                ref='password'
-                                className={CssClasses.FORMCONTROL}
-                                placeholder=''
-                                maxLength={128}
-                                spellCheck='false'
-                            />
-                            {this.state.passwordError ? <label className={styles['control-label']}>{this.state.passwordError}</label> : null}
-                        </div>
+                        } labelFor="password" helperText={this.state.passwordError ? <label className={styles['control-label']}>{this.state.passwordError}</label> : null}>
+                            <InputGroup id="password" type="password" ref="password" maxLength={128} spellCheck={false} autoCapitalize="off" />
+                        </FormGroup>
                     </div>
                     <p className='mt-5'>
-                        <button
+                        <Button
                             id='createAccountButton'
                             type='submit'
                             onClick={this.handleSubmit}
-                            className={cx(CssClasses.BUTTON, CssClasses.INTENT_PRIMARY)}
+                            intent={Intent.PRIMARY}
                             disabled={this.state.isSubmitting}
                         >
                             <FormattedMessage
                                 id='signup_user_completed.create'
                                 defaultMessage='Create Account'
                             />
-                        </button>
+                        </Button>
                     </p>
                 </div>
             </form>

@@ -109,7 +109,7 @@ body {
         }
     }
 
-    .form-input-help-text {
+    :global(.#{$ns}-form-group__helper-text) {
         color: $dark-gray4;
         font-size: .95em;
         margin: 10px 0 0;
