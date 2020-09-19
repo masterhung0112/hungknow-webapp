@@ -1,5 +1,5 @@
 import { AbstractPureComponent, CssClasses, IIntentProps, IProps } from 'common'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import cx from 'classnames'
 
 export interface FormGroupProps extends IIntentProps, IProps {
@@ -68,7 +68,13 @@ export default class FormGroup extends AbstractPureComponent<FormGroupProps> {
             },
             className,
         );
-    
+
+        const childrenClassName = cx(
+            {
+                [CssClasses.DISABLED]: disabled,
+            },
+        );
+
         return (
             <div className={classname} style={style}>
                 {label && (

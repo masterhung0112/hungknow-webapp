@@ -1,0 +1,17 @@
+@import "colors_alias";
+
+.#{$ns}-text-muted {
+  color: $hb-text-color-muted;
+
+  .#{$ns}-dark & {
+    color: $hb-dark-text-color-muted;
+  }
+}
+
+.#{$ns}-text-disabled {
+  color: $hb-text-color-disabled;
+
+  .#{$ns}-dark & {
+    color: $hb-dark-text-color-disabled;
+  }
+}

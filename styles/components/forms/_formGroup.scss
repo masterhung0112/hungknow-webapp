@@ -1,0 +1,30 @@
+@import "./common";
+
+.#{$ns}-form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 ($hb-grid-size * 1.5);
+
+  label.#{$ns}-label {
+    margin-bottom: $hb-grid-size / 2;
+  }
+
+  &__content {
+  }
+
+  &__helper-text {
+    color: $hb-text-color-muted;
+    font-size: $hb-font-size-small;
+    margin-top: $hb-grid-size / 2;
+  }
+
+  &.#{$ns}-disabled {
+    .#{$ns}-label,
+    .#{$ns}-text-muted,
+    .#{$ns}-form-group__helper-text {
+      // disabled state always overrides over styles
+      // stylelint-disable-next-line declaration-no-important
+      color: $hb-text-color-disabled !important;
+    }
+  }
+}
