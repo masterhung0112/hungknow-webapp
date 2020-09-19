@@ -13,9 +13,9 @@ import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/utils/hel
 import { PasswordConfig } from 'hkclient-ts/types/config';
 import { UserActions } from 'hkclient-ts/actions';
 import { UserProfile } from 'hkclient-ts/src/types/users';
-import { ActionResult } from 'hkclient-ts/types/actions';
+import { ActionCreatorClient } from 'hkclient-ts/types/actions';
 import Router from 'next/router'
-import { act } from '@testing-library/react';
+
 export type SignupEmailProps = {
     location: { search: string }
     hasAccounts: boolean
@@ -23,9 +23,11 @@ export type SignupEmailProps = {
     customDescriptionText?: string
     siteName?: string,
     passwordConfig: PasswordConfig,
+    termsOfServiceLink?: string,
+    privacyPolicyLink?: string,
     actions: {
-        createUser: (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
-        loginById: (userId: string, password: string, mfaToken: string) => Promise<ActionResult>
+        createUser: ActionCreatorClient<typeof UserActions.createUser>, // (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
+        loginById: ActionCreatorClient<typeof UserActions.loginById>
     }
 }
 
@@ -151,7 +153,8 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         let { router } = Router
         // trackEvent('signup', 'signup_user_02_complete');
         const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
-
+        // var a: ActionResult
+        // a.
         this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
             if (actionResult.error) {
                 if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
@@ -165,7 +168,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                     router.push(verifyUrl);
                 } else {
                     this.setState({
-                        serverError: error.message,
+                        serverError: actionResult.error.message,
                         isSubmitting: false,
                     });
                 }
@@ -237,6 +240,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                             />
                         </strong>
                     }
+                        intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY}
                         labelFor="email"
                         helperText={<>
                             {this.state.emailError ? <span id="email-error">{this.state.emailError}</span> : null}
@@ -247,7 +251,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                 />
                             </span> : null}
                         </>}>
-                        <InputGroup id="email" type="email" inputRef={this.emailRef} defaultValue={this.state.email} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" />
+                        <InputGroup id="email" type="email" inputRef={this.emailRef} defaultValue={this.state.email} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY} />
                     </FormGroup>
                     {this.state.email ?
                         <FormattedMarkdownMessage
@@ -269,6 +273,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                             </strong>
                         }
                             labelFor="name"
+                            intent={this.state.nameError ? Intent.DANGER : Intent.PRIMARY}
                             helperText={<>
                                 {this.state.nameError ? <span id="name-error">{this.state.nameError}</span> : null}
                                 {!this.state.nameError ? <span id='valid_name'>
@@ -278,7 +283,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                                     />
                                 </span> : null}
                             </>}>
-                            <InputGroup id="name" type="text" inputRef={this.usernameRef} maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" />
+                            <InputGroup id="name" type="text" inputRef={this.usernameRef} maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" intent={this.state.nameError ? Intent.DANGER : Intent.PRIMARY} />
                         </FormGroup>
                     </div>
                     <div className='mt-8'>
@@ -291,8 +296,9 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                             </strong>
                         }
                             labelFor="password"
+                            intent={this.state.passwordError ? Intent.DANGER : Intent.PRIMARY}
                             helperText={this.state.passwordError ? <span id='password-error'>{this.state.passwordError}</span> : null}>
-                            <InputGroup id="password" type="password" inputRef={this.passwordRef} maxLength={128} spellCheck={false} autoCapitalize="off" />
+                            <InputGroup id="password" type="password" inputRef={this.passwordRef} maxLength={128} spellCheck={false} autoCapitalize="off" intent={this.state.passwordError ? Intent.DANGER : Intent.PRIMARY} />
                         </FormGroup>
                     </div>
                     <p className='mt-5'>
@@ -319,9 +325,9 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             customDescriptionText,
             enableSignUpWithEmail,
             location,
-            // privacyPolicyLink,
+            privacyPolicyLink,
             siteName,
-            // termsOfServiceLink,
+            termsOfServiceLink,
             hasAccounts,
         } = this.props;
 

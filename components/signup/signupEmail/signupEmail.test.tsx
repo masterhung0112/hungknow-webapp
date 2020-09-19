@@ -29,7 +29,7 @@ describe('components/SignupEmail', () => {
             loginById: jest.fn()
         }
     } as SignupEmailProps
-
+    
     const validEmail = 'validemail@gmail.com'
     const validUserName = 'HungBui'
     const validPassword = 'password@'
