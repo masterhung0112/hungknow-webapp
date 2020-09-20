@@ -30,6 +30,7 @@ jest.mock("next/router", () => ({
     // and overwrite push and replace to be jest functions
     push: jest.fn().mockImplementation((url) => console.log('router push url:', url)),
     replace: jest.fn(),
+    query: {},
   },
 }));
 

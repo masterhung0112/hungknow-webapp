@@ -19,13 +19,13 @@ function mapStateToProps(state: GlobalState) {
     const hasAccounts = config.NoAccounts === 'false';
 
     return {
+        hasAccounts,
         enableSignUpWithEmail,
+        customDescriptionText,
         siteName,
+        passwordConfig: getPasswordConfig(config),
         termsOfServiceLink,
         privacyPolicyLink,
-        customDescriptionText,
-        passwordConfig: getPasswordConfig(config),
-        hasAccounts,
     };
 }
 

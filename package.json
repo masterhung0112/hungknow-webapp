@@ -9,6 +9,7 @@
     "dev": "cross-env NODE_ENV='development' node server.js",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "check-types": "tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
