@@ -7,6 +7,8 @@ name: gh-pages
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -31,11 +33,9 @@ jobs:
           npm run build
           
       - name: GitHub Pages
-        uses: sterlingwes/gh-pages-deploy-action@v1.1
+        uses: crazy-max/ghaction-github-pages@v2.1.2
         with:
-          # A personal access token needed to push your site after it has been built.
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          # The subdirectory that your build command outputs your site assets to.
-          source-directory: .
-          # The build command that should be run to generate your site.
-          build-command: npm run export
+          # GitHub repository where assets will be deployed (default current)
+          allow_empty_commit: false
+          # Build directory to deploy
+          build_dir: out
