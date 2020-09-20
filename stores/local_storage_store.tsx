@@ -1,17 +1,19 @@
-import { getBasePath } from 'selectors/general'
-import { GlobalState } from 'hkclient-ts/types/store';
-import { getRedirectChannelNameForTeam } from 'hkclient-ts/selectors/entities/channels';
+import { getBasePath } from "selectors/general";
+import { GlobalState } from "hkclient-ts/types/store";
+import { getRedirectChannelNameForTeam } from "hkclient-ts/selectors/entities/channels";
 
-const getPreviousTeamIdKey = (userId: string) => ['user_prev_team', userId].join(':')
-const getPreviousChannelNameKey = (userId: string, teamId: string) => ['user_team_prev_channel', userId, teamId].join(':');
+const getPreviousTeamIdKey = (userId: string) =>
+  ["user_prev_team", userId].join(":");
+const getPreviousChannelNameKey = (userId: string, teamId: string) =>
+  ["user_team_prev_channel", userId, teamId].join(":");
 
 const getPathScopedKey = (path: string, key: string) => {
-    if (path === '' || path === '/') {
-        return key;
-    }
+  if (path === "" || path === "/") {
+    return key;
+  }
 
-    return [path, key].join(':');
-}
+  return [path, key].join(":");
+};
 
 // LocalStorageStore exposes an interface for accessing entries in the localStorage.
 //
@@ -22,19 +24,22 @@ const getPathScopedKey = (path: string, key: string) => {
 // Lets open a separate issue to refactor local storage and state interactions.
 // This whole store can be connected to redux
 class LocalStorageStoreClass {
-    getItem(key: string, state: GlobalState) {
-        const basePath = getBasePath(state);
+  getItem(key: string, state: GlobalState) {
+    const basePath = getBasePath(state);
 
-        return localStorage.getItem(getPathScopedKey(basePath, key));
-    }
+    return localStorage.getItem(getPathScopedKey(basePath, key));
+  }
 
-    getPreviousTeamId(userId: string, state: GlobalState) {
-        return this.getItem(getPreviousTeamIdKey(userId), state);
-    }
+  getPreviousTeamId(userId: string, state: GlobalState) {
+    return this.getItem(getPreviousTeamIdKey(userId), state);
+  }
 
-    getPreviousChannelName(userId: string, teamId: string, state: GlobalState) {
-        return this.getItem(getPreviousChannelNameKey(userId, teamId), state) || getRedirectChannelNameForTeam(state, teamId);
-    }
+  getPreviousChannelName(userId: string, teamId: string, state: GlobalState) {
+    return (
+      this.getItem(getPreviousChannelNameKey(userId, teamId), state) ||
+      getRedirectChannelNameForTeam(state, teamId)
+    );
+  }
 }
 
 const LocalStorageStore = new LocalStorageStoreClass();

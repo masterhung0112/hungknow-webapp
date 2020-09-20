@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Router from "next/router";
 
 Router.router = {
   push: () => ({}),

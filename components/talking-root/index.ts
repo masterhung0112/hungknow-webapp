@@ -1,3 +1,3 @@
-import TalkingRoot from './talkingRoot'
+import TalkingRoot from "./talkingRoot";
 
-export default TalkingRoot
+export default TalkingRoot;

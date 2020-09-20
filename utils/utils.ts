@@ -1,32 +1,32 @@
-import { Constants } from './constants';
+import { Constants } from "./constants";
 
 export function localizeMessage(id: string, defaultMessage: string): string {
-    // const state = store.getState();
+  // const state = store.getState();
 
-    // const locale = getCurrentLocale(state);
-    // const translations = getTranslations(state, locale);
+  // const locale = getCurrentLocale(state);
+  // const translations = getTranslations(state, locale);
 
-    // if (!translations || !(id in translations)) {
-    //     return defaultMessage || id;
-    // }
+  // if (!translations || !(id in translations)) {
+  //     return defaultMessage || id;
+  // }
 
-    return '' //translations[id];
+  return ""; //translations[id];
 }
 
-export const isServer = typeof window === 'undefined';
+export const isServer = typeof window === "undefined";
 
 export function isMobile() {
-    return isServer ? false : window.innerWidth <= Constants.MOBILE_SCREEN_WIDTH;
+  return isServer ? false : window.innerWidth <= Constants.MOBILE_SCREEN_WIDTH;
 }
 
 export function isEmptyObject(object: any) {
-    if (!object) {
-        return true;
-    }
+  if (!object) {
+    return true;
+  }
 
-    if (Object.keys(object).length === 0) {
-        return true;
-    }
+  if (Object.keys(object).length === 0) {
+    return true;
+  }
 
-    return false;
+  return false;
 }

@@ -1,3 +1,3 @@
-import SignupEmail from './signupEmail';
+import SignupEmail from "./signupEmail";
 
-export default SignupEmail
+export default SignupEmail;

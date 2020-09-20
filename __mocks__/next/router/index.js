@@ -8,12 +8,14 @@ jest.mock("next/router", () => ({
     ...jest.requireActual("next/router").router,
 
     router: {
-      basePath: '',
-      pathname: '/',
-      route: '/',
-      asPath: '/',
+      basePath: "",
+      pathname: "/",
+      route: "/",
+      asPath: "/",
       query: {},
-      push: jest.fn().mockImplementation((url) => console.log('router push url:', url)),
+      push: jest
+        .fn()
+        .mockImplementation((url) => console.log("router push url:", url)),
       replace: jest.fn(),
       reload: jest.fn(),
       back: jest.fn(),
@@ -28,7 +30,9 @@ jest.mock("next/router", () => ({
     },
 
     // and overwrite push and replace to be jest functions
-    push: jest.fn().mockImplementation((url) => console.log('router push url:', url)),
+    push: jest
+      .fn()
+      .mockImplementation((url) => console.log("router push url:", url)),
     replace: jest.fn(),
     query: {},
   },

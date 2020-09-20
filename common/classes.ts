@@ -1,7 +1,10 @@
-import { Alignment } from './alignment';
-import { Intent } from './intent';
+import { Alignment } from "./alignment";
+import { Intent } from "./intent";
 
-export const NS = process.env.HUNGKNOW_NAMESPACE || process.env.REACT_APP_HUNGKNOW_NAMESPACE || "hk";
+export const NS =
+  process.env.HUNGKNOW_NAMESPACE ||
+  process.env.REACT_APP_HUNGKNOW_NAMESPACE ||
+  "hk";
 
 // modifiers
 export const ACTIVE = `${NS}-active`;
@@ -36,33 +39,34 @@ export const SPINNER_HEAD = `${SPINNER}-head`;
 export const SPINNER_NO_SPIN = `${NS}-no-spin`;
 export const SPINNER_TRACK = `${SPINNER}-track`;
 
-
 /** Return CSS class for alignment. */
 export function alignmentClass(alignment: Alignment) {
-    switch (alignment) {
-        case Alignment.LEFT:
-            return ALIGN_LEFT;
-        case Alignment.RIGHT:
-            return ALIGN_RIGHT;
-        default:
-            return undefined;
-    }
+  switch (alignment) {
+    case Alignment.LEFT:
+      return ALIGN_LEFT;
+    case Alignment.RIGHT:
+      return ALIGN_RIGHT;
+    default:
+      return undefined;
+  }
 }
 
 /** Return CSS class for intent. */
 export function intentClass(intent?: Intent) {
-    if (intent == null || intent === Intent.NONE) {
-        return undefined;
-    }
-    return `${NS}-intent-${intent.toLowerCase()}`;
+  if (intent == null || intent === Intent.NONE) {
+    return undefined;
+  }
+  return `${NS}-intent-${intent.toLowerCase()}`;
 }
 
 /** Returns CSS class for icon name. */
 export function iconClass(iconName?: string) {
-    if (iconName == null) {
-        return undefined;
-    }
-    return iconName.indexOf(`${NS}-icon-`) === 0 ? iconName : `${NS}-icon-${iconName}`;
+  if (iconName == null) {
+    return undefined;
+  }
+  return iconName.indexOf(`${NS}-icon-`) === 0
+    ? iconName
+    : `${NS}-icon-${iconName}`;
 }
 
 export const INTENT_PRIMARY = intentClass(Intent.PRIMARY);

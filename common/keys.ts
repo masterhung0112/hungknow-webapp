@@ -12,5 +12,5 @@ export const DELETE = 46;
 
 /** Returns whether the key code is `enter` or `space`, the two keys that can click a button. */
 export function isKeyboardClick(keyCode: number) {
-    return keyCode === ENTER || keyCode === SPACE;
+  return keyCode === ENTER || keyCode === SPACE;
 }

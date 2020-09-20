@@ -1,28 +1,32 @@
-import React from 'react'
+import React from "react";
 
-export interface IAsyncControllableInputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    inputRef?: React.LegacyRef<HTMLInputElement>;
+export interface IAsyncControllableInputProps
+  extends React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  > {
+  inputRef?: React.LegacyRef<HTMLInputElement>;
 }
 
 export interface IAsyncControllableInputState {
-    /**
-     * Whether we are in the middle of a composition event.
-     * @default false
-     */
-    isComposing: boolean;
+  /**
+   * Whether we are in the middle of a composition event.
+   * @default false
+   */
+  isComposing: boolean;
 
-    /**
-     * The source of truth for the input value. This is not updated during IME composition.
-     * It may be updated by a parent component.
-     * @default ""
-     */
-    externalValue: IAsyncControllableInputProps["value"];
+  /**
+   * The source of truth for the input value. This is not updated during IME composition.
+   * It may be updated by a parent component.
+   * @default ""
+   */
+  externalValue: IAsyncControllableInputProps["value"];
 
-    /**
-     * The latest input value, which updates during IME composition. If undefined, we use
-     * externalValue instead.
-     */
-    localValue: IAsyncControllableInputProps["value"];
+  /**
+   * The latest input value, which updates during IME composition. If undefined, we use
+   * externalValue instead.
+   */
+  localValue: IAsyncControllableInputProps["value"];
 }
 
 /**
@@ -34,28 +38,26 @@ export interface IAsyncControllableInputState {
  *
  * Implementation adapted from https://jsfiddle.net/m792qtys/ (linked in the above issue thread).
  */
-export class AsyncControllableInput extends React.PureComponent<IAsyncControllableInputProps, IAsyncControllableInputState> {
-    public state: IAsyncControllableInputState = {
-        externalValue: this.props.value,
-        isComposing: false,
-        localValue: this.props.value,
-    }
-    
-    private handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
+export class AsyncControllableInput extends React.PureComponent<
+  IAsyncControllableInputProps,
+  IAsyncControllableInputState
+> {
+  public state: IAsyncControllableInputState = {
+    externalValue: this.props.value,
+    isComposing: false,
+    localValue: this.props.value,
+  };
 
-        this.setState({ localValue: value });
-        this.props.onChange?.(e);
-    }
+  private handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
 
-    public render() {
-        const { inputRef, ...restProps } = this.props;
+    this.setState({ localValue: value });
+    this.props.onChange?.(e);
+  };
 
-        return (
-            <input
-                {...restProps}
-                ref={inputRef}
-                onChange={this.handleChange} />
-        )
-    }
+  public render() {
+    const { inputRef, ...restProps } = this.props;
+
+    return <input {...restProps} ref={inputRef} onChange={this.handleChange} />;
+  }
 }
