@@ -10,4 +10,4 @@ export const Constants = {
   MIN_TRIGGER_LENGTH: 1,
   MAX_TRIGGER_LENGTH: 128,
   MAX_SITENAME_LENGTH: 30,
-};
+}

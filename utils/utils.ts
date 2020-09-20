@@ -1,4 +1,4 @@
-import { Constants } from "./constants";
+import { Constants } from './constants'
 
 export function localizeMessage(id: string, defaultMessage: string): string {
   // const state = store.getState();
@@ -10,23 +10,23 @@ export function localizeMessage(id: string, defaultMessage: string): string {
   //     return defaultMessage || id;
   // }
 
-  return ""; //translations[id];
+  return '' //translations[id];
 }
 
-export const isServer = typeof window === "undefined";
+export const isServer = typeof window === 'undefined'
 
 export function isMobile() {
-  return isServer ? false : window.innerWidth <= Constants.MOBILE_SCREEN_WIDTH;
+  return isServer ? false : window.innerWidth <= Constants.MOBILE_SCREEN_WIDTH
 }
 
 export function isEmptyObject(object: any) {
   if (!object) {
-    return true;
+    return true
   }
 
   if (Object.keys(object).length === 0) {
-    return true;
+    return true
   }
 
-  return false;
+  return false
 }

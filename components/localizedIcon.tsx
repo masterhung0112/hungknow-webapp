@@ -1,40 +1,29 @@
-import React, { HTMLAttributes } from "react";
-import { useIntl, MessageDescriptor } from "react-intl";
-import { PrimitiveType, FormatXMLElementFn } from "intl-messageformat";
+import React, { HTMLAttributes } from 'react'
+import { useIntl, MessageDescriptor } from 'react-intl'
+import { PrimitiveType, FormatXMLElementFn } from 'intl-messageformat'
 
-type Props = Omit<
-  HTMLAttributes<HTMLSpanElement | HTMLElement>,
-  "title" | "component"
-> & {
-  component?: "i" | "span";
+type Props = Omit<HTMLAttributes<HTMLSpanElement | HTMLElement>, 'title' | 'component'> & {
+  component?: 'i' | 'span'
   title: MessageDescriptor & {
-    values?: Record<string, PrimitiveType | FormatXMLElementFn<string, string>>;
-  };
-};
-
-const LocalizedIcon = React.forwardRef(
-  (props: Props, ref?: React.Ref<HTMLSpanElement | HTMLElement>) => {
-    const {
-      component: Component = "i",
-      title: { id, defaultMessage, values },
-      ...otherProps
-    } = props;
-
-    if (Component !== "i" && Component !== "span") {
-      return null;
-    }
-
-    const { formatMessage } = useIntl();
-
-    return (
-      <Component
-        {...otherProps}
-        ref={ref}
-        title={formatMessage({ id, defaultMessage }, values)}
-      />
-    );
+    values?: Record<string, PrimitiveType | FormatXMLElementFn<string, string>>
   }
-);
-LocalizedIcon.displayName = "LocalizedIcon";
+}
 
-export default LocalizedIcon;
+const LocalizedIcon = React.forwardRef((props: Props, ref?: React.Ref<HTMLSpanElement | HTMLElement>) => {
+  const {
+    component: Component = 'i',
+    title: { id, defaultMessage, values },
+    ...otherProps
+  } = props
+
+  if (Component !== 'i' && Component !== 'span') {
+    return null
+  }
+
+  const { formatMessage } = useIntl()
+
+  return <Component {...otherProps} ref={ref} title={formatMessage({ id, defaultMessage }, values)} />
+})
+LocalizedIcon.displayName = 'LocalizedIcon'
+
+export default LocalizedIcon

@@ -1,28 +1,28 @@
-import React from "react";
-import { FormattedMessage } from "react-intl";
+import React from 'react'
+import { FormattedMessage } from 'react-intl'
 
 type Props = {
-  customDescriptionText?: string;
-  siteName: string;
-};
+  customDescriptionText?: string
+  siteName: string
+}
 
 export default class SiteNameAndDescription extends React.PureComponent<Props> {
   public static defaultProps: Partial<Props> = {
-    siteName: "Mattermost",
-  };
+    siteName: 'Mattermost',
+  }
 
   public render(): JSX.Element {
-    const { customDescriptionText, siteName } = this.props;
-    let description = null;
+    const { customDescriptionText, siteName } = this.props
+    let description = null
     if (customDescriptionText) {
-      description = customDescriptionText;
+      description = customDescriptionText
     } else {
       description = (
         <FormattedMessage
           id="web.root.signup_info"
           defaultMessage="All team communication in one place, searchable and accessible anywhere"
         />
-      );
+      )
     }
 
     return (
@@ -32,6 +32,6 @@ export default class SiteNameAndDescription extends React.PureComponent<Props> {
           {description}
         </h4>
       </React.Fragment>
-    );
+    )
   }
 }

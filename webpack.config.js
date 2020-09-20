@@ -1,13 +1,13 @@
-const path = require("path");
-const { CheckerPlugin } = require("awesome-typescript-loader");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path')
+const { CheckerPlugin } = require('awesome-typescript-loader')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // globals
-const IS_PRODUCTION = process.env.NODE_ENV === "production";
-const DEV_PORT = process.env.PORT || 9000;
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+const DEV_PORT = process.env.PORT || 9000
 // const PACKAGE_NAME = getPackageName();
 
-const STANDARD_EXCLUDE = [path.join(__dirname, "node_modules")];
+const STANDARD_EXCLUDE = [path.join(__dirname, 'node_modules')]
 
 /**
  * Configure plugins loaded based on environment.
@@ -18,50 +18,47 @@ const plugins = [
   new CheckerPlugin(),
 
   // CSS extraction is only enabled in production (see scssLoaders below).
-  new MiniCssExtractPlugin({ filename: "[name].css" }),
-];
+  new MiniCssExtractPlugin({ filename: '[name].css' }),
+]
 
 const extractPlugin = {
   loader: MiniCssExtractPlugin.loader,
   options: {
     esModule: true,
   },
-};
+}
 
 // Module loaders for .scss files, used in reverse order:
 // compile Sass, apply PostCSS, interpret CSS as modules.
 const scssLoaders = [
   // Only extract CSS to separate file in production mode.
-  IS_PRODUCTION ? extractPlugin : require.resolve("style-loader"),
+  IS_PRODUCTION ? extractPlugin : require.resolve('style-loader'),
   {
-    loader: require.resolve("css-loader"),
+    loader: require.resolve('css-loader'),
     options: {
       // necessary to minify @import-ed files using cssnano
       importLoaders: 1,
     },
   },
   {
-    loader: require.resolve("postcss-loader"),
+    loader: require.resolve('postcss-loader'),
     options: {
-      plugins: [
-        require("autoprefixer"),
-        require("cssnano")({ preset: "default" }),
-      ],
+      plugins: [require('autoprefixer'), require('cssnano')({ preset: 'default' })],
     },
   },
-  require.resolve("sass-loader"),
-];
+  require.resolve('sass-loader'),
+]
 
 module.exports = {
-  devtool: IS_PRODUCTION ? false : "inline-source-map",
-  mode: IS_PRODUCTION ? "production" : "development",
+  devtool: IS_PRODUCTION ? false : 'inline-source-map',
+  mode: IS_PRODUCTION ? 'production' : 'development',
   module: {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         exclude: STANDARD_EXCLUDE,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             cacheDirectory: true,
 
@@ -71,9 +68,9 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        loader: require.resolve("awesome-typescript-loader"),
+        loader: require.resolve('awesome-typescript-loader'),
         options: {
-          configFileName: "./tsconfig.json",
+          configFileName: './tsconfig.json',
         },
       },
       {
@@ -82,10 +79,10 @@ module.exports = {
       },
       {
         test: /\.(eot|ttf|woff|woff2|svg|png|gif|jpe?g)$/,
-        loader: require.resolve("file-loader"),
+        loader: require.resolve('file-loader'),
         options: {
-          name: "[name].[ext]?[hash]",
-          outputPath: "assets/",
+          name: '[name].[ext]?[hash]',
+          outputPath: 'assets/',
         },
       },
     ],
@@ -94,6 +91,6 @@ module.exports = {
   plugins,
 
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".scss"],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
   },
-};
+}

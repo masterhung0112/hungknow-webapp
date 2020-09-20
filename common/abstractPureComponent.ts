@@ -1,5 +1,5 @@
-import React from "react";
-import { isNodeEnv } from "./utils";
+import React from 'react'
+import { isNodeEnv } from './utils'
 
 /**
  * An abstract component that components can extend
@@ -11,19 +11,19 @@ export abstract class AbstractPureComponent<
   SS = Record<string, unknown>
 > extends React.PureComponent<P, S, SS> {
   // unsafe lifecycle method
-  public UNSAFE_componentWillUpdate: never;
-  public UNSAFE_componentWillReceiveProps: never;
-  public UNSAFE_componentWillMount: never;
+  public UNSAFE_componentWillUpdate: never
+  public UNSAFE_componentWillReceiveProps: never
+  public UNSAFE_componentWillMount: never
   // this should be static, not an instance method
-  public getDerivedStateFromProps: never;
+  public getDerivedStateFromProps: never
 
   /** Component displayName should be `public static`. This property exists to prevent incorrect usage. */
-  protected displayName: never;
+  protected displayName: never
 
   constructor(props: P, context?: any) {
-    super(props, context);
-    if (!isNodeEnv("production")) {
-      this.validateProps(this.props);
+    super(props, context)
+    if (!isNodeEnv('production')) {
+      this.validateProps(this.props)
     }
   }
 

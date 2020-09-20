@@ -1,5 +1,5 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react'
+import classNames from 'classnames'
 import {
   Alignment,
   CssClasses,
@@ -11,10 +11,10 @@ import {
   IRefObject,
   getRef,
   Utils,
-} from "common";
-import { IconName } from "@blueprintjs/icons";
-import Icon from "../icon";
-import { Spinner } from "../spinner";
+} from 'common'
+import { IconName } from '@blueprintjs/icons'
+import Icon from '../icon'
+import { Spinner } from '../spinner'
 
 export interface IButtonProps extends IActionProps {
   /**
@@ -22,7 +22,7 @@ export interface IButtonProps extends IActionProps {
    * This is equivalent to setting `className={CssClasses.ACTIVE}`.
    * @default false
    */
-  active?: boolean;
+  active?: boolean
 
   /**
    * Text alignment within button. By default, icons and text will be centered
@@ -31,71 +31,63 @@ export interface IButtonProps extends IActionProps {
    * `"center"` will center the text and icons together.
    * @default Alignment.CENTER
    */
-  alignText?: Alignment;
+  alignText?: Alignment
 
   /** A ref handler or a ref object that receives the native HTML element backing this component. */
-  elementRef?: IRef<any>;
+  elementRef?: IRef<any>
 
   /** Whether this button should expand to fill its container. */
-  fill?: boolean;
+  fill?: boolean
 
   /** Whether this button should use large styles. */
-  large?: boolean;
+  large?: boolean
 
   /**
    * If set to `true`, the button will display a centered loading spinner instead of its contents.
    * The width of the button is not affected by the value of this prop.
    * @default false
    */
-  loading?: boolean;
+  loading?: boolean
 
   /** Whether this button should use minimal styles. */
-  minimal?: boolean;
+  minimal?: boolean
 
   /** Whether this button should use outlined styles. */
-  outlined?: boolean;
+  outlined?: boolean
 
   /** Name of a Blueprint UI icon (or an icon element) to render after the text. */
-  rightIcon?: IconName | MaybeElement;
+  rightIcon?: IconName | MaybeElement
 
   /** Whether this button should use small styles. */
-  small?: boolean;
+  small?: boolean
 
   /**
    * HTML `type` attribute of button. Accepted values are `"button"`, `"submit"`, and `"reset"`.
    * Note that this prop has no effect on `AnchorButton`; it only affects `Button`.
    * @default "button"
    */
-  type?: "submit" | "reset" | "button";
+  type?: 'submit' | 'reset' | 'button'
 }
 
 export interface IButtonState {
-  isActive: boolean;
+  isActive: boolean
 }
 
-export abstract class AbstractButton<
-  H extends React.HTMLAttributes<HTMLElement>
-> extends AbstractPureComponent<IButtonProps & H, IButtonState> {
+export abstract class AbstractButton<H extends React.HTMLAttributes<HTMLElement>> extends AbstractPureComponent<
+  IButtonProps & H,
+  IButtonState
+> {
   public state = {
     isActive: false,
-  };
+  }
 
-  protected abstract buttonRef: HTMLElement | IRefObject<HTMLElement> | null;
+  protected abstract buttonRef: HTMLElement | IRefObject<HTMLElement> | null
 
-  private currentKeyDown: number = null;
+  private currentKeyDown: number = null
 
   protected getCommonButtonProps() {
-    const {
-      alignText,
-      fill,
-      large,
-      loading,
-      outlined,
-      minimal,
-      small,
-      tabIndex,
-    } = this.props;
-    const disabled = this.props.disabled || loading;
+    const { alignText, fill, large, loading, outlined, minimal, small, tabIndex } = this.props
+    const disabled = this.props.disabled || loading
 
     const className = classNames(
       CssClasses.BUTTON,
@@ -112,7 +104,7 @@ export abstract class AbstractButton<
       CssClasses.alignmentClass(alignText),
       CssClasses.intentClass(this.props.intent),
       this.props.className
-    );
+    )
 
     return {
       className,
@@ -121,7 +113,7 @@ export abstract class AbstractButton<
       onKeyDown: this.handleKeyDown,
       onKeyUp: this.handleKeyUp,
       tabIndex: disabled ? -1 : tabIndex,
-    };
+    }
   }
 
   // we're casting as `any` to get around a somewhat opaque safeInvoke error
@@ -131,35 +123,29 @@ export abstract class AbstractButton<
   protected handleKeyDown = (e: React.KeyboardEvent<any>) => {
     // HACKHACK: https://github.com/palantir/blueprint/issues/4165
     if (Keys.isKeyboardClick(e.which)) {
-      e.preventDefault();
+      e.preventDefault()
       if (e.which !== this.currentKeyDown) {
-        this.setState({ isActive: true });
+        this.setState({ isActive: true })
       }
     }
-    this.currentKeyDown = e.which;
-    this.props.onKeyDown?.(e);
-  };
+    this.currentKeyDown = e.which
+    this.props.onKeyDown?.(e)
+  }
 
   protected handleKeyUp = (e: React.KeyboardEvent<any>) => {
     // HACKHACK: https://github.com/palantir/blueprint/issues/4165
     if (Keys.isKeyboardClick(e.which)) {
-      this.setState({ isActive: false });
-      getRef(this.buttonRef).click();
+      this.setState({ isActive: false })
+      getRef(this.buttonRef).click()
     }
-    this.currentKeyDown = null;
-    this.props.onKeyUp?.(e);
-  };
+    this.currentKeyDown = null
+    this.props.onKeyUp?.(e)
+  }
 
   protected renderChildren(): React.ReactNode {
-    const { children, icon, loading, rightIcon, text } = this.props;
+    const { children, icon, loading, rightIcon, text } = this.props
     return [
-      loading && (
-        <Spinner
-          key="loading"
-          className={CssClasses.BUTTON_SPINNER}
-          size={Icon.SIZE_LARGE}
-        />
-      ),
+      loading && <Spinner key="loading" className={CssClasses.BUTTON_SPINNER} size={Icon.SIZE_LARGE} />,
       <Icon key="leftIcon" icon={icon} />,
       (!Utils.isReactNodeEmpty(text) || !Utils.isReactNodeEmpty(children)) && (
         <span key="text" className={CssClasses.BUTTON_TEXT}>
@@ -168,8 +154,8 @@ export abstract class AbstractButton<
         </span>
       ),
       <Icon key="rightIcon" icon={rightIcon} />,
-    ];
+    ]
   }
 
-  public abstract render(): JSX.Element;
+  public abstract render(): JSX.Element
 }

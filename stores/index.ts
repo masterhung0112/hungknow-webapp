@@ -1,89 +1,84 @@
-import configureServiceStore from "hkclient-ts/store";
-import appReducer from "reducers";
-import { createTransform } from "redux-persist";
-import { transformSet } from "stores/utils";
-import localForage from "localforage";
-import { extendPrototype } from "localforage-observable";
-import { GlobalState } from "hkclient-ts/types/store";
+import configureServiceStore from 'hkclient-ts/store'
+import appReducer from 'reducers'
+import { createTransform } from 'redux-persist'
+import { transformSet } from 'stores/utils'
+import localForage from 'localforage'
+import { extendPrototype } from 'localforage-observable'
+import { GlobalState } from 'hkclient-ts/types/store'
 
 function getAppReducer() {
-  return require("../reducers");
+  return require('../reducers')
 }
 
-const usersSetTransform = [
-  "profilesInChannel",
-  "profilesNotInChannel",
-  "profilesInTeam",
-  "profilesNotInTeam",
-];
+const usersSetTransform = ['profilesInChannel', 'profilesNotInChannel', 'profilesInTeam', 'profilesNotInTeam']
 
-const teamSetTransform = ["membersInTeam"];
+const teamSetTransform = ['membersInTeam']
 
-const setTransforms = [...usersSetTransform, ...teamSetTransform];
+const setTransforms = [...usersSetTransform, ...teamSetTransform]
 
 // This is a hack to get the whitelist to work with our storage keys
 // We will implement it properly when we eventually upgrade redux-persist
 const whitelist: {
-  keys: string[];
-  prefixes: string[];
-  indexOf: (key: string) => number;
+  keys: string[]
+  prefixes: string[]
+  indexOf: (key: string) => number
 } = {
   keys: [], // add normal whitelist keys here
-  prefixes: ["storage"], // add any whitelist prefixes here
+  prefixes: ['storage'], // add any whitelist prefixes here
   indexOf: function indexOf(key: string) {
     if (this.keys.indexOf(key) !== -1) {
-      return 0;
+      return 0
     }
 
     for (let i = 0; i < this.prefixes.length; i++) {
       if (key.startsWith(this.prefixes[i])) {
-        return 0;
+        return 0
       }
     }
 
-    return -1;
+    return -1
   },
-};
+}
 
 // window.Observable = Observable;
 
 export default function configureStore(initialState: GlobalState = undefined) {
   const setTransformer = createTransform(
     (inboundState: any, key) => {
-      if (key === "entities") {
-        const state = { ...inboundState };
+      if (key === 'entities') {
+        const state = { ...inboundState }
         for (const prop in state) {
           if (Object.prototype.hasOwnProperty.call(state, prop)) {
-            state[prop] = transformSet(state[prop], setTransforms);
+            state[prop] = transformSet(state[prop], setTransforms)
           }
         }
 
-        return state;
+        return state
       }
 
-      return inboundState;
+      return inboundState
     },
     (outboundState, key) => {
-      if (key === "entities") {
-        const state = { ...outboundState };
+      if (key === 'entities') {
+        const state = { ...outboundState }
         for (const prop in state) {
           if (Object.prototype.hasOwnProperty.call(state, prop)) {
-            state[prop] = transformSet(state[prop], setTransforms, false);
+            state[prop] = transformSet(state[prop], setTransforms, false)
           }
         }
 
-        return state;
+        return state
       }
 
-      return outboundState;
+      return outboundState
     }
-  );
+  )
 
   const offlineOptions = {
     persist: (store: any, options: any) => {
-      const localforage = extendPrototype(localForage);
-      const storage = localforage;
-      const KEY_PREFIX = "reduxPersist:";
+      const localforage = extendPrototype(localForage)
+      const storage = localforage
+      const KEY_PREFIX = 'reduxPersist:'
 
       localforage
         .ready()
@@ -97,7 +92,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
 
           localforage.configObservables({
             crossTabNotification: true,
-          });
+          })
 
           // const observable = localforage.newObservable({
           //     crossTabNotification: true,
@@ -160,7 +155,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
           //     type: ActionTypes.STORE_REHYDRATION_FAILED,
           //     error,
           // });
-        });
+        })
     },
     persistOptions: {
       autoRehydrate: {
@@ -171,38 +166,35 @@ export default function configureStore(initialState: GlobalState = undefined) {
       transforms: [setTransformer],
       _stateIterator: (collection: any, callback: any) => {
         return Object.keys(collection).forEach((key) => {
-          if (key === "storage") {
+          if (key === 'storage') {
             Object.keys(collection.storage.storage).forEach((storageKey) => {
-              callback(
-                collection.storage.storage[storageKey],
-                "storage:" + storageKey
-              );
-            });
+              callback(collection.storage.storage[storageKey], 'storage:' + storageKey)
+            })
           } else {
-            callback(collection[key], key);
+            callback(collection[key], key)
           }
-        });
+        })
       },
       _stateGetter: (state: any, key: any) => {
-        if (key.indexOf("storage:") === 0) {
-          state.storage = state.storage || { storage: {} };
-          return state.storage.storage[key.substr(8)];
+        if (key.indexOf('storage:') === 0) {
+          state.storage = state.storage || { storage: {} }
+          return state.storage.storage[key.substr(8)]
         }
-        return state[key];
+        return state[key]
       },
       _stateSetter: (state: any, key: any, value: any) => {
-        if (key.indexOf("storage:") === 0) {
-          state.storage = state.storage || { storage: {} };
-          state.storage.storage[key.substr(8)] = value;
+        if (key.indexOf('storage:') === 0) {
+          state.storage = state.storage || { storage: {} }
+          state.storage.storage[key.substr(8)] = value
         }
-        state[key] = value;
-        return state;
+        state[key] = value
+        return state
       },
     },
     // detectNetwork: detect,
-  };
+  }
 
   return configureServiceStore({}, appReducer, offlineOptions, getAppReducer, {
     enableBuffer: false,
-  });
+  })
 }

@@ -1,49 +1,49 @@
-import React from "react";
-import { Intent } from "./intent";
-import { IconName } from "@blueprintjs/icons";
+import React from 'react'
+import { Intent } from './intent'
+import { IconName } from '@blueprintjs/icons'
 
 /**
  * Alias for all valid HTML props for `<div>` element.
  * Does not include React's `ref` or `key`.
  */
-export type HTMLDivProps = React.HTMLAttributes<HTMLDivElement>;
+export type HTMLDivProps = React.HTMLAttributes<HTMLDivElement>
 
 /**
  * Alias for all valid HTML props for `<input>` element.
  * Does not include React's `ref` or `key`.
  */
-export type HTMLInputProps = React.InputHTMLAttributes<HTMLInputElement>;
+export type HTMLInputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 /**
  * Alias for a `JSX.Element` or a value that renders nothing.
  *
  * In React, `boolean`, `null`, and `undefined` do not produce any output.
  */
-export type MaybeElement = JSX.Element | false | null | undefined;
+export type MaybeElement = JSX.Element | false | null | undefined
 
 /**
  * A shared base interface for all Blueprint component props.
  */
 export interface IProps {
   /** A space-delimited list of class names to pass along to a child element. */
-  className?: string;
+  className?: string
 }
 
 export interface IIntentProps {
   /** Visual intent color to apply to element. */
-  intent?: Intent;
+  intent?: Intent
 }
 
 /** Interface for a controlled input. */
 export interface IControlledProps {
   /** Initial value of the input, for uncontrolled usage. */
-  defaultValue?: string;
+  defaultValue?: string
 
   /** Change event handler. Use `event.target.value` for new value. */
-  onChange?: React.FormEventHandler<HTMLElement>;
+  onChange?: React.FormEventHandler<HTMLElement>
 
   /** Form value of the input, for controlled usage. */
-  value?: string;
+  value?: string
 }
 
 /**
@@ -52,46 +52,46 @@ export interface IControlledProps {
  */
 export interface IActionProps extends IIntentProps, IProps {
   /** Whether this action is non-interactive. */
-  disabled?: boolean;
+  disabled?: boolean
 
   /** Name of a Blueprint UI icon (or an icon element) to render before the text. */
-  icon?: IconName | MaybeElement;
+  icon?: IconName | MaybeElement
 
   /** Click event handler. */
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void
 
   /** Action text. Can be any single React renderable. */
-  text?: React.ReactNode;
+  text?: React.ReactNode
 }
 
 /** A collection of curated prop keys used across our Components which are not valid HTMLElement props. */
 const INVALID_PROPS = [
-  "active",
-  "alignText",
-  "containerRef",
-  "current",
-  "elementRef",
-  "fill",
-  "icon",
-  "inputRef",
-  "intent",
-  "inline",
-  "large",
-  "loading",
-  "leftElement",
-  "leftIcon",
-  "minimal",
-  "onRemove", // ITagProps, ITagInputProps
-  "outlined", // IButtonProps
-  "panel", // ITabProps
-  "panelClassName", // ITabProps
-  "popoverProps",
-  "rightElement",
-  "rightIcon",
-  "round",
-  "small",
-  "text",
-];
+  'active',
+  'alignText',
+  'containerRef',
+  'current',
+  'elementRef',
+  'fill',
+  'icon',
+  'inputRef',
+  'intent',
+  'inline',
+  'large',
+  'loading',
+  'leftElement',
+  'leftIcon',
+  'minimal',
+  'onRemove', // ITagProps, ITagInputProps
+  'outlined', // IButtonProps
+  'panel', // ITabProps
+  'panelClassName', // ITabProps
+  'popoverProps',
+  'rightElement',
+  'rightIcon',
+  'round',
+  'small',
+  'text',
+]
 
 /**
  * Typically applied to HTMLElements to filter out disallowed props. When applied to a Component,
@@ -107,21 +107,21 @@ export function removeNonHTMLProps(
   shouldMerge = false
 ): { [key: string]: any } {
   if (shouldMerge) {
-    invalidProps = invalidProps.concat(INVALID_PROPS);
+    invalidProps = invalidProps.concat(INVALID_PROPS)
   }
 
   return invalidProps.reduce(
     (prev, curr) => {
       // Props with hyphens (e.g. data-*) are always considered html props
-      if (curr.indexOf("-") !== -1) {
-        return prev;
+      if (curr.indexOf('-') !== -1) {
+        return prev
       }
 
       if (Object.prototype.hasOwnProperty.call(prev, curr)) {
-        delete (prev as any)[curr];
+        delete (prev as any)[curr]
       }
-      return prev;
+      return prev
     },
     { ...props }
-  );
+  )
 }

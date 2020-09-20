@@ -1,2 +1,2 @@
-import SiteNameAndDescription from "./siteNameAndDescription";
-export default SiteNameAndDescription;
+import SiteNameAndDescription from './siteNameAndDescription'
+export default SiteNameAndDescription

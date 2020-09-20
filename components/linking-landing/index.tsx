@@ -1,3 +1,3 @@
-import LinkingLandingComponent from "./linkingLandingComponent";
+import LinkingLandingComponent from './linkingLandingComponent'
 
-export default LinkingLandingComponent;
+export default LinkingLandingComponent

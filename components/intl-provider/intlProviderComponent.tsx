@@ -1,5 +1,5 @@
-import React from "react";
-import { IntlProvider as BaseIntlProvider } from "react-intl";
+import React from 'react'
+import { IntlProvider as BaseIntlProvider } from 'react-intl'
 
 // import {Client4} from 'mattermost-redux/client';
 // import { setLocalizeFunction } from 'hkclient-ts/utils/i18n_utils';
@@ -9,13 +9,11 @@ import { IntlProvider as BaseIntlProvider } from "react-intl";
 // import { localizeMessage } from 'utils/utils';
 
 export interface IntlProviderProps {
-  locale: string;
-  translations: any;
+  locale: string
+  translations: any
 }
 
-export default class IntlProvider extends React.PureComponent<
-  IntlProviderProps
-> {
+export default class IntlProvider extends React.PureComponent<IntlProviderProps> {
   // static propTypes = {
   //     children: PropTypes.element.isRequired,
   //     locale: PropTypes.string.isRequired,
@@ -63,7 +61,7 @@ export default class IntlProvider extends React.PureComponent<
 
   render() {
     if (!this.props.translations) {
-      return null;
+      return null
     }
 
     return (
@@ -83,6 +81,6 @@ export default class IntlProvider extends React.PureComponent<
       >
         {this.props.children}
       </BaseIntlProvider>
-    );
+    )
   }
 }

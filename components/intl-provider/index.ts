@@ -1,3 +1,3 @@
-import IntlProvider from "./intlProviderComponent";
+import IntlProvider from './intlProviderComponent'
 
-export default IntlProvider;
+export default IntlProvider
