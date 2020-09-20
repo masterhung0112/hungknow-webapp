@@ -1,0 +1,25 @@
+FROM ubuntu:latest
+
+# Install docker inside docker container
+RUN apt update && \
+    apt -y install \
+      apt-transport-https \
+      ca-certificates \
+      curl \
+      gnupg-agent \
+      software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
+    add-apt-repository \
+      "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+      $(lsb_release -cs) \
+      stable" && \
+   rm /tmp/dkey
+
+RUN apt update && apt -y install docker-ce-cli
+
+# Install circle-ci
+RUN curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | bash
+
+# The CMD statement tells Docker which command to run when it starts up the container.
+# Here, we just call bash
+CMD ["sleep", "infinity"]

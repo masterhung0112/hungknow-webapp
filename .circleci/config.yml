@@ -2,6 +2,22 @@ version: 2.1
 orbs:
   node: circleci/node@3.0.0
 
+
+executors:
+  default:
+    docker:
+      - image: mattermost/mattermost-build-webapp:20200829_node-10.22
+
+aliases:
+  - &restore_cache
+    restore_cache:
+      key: dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}-3
+  - &save_cache
+    save_cache:
+      key: dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}-3
+      paths:
+        - ~/hungknow/hungknow-webapp/node_modules
+  
 jobs:
   install:
     executor:
@@ -45,6 +61,6 @@ workflows:
   untagged-build:
     jobs:
       - install
-      - test
-        requires:
-          - install
+      - test:
+          requires:
+            - install
