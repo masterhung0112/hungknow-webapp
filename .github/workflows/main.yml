@@ -29,6 +29,14 @@ jobs:
       - name: Install packages
         run: npm ci
 
+      - name: Run check-types
+      run: |
+        npm run check-types
+
+      - name: Run check lint
+        run: |
+          npm run check
+
       # Runs a set of commands using the runners shell
       - name: Run test
         run: |
