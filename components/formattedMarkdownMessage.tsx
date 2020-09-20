@@ -1,6 +1,6 @@
 
 import React from 'react';
-import {injectIntl, IntlShape, WrappedComponentProps} from 'react-intl';
+import {injectIntl, IntlShape } from 'react-intl';
 import marked from 'marked';
 
 // import {IntlShape} from 'utils/reactIntl';
@@ -38,7 +38,7 @@ type FormattedMarkdownMessageProps = {
     disableLinks?: boolean,
 }
 
-type FormattedMarkdownMessageState = {}
+// type FormattedMarkdownMessageState = {}
 
 /*
 * Translations component with the same API as react-intl's <FormattedMessage> component except the message string
@@ -54,7 +54,7 @@ type FormattedMarkdownMessageState = {}
 * Note: Line breaks (\n) in a defaultMessage parameter string must be surrounded by curly brackets {} in JSX. Example:
 * <FormattedMarkdownMessage id='my.example' defaultMessage={'first line\nsecond line'} />
 */
-class FormattedMarkdownMessage extends React.PureComponent<FormattedMarkdownMessageProps, FormattedMarkdownMessageState> {
+class FormattedMarkdownMessage extends React.PureComponent<FormattedMarkdownMessageProps> {
     static defaultProps: any = {
         disableLinks: false,
     };

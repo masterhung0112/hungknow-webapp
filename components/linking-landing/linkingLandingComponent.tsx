@@ -6,7 +6,7 @@ import mobileImg from 'images/deep-linking/deeplinking-mobile-img.png';
 import desktopImg from 'images/deep-linking/deeplinking-desktop-img.png';
 
 import styles from './linkingLandingComponent.module.scss'
-import { NS, Intent } from 'common'
+import { Intent } from 'common'
 import * as UserAgent from 'utils/UserAgent'
 import { AnchorButton } from 'core/components';
 import { Utils } from 'utils'
@@ -51,9 +51,9 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
         );
     }
 
-    renderDialogHeader = () => {
+    // renderDialogHeader = () => {
 
-    }
+    // }
 
     renderSystemDialogMessage = () => {
         const isMobile = UserAgent.isMobile();
@@ -105,12 +105,12 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
     }
 
     renderDialogBody() {
-        if (this.state.redirectPage) {
-        }
+        // if (this.state.redirectPage) {
+        // }
 
         return (
             <div className={styles["hk-dialog-body"]}>
-                {this.renderDialogHeader()}
+                {/* {this.renderDialogHeader()} */}
                 <div className={styles["hk-buttons"]}>
                     <div className={styles["hk-status"]}>
                         {this.renderGoNativeAppMessage()}

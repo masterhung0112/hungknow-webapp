@@ -5,11 +5,11 @@ import { isNodeEnv } from './utils';
  * An abstract component that components can extend
  * in order to add some common functionality like runtime props validation.
  */
-export abstract class AbstractPureComponent<P, S = {}, SS = {}> extends React.PureComponent<P, S, SS> {
+export abstract class AbstractPureComponent<P, S = Record<string, unknown>, SS = Record<string, unknown>> extends React.PureComponent<P, S, SS> {
     // unsafe lifecycle method
-    public componentWillUpdate: never;
-    public componentWillReceiveProps: never;
-    public componentWillMount: never;
+    public UNSAFE_componentWillUpdate: never;
+    public UNSAFE_componentWillReceiveProps: never;
+    public UNSAFE_componentWillMount: never;
     // this should be static, not an instance method
     public getDerivedStateFromProps: never;
 

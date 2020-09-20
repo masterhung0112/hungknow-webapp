@@ -2,23 +2,22 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import Router from 'next/router'
 import { UserAgent, Utils } from 'utils'
-import { DispatchFunc } from 'hkclient-ts/types/actions'
 import * as GlobalActions from 'actions/global_actions';
 import { connect } from 'react-redux';
 import { GlobalState } from 'hkclient-ts/types/store'
 import { getConfig } from 'hkclient-ts/selectors/entities/general';
-import { getCurrentUserId } from 'hkclient-ts/selectors/entities/users';
 import { loadMeAndConfig } from 'actions/views/root';
 import { getSiteURL } from 'utils/url';
 import { setUrl } from 'hkclient-ts/actions/general'
+import { ActionResult, ActionResultType } from 'hkclient-ts/types/actions';
 
 type TalkingProps = {
     noAccounts: boolean,
     showTermsOfService: boolean,
     actions: {
-        loadMeAndConfig: Function,
+        loadMeAndConfig: () => Promise<ActionResultType>,
         // getWarnMetricsStatus: Function,
-        redirectUserToDefaultTeam: Function,
+        redirectUserToDefaultTeam: () => Promise<ActionResult>,
     }
 }
 
@@ -40,7 +39,7 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
     }
 
     onConfigLoaded() {
-        var { pathname, router } = Router
+        const { pathname, router } = Router
         
         // if (isDevMode()) {
         //     enableDevModeFeatures();
@@ -75,7 +74,7 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
     }
 
     componentDidUpdate(prevProps: TalkingProps) {
-        var { pathname, router } = Router
+        const { pathname, router } = Router
     
         if (pathname === '/talking') {
             if (this.props.noAccounts) {
@@ -87,7 +86,7 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
     }
 
     componentDidMount() {
-        var { pathname, router } = Router
+        const { pathname } = Router
 
         this.props.actions.loadMeAndConfig().then((response: any) => {
             console.log('response', response)

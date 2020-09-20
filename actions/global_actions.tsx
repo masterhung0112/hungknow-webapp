@@ -11,14 +11,14 @@ import { loadMe } from 'hkclient-ts/actions/users'
 import { Utils } from 'utils';
 import { getCurrentLocale } from 'selectors/i18n';
 import LocalStorageStore from 'stores/local_storage_store'
-import { DispatchFunc, GetStateFunc } from 'hkclient-ts/types/actions'
+import { ActionResult, DispatchFunc, GetStateFunc } from 'hkclient-ts/types/actions'
 import Router from 'next/router';
 import { filterAndSortTeamsByDisplayName } from 'utils/team_utils';
 import { UserProfile } from 'hkclient-ts/types/users';
 import { Team } from 'hkclient-ts/types/teams';
 
 export function redirectUserToDefaultTeam() {
-    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc): Promise<ActionResult> => {
         let state = getState();
 
         // Assume we need to load the user if they don't have any team memberships loaded or the user loaded
@@ -32,7 +32,7 @@ export function redirectUserToDefaultTeam() {
         }
 
         if (!user) {
-            return;
+            return {};
         }
 
         const locale = getCurrentLocale(state);
@@ -41,7 +41,7 @@ export function redirectUserToDefaultTeam() {
         let myTeams = getMyTeams(state);
         if (myTeams.length === 0) {
             Router.push('/talking/select_team');
-            return;
+            return {};
         }
 
         const team = getTeam(state, teamId);
@@ -51,7 +51,7 @@ export function redirectUserToDefaultTeam() {
                 //TODO: Open this
                 // dispatch(selectChannel(channel.id));
                 Router.push(`/talking/${team.name}/channels/${channel.name}`);
-                return;
+                return {};
             }
         }
 
@@ -64,7 +64,7 @@ export function redirectUserToDefaultTeam() {
                 //TODO: Open this
                 // dispatch(selectChannel(channel.id));
                 Router.push(`/talking/${myTeam.name}/channels/${channel.name}`);
-                return;
+                return {};
             }
         }
 

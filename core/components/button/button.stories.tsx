@@ -14,7 +14,7 @@ storiesOf('Button', module)
             <Button />
             <Button text="Hello world" />
 
-            <Button icon="refresh">"Click to wiggle"</Button>
+            <Button icon="refresh">Click to wiggle</Button>
             <Button icon="user" rightIcon="caret-down" text="Profile settings" />
 
             <Button icon="user" rightIcon="caret-down" text="Profile settings" intent={Intent.DANGER} />

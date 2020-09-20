@@ -14,6 +14,7 @@ import { PasswordConfig } from 'hkclient-ts/types/config';
 import { UserActions } from 'hkclient-ts/actions';
 import { UserProfile } from 'hkclient-ts/src/types/users';
 import { ActionCreatorClient } from 'hkclient-ts/types/actions';
+import { ActionResult } from 'hkclient-ts/types/actions'
 import Router from 'next/router'
 
 export type SignupEmailProps = {
@@ -150,13 +151,13 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     }
 
     handleSignupSuccess = (user: UserProfile, data: UserProfile) => {
-        let { router } = Router
+        const { router } = Router
         // trackEvent('signup', 'signup_user_02_complete');
         const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
         // var a: ActionResult
         // a.
         this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-            if (actionResult.error) {
+            if (actionResult instanceof ActionResult && actionResult.error) {
                 if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
                     let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email);
                     if (this.state.teamName) {
