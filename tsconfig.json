@@ -91,6 +91,12 @@
       ],
       "showroom/*": [
         "core/showroom/*"
+      ],
+      "hktest": [
+        "tests"
+      ],
+      "hktest/*": [
+        "tests/*"
       ]
     }
   },

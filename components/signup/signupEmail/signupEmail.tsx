@@ -1,120 +1,258 @@
 import Link from 'next/link';
 import React, { SyntheticEvent } from 'react';
 import { FormattedMessage } from 'react-intl';
+import styles from './signupEmail.module.scss'
 import logoImage from 'images/logo.png';
 import SiteNameAndDescription from 'components/siteNameAndDescription'
-import { Constants } from 'utils/constants';
+import { Constants } from 'utils/constants'
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
-import styles from './signupEmail.module.scss'
-import { CssClasses } from 'common'
+import { Intent } from 'common'
+import { Button, FormGroup, InputGroup } from 'core/components'
+import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/utils/helpers'
+import { PasswordConfig } from 'hkclient-ts/types/config';
+import { UserActions } from 'hkclient-ts/actions';
+import { UserProfile } from 'hkclient-ts/src/types/users';
+import { ActionCreatorClient } from 'hkclient-ts/types/actions';
+import Router from 'next/router'
 
-type Props = {
-    location: any
+export type SignupEmailProps = {
+    location: { search: string }
     hasAccounts: boolean
     enableSignUpWithEmail: boolean
     customDescriptionText?: string
-    siteName?: string
+    siteName?: string,
+    passwordConfig: PasswordConfig,
+    termsOfServiceLink?: string,
+    privacyPolicyLink?: string,
+    actions: {
+        createUser: ActionCreatorClient<typeof UserActions.createUser>, // (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
+        loginById: ActionCreatorClient<typeof UserActions.loginById>
+    }
 }
 
-type State = {
+export type SignupEmailState = {
     loading: boolean,
-    emailError: boolean,
-    nameError: boolean,
-    passwordError: boolean,
+    emailError: string | React.ReactNode,
+    nameError: string | React.ReactNode,
+    passwordError: string | React.ReactNode,
     inviteId: string,
     email: string,
     isSubmitting: boolean,
-    serverError: string
+    serverError: string,
+    token: string,
+    teamName: string
 }
 
-export default class SignupEmail extends React.PureComponent<Props, State> {
-    constructor(props: Props) {
+export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
+    emailRef = React.createRef<HTMLInputElement>();
+    usernameRef = React.createRef<HTMLInputElement>();
+    passwordRef = React.createRef<HTMLInputElement>();
+
+    constructor(props: SignupEmailProps) {
         super(props)
-        // styles.
-        const inviteId = ''// (new URLSearchParams(this.props.location.search)).get('id');
+
+        const data = (new URLSearchParams(this.props.location.search)).get('d');
+        const token = (new URLSearchParams(this.props.location.search)).get('t');
+        const inviteId = (new URLSearchParams(this.props.location.search)).get('id');
 
         this.state = {
             loading: true,
-            emailError: false,
-            nameError: false,
-            passwordError: false,
+            emailError: '',
+            nameError: '',
+            passwordError: '',
             inviteId,
             email: '',
             isSubmitting: false,
-            serverError: ''
+            serverError: '',
+            token,
+            teamName: ''
         }
+    }
+
+    isUserValid = () => {
+        const providedEmail = this.emailRef.current.value.trim();
+        if (!providedEmail) {
+            this.setState({
+                nameError: '',
+                emailError: (<FormattedMessage id='signup_user_completed.required' />),
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        if (!isEmail(providedEmail)) {
+            this.setState({
+                nameError: '',
+                emailError: (<FormattedMessage id='signup_user_completed.validEmail' />),
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        const providedUsername = this.usernameRef.current.value.trim().toLowerCase();
+        if (!providedUsername) {
+            this.setState({
+                nameError: (<FormattedMessage id='signup_user_completed.required' />),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        const usernameError = isValidUsername(providedUsername);
+        if (usernameError === 'Cannot use a reserved word as a username.') {
+            this.setState({
+                nameError: (<FormattedMessage id='signup_user_completed.reserved' />),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        } else if (usernameError) {
+            this.setState({
+                nameError: (
+                    <FormattedMessage
+                        id='signup_user_completed.usernameLength'
+                        values={{
+                            min: Constants.MIN_USERNAME_LENGTH,
+                            max: Constants.MAX_USERNAME_LENGTH,
+                        }}
+                    />
+                ),
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+            });
+            return false;
+        }
+
+        const providedPassword = this.passwordRef.current.value;
+        const { valid, error } = isValidPassword(providedPassword, this.props.passwordConfig);
+        if (!valid && error) {
+            this.setState({
+                nameError: '',
+                emailError: '',
+                passwordError: (
+                    <FormattedMessage
+                        id={error.intl.id}
+                    />
+                ),
+                serverError: '',
+            });
+            return false;
+        }
+
+        return true;
+    }
+
+    handleSignupSuccess = (user: UserProfile, data: UserProfile) => {
+        let { router } = Router
+        // trackEvent('signup', 'signup_user_02_complete');
+        const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
+        // var a: ActionResult
+        // a.
+        this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
+            if (actionResult.error) {
+                if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
+                    let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email);
+                    if (this.state.teamName) {
+                        verifyUrl += '&teamname=' + encodeURIComponent(this.state.teamName);
+                    }
+                    if (redirectTo) {
+                        verifyUrl += '&redirect_to=' + redirectTo;
+                    }
+                    router.push(verifyUrl);
+                } else {
+                    this.setState({
+                        serverError: actionResult.error.message,
+                        isSubmitting: false,
+                    });
+                }
+
+                return;
+            }
+
+            // if (this.state.token > 0) {
+            //     this.props.actions.setGlobalItem(this.state.token, JSON.stringify({usedBefore: true}));
+            // }
+
+            if (redirectTo) {
+                router.push(redirectTo);
+            } else {
+                // GlobalActions.redirectUserToDefaultTeam();
+            }
+        });
     }
 
     handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
+
+        // bail out if a submission is already in progress
+        if (this.state.isSubmitting) {
+            // return;
+        }
+
+        if (this.isUserValid()) {
+            this.setState({
+                nameError: '',
+                emailError: '',
+                passwordError: '',
+                serverError: '',
+                isSubmitting: true,
+            })
+
+            const user = {
+                email: this.emailRef.current.value.trim(),
+                username: this.usernameRef.current.value.trim().toLowerCase(),
+                password: this.passwordRef.current.value,
+                allow_marketing: true,
+            } as UserProfile
+
+            const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
+
+            this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
+                if (result.error) {
+                    this.setState({
+                        serverError: result.error.message,
+                        isSubmitting: false,
+                    });
+                    return;
+                }
+
+                this.handleSignupSuccess(user, result.data);
+            })
+        }
     }
 
     renderEmailSignup() {
-
-        let emailDivStyle = cx(
-            CssClasses.FORMGROUP,
-            {
-                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.emailError
-            }
-        )
-
-        let nameDivStyle = cx(
-            CssClasses.FORMGROUP,
-            {
-                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.nameError
-            }
-        )
-
-        let passwordDivStyle = cx(
-            CssClasses.FORMGROUP,
-            {
-                [CssClasses.FORMGROUP_HAS_ERROR]: this.state.passwordError
-            }
-        )
-
-        let emailContainerStyle = 'mt-8';
-        if (this.state.email) {
-            emailContainerStyle = 'hidden';
-        }
-
         return (
             <form>
                 <div className='inner__content'>
-                    <div className={emailContainerStyle}>
-                        <h5 id='email_label'>
-                            <strong>
-                                <FormattedMessage
-                                    id='signup_user_completed.whatis'
-                                    defaultMessage="What's your email address?"
-                                />
-                            </strong>
-                        </h5>
-                        <div className={emailDivStyle}>
-                            <input
-                                id='email'
-                                type='email'
-                                ref='email'
-                                className={CssClasses.FORMCONTROL}
-                                defaultValue={this.state.email}
-                                placeholder=''
-                                maxLength={128}
-                                autoFocus={true}
-                                spellCheck='false'
-                                autoCapitalize='off'
+                    <FormGroup label={
+                        <strong>
+                            <FormattedMessage
+                                id='signup_user_completed.whatis'
+                                defaultMessage="What's your email address?"
                             />
-                            {this.state.emailError ? <label className={styles['control-label']}>{this.state.emailError}</label> : null}
-                            {!this.state.emailError ? <span
-                                id='valid_email'
-                                className={styles['form-input-help-text']}
-                            >
+                        </strong>
+                    }
+                        intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY}
+                        labelFor="email"
+                        helperText={<>
+                            {this.state.emailError ? <span id="email-error">{this.state.emailError}</span> : null}
+                            {!this.state.emailError ? <span id="email-help">
                                 <FormattedMessage
                                     id='signup_user_completed.emailHelp'
                                     defaultMessage='Valid email required for sign-up'
                                 />
                             </span> : null}
-                        </div>
-                    </div>
+                        </>}>
+                        <InputGroup id="email" type="email" inputRef={this.emailRef} defaultValue={this.state.email} maxLength={128} autoFocus={true} spellCheck={false} autoCapitalize="off" intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY} />
+                    </FormGroup>
                     {this.state.email ?
                         <FormattedMarkdownMessage
                             id='signup_user_completed.emailIs'
@@ -126,72 +264,56 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                         />
                         : null}
                     <div className='mt-8'>
-                        <h5 id='name_label'>
+                        <FormGroup label={
                             <strong>
                                 <FormattedMessage
                                     id='signup_user_completed.chooseUser'
                                     defaultMessage='Choose your username'
                                 />
                             </strong>
-                        </h5>
-                        <div className={nameDivStyle}>
-                            <input
-                                id='name'
-                                type='text'
-                                ref='name'
-                                className={CssClasses.FORMCONTROL}
-                                placeholder=''
-                                maxLength={Constants.MAX_USERNAME_LENGTH}
-                                spellCheck='false'
-                                autoCapitalize='off'
-                            />
-                            {this.state.nameError ? <label className={styles['control-label']}>{this.state.nameError}</label> : null}
-                            {!this.state.nameError ? <span
-                                id='valid_name'
-                                className={styles['form-input-help-text']}
-                            >
-                                <FormattedMessage
-                                    id='signup_user_completed.userHelp'
-                                    defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
-                                />
-                            </span> : null}
-                        </div>
+                        }
+                            labelFor="name"
+                            intent={this.state.nameError ? Intent.DANGER : Intent.PRIMARY}
+                            helperText={<>
+                                {this.state.nameError ? <span id="name-error">{this.state.nameError}</span> : null}
+                                {!this.state.nameError ? <span id='valid_name'>
+                                    <FormattedMessage
+                                        id='signup_user_completed.userHelp'
+                                        defaultMessage='You can use lowercase letters, numbers, periods, dashes, and underscores.'
+                                    />
+                                </span> : null}
+                            </>}>
+                            <InputGroup id="name" type="text" inputRef={this.usernameRef} maxLength={Constants.MAX_USERNAME_LENGTH} spellCheck={false} autoCapitalize="off" intent={this.state.nameError ? Intent.DANGER : Intent.PRIMARY} />
+                        </FormGroup>
                     </div>
                     <div className='mt-8'>
-                        <h5 id='password_label'>
+                        <FormGroup label={
                             <strong>
                                 <FormattedMessage
                                     id='signup_user_completed.choosePwd'
                                     defaultMessage='Choose your password'
                                 />
                             </strong>
-                        </h5>
-                        <div className={passwordDivStyle}>
-                            <input
-                                id='password'
-                                type='password'
-                                ref='password'
-                                className={CssClasses.FORMCONTROL}
-                                placeholder=''
-                                maxLength={128}
-                                spellCheck='false'
-                            />
-                            {this.state.passwordError ? <label className={styles['control-label']}>{this.state.passwordError}</label> : null}
-                        </div>
+                        }
+                            labelFor="password"
+                            intent={this.state.passwordError ? Intent.DANGER : Intent.PRIMARY}
+                            helperText={this.state.passwordError ? <span id='password-error'>{this.state.passwordError}</span> : null}>
+                            <InputGroup id="password" type="password" inputRef={this.passwordRef} maxLength={128} spellCheck={false} autoCapitalize="off" intent={this.state.passwordError ? Intent.DANGER : Intent.PRIMARY} />
+                        </FormGroup>
                     </div>
                     <p className='mt-5'>
-                        <button
+                        <Button
                             id='createAccountButton'
                             type='submit'
                             onClick={this.handleSubmit}
-                            className={cx(CssClasses.BUTTON, CssClasses.INTENT_PRIMARY)}
+                            intent={Intent.PRIMARY}
                             disabled={this.state.isSubmitting}
                         >
                             <FormattedMessage
                                 id='signup_user_completed.create'
                                 defaultMessage='Create Account'
                             />
-                        </button>
+                        </Button>
                     </p>
                 </div>
             </form>
@@ -203,9 +325,9 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
             customDescriptionText,
             enableSignUpWithEmail,
             location,
-            // privacyPolicyLink,
+            privacyPolicyLink,
             siteName,
-            // termsOfServiceLink,
+            termsOfServiceLink,
             hasAccounts,
         } = this.props;
 
@@ -264,15 +386,15 @@ export default class SignupEmail extends React.PureComponent<Props, State> {
                             />
                             {' '}
                             <Link
-                                href={'/login'}//</span> + location.search}
+                                href={'/login' + location.search}
                             // onClick={() => trackEvent('signup_email', 'click_signin_account')}
                             >
-                                {/* <FormattedMessage
-                                    id='signup_user_completed.signIn'
-                                    tagName='a'
-                                    defaultMessage='Click here to sign in.'
-                                /> */}
-                                Click here to sign in.
+                                <a>
+                                    <FormattedMessage
+                                        id='signup_user_completed.signIn'
+                                        defaultMessage='Click here to sign in.'
+                                    />
+                                </a>
                             </Link>
                         </span>
                         {emailSignup}

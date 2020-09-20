@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { IntlProvider as BaseIntlProvider } from 'react-intl';
 
@@ -9,9 +8,12 @@ import { IntlProvider as BaseIntlProvider } from 'react-intl';
 
 // import { localizeMessage } from 'utils/utils';
 
-import en from '../../i18n/en.json'
+export interface IntlProviderProps {
+    locale: string,
+    translations: any,
+}
 
-export default class IntlProvider extends React.PureComponent {
+export default class IntlProvider extends React.PureComponent<IntlProviderProps> {
     // static propTypes = {
     //     children: PropTypes.element.isRequired,
     //     locale: PropTypes.string.isRequired,
@@ -58,9 +60,9 @@ export default class IntlProvider extends React.PureComponent {
     // }
 
     render() {
-        // if (!this.props.translations) {
-        //     return null;
-        // }
+        if (!this.props.translations) {
+            return null;
+        }
 
         return (
             // <BaseIntlProvider
@@ -72,9 +74,9 @@ export default class IntlProvider extends React.PureComponent {
             //     {this.props.children}
             // </BaseIntlProvider>
             <BaseIntlProvider
-                key="en"
-                locale="en"
-                messages={en}
+                key={this.props.locale}
+                locale={this.props.locale}
+                messages={this.props.translations}
                 textComponent='span'
             >
                 {this.props.children}
