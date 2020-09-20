@@ -14,11 +14,9 @@ import { PasswordConfig } from 'hkclient-ts/types/config';
 import { UserActions } from 'hkclient-ts/actions';
 import { UserProfile } from 'hkclient-ts/src/types/users';
 import { ActionCreatorClient } from 'hkclient-ts/types/actions';
-import { ActionResult } from 'hkclient-ts/types/actions'
 import Router from 'next/router'
 
 export type SignupEmailProps = {
-    location: { search: string }
     hasAccounts: boolean
     enableSignUpWithEmail: boolean
     customDescriptionText?: string
@@ -42,7 +40,8 @@ export type SignupEmailState = {
     isSubmitting: boolean,
     serverError: string,
     token: string,
-    teamName: string
+    teamName: string,
+    redirectTo: string
 }
 
 export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
@@ -53,22 +52,37 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     constructor(props: SignupEmailProps) {
         super(props)
 
-        const data = (new URLSearchParams(this.props.location.search)).get('d');
-        const token = (new URLSearchParams(this.props.location.search)).get('t');
-        const inviteId = (new URLSearchParams(this.props.location.search)).get('id');
-
         this.state = {
             loading: true,
             emailError: '',
             nameError: '',
             passwordError: '',
-            inviteId,
+            inviteId: '',
             email: '',
             isSubmitting: false,
             serverError: '',
-            token,
-            teamName: ''
+            token: '',
+            teamName: '',
+            redirectTo: ''
         }
+    }
+
+    componentDidMount() {
+        const { query, asPath } = Router
+
+        const data = query['d']
+        const token = query['t'];
+        const inviteId = query['id'];
+
+        this.setState((previousState: SignupEmailState) => {
+            return {
+                ...previousState,
+                data,
+                token,
+                inviteId,
+                redirectTo: asPath
+            } as SignupEmailState
+        })
     }
 
     isUserValid = () => {
@@ -150,10 +164,25 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         return true;
     }
 
+    getRedirectTo(): string | undefined {
+        const { query } = Router
+        const redirectToMaybeArray = query['redirect_to']
+        let redirectTo = ''
+
+        if (Array.isArray(redirectToMaybeArray)) {
+            redirectTo = redirectToMaybeArray[0]
+        } else {
+            redirectTo = redirectToMaybeArray
+        }
+
+        return redirectTo
+    }
+
     handleSignupSuccess = (user: UserProfile, data: UserProfile) => {
         const { router } = Router
+        const { redirectTo } = this.state
         // trackEvent('signup', 'signup_user_02_complete');
-        const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
+
         // var a: ActionResult
         // a.
         this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
@@ -213,7 +242,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                 allow_marketing: true,
             } as UserProfile
 
-            const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
+            const redirectTo = this.getRedirectTo()
 
             this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
                 if (!Array.isArray(result) && result.error) {
@@ -329,12 +358,14 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         const {
             customDescriptionText,
             enableSignUpWithEmail,
-            location,
             privacyPolicyLink,
             siteName,
             termsOfServiceLink,
-            hasAccounts,
-        } = this.props;
+            hasAccounts
+        } = this.props
+        const {
+            redirectTo
+        } = this.state
 
         let serverError = null;
         if (this.state.serverError) {
@@ -391,7 +422,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                             />
                             {' '}
                             <Link
-                                href={'/login' + location.search}
+                                href={'/login' + redirectTo}
                             // onClick={() => trackEvent('signup_email', 'click_signin_account')}
                             >
                                 <a>
