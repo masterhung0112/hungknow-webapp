@@ -157,7 +157,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         // var a: ActionResult
         // a.
         this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-            if (actionResult instanceof ActionResult && actionResult.error) {
+            if (!Array.isArray(actionResult) && actionResult.error) {
                 if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
                     let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email);
                     if (this.state.teamName) {
@@ -216,7 +216,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
             const redirectTo = (new URLSearchParams(this.props.location.search)).get('redirect_to');
 
             this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
-                if (result.error) {
+                if (!Array.isArray(result) && result.error) {
                     this.setState({
                         serverError: result.error.message,
                         isSubmitting: false,
@@ -224,7 +224,11 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                     return;
                 }
 
-                this.handleSignupSuccess(user, result.data);
+                if (!Array.isArray(result)) {
+                    this.handleSignupSuccess(user, result.data);
+                } else {
+                    console.error('createUser should return single result')
+                }
             })
         }
     }
