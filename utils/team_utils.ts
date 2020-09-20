@@ -13,7 +13,7 @@ function compareTeamsByDisplayName(locale: string, a: Team, b: Team) {
 
 
 // Use to filter out teams that are deleted and without display_name, then sort by their `display_name` field
-export function filterAndSortTeamsByDisplayName(teams: Team[], locale: string, teamsOrder: string = ''): Team[] {
+export function filterAndSortTeamsByDisplayName(teams: Team[], locale: string, teamsOrder = ''): Team[] {
     if (!teams) {
         return [];
     }

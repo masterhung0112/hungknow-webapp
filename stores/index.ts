@@ -59,7 +59,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
             if (key === 'entities') {
                 const state = {...inboundState};
                 for (const prop in state) {
-                    if (state.hasOwnProperty(prop)) {
+                    if (Object.prototype.hasOwnProperty.call(state, prop)) {
                         state[prop] = transformSet(state[prop], setTransforms);
                     }
                 }
@@ -73,7 +73,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
             if (key === 'entities') {
                 const state = {...outboundState};
                 for (const prop in state) {
-                    if (state.hasOwnProperty(prop)) {
+                    if (Object.prototype.hasOwnProperty.call(state, prop)) {
                         state[prop] = transformSet(state[prop], setTransforms, false);
                     }
                 }
@@ -130,7 +130,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
                 //     },
                 // });
 
-                let purging = false;
+                // let purging = false;
 
                 // check to see if the logout request was successful
                 // store.subscribe(() => {

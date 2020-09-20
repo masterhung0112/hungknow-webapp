@@ -111,7 +111,6 @@ export abstract class AbstractButton<H extends React.HTMLAttributes<HTMLElement>
     // 'KeyboardEvent<HTMLElement>'."
     protected handleKeyDown = (e: React.KeyboardEvent<any>) => {
         // HACKHACK: https://github.com/palantir/blueprint/issues/4165
-        /* eslint-disable deprecation/deprecation */
         if (Keys.isKeyboardClick(e.which)) {
             e.preventDefault();
             if (e.which !== this.currentKeyDown) {
@@ -124,7 +123,6 @@ export abstract class AbstractButton<H extends React.HTMLAttributes<HTMLElement>
 
     protected handleKeyUp = (e: React.KeyboardEvent<any>) => {
         // HACKHACK: https://github.com/palantir/blueprint/issues/4165
-        /* eslint-disable deprecation/deprecation */
         if (Keys.isKeyboardClick(e.which)) {
             this.setState({ isActive: false });
             getRef(this.buttonRef).click();

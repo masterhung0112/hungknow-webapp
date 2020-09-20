@@ -117,7 +117,7 @@ export function removeNonHTMLProps(
                 return prev;
             }
 
-            if (prev.hasOwnProperty(curr)) {
+            if (Object.prototype.hasOwnProperty.call(prev, curr)) {
                 delete (prev as any)[curr];
             }
             return prev;

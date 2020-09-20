@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import SignupEmail, { SignupEmailProps } from './signupEmail'
-import { render, fireEvent, waitFor } from '@testing-library/react'
+import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
 import { defaultIntl, wrapIntlProvider, translationData } from 'hktest/intlProvider'
 import '@testing-library/jest-dom'
 import { PasswordConfig } from 'hkclient-ts/types/config'
@@ -34,7 +34,7 @@ describe('components/SignupEmail', () => {
     const validUserName = 'HungBui'
     const validPassword = 'password@'
 
-    const inputCorrectValue = (getByLabelText: Function) => {
+    const inputCorrectValue = (getByLabelText: BoundFunction<GetByText>) => {
         const emailInput = getByLabelText(translationData['signup_user_completed.whatis'])
         userEvent.clear(emailInput)
         userEvent.type(emailInput, validEmail)
@@ -79,7 +79,7 @@ describe('components/SignupEmail', () => {
             }
         }
 
-        let { getByText, queryByText, getByLabelText, unmount, container, rerender } = render(wrapIntlProvider(<SignupEmail {...props} />));
+        const { getByText, queryByText, getByLabelText, unmount, container } = render(wrapIntlProvider(<SignupEmail {...props} />));
 
         // Check email help text display by default
         expect(queryByText(translationData['signup_user_completed.emailHelp'])).toBeInTheDocument()
@@ -175,7 +175,7 @@ describe('components/SignupEmail', () => {
             }
         }
 
-        let { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />));
+        const { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />));
         inputCorrectValue(getByLabelText)
 
         // Mock for router push function
