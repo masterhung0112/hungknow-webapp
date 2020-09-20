@@ -22,7 +22,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "compass-mixins": "^0.12.10",
-    "hkclient-ts": "github:masterhung0112/hkclient-ts#master",
+    "hkclient-ts": "github:masterhung0112/hkclient-ts#d544fd95ca1cf1af8572f3d133362a7b6b530ff8",
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",
     "marked": "^1.1.1",
