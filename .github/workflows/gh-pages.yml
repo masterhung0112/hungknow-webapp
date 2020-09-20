@@ -1,0 +1,43 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Install package
+        run: npm ci
+      
+      - name: Run test
+        run: npm test
+        
+      - name: Run a multi-line script
+        run: |
+          npm run build
+          
+      - name: GitHub Pages
+        uses: sterlingwes/gh-pages-deploy-action@v1.1
+        with:
+          # A personal access token needed to push your site after it has been built.
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          # The subdirectory that your build command outputs your site assets to.
+          source-directory: .
+          # The build command that should be run to generate your site.
+          build-command: npm run export
