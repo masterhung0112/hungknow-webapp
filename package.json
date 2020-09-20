@@ -9,8 +9,6 @@
     "dev": "cross-env NODE_ENV='development' node server.js",
     "build": "next build",
     "start": "next start",
-    "build:ghpages": "cross-env NODE_ENV='ghpages' next build",
-    "export:ghpages": "cross-env NODE_ENV='ghpages' next export",
     "check-types": "tsc",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",

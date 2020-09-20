@@ -1,8 +1,7 @@
 # Hung Know Web 
 
 [![CI](https://github.com/masterhung0112/hungknow-webapp/workflows/CI/badge.svg)](https://github.com/masterhung0112/hungknow-webapp/actions?query=workflow%3ACI)
-[![gh-pages](https://github.com/masterhung0112/hungknow-webapp/workflows/gh-pages/badge.svg)](https://github.com/masterhung0112/hungknow-webapp/actions?query=workflow%3Agh-pages
-)
+
 <!-- Comment out Circle CI because of unuse
 [![CircleCI](https://circleci.com/gh/masterhung0112/hungknow-webapp.svg?style=shield)](https://circleci.com/gh/masterhung0112/hungknow-webapp) 
 -->
