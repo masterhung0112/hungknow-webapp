@@ -1,11 +1,11 @@
-jest.mock("next/router", () => ({
+jest.mock('next/router', () => ({
   // spread out all "Router" exports
-  ...jest.requireActual("next/router"),
+  ...jest.requireActual('next/router'),
 
   // shallow merge the "default" exports with...
   default: {
     // all actual "default" exports...
-    ...jest.requireActual("next/router").router,
+    ...jest.requireActual('next/router').router,
 
     router: {
       basePath: '',
@@ -32,7 +32,7 @@ jest.mock("next/router", () => ({
     replace: jest.fn(),
     query: {},
   },
-}));
+}))
 
 // export the mocked instance above
-module.exports = jest.requireMock("next/router");
+module.exports = jest.requireMock('next/router')

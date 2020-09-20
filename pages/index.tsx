@@ -6,8 +6,8 @@ import { connect } from 'react-redux'
 import { GlobalState } from 'hkclient-ts/types/store'
 
 export interface PageProps extends GlobalState {
-  pageProp: string;
-  appProp: string;
+  pageProp: string
+  appProp: string
 }
 
 class Index extends React.Component<PageProps> {
@@ -41,10 +41,8 @@ class Index extends React.Component<PageProps> {
   public render() {
     // console.log('5. Page.render');
     // const { pageProp, appProp, entities } = this.props;
-    return (
-      <p>Hello</p>
-    )
+    return <p>Hello</p>
   }
 }
 
-export default connect(state => state)(Index);
+export default connect((state) => state)(Index)

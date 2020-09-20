@@ -5,64 +5,64 @@ import Icon from '../icon'
 import { CssClasses } from 'common'
 
 describe('<InputGroup>', () => {
-    it('supports custom props', () => {
-        const input = mount(<InputGroup style={{ background: 'yellow' }} tabIndex={4} />)
-        const inputElement = input.find('input')
-        // Check if <input> element exists
-        expect(inputElement.exists()).toEqual(true)
+  it('supports custom props', () => {
+    const input = mount(<InputGroup style={{ background: 'yellow' }} tabIndex={4} />)
+    const inputElement = input.find('input')
+    // Check if <input> element exists
+    expect(inputElement.exists()).toEqual(true)
 
-        // Check if the props is equal to what is input
-        const inputElementDom = inputElement.getDOMNode() as HTMLElement
-        expect(inputElementDom.style.background).toEqual('yellow')
-        expect(inputElementDom.tabIndex).toEqual(4)
-    })
+    // Check if the props is equal to what is input
+    const inputElementDom = inputElement.getDOMNode() as HTMLElement
+    expect(inputElementDom.style.background).toEqual('yellow')
+    expect(inputElementDom.tabIndex).toEqual(4)
+  })
 
-    it('would work like a text input', () => {
-        const onChangeMock = jest.fn();
-        const input = mount(<InputGroup value='value' onChange={onChangeMock} />).find('input');
-        
-        // Check if the default value for input is "text" and value is value
-        expect(input.prop('type')).toStrictEqual('text')
-        expect(input.prop('value')).toStrictEqual('value')
+  it('would work like a text input', () => {
+    const onChangeMock = jest.fn()
+    const input = mount(<InputGroup value="value" onChange={onChangeMock} />).find('input')
 
-        const mockEvent = {
-            preventDefault() {},
-            target: { value: 'test-value' }
-        } as React.ChangeEvent<HTMLInputElement>
-        input.simulate('change', mockEvent)
+    // Check if the default value for input is "text" and value is value
+    expect(input.prop('type')).toStrictEqual('text')
+    expect(input.prop('value')).toStrictEqual('value')
 
-        expect(onChangeMock).toHaveBeenCalledTimes(1)
+    const mockEvent = {
+      preventDefault() {},
+      target: { value: 'test-value' },
+    } as React.ChangeEvent<HTMLInputElement>
+    input.simulate('change', mockEvent)
 
-        //TODO: Find out how to chec
-        // expect(onChangeMock).toHaveBeenCalledWith(mockEvent)
-    })
+    expect(onChangeMock).toHaveBeenCalledTimes(1)
 
-    it("supports custom type attribute", () => {
-        const emailInput = mount(<InputGroup type='email' />).find('input')
-        expect(emailInput.prop('type')).toStrictEqual('email')
+    //TODO: Find out how to chec
+    // expect(onChangeMock).toHaveBeenCalledWith(mockEvent)
+  })
 
-        const passwordInput = mount(<InputGroup type='password' />).find('input')
-        expect(passwordInput.prop('type')).toStrictEqual('password')
-    })
+  it('supports custom type attribute', () => {
+    const emailInput = mount(<InputGroup type="email" />).find('input')
+    expect(emailInput.prop('type')).toStrictEqual('email')
 
-    it("supports inputRef", () => {
-        let input: HTMLInputElement | null = null;
-        // tslint:disable-next-line:jsx-no-lambda
-        mount(<InputGroup inputRef={ref => (input = ref)} />);
-        expect(input).toBeInstanceOf(HTMLInputElement)
-    })
+    const passwordInput = mount(<InputGroup type="password" />).find('input')
+    expect(passwordInput.prop('type')).toStrictEqual('password')
+  })
 
-    it("renders left icon before input", () => {
-        const input = mount(<InputGroup leftIcon="star" />).children();
-        expect(input.childAt(0).is(Icon)).toBeTruthy()
-        expect(input.childAt(1).hasClass(CssClasses.INPUT)).toEqual(true)
-    })
+  it('supports inputRef', () => {
+    let input: HTMLInputElement | null = null
+    // tslint:disable-next-line:jsx-no-lambda
+    mount(<InputGroup inputRef={(ref) => (input = ref)} />)
+    expect(input).toBeInstanceOf(HTMLInputElement)
+  })
 
-    it(`renders right element inside .${CssClasses.INPUT_ACTION} after input`, () => {
-        const action = mount(<InputGroup rightElement={<address />} />)
-            .children()
-            .childAt(1);
-        expect(action.hasClass(CssClasses.INPUT_ACTION)).toEqual(true)
-        expect(action.find("address")).toHaveLength(1);
-    })
+  it('renders left icon before input', () => {
+    const input = mount(<InputGroup leftIcon="star" />).children()
+    expect(input.childAt(0).is(Icon)).toBeTruthy()
+    expect(input.childAt(1).hasClass(CssClasses.INPUT)).toEqual(true)
+  })
+
+  it(`renders right element inside .${CssClasses.INPUT_ACTION} after input`, () => {
+    const action = mount(<InputGroup rightElement={<address />} />)
+      .children()
+      .childAt(1)
+    expect(action.hasClass(CssClasses.INPUT_ACTION)).toEqual(true)
+    expect(action.find('address')).toHaveLength(1)
+  })
 })

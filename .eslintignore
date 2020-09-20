@@ -5,3 +5,4 @@
 /.storybook
 /.next
 /public
+*.scss.d.ts

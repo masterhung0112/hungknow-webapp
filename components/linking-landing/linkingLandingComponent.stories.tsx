@@ -1,6 +1,6 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import LinkingLandingComponent, { LinkingLandingComponentProps } from './linkingLandingComponent';
+import React from 'react'
+import { storiesOf } from '@storybook/react'
+import LinkingLandingComponent, { LinkingLandingComponentProps } from './linkingLandingComponent'
 
 // export default {
 //   title: 'Components/LinkingLandingComponent',
@@ -11,11 +11,6 @@ import LinkingLandingComponent, { LinkingLandingComponentProps } from './linking
 
 storiesOf('Users Info', module)
   // .addDecorator((story) => <IntlProvider>{story()}</IntlProvider>)
-  .add(
-    'default',
-    () => {
-      return (
-        <LinkingLandingComponent />
-      )
-    }
-  )
+  .add('default', () => {
+    return <LinkingLandingComponent />
+  })

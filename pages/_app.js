@@ -8,12 +8,12 @@ import { IntlProvider } from 'react-intl'
 // const LazyRoot = React.lazy(() => import('components/root'));
 // const Root = makeAsyncComponent(LazyRoot);
 
-function MyApp({Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
     <IntlProvider locale="en">
-        <Component {...pageProps} />
+      <Component {...pageProps} />
     </IntlProvider>
-)
+  )
 }
 
 // export default const WrappedApp = ({ Component, pageProps }) => {

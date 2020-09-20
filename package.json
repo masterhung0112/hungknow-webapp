@@ -4,8 +4,8 @@
   "private": true,
   "proxy": "http://localhost:3080",
   "scripts": {
-    "check": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --cache",
-    "fix": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --fix --cache",
+    "eslint:check": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --cache",
+    "eslint:fix": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --fix --cache",
     "dev": "cross-env NODE_ENV='development' node server.js",
     "build": "next build",
     "start": "next start",
@@ -78,6 +78,7 @@
     "enzyme-adapter-react-16": "^1.15.4",
     "enzyme-to-json": "^3.5.0",
     "eslint": "^7.9.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
     "express": "^4.17.1",
