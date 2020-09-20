@@ -54,6 +54,7 @@ module.exports = (phase, { defaultConfig }) => {
 
   return {
     basePath: process.env.NODE_ENV == 'ghpages' ? '/hungknow-webapp' : '/',
+    assetPrefix: process.env.NODE_ENV == 'ghpages' ? '/hungknow-webapp/' : '/',
     /* config options for all phases except development here */
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
         // Note: we provide webpack above so you should not `require` it
