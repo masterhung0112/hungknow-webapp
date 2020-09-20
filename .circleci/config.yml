@@ -1,7 +1,50 @@
 version: 2.1
 orbs:
   node: circleci/node@3.0.0
+
+jobs:
+  install:
+    executor:
+      name: default
+    working_directory: ~/hungknow/hungknow-webapp
+    steps:
+      - checkout
+      - run: |
+          npm ci
+    
+  lint:
+    executor:
+      name: default
+    working_directory: ~/hungknow/hungknow-webapp
+    steps:
+      - checkout
+      - run: |
+          npm run check
+  
+  type-check:
+    executor:
+      name: default
+    working_directory: ~/hungknow/hungknow-webapp
+    steps:
+      - checkout
+      - *restore_cache
+      - run: |
+          npm run check-types
+  
+  test:
+    executor:
+      name: default
+    working_directory: ~/hungknow/hungknow-webapp
+    steps:
+      - checkout
+      - run: npm run test-ci
+      - store_test_results:
+          path: build/
+
 workflows:
-  node-tests:
+  untagged-build:
     jobs:
-      - node/test
+      - install
+      - test
+        requires:
+          - install
