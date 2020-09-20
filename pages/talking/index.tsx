@@ -15,7 +15,7 @@ type TalkingProps = {
     noAccounts: boolean,
     showTermsOfService: boolean,
     actions: {
-        loadMeAndConfig: () => Promise<ActionResultType>,
+        loadMeAndConfig: () => Promise<ActionResultType | ActionResultType[]>,
         // getWarnMetricsStatus: Function,
         redirectUserToDefaultTeam: () => Promise<ActionResult>,
     }
@@ -129,11 +129,11 @@ function mapStateToProps(state: GlobalState) {
     // const permalinkRedirectTeam = getTeam(state, teamId);
 
     return {
-        diagnosticsEnabled: false, //config.DiagnosticsEnabled === 'true',
+        // diagnosticsEnabled: false, //config.DiagnosticsEnabled === 'true',
         noAccounts: config.NoAccounts === 'true',
-        diagnosticId: '', //config.DiagnosticId,
+        // diagnosticId: '', //config.DiagnosticId,
         permalinkRedirectTeamName: '', //permalinkRedirectTeam ? permalinkRedirectTeam.name : '',
-        showTermsOfService,
+        // showTermsOfService,
         // plugins,
     };
 }

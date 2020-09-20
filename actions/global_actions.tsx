@@ -1,9 +1,6 @@
-import { Store } from 'redux';
-import { wrapper } from 'stores/redux_store.jsx'
-import { GlobalState } from 'hkclient-ts/types/store';
 import { getCurrentUser } from 'hkclient-ts/selectors/entities/common'
 import { getTeamMemberships, getMyTeams, getTeam, getMyTeamMember } from 'hkclient-ts/selectors/entities/teams'
-import { getAllChannels, getAllDirectChannels, getChannelsNameMapInTeam, getRedirectChannelNameForTeam, getMyChannelMember } from 'hkclient-ts/selectors/entities/channels'
+import { getAllDirectChannels, getChannelsNameMapInTeam, getRedirectChannelNameForTeam, getMyChannelMember } from 'hkclient-ts/selectors/entities/channels'
 import { fetchMyChannelsAndMembers, getChannelByNameAndTeamName } from 'hkclient-ts/actions/channels'
 
 
@@ -69,6 +66,7 @@ export function redirectUserToDefaultTeam() {
         }
 
         Router.push('/talking/select_team');
+        return {}
     }
 }
 
