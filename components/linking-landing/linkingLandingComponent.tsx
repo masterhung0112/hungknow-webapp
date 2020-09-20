@@ -21,16 +21,6 @@ export type LinkingLandingComponentState = {
 
 }
 
-export const LINKING_LANDING = `${NS}-linking-landing`;
-export const LINKING_LANDING_DIALOG = `${NS}-dialog`;
-export const LINKING_LANDING_DIALOG_BODY = `${NS}-dialog-body`;
-export const LINKING_LANDING_GRAPHIC = `${NS}-graphic`;
-export const LINKING_LANDING_MOBILE = `${NS}-mobile`;
-export const LINKING_LANDING_BUTTONS = `${NS}-buttons`;
-export const LINKING_LANDING_STATUS = `${NS}-status`;
-export const LINKING_LANDING_DOWNLOAD = `${NS}-download`;
-
-
 export default class LinkingLandingComponent extends PureComponent<LinkingLandingComponentProps, LinkingLandingComponentState> {
     constructor(props: LinkingLandingComponentProps) {
         super(props)
@@ -119,10 +109,10 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
         }
 
         return (
-            <div className={styles[LINKING_LANDING_DIALOG_BODY]}>
+            <div className={styles["hk-dialog-body"]}>
                 {this.renderDialogHeader()}
-                <div className={styles[LINKING_LANDING_BUTTONS]}>
-                    <div className={styles[LINKING_LANDING_STATUS]}>
+                <div className={styles["hk-buttons"]}>
+                    <div className={styles["hk-status"]}>
                         {this.renderGoNativeAppMessage()}
                     </div>
                 </div>
@@ -134,18 +124,18 @@ export default class LinkingLandingComponent extends PureComponent<LinkingLandin
         const isMobile = UserAgent.isMobile();
 
         const graphicClassName = classNames(
-            styles[LINKING_LANDING_GRAPHIC],
+            styles["hk-graphic"],
             {
-                [styles[LINKING_LANDING_MOBILE]]: isMobile
+                [styles["hk-mobile"]]: isMobile
             }
         )
 
         return (
-            <div className={styles[LINKING_LANDING]}>
-                <div className={styles[LINKING_LANDING_DIALOG]}>
-                    <div className={classNames(styles[LINKING_LANDING_GRAPHIC],
+            <div className={styles["hk-linking-landing"]}>
+                <div className={styles["hk-dialog"]}>
+                    <div className={classNames(styles["hk-graphic"],
                         {
-                            [styles[LINKING_LANDING_MOBILE]]: isMobile
+                            [styles["hk-mobile"]]: isMobile
                         }
                     )}>
                         {this.renderGraphic()}

@@ -24,6 +24,10 @@ body {
         width: 210px;
     }
 
+    form {
+        margin-top: 32px;
+    }
+
     h1,
     h2,
     h3,
@@ -109,7 +113,7 @@ body {
         }
     }
 
-    .form-input-help-text {
+    :global(.#{$ns}-form-group__helper-text) {
         color: $dark-gray4;
         font-size: .95em;
         margin: 10px 0 0;

@@ -1,15 +1,17 @@
-import React from 'react'
 import { bindActionCreators } from 'redux'
 
 import SignupEmailComponent from 'components/signup/signupEmail';
 import { getConfig } from 'hkclient-ts/selectors/entities/general';
 import { GlobalState } from 'hkclient-ts/types/store';
 import { connect } from 'react-redux';
+import { createUser, loginById } from 'hkclient-ts/actions/users'
+import { getPasswordConfig } from 'hkclient-ts/utils/helpers'
+import { DispatchFunc } from 'hkclient-ts/types/actions';
 
 function mapStateToProps(state: GlobalState) {
     const config = getConfig(state)
 
-    const enableSignUpWithEmail = true//config.EnableSignUpWithEmail === 'true';
+    const enableSignUpWithEmail = config.EnableSignUpWithEmail === 'true';
     const siteName = config.SiteName;
     const termsOfServiceLink = config.TermsOfServiceLink;
     const privacyPolicyLink = config.PrivacyPolicyLink;
@@ -22,16 +24,16 @@ function mapStateToProps(state: GlobalState) {
         termsOfServiceLink,
         privacyPolicyLink,
         customDescriptionText,
-        passwordConfig: {}, //getPasswordConfig(config),
+        passwordConfig: getPasswordConfig(config),
         hasAccounts,
     };
 }
 
-function mapDispatchToProps(dispatch: any) {
+function mapDispatchToProps(dispatch: DispatchFunc) {
     return {
         actions: bindActionCreators({
-            // createUser,
-            // loginById,
+            createUser,
+            loginById,
             // setGlobalItem,
             // getTeamInviteInfo,
         }, dispatch),
