@@ -2,7 +2,7 @@ steps:
     # Install packages
     - name: node
       entrypoint: npm
-      args: ['ci']
+      args: ['install']
 
     # Run check types
     - name: node
