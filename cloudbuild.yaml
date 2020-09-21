@@ -1,9 +1,10 @@
 steps:
+  # Build BASE image
   - name: 'gcr.io/kaniko-project/executor:latest'
     args:
     - --destination=gcr.io/nvtfph/webapp-stage1
     - --cache=true
-    - --cache-ttl=12h
+    - --cache-ttl=2h
 
   # Run check types
   - name: 'gcr.io/nvtfph/webapp-stage1'
