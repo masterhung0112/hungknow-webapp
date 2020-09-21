@@ -10,7 +10,7 @@
     "build": "next build",
     "start": "next start",
     "check-types": "tsc",
-    "sdk-build": "cd ./node_modules/hkclient-ts && npm ci && npm run prepare",
+    "sdk-build": "cd ./node_modules/hkclient-ts && npm ci && npm run prepare ",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "cross-env NODE_ENV='development' jest",
