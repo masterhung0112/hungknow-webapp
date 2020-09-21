@@ -3,7 +3,7 @@ import { getClientConfig } from 'hkclient-ts/actions/general'
 import { UserActions } from 'hkclient-ts/actions'
 
 export function loadMeAndConfig(): ActionFunc {
-  return async (dispatch: DispatchFunc): Promise<ActionResultType[]> => {
+  return async (dispatch: DispatchFunc): Promise<ActionResultType> => {
     // if any new promise needs to be added please be mindful of the order as it is used in root.jsx for redirection
     const promises = [dispatch(getClientConfig())]
 
@@ -13,6 +13,6 @@ export function loadMeAndConfig(): ActionFunc {
       resolvedPromises.push(await dispatch(UserActions.loadMe()))
     }
 
-    return resolvedPromises
+    return resolvedPromises.reduce((acc, val) => acc.concat(val), [])
   }
 }
