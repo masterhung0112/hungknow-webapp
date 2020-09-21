@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "check-types": "tsc",
+    "sdk-build": "cd ./node_modules/hkclient-ts && npm ci && npm run prepare",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "cross-env NODE_ENV='development' jest",
@@ -25,7 +26,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "compass-mixins": "^0.12.10",
-    "hkclient-ts": "github:masterhung0112/hkclient-ts#b1d8f2898053e5522f22146c2f1218fd3e044784",
+    "hkclient-ts": "github:masterhung0112/hkclient-ts#2b8c0b493560fd792c224d05ad62ff81cbc69940",
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",
     "marked": "^1.1.1",

@@ -1,20 +1,21 @@
 steps:
-    # Install packages
-    - name: node
-      entrypoint: npm
-      args: ['install']
+  - name: 'gcr.io/kaniko-project/executor:latest'
+    args:
+    - --destination=gcr.io/nvtfph/webapp-stage1
+    - --cache=true
+    - --cache-ttl=12h
 
-    # Run check types
-    - name: node
-      entrypoint: npm
-      args: ['run', 'check-types']
+  # Run check types
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: npm
+    args: ['run', 'check-types']
 
-    # Run check lint
-    - name: node
-      entrypoint: npm
-      args: ['run', 'eslint:check']
-    
-    # Run Test
-    - name: node
-      entrypoint: npm
-      args: ['run', 'test-ci']
+  # Run check lint
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: npm
+    args: ['run', 'eslint:check']
+  
+  # Run Test
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: npm
+    args: ['run', 'test-ci']
