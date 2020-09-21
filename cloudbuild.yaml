@@ -6,16 +6,16 @@ steps:
     - --cache-ttl=12h
 
   # Run check types
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/nvtfph/webapp-stage1'
     entrypoint: npm
     args: ['run', 'check-types']
 
   # Run check lint
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/nvtfph/webapp-stage1'
     entrypoint: npm
     args: ['run', 'eslint:check']
   
   # Run Test
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/nvtfph/webapp-stage1'
     entrypoint: npm
     args: ['run', 'test-ci']
