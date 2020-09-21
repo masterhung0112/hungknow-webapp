@@ -4,5 +4,7 @@ FROM node:12
 WORKDIR /workspace
 COPY package*.json ./
 RUN npm install
+RUN cd ./node_modules/hkclient-ts && npm install && npm run prepare
+RUN rm -rf ./node_modules/hkclient-ts/node_modules
 COPY . .
 CMD [ "sleep", "infinity" ]
