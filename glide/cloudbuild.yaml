@@ -1,0 +1,16 @@
+steps:
+    - name: Install packages
+      entrypoint: npm
+      args: ['ci']
+
+    - name: Run check types
+      entrypoint: npm
+      args: ['run', 'check-types']
+
+    - name: Run check lint
+      entrypoint: npm
+      args: ['run', 'eslint:check']
+    
+    - name: Run Test
+      entrypoint: npm
+      args: ['run', 'test-ci']
