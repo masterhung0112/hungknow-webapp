@@ -36,3 +36,5 @@ yarn-error.log*
 *.scss.d.ts
 
 .eslintcache
+
+package-lock.json
