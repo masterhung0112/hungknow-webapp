@@ -2,11 +2,17 @@
 # $ gcloud builds submit
 
 steps:
+  # Reference: https://cloud.google.com/cloud-build/docs/speeding-up-builds#using_a_cached_docker_image
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker pull gcr.io/$PROJECT_ID/webapp-stage1:latest || exit 0']
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
     - 'build'
     - '--tag=gcr.io/$PROJECT_ID/webapp-stage1:0.0.1'
     - '--file=./build/Dockerfile-ci'
+    - '--cache-from', 'gcr.io/$PROJECT_ID/webapp-stage1:latest',
     - '.'
     id: '0.0.1'
   
