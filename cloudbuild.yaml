@@ -1,22 +1,42 @@
-steps:
-  # Build BASE image
-  - name: 'gcr.io/kaniko-project/executor:latest'
-    args:
-    - --destination=gcr.io/nvtfph/webapp-stage1
-    - --cache=true
-    - --cache-ttl=24h
+# In this directory, run the following command to build this builder.
+# $ gcloud builds submit
 
+steps:
+  # Build all supported versions.
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+    - 'build'
+    - '--tag=gcr.io/$PROJECT_ID/webapp-stage1:0.0.1'
+    - '--file=./build/Dockerfile-build-0.0.1'
+    - '.'
+    id: '0.0.1'
+
+  # Future supported versions of docker builder go here.
+  # Tests for future supported versions of docker builder go here.  
+  # Tag the latest version as :latest. We use gcr.io/cloud-builders/docker here
+  # and not gcr.io/$PROJECT_ID/webapp-stageXX because the latter may not yet exist.
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['tag', 'gcr.io/$PROJECT_ID/webapp-stage1:0.0.1', 'gcr.io/$PROJECT_ID/webapp-stage1']
+    wait_for: ['0.0.1']
+    id: 'latest'
+  
   # Run check types
-  - name: 'gcr.io/nvtfph/webapp-stage1'
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
     entrypoint: npm
     args: ['run', 'check-types']
-
+    wait_for: ['latest']
   # Run check lint
-  - name: 'gcr.io/nvtfph/webapp-stage1'
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
     entrypoint: npm
     args: ['run', 'eslint:check']
+    wait_for: ['latest']
   
   # Run Test
-  - name: 'gcr.io/nvtfph/webapp-stage1'
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
     entrypoint: npm
     args: ['run', 'test-ci']
+    wait_for: ['latest']
+  
+images:
+  - 'gcr.io/$PROJECT_ID/webapp-stage1:latest'
+  - 'gcr.io/$PROJECT_ID/webapp-stage1:0.0.1'
