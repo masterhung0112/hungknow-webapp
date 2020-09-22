@@ -1,7 +1,7 @@
 steps:
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
     entrypoint: yarn
-    args: ['install']
+    args: ['install', '--frozen-lockfile']
     id: 'install'
   
   # Run check types
