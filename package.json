@@ -1,6 +1,6 @@
 {
   "name": "hungknow-webapp",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "private": true,
   "proxy": "http://localhost:3080",
   "scripts": {
