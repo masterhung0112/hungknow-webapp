@@ -3,3 +3,4 @@ dist
 out
 vendor
 *.jar
+node_modules

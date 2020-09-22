@@ -3,6 +3,6 @@ FROM node:12
 # https://cloud.google.com/cloud-build/docs/build-config#dir
 WORKDIR /workspace
 COPY package*.json ./
-RUN npm install && cd /workspace/node_modules/hkclient-ts && npm install && npm run prepare && rm -rf ./node_modules
+RUN yarn install && cd /workspace/node_modules/hkclient-ts && yarn install && yarn prepare && rm -rf ./node_modules
 COPY . .
 CMD [ "sleep", "infinity" ]

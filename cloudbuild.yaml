@@ -1,42 +1,23 @@
-# In this directory, run the following command to build this builder.
-# $ gcloud builds submit
-
 steps:
-  # Build all supported versions.
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-    - 'build'
-    - '--tag=gcr.io/$PROJECT_ID/webapp-stage1:0.0.1'
-    - '--file=./build/Dockerfile-build-0.0.1'
-    - '.'
-    id: '0.0.1'
-
-  # Future supported versions of docker builder go here.
-  # Tests for future supported versions of docker builder go here.  
-  # Tag the latest version as :latest. We use gcr.io/cloud-builders/docker here
-  # and not gcr.io/$PROJECT_ID/webapp-stageXX because the latter may not yet exist.
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['tag', 'gcr.io/$PROJECT_ID/webapp-stage1:0.0.1', 'gcr.io/$PROJECT_ID/webapp-stage1']
-    wait_for: ['0.0.1']
-    id: 'latest'
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
+    entrypoint: yarn
+    args: ['install']
+    id: 'install'
   
   # Run check types
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: npm
-    args: ['run', 'check-types']
-    wait_for: ['latest']
+    entrypoint: yarn
+    args: ['check-types']
+    wait_for: ['install']
+  
   # Run check lint
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: npm
-    args: ['run', 'eslint:check']
-    wait_for: ['latest']
+    entrypoint: yarn
+    args: ['eslint:check']
+    wait_for: ['install']
   
   # Run Test
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: npm
-    args: ['run', 'test-ci']
-    wait_for: ['latest']
-  
-images:
-  - 'gcr.io/$PROJECT_ID/webapp-stage1:latest'
-  - 'gcr.io/$PROJECT_ID/webapp-stage1:0.0.1'
+    entrypoint: yarn
+    args: ['test-ci']
+    wait_for: ['install']
