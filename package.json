@@ -22,7 +22,7 @@
     "git:branch-clean": "git branch -vv | grep ': gone]'|  grep -v \"\\*\" | awk '{ print $1; }' | xargs git branch -D",
     "build:dev:env": "docker-compose -f ./build/docker-compose.dev.yml build",
     "start:dev:env": "docker-compose -f ./build/docker-compose.dev.yml up -d",
-    "build:docker-ci": "docker build -f ./build/Dockerfile-ci -t webapp-ci:latest ."
+    "build:docker-ci": "docker build -f ./build/Dockerfile.ci -t webapp-ci:latest ."
   },
   "dependencies": {
     "classnames": "^2.2.6",
