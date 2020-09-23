@@ -1,28 +1,21 @@
-FROM node:12-alpine AS BUILD_IMAGE
+FROM node:12-slim
+
 # cloudbuild use /workspace as default folder
 # https://cloud.google.com/cloud-build/docs/build-config#dir
 WORKDIR /workspace
-RUN apk update && apk add --no-cache \
- openssh-client git \
- build-base \    
-   autoconf \
-    automake \
-    bash \
-    g++ \
-    libc6-compat \
-    libjpeg-turbo-dev \
-    libpng-dev \
-    make \
-    nasm \
-    xdg-utils \
-    ca-certificates \
-    libpng-dev freetype-dev libjpeg-turbo-dev \
-    libtool
+RUN apt-get update 
+RUN apt install -y --no-install-recommends \
+  build-essential \
+  libglu1 \
+  libxi6 \
+  libgconf-2-4 \
+  git \
+  openssh-client
+# && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
 
 # Install package for the root project, then go to hkclient-ts package, install its package
-RUN ADBLOCK=true npm ci 
-#&& cd ./node_modules/hkclient-ts && ADBLOCK=true npm i && npm run build && rm -rf /workspace/*
+RUN ADBLOCK=true npm ci && cd ./node_modules/hkclient-ts && ADBLOCK=true npm ci && npm run build && cd /workspace && rm -rf /workspace/*
 
-CMD [ "sleep", "infinity" ]
+CMD [ "bash" ]
