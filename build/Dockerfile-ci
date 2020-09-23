@@ -4,12 +4,13 @@ FROM node:12-slim
 # https://cloud.google.com/cloud-build/docs/build-config#dir
 WORKDIR /workspace
 RUN apt-get update && apt install -y --no-install-recommends \
-#  build-essential \
   libglu1 \
   libxi6 \
   libgconf-2-4 \
+  ca-certificates \
   git \
   openssh-client \
+  && update-ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package*.json ./
