@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "hkclient-ts": "github:masterhung0112/hkclient-ts#bddc270bc275b40c0beed9e451da64c2744bdab7",
+    "hkclient-ts": "github:masterhung0112/hkclient-ts#2f55847dac9b5c3e8a8247acc1d7a17f3546ef35",
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",
     "marked": "^1.1.1",
