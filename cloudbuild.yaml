@@ -1,23 +1,23 @@
 steps:
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: yarn
-    args: ['install', '--frozen-lockfile']
+    entrypoint: npm
+    args: ['ci', '--prefer-offline', '--no-audit']
     id: 'install'
   
   # Run check types
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: yarn
-    args: ['check-types']
+    entrypoint: npm
+    args: ['run', 'check-types']
     wait_for: ['install']
   
   # Run check lint
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: yarn
-    args: ['eslint:check']
+    entrypoint: npm
+    args: ['run', 'eslint:check']
     wait_for: ['install']
   
   # Run Test
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: yarn
-    args: ['test-ci']
+    entrypoint: npm
+    args: ['run', 'test-ci']
     wait_for: ['install']
