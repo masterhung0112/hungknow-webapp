@@ -2,7 +2,7 @@ FROM node:12-alpine
 # cloudbuild use /workspace as default folder
 # https://cloud.google.com/cloud-build/docs/build-config#dir
 WORKDIR /workspace
-RUN apk add git --no-cache
+RUN apk --update --no-cache add openssh-client git
 
 COPY package*.json ./
 
