@@ -1,0 +1,27 @@
+steps:
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
+    entrypoint: bash
+    args: 
+      - '-c'
+      - |
+        ADBLOCK=true npm ci --prefer-offline --no-audit \
+        && cd ./node_modules/hkclient-ts && ADBLOCK=true npm i && npm run build
+    id: 'install'
+  
+  # Run check types
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
+    entrypoint: npm
+    args: ['run', 'check-types']
+    wait_for: ['install']
+  
+  # Run check lint
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
+    entrypoint: npm
+    args: ['run', 'eslint:check']
+    wait_for: ['install']
+  
+  # Run Test
+  - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
+    entrypoint: npm
+    args: ['run', 'test-ci']
+    wait_for: ['install']

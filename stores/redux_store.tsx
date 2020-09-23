@@ -1,6 +1,6 @@
 import configureStore from 'stores'
 import { MakeStore, createWrapper, Context } from 'next-redux-wrapper'
-import { GlobalState } from 'hkclient-ts/types/store'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
 
 // Create the default store
 // const store = configureStore();

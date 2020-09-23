@@ -1,0 +1,7 @@
+.git
+dist
+out
+vendor
+*.jar
+node_modules
+/.circleci

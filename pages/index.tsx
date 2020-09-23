@@ -3,7 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 // import { NextPageContext } from "next";
-import { GlobalState } from 'hkclient-ts/types/store'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
 
 export interface PageProps extends GlobalState {
   pageProp: string

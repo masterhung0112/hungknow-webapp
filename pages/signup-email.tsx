@@ -1,12 +1,12 @@
 import { bindActionCreators } from 'redux'
 
 import SignupEmailComponent from 'components/signup/signupEmail'
-import { getConfig } from 'hkclient-ts/selectors/entities/general'
-import { GlobalState } from 'hkclient-ts/types/store'
+import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
 import { connect } from 'react-redux'
-import { createUser, loginById } from 'hkclient-ts/actions/users'
-import { getPasswordConfig } from 'hkclient-ts/utils/helpers'
-import { DispatchFunc } from 'hkclient-ts/types/actions'
+import { createUser, loginById } from 'hkclient-ts/lib/actions/users'
+import { getPasswordConfig } from 'hkclient-ts/lib/utils/helpers'
+import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
 
 function mapStateToProps(state: GlobalState) {
   const config = getConfig(state)

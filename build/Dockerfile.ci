@@ -1,0 +1,21 @@
+FROM node:12-slim
+
+# cloudbuild use /workspace as default folder
+# https://cloud.google.com/cloud-build/docs/build-config#dir
+WORKDIR /workspace
+RUN apt-get update && apt install -y --no-install-recommends \
+  libglu1 \
+  libxi6 \
+  libgconf-2-4 \
+  ca-certificates \
+  git \
+  openssh-client \
+  && update-ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+COPY package*.json ./
+
+# Install package for the root project, then go to hkclient-ts package, install its package
+RUN ADBLOCK=true npm ci && cd ./node_modules/hkclient-ts && ADBLOCK=true npm i && cd /workspace && rm -rf /workspace/*
+
+CMD [ "bash" ]
