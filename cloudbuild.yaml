@@ -1,7 +1,11 @@
 steps:
   - name: 'gcr.io/$PROJECT_ID/webapp-stage1'
-    entrypoint: npm
-    args: ['ci', '--prefer-offline', '--no-audit']
+    entrypoint: bash
+    args: 
+      - '-c'
+      - |
+        npm ci --prefer-offline --no-audit \
+        && cd ./node_modules/hkclient-ts && ADBLOCK=true npm i && npm run build
     id: 'install'
   
   # Run check types
