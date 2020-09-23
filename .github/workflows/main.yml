@@ -29,8 +29,8 @@ jobs:
           cache-name: cache-node-modules
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.yarn
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
@@ -38,14 +38,14 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install packages
-        run: yarn install --frozen-lockfile
+        run: npm ci --prefer-offline --no-audit
 
       - name: Run check-types
-        run: yarn check-types
+        run: npm run check-types
 
       - name: Run check lint
-        run: yarn eslint:check
+        run: npm run eslint:check
 
       # Runs a set of commands using the runners shell
       - name: Run test
-        run: yarn test-ci
+        run: npm run test-ci

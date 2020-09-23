@@ -68,8 +68,8 @@ describe('components/SignupEmail', () => {
   })
 
   test('field has error message when invalid input', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({ data: 'login test' })
+    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
+    const loginByIdMock = jest.fn().mockResolvedValue([{ data: 'login test' }])
 
     const props = {
       ...baseProps,
@@ -169,10 +169,12 @@ describe('components/SignupEmail', () => {
   })
 
   test('push correct url when login return not_verified', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({
-      error: { server_error_id: 'api.user.login.not_verified.app_error' },
-    })
+    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
+    const loginByIdMock = jest.fn().mockResolvedValue([
+      {
+        error: { server_error_id: 'api.user.login.not_verified.app_error' },
+      },
+    ])
 
     const props = {
       ...baseProps,
