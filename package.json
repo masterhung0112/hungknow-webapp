@@ -10,8 +10,10 @@
     "build": "next build",
     "start": "next start",
     "check-types": "tsc",
+    "sdk-build": "cd ./node_modules/hkclient-ts && npm ci && npm run prepare",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "run:ci": "npm run check-types && npm run eslint:check && npm run test-ci",
     "test": "cross-env NODE_ENV='development' jest",
     "test-ci": "cross-env NODE_ICU_DATA=node_modules/full-icu TZ=Etc/UTC jest --ci --maxWorkers=8",
     "css-def": "npm-run-all --parallel css-def:component css-def:style css-def:style-2nd",
@@ -20,12 +22,13 @@
     "css-def:style-2nd": "tsm \"styles/*/*/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons \"./node_modules/@blueprintjs/icons/src/icons\" --exportType default",
     "git:branch-clean": "git branch -vv | grep ': gone]'|  grep -v \"\\*\" | awk '{ print $1; }' | xargs git branch -D",
     "build:dev:env": "docker-compose -f ./build/docker-compose.dev.yml build",
-    "start:dev:env": "docker-compose -f ./build/docker-compose.dev.yml up -d"
+    "start:dev:env": "docker-compose -f ./build/docker-compose.dev.yml up -d",
+    "build:docker-ci": "docker build -f ./build/Dockerfile.ci -t webapp-ci:latest ."
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "compass-mixins": "^0.12.10",
-    "hkclient-ts": "github:masterhung0112/hkclient-ts#b1d8f2898053e5522f22146c2f1218fd3e044784",
+    "hkclient-ts": "github:masterhung0112/hkclient-ts#a60ebe503beaf17fe0233d6e9339dc50233f5790",
+    "intl-messageformat": "9.3.8",
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",
     "marked": "^1.1.1",
@@ -35,10 +38,7 @@
     "react-dom": "16.13.1",
     "react-intl": "^5.8.2",
     "react-redux": "^7.2.1",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-persist": "4.9.1",
-    "reselect": "^4.0.0",
-    "serialize-error": "^7.0.1"
+    "redux-persist": "4.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -54,6 +54,7 @@
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-links": "^6.0.21",
     "@storybook/react": "^6.0.21",
+    "@testing-library/dom": "7.24.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "^12.1.5",

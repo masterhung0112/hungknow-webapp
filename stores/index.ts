@@ -1,10 +1,10 @@
-import configureServiceStore from 'hkclient-ts/store'
+import configureServiceStore from 'hkclient-ts/lib/store'
 import appReducer from 'reducers'
 import { createTransform } from 'redux-persist'
 import { transformSet } from 'stores/utils'
 import localForage from 'localforage'
 import { extendPrototype } from 'localforage-observable'
-import { GlobalState } from 'hkclient-ts/types/store'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
 
 function getAppReducer() {
   return require('../reducers')

@@ -1,22 +1,22 @@
-import { getCurrentUser } from 'hkclient-ts/selectors/entities/common'
-import { getTeamMemberships, getMyTeams, getTeam, getMyTeamMember } from 'hkclient-ts/selectors/entities/teams'
+import { getCurrentUser } from 'hkclient-ts/lib/selectors/entities/common'
+import { getTeamMemberships, getMyTeams, getTeam, getMyTeamMember } from 'hkclient-ts/lib/selectors/entities/teams'
 import {
   getAllDirectChannels,
   getChannelsNameMapInTeam,
   getRedirectChannelNameForTeam,
   getMyChannelMember,
-} from 'hkclient-ts/selectors/entities/channels'
-import { fetchMyChannelsAndMembers, getChannelByNameAndTeamName } from 'hkclient-ts/actions/channels'
+} from 'hkclient-ts/lib/selectors/entities/channels'
+import { fetchMyChannelsAndMembers, getChannelByNameAndTeamName } from 'hkclient-ts/lib/actions/channels'
 
-import { loadMe } from 'hkclient-ts/actions/users'
+import { loadMe } from 'hkclient-ts/lib/actions/users'
 import { Utils } from 'utils'
 import { getCurrentLocale } from 'selectors/i18n'
 import LocalStorageStore from 'stores/local_storage_store'
-import { ActionResult, DispatchFunc, GetStateFunc } from 'hkclient-ts/types/actions'
+import { ActionResult, DispatchFunc, GetStateFunc } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
 import { filterAndSortTeamsByDisplayName } from 'utils/team_utils'
-import { UserProfile } from 'hkclient-ts/types/users'
-import { Team } from 'hkclient-ts/types/teams'
+import { UserProfile } from 'hkclient-ts/lib/types/users'
+import { Team } from 'hkclient-ts/lib/types/teams'
 
 export function redirectUserToDefaultTeam() {
   return async (dispatch: DispatchFunc, getState: GetStateFunc): Promise<ActionResult> => {

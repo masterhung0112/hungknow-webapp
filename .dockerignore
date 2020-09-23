@@ -1,0 +1,3 @@
+# Prevent the following files and folders to be send to docker build context
+/node_modules
+/.next

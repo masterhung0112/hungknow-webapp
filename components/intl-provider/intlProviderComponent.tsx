@@ -2,7 +2,7 @@ import React from 'react'
 import { IntlProvider as BaseIntlProvider } from 'react-intl'
 
 // import {Client4} from 'mattermost-redux/client';
-// import { setLocalizeFunction } from 'hkclient-ts/utils/i18n_utils';
+// import { setLocalizeFunction } from 'hkclient-ts/lib/utils/i18n_utils';
 
 // import * as I18n from 'i18n/i18n';
 

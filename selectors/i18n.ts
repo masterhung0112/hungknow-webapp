@@ -1,8 +1,8 @@
-import { GlobalState } from 'hkclient-ts/types/store'
-import { getCurrentUserLocale } from 'hkclient-ts/selectors/entities/i18n'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
+import { getCurrentUserLocale } from 'hkclient-ts/lib/selectors/entities/i18n'
 import * as I18n from 'i18n/i18n'
-import { General } from 'hkclient-ts/constants'
-import { getConfig } from 'hkclient-ts/selectors/entities/general'
+import { General } from 'hkclient-ts/lib/constants'
+import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
 
 // This is a placeholder for if we ever implement browser-locale detection
 export function getCurrentLocale(state: GlobalState) {

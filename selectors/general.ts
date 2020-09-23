@@ -1,5 +1,5 @@
-import { getConfig } from 'hkclient-ts/selectors/entities/general'
-import { GlobalState } from 'hkclient-ts/types/store'
+import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
 
 export function getBasePath(state: GlobalState) {
   const config = getConfig(state)

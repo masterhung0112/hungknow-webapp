@@ -9,11 +9,11 @@ import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
 import { Intent } from 'common'
 import { Button, FormGroup, InputGroup } from 'core/components'
-import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/utils/helpers'
-import { PasswordConfig } from 'hkclient-ts/types/config'
-import { UserActions } from 'hkclient-ts/actions'
-import { UserProfile } from 'hkclient-ts/src/types/users'
-import { ActionCreatorClient } from 'hkclient-ts/types/actions'
+import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/lib/utils/helpers'
+import { PasswordConfig } from 'hkclient-ts/lib/types/config'
+import { UserActions } from 'hkclient-ts/lib/actions'
+import { UserProfile } from 'hkclient-ts/lib/types/users'
+import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
 
 export type SignupEmailProps = {
@@ -179,11 +179,11 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     const { redirectTo } = this.state
     // trackEvent('signup', 'signup_user_02_complete');
 
-    // var a: ActionResult
-    // a.
     this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-      if (!Array.isArray(actionResult) && actionResult.error) {
-        if (actionResult.error.server_error_id === 'api.user.login.not_verified.app_error') {
+      const isOK = actionResult ? actionResult[0] : undefined
+
+      if (isOK && isOK.error) {
+        if (isOK.error.server_error_id === 'api.user.login.not_verified.app_error') {
           let verifyUrl = '/should_verify_email?email=' + encodeURIComponent(user.email)
           if (this.state.teamName) {
             verifyUrl += '&teamname=' + encodeURIComponent(this.state.teamName)
@@ -194,7 +194,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
           router.push(verifyUrl)
         } else {
           this.setState({
-            serverError: actionResult.error.message,
+            serverError: isOK.error.message,
             isSubmitting: false,
           })
         }
@@ -241,16 +241,17 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
       const redirectTo = this.getRedirectTo()
 
       this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
-        if (!Array.isArray(result) && result.error) {
+        const userProfile = result ? result[0] : undefined
+        if (userProfile && userProfile.error) {
           this.setState({
-            serverError: result.error.message,
+            serverError: userProfile.error.message,
             isSubmitting: false,
           })
           return
         }
 
-        if (!Array.isArray(result)) {
-          this.handleSignupSuccess(user, result.data)
+        if (userProfile && userProfile.data) {
+          this.handleSignupSuccess(user, userProfile.data)
         } else {
           console.error('createUser should return single result')
         }

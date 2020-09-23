@@ -7,3 +7,21 @@
 
 
 The web that make use of next.js and full of my knowledge related to web technology.
+
+# CI
+
+CI was tested on the following platform:
+- Github actions
+- Google Cloud Build
+
+CI would use a existing docker file submitting to GCR.
+
+Then each time you change or add new packages in package.json, you should build a new docker image file for CI
+
+### **Build a new docker image for CI**
+- Open *build/cloudbuild-ci-gcr.yaml*
+- Bump up the version of image file
+- Run the following comment
+```
+gcloud builds submit --config=build/cloudbuild-ci-gcr.yaml
+```

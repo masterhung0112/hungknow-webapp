@@ -4,10 +4,10 @@ import SignupEmail, { SignupEmailProps } from './signupEmail'
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
 import { defaultIntl, wrapIntlProvider, translationData } from 'hktest/intlProvider'
 import '@testing-library/jest-dom'
-import { PasswordConfig } from 'hkclient-ts/types/config'
+import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import userEvent from '@testing-library/user-event'
-import { General } from 'hkclient-ts/constants'
-import { UserProfile } from 'hkclient-ts/types/users'
+import { General } from 'hkclient-ts/lib/constants'
+import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
 
 describe('components/SignupEmail', () => {
@@ -68,8 +68,8 @@ describe('components/SignupEmail', () => {
   })
 
   test('field has error message when invalid input', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({ data: 'login test' })
+    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
+    const loginByIdMock = jest.fn().mockResolvedValue([{ data: 'login test' }])
 
     const props = {
       ...baseProps,
@@ -169,10 +169,12 @@ describe('components/SignupEmail', () => {
   })
 
   test('push correct url when login return not_verified', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({
-      error: { server_error_id: 'api.user.login.not_verified.app_error' },
-    })
+    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
+    const loginByIdMock = jest.fn().mockResolvedValue([
+      {
+        error: { server_error_id: 'api.user.login.not_verified.app_error' },
+      },
+    ])
 
     const props = {
       ...baseProps,
