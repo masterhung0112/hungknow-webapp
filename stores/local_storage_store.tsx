@@ -1,6 +1,6 @@
 import { getBasePath } from 'selectors/general'
-import { GlobalState } from 'hkclient-ts/types/store'
-import { getRedirectChannelNameForTeam } from 'hkclient-ts/selectors/entities/channels'
+import { GlobalState } from 'hkclient-ts/lib/types/store'
+import { getRedirectChannelNameForTeam } from 'hkclient-ts/lib/selectors/entities/channels'
 
 const getPreviousTeamIdKey = (userId: string) => ['user_prev_team', userId].join(':')
 const getPreviousChannelNameKey = (userId: string, teamId: string) =>

@@ -1,6 +1,6 @@
-import { ActionFunc, ActionResultType, DispatchFunc } from 'hkclient-ts/types/actions'
-import { getClientConfig } from 'hkclient-ts/actions/general'
-import { UserActions } from 'hkclient-ts/actions'
+import { ActionFunc, ActionResultType, DispatchFunc } from 'hkclient-ts/lib/types/actions'
+import { getClientConfig } from 'hkclient-ts/lib/actions/general'
+import { UserActions } from 'hkclient-ts/lib/actions'
 
 export function loadMeAndConfig(): ActionFunc {
   return async (dispatch: DispatchFunc): Promise<ActionResultType> => {

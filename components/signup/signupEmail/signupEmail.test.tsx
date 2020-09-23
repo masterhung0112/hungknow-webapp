@@ -4,10 +4,10 @@ import SignupEmail, { SignupEmailProps } from './signupEmail'
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
 import { defaultIntl, wrapIntlProvider, translationData } from 'hktest/intlProvider'
 import '@testing-library/jest-dom'
-import { PasswordConfig } from 'hkclient-ts/types/config'
+import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import userEvent from '@testing-library/user-event'
-import { General } from 'hkclient-ts/constants'
-import { UserProfile } from 'hkclient-ts/types/users'
+import { General } from 'hkclient-ts/lib/constants'
+import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
 
 describe('components/SignupEmail', () => {
