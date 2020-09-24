@@ -25,6 +25,7 @@ cloudbuild.yaml
 build/
 .storybook/
 e2e/
+src/
 
 jest.config.js
 babel.config.js
