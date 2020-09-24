@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   "stories": [
-    "../core/**/*.stories.@(js|jsx|ts|tsx)",
-    "../components/**/*.stories.@(js|jsx|ts|tsx)"
+    "../src/core/**/*.stories.@(js|jsx|ts|tsx)",
+    "../src/components/**/*.stories.@(js|jsx|ts|tsx)"
   ],
   "addons": [
     "@storybook/addon-links",
@@ -12,8 +12,8 @@ module.exports = {
   "include": [
     "../types.d.ts",
     "../next-env.d.ts",
-    "../**/*.stories.ts",
-    "../**/*.stories.tsx"
+    "../src/**/*.stories.ts",
+    "../src/**/*.stories.tsx"
   ],
   // webpackFinal: async config => {
   //   config.module.rules.push({
