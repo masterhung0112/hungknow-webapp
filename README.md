@@ -14,9 +14,24 @@ CI was tested on the following platform:
 - Github actions
 - Google Cloud Build
 
-CI would use a existing docker file submitting to GCR.
+## Google Cloud Build
 
-Then each time you change or add new packages in package.json, you should build a new docker image file for CI
+Workflows:
+* Build CI cache docker image
+* Build new PR request before merging to master branch
+
+### CI Cache docker image
+Trigger Condition: when package-lock.json is changed
+
+Each time you change or add new packages in package.json, you should build a new docker image file for CI:
+    * Docker file: *build/Dockerfile.ci*
+    * Cloud Build script: build/cloudbuild-ci-gcr.yaml
+
+Google Cloud Build will be triggered when the above condition is satisfied. The above cloud build script is used to build a new Docker image, then submit to GCR. The tag of docker image is the **short Git version hash**, because it's easier to keep track what git commit that cause the creation of CI docker image. Then tag *latest* name to that the newly-created CI docker image.
+
+### Build new PR request before merging to master branch
+
+<< add description >>
 
 ### **Build a new docker image for CI**
 - Open *build/cloudbuild-ci-gcr.yaml*

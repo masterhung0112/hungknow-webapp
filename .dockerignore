@@ -1,7 +1,10 @@
 # Prevent the following files and folders to be send to docker build context
-.git
+
+# dependencies
 node_modules/
-.next
+
+.git/
+.next/
 .gitignore
 .dockerignore
 out/
