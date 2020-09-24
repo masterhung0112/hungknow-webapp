@@ -9,3 +9,6 @@ out/
 # CI
 /.circleci
 /.github
+
+# design
+/design/

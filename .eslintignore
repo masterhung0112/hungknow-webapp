@@ -16,3 +16,6 @@ node_modules/
 # misc
 /.git
 *.scss.d.ts
+
+# design
+/design/

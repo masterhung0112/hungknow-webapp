@@ -27,6 +27,9 @@ build/
 e2e/
 src/
 
+# design
+/design/
+
 jest.config.js
 babel.config.js
 
