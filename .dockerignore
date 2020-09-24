@@ -1,3 +1,13 @@
 # Prevent the following files and folders to be send to docker build context
-/node_modules
-/.next
+.git
+node_modules/
+.next
+.gitignore
+.dockerignore
+out/
+.storybook/
+
+# e2e
+e2e/results/
+e2e/cypress/screenshots/
+e2e/cypress/videos/
