@@ -6,10 +6,13 @@ import { IntlShape } from '@formatjs/intl/src/types'
 
 const cache = createIntlCache()
 
-export const defaultTestIntl: IntlShape<React.ReactNode> = createIntl({
-  locale: 'en',
-  messages: enTranslationData,
-}, cache)
+export const defaultTestIntl: IntlShape<React.ReactNode> = createIntl(
+  {
+    locale: 'en',
+    messages: enTranslationData,
+  },
+  cache
+)
 
 export function wrapIntlProvider(el: React.ReactElement): React.ReactElement {
   return (
