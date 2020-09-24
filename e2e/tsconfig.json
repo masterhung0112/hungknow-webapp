@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "types": [
+      "cypress",
+      "@applitools/eyes-cypress",
+      "@types/testing-library__cypress",
+      "cypress-wait-until"
+    ],
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "esModuleInterop": true
+  },
+  "include": [
+    "**/*.*"
+  ],
+  "types": [
+    "express"
+  ]
+}
