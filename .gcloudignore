@@ -1,7 +1,14 @@
-.git
-dist
-out
-vendor
-*.jar
-node_modules
+# dependencies
+node_modules/
+.git/
+
+# nextjs
+out/
+.next/
+
+# CI
 /.circleci
+/.github
+
+# design
+/design/

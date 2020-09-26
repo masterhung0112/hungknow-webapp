@@ -1,16 +1,38 @@
+# dependencies
 node_modules/
+
 Makefile
+
+# eslint
 .eslintrc.json
-.gitattributes
-.gitignore
-.npmignore
-.npminstall
-.tmp
-.circleci
-jest.config.js
-babel.config.js
-.editorconfig
 .eslintignore
 .eslintrc.json
+
+# git
+.gitattributes
+.gitignore
+
+# npm
+.npmignore
+.npminstall
+
+# ci
+.circleci/
+.github/
 cloudbuild.yaml
-.github
+
+# source
+build/
+.storybook/
+e2e/
+src/
+
+# design
+/design/
+
+jest.config.js
+babel.config.js
+
+# misc
+.tmp
+.editorconfig
