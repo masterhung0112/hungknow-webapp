@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import SignupEmail, { SignupEmailProps } from './signupEmail'
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
-import { defaultIntl, wrapIntlProvider, translationData } from 'hktest/intlProvider'
+import { defaultTestIntl, wrapIntlProvider, translationData } from 'hktestlib/intlProvider'
 import '@testing-library/jest-dom'
 import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import userEvent from '@testing-library/user-event'
@@ -133,7 +133,7 @@ describe('components/SignupEmail', () => {
     fireEvent.click(createButton)
 
     // Generate final message
-    const usernameLength = defaultIntl.formatMessage(
+    const usernameLength = defaultTestIntl.formatMessage(
       { id: 'signup_user_completed.usernameLength' },
       {
         min: General.MIN_USERNAME_LENGTH,

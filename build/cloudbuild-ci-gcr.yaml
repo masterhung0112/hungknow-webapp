@@ -11,7 +11,7 @@ steps:
     args: [
       'build',
       '--tag=gcr.io/$PROJECT_ID/webapp-stage1:$SHORT_SHA',
-      '--file=./build/Dockerfile-ci',
+      '--file=./build/Dockerfile.ci',
       '--cache-from', 'gcr.io/$PROJECT_ID/webapp-stage1:latest',
       '.'
     ]

@@ -26,6 +26,7 @@
     "build:docker-ci": "docker build -f ./build/Dockerfile.ci -t webapp-ci:latest ."
   },
   "dependencies": {
+    "@formatjs/intl": "1.3.2",
     "classnames": "^2.2.6",
     "hkclient-ts": "github:masterhung0112/hkclient-ts#a60ebe503beaf17fe0233d6e9339dc50233f5790",
     "intl-messageformat": "9.3.8",
