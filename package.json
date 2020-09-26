@@ -8,7 +8,7 @@
     "eslint:fix": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --fix --cache",
     "dev": "cross-env NODE_ENV='development' node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8065",
     "check-types": "tsc",
     "sdk-build": "cd ./node_modules/hkclient-ts && npm ci && npm run prepare",
     "storybook": "start-storybook -p 6006",

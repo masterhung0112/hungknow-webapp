@@ -16,4 +16,4 @@ import '@cypress/code-coverage/support'
 import 'cypress-react-selector'
 import 'cypress-wait-until'
 
-import './commands'
+import './api'
