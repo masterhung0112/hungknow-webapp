@@ -1,4 +1,4 @@
-const mapKeys = require('lodash.mapkeys')
+const mapKeys = require('lodash/mapkeys')
 
 function convertKeysToLowercase(obj) {
   return mapKeys(obj, (_, k) => {
@@ -20,7 +20,7 @@ const dbGetUser = async ({ dbConfig, params: { username } }) => {
 
   try {
     const user = await knexClient(toLowerCase(dbConfig, 'Users')).where('username', username).first()
-    console.log('found user: ', user)
+
     return { user: convertKeysToLowercase(user) }
   } catch (error) {
     return { errorMessage: 'Failed to get a user from the database; detail: ' + error }
