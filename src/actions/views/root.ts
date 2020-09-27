@@ -9,8 +9,10 @@ export function loadMeAndConfig(): ActionFunc {
 
     // need to await for clientConfig first as it is required for loadMe
     const resolvedPromises = await Promise.all(promises)
-    if (document.cookie.indexOf('HKUSERID=') > -1) {
-      resolvedPromises.push(await dispatch(UserActions.loadMe()))
+    if (process.browser) {
+      if (document.cookie.indexOf('HKUSERID=') > -1) {
+        resolvedPromises.push(await dispatch(UserActions.loadMe()))
+      }
     }
 
     return resolvedPromises.reduce((acc, val) => acc.concat(val), [])

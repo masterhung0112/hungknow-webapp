@@ -7,6 +7,22 @@ import { connect } from 'react-redux'
 import { createUser, loginById } from 'hkclient-ts/lib/actions/users'
 import { getPasswordConfig } from 'hkclient-ts/lib/utils/helpers'
 import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
+import { wrapper } from 'stores/redux_store'
+import { loadMeAndConfig } from 'actions/views/root'
+
+export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
+//   // store.dispatch(serverRenderClock(true))
+//   // store.dispatch(addCount())
+  var results = await store.dispatch(loadMeAndConfig())
+  if (results && results[0] && results[0].error) {
+    console.log('error1 @###: ', results[0].error)
+  } else {
+    // console.log('state1 @###: ', JSON.parse(JSON.stringify(mapStateToProps(store.getState()))))
+  }
+  return {
+    props: JSON.parse(JSON.stringify(mapStateToProps(store.getState()))),
+  }
+})
 
 function mapStateToProps(state: GlobalState) {
   const config = getConfig(state)
@@ -43,4 +59,4 @@ function mapDispatchToProps(dispatch: DispatchFunc) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupEmailComponent)
+export default connect(null, mapDispatchToProps)(SignupEmailComponent)

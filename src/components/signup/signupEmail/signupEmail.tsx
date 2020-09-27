@@ -44,7 +44,13 @@ export type SignupEmailState = {
   redirectTo: string
 }
 
-export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
+const Index: React.FC<SignupEmailProps> = ({ enableSignUpWithEmail }) => {
+  return <h1>${enableSignUpWithEmail}</h1>
+}
+
+export default Index
+
+export class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
   emailRef = React.createRef<HTMLInputElement>()
   usernameRef = React.createRef<HTMLInputElement>()
   passwordRef = React.createRef<HTMLInputElement>()
@@ -403,7 +409,8 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     if (enableSignUpWithEmail) {
       emailSignup = this.renderEmailSignup()
     } else {
-      return null
+      return <h1>You don't have any signup methods</h1>
+      // emailSignup = this.renderEmailSignup()
     }
 
     return (
