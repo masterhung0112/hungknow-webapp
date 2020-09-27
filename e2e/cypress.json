@@ -1,0 +1,20 @@
+{
+  "baseUrl": "http://localhost:8065",
+  "taskTimeout": 20000,
+  "viewportWidth": 1300,
+  "viewportHeight": 1300,
+  "video": false,
+  "nodeVersion": "system",
+  "watchForFileChanges": false,
+  "ignoreTestFiles": "**/node_modules/**/*",
+  "testFiles": "**/*.spec.*",
+  "env": {
+    "cypress-react-selector": {
+      "root": "#root"
+    },
+    "adminUsername": "sysadmin",
+    "adminPassword": "Sys@dmin-sample1",
+    "dbClient": "mysql",
+    "dbConnection": "mysql://hkuser:mostest@localhost:7306/hungknow_test?charset=utf8mb4&readTimeout=30s&writeTimeout=30s"
+  }
+}
