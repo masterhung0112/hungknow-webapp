@@ -7,7 +7,7 @@ function convertKeysToLowercase(obj) {
 }
 
 function getKnexClient({ client, connection }) {
-  return require('knex')({ client, connection }) // eslint-disable-line global-require
+  return require('knex')({ client, connection })
 }
 
 // Reuse DB client connection
@@ -20,11 +20,19 @@ const dbGetUser = async ({ dbConfig, params: { username } }) => {
 
   try {
     const user = await knexClient(toLowerCase(dbConfig, 'Users')).where('username', username).first()
-
+    console.log('found user: ', user)
     return { user: convertKeysToLowercase(user) }
   } catch (error) {
-    return { errorMessage: 'Failed to get a user from the database' }
+    return { errorMessage: 'Failed to get a user from the database; detail: ' + error }
   }
+}
+
+function toLowerCase(config, name) {
+  if (config.client === 'mysql') {
+    return name
+  }
+
+  return name.toLowerCase()
 }
 
 module.exports = {

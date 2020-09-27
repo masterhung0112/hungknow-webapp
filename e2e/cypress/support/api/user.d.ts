@@ -9,5 +9,15 @@ declare namespace Cypress {
      *   cy.apiLogout();
      */
     apiLogout()
+
+    /**
+     * Login as admin via API.
+     * See https://api.mattermost.com/#tag/users/paths/~1users~1login/post
+     * @returns {UserProfile} out.user: `UserProfile` object
+     *
+     * @example
+     *   cy.apiAdminLogin();
+     */
+    apiAdminLogin(): Chainable<UserProfile>
   }
 }

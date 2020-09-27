@@ -1,3 +1,18 @@
+import merge from 'deepmerge'
+import partialDefaultConfig from '../../fixtures/partial_default_config.json'
+
+const getDefaultConfig = () => {
+  const fromCypressEnv = {
+    LdapSettings: {
+      LdapServer: Cypress.env('ldapServer'),
+      LdapPort: Cypress.env('ldapPort'),
+    },
+    ServiceSettings: { SiteURL: Cypress.config('baseUrl') },
+  }
+
+  return merge(partialDefaultConfig, fromCypressEnv)
+}
+
 Cypress.Commands.add('apiUpdateConfig', (newConfig = {}) => {
   // # Get current settings
   return cy.request('/api/v1/config').then((response) => {

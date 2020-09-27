@@ -1,5 +1,6 @@
 declare namespace Cypress {
   type AdminConfig = import('hkclient-ts/lib/types/config').AdminConfig
+  type UserProfile = import('hkclient-ts/lib/types/users').UserProfile
 
   interface Chainable<Subject = any> {
     login(
