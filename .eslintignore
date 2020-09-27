@@ -1,8 +1,21 @@
-/node_modules
+# dependencies
+node_modules/
+
+# Storybook
+.storybook
+
+# next
+/.next
 /out
+/public
+
+# CI
 /.github
 /.circleci
-/.storybook
-/.next
-/public
+
+# misc
+/.git
 *.scss.d.ts
+
+# design
+/design/
