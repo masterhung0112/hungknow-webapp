@@ -1,19 +1,21 @@
 // Stage: @prod
 // Group: @authentication
 
-let config
+import { AdminConfig } from 'hkclient-ts/lib/types/config'
+
+let config: AdminConfig
 
 describe('Signup Email page', () => {
   before(() => {
     // Disable other auth options
     const newSettings = {
-      Office365Settings: { Enable: false },
-      LdapSettings: { Enable: false },
-    }
+      //   Office365Settings: { Enable: false },
+      //   LdapSettings: { Enable: false },
+    } as AdminConfig
     cy.apiUpdateConfig(newSettings)
 
     cy.apiGetConfig().then((data) => {
-      ;({ config } = data)
+      config = data
     })
     cy.apiLogout()
 

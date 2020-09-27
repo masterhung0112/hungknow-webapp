@@ -16,4 +16,28 @@ import '@cypress/code-coverage/support'
 import 'cypress-react-selector'
 import 'cypress-wait-until'
 
+import './db_commands'
 import './api'
+
+import { getAdminAccount } from './env'
+
+before(() => {
+  const admin = getAdminAccount()
+
+  cy.dbGetUser({ username: admin.username }).then(({ user }) => {
+    if (user.id) {
+      // # Login existing sysadmin
+      cy.apiAdminLogin().then(() => sysadminSetup(user))
+    } else {
+      // # Create and login a newly created user as sysadmin
+      cy.apiCreateAdmin().then(({ sysadmin }) => {
+        cy.apiAdminLogin().then(() => sysadminSetup(sysadmin))
+      })
+    }
+  })
+})
+
+// Add login cookies to whitelist to preserve it
+beforeEach(() => {
+  Cypress.Cookies.preserveOnce('HKAUTHTOKEN', 'HKUSERID', 'HKCSRF')
+})

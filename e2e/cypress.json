@@ -15,6 +15,6 @@
     "adminUsername": "sysadmin",
     "adminPassword": "Sys@dmin-sample1",
     "dbClient": "mysql",
-    "dbConnection": "mysql://hkuser:mostest@localhost:3306/hungknow_test?charset=utf8mb4&readTimeout=30s&writeTimeout=30s"
+    "dbConnection": "mysql://hkuser:mostest@localhost:7306/hungknow_test?charset=utf8mb4&readTimeout=30s&writeTimeout=30s"
   }
 }
