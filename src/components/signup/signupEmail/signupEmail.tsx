@@ -16,7 +16,7 @@ import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
 
-export type SignupEmailProps = {
+export interface SignupEmailProps {
   hasAccounts: boolean
   enableSignUpWithEmail: boolean
   customDescriptionText?: string
@@ -44,18 +44,12 @@ export type SignupEmailState = {
   redirectTo: string
 }
 
-const Index: React.FC<SignupEmailProps> = ({ enableSignUpWithEmail }) => {
-  return <h1>${enableSignUpWithEmail}</h1>
-}
-
-export default Index
-
-export class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
+export default class SignupEmail extends React.Component<SignupEmailProps, SignupEmailState> {
   emailRef = React.createRef<HTMLInputElement>()
   usernameRef = React.createRef<HTMLInputElement>()
   passwordRef = React.createRef<HTMLInputElement>()
 
-  constructor(props: SignupEmailProps) {
+  constructor(props: any) {
     super(props)
 
     this.state = {

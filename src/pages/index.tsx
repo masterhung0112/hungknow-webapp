@@ -5,12 +5,7 @@ import { connect } from 'react-redux'
 // import { NextPageContext } from "next";
 import { GlobalState } from 'hkclient-ts/lib/types/store'
 
-export interface PageProps extends GlobalState {
-  pageProp: string
-  appProp: string
-}
-
-class Index extends React.Component<PageProps> {
+class Index extends React.Component {
   // note that since _app is wrapped no need to wrap page
   // public static async getInitialProps({
   //   store,
