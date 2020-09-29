@@ -5,7 +5,6 @@
   "viewportHeight": 1300,
   "video": false,
   "nodeVersion": "system",
-  "watchForFileChanges": false,
   "ignoreTestFiles": "**/node_modules/**/*",
   "testFiles": "**/*.spec.*",
   "env": {

@@ -35,6 +35,8 @@ export interface FormGroupProps extends IIntentProps, IProps {
    */
   labelInfo?: React.ReactNode
 
+  labelProps?: React.LabelHTMLAttributes<HTMLLabelElement>
+
   /**
    * Optional helper text. The given content will be wrapped in
    * `Classes.FORM_HELPER_TEXT` and displayed beneath `children`.
@@ -55,6 +57,7 @@ export default class FormGroup extends AbstractPureComponent<FormGroupProps> {
       label,
       labelFor,
       labelInfo,
+      labelProps,
       helperText,
       children,
     } = this.props
@@ -76,7 +79,7 @@ export default class FormGroup extends AbstractPureComponent<FormGroupProps> {
     return (
       <div className={classname} style={style}>
         {label && (
-          <label className={CssClasses.LABEL} htmlFor={labelFor}>
+          <label className={CssClasses.LABEL} htmlFor={labelFor} {...labelProps}>
             {label} <span className={CssClasses.TEXT_MUTED}>{labelInfo}</span>
           </label>
         )}

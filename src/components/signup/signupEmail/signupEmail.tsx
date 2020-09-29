@@ -67,12 +67,25 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     }
   }
 
-  componentDidMount() {
-    const { query, asPath } = Router
+  setDocumentTitle = (siteName: string) => {
+    if (siteName) {
+      document.title = siteName
+    }
+  }
 
+  componentDidMount() {
+    this.setDocumentTitle(this.props.siteName)
+
+    const { query } = Router
     const data = query['d']
     const token = query['t']
     const inviteId = query['id']
+
+    let redirect_to = query['redirect_to'] ?? ''
+    //TODO:
+    if (redirect_to) {
+      redirect_to += '&redirect_to=' + redirect_to
+    }
 
     this.setState((previousState: SignupEmailState) => {
       return {
@@ -80,7 +93,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
         data,
         token,
         inviteId,
-        redirectTo: asPath,
+        redirectTo: redirect_to,
       } as SignupEmailState
     })
   }
@@ -269,8 +282,11 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
                 <FormattedMessage id="signup_user_completed.whatis" defaultMessage="What's your email address?" />
               </strong>
             }
-            intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY}
             labelFor="email"
+            labelProps={{
+              id: 'email_label',
+            }}
+            intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY}
             helperText={
               <>
                 {this.state.emailError ? <span id="email-error">{this.state.emailError}</span> : null}
@@ -423,7 +439,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
                 href={'/login' + redirectTo}
                 // onClick={() => trackEvent('signup_email', 'click_signin_account')}
               >
-                <a>
+                <a id="signin_account_link">
                   <FormattedMessage id="signup_user_completed.signIn" defaultMessage="Click here to sign in." />
                 </a>
               </Link>

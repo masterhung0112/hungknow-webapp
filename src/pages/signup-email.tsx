@@ -11,14 +11,12 @@ import { wrapper } from 'stores/redux_store'
 import { loadMeAndConfig } from 'actions/views/root'
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-//   // store.dispatch(serverRenderClock(true))
-//   // store.dispatch(addCount())
   var results = await store.dispatch(loadMeAndConfig())
   if (results && results[0] && results[0].error) {
-    console.log('error1 @###: ', results[0].error)
-  } else {
-    // console.log('state1 @###: ', JSON.parse(JSON.stringify(mapStateToProps(store.getState()))))
+    //TODO: Remove this
+    console.error('loadMeAndConfig error: ', results[0].error)
   }
+
   return {
     props: JSON.parse(JSON.stringify(mapStateToProps(store.getState()))),
   }
