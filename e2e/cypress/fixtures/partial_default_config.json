@@ -381,9 +381,9 @@
         "LoginButtonTextColor": "#ffffff"
     },
     "NativeAppSettings": {
-        "AppDownloadLink": "https://mattermost.com/download/#mattermostApps",
-        "AndroidAppDownloadLink": "https://about.mattermost.com/mattermost-android-app/",
-        "IosAppDownloadLink": "https://about.mattermost.com/mattermost-ios-app/"
+        "AppDownloadLink": "https://hungknow.com/download/#mattermostApps",
+        "AndroidAppDownloadLink": "https://about.hungknow.com/hungknow-android-app/",
+        "IosAppDownloadLink": "https://about.hungknow.com/hungknow-ios-app/"
     },
     "ClusterSettings": {
         "Enable": false,
@@ -473,10 +473,10 @@
         "ClientDirectory": "./client/plugins",
         "Plugins": {},
         "PluginStates": {
-            "com.mattermost.nps": {
+            "com.hungknow.nps": {
                 "Enable": false
             },
-            "com.mattermost.plugin-incident-response": {
+            "com.hungknow.plugin-incident-response": {
                 "Enable": false
             }
         },
@@ -484,7 +484,7 @@
         "EnableRemoteMarketplace": true,
         "AutomaticPrepackagedPlugins": true,
         "RequirePluginSignature": false,
-        "MarketplaceUrl": "https://api.integrations.mattermost.com",
+        "MarketplaceUrl": "https://api.integrations.hungknow.com",
         "SignaturePublicKeyFiles": []
     },
     "DisplaySettings": {
