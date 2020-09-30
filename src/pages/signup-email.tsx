@@ -5,10 +5,13 @@ import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
 import { GlobalState } from 'hkclient-ts/lib/types/store'
 import { connect } from 'react-redux'
 import { createUser, loginById } from 'hkclient-ts/lib/actions/users'
+import { getTeamInviteInfo } from 'hkclient-ts/lib/actions/teams'
 import { getPasswordConfig } from 'hkclient-ts/lib/utils/helpers'
 import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
 import { wrapper } from 'stores/redux_store'
 import { loadMeAndConfig } from 'actions/views/root'
+import { setGlobalItem } from 'actions/storage'
+import { redirectUserToDefaultTeam } from 'actions/global_actions'
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   var results = await store.dispatch(loadMeAndConfig())
@@ -49,8 +52,9 @@ function mapDispatchToProps(dispatch: DispatchFunc) {
       {
         createUser,
         loginById,
-        // setGlobalItem,
-        // getTeamInviteInfo,
+        setGlobalItem,
+        getTeamInviteInfo,
+        redirectUserToDefaultTeam,
       },
       dispatch
     ),

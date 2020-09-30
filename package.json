@@ -31,6 +31,7 @@
     "classnames": "^2.2.6",
     "hkclient-ts": "github:masterhung0112/hkclient-ts#a60ebe503beaf17fe0233d6e9339dc50233f5790",
     "intl-messageformat": "9.3.8",
+    "key-mirror": "1.0.1",
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",
     "marked": "^1.1.1",

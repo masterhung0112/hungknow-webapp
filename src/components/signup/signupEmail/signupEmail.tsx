@@ -11,10 +11,11 @@ import { Intent } from 'common'
 import { Button, FormGroup, InputGroup } from 'core/components'
 import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/lib/utils/helpers'
 import { PasswordConfig } from 'hkclient-ts/lib/types/config'
-import { UserActions } from 'hkclient-ts/lib/actions'
+import { UserActions, TeamActions } from 'hkclient-ts/lib/actions'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
+import { setGlobalItem } from 'actions/storage'
 
 export interface SignupEmailProps {
   hasAccounts: boolean
@@ -25,8 +26,11 @@ export interface SignupEmailProps {
   termsOfServiceLink?: string
   privacyPolicyLink?: string
   actions: {
-    createUser: ActionCreatorClient<typeof UserActions.createUser> // (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
+    createUser: ActionCreatorClient<typeof UserActions.createUser>
     loginById: ActionCreatorClient<typeof UserActions.loginById>
+    getTeamInviteInfo: ActionCreatorClient<typeof TeamActions.getTeamInviteInfo>
+    setGlobalItem: ActionCreatorClient<typeof setGlobalItem>
+    redirectUserToDefaultTeam: () => void
   }
 }
 
@@ -215,14 +219,14 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
         return
       }
 
-      // if (this.state.token > 0) {
-      //     this.props.actions.setGlobalItem(this.state.token, JSON.stringify({usedBefore: true}));
-      // }
+      if (this.state.token && this.state.token.length > 0) {
+        this.props.actions.setGlobalItem(this.state.token, JSON.stringify({ usedBefore: true }))
+      }
 
       if (redirectTo) {
         router.push(redirectTo)
       } else {
-        // GlobalActions.redirectUserToDefaultTeam();
+        this.props.actions.redirectUserToDefaultTeam()
       }
     })
   }
