@@ -34,5 +34,7 @@ jest.mock('next/router', () => ({
   },
 }))
 
-// export the mocked instance above
+// // export the mocked instance above
 module.exports = jest.requireMock('next/router')
+
+// module.exports = jest.createMockFromModule('next/router').default

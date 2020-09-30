@@ -10,6 +10,7 @@ import { General } from 'hkclient-ts/lib/constants'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
 
+
 describe('components/SignupEmail', () => {
   const baseProps = {
     location: { search: 'search_path' },
@@ -54,8 +55,8 @@ describe('components/SignupEmail', () => {
   beforeEach(() => {
     jest.clearAllMocks()
 
-    const { query } = Router
-    query['redirect_to'] = undefined
+    Router.router.push = jest.fn()
+    Router.query['redirect_to'] = undefined
   })
 
   it('has enough fields', () => {
@@ -201,7 +202,6 @@ describe('components/SignupEmail', () => {
 
     // Mock for router push function
     const { router } = Router
-    router.push = jest.fn()
 
     // With valid data, click create button
     const createButton = getByText(translationData['signup_user_completed.create'])
