@@ -86,10 +86,6 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     const inviteId = query['id']
 
     let redirect_to = query['redirect_to'] ?? ''
-    //TODO:
-    if (redirect_to) {
-      redirect_to += '&redirect_to=' + redirect_to
-    }
 
     this.setState((previousState: SignupEmailState) => {
       return {
