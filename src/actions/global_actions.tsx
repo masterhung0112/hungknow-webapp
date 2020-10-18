@@ -1,4 +1,4 @@
-import { getCurrentUser } from 'hkclient-ts/lib/selectors/entities/common'
+import { getCurrentUser } from 'hkclient-ts/lib/selectors/common'
 import { getTeamMemberships, getMyTeams, getTeam, getMyTeamMember } from 'hkclient-ts/lib/selectors/entities/teams'
 import {
   getAllDirectChannels,

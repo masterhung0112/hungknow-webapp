@@ -93,4 +93,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
   },
+
+  watchOptions: {
+    ignored: [
+      /node_modules([\\]+|\/)+(?!hkclient-ts)/, // Regex to ignore all node_modules that not started with hkclient-ts
+      /hkclient-ts([\\]+|\/)node_modules/, // Regex to ignore all node_modules inside hkclient-ts
+    ],
+  },
 }
