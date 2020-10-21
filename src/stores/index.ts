@@ -9,8 +9,10 @@ import { General, RequestStatus } from 'hkclient-ts/lib/constants'
 import { storageRehydrate } from 'actions/storage'
 import { clearUserCookie } from 'actions/views/cookie'
 import reduxInitialState from 'hkclient-ts/lib/store/initial_state'
+import { UsersModule } from 'hkclient-ts/lib/modules'
 import { ActionTypes } from 'utils/constants'
 import { getBasePath } from 'selectors/general'
+import { combineReducersWithGlobalActions } from './hydrate_reducer'
 
 function getAppReducer() {
   return require('../reducers')
@@ -202,5 +204,5 @@ export default function configureStore(initialState: GlobalState = undefined) {
     // detectNetwork: detect,
   }
 
-  return configureServiceStore({}, offlineOptions, [])
+  return configureServiceStore({}, offlineOptions, [UsersModule], combineReducersWithGlobalActions)
 }
