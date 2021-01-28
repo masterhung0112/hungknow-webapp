@@ -3,7 +3,7 @@
         "SiteURL": "http://localhost:8065",
         "WebsocketURL": "",
         "LicenseFileLocation": "",
-        "ListenAddress": ":9065",
+        "ListenAddress": ":8065",
         "ConnectionSecurity": "",
         "TLSCertFile": "",
         "TLSKeyFile": "",

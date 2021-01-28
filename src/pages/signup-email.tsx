@@ -1,7 +1,7 @@
 import { bindActionCreators } from 'redux'
 
 import SignupEmailComponent from 'components/signup/signupEmail'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import { getConfig } from 'hkclient-ts/lib/selectors/general'
 import { GlobalState } from 'hkclient-ts/lib/types/store'
 import { connect } from 'react-redux'
 import { createUser, loginById } from 'hkclient-ts/lib/actions/users'
