@@ -13,6 +13,7 @@ import { UsersModule } from 'hkclient-ts/lib/modules'
 import { ActionTypes } from 'utils/constants'
 import { getBasePath } from 'selectors/general'
 import { combineReducersWithGlobalActions } from './hydrate_reducer'
+import { GeneralModule } from 'hkclient-ts/lib/modules/general'
 
 function getAppReducer() {
   return require('../reducers')
@@ -204,5 +205,5 @@ export default function configureStore(initialState: GlobalState = undefined) {
     // detectNetwork: detect,
   }
 
-  return configureServiceStore({}, offlineOptions, [UsersModule], combineReducersWithGlobalActions)
+  return configureServiceStore({}, offlineOptions, [GeneralModule, UsersModule], combineReducersWithGlobalActions)
 }
