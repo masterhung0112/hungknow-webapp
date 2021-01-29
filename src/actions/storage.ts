@@ -1,6 +1,5 @@
 import { StorageTypes } from 'action-types'
-import { GetStateFunc } from 'hkclient-ts/lib/types/actions'
-import { DispatchFunc } from 'hkclient-ts/types/actions'
+import { GetStateFunc, DispatchFunc } from 'hkclient-ts/lib/types/actions'
 import { Persistor } from 'redux-persist'
 
 export function setGlobalItem(name: string, value: string) {
