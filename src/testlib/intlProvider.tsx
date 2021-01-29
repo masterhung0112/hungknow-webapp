@@ -2,11 +2,10 @@ import { createIntl, createIntlCache } from 'react-intl'
 import IntlProvider from 'components/intl-provider'
 import React from 'react'
 import enTranslationData from '../i18n/en.json'
-import { IntlShape } from '@formatjs/intl/src/types'
 
 const cache = createIntlCache()
 
-export const defaultTestIntl: IntlShape<React.ReactNode> = createIntl(
+export const defaultTestIntl = createIntl(
   {
     locale: 'en',
     messages: enTranslationData,

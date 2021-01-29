@@ -1,10 +1,8 @@
 import configureServiceStore from 'hkclient-ts/lib/store'
-import appReducer from 'reducers'
 import { createTransform, persistStore } from 'redux-persist'
 import { transformSet } from 'stores/utils'
 import localForage from 'localforage'
 import { extendPrototype } from 'localforage-observable'
-import { GlobalState } from 'hkclient-ts/lib/types/store'
 import { General, RequestStatus } from 'hkclient-ts/lib/constants'
 import { storageRehydrate } from 'actions/storage'
 import { clearUserCookie } from 'actions/views/cookie'
@@ -14,6 +12,8 @@ import { ActionTypes } from 'utils/constants'
 import { getBasePath } from 'selectors/general'
 import { combineReducersWithGlobalActions } from './hydrate_reducer'
 import { GeneralModule } from 'hkclient-ts/lib/modules/general'
+import { StorageModule } from 'modules/storage'
+import { GlobalState } from 'types/stores'
 
 function getAppReducer() {
   return require('../reducers')
@@ -205,5 +205,5 @@ export default function configureStore(initialState: GlobalState = undefined) {
     // detectNetwork: detect,
   }
 
-  return configureServiceStore({}, offlineOptions, [GeneralModule, UsersModule], combineReducersWithGlobalActions)
+  return configureServiceStore({}, offlineOptions, [GeneralModule, StorageModule, UsersModule], combineReducersWithGlobalActions)
 }

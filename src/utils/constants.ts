@@ -1,4 +1,4 @@
-import keyMirror from 'key-mirror'
+import keyMirror from 'hkclient-ts/lib/utils/key_mirror'
 
 export const Constants = {
   MOBILE_SCREEN_WIDTH: 768,

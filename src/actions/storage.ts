@@ -1,6 +1,8 @@
 import { StorageTypes } from 'action-types'
+import { StorageConstants } from 'constants/storage'
 import { GetStateFunc, DispatchFunc } from 'hkclient-ts/lib/types/actions'
 import { Persistor } from 'redux-persist'
+import { GlobalState } from 'types/stores'
 
 export function setGlobalItem(name: string, value: string) {
   return (dispatch: DispatchFunc) => {
@@ -13,7 +15,7 @@ export function setGlobalItem(name: string, value: string) {
 }
 
 export function storageRehydrate(incoming: Record<string, any>, persistor: Persistor) {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return (dispatch: DispatchFunc, getState: () => GlobalState) => {
     const state = getState()
     persistor.pause()
     Object.keys(incoming).forEach((key) => {
@@ -22,7 +24,7 @@ export function storageRehydrate(incoming: Record<string, any>, persistor: Persi
         const value = JSON.parse(incoming[key])
         if (value === null) {
           storage[key] = { value, timestamp: new Date() }
-        } else if (typeof state.storage.storage[key] === 'undefined') {
+        } else if (typeof state[StorageConstants.STORAGE_MODULE_NAME].storage[key] === 'undefined') {
           if (typeof value.timestamp === 'undefined') {
             storage[key] = { value, timestamp: new Date() }
           } else {
@@ -30,9 +32,9 @@ export function storageRehydrate(incoming: Record<string, any>, persistor: Persi
           }
         } else if (typeof value.timestamp === 'undefined') {
           storage[key] = { value, timestamp: new Date() }
-        } else if (typeof state.storage.storage[key].timestamp === 'undefined') {
+        } else if (typeof state[StorageConstants.STORAGE_MODULE_NAME].storage[key].timestamp === 'undefined') {
           storage[key] = { value: value.value, timestamp: new Date(value.timestamp) }
-        } else if (new Date(value.timestamp) > state.storage.storage[key].timestamp) {
+        } else if (new Date(value.timestamp) > state[StorageConstants.STORAGE_MODULE_NAME].storage[key].timestamp) {
           storage[key] = { value: value.value, timestamp: new Date(value.timestamp) }
         } else {
           return
