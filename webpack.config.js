@@ -56,8 +56,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: ["source-map-loader"],
-        enforce: "pre"
+        use: ['source-map-loader'],
+        enforce: 'pre',
       },
       {
         test: /\.(js|jsx|ts|tsx)?$/,

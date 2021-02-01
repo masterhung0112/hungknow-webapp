@@ -205,5 +205,10 @@ export default function configureStore(initialState: GlobalState = undefined) {
     // detectNetwork: detect,
   }
 
-  return configureServiceStore({}, offlineOptions, [GeneralModule, StorageModule, UsersModule], combineReducersWithGlobalActions)
+  return configureServiceStore(
+    {},
+    offlineOptions,
+    [GeneralModule, StorageModule, UsersModule],
+    combineReducersWithGlobalActions
+  )
 }

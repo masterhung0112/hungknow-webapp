@@ -10,7 +10,6 @@ import { General } from 'hkclient-ts/lib/constants'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
 
-
 describe('components/SignupEmail', () => {
   const baseProps = {
     location: { search: 'search_path' },

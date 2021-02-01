@@ -30,10 +30,10 @@ module.exports = (phase, { defaultConfig }) => {
         config.module.rules.push({
           test: /\.js$/,
           use: ['source-map-loader'],
-          enforce: 'pre'
+          enforce: 'pre',
         })
         config.stats = {
-          warningsFilter: [/Failed to parse source map*/]
+          warningsFilter: [/Failed to parse source map*/, (warning) => true],
         }
         // config.ignoreWarnings = [{ message: /Failed to parse source map/ }]
         // Note: we provide webpack above so you should not `require` it
