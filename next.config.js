@@ -32,7 +32,10 @@ module.exports = (phase, { defaultConfig }) => {
           use: ['source-map-loader'],
           enforce: 'pre'
         })
-        // config.ignoreWarnings = [/Failed to parse source map/]
+        config.stats = {
+          warningsFilter: [/Failed to parse source map*/]
+        }
+        // config.ignoreWarnings = [{ message: /Failed to parse source map/ }]
         // Note: we provide webpack above so you should not `require` it
         // Perform customizations to webpack config
         config.module.rules.push({

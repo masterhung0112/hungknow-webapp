@@ -50,10 +50,15 @@ const scssLoaders = [
 ]
 
 module.exports = {
-  devtool: IS_PRODUCTION ? false : 'inline-source-map',
+  devtool: IS_PRODUCTION ? false : 'eval',
   mode: IS_PRODUCTION ? 'production' : 'development',
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: ["source-map-loader"],
+        enforce: "pre"
+      },
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         exclude: STANDARD_EXCLUDE,

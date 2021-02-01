@@ -13,7 +13,7 @@ const STANDARD_EXCLUDE = [
     path.join(__dirname, '..', 'dist'),
 ];
 
-module.exports = async ({config, mode}) => {    
+module.exports = async ({config, mode}) => {
     config.module.rules[0].exclude = STANDARD_EXCLUDE;
     config.module.rules[0].test = /\.(js|jsx|ts|tsx)?$/;
     config.resolve.extensions.push('.ts', '.tsx');

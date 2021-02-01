@@ -12,12 +12,8 @@ import { wrapper } from 'stores/redux_store'
 import { loadMeAndConfig } from 'actions/views/root'
 import { setGlobalItem } from 'actions/storage'
 import { redirectUserToDefaultTeam } from 'actions/global_actions'
-import { IModuleStore } from 'redux-dynamic-modules'
-import { GeneralModule } from 'hkclient-ts/lib/modules/general'
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  ;(store as IModuleStore<any>).addModule(GeneralModule)
-
   var results = await store.dispatch(loadMeAndConfig())
   if (results && results[0] && results[0].error) {
     //TODO: Remove this
