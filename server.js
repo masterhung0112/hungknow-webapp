@@ -2,14 +2,14 @@ const express = require('express')
 const next = require('next')
 const { createProxyMiddleware } = require('http-proxy-middleware')
 
-const port = process.env.PORT || 8065
+const port = process.env.PORT || 3001
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const apiPaths = {
   '/api': {
-    target: 'http://localhost:9065',
+    target: 'http://localhost:8065',
     pathRewrite: {
       '^/api': '/api',
     },

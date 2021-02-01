@@ -74,6 +74,12 @@
       "styles/*": [
         "styles/*"
       ],
+      "actions-types": [
+        "actions-types"
+      ],
+      "actions-types/*": [
+        "actions-types/*"
+      ],
       "actions": [
         "actions"
       ],

@@ -27,6 +27,9 @@ describe('components/SignupEmail', () => {
     actions: {
       createUser: jest.fn(),
       loginById: jest.fn(),
+      setGlobalItem: jest.fn(),
+      getTeamInviteInfo: jest.fn(),
+      redirectUserToDefaultTeam: jest.fn(),
     },
   } as SignupEmailProps
 
@@ -47,6 +50,13 @@ describe('components/SignupEmail', () => {
     userEvent.clear(passwordInput)
     userEvent.type(passwordInput, validPassword)
   }
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+
+    Router.router.push = jest.fn()
+    Router.query['redirect_to'] = undefined
+  })
 
   it('has enough fields', () => {
     const wrapper = shallow(<SignupEmail {...baseProps} />)
@@ -74,6 +84,7 @@ describe('components/SignupEmail', () => {
     const props = {
       ...baseProps,
       actions: {
+        ...baseProps.actions,
         createUser: createUserMock,
         loginById: loginByIdMock,
       },
@@ -179,6 +190,7 @@ describe('components/SignupEmail', () => {
     const props = {
       ...baseProps,
       actions: {
+        ...baseProps.actions,
         createUser: createUserMock,
         loginById: loginByIdMock,
       },
@@ -189,7 +201,6 @@ describe('components/SignupEmail', () => {
 
     // Mock for router push function
     const { router } = Router
-    router.push = jest.fn()
 
     // With valid data, click create button
     const createButton = getByText(translationData['signup_user_completed.create'])
@@ -204,6 +215,90 @@ describe('components/SignupEmail', () => {
     const normalizedUrl = '/should_verify_email?email=' + encodeURIComponent(validEmail)
     expect(router.push).toBeCalledWith(normalizedUrl)
 
+    unmount()
+  })
+
+  test('push correct url when login return verified with redirect', async () => {
+    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
+    const loginByIdMock = jest.fn().mockResolvedValue([
+      {
+        data: { hello: 'world' },
+      },
+    ])
+
+    // Mock for router push function
+    const { query, router } = Router
+    query['redirect_to'] = encodeURIComponent('/signup_email_test')
+    router.push = jest.fn()
+
+    const props = {
+      ...baseProps,
+      actions: {
+        ...baseProps.actions,
+        createUser: createUserMock,
+        loginById: loginByIdMock,
+      },
+    }
+
+    const { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />))
+    inputCorrectValue(getByLabelText)
+
+    // With valid data, click create button
+    const createButton = getByText(translationData['signup_user_completed.create'])
+    fireEvent.click(createButton)
+
+    // Wait for function to be called
+    await waitFor(() => {
+      expect(loginByIdMock).toHaveBeenCalledTimes(1)
+    })
+
+    // Verify the correct URL was pushed to router
+    expect(router.push).toBeCalledWith(encodeURIComponent('/signup_email_test'))
+    unmount()
+  })
+
+  test('push correct url when login return verified without redirect call redirectTeam', async () => {
+    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
+    const loginByIdMock = jest.fn().mockResolvedValue([
+      {
+        data: { hello: 'world' },
+      },
+    ])
+    const redirectUserToDefaultTeamMock = jest.fn()
+
+    // Mock for router push function
+    const { router } = Router
+    router.push = jest.fn()
+
+    const props = {
+      ...baseProps,
+      actions: {
+        ...baseProps.actions,
+        createUser: createUserMock,
+        loginById: loginByIdMock,
+        redirectUserToDefaultTeam: redirectUserToDefaultTeamMock,
+      },
+    }
+
+    const { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />))
+    inputCorrectValue(getByLabelText)
+
+    // With valid data, click create button
+    const createButton = getByText(translationData['signup_user_completed.create'])
+
+    // Redirect function have never been called before
+    expect(redirectUserToDefaultTeamMock).not.toHaveBeenCalled()
+
+    fireEvent.click(createButton)
+
+    // Wait for function to be called
+    await waitFor(() => {
+      expect(loginByIdMock).toHaveBeenCalledTimes(1)
+    })
+
+    // Verify the correct URL was pushed to router
+    expect(router.push).not.toHaveBeenCalled()
+    expect(redirectUserToDefaultTeamMock).toHaveBeenCalled()
     unmount()
   })
 })

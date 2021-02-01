@@ -1,3 +1,5 @@
+import keyMirror from 'hkclient-ts/lib/utils/key_mirror'
+
 export const Constants = {
   MOBILE_SCREEN_WIDTH: 768,
 
@@ -11,3 +13,7 @@ export const Constants = {
   MAX_TRIGGER_LENGTH: 128,
   MAX_SITENAME_LENGTH: 30,
 }
+
+export const ActionTypes = keyMirror({
+  STORE_REHYDRATION_FAILED: null,
+})

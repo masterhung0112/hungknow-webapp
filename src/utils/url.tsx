@@ -35,7 +35,7 @@ export function getSiteURLFromWindowObject(obj: WindowObject): string {
 
 export function getSiteURL(): string {
   if (Utils.isServer) {
-    return ''
+    return 'http://localhost:8065'
   } else {
     return getSiteURLFromWindowObject(window)
   }

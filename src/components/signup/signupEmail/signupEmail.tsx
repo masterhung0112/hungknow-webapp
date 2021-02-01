@@ -11,12 +11,13 @@ import { Intent } from 'common'
 import { Button, FormGroup, InputGroup } from 'core/components'
 import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/lib/utils/helpers'
 import { PasswordConfig } from 'hkclient-ts/lib/types/config'
-import { UserActions } from 'hkclient-ts/lib/actions'
+import { UserActions, TeamActions } from 'hkclient-ts/lib/actions'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
+import { setGlobalItem } from 'actions/storage'
 
-export type SignupEmailProps = {
+export interface SignupEmailProps {
   hasAccounts: boolean
   enableSignUpWithEmail: boolean
   customDescriptionText?: string
@@ -25,8 +26,11 @@ export type SignupEmailProps = {
   termsOfServiceLink?: string
   privacyPolicyLink?: string
   actions: {
-    createUser: ActionCreatorClient<typeof UserActions.createUser> // (user: UserProfile, token: string, inviteId: string, redirect: string) => Promise<ActionResult>
+    createUser: ActionCreatorClient<typeof UserActions.createUser>
     loginById: ActionCreatorClient<typeof UserActions.loginById>
+    getTeamInviteInfo: ActionCreatorClient<typeof TeamActions.getTeamInviteInfo>
+    setGlobalItem: ActionCreatorClient<typeof setGlobalItem>
+    redirectUserToDefaultTeam: () => void
   }
 }
 
@@ -44,12 +48,12 @@ export type SignupEmailState = {
   redirectTo: string
 }
 
-export default class SignupEmail extends React.PureComponent<SignupEmailProps, SignupEmailState> {
+export default class SignupEmail extends React.Component<SignupEmailProps, SignupEmailState> {
   emailRef = React.createRef<HTMLInputElement>()
   usernameRef = React.createRef<HTMLInputElement>()
   passwordRef = React.createRef<HTMLInputElement>()
 
-  constructor(props: SignupEmailProps) {
+  constructor(props: any) {
     super(props)
 
     this.state = {
@@ -67,12 +71,21 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     }
   }
 
-  componentDidMount() {
-    const { query, asPath } = Router
+  setDocumentTitle = (siteName: string) => {
+    if (siteName) {
+      document.title = siteName
+    }
+  }
 
+  componentDidMount() {
+    this.setDocumentTitle(this.props.siteName)
+
+    const { query } = Router
     const data = query['d']
     const token = query['t']
     const inviteId = query['id']
+
+    let redirect_to = query['redirect_to'] ?? ''
 
     this.setState((previousState: SignupEmailState) => {
       return {
@@ -80,7 +93,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         data,
         token,
         inviteId,
-        redirectTo: asPath,
+        redirectTo: redirect_to,
       } as SignupEmailState
     })
   }
@@ -202,14 +215,14 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
         return
       }
 
-      // if (this.state.token > 0) {
-      //     this.props.actions.setGlobalItem(this.state.token, JSON.stringify({usedBefore: true}));
-      // }
+      if (this.state.token && this.state.token.length > 0) {
+        this.props.actions.setGlobalItem(this.state.token, JSON.stringify({ usedBefore: true }))
+      }
 
       if (redirectTo) {
         router.push(redirectTo)
       } else {
-        // GlobalActions.redirectUserToDefaultTeam();
+        this.props.actions.redirectUserToDefaultTeam()
       }
     })
   }
@@ -269,8 +282,11 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                 <FormattedMessage id="signup_user_completed.whatis" defaultMessage="What's your email address?" />
               </strong>
             }
-            intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY}
             labelFor="email"
+            labelProps={{
+              id: 'email_label',
+            }}
+            intent={this.state.emailError ? Intent.DANGER : Intent.PRIMARY}
             helperText={
               <>
                 {this.state.emailError ? <span id="email-error">{this.state.emailError}</span> : null}
@@ -403,7 +419,8 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
     if (enableSignUpWithEmail) {
       emailSignup = this.renderEmailSignup()
     } else {
-      return null
+      return <h1>You don't have any signup methods</h1>
+      // emailSignup = this.renderEmailSignup()
     }
 
     return (
@@ -422,7 +439,7 @@ export default class SignupEmail extends React.PureComponent<SignupEmailProps, S
                 href={'/login' + redirectTo}
                 // onClick={() => trackEvent('signup_email', 'click_signin_account')}
               >
-                <a>
+                <a id="signin_account_link">
                   <FormattedMessage id="signup_user_completed.signIn" defaultMessage="Click here to sign in." />
                 </a>
               </Link>

@@ -41,11 +41,11 @@ export default class SignupController extends React.PureComponent<SignupControll
     if (this.props.enableSignUpWithEmail) {
       signupControls.push(
         <Link
-          className="btn btn-custom-login btn--full email"
+          // className="btn btn-custom-login btn--full email"
           key="email"
           href={'/signup_email' + window.location.search}
         >
-          <span>
+          <span className="btn btn-custom-login btn--full email">
             <LocalizedIcon
               className="icon fa fa-envelope"
               component="span"

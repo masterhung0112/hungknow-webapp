@@ -39,6 +39,6 @@ Cypress.Commands.add('apiGetConfig', () => {
   // # Get current settings
   return cy.request('/api/v1/config').then((response) => {
     expect(response.status).to.equal(200)
-    return cy.wrap({ config: response.body })
+    return cy.wrap({ config: JSON.parse(response.body) })
   })
 })

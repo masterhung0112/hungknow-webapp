@@ -1,10 +1,19 @@
 import configureServiceStore from 'hkclient-ts/lib/store'
-import appReducer from 'reducers'
-import { createTransform } from 'redux-persist'
+import { createTransform, persistStore } from 'redux-persist'
 import { transformSet } from 'stores/utils'
 import localForage from 'localforage'
 import { extendPrototype } from 'localforage-observable'
-import { GlobalState } from 'hkclient-ts/lib/types/store'
+import { General, RequestStatus } from 'hkclient-ts/lib/constants'
+import { storageRehydrate } from 'actions/storage'
+import { clearUserCookie } from 'actions/views/cookie'
+import reduxInitialState from 'hkclient-ts/lib/store/initial_state'
+import { UsersModule } from 'hkclient-ts/lib/modules'
+import { ActionTypes } from 'utils/constants'
+import { getBasePath } from 'selectors/general'
+import { combineReducersWithGlobalActions } from './hydrate_reducer'
+import { GeneralModule } from 'hkclient-ts/lib/modules/general'
+import { StorageModule } from 'modules/storage'
+import { GlobalState } from 'types/stores'
 
 function getAppReducer() {
   return require('../reducers')
@@ -75,7 +84,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
   )
 
   const offlineOptions = {
-    persist: (store: any, options: any) => {
+    persist: (store: any, options: any): any => {
       const localforage = extendPrototype(localForage)
       const storage = localforage
       const KEY_PREFIX = 'reduxPersist:'
@@ -83,79 +92,81 @@ export default function configureStore(initialState: GlobalState = undefined) {
       localforage
         .ready()
         .then(() => {
-          // const persistor = persistStore(store, {storage, keyPrefix: KEY_PREFIX, ...options}, () => {
-          //     store.dispatch({
-          //         type: General.STORE_REHYDRATION_COMPLETE,
-          //         complete: true,
-          //     });
-          // });
+          const persistor = persistStore(store, { storage, keyPrefix: KEY_PREFIX, ...options }, () => {
+            store.dispatch({
+              type: General.STORE_REHYDRATION_COMPLETE,
+              complete: true,
+            })
+          })
 
           localforage.configObservables({
             crossTabNotification: true,
           })
 
-          // const observable = localforage.newObservable({
-          //     crossTabNotification: true,
-          //     changeDetection: true,
-          // });
+          const observable = localforage.newObservable({
+            crossTabNotification: true,
+            changeDetection: true,
+          })
 
-          // const restoredState = {};
-          // localforage.iterate((value, key) => {
-          //     if (key && key.indexOf(KEY_PREFIX + 'storage:') === 0) {
-          //         const keyspace = key.substr((KEY_PREFIX + 'storage:').length);
-          //         restoredState[keyspace] = value;
-          //     }
-          // }).then(() => {
-          //     storageRehydrate(restoredState, persistor)(store.dispatch, store.getState);
-          // });
+          const restoredState: Record<string, any> = {}
+          localforage
+            .iterate((value, key) => {
+              if (key && key.indexOf(KEY_PREFIX + 'storage:') === 0) {
+                const keyspace = key.substr((KEY_PREFIX + 'storage:').length)
+                restoredState[keyspace] = value
+              }
+            })
+            .then(() => {
+              storageRehydrate(restoredState, persistor)(store.dispatch, store.getState)
+            })
 
-          // observable.subscribe({
-          //     next: (args) => {
-          //         if (args.key && args.key.indexOf(KEY_PREFIX + 'storage:') === 0 && args.oldValue === null) {
-          //             const keyspace = args.key.substr((KEY_PREFIX + 'storage:').length);
+          observable.subscribe({
+            next: (args) => {
+              if (args.key && args.key.indexOf(KEY_PREFIX + 'storage:') === 0 && args.oldValue === null) {
+                const keyspace = args.key.substr((KEY_PREFIX + 'storage:').length)
 
-          //             var statePartial = {};
-          //             statePartial[keyspace] = args.newValue;
-          //             storageRehydrate(statePartial, persistor)(store.dispatch, store.getState);
-          //         }
-          //     },
-          // });
+                var statePartial: Record<string, any> = {}
+                statePartial[keyspace] = args.newValue
+                storageRehydrate(statePartial, persistor)(store.dispatch, store.getState)
+              }
+            },
+          })
 
-          // let purging = false;
+          let purging = false
 
           // check to see if the logout request was successful
-          // store.subscribe(() => {
-          //     const state = store.getState();
-          //     const basePath = getBasePath(state);
+          store.subscribe(() => {
+            const state = store.getState()
+            const basePath = getBasePath(state)
 
-          //     if (state.requests.users.logout.status === RequestStatus.SUCCESS && !purging) {
-          //         purging = true;
+            if (state.requests.users.logout.status === RequestStatus.SUCCESS && !purging) {
+              purging = true
 
-          //         persistor.purge().then(() => {
-          //             clearUserCookie();
+              persistor.purge()
+              clearUserCookie()
 
-          //             // Preserve any query string parameters on logout, including parameters
-          //             // used by the application such as extra and redirect_to.
-          //             window.location.href = `${basePath}${window.location.search}`;
+              // Preserve any query string parameters on logout, including parameters
+              // used by the application such as extra and redirect_to.
+              window.location.href = `${basePath}${window.location.search}`
 
-          //             store.dispatch({
-          //                 type: General.OFFLINE_STORE_RESET,
-          //                 data: Object.assign({}, reduxInitialState, initialState),
-          //             });
+              store.dispatch({
+                type: General.OFFLINE_STORE_RESET,
+                data: Object.assign({}, reduxInitialState, initialState),
+              })
 
-          //             setTimeout(() => {
-          //                 purging = false;
-          //             }, 500);
-          //         });
-          //     }
-          // });
+              setTimeout(() => {
+                purging = false
+              }, 500)
+            }
+          })
         })
         .catch((error) => {
-          // store.dispatch({
-          //     type: ActionTypes.STORE_REHYDRATION_FAILED,
-          //     error,
-          // });
+          store.dispatch({
+            type: ActionTypes.STORE_REHYDRATION_FAILED,
+            error,
+          })
         })
+      return store
     },
     persistOptions: {
       autoRehydrate: {
@@ -194,7 +205,10 @@ export default function configureStore(initialState: GlobalState = undefined) {
     // detectNetwork: detect,
   }
 
-  return configureServiceStore({}, appReducer, offlineOptions, getAppReducer, {
-    enableBuffer: false,
-  })
+  return configureServiceStore(
+    {},
+    offlineOptions,
+    [GeneralModule, StorageModule, UsersModule],
+    combineReducersWithGlobalActions
+  )
 }

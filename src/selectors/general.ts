@@ -1,4 +1,4 @@
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import { getConfig } from 'hkclient-ts/lib/selectors/general'
 import { GlobalState } from 'hkclient-ts/lib/types/store'
 
 export function getBasePath(state: GlobalState) {

@@ -50,10 +50,15 @@ const scssLoaders = [
 ]
 
 module.exports = {
-  devtool: IS_PRODUCTION ? false : 'inline-source-map',
+  devtool: IS_PRODUCTION ? false : 'eval',
   mode: IS_PRODUCTION ? 'production' : 'development',
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
+      },
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         exclude: STANDARD_EXCLUDE,
@@ -92,5 +97,12 @@ module.exports = {
 
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
+  },
+
+  watchOptions: {
+    ignored: [
+      /node_modules([\\]+|\/)+(?!hkclient-ts)/, // Regex to ignore all node_modules that not started with hkclient-ts
+      /hkclient-ts([\\]+|\/)node_modules/, // Regex to ignore all node_modules inside hkclient-ts
+    ],
   },
 }

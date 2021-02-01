@@ -26,6 +26,16 @@ module.exports = (phase, { defaultConfig }) => {
     return {
       /* development only config options here */
       webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+        // config.devtool = 'source-map'
+        config.module.rules.push({
+          test: /\.js$/,
+          use: ['source-map-loader'],
+          enforce: 'pre',
+        })
+        config.stats = {
+          warningsFilter: [/Failed to parse source map*/, (warning) => true],
+        }
+        // config.ignoreWarnings = [{ message: /Failed to parse source map/ }]
         // Note: we provide webpack above so you should not `require` it
         // Perform customizations to webpack config
         config.module.rules.push({
@@ -45,6 +55,11 @@ module.exports = (phase, { defaultConfig }) => {
             },
           ],
         })
+
+        config.watchOptions.ignored = [
+          /node_modules([\\]+|\/)+(?!hkclient-ts)/, // Regex to ignore all node_modules that not started with hkclient-ts
+          /hkclient-ts([\\]+|\/)node_modules/, // Regex to ignore all node_modules inside hkclient-ts
+        ]
 
         // Important: return the modified config
         return config
