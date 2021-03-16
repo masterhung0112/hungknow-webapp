@@ -1,9 +1,11 @@
 import React, { MutableRefObject, Ref, RefObject } from 'react'
+import { OverlayData } from 'types/TradingChart'
 
 export type ChartProps = {
   data: any
   width: number
   height: number
+  overlays: OverlayData[]
 }
 
 export type ChartState = {

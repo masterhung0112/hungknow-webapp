@@ -487,7 +487,7 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, masterGr
       }
       self.grid = grid // Grid Params
 
-      // Here we add some helppful functions for plugin creators
+      // Here we add some helpful functions for plugin creators
       return layoutFn(self, range)
     },
     get layout() {

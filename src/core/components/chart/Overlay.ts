@@ -1,38 +1,34 @@
-export type Overlay {
-    /** Overlay unique id (within current grid) ,e.g 'EMA_1' */
-    id: string
-    /** Overlay unique num (within current grid) */
-    num: number
-    /** Candlestick interval, ms (e.g. 1 min = 60000 ) */
-    interval: number
+import React, { useEffect } from 'react'
+import { DataCore, Layout } from 'types/TradingChart'
 
-    /** Crosshair position and selected values, see below */
-    cursor: Object
+export interface OverlayProps {
+  id: string
+  num: any
+  interval: number
+  cursor: any
+  colors: any
+  layout: Layout
+  sub: any
+  data: DataCore
+  settings: any
+  gridId: string
+  font: any
+  config: any
+  meta: any
+  tf: any
+  i0: any
+  last: any
+}
 
-    /** All colors from TradingVue.vue combined */
-    colors: Object
+export const useOverlay = (props: OverlayProps) => {
+  useEffect(() => {}, [props])
+  return {}
+}
 
-    /** Layout API object */
-    layout: Object
+export const withOverlayHOC = <T>(Component: React.Component<T>) => {
+  return (props: any) => {
+    const screenWidth = useOverlay(props);
 
-    /** Current subset of candlestick data */
-    sub: any[]
-
-    /** Current subset of indicator data */
-    data: any[]
-
-    /** Indicator's settings, defined in data.json */
-    settings: Object
-
-    /** Current grid id */
-    gridId: number
-
-    /** Chart config, see 'constants.js' */
-    config: Object
-
-    /** Contains the last price and other info */
-    meta: Object
-
-    /** The first global index of the current subset */
-    i0: number
+    return <Component {...props} />
+  }
 }

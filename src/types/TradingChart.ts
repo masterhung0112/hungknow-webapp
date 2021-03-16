@@ -15,6 +15,23 @@ export type CandleData = {
   raw: any
 }
 
+export type TimeRange = {
+  /** Left-bound of the range | Index (in IB mode) */
+  t1: number
+  /** Right-bound of the range | Index (in IB mode) */
+  t2: number
+}
+
+export type TimeIndexData = {
+  TimeIndexMap: any[]
+  IndexTimeMap: any[]
+  SubIndex: any[]
+  IndexBased: any
+  Sub: any
+  SubStart: any
+  IntervalMs: number
+}
+
 /**
  * DataCube [WIP] is a helper class designed for data manipulation.
  * Trading-vue component provides only rendering functionality,
@@ -229,6 +246,25 @@ export type CursorData = {
   scrollLock: boolean
 }
 
+export type GridData = {
+  id: string
+  height: number
+  width: number
+  logScale: number | undefined | null
+}
+
+export interface DataCore {
+  type: string
+  name: string
+  data: any
+  settings: any
+  grid: GridData
+  tf: number
+  i0: number
+  loading: boolean
+  last: any
+}
+
 export interface LayoutParams {
   grids: any
   sub: any
@@ -239,7 +275,7 @@ export interface LayoutParams {
   layersMeta: any
   tiMap: any
   yTransforms: any
-  grid: any
+  grid: GridData
 }
 
 export interface Layout {
@@ -289,10 +325,10 @@ export interface Layout {
   startx: number
 
   /** Time-index mapping for IB mode */
-  ti_map: Object
+  ti_map: TimeIndexData
 
   /** Candles subset */
-  candles: any[]
+  candles: CandleData[]
 
   /** Volume bars positions and sizes */
   volume: any[]
@@ -303,13 +339,16 @@ export interface Layout {
   /** horizontal grid lines [[y, price], ...] */
   ys: any[]
 
-  grids: any
+  grids: GridData[]
+  grid: GridData
   botbar: {
     width: number
     height: number
     offset: number
     xs: any[]
   }
+
+  masterGrid: any
 
   /**
    * Returns y-coordinate for given price
@@ -354,7 +393,7 @@ export interface Layout {
   c_magnet(t: number): CandleData
 }
 
-export type Overlay = {
+export type OverlayData = {
   /** Overlay unique id (within current grid) ,e.g 'EMA_1' */
   id: string
   /** Overlay unique num (within current grid) */
@@ -375,7 +414,7 @@ export type Overlay = {
   sub: any[]
 
   /** Current subset of indicator data */
-  data: any[]
+  data: DataCore[]
 
   /** Indicator's settings, defined in data.json */
   settings: Object

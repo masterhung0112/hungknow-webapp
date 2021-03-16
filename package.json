@@ -30,6 +30,7 @@
   "dependencies": {
     "@formatjs/intl": "1.8.3",
     "@redux-offline/redux-offline": "2.6.0",
+    "arrayslicer": "1.2.3",
     "classnames": "^2.2.6",
     "hkclient-ts": "github:masterhung0112/hkclient-ts#fe738f9898e0163fafdfd56e4591e26edc0749b8",
     "intl-messageformat": "9.5.3",

@@ -87,7 +87,7 @@ export const IB_TF_WARN =
   `timeframe ('tf' filed in 'chart' object),` +
   `otherwise you can get an unexpected behaviour`
 
-export const MAP_UNIT = {
+export const MAP_UNIT: { [key: string]: number } = {
   '1s': SECOND,
   '5s': SECOND * 5,
   '10s': SECOND * 10,
