@@ -1,5 +1,5 @@
 import { AbstractPureComponent, CssClasses, IIntentProps, IProps } from 'common'
-import React, { ReactNode } from 'react'
+import React from 'react'
 import cx from 'classnames'
 
 export interface FormGroupProps extends IIntentProps, IProps {

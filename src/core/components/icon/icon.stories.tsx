@@ -2,7 +2,7 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Icon } from './icon'
 
-storiesOf('Icon', module).add('default', () => {
+storiesOf('Core/Components/Icon/React', module).add('default', () => {
   return (
     <div>
       <Icon icon="calendar" />
