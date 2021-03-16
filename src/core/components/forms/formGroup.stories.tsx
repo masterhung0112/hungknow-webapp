@@ -1,9 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { ShowroomWin } from 'showroom/components'
+import { Intent } from 'common'
 import InputGroup from './inputGroup'
 import FormGroup, { FormGroupProps } from './formGroup'
-import { Intent } from 'common'
 
 const baseProps = {
   style: undefined,
@@ -18,10 +18,9 @@ const baseProps = {
 
 storiesOf('Core/Components/forms/Form Group/React', module)
   .addParameters({ component: FormGroup })
-  .add('No special props', () => {
-  return (
+  .add('No special props', () => (
     <ShowroomWin id="form-formGroup-no-special-props">
-      <FormGroup {...baseProps} label="Username:" labelInfo={'(required)'} labelFor="username">
+      <FormGroup {...baseProps} label="Username:" labelInfo="(required)" labelFor="username">
         <InputGroup type="text" name="username" />
       </FormGroup>
       <FormGroup {...baseProps} label="Password:" helperText="This is help text">
@@ -37,5 +36,4 @@ storiesOf('Core/Components/forms/Form Group/React', module)
         <InputGroup type="text" name="danger" value="Danger Text" />
       </FormGroup>
     </ShowroomWin>
-  )
-})
+  ))
