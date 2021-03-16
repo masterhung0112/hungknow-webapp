@@ -1,3 +1,20 @@
+export type CandleData = {
+  /** c-coordinate (px) */
+  x: number
+  /** width (px) */
+  w: number
+  /** open (px) */
+  o: number
+  /** high (px) */
+  h: number
+  /** low (px) */
+  l: number
+  /** close (px) */
+  c: number
+  /** Candle data e.g. [1553378400000, ...] */
+  raw: any
+}
+
 /**
  * DataCube [WIP] is a helper class designed for data manipulation.
  * Trading-vue component provides only rendering functionality,
@@ -293,6 +310,48 @@ export interface Layout {
     offset: number
     xs: any[]
   }
+
+  /**
+   * Returns y-coordinate for given price
+   * @param price price number
+   * @returns pixels (number)
+   */
+  $2screen(price: number): number
+
+  /**
+   * Returns x-coordinate for given timestamp
+   * @param t time (number)
+   * @returns pixels (number)
+   */
+  t2screen(t: number): number
+
+  /**
+   * Returns price for given y-coordinate
+   * @param y y (number)
+   * @returns price (number)
+   */
+  screen2$(y: number): number
+
+  /**
+   * Returns time for given x-coordinate
+   * @param x x (number)
+   * @returns time (number)
+   */
+  screen2t(x: number): number
+
+  /**
+   * Returns x-coordinate of nearest candle for given time
+   * @param t time (number)
+   * @returns pixels (number)
+   */
+  t_magnet(t: number): number
+
+  /**
+   * Returns nearest candle for given time
+   * @param t time (Number)
+   * @returns Candle Object
+   */
+  c_magnet(t: number): CandleData
 }
 
 export type Overlay = {
