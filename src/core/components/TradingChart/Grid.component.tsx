@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react'
-import { Layout } from 'types/TradingChart'
+import { DataCore, Layout } from 'types/TradingChart'
 import { Canvas } from './Canvas.component'
 
 export type GridProps = {

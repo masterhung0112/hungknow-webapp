@@ -268,14 +268,17 @@ export interface DataCore {
 export interface LayoutParams {
   grids: any
   sub: any
-  offsub: any
+  offsub: any[]
   interval: any
   range: any
   ctx: any
-  layersMeta: any
-  tiMap: any
-  yTransforms: any
+  layers_meta: any
+  ti_map: any
+  y_transforms: any
   grid: GridData
+
+  $props: any
+  chart: any
 }
 
 export interface Layout {
@@ -348,7 +351,7 @@ export interface Layout {
     xs: any[]
   }
 
-  masterGrid: any
+  master_grid: any
 
   /**
    * Returns y-coordinate for given price
