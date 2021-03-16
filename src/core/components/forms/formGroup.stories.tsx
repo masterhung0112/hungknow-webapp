@@ -16,7 +16,7 @@ const baseProps = {
   helperText: undefined,
 } as FormGroupProps
 
-storiesOf('Core/Components/forms/Form Group/React', module)
+storiesOf('Core/Components/Form/FormGroup/React', module)
   .addParameters({ component: FormGroup })
   .add('No special props', () => (
     <ShowroomWin id="form-formGroup-no-special-props">

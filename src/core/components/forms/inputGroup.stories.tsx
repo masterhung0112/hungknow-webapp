@@ -11,7 +11,7 @@ const baseProps = {
   rightElement: undefined,
 } as IInputGroupProps
 
-storiesOf('Form - InputGroup', module).add('No special props', () => {
+storiesOf('Core/Components/Form/InputGroup/React', module).add('No special props', () => {
   return (
     <ShowroomWin id="form-inputgroup-no-special-props">
       <InputGroup {...baseProps} />

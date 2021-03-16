@@ -1,9 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { Spinner } from './spinner'
-import { Intent } from 'common'
 
-storiesOf('Spinner', module).add('default', () => {
+storiesOf('Core/Components/Spinner/React', module).add('default', () => {
   return (
     <div
       style={{
