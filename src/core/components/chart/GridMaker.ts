@@ -1,5 +1,5 @@
+import { LayoutParams } from 'types/TradingChart'
 import { TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY } from './constants'
-import { Layout, LayoutParams } from './Layout'
 
 const MAX_INT = Number.MAX_SAFE_INTEGER
 

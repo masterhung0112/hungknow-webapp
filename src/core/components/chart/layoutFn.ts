@@ -1,4 +1,7 @@
-export function layoutFn(self, range) {
+import { Layout } from 'types/TradingChart'
+import * as math from './math'
+
+export function layoutFn(self: Layout, range: any[]) {
   const ib = self.ti_map.ib
   const dt = range[1] - range[0]
   const r = self.spacex / dt
