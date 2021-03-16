@@ -33,7 +33,6 @@ storiesOf('Core/Components/forms/Form Group/React', module)
       <FormGroup {...baseProps} inline label="Inline label:" helperText="This is help text">
         <InputGroup type="text" name="inline" value="Inline Text" />
       </FormGroup>
-
       <FormGroup {...baseProps} intent={Intent.DANGER} label="Danger label:" helperText="This is help text">
         <InputGroup type="text" name="danger" value="Danger Text" />
       </FormGroup>
