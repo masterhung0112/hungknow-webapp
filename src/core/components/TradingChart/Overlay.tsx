@@ -25,9 +25,9 @@ export const useOverlay = (props: OverlayProps) => {
   return {}
 }
 
-export const withOverlayHOC = <T>(Component: React.Component<T>) => {
+export const withOverlayHOC = <T extends OverlayProps>(Component: React.ComponentType<T>) => {
   return (props: any) => {
-    const screenWidth = useOverlay(props);
+    useOverlay(props)
 
     return <Component {...props} />
   }
