@@ -107,7 +107,7 @@
     "react-hot-loader": "^4.12.21",
     "react-is": "^17.0.1",
     "sass": "1.32.8",
-    "sass-loader": "^11.0.1",
+    "sass-loader": "^10.1.1",
     "source-map-loader": "2.0.1",
     "tasksfile": "5.1.1",
     "test-jest": "^1.0.1",

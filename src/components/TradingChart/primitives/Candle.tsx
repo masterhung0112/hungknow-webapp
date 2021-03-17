@@ -1,5 +1,5 @@
 import { CandleData } from 'types/TradingChart'
-import { Layer, Line, Rect } from 'react-konva'
+import { Line, Rect } from 'react-konva'
 import React from 'react'
 import { DefaultStyles } from '../defaultStyles'
 
@@ -10,9 +10,9 @@ export type CandleProps = {
 
 export const Candle: React.FC<CandleProps> = ({ data }) => {
   const green = data.raw[4] >= data.raw[1]
-  const style = data.raw[6] || DefaultStyles
-  const body_color = green ? style.colorCandleUp : style.colorCandleDw
-  const wick_color = green ? style.colorWickUp : style.colorWickDw
+  const style = DefaultStyles
+  const body_color = green ? style.colorCandleUp.default : style.colorCandleDw.default
+  const wick_color = green ? style.colorWickUp.default : style.colorWickDw.default
 
   let w = Math.max(data.w, 1)
   let hw = Math.max(Math.floor(w * 0.5), 1)
@@ -22,7 +22,7 @@ export const Candle: React.FC<CandleProps> = ({ data }) => {
   let s = green ? 1 : -1
 
   return (
-    <Layer>
+    <>
       <Line points={[x05, Math.floor(data.h), x05, Math.floor(data.l)]} stroke={wick_color} />
       {data.w > 1.5 ? (
         <Rect
@@ -43,6 +43,6 @@ export const Candle: React.FC<CandleProps> = ({ data }) => {
           stroke={body_color}
         />
       )}
-    </Layer>
+    </>
   )
 }

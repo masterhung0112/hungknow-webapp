@@ -1,3 +1,5 @@
+import { ChartConfig } from "./constants"
+
 export const DefaultStyles = {
   titleTxt: {
     type: String,
@@ -87,7 +89,7 @@ export const DefaultStyles = {
   },
   font: {
     type: String,
-    default: Const.ChartConfig.FONT,
+    default: ChartConfig.FONT,
   },
   toolbar: {
     type: Boolean,
@@ -100,7 +102,7 @@ export const DefaultStyles = {
   // Your overlay classes here
   overlays: {
     type: Array,
-    default: function () {
+    default: (): any[] => {
       return []
     },
   },
@@ -114,7 +116,7 @@ export const DefaultStyles = {
   },
   legendButtons: {
     type: Array,
-    default: function () {
+    default: (): any[] => {
       return []
     },
   },

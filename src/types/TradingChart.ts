@@ -12,7 +12,7 @@ export type CandleData = {
   /** close (px) */
   c: number
   /** Candle data e.g. [1553378400000, ...] */
-  raw: any
+  raw: any[]
 }
 
 export type TimeRange = {
