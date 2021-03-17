@@ -1,14 +1,16 @@
 import React from 'react'
 import { CandleData } from 'types/TradingChart'
+import { layout_cnv } from '../layoutCnv'
 import { OverlayProps, useOverlay } from '../Overlay'
+import { Candle } from '../primitives/Candle'
 
 export const Candles: React.FC<OverlayProps> = (props) => {
   const { data, sub, layout } = props
   useOverlay(props)
 
   let cnv: {
-    candles: CandleData[]
-    volumes: any[]
+    candles: CandleData[],
+    volumes: any[],
   } = {
     candles: [],
     volumes: [],
@@ -23,5 +25,11 @@ export const Candles: React.FC<OverlayProps> = (props) => {
     cnv = layout_cnv(layout)
   }
 
-  return <>{cnv.candles.map((candleData) => {})}</>
+  return (
+    <>
+      {cnv.candles.map((candleData) => {
+        return <Candle data={candleData} overlay={props} />
+      })}
+    </>
+  )
 }

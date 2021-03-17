@@ -55,7 +55,7 @@ export default {
         index = i
       }
     }
-    return [index, val]
+    return [index, val] as const
   },
 
   round(num: number, decimals = 8): number {

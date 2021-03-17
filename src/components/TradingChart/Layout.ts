@@ -4,12 +4,18 @@
 // one components size can depend on other component
 // data formatting (e.g. grid width depends on sidebar precision)
 
-import { Layout, LayoutParams } from 'types/TradingChart'
-import { GridMaker } from './GridMaker'
+import { Layout, GridMakerParams, LayoutParams, GridLayout, GridMaker } from 'types/TradingChart'
+import { createGridMaker } from './GridMaker'
+import { t2screen } from './layoutFn'
 import log_scale from './logScale'
 
-// So it's better to calc all in one place.
-export const generateLayout = (params: LayoutParams): Layout => {
+// Generate all the necessary grids from the layout params
+export const generateLayout = (
+  params: LayoutParams
+): {
+  grids: Layout[]
+  botbar: any
+} => {
   let { chart, sub, offsub, interval, range, ctx, layers_meta, ti_map, $props: $p, y_transforms: y_ts } = params
 
   let mgrid = chart.grid || {}
@@ -42,7 +48,7 @@ export const generateLayout = (params: LayoutParams): Layout => {
     return [m].concat(Array(n).fill(px))
   }
 
-  function weighted_hs(grid, height: number) {
+  function weighted_hs(grid: GridLayout, height: number) {
     let hs = [{ grid }, ...offsub].map((x) => x.grid.height || 1)
     let sum = hs.reduce((a, b) => a + b, 0)
     hs = hs.map((x) => Math.floor((x / sum) * height))
@@ -69,7 +75,7 @@ export const generateLayout = (params: LayoutParams): Layout => {
 
     for (var i = 0; i < sub.length; i++) {
       let p = sub[i]
-      mid = self.t2screen(p[0]) + 0.5
+      mid = t2screen(self, p[0], range) + 0.5
       self.candles.push(
         mgrid.logScale
           ? log_scale.candle(self, mid, p, $p)
@@ -102,7 +108,7 @@ export const generateLayout = (params: LayoutParams): Layout => {
 
   // Main grid
   const hs = grid_hs()
-  let specs = {
+  let specs: GridMakerParams = {
     sub,
     interval,
     range,
@@ -115,7 +121,7 @@ export const generateLayout = (params: LayoutParams): Layout => {
     grid: mgrid,
     timezone: $p.timezone,
   }
-  let gms: GridMaker[] = [new GridMaker(0, specs)]
+  let gms: GridMaker[] = [createGridMaker(0, specs)]
 
   // Sub grids
   for (var [i, { data, grid }] of offsub.entries()) {
@@ -123,17 +129,17 @@ export const generateLayout = (params: LayoutParams): Layout => {
     specs.height = hs[i + 1]
     specs.y_t = y_ts[i + 1]
     specs.grid = grid || {}
-    gms.push(new GridMaker(i + 1, specs, gms[0].get_layout()))
+    gms.push(createGridMaker(i + 1, specs, gms[0].layout))
   }
 
   // Max sidebar among all grinds
-  let sb = Math.max(...gms.map((x) => x.get_sidebar()))
+  let sb = Math.max(...gms.map((x) => x.sidebar))
 
   let grids = [],
     offset = 0
 
   for (i = 0; i < gms.length; i++) {
-    gms[i].set_sidebar(sb)
+    gms[i].sidebar = sb
     grids.push(gms[i].create())
     grids[i].id = i
     grids[i].offset = offset

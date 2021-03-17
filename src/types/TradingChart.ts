@@ -20,7 +20,11 @@ export type TimeRange = {
   t1: number
   /** Right-bound of the range | Index (in IB mode) */
   t2: number
+
+  exp: boolean
 }
+
+export type TimeRangeCreator = (hi: number, lo: number, exp?: boolean) => TimeRange
 
 export type TimeIndexData = {
   TimeIndexMap: any[]
@@ -246,10 +250,10 @@ export type CursorData = {
   scrollLock: boolean
 }
 
-export type GridData = {
-  id: string
-  height: number
-  width: number
+export interface GridLayout extends Layout {
+  // id: string
+  // height: number
+  // width: number
   logScale: number | undefined | null
 }
 
@@ -258,30 +262,59 @@ export interface DataCore {
   name: string
   data: any
   settings: any
-  grid: GridData
+  grid: GridLayout
   tf: number
   i0: number
   loading: boolean
   last: any
 }
 
+/** Key is grid_id */
+export type LayersMeta = Record<string, { y_range: TimeRangeCreator; x_range: TimeRangeCreator }[]>
+export interface GridMakerParams {
+  sub: any[]
+  interval: any
+  range: TimeRange
+  ctx: any
+  $p: any
+  layers_meta: LayersMeta
+  ti_map: any
+  height: number
+  y_t: any
+  grid: { id: string }
+  timezone: any
+
+  // grids: any
+  // offsub: any[]
+  // y_transforms: any
+
+  // $props: any
+  // chart: any
+}
+
 export interface LayoutParams {
-  grids: any
-  sub: any
+  chart: any
+  sub: any[]
   offsub: any[]
   interval: any
-  range: any
+  range: TimeRange
   ctx: any
-  layers_meta: any
+  layers_meta: LayersMeta
   ti_map: any
-  y_transforms: any
-  grid: GridData
-
   $props: any
-  chart: any
+  y_transforms: any
+}
+
+export interface GridMaker {
+  create(): GridLayout
+  readonly layout: Layout
+  sidebar: any
+  // readonly sideBar: any
 }
 
 export interface Layout {
+  type: string
+
   /** Upper bound of price-range */
   $_hi: number
   /** Upper bound of price-range */
@@ -342,8 +375,8 @@ export interface Layout {
   /** horizontal grid lines [[y, price], ...] */
   ys: any[]
 
-  grids: GridData[]
-  grid: GridData
+  // grids: GridLayout[]
+  grid: GridLayout
   botbar: {
     width: number
     height: number
@@ -351,49 +384,51 @@ export interface Layout {
     xs: any[]
   }
 
-  master_grid: any
+  master_grid: GridLayout
+
+  $props: any
 
   /**
    * Returns y-coordinate for given price
    * @param price price number
    * @returns pixels (number)
    */
-  $2screen(price: number): number
+  // $2screen(price: number): number
 
   /**
    * Returns x-coordinate for given timestamp
    * @param t time (number)
    * @returns pixels (number)
    */
-  t2screen(t: number): number
+  // t2screen(t: number): number
 
   /**
    * Returns price for given y-coordinate
    * @param y y (number)
    * @returns price (number)
    */
-  screen2$(y: number): number
+  // screen2$(y: number): number
 
   /**
    * Returns time for given x-coordinate
    * @param x x (number)
    * @returns time (number)
    */
-  screen2t(x: number): number
+  // screen2t(x: number): number
 
   /**
    * Returns x-coordinate of nearest candle for given time
    * @param t time (number)
    * @returns pixels (number)
    */
-  t_magnet(t: number): number
+  // t_magnet(t: number): number
 
   /**
    * Returns nearest candle for given time
    * @param t time (Number)
    * @returns Candle Object
    */
-  c_magnet(t: number): CandleData
+  // c_magnet(t: number): CandleData
 }
 
 export type OverlayData = {

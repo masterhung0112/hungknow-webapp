@@ -1,23 +1,22 @@
-import { Layout, LayoutParams } from 'types/TradingChart'
+import { GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout } from 'types/TradingChart'
 import { TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY } from './constants'
+import Utils from './utils'
 import log_scale from './logScale'
+import * as math from './math'
 
 const MAX_INT = Number.MAX_SAFE_INTEGER
 
-export interface GridMaker {
-  create(): any
-  readonly layout: Layout
-  readonly sidebar: any
-  readonly sideBar: any
-}
-
 // masterGrid - ref to the master grid
-export function createGridMaker(id: string, layoutParams: LayoutParams, master_grid: any = null): GridMaker {
-  let { sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone } = layoutParams
+export function createGridMaker(
+  id: number,
+  GridMakerParams: GridMakerParams,
+  master_grid: Layout | null = null
+): GridMaker {
+  let { sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone } = GridMakerParams
 
-  var self: Layout = { ti_map }
+  var gridLayout: Partial<GridLayout> = { ti_map }
   var lm = layers_meta[id]
-  var y_range_fn = null
+  var y_range_fn: TimeRangeCreator = null
   var ls = grid.logScale
 
   if (lm && Object.keys(lm).length) {
@@ -32,7 +31,7 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
     if (!master_grid) {
       // $ candlestick range
       if (y_range_fn) {
-        var [hi, lo] = y_range_fn(hi, lo)
+        var { hi, lo } = y_range_fn(hi, lo)
       } else {
         ;(hi = -Infinity), (lo = Infinity)
         for (var i = 0, n = sub.length; i < n; i++) {
@@ -58,23 +57,23 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
     // Fixed y-range in non-auto mode
     if (y_t && !y_t.auto && y_t.range) {
-      self.$_hi = y_t.range[0]
-      self.$_lo = y_t.range[1]
+      gridLayout.$_hi = y_t.range.t1
+      gridLayout.$_lo = y_t.range.t2
     } else {
       if (!ls) {
         exp = exp === false ? 0 : 1
-        self.$_hi = hi + (hi - lo) * $p.config.EXPAND * exp
-        self.$_lo = lo - (hi - lo) * $p.config.EXPAND * exp
+        gridLayout.$_hi = hi + (hi - lo) * $p.config.EXPAND * exp
+        gridLayout.$_lo = lo - (hi - lo) * $p.config.EXPAND * exp
       } else {
-        self.$_hi = hi
-        self.$_lo = lo
+        gridLayout.$_hi = hi
+        gridLayout.$_lo = lo
         log_scale.expand(self, height)
       }
 
-      if (self.$_hi === self.$_lo) {
+      if (gridLayout.$_hi === gridLayout.$_lo) {
         if (!ls) {
-          self.$_hi *= 1.05 // Expand if height range === 0
-          self.$_lo *= 0.95
+          gridLayout.$_hi *= 1.05 // Expand if height range === 0
+          gridLayout.$_lo *= 0.95
         } else {
           log_scale.expand(self, height)
         }
@@ -84,8 +83,8 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
   function calc_sidebar() {
     if (sub.length < 2) {
-      self.prec = 0
-      self.sb = $p.config.SBMIN
+      gridLayout.prec = 0
+      gridLayout.sb = $p.config.SBMIN
       return
     }
 
@@ -99,14 +98,14 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
     // TODO: add custom formatter f()
 
-    self.prec = calc_precision(sub)
+    gridLayout.prec = calc_precision(sub)
     let lens = []
-    lens.push(self.$_hi.toFixed(self.prec).length)
-    lens.push(self.$_lo.toFixed(self.prec).length)
+    lens.push(gridLayout.$_hi.toFixed(gridLayout.prec).length)
+    lens.push(gridLayout.$_lo.toFixed(gridLayout.prec).length)
     let str = '0'.repeat(Math.max(...lens)) + '    '
-    self.sb = ctx.measureText(str).width
-    self.sb = Math.max(Math.floor(self.sb), $p.config.SBMIN)
-    self.sb = Math.min(self.sb, $p.config.SBMAX)
+    gridLayout.sb = ctx.measureText(str).width
+    gridLayout.sb = Math.max(Math.floor(gridLayout.sb), $p.config.SBMIN)
+    gridLayout.sb = Math.min(gridLayout.sb, $p.config.SBMAX)
   }
 
   // Calculate $ precision for the Y-axis
@@ -163,33 +162,35 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
   function calc_positions() {
     if (sub.length < 2) return
 
-    let dt = range[1] - range[0]
+    let dt = range.t2 - range.t1
 
     // A pixel space available to draw on (x-axis)
-    self.spacex = $p.width - self.sb
+    gridLayout.spacex = $p.width - gridLayout.sb
 
     // Candle capacity
     let capacity = dt / interval
-    self.px_step = self.spacex / capacity
+    // Calculate candlestick step
+    gridLayout.px_step = gridLayout.spacex / capacity
 
     // px / time ratio
-    let r = self.spacex / dt
-    self.startx = (sub[0][0] - range[0]) * r
+    let r = gridLayout.spacex / dt
+    // First candle position (px)
+    gridLayout.startx = (sub[0][0] - range.t1) * r
 
     // Candle Y-transform: (A = scale, B = shift)
     if (!grid.logScale) {
-      self.A = -height / (self.$_hi - self.$_lo)
-      self.B = -self.$_hi * self.A
+      gridLayout.A = -height / (gridLayout.$_hi - gridLayout.$_lo)
+      gridLayout.B = -gridLayout.$_hi * gridLayout.A
     } else {
-      self.A = -height / (math.log(self.$_hi) - math.log(self.$_lo))
-      self.B = -math.log(self.$_hi) * self.A
+      gridLayout.A = -height / (math.log(gridLayout.$_hi) - math.log(gridLayout.$_lo))
+      gridLayout.B = -math.log(gridLayout.$_hi) * gridLayout.A
     }
   }
 
   // Select nearest good-loking t step (m is target scale)
   function time_step() {
     let k = ti_map.ib ? 60000 : 1
-    let xrange = (range[1] - range[0]) * k
+    let xrange = (range.t2 - range.t1) * k
     let m = xrange * ($p.config.GRIDX / $p.width)
     let s = TIMESCALES
     return Utils.nearest_a(m, s)[1] / k
@@ -197,7 +198,7 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
   // Select nearest good-loking $ step (m is target scale)
   function dollar_step() {
-    let yrange = self.$_hi - self.$_lo
+    let yrange = gridLayout.$_hi - gridLayout.$_lo
     let m = yrange * ($p.config.GRIDY / height)
     let p = parseInt(yrange.toExponential().split('e')[1])
     let d = Math.pow(10, p)
@@ -205,7 +206,7 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
     // TODO: center the range (look at RSI for example,
     // it looks ugly when "80" is near the top)
-    return Utils.strip(Utils.nearest_a(m, s)[1])
+    return Utils.strip(Utils.nearest_a(m, s)[1] + '')
   }
 
   function dollar_mult() {
@@ -216,14 +217,14 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
   // Price step multiplier (for the log-scale mode)
   function dollar_mult_hi() {
-    let h = Math.min(self.B, height)
+    let h = Math.min(gridLayout.B, height)
     if (h < $p.config.GRIDY) return 1
     let n = h / $p.config.GRIDY // target grid N
-    let yrange = self.$_hi
-    if (self.$_lo > 0) {
-      var yratio = self.$_hi / self.$_lo
+    let yrange = gridLayout.$_hi
+    if (gridLayout.$_lo > 0) {
+      var yratio = gridLayout.$_hi / gridLayout.$_lo
     } else {
-      yratio = self.$_hi / 1 // TODO: small values
+      yratio = gridLayout.$_hi / 1 // TODO: small values
     }
     let m = yrange * ($p.config.GRIDY / h)
     let p = parseInt(yrange.toExponential().split('e')[1])
@@ -231,14 +232,14 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
   }
 
   function dollar_mult_lo() {
-    let h = Math.min(height - self.B, height)
+    let h = Math.min(height - gridLayout.B, height)
     if (h < $p.config.GRIDY) return 1
     let n = h / $p.config.GRIDY // target grid N
-    let yrange = Math.abs(self.$_lo)
-    if (self.$_hi < 0 && self.$_lo < 0) {
-      var yratio = Math.abs(self.$_lo / self.$_hi)
+    let yrange = Math.abs(gridLayout.$_lo)
+    if (gridLayout.$_hi < 0 && gridLayout.$_lo < 0) {
+      var yratio = Math.abs(gridLayout.$_lo / gridLayout.$_hi)
     } else {
-      yratio = Math.abs(self.$_lo) / 1
+      yratio = Math.abs(gridLayout.$_lo) / 1
     }
     let m = yrange * ($p.config.GRIDY / h)
     let p = parseInt(yrange.toExponential().split('e')[1])
@@ -249,36 +250,36 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
     // If this is a subgrid, no need to calc a timeline,
     // we just borrow it from the master_grid
     if (!master_grid) {
-      self.t_step = time_step()
-      self.xs = []
-      const dt = range[1] - range[0]
-      const r = self.spacex / dt
+      gridLayout.t_step = time_step()
+      gridLayout.xs = []
+      const dt = range.t2 - range.t1
+      const r = gridLayout.spacex / dt
 
       /* TODO: remove the left-side glitch
         let year_0 = Utils.get_year(sub[0][0])
-        for (var t0 = year_0; t0 < range[0]; t0 += self.t_step) {}
+        for (var t0 = year_0; t0 < range.t1; t0 += gridLayout.t_step) {}
         let m0 = Utils.get_month(t0)*/
 
       for (var i = 0; i < sub.length; i++) {
         let p = sub[i]
         let prev = sub[i - 1] || []
-        let prev_xs = self.xs[self.xs.length - 1] || [0, []]
-        let x = Math.floor((p[0] - range[0]) * r)
+        let prev_xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
+        let x = Math.floor((p[0] - range.t1) * r)
 
         insert_line(prev, p, x)
 
         // Filtering lines that are too near
-        let xs = self.xs[self.xs.length - 1] || [0, []]
+        let xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
 
         if (prev_xs === xs) continue
 
-        if (xs[1][0] - prev_xs[1][0] < self.t_step * 0.8) {
+        if (xs[1][0] - prev_xs[1][0] < gridLayout.t_step * 0.8) {
           // prev_xs is a higher "rank" label
           if (xs[2] <= prev_xs[2]) {
-            self.xs.pop()
+            gridLayout.xs.pop()
           } else {
             // Otherwise
-            self.xs.splice(self.xs.length - 2, 1)
+            gridLayout.xs.splice(gridLayout.xs.length - 2, 1)
           }
         }
       }
@@ -289,14 +290,14 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
         extend_right(dt, r)
       }
     } else {
-      self.t_step = master_grid.t_step
-      self.px_step = master_grid.px_step
-      self.startx = master_grid.startx
-      self.xs = master_grid.xs
+      gridLayout.t_step = master_grid.t_step
+      gridLayout.px_step = master_grid.px_step
+      gridLayout.startx = master_grid.startx
+      gridLayout.xs = master_grid.xs
     }
   }
 
-  function insert_line(prev, p, x, m0) {
+  function insert_line(prev, p, x) {
     let prev_t = ti_map.ib ? ti_map.i2t(prev[0]) : prev[0]
     let p_t = ti_map.ib ? ti_map.i2t(p[0]) : p[0]
 
@@ -308,68 +309,68 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
     // TODO: take this block =========> (see below)
     if ((prev[0] || interval === YEAR) && Utils.get_year(p_t) !== Utils.get_year(prev_t)) {
-      self.xs.push([x, p, YEAR]) // [px, [...], rank]
+      gridLayout.xs.push([x, p, YEAR]) // [px, [...], rank]
     } else if (prev[0] && Utils.get_month(p_t) !== Utils.get_month(prev_t)) {
-      self.xs.push([x, p, MONTH])
+      gridLayout.xs.push([x, p, MONTH])
     }
     // TODO: should be added if this day !== prev day
     // And the same for 'botbar.js', TODO(*)
     else if (Utils.day_start(p_t) === p_t) {
-      self.xs.push([x, p, DAY])
-    } else if (p[0] % self.t_step === 0) {
-      self.xs.push([x, p, interval])
+      gridLayout.xs.push([x, p, DAY])
+    } else if (p[0] % gridLayout.t_step === 0) {
+      gridLayout.xs.push([x, p, interval])
     }
   }
 
   function extend_left(dt, r) {
-    if (!self.xs.length || !isFinite(r)) return
+    if (!gridLayout.xs.length || !isFinite(r)) return
 
-    let t = self.xs[0][1][0]
+    let t = gridLayout.xs[0][1][0]
     while (true) {
-      t -= self.t_step
-      let x = Math.floor((t - range[0]) * r)
+      t -= gridLayout.t_step
+      let x = Math.floor((t - range.t1) * r)
       if (x < 0) break
       // TODO: ==========> And insert it here somehow
       if (t % interval === 0) {
-        self.xs.unshift([x, [t], interval])
+        gridLayout.xs.unshift([x, [t], interval])
       }
     }
   }
 
   function extend_right(dt, r) {
-    if (!self.xs.length || !isFinite(r)) return
+    if (!gridLayout.xs.length || !isFinite(r)) return
 
-    let t = self.xs[self.xs.length - 1][1][0]
+    let t = gridLayout.xs[gridLayout.xs.length - 1][1][0]
     while (true) {
-      t += self.t_step
-      let x = Math.floor((t - range[0]) * r)
-      if (x > self.spacex) break
+      t += gridLayout.t_step
+      let x = Math.floor((t - range.t1) * r)
+      if (x > gridLayout.spacex) break
       if (t % interval === 0) {
-        self.xs.push([x, [t], interval])
+        gridLayout.xs.push([x, [t], interval])
       }
     }
   }
 
   function grid_y() {
     // Prevent duplicate levels
-    let m = Math.pow(10, -self.prec)
-    self.$_step = Math.max(m, dollar_step())
-    self.ys = []
+    let m = Math.pow(10, -gridLayout.prec)
+    gridLayout.$_step = Math.max(m, dollar_step())
+    gridLayout.ys = []
 
-    let y1 = self.$_lo - (self.$_lo % self.$_step)
+    let y1 = gridLayout.$_lo - (gridLayout.$_lo % gridLayout.$_step)
 
-    for (var y$ = y1; y$ <= self.$_hi; y$ += self.$_step) {
-      let y = Math.floor(y$ * self.A + self.B)
+    for (var y$ = y1; y$ <= gridLayout.$_hi; y$ += gridLayout.$_step) {
+      let y = Math.floor(y$ * gridLayout.A + gridLayout.B)
       if (y > height) continue
-      self.ys.push([y, Utils.strip(y$)])
+      gridLayout.ys.push([y, Utils.strip(y$)])
     }
   }
 
   function grid_y_log() {
     // TODO: Prevent duplicate levels, is this even
     // a problem here ?
-    self.$_mult = dollar_mult()
-    self.ys = []
+    gridLayout.$_mult = dollar_mult()
+    gridLayout.ys = []
 
     if (!sub.length) return
 
@@ -379,28 +380,28 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
     let yp = -Infinity // Previous y value
     let n = height / $p.config.GRIDY // target grid N
 
-    let q = 1 + (self.$_mult - 1) / 2
+    let q = 1 + (gridLayout.$_mult - 1) / 2
 
     // Over 0
-    for (var y$ = y1; y$ > 0; y$ /= self.$_mult) {
+    for (var y$ = y1; y$ > 0; y$ /= gridLayout.$_mult) {
       y$ = log_rounder(y$, q)
-      let y = Math.floor(math.log(y$) * self.A + self.B)
-      self.ys.push([y, Utils.strip(y$)])
+      let y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
+      gridLayout.ys.push([y, Utils.strip(y$)])
       if (y > height) break
       if (y - yp < $p.config.GRIDY * 0.7) break
-      if (self.ys.length > n + 1) break
+      if (gridLayout.ys.length > n + 1) break
       yp = y
     }
 
     // Under 0
     yp = Infinity
-    for (var y$ = y2; y$ < 0; y$ /= self.$_mult) {
+    for (var y$ = y2; y$ < 0; y$ /= gridLayout.$_mult) {
       y$ = log_rounder(y$, q)
-      let y = Math.floor(math.log(y$) * self.A + self.B)
+      let y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
       if (yp - y < $p.config.GRIDY * 0.7) break
-      self.ys.push([y, Utils.strip(y$)])
+      gridLayout.ys.push([y, Utils.strip(y$)])
       if (y < 0) break
-      if (self.ys.length > n * 3 + 1) break
+      if (gridLayout.ys.length > n * 3 + 1) break
       yp = y
     }
 
@@ -409,34 +410,34 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
 
   // Search a start for the top grid so that
   // the fixed value always included
-  function search_start_pos(value) {
+  function search_start_pos(value: number) {
     let N = height / $p.config.GRIDY // target grid N
     var y = Infinity,
       y$ = value,
       count = 0
     while (y > 0) {
-      y = Math.floor(math.log(y$) * self.A + self.B)
-      y$ *= self.$_mult
+      y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
+      y$ *= gridLayout.$_mult
       if (count++ > N * 3) return 0 // Prevents deadloops
     }
     return y$
   }
 
-  function search_start_neg(value) {
+  function search_start_neg(value: number) {
     let N = height / $p.config.GRIDY // target grid N
     var y = -Infinity,
       y$ = value,
       count = 0
     while (y < height) {
-      y = Math.floor(math.log(y$) * self.A + self.B)
-      y$ *= self.$_mult
+      y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
+      y$ *= gridLayout.$_mult
       if (count++ > N * 3) break // Prevents deadloops
     }
     return y$
   }
 
   // Make log scale levels look great again
-  function log_rounder(x, quality) {
+  function log_rounder(x: number, quality: number) {
     let s = Math.sign(x)
     x = Math.abs(x)
     if (x > 10) {
@@ -464,8 +465,8 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
   }
 
   function apply_sizes() {
-    self.width = $p.width - self.sb
-    self.height = height
+    gridLayout.width = $p.width - gridLayout.sb
+    gridLayout.height = height
   }
 
   calc_$range()
@@ -479,24 +480,31 @@ export function createGridMaker(id: string, layoutParams: LayoutParams, master_g
       calc_positions()
       grid_x()
       if (grid.logScale) {
-          grid_y_log()
+        grid_y_log()
       } else {
-          grid_y()
+        grid_y()
       }
       apply_sizes()
 
       // Link to the master grid (candlesticks)
       if (master_grid) {
-          self.master_grid = master_grid
+        gridLayout.master_grid = master_grid
       }
 
-      self.grid = grid // Grid params
+      gridLayout.grid = grid // Grid params
+      gridLayout.type = 'grid'
 
       // Here we add some helpful functions for plugin creators
-      return layoutFn(self, range)
+      return layout_fn(self, range)
     },
     get layout() {
-      return this
+      return gridLayout as GridLayout
+    },
+    get sidebar(): any {
+      return null
+    },
+    set sidebar(value: any) {
+      // h
     },
   }
 }
