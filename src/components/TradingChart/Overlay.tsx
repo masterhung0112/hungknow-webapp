@@ -9,15 +9,21 @@ export interface OverlayProps {
   colors: any
   layout: Layout
   sub: any
-  data: DataCore
+  data: any
   settings: any
-  gridId: string
+  gridId: number
   font: any
   config: any
   meta: any
   tf: any
   i0: any
   last: any
+}
+
+export interface VolumeOverlayProps extends OverlayProps {
+  _i1: number
+  _i2: (p: any[]) => any
+  volscale: number
 }
 
 export const useOverlay = (props: OverlayProps) => {

@@ -1,18 +1,26 @@
-import { Layout } from 'types/TradingChart'
+import { CandleData, Layout } from 'types/TradingChart'
+import { t2screen } from './layoutFn'
+import { VolumeOverlayProps } from './Overlay'
+import { CandelsOverlayProps } from './overlays/Candles.overlay'
 import Utils from './utils'
 
-export function layout_cnv(self: Layout) {
-  let $p = self.$props
+export function layout_cnv(
+  self: CandelsOverlayProps
+): {
+  candles: CandleData[]
+  volumes: any[]
+} {
+  let $p = self
   let sub = $p.data
-  let t2screen = $p.layout.t2screen
+  // let t2screen = $p.layout.t2screen
   let layout = $p.layout
 
   let candles = []
-  let volume = []
+  let volumes: any[] = []
 
-  // The volume bar height is determined as a percentage of
+  // The volumes bar height is determined as a percentage of
   // the chart's height (VOLSCALE)
-  let maxv = Math.max(...sub.map((x) => x[5]))
+  let maxv = Math.max(...sub.map((x: any) => x[5]))
   let vs = ($p.config.VOLSCALE * layout.height) / maxv
   var x1,
     x2,
@@ -31,9 +39,9 @@ export function layout_cnv(self: Layout) {
   // A === scale,  B === Y-axis shift
   for (var i = 0; i < sub.length; i++) {
     let p = sub[i]
-    mid = t2screen(p[0]) + 1
+    mid = t2screen(self.layout, p[0], self.layout.range) + 1
 
-    // Clear volume bar if there is a time gap
+    // Clear volumes bar if there is a time gap
     if (sub[i - 1] && p[0] - sub[i - 1][0] > interval2) {
       prev = null
     }
@@ -52,7 +60,7 @@ export function layout_cnv(self: Layout) {
       raw: p,
     })
 
-    volume.push({
+    volumes.push({
       x1: x1,
       x2: x2,
       h: p[5] * vs,
@@ -62,26 +70,26 @@ export function layout_cnv(self: Layout) {
     prev = x2 + splitter
   }
 
-  return { candles, volume }
+  return { candles, volumes }
 }
 
-export function layout_vol(self: Layout) {
-  let $p = self.$props
+export function layout_vol(self: VolumeOverlayProps) {
+  let $p = self
   let sub = $p.data
-  let t2screen = $p.layout.t2screen
+  // let t2screen = $p.layout.t2screen
   let layout = $p.layout
 
-  let volume = []
+  let volumes = []
 
   // Detect data second dimention size:
   let dim = sub[0] ? sub[0].length : 0
 
-  // Support special volume data (see API book), or OHLCV
+  // Support special volumes data (see API book), or OHLCV
   // Data indices:
   self._i1 = dim < 6 ? 1 : 5
-  self._i2 = dim < 6 ? (p) => p[2] : (p) => p[4] >= p[1]
+  self._i2 = dim < 6 ? (p: any[]) => p[2] : (p: any[]) => p[4] >= p[1]
 
-  let maxv = Math.max(...sub.map((x) => x[self._i1]))
+  let maxv = Math.max(...sub.map((x: any) => x[self._i1]))
   let volscale = self.volscale || $p.config.VOLSCALE
   let vs = (volscale * layout.height) / maxv
   var x1,
@@ -99,16 +107,16 @@ export function layout_vol(self: Layout) {
   // A === scale,  B === Y-axis shift
   for (var i = 0; i < sub.length; i++) {
     let p = sub[i]
-    mid = t2screen(p[0]) + 1
+    mid = t2screen(layout, p[0], layout.range) + 1
 
-    // Clear volume bar if there is a time gap
+    // Clear volumes bar if there is a time gap
     if (sub[i - 1] && p[0] - sub[i - 1][0] > interval2) {
       prev = null
     }
     x1 = prev || Math.floor(mid - px_step2 * 0.5)
     x2 = Math.floor(mid + px_step2 * 0.5) - 0.5
 
-    volume.push({
+    volumes.push({
       x1: x1,
       x2: x2,
       h: p[self._i1] * vs,
@@ -117,21 +125,23 @@ export function layout_vol(self: Layout) {
     })
     prev = x2 + splitter
   }
-  return volume
+  return volumes
 }
 
-function new_interval(layout, $p, sub) {
+function new_interval(layout: Layout, $p: any, sub: any) {
   // Subset interval against main interval
-  if (!layout.ti_map.ib) {
-    var interval2 = $p.tf || Utils.detect_interval(sub)
-    var ratio = interval2 / $p.interval
+  let interval2 = 0
+  let ratio = 0
+  if (!layout.ti_map.IndexBased) {
+    interval2 = $p.tf || Utils.detect_interval(sub)
+    ratio = interval2 / $p.interval
   } else {
     if ($p.tf) {
-      var ratio = $p.tf / layout.ti_map.tf
-      var interval2 = ratio
+      ratio = $p.tf / layout.ti_map.IntervalMs
+      interval2 = ratio
     } else {
-      var interval2 = Utils.detect_interval(sub)
-      var ratio = interval2 / $p.interval
+      interval2 = Utils.detect_interval(sub)
+      ratio = interval2 / $p.interval
     }
   }
   return [interval2, ratio]

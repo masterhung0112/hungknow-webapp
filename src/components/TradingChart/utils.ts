@@ -63,8 +63,8 @@ export default {
   },
 
   // Strip? No, it's ugly floats in js
-  strip(number: string): number {
-    return parseFloat(parseFloat(number).toPrecision(12))
+  strip(number: string | number): number {
+    return parseFloat(parseFloat(number + '').toPrecision(12))
   },
 
   get_day(t: number): number | null {

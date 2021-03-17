@@ -254,7 +254,34 @@ export interface GridLayout extends Layout {
   // id: string
   // height: number
   // width: number
-  logScale: number | undefined | null
+  logScale?: number | null
+}
+
+export interface ComponentBaseProps {
+  // Common props
+  title_txt: string
+  layout: Layout
+  sub: any
+  range: TimeRange
+  interval: number
+  cursor: CursorData
+  colors: any
+  font: any
+  y_ts: any
+  tv_id: string
+  config: any
+  buttons: any
+  meta: any
+  skin: any
+  data: DataCore[]
+}
+export interface LayoutComponentProps extends ComponentBaseProps {
+  overlays: any
+}
+export interface BotBarProps extends ComponentBaseProps {
+  width: number
+  height: number
+  rerender: Function
 }
 
 export interface DataCore {
@@ -281,7 +308,7 @@ export interface GridMakerParams {
   ti_map: any
   height: number
   y_t: any
-  grid: { id: string }
+  grid: GridLayout // Parent grid
   timezone: any
 
   // grids: any
@@ -386,7 +413,7 @@ export interface Layout {
 
   master_grid: GridLayout
 
-  $props: any
+  range: TimeRange
 
   /**
    * Returns y-coordinate for given price

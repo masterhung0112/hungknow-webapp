@@ -1,8 +1,9 @@
-import { GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout } from 'types/TradingChart'
+import { GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout, TimeRange } from 'types/TradingChart'
 import { TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY } from './constants'
 import Utils from './utils'
 import log_scale from './logScale'
 import * as math from './math'
+// import layout_fn from './layoutFn'
 
 const MAX_INT = Number.MAX_SAFE_INTEGER
 
@@ -14,7 +15,7 @@ export function createGridMaker(
 ): GridMaker {
   let { sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone } = GridMakerParams
 
-  var gridLayout: Partial<GridLayout> = { ti_map }
+  var gridLayout: GridLayout = { ti_map } as GridLayout
   var lm = layers_meta[id]
   var y_range_fn: TimeRangeCreator = null
   var ls = grid.logScale
@@ -28,30 +29,33 @@ export function createGridMaker(
 
   // Calc vertical ($/₿) range
   function calc_$range() {
+    let timeRange: TimeRange = {
+      t1: -Infinity,
+      t2: Infinity,
+      exp: false,
+    }
     if (!master_grid) {
       // $ candlestick range
       if (y_range_fn) {
-        var { hi, lo } = y_range_fn(hi, lo)
+        timeRange = y_range_fn(timeRange.t1, timeRange.t2)
       } else {
-        ;(hi = -Infinity), (lo = Infinity)
         for (var i = 0, n = sub.length; i < n; i++) {
           let x = sub[i]
-          if (x[2] > hi) hi = x[2]
-          if (x[3] < lo) lo = x[3]
+          if (x[2] > timeRange.t1) timeRange.t1 = x[2]
+          if (x[3] < timeRange.t2) timeRange.t2 = x[3]
         }
       }
     } else {
       // Offchart indicator range
-      ;(hi = -Infinity), (lo = Infinity)
       for (var i = 0; i < sub.length; i++) {
         for (var j = 1; j < sub[i].length; j++) {
           let v = sub[i][j]
-          if (v > hi) hi = v
-          if (v < lo) lo = v
+          if (v > timeRange.t1) timeRange.t1 = v
+          if (v < timeRange.t2) timeRange.t2 = v
         }
       }
       if (y_range_fn) {
-        var [hi, lo, exp] = y_range_fn(hi, lo)
+        timeRange = y_range_fn(timeRange.t1, timeRange.t2)
       }
     }
 
@@ -61,13 +65,13 @@ export function createGridMaker(
       gridLayout.$_lo = y_t.range.t2
     } else {
       if (!ls) {
-        exp = exp === false ? 0 : 1
-        gridLayout.$_hi = hi + (hi - lo) * $p.config.EXPAND * exp
-        gridLayout.$_lo = lo - (hi - lo) * $p.config.EXPAND * exp
+        const expVal = timeRange.exp === false ? 0 : 1
+        gridLayout.$_hi = timeRange.t1 + (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal
+        gridLayout.$_lo = timeRange.t2 - (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal
       } else {
-        gridLayout.$_hi = hi
-        gridLayout.$_lo = lo
-        log_scale.expand(self, height)
+        gridLayout.$_hi = timeRange.t1
+        gridLayout.$_lo = timeRange.t2
+        log_scale.expand(gridLayout, height)
       }
 
       if (gridLayout.$_hi === gridLayout.$_lo) {
@@ -75,7 +79,7 @@ export function createGridMaker(
           gridLayout.$_hi *= 1.05 // Expand if height range === 0
           gridLayout.$_lo *= 0.95
         } else {
-          log_scale.expand(self, height)
+          log_scale.expand(gridLayout, height)
         }
       }
     }
@@ -109,7 +113,7 @@ export function createGridMaker(
   }
 
   // Calculate $ precision for the Y-axis
-  function calc_precision(data) {
+  function calc_precision(data: any[]) {
     var max_r = 0,
       max_l = 0
 
@@ -132,7 +136,7 @@ export function createGridMaker(
         var [ls, rs] = str.split('e-')
         var [l, r] = ls.split('.')
         if (!r) r = ''
-        r = { length: r.length + parseInt(rs) || 0 }
+        r = { length: r.length + parseInt(rs) || 0 } as string
       } else {
         var [l, r] = str.split('.')
       }
@@ -297,7 +301,7 @@ export function createGridMaker(
     }
   }
 
-  function insert_line(prev, p, x) {
+  function insert_line(prev: any[], p: any[], x: number) {
     let prev_t = ti_map.ib ? ti_map.i2t(prev[0]) : prev[0]
     let p_t = ti_map.ib ? ti_map.i2t(p[0]) : p[0]
 
@@ -322,7 +326,7 @@ export function createGridMaker(
     }
   }
 
-  function extend_left(dt, r) {
+  function extend_left(dt: any, r: any) {
     if (!gridLayout.xs.length || !isFinite(r)) return
 
     let t = gridLayout.xs[0][1][0]
@@ -337,7 +341,7 @@ export function createGridMaker(
     }
   }
 
-  function extend_right(dt, r) {
+  function extend_right(dt: any, r: any) {
     if (!gridLayout.xs.length || !isFinite(r)) return
 
     let t = gridLayout.xs[gridLayout.xs.length - 1][1][0]
@@ -493,9 +497,11 @@ export function createGridMaker(
 
       gridLayout.grid = grid // Grid params
       gridLayout.type = 'grid'
+      gridLayout.range = range
 
       // Here we add some helpful functions for plugin creators
-      return layout_fn(self, range)
+      // return layout_fn(gridLayout, range)
+      return gridLayout
     },
     get layout() {
       return gridLayout as GridLayout
