@@ -1,11 +1,11 @@
 import { CandleData, Layout } from 'types/TradingChart'
 import { t2screen } from './layoutFn'
 import { VolumeOverlayProps } from './Overlay'
-import { CandelsOverlayProps } from './overlays/Candles.overlay'
+import { CandlesOverlayProps } from './overlays/Candles.overlay'
 import Utils from './utils'
 
 export function layout_cnv(
-  self: CandelsOverlayProps
+  self: CandlesOverlayProps
 ): {
   candles: CandleData[]
   volumes: any[]

@@ -4,9 +4,13 @@ import { layout_cnv } from '../layoutCnv'
 import { OverlayProps, useOverlay } from '../Overlay'
 import { Candle } from '../primitives/Candle'
 
-export interface CandelsOverlayProps extends OverlayProps {}
+export const CandlesModel = {
+  use_for: ['Candles'],
+}
 
-export const Candles: React.FC<CandelsOverlayProps> = (props) => {
+export interface CandlesOverlayProps extends OverlayProps {}
+
+export const Candles: React.FC<CandlesOverlayProps> = (props) => {
   const { data, sub, layout } = props
   useOverlay(props)
 
@@ -30,7 +34,7 @@ export const Candles: React.FC<CandelsOverlayProps> = (props) => {
   return (
     <>
       {cnv.candles.map((candleData) => {
-        return <Candle data={candleData} overlay={props} />
+        return <Candle data={candleData} />
       })}
     </>
   )

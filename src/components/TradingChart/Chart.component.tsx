@@ -22,7 +22,7 @@ export type ChartState = {
     x: number | null
     y: number | null
     t: number | null
-    gridId: number | null
+    grid_id: number | null
     locked: boolean
     values: Object
     scrollLock: boolean

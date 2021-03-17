@@ -11,13 +11,17 @@ export interface OverlayProps {
   sub: any
   data: any
   settings: any
-  gridId: number
+  grid_id: number
   font: any
   config: any
   meta: any
   tf: any
   i0: any
   last: any
+
+  // methods: {
+  //   use_for(): string[]
+  // }
 }
 
 export interface VolumeOverlayProps extends OverlayProps {

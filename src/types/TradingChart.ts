@@ -205,6 +205,7 @@ export type DataCubSettings = {
 export type CursorData = {
   /** Current x position (px) */
   x: number
+
   /** Current y position (px) */
   y: number
 
@@ -215,7 +216,7 @@ export type CursorData = {
   y$: number
 
   /** Current grid id */
-  gridId: number
+  grid_id: number
 
   /** true during scrolling, false otherwise */
   locked: boolean
@@ -244,10 +245,16 @@ export type CursorData = {
    *     }
    * }
    */
-  values: Object
+  values: Record<number, Record<string, any>>
 
   /** True when scrolling is locked (drawing mode) */
   scrollLock: boolean
+}
+
+export interface GridSettings {
+  logScale?: boolean
+  height?: number // Grid height (weight)
+  id?: number // New grid id (merge with another, offchart only)
 }
 
 export interface GridLayout extends Layout {
@@ -288,9 +295,9 @@ export interface DataCore {
   type: string
   name: string
   data: any
-  settings: any
+  settings: Record<string, string>
   grid: GridLayout
-  tf: number
+  tf: number // Forced timeframe, e.g. '1s'...'1Y' | Number
   i0: number
   loading: boolean
   last: any
@@ -339,6 +346,10 @@ export interface GridMaker {
   // readonly sideBar: any
 }
 
+export interface MainLayout {
+  grids: Layout[]
+}
+
 export interface Layout {
   type: string
 
@@ -375,7 +386,7 @@ export interface Layout {
   /** Grid offset from the top (px) */
   offset: number
 
-  /** Grid offset from the top (px) */
+  /** Candlestick step (px) */
   px_step: number
 
   /** Sidebar width */
@@ -397,10 +408,10 @@ export interface Layout {
   volume: any[]
 
   /** vertical grid lines [[x, candle], ...] */
-  xs: any[]
+  xs: [number, any][]
 
   /** horizontal grid lines [[y, price], ...] */
-  ys: any[]
+  ys: [number, any][]
 
   // grids: GridLayout[]
   grid: GridLayout
@@ -463,6 +474,7 @@ export type OverlayData = {
   id: string
   /** Overlay unique num (within current grid) */
   num: number
+
   /** Candlestick interval, ms (e.g. 1 min = 60000 ) */
   interval: number
 
@@ -482,10 +494,10 @@ export type OverlayData = {
   data: DataCore[]
 
   /** Indicator's settings, defined in data.json */
-  settings: Object
+  settings: Record<string, string>
 
   /** Current grid id */
-  gridId: number
+  grid_id: number
 
   /** Chart config, see 'constants.js' */
   config: Object
@@ -495,4 +507,12 @@ export type OverlayData = {
 
   /** The first global index of the current subset */
   i0: number
+}
+
+export interface ToolData {
+  type: string
+  group?: string
+  hint?: string
+  settings: Record<string, string>
+  data: any[]
 }

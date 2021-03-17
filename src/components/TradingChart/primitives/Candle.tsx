@@ -1,15 +1,16 @@
-import { CandleData, OverlayData } from 'types/TradingChart'
+import { CandleData } from 'types/TradingChart'
 import { Layer, Line, Rect } from 'react-konva'
 import React from 'react'
+import { DefaultStyles } from '../defaultStyles'
 
 export type CandleProps = {
   data: CandleData
-  overlay: OverlayData
+  // overlay: OverlayData
 }
 
-export const Candle: React.FC<CandleProps> = ({ data, overlay }) => {
+export const Candle: React.FC<CandleProps> = ({ data }) => {
   const green = data.raw[4] >= data.raw[1]
-  const style = data.raw[6] || overlay
+  const style = data.raw[6] || DefaultStyles
   const body_color = green ? style.colorCandleUp : style.colorCandleDw
   const wick_color = green ? style.colorWickUp : style.colorWickDw
 
