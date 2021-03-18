@@ -1,7 +1,8 @@
 import React from 'react'
-import { OverlayData, TimeRange } from 'types/TradingChart'
+import { CursorData, LayersMeta, LayoutComponentProps, OverlayData, TimeRange } from 'types/TradingChart'
 import { IB_TF_WARN, SECOND } from './constants'
 import { generateLayout } from './Layout'
+import TI from './TiMapping'
 import { DataTrackHookProps, withDataTrackHOC } from './useDataTrack'
 import { ShaderHookProps, withShaderHOC } from './useShader'
 import Utils from './utils'
@@ -34,23 +35,13 @@ export type ChartState = {
   /** Candle stick interval */
   interval: number
 
-  cursor: {
-    x: number | null
-    y: number | null
-    t: number | null
-    y$: any
-    grid_id: number | null
-    locked: boolean
-    values: Object
-    scroll_lock: boolean
-    mode: string
-  }
+  cursor: CursorData
 
   // A trick to re-render botbar
   rerender: number
 
   // Layers meta-props (changing behaviour)
-  layers_meta: Object
+  layers_meta: LayersMeta
 
   // Y-transforms (for y-zoom and -shift)
   y_transforms: any
@@ -77,11 +68,15 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
   ti_map: any
   updater: any
   interval_ms: number
+  _layout: any
+  ctx: any
   // on_chart: any[]
   // offchart: any[]
 
   constructor(props: ChartProps) {
     super(props)
+
+    // this.ctx = new Context(this.props)
 
     this.state = {
       // Current data slice
@@ -129,6 +124,22 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
     }
 
     // this.updater = new CursorUpdater(this)
+    this._layout = this.newGenerateLayout()
+  }
+
+  newGenerateLayout() {
+    return new generateLayout({
+      chart: this.chart,
+      sub: this.state.sub,
+      offsub: this.offsub,
+      interval: this.state.interval,
+      range: this.state.range,
+      ctx: this.ctx,
+      layers_meta: this.state.layers_meta,
+      ti_map: this.ti_map,
+      $props: this.props,
+      y_transforms: this.state.y_transforms,
+    })
   }
 
   range_changed(r: TimeRange) {
@@ -309,7 +320,7 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   update_layout(clac_tf?: any) {
     if (clac_tf) this.calc_interval()
-    const lay = generateLayout(this)
+    const lay = this.newGenerateLayout()
     Utils.copy_layout(this._layout, lay)
     // if (this._hook_update) this.ce('?chart-update', lay)
   }
@@ -347,12 +358,18 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   // Set hooks list (called from an extension)
   hooks(...list: any[]) {
-    list.forEach((x) => (this[`_hook_${x}`] = true))
+    // list.forEach((x) => (this[`_hook_${x}`] = true))
   }
 
   get main_section() {
-    let p = Object.assign({}, this.common_props())
-    p.data = this.overlay_subset(this.onchart, 'onchart')
+    const p: LayoutComponentProps = Object.assign(
+      {
+        data: this.overlay_subset(this.onchart, 'onchart'),
+        overlays: this.props.overlays,
+      },
+      this.common_props()
+    )
+    // p.data = this.overlay_subset(this.onchart, 'onchart')
     p.data.push({
       type: this.chart.type || 'Candles',
       main: true,
@@ -362,21 +379,34 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
       grid: this.chart.grid || {},
       last: this.state.last_candle,
     })
-    p.overlays = this.props.overlays
+    // p.overlays = this.props.overlays
     return p
   }
 
   get sub_section() {
-    let p = Object.assign({}, this.common_props())
-    p.data = this.overlay_subset(this.offchart, 'offchart')
-    p.overlays = this.props.overlays
+    const p = Object.assign(
+      {
+        data: this.overlay_subset(this.offchart, 'offchart'),
+        overlays: this.props.overlays,
+      },
+      this.common_props()
+    )
+    // p.data = this.overlay_subset(this.offchart, 'offchart')
+    // p.overlays = this.props.overlays
     return p
   }
   get botbar_props() {
-    let p = Object.assign({}, this.common_props())
-    p.width = p.layout.botbar.width
-    p.height = p.layout.botbar.height
-    p.rerender = this.state.rerender
+    let p = Object.assign(
+      {
+        width: this._layout.botbar.width,
+        height: this._layout.botbar.height,
+        rerender: this.state.rerender,
+      },
+      this.common_props()
+    )
+    // p.width = p.layout.botbar.width
+    // p.height = p.layout.botbar.height
+    // p.rerender = this.state.rerender
     return p
   }
   get offsub() {

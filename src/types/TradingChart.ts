@@ -248,7 +248,7 @@ export type CursorData = {
   values: Record<number, Record<string, any>>
 
   /** True when scrolling is locked (drawing mode) */
-  scrollLock: boolean
+  scrollLock?: boolean
 }
 
 export interface GridSettings {
@@ -293,14 +293,15 @@ export interface BotBarProps extends ComponentBaseProps {
 
 export interface DataCore {
   type: string
-  name: string
+  name?: string
   data: any
   settings: Record<string, string>
   grid: GridLayout
-  tf: number // Forced timeframe, e.g. '1s'...'1Y' | Number
+  tf?: number // Forced timeframe, e.g. '1s'...'1Y' | Number
   i0: number
-  loading: boolean
+  loading?: boolean
   last: any
+  main?: boolean
 }
 
 /** Key is grid_id */
