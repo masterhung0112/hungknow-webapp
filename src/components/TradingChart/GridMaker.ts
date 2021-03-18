@@ -32,7 +32,7 @@ export function createGridMaker(
     let timeRange: TimeRange = {
       t1: -Infinity,
       t2: Infinity,
-      exp: false,
+      exp: undefined,
     }
     if (!master_grid) {
       // $ candlestick range
@@ -65,6 +65,7 @@ export function createGridMaker(
       gridLayout.$_lo = y_t.range.t2
     } else {
       if (!ls) {
+        console.log('hi', timeRange.t1 - timeRange.t2)
         const expVal = timeRange.exp === false ? 0 : 1
         gridLayout.$_hi = timeRange.t1 + (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal
         gridLayout.$_lo = timeRange.t2 - (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal
@@ -189,6 +190,9 @@ export function createGridMaker(
       gridLayout.A = -height / (math.log(gridLayout.$_hi) - math.log(gridLayout.$_lo))
       gridLayout.B = -math.log(gridLayout.$_hi) * gridLayout.A
     }
+    // gridLayout.A = -6.498271312812643
+    // gridLayout.B = 337.61538461538464
+    console.log('gridLayout.A', height, gridLayout.$_hi, gridLayout.$_lo, gridLayout.A, gridLayout.B)
   }
 
   // Select nearest good-loking t step (m is target scale)
@@ -258,8 +262,6 @@ export function createGridMaker(
       gridLayout.xs = []
       const dt = range.t2 - range.t1
       const r = gridLayout.spacex / dt
-
-      console.log('r1', range.t2, range.t1, dt)
 
       /* TODO: remove the left-side glitch
         let year_0 = Utils.get_year(sub[0][0])

@@ -326,7 +326,7 @@ export default {
     return {
       t1,
       t2,
-      exp: exp || false,
+      exp: exp,
     }
   },
 }

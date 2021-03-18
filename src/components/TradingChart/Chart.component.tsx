@@ -133,7 +133,9 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
 
   componentWillMount() {
     this.init_range()
+  }
 
+  componentDidMount() {
     this.setState((prevState) => ({
       ...prevState,
       sub: this.subset(),
@@ -141,7 +143,6 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
 
   newGenerateLayout() {
-    console.log('##', this.state.range.t1, this.state.range.t2)
     return new generateLayout({
       chart: this.chart,
       sub: this.state.sub,
@@ -249,6 +250,9 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   subset(range = this.state.range) {
     var [res, index] = this.filter(this.ohlcv, range.t1 - this.state.interval, range.t2)
+    index = 4148
+    console.log('subset', range.t2, range.t1, res.length, index)
+
     if (res) {
       this.setState((prevState) => ({
         ...prevState,
@@ -460,6 +464,16 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   get range() {
     return this.state.range
+  }
+
+  componentDidUpdate(prevProps: ChartProps, prevState: ChartState) {
+    if (this.state.range.t1 !== -Infinity && prevState.range.t1 === -Infinity) {
+      this.setState((prevState) => ({
+        ...prevState,
+        sub: this.subset(),
+      }))
+      this._layout = this.newGenerateLayout()
+    }
   }
 
   render() {
