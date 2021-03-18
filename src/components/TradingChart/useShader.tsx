@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 
-export type ShaderHookProps = {
+export interface ShaderHookProps {
   shaders: any[]
   init_shaders: (skin: any, prev: any) => void
   on_shader_event: (d: any, target: any) => void
@@ -46,9 +46,9 @@ export function useShader(): ShaderHookProps {
 }
 
 export const withShaderHOC = <T extends ShaderHookProps>(Component: React.ComponentType<T>) => {
-  return (props: any) => {
+  return (props: Omit<T, keyof ShaderHookProps>) => {
     const shaderHook = useShader()
 
-    return <Component {...shaderHook} {...props} />
+    return <Component {...shaderHook} {...(props as any)} />
   }
 }

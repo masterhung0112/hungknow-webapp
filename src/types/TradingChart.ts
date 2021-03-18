@@ -269,7 +269,7 @@ export interface GridLayout extends Layout {
 export interface ComponentBaseProps {
   // Common props
   title_txt: string
-  layout: Layout
+  layout: MainLayout
   sub: any
   range: TimeRange
   interval: number

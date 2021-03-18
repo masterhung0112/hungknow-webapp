@@ -127,15 +127,17 @@ export const Grid: React.FC<GridProps> = ({
   const currentLayout = layout.grids[grid_id]
 
   const gridLines = useMemo(() => {
-    const gridLines = []
+    const gridLines: any[] = []
     const ymax = currentLayout.height
+    // console.log(ymax)
     for (const [x] of currentLayout.xs) {
-      gridLines.push(<Line points={[x - 0.5, 0, x - 0.5, ymax]} stroke={colors.grid} />)
+      gridLines.push(<Line points={[x - 0.5, 0, x - 0.5, ymax]} stroke={colors.colorGrid} />)
     }
 
     for (const [y] of currentLayout.ys) {
-      gridLines.push(<Line points={[0, y - 0.5, currentLayout.width, y - 0.5]} stroke={colors.grid} />)
+      gridLines.push(<Line points={[0, y - 0.5, currentLayout.width, y - 0.5]} stroke={colors.colorGrid} />)
     }
+    console.log('gridLines', colors.colorGrid)
     return gridLines
   }, [currentLayout])
 

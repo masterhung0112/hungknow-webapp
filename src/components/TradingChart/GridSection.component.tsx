@@ -37,8 +37,8 @@ export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => 
   }, [common.data])
 
   return (
-    <div className="trading-vue-section">
+    <>
       <Grid grid_id={grid_id} {...gridProps} />
-    </div>
+    </>
   )
 }

@@ -11,8 +11,8 @@ export type CandleProps = {
 export const Candle: React.FC<CandleProps> = ({ data }) => {
   const green = data.raw[4] >= data.raw[1]
   const style = DefaultStyles
-  const body_color = green ? style.colorCandleUp.default : style.colorCandleDw.default
-  const wick_color = green ? style.colorWickUp.default : style.colorWickDw.default
+  const body_color = green ? style.colorCandleUp : style.colorCandleDw
+  const wick_color = green ? style.colorWickUp : style.colorWickDw
 
   let w = Math.max(data.w, 1)
   let hw = Math.max(Math.floor(w * 0.5), 1)

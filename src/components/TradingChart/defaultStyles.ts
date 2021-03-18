@@ -1,146 +1,76 @@
-import { ChartConfig } from "./constants"
+import { ChartConfig } from './constants'
 
 export const DefaultStyles = {
-  titleTxt: {
-    type: String,
-    default: 'TradingVue.js',
-  },
-  id: {
-    type: String,
-    default: 'trading-vue-js',
-  },
-  width: {
-    type: Number,
-    default: 800,
-  },
-  height: {
-    type: Number,
-    default: 421,
-  },
-  colorTitle: {
-    type: String,
-    default: '#42b883',
-  },
-  colorBack: {
-    type: String,
-    default: '#121826',
-  },
-  colorGrid: {
-    type: String,
-    default: '#2f3240',
-  },
-  colorText: {
-    type: String,
-    default: '#dedddd',
-  },
-  colorTextHL: {
-    type: String,
-    default: '#fff',
-  },
-  colorScale: {
-    type: String,
-    default: '#838383',
-  },
-  colorCross: {
-    type: String,
-    default: '#8091a0',
-  },
-  colorCandleUp: {
-    type: String,
-    default: '#23a776',
-  },
-  colorCandleDw: {
-    type: String,
-    default: '#e54150',
-  },
-  colorWickUp: {
-    type: String,
-    default: '#23a77688',
-  },
-  colorWickDw: {
-    type: String,
-    default: '#e5415088',
-  },
-  colorWickSm: {
-    type: String,
-    default: 'transparent', // deprecated
-  },
-  colorVolUp: {
-    type: String,
-    default: '#79999e42',
-  },
-  colorVolDw: {
-    type: String,
-    default: '#ef535042',
-  },
-  colorPanel: {
-    type: String,
-    default: '#565c68',
-  },
-  colorTbBack: {
-    type: String,
-  },
-  colorTbBorder: {
-    type: String,
-    default: '#8282827d',
-  },
-  colors: {
-    type: Object,
-  },
-  font: {
-    type: String,
-    default: ChartConfig.FONT,
-  },
-  toolbar: {
-    type: Boolean,
-    default: false,
-  },
-  data: {
-    type: Object,
-    required: true,
-  },
+  titleTxt: 'TradingVue.js',
+  id: 'trading-vue-js',
+  width: 800,
+  height: 421,
+
+  colorTitle: '#42b883',
+
+  colorBack: '#121826',
+
+  colorGrid: '#2f3240',
+
+  colorText: '#dedddd',
+
+  colorTextHL: '#fff',
+
+  colorScale: '#838383',
+
+  colorCross: '#8091a0',
+
+  colorCandleUp: '#23a776',
+
+  colorCandleDw: '#e54150',
+
+  colorWickUp: '#23a77688',
+
+  colorWickDw: '#e5415088',
+
+  colorWickSm: 'transparent', // deprecated
+
+  colorVolUp: '#79999e42',
+
+  colorVolDw: '#ef535042',
+
+  colorPanel: '#565c68',
+
+  colorTbBack: '#000000',
+  colorTbBorder: '#8282827d',
+
+  colors: {},
+
+  font: ChartConfig.FONT,
+
+  toolbar: false,
+  data: {},
+
   // Your overlay classes here
-  overlays: {
-    type: Array,
-    default: (): any[] => {
-      return []
-    },
+  overlays: (): any[] => {
+    return []
   },
+
   // Overwrites ChartConfig values,
   // see constants.js
-  chartConfig: {
-    type: Object,
-    default: function () {
-      return {}
-    },
+  chartConfig: function () {
+    return {}
   },
-  legendButtons: {
-    type: Array,
-    default: (): any[] => {
-      return []
-    },
+
+  legendButtons: (): any[] => {
+    return []
   },
-  indexBased: {
-    type: Boolean,
-    default: false,
+
+  indexBased: false,
+
+  extensions: (): any[] => {
+    return []
   },
-  extensions: {
-    type: Array,
-    default: (): any[] => {
-      return []
-    },
+  xSettings: function () {
+    return {}
   },
-  xSettings: {
-    type: Object,
-    default: function () {
-      return {}
-    },
-  },
-  skin: {
-    type: String, // Skin Name
-  },
-  timezone: {
-    type: Number,
-    default: 0,
-  },
+
+  skin: 'black',
+  // Skin Name
+  timezone: 0,
 }

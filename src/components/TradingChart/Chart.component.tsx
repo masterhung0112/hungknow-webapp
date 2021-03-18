@@ -1,13 +1,16 @@
 import React from 'react'
-import { CursorData, LayersMeta, LayoutComponentProps, OverlayData, TimeRange } from 'types/TradingChart'
+import { Stage } from 'react-konva'
+import { CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange } from 'types/TradingChart'
 import { IB_TF_WARN, SECOND } from './constants'
+import Context from './Context'
+import { GridSection } from './GridSection.component'
 import { generateLayout } from './Layout'
 import TI from './TiMapping'
 import { DataTrackHookProps, withDataTrackHOC } from './useDataTrack'
 import { ShaderHookProps, withShaderHOC } from './useShader'
 import Utils from './utils'
 
-export type ChartProps = {
+export interface ChartNoShaderProps {
   title_txt: string
   data: any
   width: number
@@ -22,8 +25,9 @@ export type ChartProps = {
   ib: any
   skin: any
   timezone: any
-} & ShaderHookProps &
-  DataTrackHookProps
+}
+
+export interface ChartProps extends ChartNoShaderProps, ShaderHookProps, DataTrackHookProps {}
 
 export type ChartState = {
   /** Current data slice */
@@ -62,13 +66,13 @@ export type ChartState = {
   activated: boolean
 }
 
-class ChartNoShader extends React.Component<ChartProps, ChartState> {
+export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   // ohlcv: number[][] = []
 
   ti_map: any
   updater: any
   interval_ms: number
-  _layout: any
+  _layout: MainLayout
   ctx: any
   // on_chart: any[]
   // offchart: any[]
@@ -76,7 +80,7 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
   constructor(props: ChartProps) {
     super(props)
 
-    // this.ctx = new Context(this.props)
+    this.ctx = Context(this.props)
 
     this.state = {
       // Current data slice
@@ -123,11 +127,21 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
       activated: false,
     }
 
+    this.ti_map = new TI()
     // this.updater = new CursorUpdater(this)
-    this._layout = this.newGenerateLayout()
+  }
+
+  componentWillMount() {
+    this.init_range()
+
+    this.setState((prevState) => ({
+      ...prevState,
+      sub: this.subset(),
+    }))
   }
 
   newGenerateLayout() {
+    console.log('##', this.state.range.t1, this.state.range.t2)
     return new generateLayout({
       chart: this.chart,
       sub: this.state.sub,
@@ -146,8 +160,9 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // Overwite & keep the original references
     // Quick fix for IB mode (switch 2 next lines)
     // TODO: wtf?
-    var sub = this.subset(r)
+    let sub = this.subset(r)
     // this.state.range = { ...r }
+    console.log('set time', r)
     this.setState((prevState) => ({
       ...prevState,
       range: { ...r },
@@ -155,7 +170,7 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
     Utils.overwrite(this.state.sub, sub)
     this.update_layout()
     // this.$emit('range-changed', r)
-    if (this.props.ib) this.props.save_data_t()
+    if (this.props.ib) this.props.save_data_t(this)
   }
   goto(t: number) {
     const dt = this.state.range.t2 - this.state.range.t1
@@ -205,18 +220,20 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
     const dl = this.props.config.DEFAULT_LEN
     const ml = this.props.config.MINIMUM_LEN + 0.5
     const l = this.ohlcv.length - 1
+    let s = 0
+    let d = 0.5
 
     if (this.ohlcv.length < 2) return
     if (this.ohlcv.length <= dl) {
-      var s = 0,
-        d = ml
+      d = ml
     } else {
-      ;(s = l - dl), (d = 0.5)
+      s = l - dl
+      d = 0.5
     }
     if (!this.props.ib) {
       this.setState((prevState) => ({
         ...prevState,
-        range: Utils.timeRange(this.ohlcv[s][0] - this.state.interval * d, this.ohlcv[s][0] - this.state.interval * d),
+        range: Utils.timeRange(this.ohlcv[s][0] - this.state.interval * d, this.ohlcv[l][0] + this.state.interval * ml),
       }))
       // Utils.overwrite(this.state.range, [
       //   this.ohlcv[s][0] - this.state.interval * d,
@@ -232,7 +249,6 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   subset(range = this.state.range) {
     var [res, index] = this.filter(this.ohlcv, range.t1 - this.state.interval, range.t2)
-    this.ti_map = new TI()
     if (res) {
       this.setState((prevState) => ({
         ...prevState,
@@ -442,9 +458,21 @@ class ChartNoShader extends React.Component<ChartProps, ChartState> {
   get forced_tf() {
     return this.chart.tf
   }
+  get range() {
+    return this.state.range
+  }
 
   render() {
-    return <div></div>
+    if (!this._layout && this.state.range.t1 !== -Infinity) {
+      this._layout = this.newGenerateLayout()
+    }
+    return (
+      <Stage height={this.props.height} width={this.props.width}>
+        {this._layout.grids.map((grid, i) => {
+          return <GridSection common={this.section_props(i)} grid_id={i} />
+        })}
+      </Stage>
+    )
   }
 }
 

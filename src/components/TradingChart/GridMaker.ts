@@ -259,16 +259,18 @@ export function createGridMaker(
       const dt = range.t2 - range.t1
       const r = gridLayout.spacex / dt
 
+      console.log('r1', range.t2, range.t1, dt)
+
       /* TODO: remove the left-side glitch
         let year_0 = Utils.get_year(sub[0][0])
         for (var t0 = year_0; t0 < range.t1; t0 += gridLayout.t_step) {}
         let m0 = Utils.get_month(t0)*/
-
       for (var i = 0; i < sub.length; i++) {
         let p = sub[i]
         let prev = sub[i - 1] || []
         let prev_xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
         let x = Math.floor((p[0] - range.t1) * r)
+        // console.log('x', p[0] - range.t1, r, (p[0] - range.t1) * r)
 
         insert_line(prev, p, x)
 
@@ -489,6 +491,7 @@ export function createGridMaker(
         grid_y()
       }
       apply_sizes()
+      console.log('size', gridLayout.width, gridLayout.height)
 
       // Link to the master grid (candlesticks)
       if (master_grid) {
@@ -507,10 +510,10 @@ export function createGridMaker(
       return gridLayout as GridLayout
     },
     get sidebar(): any {
-      return null
+      return gridLayout.sb
     },
     set sidebar(value: any) {
-      // h
+      gridLayout.sb = value
     },
   }
 }
