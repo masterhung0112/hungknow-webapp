@@ -104,11 +104,12 @@ export const Grid: React.FC<GridProps> = ({
         last: comp.last,
       })
     )
-  }, [supportedOverlays])
+  }, [supportedOverlays, registry])
 
   useEffect(() => {
     // We need to know which components we will use.
     // Custom overlay components overwrite built-ins:
+    const tempRegistry = { ...registry }
     supportedOverlays.forEach((x, i) => {
       let use_for = x.use_for
       if (x.tool)
@@ -117,9 +118,10 @@ export const Grid: React.FC<GridProps> = ({
           info: x.tool,
         })
       use_for.forEach((indicator) => {
-        registry[indicator] = i
+        tempRegistry[indicator] = i
       })
     })
+    setRegistry(tempRegistry)
 
     // Create Grid instance
     // call setup
@@ -131,13 +133,12 @@ export const Grid: React.FC<GridProps> = ({
     const ymax = currentLayout.height
     // console.log(ymax)
     for (const [x] of currentLayout.xs) {
-      gridLines.push(<Line points={[x - 0.5, 0, x - 0.5, ymax]} stroke={colors.colorGrid} />)
+      gridLines.push(<Line key={x} points={[x - 0.5, 0, x - 0.5, ymax]} stroke={colors.colorGrid} />)
     }
 
     for (const [y] of currentLayout.ys) {
-      gridLines.push(<Line points={[0, y - 0.5, currentLayout.width, y - 0.5]} stroke={colors.colorGrid} />)
+      gridLines.push(<Line key={y} points={[0, y - 0.5, currentLayout.width, y - 0.5]} stroke={colors.colorGrid} />)
     }
-    console.log('gridLines', colors.colorGrid)
     return gridLines
   }, [currentLayout])
 
