@@ -1,16 +1,12 @@
 import React from 'react'
-import { CandleData } from 'types/TradingChart'
+import { CandleData, OverlayMeta } from 'types/TradingChart'
 import { layout_cnv } from '../layoutCnv'
 import { OverlayProps, useOverlay } from '../Overlay'
 import { Candle } from '../primitives/Candle'
 
-export const CandlesModel = {
-  use_for: ['Candles'],
-}
-
 export interface CandlesOverlayProps extends OverlayProps {}
 
-export const Candles: React.FC<CandlesOverlayProps> = (props) => {
+export const Candles: React.FC<CandlesOverlayProps> & OverlayMeta = (props) => {
   const { data, sub, layout } = props
   useOverlay(props)
 
@@ -39,3 +35,5 @@ export const Candles: React.FC<CandlesOverlayProps> = (props) => {
     </>
   )
 }
+
+Candles.use_for = ['Candles']

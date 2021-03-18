@@ -1,21 +1,21 @@
 import React, { ReactNode, useEffect, useMemo, useState } from 'react'
-import { Layer } from 'react-konva'
-import { DataCore, Layout, MainLayout, TimeRange } from 'types/TradingChart'
+import { Layer, Line } from 'react-konva'
+import { DataCore, Layout, MainLayout, OverlayMeta, TimeRange } from 'types/TradingChart'
 import { OverlayProps } from './Overlay'
 import { Candles } from './overlays/Candles.overlay'
 
 export type GridProps = {
-  id: string
-  layout: MainLayout
-  data: DataCore[]
-  overlays?: React.ComponentType<OverlayProps>[]
+  // id: string
   sub: any
+  layout: MainLayout
   range: TimeRange
   interval: number
   cursor: any
   colors: any
+  overlays?: (React.ComponentType<OverlayProps> & OverlayMeta)[]
   width: number
   height: number
+  data: DataCore[]
   grid_id: number
   y_transform: any
   font: any
@@ -28,7 +28,6 @@ export type GridProps = {
 const SupportedOverlays = [Candles]
 
 export const Grid: React.FC<GridProps> = ({
-  id,
   layout,
   data,
   overlays,
@@ -49,7 +48,7 @@ export const Grid: React.FC<GridProps> = ({
 }) => {
   // Store map from the name of indicator to index in SupportedOverlays
   const [registry, setRegistry] = useState<Record<string, number>>({})
-  const [supportedOverlays, setSupportOverlays] = useState<React.ComponentType<OverlayProps>[]>([
+  const [supportedOverlays, setSupportOverlays] = useState<(React.ComponentType<OverlayProps> & OverlayMeta)[]>([
     ...SupportedOverlays,
     ...overlays,
   ])
@@ -111,11 +110,11 @@ export const Grid: React.FC<GridProps> = ({
     // We need to know which components we will use.
     // Custom overlay components overwrite built-ins:
     supportedOverlays.forEach((x, i) => {
-      let use_for = x.methods.use_for()
-      if (x.methods.tool)
+      let use_for = x.use_for
+      if (x.tool)
         tools.push({
           use_for,
-          info: x.methods.tool(),
+          info: x.tool,
         })
       use_for.forEach((indicator) => {
         registry[indicator] = i
@@ -125,12 +124,24 @@ export const Grid: React.FC<GridProps> = ({
     // Create Grid instance
     // call setup
   }, [])
-
   const currentLayout = layout.grids[grid_id]
+
+  const gridLines = useMemo(() => {
+    const gridLines = []
+    const ymax = currentLayout.height
+    for (const [x] of currentLayout.xs) {
+      gridLines.push(<Line points={[x - 0.5, 0, x - 0.5, ymax]} stroke={colors.grid} />)
+    }
+
+    for (const [y] of currentLayout.ys) {
+      gridLines.push(<Line points={[0, y - 0.5, currentLayout.width, y - 0.5]} stroke={colors.grid} />)
+    }
+    return gridLines
+  }, [currentLayout])
 
   return (
     <Layer
-      id={`grid-${id}`}
+      id={`grid-${tv_id}`}
       position={{
         x: 0,
         y: currentLayout.offset || 0,
@@ -141,6 +152,7 @@ export const Grid: React.FC<GridProps> = ({
         backgroundColor: 'black',
       }}
     >
+      {gridLines}
       {mappedOverlays}
       {/*
          h(Crosshair, {

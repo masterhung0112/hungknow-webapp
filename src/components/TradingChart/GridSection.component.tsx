@@ -1,10 +1,11 @@
 import React, { useCallback, useMemo } from 'react'
-import { Grid } from './Grid.component'
+import { ComponentBaseProps } from 'types/TradingChart'
+import { Grid, GridProps } from './Grid.component'
 import { useShader } from './useShader'
 
 export type GridSectionProps = {
   grid_id: number
-  common: any
+  common: ComponentBaseProps
 }
 
 export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => {
@@ -15,9 +16,10 @@ export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => 
   }, [shaders])
 
   const gridProps = useMemo(() => {
-    const gridProps = {
+    const gridProps: GridProps = {
       ...common,
-    }
+    } as any
+
     // Split offchart data between offchart grids
     if (grid_id > 0) {
       let all = gridProps.data
@@ -29,13 +31,13 @@ export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => 
 
     gridProps.width = gridProps.layout.grids[grid_id].width
     gridProps.height = gridProps.layout.grids[grid_id].height
-    gridProps.y_transform = gridProps.y_ts[grid_id]
+    gridProps.y_transform = common.y_ts[grid_id]
     gridProps.shaders = grid_shaders()
     return gridProps
   }, [common.data])
 
   return (
-    <div>
+    <div className="trading-vue-section">
       <Grid grid_id={grid_id} {...gridProps} />
     </div>
   )

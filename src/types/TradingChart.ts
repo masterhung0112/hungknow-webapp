@@ -248,7 +248,9 @@ export type CursorData = {
   values: Record<number, Record<string, any>>
 
   /** True when scrolling is locked (drawing mode) */
-  scrollLock?: boolean
+  scroll_lock?: boolean
+
+  mode: string
 }
 
 export interface GridSettings {
@@ -510,6 +512,10 @@ export type OverlayData = {
   i0: number
 }
 
+export interface OverlayMeta {
+  use_for: string[]
+  tool?: string[]
+}
 export interface ToolData {
   type: string
   group?: string
