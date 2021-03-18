@@ -1,5 +1,6 @@
 import { DAY, MAP_UNIT, MONTH } from './constants'
 import IndexedArray from 'arrayslicer'
+import { TimeRange } from 'types/TradingChart'
 
 export default {
   clamp(num: number, min: number, max: number) {
@@ -320,4 +321,12 @@ export default {
       !!navigator.msMaxTouchPoints ||
       'ontouchstart' in w ||
       (w.DocumentTouch && document instanceof w.DocumentTouch)))(typeof window !== 'undefined' ? window : {}),
+
+  timeRange(t1: number, t2: number, exp?: boolean): TimeRange {
+    return {
+      t1,
+      t2,
+      exp: exp || false,
+    }
+  },
 }
