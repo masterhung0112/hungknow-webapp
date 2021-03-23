@@ -1,15 +1,19 @@
-import React, { useCallback, useMemo } from 'react'
+import { withEventEmitter } from 'components/Emitter/EventEmitterHook'
+import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { ComponentBaseProps } from 'types/TradingChart'
 import { Grid, GridProps } from './Grid.component'
 import { useShader } from './useShader'
 
-export type GridSectionProps = {
+export interface GridSectionProps extends EventEmitterValue {
   grid_id: number
   common: ComponentBaseProps
 }
 
-export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => {
+export const GridSectionBase: React.FC<GridSectionProps> = ({ grid_id, common, on }) => {
   const { shaders, init_shaders, on_shader_event } = useShader()
+  const [meta_props, setmeta_props] = useState({})
+  const sbRefs = React.useRef<Record<string, any>>({})
 
   const grid_shaders = useCallback(() => {
     return shaders.filter((x) => x.target === 'grid')
@@ -36,9 +40,27 @@ export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => 
     return gridProps
   }, [common.data])
 
+  useEffect(() => {
+    on('layer-meta-props', (detail) => {
+      setmeta_props((prevState) => ({
+        ...prevState,
+        [detail.layer_id]: detail,
+      }))
+    })
+    // Zoom the sidebar
+    on('rezoom-range', (detail) => {
+      let id = 'sb-' + detail.grid_id
+      if (sbRefs.current[id]) {
+        sbRefs.current[id].renderer.rezoom_range(detail.z, detail.diff1, detail.diff2)
+      }
+    })
+  }, [])
+
   return (
     <>
       <Grid grid_id={grid_id} {...gridProps} />
     </>
   )
 }
+
+export const GridSection = withEventEmitter(GridSectionBase)

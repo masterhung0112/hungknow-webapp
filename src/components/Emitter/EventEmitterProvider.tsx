@@ -46,7 +46,7 @@ const callEvent = (handlers: HandleType[] = []): any => ({ detail }: { detail: a
 }
 
 export type EventProviderProps = {
-  element: any
+  element?: any
 }
 
 export type EventEmitterValue = { emit: EventEmitCall; on: EventCall; off: EventCall }

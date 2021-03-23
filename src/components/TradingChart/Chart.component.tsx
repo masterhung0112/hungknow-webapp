@@ -1,3 +1,5 @@
+import { withEventEmitter, withEventEmitterProvider } from 'components/Emitter/EventEmitterHook'
+import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
 import React from 'react'
 import { Stage } from 'react-konva'
 import { CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange } from 'types/TradingChart'
@@ -27,7 +29,7 @@ export interface ChartNoShaderProps {
   timezone: any
 }
 
-export interface ChartProps extends ChartNoShaderProps, ShaderHookProps, DataTrackHookProps {}
+export interface ChartProps extends ChartNoShaderProps, ShaderHookProps, DataTrackHookProps, EventEmitterValue {}
 
 export type ChartState = {}
 
@@ -136,6 +138,16 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
 
     this._layout = this.newGenerateLayout()
     this.update_last_values()
+
+    this.props.on('register-kb-listener', this.register_kb)
+    this.props.on('remove-kb-listener', this.remove_kb)
+    this.props.on('range-changed', this.range_changed)
+    this.props.on('cursor-changed', this.cursor_changed)
+    this.props.on('cursor-locked', this.cursor_locked)
+    this.props.on('sidebar-transform', this.set_ytransform)
+    this.props.on('layer-meta-props', this.layer_meta_props)
+    this.props.on('custom-event', this.emit_custom_event)
+    this.props.on('legend-button-click', this.legend_button_click)
   }
 
   // componentDidMount() {
@@ -469,4 +481,4 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
 }
 
-export const Chart = withDataTrackHOC(withShaderHOC(ChartNoShader))
+export const Chart = withDataTrackHOC(withShaderHOC(withEventEmitterProvider(ChartNoShader)))
