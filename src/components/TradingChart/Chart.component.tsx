@@ -29,7 +29,19 @@ export interface ChartNoShaderProps {
 
 export interface ChartProps extends ChartNoShaderProps, ShaderHookProps, DataTrackHookProps {}
 
-export type ChartState = {
+export type ChartState = {}
+
+export class ChartNoShader extends React.Component<ChartProps, ChartState> {
+  // ohlcv: number[][] = []
+
+  ti_map: any
+  updater: any
+  interval_ms: number
+  _layout: MainLayout
+  ctx: any
+  // on_chart: any[]
+  // offchart: any[]
+
   /** Current data slice */
   sub: any[]
 
@@ -64,68 +76,54 @@ export type ChartState = {
   }
   sub_start: any
   activated: boolean
-}
-
-export class ChartNoShader extends React.Component<ChartProps, ChartState> {
-  // ohlcv: number[][] = []
-
-  ti_map: any
-  updater: any
-  interval_ms: number
-  _layout: MainLayout
-  ctx: any
-  // on_chart: any[]
-  // offchart: any[]
 
   constructor(props: ChartProps) {
     super(props)
 
     this.ctx = Context(this.props)
 
-    this.state = {
-      // Current data slice
-      sub: [],
+    // Current data slice
+    this.sub = []
 
-      // Time range
-      range: Utils.timeRange(-Infinity, Infinity),
+    // Time range
+    this.range = Utils.timeRange(-Infinity, Infinity)
 
-      // Candlestick interval
-      interval: 0,
+    // Candlestick interval
+    this.interval = 0
 
-      // Crosshair states
-      cursor: {
-        x: null,
-        y: null,
-        t: null,
-        y$: null,
-        grid_id: null,
-        locked: false,
-        values: {},
-        scroll_lock: false,
-        mode: Utils.xmode(),
-      },
-
-      // A trick to re-render botbar
-      rerender: 0,
-
-      // Layers meta-props (changing behaviour)
-      layers_meta: {},
-
-      // Y-transforms (for y-zoom and -shift)
-      y_transforms: {},
-
-      // Default OHLCV settings (when using DataStructure v1.0)
-      settings_ohlcv: {},
-
-      // Default overlay settings
-      settings_ov: {},
-
-      // Meta data
-      last_candle: [],
-      last_values: {},
-      sub_start: undefined,
-      activated: false,
+    // Crosshair states
+    this.cursor = {
+      x: null,
+      y: null,
+      t: null,
+      y$: null,
+      grid_id: null,
+      locked: false,
+      values: {},
+      scroll_lock: false,
+      mode: Utils.xmode(),
     }
+
+    // A trick to re-render botbar
+    this.rerender = 0
+
+    // Layers meta-props (changing behaviour)
+    this.layers_meta = {}
+
+    // Y-transforms (for y-zoom and -shift)
+    this.y_transforms = {}
+
+    // Default OHLCV settings (when using DataStructure v1.0)
+    this.settings_ohlcv = {}
+
+    // Default overlay settings
+    this.settings_ov = {}
+
+    // Meta data
+    this.last_candle = []
+    this.last_values = {}
+    this.sub_start = undefined
+    this.activated = false
 
     this.ti_map = new TI()
     // this.updater = new CursorUpdater(this)
@@ -133,27 +131,32 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
 
   componentWillMount() {
     this.init_range()
+
+    this.sub = this.subset()
+
+    this._layout = this.newGenerateLayout()
+    this.update_last_values()
   }
 
-  componentDidMount() {
-    this.setState((prevState) => ({
-      ...prevState,
-      sub: this.subset(),
-    }))
-  }
+  // componentDidMount() {
+  //   this.setState((prevState) => ({
+  //     ...prevState,
+  //     sub: this.subset(),
+  //   }))
+  // }
 
   newGenerateLayout() {
     return new generateLayout({
       chart: this.chart,
-      sub: this.state.sub,
+      sub: this.sub,
       offsub: this.offsub,
-      interval: this.state.interval,
-      range: this.state.range,
+      interval: this.interval,
+      range: this.range,
       ctx: this.ctx,
-      layers_meta: this.state.layers_meta,
+      layers_meta: this.layers_meta,
       ti_map: this.ti_map,
       $props: this.props,
-      y_transforms: this.state.y_transforms,
+      y_transforms: this.y_transforms,
     })
   }
 
@@ -162,60 +165,51 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // Quick fix for IB mode (switch 2 next lines)
     // TODO: wtf?
     let sub = this.subset(r)
-    // this.state.range = { ...r }
+    // this.range = { ...r }
     console.log('set time', r)
-    this.setState((prevState) => ({
-      ...prevState,
-      range: { ...r },
-    }))
-    Utils.overwrite(this.state.sub, sub)
+    this.range = { ...r }
+    Utils.overwrite(this.sub, sub)
     this.update_layout()
     // this.$emit('range-changed', r)
     if (this.props.ib) this.props.save_data_t(this)
   }
   goto(t: number) {
-    const dt = this.state.range.t2 - this.state.range.t1
+    const dt = this.range.t2 - this.range.t1
     this.range_changed(Utils.timeRange(t - dt, t))
   }
   setRange(t1: number, t2: number) {
     this.range_changed(Utils.timeRange(t1, t2))
   }
   cursor_changed(e: any) {
-    if (e.mode) this.state.cursor.mode = e.mode
-    if (this.state.cursor.mode !== 'explore') {
+    if (e.mode) this.cursor.mode = e.mode
+    if (this.cursor.mode !== 'explore') {
       this.updater.sync(e)
     }
     // if (this._hook_xchanged) this.ce('?x-changed', e)
   }
   cursor_locked(state: any) {
-    if (this.state.cursor.scroll_lock && state) return
-    this.state.cursor.locked = state
+    if (this.cursor.scroll_lock && state) return
+    this.cursor.locked = state
     // if (this._hook_xlocked) this.ce('?x-locked', state)
   }
   calc_interval() {
     let tf = Utils.parse_tf(this.forced_tf)
     if (this.ohlcv.length < 2 && !tf) return
     this.interval_ms = tf || Utils.detect_interval(this.ohlcv)
-    this.setState((prevState) => ({
-      ...prevState,
-      interval: this.props.ib ? 1 : this.interval_ms,
-    }))
-    // this.state.interval = this.props.ib ? 1 : this.interval_ms
+    this.interval = this.props.ib ? 1 : this.interval_ms
+    // this.interval = this.props.ib ? 1 : this.interval_ms
     Utils.warn(() => this.props.ib && !this.chart.tf, IB_TF_WARN, SECOND)
   }
   set_ytransform(s: any) {
-    let obj = this.state.y_transforms[s.grid_id] || {}
+    let obj = this.y_transforms[s.grid_id] || {}
     Object.assign(obj, s)
-    this.setState((prevState) => ({
-      ...prevState,
-      y_transforms: {
-        ...prevState.y_transforms,
-        [s.grid_id]: obj,
-      },
-    }))
-    // this.state.y_transforms, s.grid_id, obj)
+    this.y_transforms = {
+      ...this.y_transforms,
+      [s.grid_id]: obj,
+    }
+    // this.y_transforms, s.grid_id, obj)
     this.update_layout()
-    // Utils.overwrite(this.state.range, this.state.range)
+    // Utils.overwrite(this.range, this.range)
   }
   default_range() {
     const dl = this.props.config.DEFAULT_LEN
@@ -232,33 +226,24 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
       d = 0.5
     }
     if (!this.props.ib) {
-      this.setState((prevState) => ({
-        ...prevState,
-        range: Utils.timeRange(this.ohlcv[s][0] - this.state.interval * d, this.ohlcv[l][0] + this.state.interval * ml),
-      }))
-      // Utils.overwrite(this.state.range, [
-      //   this.ohlcv[s][0] - this.state.interval * d,
+      this.range = Utils.timeRange(this.ohlcv[s][0] - this.interval * d, this.ohlcv[l][0] + this.interval * ml)
+      // Utils.overwrite(this.range, [
+      //   this.ohlcv[s][0] - this.interval * d,
       //   c
       // ])
     } else {
-      // Utils.overwrite(this.state.range, [s - this.state.interval * d, l + this.state.interval * ml])
-      this.setState((prevState) => ({
-        ...prevState,
-        range: Utils.timeRange(s - this.state.interval * d, l + this.state.interval * ml),
-      }))
+      // Utils.overwrite(this.range, [s - this.interval * d, l + this.interval * ml])
+      this.range = Utils.timeRange(s - this.interval * d, l + this.interval * ml)
     }
   }
-  subset(range = this.state.range) {
-    var [res, index] = this.filter(this.ohlcv, range.t1 - this.state.interval, range.t2)
+  subset(range = this.range) {
+    var [res, index] = this.filter(this.ohlcv, range.t1 - this.interval, range.t2)
     index = 4148
     console.log('subset', range.t2, range.t1, res.length, index)
 
     if (res) {
-      this.setState((prevState) => ({
-        ...prevState,
-        sub_start: index,
-      }))
-      // this.state.sub_start = index
+      this.sub_start = index
+      // this.sub_start = index
       this.ti_map.init(this, res)
       if (!this.props.ib) return res || []
       return this.ti_map.sub_i
@@ -269,13 +254,13 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     return {
       title_txt: this.chart.name || this.props.title_txt,
       layout: this._layout,
-      sub: this.state.sub,
-      range: this.state.range,
-      interval: this.state.interval,
-      cursor: this.state.cursor,
+      sub: this.sub,
+      range: this.range,
+      interval: this.interval,
+      cursor: this.cursor,
       colors: this.props.colors,
       font: this.props.font,
-      y_ts: this.state.y_transforms,
+      y_ts: this.y_transforms,
       tv_id: this.props.tv_id,
       config: this.props.config,
       buttons: this.props.buttons,
@@ -287,19 +272,19 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     return source.map((d, i) => {
       let res = Utils.fast_filter(
         d.data,
-        this.ti_map.i2t_mode(this.state.range.t1 - this.state.interval, d.indexSrc),
-        this.ti_map.i2t_mode(this.state.range.t2, d.indexSrc)
+        this.ti_map.i2t_mode(this.range.t1 - this.interval, d.indexSrc),
+        this.ti_map.i2t_mode(this.range.t2, d.indexSrc)
       )
       return {
         type: d.type,
         name: Utils.format_name(d),
         data: this.ti_map.parse(res[0] || [], d.indexSrc || 'map'),
-        settings: d.settings || this.state.settings_ov,
+        settings: d.settings || this.settings_ov,
         grid: d.grid || {},
         tf: Utils.parse_tf(d.tf),
         i0: res[1],
         loading: d.loading,
-        last: ((this.state.last_values as any)[side] || [])[i],
+        last: ((this.last_values as any)[side] || [])[i],
       }
     })
   }
@@ -312,23 +297,20 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   layer_meta_props(d: any) {
     // TODO: check reactivity when layout is changed
-    if (!(d.grid_id in this.state.layers_meta)) {
-      this.setState((prevState) => ({
-        ...prevState,
-        layers_meta: {
-          ...prevState.layers_meta,
-          [d.grid_id]: {},
-        },
-      }))
+    if (!(d.grid_id in this.layers_meta)) {
+      this.layers_meta = {
+        ...this.layers_meta,
+        [d.grid_id]: {},
+      }
     }
-    // this.$set(this.state.layers_meta[d.grid_id], d.layer_id, d)
+    // this.$set(this.layers_meta[d.grid_id], d.layer_id, d)
 
     // Rerender
     this.update_layout()
   }
   remove_meta_props(grid_id: any, layer_id: any) {
-    if (grid_id in this.state.layers_meta) {
-      // this.$delete(this.state.layers_meta[grid_id], layer_id)
+    if (grid_id in this.layers_meta) {
+      // this.$delete(this.layers_meta[grid_id], layer_id)
     }
   }
   emit_custom_event(d: any) {
@@ -356,20 +338,17 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // this.$refs.keyboard.remove(event)
   }
   update_last_values() {
-    this.setState((prevState) => ({
-      ...prevState,
-      last_candle: this.ohlcv ? this.ohlcv[this.ohlcv.length - 1] : undefined,
-      last_values: { onchart: [], offchart: [] },
-    }))
-    // this.state.last_candle = this.ohlcv ? this.ohlcv[this.ohlcv.length - 1] : undefined
-    // this.state.last_values = { onchart: [], offchart: [] }
+    this.last_candle = this.ohlcv ? this.ohlcv[this.ohlcv.length - 1] : undefined
+    this.last_values = { onchart: [], offchart: [] }
+    // this.last_candle = this.ohlcv ? this.ohlcv[this.ohlcv.length - 1] : undefined
+    // this.last_values = { onchart: [], offchart: [] }
     this.onchart.forEach((x, i) => {
       let d = x.data || []
-      this.state.last_values.onchart[i] = d[d.length - 1]
+      this.last_values.onchart[i] = d[d.length - 1]
     })
     this.offchart.forEach((x, i) => {
       let d = x.data || []
-      this.state.last_values.offchart[i] = d[d.length - 1]
+      this.last_values.offchart[i] = d[d.length - 1]
     })
   }
   // Hook events for extensions
@@ -393,11 +372,11 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     p.data.push({
       type: this.chart.type || 'Candles',
       main: true,
-      data: this.state.sub,
-      i0: this.state.sub_start,
-      settings: this.chart.settings || this.state.settings_ohlcv,
+      data: this.sub,
+      i0: this.sub_start,
+      settings: this.chart.settings || this.settings_ohlcv,
       grid: this.chart.grid || {},
-      last: this.state.last_candle,
+      last: this.last_candle,
     })
     // p.overlays = this.props.overlays
     return p
@@ -454,32 +433,32 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   get meta() {
     return {
-      last: this.state.last_candle,
-      sub_start: this.state.sub_start,
-      activated: this.state.activated,
+      last: this.last_candle,
+      sub_start: this.sub_start,
+      activated: this.activated,
     }
   }
   get forced_tf() {
     return this.chart.tf
   }
-  get range() {
-    return this.state.range
-  }
+  // get range() {
+  //   return this.range
+  // }
 
-  componentDidUpdate(prevProps: ChartProps, prevState: ChartState) {
-    if (this.state.range.t1 !== -Infinity && prevState.range.t1 === -Infinity) {
-      this.setState((prevState) => ({
-        ...prevState,
-        sub: this.subset(),
-      }))
-      this._layout = this.newGenerateLayout()
-    }
-  }
+  // componentDidUpdate(prevProps: ChartProps, prevState: ChartState) {
+  //   if (this.range.t1 !== -Infinity && prevState.range.t1 === -Infinity) {
+  //     this.setState((prevState) => ({
+  //       ...prevState,
+  //       sub: this.subset(),
+  //     }))
+  //     this._layout = this.newGenerateLayout()
+  //   }
+  // }
 
   render() {
-    if (!this._layout && this.state.range.t1 !== -Infinity) {
-      this._layout = this.newGenerateLayout()
-    }
+    // if (!this._layout && this.range.t1 !== -Infinity) {
+    //   this._layout = this.newGenerateLayout()
+    // }
     return (
       <Stage height={this.props.height} width={this.props.width}>
         {this._layout.grids.map((grid, i) => {

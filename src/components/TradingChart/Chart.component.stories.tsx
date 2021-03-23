@@ -10,8 +10,8 @@ storiesOf('Components/Trading Chart/Chart', module)
   // .addParameters({ component: Candle })
   .add('Default', () => (
     <Chart
-      width={window.innerWidth}
-      height={window.innerHeight}
+      width={1024}
+      height={800}
       title_txt={'title'}
       data={Data}
       font={ChartConfig.FONT}
