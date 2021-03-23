@@ -238,8 +238,8 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   subset(range = this.range) {
     var [res, index] = this.filter(this.ohlcv, range.t1 - this.interval, range.t2)
-    index = 4148
-    console.log('subset', range.t2, range.t1, res.length, index)
+    // index = 4148
+    // console.log('subset', range.t2, range.t1, res.length, index)
 
     if (res) {
       this.sub_start = index
