@@ -5,6 +5,7 @@ import { Stage } from 'react-konva'
 import { CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange } from 'types/TradingChart'
 import { IB_TF_WARN, SECOND } from './constants'
 import Context from './Context'
+import { CursorUpdater } from './CursorUpdater'
 import { GridSection } from './GridSection.component'
 import { generateLayout } from './Layout'
 import TI from './TiMapping'
@@ -39,7 +40,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   // ohlcv: number[][] = []
 
   ti_map: any
-  updater: any
+  cursorUpdater: any
   interval_ms: number
   _layout: MainLayout
   ctx: any
@@ -80,6 +81,8 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   sub_start: any
   activated: boolean
+
+  updater: CursorUpdater
 
   constructor(props: ChartProps) {
     super(props)
@@ -130,7 +133,6 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     this.activated = false
 
     this.ti_map = new TI()
-    // this.updater = new CursorUpdater(this)
   }
 
   componentWillMount() {
@@ -139,6 +141,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     this.sub = this.subset()
 
     this._layout = this.newGenerateLayout()
+    this.cursorUpdater = new CursorUpdater(this)
     this.update_last_values()
 
     this.props.on('register-kb-listener', this.register_kb.bind(this))
@@ -196,9 +199,10 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     this.range_changed(Utils.timeRange(t1, t2))
   }
   cursor_changed(e: any) {
+    console.log('cursor change')
     if (e.mode) this.cursor.mode = e.mode
-    if (this.cursor.mode !== 'explore') {
-      this.updater.sync(e)
+    if (this.cursor.mode !== 'explore' && this.cursorUpdater) {
+      this.cursorUpdater.sync(e)
     }
     // if (this._hook_xchanged) this.ce('?x-changed', e)
   }

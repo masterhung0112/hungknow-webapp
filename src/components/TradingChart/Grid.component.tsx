@@ -4,12 +4,13 @@ import { DataCore, Layout, MainLayout, OverlayMeta, TimeRange } from 'types/Trad
 import { OverlayProps } from './Overlay'
 import { Candles } from './overlays/Candles.overlay'
 import Utils from './utils'
-import * as Hammer from 'hammerjs'
+import Hammer from './hammer-konva'
 import Hamster from 'hamsterjs'
 import * as math from './math'
 import FrameAnimation from './frame'
 import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
 import { withEventEmitter } from 'components/Emitter/EventEmitterHook'
+import { CrossHair } from './Cursor.component'
 
 class GridModel {
   MIN_ZOOM: number
@@ -67,7 +68,7 @@ class GridModel {
     this.hm = Hamster(this.canvas)
     this.hm.wheel((event: any, delta: number) => this.mousezoom(-delta * 50, event))
 
-    let mc = (this.mc = new Hammer.Manager(this.canvas))
+    let mc = (this.mc = new Hammer.Manager(this.canvas, { domEvents: true }))
     let T = Utils.is_mobile ? 10 : 0
     mc.add(new Hammer.Pan({ threshold: T }))
     mc.add(new Hammer.Tap())
@@ -128,6 +129,7 @@ class GridModel {
     })
 
     mc.on('tap', (event: any) => {
+      console.log()
       if (!Utils.is_mobile) return
       this.sim_mousedown(event)
       if (this.fade) this.fade.stop()
@@ -184,6 +186,7 @@ class GridModel {
   }
 
   mousemove(event: any) {
+    console.log('mousemove')
     if (Utils.is_mobile) return
     this.props.emit('cursor-changed', {
       grid_id: this.id,
@@ -750,6 +753,7 @@ const GridBase: React.FC<GridProps> = (props) => {
         {childItems}
         {/* {gridLines} */}
         {mappedOverlays}
+        <CrossHair {...props} />
       </Layer>
       {/*
          h(Crosshair, {
