@@ -1,5 +1,5 @@
 import { withEventEmitter, withEventEmitterProvider } from 'components/Emitter/EventEmitterHook'
-import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
+import { EventEmitterContext, EventEmitterProvider, EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
 import React from 'react'
 import { Stage } from 'react-konva'
 import { CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange } from 'types/TradingChart'
@@ -31,7 +31,9 @@ export interface ChartNoShaderProps {
 
 export interface ChartProps extends ChartNoShaderProps, ShaderHookProps, DataTrackHookProps, EventEmitterValue {}
 
-export type ChartState = {}
+export type ChartState = {
+  // _layout: MainLayout
+}
 
 export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   // ohlcv: number[][] = []
@@ -139,15 +141,15 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     this._layout = this.newGenerateLayout()
     this.update_last_values()
 
-    this.props.on('register-kb-listener', this.register_kb)
-    this.props.on('remove-kb-listener', this.remove_kb)
-    this.props.on('range-changed', this.range_changed)
-    this.props.on('cursor-changed', this.cursor_changed)
-    this.props.on('cursor-locked', this.cursor_locked)
-    this.props.on('sidebar-transform', this.set_ytransform)
-    this.props.on('layer-meta-props', this.layer_meta_props)
-    this.props.on('custom-event', this.emit_custom_event)
-    this.props.on('legend-button-click', this.legend_button_click)
+    this.props.on('register-kb-listener', this.register_kb.bind(this))
+    this.props.on('remove-kb-listener', this.remove_kb.bind(this))
+    this.props.on('range-changed', this.range_changed.bind(this))
+    this.props.on('cursor-changed', this.cursor_changed.bind(this))
+    this.props.on('cursor-locked', this.cursor_locked.bind(this))
+    this.props.on('sidebar-transform', this.set_ytransform.bind(this))
+    this.props.on('layer-meta-props', this.layer_meta_props.bind(this))
+    this.props.on('custom-event', this.emit_custom_event.bind(this))
+    this.props.on('legend-button-click', this.legend_button_click.bind(this))
   }
 
   // componentDidMount() {
@@ -178,13 +180,14 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // TODO: wtf?
     let sub = this.subset(r)
     // this.range = { ...r }
-    console.log('set time', r)
+    // console.log('set time', r)
     this.range = { ...r }
     Utils.overwrite(this.sub, sub)
     this.update_layout()
     // this.$emit('range-changed', r)
     if (this.props.ib) this.props.save_data_t(this)
   }
+
   goto(t: number) {
     const dt = this.range.t2 - this.range.t1
     this.range_changed(Utils.timeRange(t - dt, t))
@@ -336,7 +339,12 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     if (clac_tf) this.calc_interval()
     const lay = this.newGenerateLayout()
     Utils.copy_layout(this._layout, lay)
+    // this.setState((prevState) => ({
+    //   ...prevState,
+    //   : lay,
+    // }))
     // if (this._hook_update) this.ce('?chart-update', lay)
+    this.setState({})
   }
   legend_button_click(event: any) {
     // this.$emit('legend-button-click', event)
@@ -390,6 +398,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
       grid: this.chart.grid || {},
       last: this.last_candle,
     })
+    // console.log('this.sub', this.sub.length)
     // p.overlays = this.props.overlays
     return p
   }
@@ -472,13 +481,13 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     //   this._layout = this.newGenerateLayout()
     // }
     return (
-      <Stage height={this.props.height} width={this.props.width}>
-        {this._layout.grids.map((grid, i) => {
+      <div>
+        {this._layout.grids.map((_, i) => {
           return <GridSection common={this.section_props(i)} grid_id={i} />
         })}
-      </Stage>
+      </div>
     )
   }
 }
 
-export const Chart = withDataTrackHOC(withShaderHOC(withEventEmitterProvider(ChartNoShader)))
+export const Chart = withDataTrackHOC(withShaderHOC(withEventEmitterProvider(withEventEmitter(ChartNoShader))))

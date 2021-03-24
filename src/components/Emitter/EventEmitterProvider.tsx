@@ -51,7 +51,7 @@ export type EventProviderProps = {
 
 export type EventEmitterValue = { emit: EventEmitCall; on: EventCall; off: EventCall }
 export const EventEmitterContext = React.createContext<EventEmitterValue>(null)
-
+EventEmitterContext.displayName = 'EventEmitter'
 export class EventEmitterProvider extends React.Component<
   EventProviderProps,
   {

@@ -1,19 +1,20 @@
 import { withEventEmitter } from 'components/Emitter/EventEmitterHook'
-import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { EventEmitterContext, EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ComponentBaseProps } from 'types/TradingChart'
 import { Grid, GridProps } from './Grid.component'
 import { useShader } from './useShader'
 
-export interface GridSectionProps extends EventEmitterValue {
+export interface GridSectionProps {
   grid_id: number
   common: ComponentBaseProps
 }
 
-export const GridSectionBase: React.FC<GridSectionProps> = ({ grid_id, common, on }) => {
+export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => {
   const { shaders, init_shaders, on_shader_event } = useShader()
   const [meta_props, setmeta_props] = useState({})
   const sbRefs = React.useRef<Record<string, any>>({})
+  const { on } = useContext(EventEmitterContext)
 
   const grid_shaders = useCallback(() => {
     return shaders.filter((x) => x.target === 'grid')
@@ -62,5 +63,3 @@ export const GridSectionBase: React.FC<GridSectionProps> = ({ grid_id, common, o
     </>
   )
 }
-
-export const GridSection = withEventEmitter(GridSectionBase)

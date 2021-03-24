@@ -39,7 +39,9 @@ export const DefaultStyles = {
   colorTbBack: '#000000',
   colorTbBorder: '#8282827d',
 
-  colors: {},
+  colors: {
+    black: '#000000',
+  },
 
   font: ChartConfig.FONT,
 

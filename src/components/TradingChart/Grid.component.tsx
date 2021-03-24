@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
-import { Layer, Line } from 'react-konva'
+import { Layer, Line, Stage } from 'react-konva'
 import { DataCore, Layout, MainLayout, OverlayMeta, TimeRange } from 'types/TradingChart'
 import { OverlayProps } from './Overlay'
 import { Candles } from './overlays/Candles.overlay'
@@ -449,8 +449,9 @@ class GridModel {
     let tl = this.props.config.ZOOM_MODE === 'tl'
     if (event.originalEvent.ctrlKey || tl) {
       let offset = event.originalEvent.offsetX
-      let diff1 = (offset / (this.canvas.width - 1)) * diff
+      let diff1 = (offset / (this.canvas.width() - 1)) * diff
       let diff2 = diff - diff1
+      // console.log('diff1', diff1, this.canvas.width())
       this.range.t1 -= diff1
       this.range.t2 += diff2
     } else {
@@ -531,6 +532,7 @@ class GridModel {
     // and keep scrolling,
     // the chart continues to scale down a little.
     // Solution: I don't know yet
+    // console.log('change range', this.data, this.range)
 
     if (!this.range || this.data.length < 2) return
 
@@ -541,7 +543,6 @@ class GridModel {
     range.t1 = Utils.clamp(range.t1, -Infinity, data[l][0] - this.interval * 5.5)
 
     range.t2 = Utils.clamp(range.t2, data[0][0] + this.interval * 5.5, Infinity)
-
     // TODO: IMPORTANT scrolling is jerky The Problem caused
     // by the long round trip of 'range-changed' event.
     // First it propagates up to update layout in Chart.vue,
@@ -634,7 +635,7 @@ const GridBase: React.FC<GridProps> = (props) => {
   ])
   const [tools, setTools] = useState([])
 
-  const mappedOverlays = useMemo(() => {
+  const mappedOverlays = (() => {
     const compList: {
       cls: React.ComponentType<OverlayProps>
       type: string
@@ -684,7 +685,7 @@ const GridBase: React.FC<GridProps> = (props) => {
         last: comp.last,
       })
     )
-  }, [supportedOverlays, registry])
+  })() //, [supportedOverlays, registry, sub])
 
   useEffect(() => {
     setRenderer(new GridModel(canvasRef.current, props))
@@ -732,7 +733,7 @@ const GridBase: React.FC<GridProps> = (props) => {
   // }, [currentLayout])
 
   return (
-    <Layer
+    <Stage
       id={`grid-${tv_id}`}
       position={{
         x: 0,
@@ -741,13 +742,15 @@ const GridBase: React.FC<GridProps> = (props) => {
       width={currentLayout.width}
       height={currentLayout.height}
       canvasStyle={{
-        backgroundColor: 'black',
+        backgroundColor: colors.back,
       }}
       ref={canvasRef}
     >
-      {childItems}
-      {/* {gridLines} */}
-      {mappedOverlays}
+      <Layer>
+        {childItems}
+        {/* {gridLines} */}
+        {mappedOverlays}
+      </Layer>
       {/*
          h(Crosshair, {
                     props: this.common_props(),
@@ -769,7 +772,7 @@ const GridBase: React.FC<GridProps> = (props) => {
                     }
                 })
         */}
-    </Layer>
+    </Stage>
   )
 }
 

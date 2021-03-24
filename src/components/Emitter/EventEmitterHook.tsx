@@ -1,12 +1,10 @@
 import { EventEmitterContext, EventEmitterProvider, EventEmitterValue } from './EventEmitterProvider'
 
-export const withEventEmitterProvider = <T extends EventEmitterValue>(Component: React.ComponentType<T>) => {
-  return (props: Omit<T, keyof EventEmitterValue>) => {
+export const withEventEmitterProvider = <T extends {} = {}>(Component: React.ComponentType<T>) => {
+  return (props: T) => {
     return (
       <EventEmitterProvider>
-        <EventEmitterContext.Consumer>
-          {(context) => <Component {...context} {...(props as any)} />}
-        </EventEmitterContext.Consumer>
+        <Component {...(props as any)} />
       </EventEmitterProvider>
     )
   }
@@ -16,7 +14,9 @@ export const withEventEmitter = <T extends EventEmitterValue>(Component: React.C
   return (props: Omit<T, keyof EventEmitterValue>) => {
     return (
       <EventEmitterContext.Consumer>
-        {(context) => <Component {...context} {...(props as any)} />}
+        {(context) => {
+          return <Component {...context} {...(props as any)} />
+        }}
       </EventEmitterContext.Consumer>
     )
   }
