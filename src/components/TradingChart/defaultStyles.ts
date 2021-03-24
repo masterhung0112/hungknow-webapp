@@ -41,6 +41,7 @@ export const DefaultStyles = {
 
   colors: {
     black: '#000000',
+    cross: '#888888',
   },
 
   font: ChartConfig.FONT,

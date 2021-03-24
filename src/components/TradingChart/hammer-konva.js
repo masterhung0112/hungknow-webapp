@@ -453,6 +453,7 @@
       // smaller wrapper around the handler, for the scope and the enabled state of the manager,
       // so when disabled the input events are completely bypassed.
       this.domHandler = function(ev) {
+        console.log('dom handler')
         if (boolOrFn(manager.options.enable, [manager])) {
           self.handler(ev);
         }
@@ -2660,7 +2661,7 @@
         if (this.options.domEvents) {
           triggerDomEvent(event, data);
         }
-  
+        console.log('found event', event)
         // no handlers, so skip it all
         var handlers = this.handlers[event] && this.handlers[event].slice();
         if (!handlers || !handlers.length) {

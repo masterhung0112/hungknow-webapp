@@ -68,7 +68,7 @@ class GridModel {
     this.hm = Hamster(this.canvas)
     this.hm.wheel((event: any, delta: number) => this.mousezoom(-delta * 50, event))
 
-    let mc = (this.mc = new Hammer.Manager(this.canvas, { domEvents: true }))
+    let mc = (this.mc = new Hammer(this.canvas, { domEvents: true }))
     let T = Utils.is_mobile ? 10 : 0
     mc.add(new Hammer.Pan({ threshold: T }))
     mc.add(new Hammer.Tap())
@@ -186,8 +186,8 @@ class GridModel {
   }
 
   mousemove(event: any) {
-    console.log('mousemove')
     if (Utils.is_mobile) return
+    // console.log('mousemove', event)
     this.props.emit('cursor-changed', {
       grid_id: this.id,
       x: event.layerX,
@@ -285,7 +285,8 @@ class GridModel {
   }
 
   calc_offset() {
-    let rect = this.canvas.getBoundingClientRect()
+    // getBoundingClientRect
+    let rect = this.canvas.getClientRect()
     this.offset_x = -rect.x
     this.offset_y = -rect.y
   }
@@ -748,12 +749,16 @@ const GridBase: React.FC<GridProps> = (props) => {
         backgroundColor: colors.back,
       }}
       ref={canvasRef}
+      onMouseOut={(e) => renderer.mouseout(e.evt)}
+      onMouseMove={(e) => renderer.mousemove(e.evt)}
+      onMouseUp={(e) => renderer.mouseup(e.evt)}
+      onMouseDown={(e) => renderer.mousedown(e.evt)}
     >
       <Layer>
         {childItems}
         {/* {gridLines} */}
         {mappedOverlays}
-        <CrossHair {...props} />
+        <CrossHair {...props} layout={currentLayout} />
       </Layer>
       {/*
          h(Crosshair, {

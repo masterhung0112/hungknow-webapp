@@ -1,3 +1,4 @@
+import { screen2$, screen2t, t2screen } from './layoutFn'
 import Utils from './utils'
 
 export class CursorUpdater {
@@ -22,14 +23,16 @@ export class CursorUpdater {
         // TODO: find a better fix to invisible cursor prob
         if (once) {
           this.cursor.t = this.cursor_time(grid, e, c)
+          // console.log('this.cursor.t', this.cursor.t)
           if (this.cursor.t) once = false
         }
         if (c.values) {
-          this.comp.$set(this.cursor.values, grid.id, c.values)
+          // this.comp.$set(this.cursor.values, grid.id, c.values)
+          this.cursor.values[grid.id] = c.values
         }
       }
       if (grid.id !== e.grid_id) continue
-      this.cursor.x = grid.t2screen(this.cursor.t)
+      this.cursor.x = t2screen(grid, this.cursor.t, grid.range)
       this.cursor.y = c.y
       this.cursor.y$ = c.y$
     }
@@ -48,7 +51,7 @@ export class CursorUpdater {
       data = [d[grid.id - 1], ...m]
     }
 
-    const t = grid.screen2t(e.x)
+    const t = screen2t(grid, e.x, grid.range)
     let ids: any = {},
       res: any = {}
     for (var d of data) {
@@ -64,13 +67,14 @@ export class CursorUpdater {
   cursor_data(grid: any, e: any) {
     const data = this.comp.main_section.sub
 
-    let xs = data.map((x: any) => grid.t2screen(x[0]) + 0.5)
+    let xs = data.map((x: any) => t2screen(grid, x[0], grid.range) + 0.5)
     let i = Utils.nearest_a(e.x, xs)[0]
+
     if (!xs[i]) return {}
     return {
       x: Math.floor(xs[i]) - 0.5,
       y: Math.floor(e.y - 2) - 0.5 - grid.offset,
-      y$: grid.screen2$(e.y - 2 - grid.offset),
+      y$: screen2$(grid, e.y - 2 - grid.offset),
       t: (data[i] || [])[0],
       values: Object.assign(
         {
@@ -83,7 +87,7 @@ export class CursorUpdater {
 
   // Get cursor t-position (extended)
   cursor_time(grid: any, mouse: any, candle: any) {
-    let t = grid.screen2t(mouse.x)
+    let t = screen2t(grid, mouse.x, grid.range)
     let r = Math.abs((t - candle.t) / this.comp.interval)
     let sign = Math.sign(t - candle.t)
     if (r >= 0.5) {

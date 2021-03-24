@@ -40,7 +40,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   // ohlcv: number[][] = []
 
   ti_map: any
-  cursorUpdater: any
+  cursorUpdater: CursorUpdater
   interval_ms: number
   _layout: MainLayout
   ctx: any
@@ -199,12 +199,12 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     this.range_changed(Utils.timeRange(t1, t2))
   }
   cursor_changed(e: any) {
-    console.log('cursor change')
     if (e.mode) this.cursor.mode = e.mode
     if (this.cursor.mode !== 'explore' && this.cursorUpdater) {
       this.cursorUpdater.sync(e)
     }
     // if (this._hook_xchanged) this.ce('?x-changed', e)
+    this.setState((prevState) => ({ ...prevState }))
   }
   cursor_locked(state: any) {
     if (this.cursor.scroll_lock && state) return
@@ -348,7 +348,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     //   : lay,
     // }))
     // if (this._hook_update) this.ce('?chart-update', lay)
-    this.setState({})
+    this.setState((prevState) => ({ ...prevState }))
   }
   legend_button_click(event: any) {
     // this.$emit('legend-button-click', event)
