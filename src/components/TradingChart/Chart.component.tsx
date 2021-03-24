@@ -424,7 +424,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
       {
         width: this._layout.botbar.width,
         height: this._layout.botbar.height,
-        rerender: this.state.rerender,
+        rerender: this.rerender,
       },
       this.common_props()
     )

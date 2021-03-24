@@ -4,7 +4,7 @@ import { DataCore, Layout, MainLayout, OverlayMeta, TimeRange } from 'types/Trad
 import { OverlayProps } from './Overlay'
 import { Candles } from './overlays/Candles.overlay'
 import Utils from './utils'
-import Hammer from './hammer-konva'
+import Hammer from 'hammerjs'
 import Hamster from 'hamsterjs'
 import * as math from './math'
 import FrameAnimation from './frame'

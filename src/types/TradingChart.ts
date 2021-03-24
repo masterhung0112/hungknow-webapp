@@ -351,6 +351,7 @@ export interface GridMaker {
 
 export interface MainLayout {
   grids: Layout[]
+  botbar: any
 }
 
 export interface Layout {
@@ -411,7 +412,7 @@ export interface Layout {
   volume: any[]
 
   /** vertical grid lines [[x, candle], ...] */
-  xs: [number, any][]
+  xs: [number, any, any?][]
 
   /** horizontal grid lines [[y, price], ...] */
   ys: [number, any][]
