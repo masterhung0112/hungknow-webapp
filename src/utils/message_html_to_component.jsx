@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
-import {Parser, ProcessNodeDefinitions} from 'html-to-react';
+import React from 'react'
+import { Parser, ProcessNodeDefinitions } from 'html-to-react'
 
-import AtMention from 'components/at_mention';
-import LatexBlock from 'components/latex_block';
-import LinkTooltip from 'components/link_tooltip/link_tooltip';
-import MarkdownImage from 'components/markdown_image';
-import PostEmoji from 'components/post_emoji';
+import AtMention from 'components/at_mention'
+import LatexBlock from 'components/latex_block'
+import LinkTooltip from 'components/link_tooltip/link_tooltip'
+import MarkdownImage from 'components/markdown_image'
+import PostEmoji from 'components/post_emoji'
 
 /*
  * Converts HTML to React components using html-to-react.
@@ -25,139 +25,127 @@ import PostEmoji from 'components/post_emoji';
  * - channelId = If specified, to be passed along to ProfilePopover via AtMention
  */
 export function messageHtmlToComponent(html, isRHS, options = {}) {
-    if (!html) {
-        return null;
-    }
+  if (!html) {
+    return null
+  }
 
-    const parser = new Parser();
-    const processNodeDefinitions = new ProcessNodeDefinitions(React);
+  const parser = new Parser()
+  const processNodeDefinitions = new ProcessNodeDefinitions(React)
 
-    function isValidNode() {
-        return true;
-    }
+  function isValidNode() {
+    return true
+  }
 
-    const processingInstructions = [
+  const processingInstructions = [
+    // Workaround to fix MM-14931
+    {
+      replaceChildren: false,
+      shouldProcessNode: (node) => node.type === 'tag' && node.name === 'input' && node.attribs.type === 'checkbox',
+      processNode: (node) => {
+        const attribs = node.attribs || {}
+        node.attribs.checked = Boolean(attribs.checked)
 
-        // Workaround to fix MM-14931
-        {
-            replaceChildren: false,
-            shouldProcessNode: (node) => node.type === 'tag' && node.name === 'input' && node.attribs.type === 'checkbox',
-            processNode: (node) => {
-                const attribs = node.attribs || {};
-                node.attribs.checked = Boolean(attribs.checked);
+        return React.createElement('input', { ...node.attribs })
+      },
+    },
+  ]
 
-                return React.createElement('input', {...node.attribs});
-            },
-        },
-    ];
-
-    if (options.hasPluginTooltips) {
-        const hrefAttrib = 'href';
-        processingInstructions.push({
-            replaceChildren: true,
-            shouldProcessNode: (node) => node.type === 'tag' && node.name === 'a' && node.attribs[hrefAttrib],
-            processNode: (node, children) => {
-                return (
-                    <LinkTooltip
-                        href={node.attribs[hrefAttrib]}
-                        attributes={node.attribs}
-                    >
-                        {children}
-                    </LinkTooltip>
-                );
-            },
-        });
-    }
-    if (!('mentions' in options) || options.mentions) {
-        const mentionHighlight = 'mentionHighlight' in options ? options.mentionHighlight : true;
-        const disableGroupHighlight = 'disableGroupHighlight' in options ? options.disableGroupHighlight === true : false;
-        const mentionAttrib = 'data-mention';
-        processingInstructions.push({
-            replaceChildren: true,
-            shouldProcessNode: (node) => node.attribs && node.attribs[mentionAttrib],
-            processNode: (node, children) => {
-                const mentionName = node.attribs[mentionAttrib];
-                const callAtMention = (
-                    <AtMention
-                        mentionName={mentionName}
-                        isRHS={isRHS}
-                        hasMention={true}
-                        disableHighlight={!mentionHighlight}
-                        disableGroupHighlight={disableGroupHighlight}
-                        channelId={options.channelId}
-                    >
-                        {children}
-                    </AtMention>
-                );
-                return callAtMention;
-            },
-        });
-    }
-
-    if (!('emoji' in options) || options.emoji) {
-        const emojiAttrib = 'data-emoticon';
-        processingInstructions.push({
-            replaceChildren: true,
-            shouldProcessNode: (node) => node.attribs && node.attribs[emojiAttrib],
-            processNode: (node) => {
-                const emojiName = node.attribs[emojiAttrib];
-
-                return <PostEmoji name={emojiName}/>;
-            },
-        });
-    }
-
-    if (!('images' in options) || options.images) {
-        processingInstructions.push({
-            shouldProcessNode: (node) => node.type === 'tag' && node.name === 'img',
-            processNode: (node) => {
-                const {
-                    class: className,
-                    ...attribs
-                } = node.attribs;
-
-                const imageIsLink = (parentNode) => {
-                    if (parentNode &&
-                        parentNode.type === 'tag' &&
-                        parentNode.name === 'a'
-                    ) {
-                        return true;
-                    }
-                    return false;
-                };
-
-                return (
-                    <MarkdownImage
-                        className={className}
-                        imageMetadata={options.imagesMetadata && options.imagesMetadata[attribs.src]}
-                        {...attribs}
-                        {...options.imageProps}
-                        postId={options.postId}
-                        imageIsLink={imageIsLink(node.parentNode)}
-                        postType={options.postType}
-                    />
-                );
-            },
-        });
-    }
-
-    if (!('latex' in options) || options.latex) {
-        processingInstructions.push({
-            shouldProcessNode: (node) => node.attribs && node.attribs['data-latex'],
-            processNode: (node) => {
-                return (
-                    <LatexBlock content={node.attribs['data-latex']}/>
-                );
-            },
-        });
-    }
-
+  if (options.hasPluginTooltips) {
+    const hrefAttrib = 'href'
     processingInstructions.push({
-        shouldProcessNode: () => true,
-        processNode: processNodeDefinitions.processDefaultNode,
-    });
+      replaceChildren: true,
+      shouldProcessNode: (node) => node.type === 'tag' && node.name === 'a' && node.attribs[hrefAttrib],
+      processNode: (node, children) => {
+        return (
+          <LinkTooltip href={node.attribs[hrefAttrib]} attributes={node.attribs}>
+            {children}
+          </LinkTooltip>
+        )
+      },
+    })
+  }
+  if (!('mentions' in options) || options.mentions) {
+    const mentionHighlight = 'mentionHighlight' in options ? options.mentionHighlight : true
+    const disableGroupHighlight = 'disableGroupHighlight' in options ? options.disableGroupHighlight === true : false
+    const mentionAttrib = 'data-mention'
+    processingInstructions.push({
+      replaceChildren: true,
+      shouldProcessNode: (node) => node.attribs && node.attribs[mentionAttrib],
+      processNode: (node, children) => {
+        const mentionName = node.attribs[mentionAttrib]
+        const callAtMention = (
+          <AtMention
+            mentionName={mentionName}
+            isRHS={isRHS}
+            hasMention={true}
+            disableHighlight={!mentionHighlight}
+            disableGroupHighlight={disableGroupHighlight}
+            channelId={options.channelId}
+          >
+            {children}
+          </AtMention>
+        )
+        return callAtMention
+      },
+    })
+  }
 
-    return parser.parseWithInstructions(html, isValidNode, processingInstructions);
+  if (!('emoji' in options) || options.emoji) {
+    const emojiAttrib = 'data-emoticon'
+    processingInstructions.push({
+      replaceChildren: true,
+      shouldProcessNode: (node) => node.attribs && node.attribs[emojiAttrib],
+      processNode: (node) => {
+        const emojiName = node.attribs[emojiAttrib]
+
+        return <PostEmoji name={emojiName} />
+      },
+    })
+  }
+
+  if (!('images' in options) || options.images) {
+    processingInstructions.push({
+      shouldProcessNode: (node) => node.type === 'tag' && node.name === 'img',
+      processNode: (node) => {
+        const { class: className, ...attribs } = node.attribs
+
+        const imageIsLink = (parentNode) => {
+          if (parentNode && parentNode.type === 'tag' && parentNode.name === 'a') {
+            return true
+          }
+          return false
+        }
+
+        return (
+          <MarkdownImage
+            className={className}
+            imageMetadata={options.imagesMetadata && options.imagesMetadata[attribs.src]}
+            {...attribs}
+            {...options.imageProps}
+            postId={options.postId}
+            imageIsLink={imageIsLink(node.parentNode)}
+            postType={options.postType}
+          />
+        )
+      },
+    })
+  }
+
+  if (!('latex' in options) || options.latex) {
+    processingInstructions.push({
+      shouldProcessNode: (node) => node.attribs && node.attribs['data-latex'],
+      processNode: (node) => {
+        return <LatexBlock content={node.attribs['data-latex']} />
+      },
+    })
+  }
+
+  processingInstructions.push({
+    shouldProcessNode: () => true,
+    processNode: processNodeDefinitions.processDefaultNode,
+  })
+
+  return parser.parseWithInstructions(html, isValidNode, processingInstructions)
 }
 
-export default messageHtmlToComponent;
+export default messageHtmlToComponent

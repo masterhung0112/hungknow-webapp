@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import * as UserAgent from 'utils/user_agent';
-import Constants from 'utils/constants';
-import icon50 from 'images/icon50x50.png';
-import iconWS from 'images/icon_WS.png';
+import * as UserAgent from 'utils/user_agent'
+import Constants from 'utils/constants'
+import icon50 from 'images/icon50x50.png'
+import iconWS from 'images/icon_WS.png'
 
-let requestedNotificationPermission = false;
+let requestedNotificationPermission = false
 
 // showNotification displays a platform notification with the configured parameters.
 //
@@ -16,82 +16,76 @@ let requestedNotificationPermission = false;
 // choose different semantics for the notifications.
 
 export interface ShowNotificationParams {
-    title: string;
-    body: string;
-    requireInteraction: boolean;
-    silent: boolean;
-    onClick?: (this: Notification, e: Event) => any | null;
+  title: string
+  body: string
+  requireInteraction: boolean
+  silent: boolean
+  onClick?: (this: Notification, e: Event) => any | null
 }
 
 export async function showNotification(
-    {
-        title,
-        body,
-        requireInteraction,
-        silent,
-        onClick,
-    }: ShowNotificationParams = {
-        title: '',
-        body: '',
-        requireInteraction: false,
-        silent: false,
-    },
+  { title, body, requireInteraction, silent, onClick }: ShowNotificationParams = {
+    title: '',
+    body: '',
+    requireInteraction: false,
+    silent: false,
+  }
 ) {
-    let icon = icon50;
-    if (UserAgent.isEdge()) {
-        icon = iconWS;
-    }
+  let icon = icon50
+  if (UserAgent.isEdge()) {
+    icon = iconWS
+  }
 
-    if (!('Notification' in window)) {
-        throw new Error('Notification not supported');
-    }
+  if (!('Notification' in window)) {
+    throw new Error('Notification not supported')
+  }
 
-    if (typeof Notification.requestPermission !== 'function') {
-        throw new Error('Notification.requestPermission not supported');
-    }
+  if (typeof Notification.requestPermission !== 'function') {
+    throw new Error('Notification.requestPermission not supported')
+  }
 
-    if (Notification.permission !== 'granted' && requestedNotificationPermission) {
-        throw new Error('Notifications already requested but not granted');
-    }
+  if (Notification.permission !== 'granted' && requestedNotificationPermission) {
+    throw new Error('Notifications already requested but not granted')
+  }
 
-    requestedNotificationPermission = true;
+  requestedNotificationPermission = true
 
-    let permission = await Notification.requestPermission();
-    if (typeof permission === 'undefined') {
-        // Handle browsers that don't support the promise-based syntax.
-        permission = await new Promise((resolve) => {
-            Notification.requestPermission(resolve);
-        });
-    }
+  let permission = await Notification.requestPermission()
+  if (typeof permission === 'undefined') {
+    // Handle browsers that don't support the promise-based syntax.
+    permission = await new Promise((resolve) => {
+      Notification.requestPermission(resolve)
+    })
+  }
 
-    if (permission !== 'granted') {
-        throw new Error('Notifications not granted');
-    }
+  if (permission !== 'granted') {
+    throw new Error('Notifications not granted')
+  }
 
-    const notification = new Notification(title, {
-        body,
-        tag: body,
-        icon,
-        requireInteraction,
-        silent,
-    });
+  const notification = new Notification(title, {
+    body,
+    tag: body,
+    icon,
+    requireInteraction,
+    silent,
+  })
 
-    if (onClick) {
-        notification.onclick = onClick;
-    }
+  if (onClick) {
+    notification.onclick = onClick
+  }
 
-    notification.onerror = () => {
-        throw new Error('Notification failed to show.');
-    };
+  notification.onerror = () => {
+    throw new Error('Notification failed to show.')
+  }
 
-    // Mac desktop app notification dismissal is handled by the OS
-    if (!requireInteraction && !UserAgent.isMacApp()) {
-        setTimeout(() => {
-            notification.close();
-        }, Constants.DEFAULT_NOTIFICATION_DURATION);
-    }
+  // Mac desktop app notification dismissal is handled by the OS
+  if (!requireInteraction && !UserAgent.isMacApp()) {
+    setTimeout(() => {
+      notification.close()
+    }, Constants.DEFAULT_NOTIFICATION_DURATION)
+  }
 
-    return () => {
-        notification.close();
-    };
+  return () => {
+    notification.close()
+  }
 }

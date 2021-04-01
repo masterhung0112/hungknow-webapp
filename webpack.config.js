@@ -82,13 +82,28 @@ module.exports = {
         test: /\.scss$/,
         use: scssLoaders,
       },
+      // {
+      //   test: /\.(eot|ttf|woff|woff2|svg|png|gif|jpe?g)$/,
+      //   loader: require.resolve('file-loader'),
+      //   options: {
+      //     name: '[name].[ext]?[hash]',
+      //     outputPath: 'assets/',
+      //   },
+      // },
       {
-        test: /\.(eot|ttf|woff|woff2|svg|png|gif|jpe?g)$/,
-        loader: require.resolve('file-loader'),
-        options: {
-          name: '[name].[ext]?[hash]',
-          outputPath: 'assets/',
-        },
+        test: /\.(png|eot|tiff|svg|woff2|woff|ttf|gif|mp3|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'files/[contenthash].[ext]',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {},
+          },
+        ],
       },
     ],
   },

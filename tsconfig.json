@@ -103,7 +103,10 @@
       ],
       "hktestlib/*": [
         "testlib/*"
-      ]
+      ],
+      "types/*": [
+        "types/*"
+      ],
     }
   },
   "include": [

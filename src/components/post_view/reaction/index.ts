@@ -6,11 +6,7 @@ import { bindActionCreators, Dispatch } from 'redux'
 
 import { removeReaction } from 'hkclient-ts/lib/actions/posts'
 import { getMissingProfilesByIds } from 'hkclient-ts/lib/actions/users'
-import {
-  getCurrentUserId,
-  makeGetProfilesForReactions,
-  getCurrentUser,
-} from 'hkclient-ts/lib/selectors/entities/users'
+import { getCurrentUserId, makeGetProfilesForReactions, getCurrentUser } from 'hkclient-ts/lib/selectors/entities/users'
 import { getChannel } from 'hkclient-ts/lib/selectors/entities/channels'
 import { getCustomEmojisByName } from 'hkclient-ts/lib/selectors/entities/emojis'
 import { getEmojiImageUrl } from 'hkclient-ts/lib/utils/emoji_utils'

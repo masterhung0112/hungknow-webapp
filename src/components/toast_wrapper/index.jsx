@@ -1,41 +1,45 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {createSelector} from 'reselect';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { createSelector } from 'reselect'
+import { withRouter } from 'react-router-dom'
 
-import {Posts} from 'hkclient-ts/lib/constants';
-import {getAllPosts, getPostIdsInChannel} from 'hkclient-ts/lib/selectors/entities/posts';
-import {getCurrentUserId} from 'hkclient-ts/lib/selectors/entities/users';
-import {makePreparePostIdsForPostList} from 'hkclient-ts/lib/utils/post_list';
-import {countCurrentChannelUnreadMessages, isManuallyUnread} from 'hkclient-ts/lib/selectors/entities/channels';
+import { Posts } from 'hkclient-ts/lib/constants'
+import { getAllPosts, getPostIdsInChannel } from 'hkclient-ts/lib/selectors/entities/posts'
+import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
+import { makePreparePostIdsForPostList } from 'hkclient-ts/lib/utils/post_list'
+import { countCurrentChannelUnreadMessages, isManuallyUnread } from 'hkclient-ts/lib/selectors/entities/channels'
 
-import {updateToastStatus} from 'actions/views/channel';
+import { updateToastStatus } from 'actions/views/channel'
 
-import ToastWrapper from './toast_wrapper.jsx';
+import ToastWrapper from './toast_wrapper.jsx'
 
 export function makeCountUnreadsBelow() {
-    return createSelector(
-        getAllPosts,
-        getCurrentUserId,
-        (state, postIds) => postIds,
-        (state, postIds, lastViewedBottom) => lastViewedBottom,
-        (allPosts, currentUserId, postIds, lastViewedBottom) => {
-            if (!postIds) {
-                return 0;
-            }
+  return createSelector(
+    getAllPosts,
+    getCurrentUserId,
+    (state, postIds) => postIds,
+    (state, postIds, lastViewedBottom) => lastViewedBottom,
+    (allPosts, currentUserId, postIds, lastViewedBottom) => {
+      if (!postIds) {
+        return 0
+      }
 
-            // Count the number of new posts made by other users that haven't been deleted
-            return postIds.map((id) => allPosts[id]).filter((post) => {
-                return post &&
-                    post.user_id !== currentUserId &&
-                    post.state !== Posts.POST_DELETED &&
-                    post.create_at > lastViewedBottom;
-            }).length;
-        },
-    );
+      // Count the number of new posts made by other users that haven't been deleted
+      return postIds
+        .map((id) => allPosts[id])
+        .filter((post) => {
+          return (
+            post &&
+            post.user_id !== currentUserId &&
+            post.state !== Posts.POST_DELETED &&
+            post.create_at > lastViewedBottom
+          )
+        }).length
+    }
+  )
 }
 
 /* This connected component is written mainly for maintaining the unread count to be passed to the toast
@@ -49,35 +53,38 @@ export function makeCountUnreadsBelow() {
 */
 
 function makeMapStateToProps() {
-    const countUnreadsBelow = makeCountUnreadsBelow();
-    const preparePostIdsForPostList = makePreparePostIdsForPostList();
-    return function mapStateToProps(state, ownProps) {
-        let newRecentMessagesCount = 0;
-        const channelMarkedAsUnread = isManuallyUnread(state, ownProps.channelId);
-        const lastViewedAt = state.views.channel.lastChannelViewTime[ownProps.channelId];
-        if (!ownProps.atLatestPost) {
-            let postIds = getPostIdsInChannel(state, ownProps.channelId);
-            if (postIds) {
-                postIds = preparePostIdsForPostList(state, {postIds, lastViewedAt, channelId: ownProps.channelId});
-            }
-            newRecentMessagesCount = countUnreadsBelow(state, postIds, lastViewedAt);
-        }
+  const countUnreadsBelow = makeCountUnreadsBelow()
+  const preparePostIdsForPostList = makePreparePostIdsForPostList()
+  return function mapStateToProps(state, ownProps) {
+    let newRecentMessagesCount = 0
+    const channelMarkedAsUnread = isManuallyUnread(state, ownProps.channelId)
+    const lastViewedAt = state.views.channel.lastChannelViewTime[ownProps.channelId]
+    if (!ownProps.atLatestPost) {
+      let postIds = getPostIdsInChannel(state, ownProps.channelId)
+      if (postIds) {
+        postIds = preparePostIdsForPostList(state, { postIds, lastViewedAt, channelId: ownProps.channelId })
+      }
+      newRecentMessagesCount = countUnreadsBelow(state, postIds, lastViewedAt)
+    }
 
-        return {
-            lastViewedAt,
-            newRecentMessagesCount,
-            unreadCountInChannel: countCurrentChannelUnreadMessages(state),
-            channelMarkedAsUnread,
-        };
-    };
+    return {
+      lastViewedAt,
+      newRecentMessagesCount,
+      unreadCountInChannel: countCurrentChannelUnreadMessages(state),
+      channelMarkedAsUnread,
+    }
+  }
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators({
-            updateToastStatus,
-        }, dispatch),
-    };
+  return {
+    actions: bindActionCreators(
+      {
+        updateToastStatus,
+      },
+      dispatch
+    ),
+  }
 }
 
-export default withRouter(connect(makeMapStateToProps, mapDispatchToProps)(ToastWrapper));
+export default withRouter(connect(makeMapStateToProps, mapDispatchToProps)(ToastWrapper))

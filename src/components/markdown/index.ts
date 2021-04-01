@@ -6,11 +6,7 @@ import { createSelector } from 'reselect'
 
 import { Preferences } from 'hkclient-ts/lib/constants'
 import { getChannelsNameMapInCurrentTeam } from 'hkclient-ts/lib/selectors/entities/channels'
-import {
-  getAutolinkedUrlSchemes,
-  getConfig,
-  getManagedResourcePaths,
-} from 'hkclient-ts/lib/selectors/entities/general'
+import { getAutolinkedUrlSchemes, getConfig, getManagedResourcePaths } from 'hkclient-ts/lib/selectors/entities/general'
 import { getBool } from 'hkclient-ts/lib/selectors/entities/preferences'
 import { getCurrentTeam } from 'hkclient-ts/lib/selectors/entities/teams'
 import { getAllUserMentionKeys } from 'hkclient-ts/lib/selectors/entities/search'
