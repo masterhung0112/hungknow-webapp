@@ -3,7 +3,7 @@
 
 import { batchActions } from 'redux-batched-actions'
 
-import { PreferenceTypes } from 'hkclient-ts/lib/action_types'
+import { PreferenceTypes } from 'hkclient-ts/lib/action-types'
 import * as ChannelActions from 'hkclient-ts/lib/actions/channels'
 import { savePreferences } from 'hkclient-ts/lib/actions/preferences'
 import { getMyChannelMemberships } from 'hkclient-ts/lib/selectors/entities/common'

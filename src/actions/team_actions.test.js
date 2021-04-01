@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import * as TeamActions from 'hkclient-ts/lib/actions/teams'
 import * as channelActions from 'hkclient-ts/lib/actions/channels'
 import * as userActions from 'hkclient-ts/lib/actions/users'
-import { ChannelTypes } from 'hkclient-ts/lib/action_types'
+import { ChannelTypes } from 'hkclient-ts/lib/action-types'
 
 import * as Actions from 'actions/team_actions.jsx'
 import { browserHistory } from 'utils/browser_history'

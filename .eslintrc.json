@@ -88,7 +88,24 @@
         "jquery/no-trim": 0,
         "jquery/no-val": 0,
         "jquery/no-when": 0,
-        "jquery/no-wrap": 0
+        "jquery/no-wrap": 0,
+        "import/no-unresolved": 2,
+        "import/order": [
+            2,
+            {
+                "newlines-between": "always-and-inside-groups",
+                "groups": [
+                "builtin",
+                "external",
+                [
+                    "internal",
+                    "parent"
+                ],
+                "sibling",
+                "index"
+                ]
+            }
+        ]
     },
     "settings": {
         "react": {

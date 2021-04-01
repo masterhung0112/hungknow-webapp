@@ -11,7 +11,7 @@ import {
 } from 'hkclient-ts/lib/selectors/entities/channels'
 import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
 import { getCurrentRelativeTeamUrl, getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
-import { IntegrationTypes } from 'hkclient-ts/lib/action_types'
+import { IntegrationTypes } from 'hkclient-ts/lib/action-types'
 
 import { openModal } from 'actions/views/modals'
 import * as GlobalActions from 'actions/global_actions'

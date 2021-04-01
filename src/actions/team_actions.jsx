@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { TeamTypes } from 'hkclient-ts/lib/action_types'
+import { TeamTypes } from 'hkclient-ts/lib/action-types'
 import { viewChannel, getChannelStats } from 'hkclient-ts/lib/actions/channels'
 import * as TeamActions from 'hkclient-ts/lib/actions/teams'
 import { getCurrentChannelId, isManuallyUnread } from 'hkclient-ts/lib/selectors/entities/channels'

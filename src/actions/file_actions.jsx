@@ -4,7 +4,7 @@
 import { batchActions } from 'redux-batched-actions'
 import request from 'superagent'
 
-import { FileTypes } from 'hkclient-ts/lib/action_types'
+import { FileTypes } from 'hkclient-ts/lib/action-types'
 import { getLogErrorAction } from 'hkclient-ts/lib/actions/errors'
 import { forceLogoutIfNecessary } from 'hkclient-ts/lib/actions/helpers'
 import { Client4 } from 'hkclient-ts/lib/client'

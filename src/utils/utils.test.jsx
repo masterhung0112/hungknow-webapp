@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 import assert from 'assert'
 
-import { GeneralTypes } from 'hkclient-ts/lib/action_types'
+import { GeneralTypes } from 'hkclient-ts/lib/action-types'
 
 import store from 'stores/redux_store.jsx'
 

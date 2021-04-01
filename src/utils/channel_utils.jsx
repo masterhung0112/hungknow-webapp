@@ -4,7 +4,7 @@ import { haveIChannelPermission } from 'hkclient-ts/lib/selectors/entities/roles
 import Permissions from 'hkclient-ts/lib/constants/permissions'
 
 import { removeUserFromTeam } from 'hkclient-ts/lib/actions/teams'
-import { TeamTypes } from 'hkclient-ts/lib/action_types'
+import { TeamTypes } from 'hkclient-ts/lib/action-types'
 import { getRedirectChannelNameForTeam } from 'hkclient-ts/lib/selectors/entities/channels'
 import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
 

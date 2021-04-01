@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import { getProfilesAndStatusesForPosts, getThreadsForPosts, receivedNewPost } from 'hkclient-ts/lib/actions/posts'
-import { ChannelTypes, UserTypes } from 'hkclient-ts/lib/action_types'
+import { ChannelTypes, UserTypes } from 'hkclient-ts/lib/action-types'
 import { getMissingProfilesByIds, getStatusesByIds, getUser } from 'hkclient-ts/lib/actions/users'
 import { getChannelStats } from 'hkclient-ts/lib/actions/channels'
 import { General, WebsocketEvents } from 'hkclient-ts/lib/constants'

@@ -4,7 +4,7 @@
 import thunk from 'redux-thunk'
 import configureStore from 'redux-mock-store'
 
-import { SearchTypes } from 'hkclient-ts/lib/action_types'
+import { SearchTypes } from 'hkclient-ts/lib/action-types'
 import * as PostActions from 'hkclient-ts/lib/actions/posts'
 import { Posts } from 'hkclient-ts/lib/constants'
 

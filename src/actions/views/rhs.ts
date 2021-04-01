@@ -3,7 +3,7 @@
 
 import { batchActions } from 'redux-batched-actions'
 
-import { SearchTypes } from 'hkclient-ts/lib/action_types'
+import { SearchTypes } from 'hkclient-ts/lib/action-types'
 import { clearSearch, getFlaggedPosts, getPinnedPosts, searchPostsWithParams } from 'hkclient-ts/lib/actions/search'
 import * as PostActions from 'hkclient-ts/lib/actions/posts'
 import { getCurrentUserId, getCurrentUserMentionKeys } from 'hkclient-ts/lib/selectors/entities/users'

@@ -16,7 +16,7 @@ import {
   AdminTypes,
   IntegrationTypes,
   PreferenceTypes,
-} from 'hkclient-ts/lib/action_types'
+} from 'hkclient-ts/lib/action-types'
 import { WebsocketEvents, General, Permissions } from 'hkclient-ts/lib/constants'
 import {
   addChannelToInitialCategory,

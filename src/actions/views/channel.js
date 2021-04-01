@@ -10,7 +10,7 @@ import {
   unfavoriteChannel,
 } from 'hkclient-ts/lib/actions/channels'
 import * as PostActions from 'hkclient-ts/lib/actions/posts'
-import { TeamTypes } from 'hkclient-ts/lib/action_types'
+import { TeamTypes } from 'hkclient-ts/lib/action-types'
 import { autocompleteUsers } from 'hkclient-ts/lib/actions/users'
 import { selectTeam } from 'hkclient-ts/lib/actions/teams'
 import { Posts, RequestStatus } from 'hkclient-ts/lib/constants'

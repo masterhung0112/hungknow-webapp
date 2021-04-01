@@ -31,6 +31,7 @@ module.exports = async () => {
       '^images/(.*)$': '<rootDir>/images/$1',
       '^core$': '<rootDir>/core',
       '^core/(.*)$': '<rootDir>/core/$1',
+      'types/(.*)$': '<rootDir>/types/$1',
     },
   }
 }

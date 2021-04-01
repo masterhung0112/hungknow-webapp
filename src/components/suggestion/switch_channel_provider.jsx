@@ -5,7 +5,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { UserTypes } from 'hkclient-ts/lib/action_types'
+import { UserTypes } from 'hkclient-ts/lib/action-types'
 import { Client4 } from 'hkclient-ts/lib/client'
 import { Preferences } from 'hkclient-ts/lib/constants'
 import {

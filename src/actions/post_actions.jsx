@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { SearchTypes } from 'hkclient-ts/lib/action_types'
+import { SearchTypes } from 'hkclient-ts/lib/action-types'
 import { getMyChannelMember } from 'hkclient-ts/lib/actions/channels'
 import {
   getChannel,

@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 
 import * as PostActions from 'hkclient-ts/lib/actions/posts'
 import * as SearchActions from 'hkclient-ts/lib/actions/search'
-import { SearchTypes } from 'hkclient-ts/lib/action_types'
+import { SearchTypes } from 'hkclient-ts/lib/action-types'
 import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
 import { Post } from 'hkclient-ts/lib/types/posts'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
