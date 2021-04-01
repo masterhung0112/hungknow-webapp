@@ -106,6 +106,21 @@
       ],
       "types/*": [
         "types/*"
+      ],
+      "store": [
+        "store"
+      ],
+      "store/*": [
+        "store/*"
+      ],
+      "stores/*": [
+        "stores/*"
+      ],
+      "constants": [
+        "constants"
+      ],
+      "constants/*": [
+        "constants/*"
       ]
     }
   },

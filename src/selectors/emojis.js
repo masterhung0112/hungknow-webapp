@@ -7,7 +7,7 @@ import { getCustomEmojisByName } from 'hkclient-ts/lib/selectors/entities/emojis
 import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
 import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
 
-import LocalStorageStore from 'store/local_storage_store'
+import LocalStorageStore from 'stores/local_storage_store'
 
 import { Constants } from 'utils/constants'
 import { getItemFromStorage } from 'selectors/storage'

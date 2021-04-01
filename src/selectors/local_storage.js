@@ -4,7 +4,7 @@
 import { getCurrentTeamId, getTeamByName } from 'hkclient-ts/lib/selectors/entities/teams'
 import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
 
-import localStorageStore from 'store/local_storage_store'
+import localStorageStore from 'stores/local_storage_store'
 
 // getLastViewedChannelName combines data from the Redux store and localStorage to return the
 // previously selected channel name, returning the default channel if none exists.

@@ -1,6 +1,6 @@
 import { StorageConstants } from 'constants/storage'
 
-import { StorageTypes } from 'action-types'
+import { StorageTypes } from 'utils/constants'
 import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
 import { Persistor } from 'redux-persist'
 import { GlobalState } from 'types/store'

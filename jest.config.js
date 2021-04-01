@@ -1,6 +1,6 @@
 module.exports = async () => {
   return {
-    setupFilesAfterEnv: ['<rootDir>/testlib/testEnvSetup.js'],
+    setupFilesAfterEnv: ['<rootDir>/testlib/setup.js'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
     verbose: true,
     rootDir: './src',
@@ -12,7 +12,9 @@ module.exports = async () => {
       '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
       '^.*i18n.*\\.(json)$': '<rootDir>/testlib/i18n_mock.json',
       '^bundle-loader\\?lazy\\!(.*)$': '$1',
+      '^store$': '<rootDir>/store',
       '^store/(.*)$': '<rootDir>/store/$1',
+      '^stores/(.*)$': '<rootDir>/stores/$1',
       '^utils$': '<rootDir>/utils',
       '^utils/(.*)$': '<rootDir>/utils/$1',
       '^hktestlib$': '<rootDir>/test',
@@ -31,7 +33,8 @@ module.exports = async () => {
       '^images/(.*)$': '<rootDir>/images/$1',
       '^core$': '<rootDir>/core',
       '^core/(.*)$': '<rootDir>/core/$1',
-      'types/(.*)$': '<rootDir>/types/$1',
+      '^types/(.*)$': '<rootDir>/types/$1',
+      '^constants/(.*)$': '<rootDir>/constants/$1',
     },
   }
 }
