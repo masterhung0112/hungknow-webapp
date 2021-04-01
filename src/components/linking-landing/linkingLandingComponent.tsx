@@ -5,11 +5,12 @@ import classNames from 'classnames'
 import mobileImg from 'images/deep-linking/deeplinking-mobile-img.png'
 import desktopImg from 'images/deep-linking/deeplinking-desktop-img.png'
 
-import styles from './linkingLandingComponent.module.scss'
 import { Intent } from 'common'
 import * as UserAgent from 'utils/UserAgent'
 import { AnchorButton } from 'core/components'
 import { Utils } from 'utils'
+
+import styles from './linkingLandingComponent.module.scss'
 
 export type LinkingLandingComponentProps = Record<string, any>
 

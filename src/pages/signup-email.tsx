@@ -14,7 +14,7 @@ import { setGlobalItem } from 'actions/storage'
 import { redirectUserToDefaultTeam } from 'actions/global_actions'
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  var results = await store.dispatch(loadMeAndConfig())
+  const results = await store.dispatch(loadMeAndConfig())
   if (results && results[0] && results[0].error) {
     //TODO: Remove this
     console.error('loadMeAndConfig error: ', results[0].error)

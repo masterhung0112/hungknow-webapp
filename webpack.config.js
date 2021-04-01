@@ -1,4 +1,5 @@
 const path = require('path')
+
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 

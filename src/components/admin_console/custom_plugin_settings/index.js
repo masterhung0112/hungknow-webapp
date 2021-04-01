@@ -10,6 +10,7 @@ import { Constants } from 'utils/constants'
 import { localizeMessage } from 'utils/utils.jsx'
 
 import { getAdminConsoleCustomComponents } from 'selectors/admin_console'
+
 import SchemaAdminSettings from '../schema_admin_settings'
 import { it } from '../admin_definition'
 

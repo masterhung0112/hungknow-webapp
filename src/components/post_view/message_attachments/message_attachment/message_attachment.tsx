@@ -25,10 +25,10 @@ import Markdown from 'components/markdown'
 import ShowMore from 'components/post_view/show_more'
 import SizeAwareImage from 'components/size_aware_image'
 
+import { trackEvent } from 'actions/telemetry_actions'
+
 import ActionButton from '../action_button'
 import ActionMenu from '../action_menu'
-
-import { trackEvent } from 'actions/telemetry_actions'
 
 type Props = {
   /**

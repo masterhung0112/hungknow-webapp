@@ -1,9 +1,11 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import SignupEmail, { SignupEmailProps } from './signupEmail'
+
 import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionResultType } from 'hkclient-ts/lib/types/actions'
+
+import SignupEmail, { SignupEmailProps } from './signupEmail'
 
 const baseProps = {
   hasAccounts: false,

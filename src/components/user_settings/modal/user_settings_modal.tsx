@@ -16,6 +16,7 @@ import store from 'stores/redux_store.jsx'
 import Constants from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'
 import { t } from 'utils/i18n'
+
 import ConfirmModal from '../../confirm_modal'
 
 const UserSettings = React.lazy(() => import(/* webpackPrefetch: true */ 'components/user_settings'))

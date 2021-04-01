@@ -10,6 +10,7 @@ import { ModalIdentifiers } from 'utils/constants'
 import QuickSwitchModal from 'components/quick_switch_modal'
 import * as Utils from 'utils/utils'
 import { isDesktopApp } from 'utils/user_agent'
+
 import AddChannelDropdown from '../add_channel_dropdown'
 import ChannelFilter from '../channel_filter'
 

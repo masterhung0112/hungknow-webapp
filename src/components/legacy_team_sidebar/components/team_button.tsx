@@ -14,6 +14,7 @@ import { isDesktopApp } from 'utils/user_agent'
 import { isMac, localizeMessage } from 'utils/utils.jsx'
 import CopyUrlContextMenu from 'components/copy_url_context_menu'
 import OverlayTrigger from 'components/overlay_trigger'
+
 import TeamIcon from '../../widgets/team_icon/team_icon'
 
 interface Props {

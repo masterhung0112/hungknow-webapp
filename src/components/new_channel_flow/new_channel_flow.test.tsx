@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import assert from 'assert'
+
 import React from 'react'
 import { shallow, ShallowWrapper } from 'enzyme'
-import assert from 'assert'
 
 import { ChannelType, Channel } from 'hkclient-ts/lib/types/channels'
 

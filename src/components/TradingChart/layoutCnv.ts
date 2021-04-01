@@ -1,4 +1,5 @@
 import { CandleData, Layout } from 'types/TradingChart'
+
 import { t2screen } from './layoutFn'
 import { VolumeOverlayProps } from './Overlay'
 import { CandlesOverlayProps } from './overlays/Candles.overlay'
@@ -10,19 +11,19 @@ export function layout_cnv(
   candles: CandleData[]
   volumes: any[]
 } {
-  let $p = self
-  let sub = $p.data
+  const $p = self
+  const sub = $p.data
   // let t2screen = $p.layout.t2screen
-  let layout = $p.layout
+  const layout = $p.layout
 
-  let candles = []
-  let volumes: any[] = []
+  const candles = []
+  const volumes: any[] = []
 
   // The volumes bar height is determined as a percentage of
   // the chart's height (VOLSCALE)
-  let maxv = Math.max(...sub.map((x: any) => x[5]))
-  let vs = ($p.config.VOLSCALE * layout.height) / maxv
-  var x1,
+  const maxv = Math.max(...sub.map((x: any) => x[5]))
+  const vs = ($p.config.VOLSCALE * layout.height) / maxv
+  let x1,
     x2,
     w,
     avg_w,
@@ -30,15 +31,15 @@ export function layout_cnv(
     prev = undefined
 
   // Subset interval against main interval
-  var [interval2, ratio] = new_interval(layout, $p, sub)
-  let px_step2 = layout.px_step * ratio
+  const [interval2, ratio] = new_interval(layout, $p, sub)
+  const px_step2 = layout.px_step * ratio
 
-  let splitter = px_step2 > 5 ? 1 : 0
+  const splitter = px_step2 > 5 ? 1 : 0
 
   // A & B are current chart tranformations:
   // A === scale,  B === Y-axis shift
-  for (var i = 0; i < sub.length; i++) {
-    let p = sub[i]
+  for (let i = 0; i < sub.length; i++) {
+    const p = sub[i]
     mid = t2screen(self.layout, p[0], self.layout.range) + 1
 
     // Clear volumes bar if there is a time gap
@@ -74,39 +75,39 @@ export function layout_cnv(
 }
 
 export function layout_vol(self: VolumeOverlayProps) {
-  let $p = self
-  let sub = $p.data
+  const $p = self
+  const sub = $p.data
   // let t2screen = $p.layout.t2screen
-  let layout = $p.layout
+  const layout = $p.layout
 
-  let volumes = []
+  const volumes = []
 
   // Detect data second dimention size:
-  let dim = sub[0] ? sub[0].length : 0
+  const dim = sub[0] ? sub[0].length : 0
 
   // Support special volumes data (see API book), or OHLCV
   // Data indices:
   self._i1 = dim < 6 ? 1 : 5
   self._i2 = dim < 6 ? (p: any[]) => p[2] : (p: any[]) => p[4] >= p[1]
 
-  let maxv = Math.max(...sub.map((x: any) => x[self._i1]))
-  let volscale = self.volscale || $p.config.VOLSCALE
-  let vs = (volscale * layout.height) / maxv
-  var x1,
+  const maxv = Math.max(...sub.map((x: any) => x[self._i1]))
+  const volscale = self.volscale || $p.config.VOLSCALE
+  const vs = (volscale * layout.height) / maxv
+  let x1,
     x2,
     mid,
     prev = undefined
 
   // Subset interval against main interval
-  var [interval2, ratio] = new_interval(layout, $p, sub)
-  let px_step2 = layout.px_step * ratio
+  const [interval2, ratio] = new_interval(layout, $p, sub)
+  const px_step2 = layout.px_step * ratio
 
-  let splitter = px_step2 > 5 ? 1 : 0
+  const splitter = px_step2 > 5 ? 1 : 0
 
   // A & B are current chart tranformations:
   // A === scale,  B === Y-axis shift
-  for (var i = 0; i < sub.length; i++) {
-    let p = sub[i]
+  for (let i = 0; i < sub.length; i++) {
+    const p = sub[i]
     mid = t2screen(layout, p[0], layout.range) + 1
 
     // Clear volumes bar if there is a time gap

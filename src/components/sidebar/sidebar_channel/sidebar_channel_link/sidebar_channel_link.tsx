@@ -18,10 +18,11 @@ import { wrapEmojis } from 'utils/emoji_utils'
 import { isDesktopApp } from 'utils/user_agent'
 import { cmdOrCtrlPressed, localizeMessage } from 'utils/utils'
 
+import CustomStatusEmoji from 'components/custom_status/custom_status_emoji'
+
 import ChannelMentionBadge from '../channel_mention_badge'
 import SidebarChannelIcon from '../sidebar_channel_icon'
 import SidebarChannelMenu from '../sidebar_channel_menu'
-import CustomStatusEmoji from 'components/custom_status/custom_status_emoji'
 
 type Props = {
   channel: Channel

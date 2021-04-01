@@ -1,4 +1,5 @@
 import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+
 import StorageConstants from '../constants/storage'
 
 export interface StorageAwareState {

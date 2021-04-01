@@ -4,11 +4,11 @@
 import React from 'react'
 import { Modal } from 'react-bootstrap'
 
+import * as Utils from 'utils/utils.jsx'
+
 import MenuWrapper from '../../menu_wrapper'
 import Menu from '../../menu'
 import SubMenuItem from '../../menu_items/submenu_item'
-
-import * as Utils from 'utils/utils.jsx'
 
 import './submenu_modal.scss'
 

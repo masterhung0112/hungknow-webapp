@@ -17,7 +17,7 @@ export class CursorUpdater {
     // grid: { id: N }
     this.cursor.grid_id = e.grid_id
     let once = true
-    for (var grid of this.comp._layout.grids) {
+    for (const grid of this.comp._layout.grids) {
       const c = this.cursor_data(grid, e)
       if (!this.cursor.locked) {
         // TODO: find a better fix to invisible cursor prob
@@ -45,18 +45,18 @@ export class CursorUpdater {
     // Split offchart data between offchart grids
     if (grid.id > 0) {
       // Sequential grids
-      let d = data.filter((x: any) => x.grid.id === undefined)
+      const d = data.filter((x: any) => x.grid.id === undefined)
       // grids with custom ids (for merging)
-      let m = data.filter((x: any) => x.grid.id === grid.id)
+      const m = data.filter((x: any) => x.grid.id === grid.id)
       data = [d[grid.id - 1], ...m]
     }
 
     const t = screen2t(grid, e.x, grid.range)
-    let ids: any = {},
+    const ids: any = {},
       res: any = {}
-    for (var d of data) {
-      let ts = d.data.map((x: any) => x[0])
-      let i = Utils.nearest_a(t, ts)[0]
+    for (const d of data) {
+      const ts = d.data.map((x: any) => x[0])
+      const i = Utils.nearest_a(t, ts)[0]
       d.type in ids ? ids[d.type]++ : (ids[d.type] = 0)
       res[`${d.type}_${ids[d.type]}`] = d.data[i]
     }
@@ -67,8 +67,8 @@ export class CursorUpdater {
   cursor_data(grid: any, e: any) {
     const data = this.comp.main_section.sub
 
-    let xs = data.map((x: any) => t2screen(grid, x[0], grid.range) + 0.5)
-    let i = Utils.nearest_a(e.x, xs)[0]
+    const xs = data.map((x: any) => t2screen(grid, x[0], grid.range) + 0.5)
+    const i = Utils.nearest_a(e.x, xs)[0]
 
     if (!xs[i]) return {}
     return {
@@ -87,12 +87,12 @@ export class CursorUpdater {
 
   // Get cursor t-position (extended)
   cursor_time(grid: any, mouse: any, candle: any) {
-    let t = screen2t(grid, mouse.x, grid.range)
-    let r = Math.abs((t - candle.t) / this.comp.interval)
-    let sign = Math.sign(t - candle.t)
+    const t = screen2t(grid, mouse.x, grid.range)
+    const r = Math.abs((t - candle.t) / this.comp.interval)
+    const sign = Math.sign(t - candle.t)
     if (r >= 0.5) {
       // Outside the data range
-      let n = Math.round(r)
+      const n = Math.round(r)
       return candle.t + n * this.comp.interval * sign
     }
     // Inside the data range

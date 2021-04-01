@@ -5,6 +5,7 @@
 // data formatting (e.g. grid width depends on sidebar precision)
 
 import { Layout, GridMakerParams, LayoutParams, GridLayout, GridMaker } from 'types/TradingChart'
+
 import { createGridMaker } from './GridMaker'
 import { t2screen } from './layoutFn'
 import log_scale from './logScale'
@@ -17,7 +18,7 @@ export class generateLayout {
   constructor(params: LayoutParams) {
     let { chart, sub, offsub, interval, range, ctx, layers_meta, ti_map, $props: $p, y_transforms: y_ts } = params
 
-    let mgrid = chart.grid || {}
+    const mgrid = chart.grid || {}
 
     offsub = offsub.filter((x) => {
       // Skip offchart overlays with custom grid id,
@@ -54,7 +55,7 @@ export class generateLayout {
 
       // Refine the height if Math.floor decreased px sum
       sum = hs.reduce((a, b) => a + b, 0)
-      for (var i = 0; i < height - sum; i++) hs[i % hs.length]++
+      for (let i = 0; i < height - sum; i++) hs[i % hs.length]++
       return hs
     }
 
@@ -62,18 +63,18 @@ export class generateLayout {
       self.candles = []
       self.volume = []
 
-      let maxv = Math.max(...sub.map((x) => x[5]))
-      let vs = ($p.config.VOLSCALE * $p.height) / maxv
-      var x1,
+      const maxv = Math.max(...sub.map((x) => x[5]))
+      const vs = ($p.config.VOLSCALE * $p.height) / maxv
+      let x1,
         x2,
         mid,
         prev = undefined
 
-      let splitter = self.px_step > 5 ? 1 : 0
-      let hf_px_step = self.px_step * 0.5
+      const splitter = self.px_step > 5 ? 1 : 0
+      const hf_px_step = self.px_step * 0.5
 
-      for (var i = 0; i < sub.length; i++) {
-        let p = sub[i]
+      for (let i = 0; i < sub.length; i++) {
+        const p = sub[i]
         mid = t2screen(self, p[0], range) + 0.5
         self.candles.push(
           mgrid.logScale
@@ -107,7 +108,7 @@ export class generateLayout {
 
     // Main grid
     const hs = grid_hs()
-    let specs: GridMakerParams = {
+    const specs: GridMakerParams = {
       sub,
       interval,
       range,
@@ -120,7 +121,7 @@ export class generateLayout {
       grid: mgrid,
       timezone: $p.timezone,
     }
-    let gms: GridMaker[] = [createGridMaker(0, specs)]
+    const gms: GridMaker[] = [createGridMaker(0, specs)]
 
     // Sub grids
     for (var [i, { data, grid }] of offsub.entries()) {
@@ -132,7 +133,7 @@ export class generateLayout {
     }
 
     // Max sidebar among all grinds
-    let sb = Math.max(...gms.map((x) => x.sidebar))
+    const sb = Math.max(...gms.map((x) => x.sidebar))
 
     let grids = [],
       offset = 0
@@ -145,7 +146,7 @@ export class generateLayout {
       offset += grids[i].height
     }
 
-    let self = grids[0]
+    const self = grids[0]
 
     candles_n_vol()
 

@@ -16,6 +16,7 @@ import { Group } from 'hkclient-ts/lib/types/groups'
 import { ActionFunc, GenericAction } from 'hkclient-ts/lib/types/actions'
 
 import { setModalSearchTerm } from 'actions/views/search'
+
 import { GlobalState } from '../../types/store'
 
 import AddGroupsToTeamModal, { Actions } from './add_groups_to_team_modal'

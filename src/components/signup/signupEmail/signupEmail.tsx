@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { SyntheticEvent } from 'react'
 import { FormattedMessage } from 'react-intl'
-import styles from './signupEmail.module.scss'
+
 import logoImage from 'images/logo.png'
 import SiteNameAndDescription from 'components/siteNameAndDescription'
 import { Constants } from 'utils/constants'
@@ -16,6 +16,8 @@ import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
 import { setGlobalItem } from 'actions/storage'
+
+import styles from './signupEmail.module.scss'
 
 export interface SignupEmailProps {
   hasAccounts: boolean
@@ -85,7 +87,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     const token = query['t']
     const inviteId = query['id']
 
-    let redirect_to = query['redirect_to'] ?? ''
+    const redirect_to = query['redirect_to'] ?? ''
 
     this.setState((previousState: SignupEmailState) => {
       return {

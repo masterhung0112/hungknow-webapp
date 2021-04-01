@@ -6,9 +6,9 @@ import { shallow } from 'enzyme'
 
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 
-import { TestHelper } from '../../../../utils/test_helper'
-
 import Menu from 'components/widgets/menu/menu'
+
+import { TestHelper } from '../../../../utils/test_helper'
 
 import SystemUsersDropdown, { Props } from './system_users_dropdown'
 

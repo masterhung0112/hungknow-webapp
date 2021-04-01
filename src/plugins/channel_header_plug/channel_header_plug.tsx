@@ -12,10 +12,12 @@ import { Channel, ChannelMembership } from 'hkclient-ts/lib/types/channels'
 import { Theme } from 'hkclient-ts/lib/types/preferences'
 
 import HeaderIconWrapper from 'components/channel_header/components/header_icon_wrapper'
-import PluginChannelHeaderIcon from '../../components/widgets/icons/plugin_channel_header_icon'
+
 import { Constants } from 'utils/constants'
 import OverlayTrigger from 'components/overlay_trigger'
 import { PluginComponent } from 'types/store/plugins'
+
+import PluginChannelHeaderIcon from '../../components/widgets/icons/plugin_channel_header_icon'
 
 type CustomMenuProps = {
   open?: boolean

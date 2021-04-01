@@ -28,15 +28,16 @@
     "task": "node ./tasksfile.js"
   },
   "dependencies": {
-    "bootstrap": "3.4.1",
     "@formatjs/intl": "1.8.3",
     "@redux-offline/redux-offline": "2.6.0",
     "arrayslicer": "1.2.3",
+    "bootstrap": "3.4.1",
     "chart.js": "2.9.4",
     "classnames": "^2.2.6",
+    "css-vars-ponyfill": "2.4.3",
     "hammerjs": "2.0.8",
     "hamsterjs": "1.1.3",
-    "hkclient-ts": "github:masterhung0112/hkclient-ts#5a55ade7f11b73d16f04d00f9011d59ab112a206",
+    "hkclient-ts": "github:masterhung0112/hkclient-ts#acdbaa2adcb0e6a689579faeeb77dacd4b06eec8",
     "intl-messageformat": "9.5.3",
     "jquery": "3.6.0",
     "konva": "7.2.5",

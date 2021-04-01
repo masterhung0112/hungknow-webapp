@@ -1,4 +1,5 @@
 import { CandleData, Layout, TimeRange } from 'types/TradingChart'
+
 import Utils from './utils'
 import { smth2i } from './IndexBase'
 import * as math from './math'

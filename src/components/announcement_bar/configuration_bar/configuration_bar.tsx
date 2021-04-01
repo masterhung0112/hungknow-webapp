@@ -16,14 +16,14 @@ import { t } from 'utils/i18n'
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message'
 
-import AnnouncementBar from '../default_announcement_bar'
-import TextDismissableBar from '../text_dismissable_bar'
-
 import ackIcon from 'images/icons/check-circle-outline.svg'
 import alertIcon from 'images/icons/round-white-info-icon.svg'
 import warningIcon from 'images/icons/warning-icon.svg'
 
 import UserProfile from 'components/user_profile/user_profile'
+
+import TextDismissableBar from '../text_dismissable_bar'
+import AnnouncementBar from '../default_announcement_bar'
 import RenewalLink from '../renewal_link/'
 
 type Props = {

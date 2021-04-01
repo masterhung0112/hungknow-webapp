@@ -1,4 +1,5 @@
 import { Layout } from 'types/TradingChart'
+
 import * as math from './math'
 
 export default {
@@ -16,11 +17,11 @@ export default {
 
   expand(self: Layout, height: number) {
     // expand log scale
-    let A = -height / (math.log(self.$_hi) - math.log(self.$_lo))
-    let B = -math.log(self.$_hi) * A
+    const A = -height / (math.log(self.$_hi) - math.log(self.$_lo))
+    const B = -math.log(self.$_hi) * A
 
-    let top = -height * 0.1
-    let bot = height * 1.1
+    const top = -height * 0.1
+    const bot = height * 1.1
 
     self.$_hi = math.exp((top - B) / A)
     self.$_lo = math.exp((bot - B) / A)

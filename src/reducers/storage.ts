@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux'
 import { General } from 'hkclient-ts/lib/constants'
 
-import StorageTypes from '../action-types/storage'
 import { GenericAction } from 'hkclient-ts/lib/types/actions'
 import { Dictionary } from 'hkclient-ts/lib/types/utilities'
 
+import StorageTypes from '../action-types/storage'
+
 function storage(state: Dictionary<any> = {}, action: GenericAction) {
-  var key
+  let key
 
   switch (action.type) {
     case StorageTypes.SET_ITEM: {
@@ -74,11 +75,11 @@ function storage(state: Dictionary<any> = {}, action: GenericAction) {
     }
     case StorageTypes.ACTION_ON_ITEMS_WITH_PREFIX: {
       const nextState = { ...state }
-      var globalPrefix = action.data.globalPrefix
-      var globalPrefixLen = action.data.globalPrefix.length
+      const globalPrefix = action.data.globalPrefix
+      const globalPrefixLen = action.data.globalPrefix.length
       for (key in state) {
         if (key.lastIndexOf(globalPrefix + action.data.prefix, 0) === 0) {
-          var userkey = key.substring(globalPrefixLen)
+          const userkey = key.substring(globalPrefixLen)
           nextState[key] = {
             timestamp: new Date(),
             value: action.data.action(userkey, state[key].value),

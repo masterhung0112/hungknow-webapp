@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import SignupEmail, { SignupEmailProps } from './signupEmail'
+
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
 import { defaultTestIntl, wrapIntlProvider, translationData } from 'hktestlib/intlProvider'
 import '@testing-library/jest-dom'
@@ -9,6 +9,8 @@ import userEvent from '@testing-library/user-event'
 import { General } from 'hkclient-ts/lib/constants'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
+
+import SignupEmail, { SignupEmailProps } from './signupEmail'
 
 describe('components/SignupEmail', () => {
   const baseProps = {

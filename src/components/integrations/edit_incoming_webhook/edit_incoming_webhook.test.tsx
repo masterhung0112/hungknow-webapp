@@ -9,6 +9,7 @@ import { ActionResult } from 'hkclient-ts/lib/types/actions'
 
 import { browserHistory } from 'utils/browser_history'
 import EditIncomingWebhook from 'components/integrations/edit_incoming_webhook/edit_incoming_webhook'
+
 import { TestHelper } from '../../../utils/test_helper'
 
 describe('components/integrations/EditIncomingWebhook', () => {

@@ -3,8 +3,9 @@
 
 import React, { ComponentProps } from 'react'
 
-import ThreadMenu from '../thread_menu'
 import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+
+import ThreadMenu from '../thread_menu'
 
 describe('components/threading/common/thread_menu', () => {
   let props: ComponentProps<typeof ThreadMenu>

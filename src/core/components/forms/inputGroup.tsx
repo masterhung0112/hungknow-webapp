@@ -10,10 +10,14 @@ import {
   MaybeElement,
   removeNonHTMLProps,
 } from 'common'
-import { AsyncControllableInput } from './asyncControllableInput'
+
 import { IconName } from '@blueprintjs/icons'
-import Icon from '../icon'
+
 import cx from 'classnames'
+
+import Icon from '../icon'
+
+import { AsyncControllableInput } from './asyncControllableInput'
 
 export interface IInputGroupProps extends IControlledProps, IIntentProps, IProps {
   /** Ref handler or a ref object that receives HTML `<input>` element backing this component. */

@@ -7,6 +7,7 @@ import { openModal } from 'actions/views/modals'
 import { ModalIdentifiers } from 'utils/constants'
 
 import InteractiveDialog from 'components/interactive_dialog'
+
 import store from '../stores/redux_store'
 
 export function openInteractiveDialog(dialog) {

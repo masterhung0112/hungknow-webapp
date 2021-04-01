@@ -1,6 +1,7 @@
-import { DAY, MAP_UNIT, MONTH } from './constants'
 import IndexedArray from 'arrayslicer'
 import { TimeRange } from 'types/TradingChart'
+
+import { DAY, MAP_UNIT, MONTH } from './constants'
 
 export default {
   clamp(num: number, min: number, max: number) {
@@ -17,13 +18,13 @@ export default {
 
   // Start of the day (zero millisecond)
   day_start(t: number): number {
-    let start = new Date(t)
+    const start = new Date(t)
     return start.setUTCHours(0, 0, 0, 0)
   },
 
   // Start of the month
   month_start(t: number): number {
-    let date = new Date(t)
+    const date = new Date(t)
     return Date.UTC(date.getFullYear(), date.getMonth(), 1)
   },
 
@@ -48,8 +49,8 @@ export default {
     let dist = Infinity
     let val = null
     let index = -1
-    for (var i = 0; i < array.length; i++) {
-      var xi = array[i]
+    for (let i = 0; i < array.length; i++) {
+      const xi = array[i]
       if (Math.abs(xi - x) < dist) {
         dist = Math.abs(xi - x)
         val = xi
@@ -79,7 +80,7 @@ export default {
 
   // Copy layout in reactive way
   copy_layout(obj: Record<string, any>, new_obj: Record<string, any>) {
-    for (var k in obj) {
+    for (const k in obj) {
       if (Array.isArray(obj[k])) {
         // (some offchart indicators are added/removed)
         // we need to update layout in a reactive way
@@ -87,7 +88,7 @@ export default {
           this.overwrite(obj[k], new_obj[k])
           continue
         }
-        for (var m in obj[k]) {
+        for (const m in obj[k]) {
           Object.assign(obj[k][m], new_obj[k][m])
         }
       } else {
@@ -98,10 +99,10 @@ export default {
 
   // Detects candles interval
   detect_interval(ohlcv: any[]) {
-    let len = Math.min(ohlcv.length - 1, 99)
+    const len = Math.min(ohlcv.length - 1, 99)
     let min = Infinity
     ohlcv.slice(0, len).forEach((x, i) => {
-      let d = ohlcv[i + 1][0] - x[0]
+      const d = ohlcv[i + 1][0] - x[0]
       if (d === d && d < min) min = d
     })
     // This saves monthly chart from being awkward
@@ -120,9 +121,9 @@ export default {
   fast_filter(arr: number[][], t1: number, t2: number) {
     if (!arr.length) return [arr, undefined]
     try {
-      let ia = new IndexedArray(arr, '0')
-      let res = ia.getRange(t1, t2)
-      let i0 = ia.valpos[t1].next
+      const ia = new IndexedArray(arr, '0')
+      const res = ia.getRange(t1, t2)
+      const i0 = ia.valpos[t1].next
       return [res, i0]
     } catch (e) {
       // Something wrong with fancy slice lib
@@ -136,14 +137,14 @@ export default {
     if (!arr.length) return [arr, undefined]
     let i1 = Math.floor(t1)
     if (i1 < 0) i1 = 0
-    let i2 = Math.floor(t2 + 1)
-    let res = arr.slice(i1, i2)
+    const i2 = Math.floor(t2 + 1)
+    const res = arr.slice(i1, i2)
     return [res, i1]
   },
 
   // Nearest indexes (left and right)
   fast_nearest(arr: number[], t1: number) {
-    let ia = new IndexedArray(arr, '0')
+    const ia = new IndexedArray(arr, '0')
     ia.fetch(t1)
     return [ia.nextlow, ia.nexthigh] as const
   },
@@ -158,7 +159,7 @@ export default {
 
   // Limit crazy wheel delta values
   smart_wheel(delta: number): number {
-    let abs = Math.abs(delta)
+    const abs = Math.abs(delta)
     if (abs > 500) {
       return (200 + Math.log(abs)) * Math.sign(delta)
     }
@@ -199,7 +200,7 @@ export default {
   index_shift(sub: any[], data: any[]) {
     // Find the second timestamp (by value)
     if (!data.length) return 0
-    let first = data[0][0]
+    const first = data[0][0]
     let second
 
     for (var i = 1; i < data.length; i++) {
@@ -209,7 +210,7 @@ export default {
       }
     }
 
-    for (var j = 0; j < sub.length; j++) {
+    for (let j = 0; j < sub.length; j++) {
       if (sub[j][0] === second) {
         return j - i
       }
@@ -221,13 +222,13 @@ export default {
   // Fallback fix for Brave browser
   // https://github.com/brave/brave-browser/issues/1738
   measureText(ctx: any, text: string, tv_id: string) {
-    let m = ctx.measureTextOrg(text)
+    const m = ctx.measureTextOrg(text)
     if (m.width === 0) {
       const doc = document
       const id = 'tvjs-measure-text'
       let el = doc.getElementById(id)
       if (!el) {
-        let base = doc.getElementById(tv_id)
+        const base = doc.getElementById(tv_id)
         el = doc.createElement('div')
         el.id = id
         el.style.position = 'absolute'
@@ -244,7 +245,7 @@ export default {
 
   uuid(temp = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx') {
     return temp.replace(/[xy]/g, (c) => {
-      var r = (Math.random() * 16) | 0,
+      const r = (Math.random() * 16) | 0,
         v = c == 'x' ? r : (r & 0x3) | 0x8
       return v.toString(16)
     })
@@ -264,10 +265,10 @@ export default {
   // Checks if script props updated
   // (and not style settings or something else)
   is_scr_props_upd(n: any, prev: any[]) {
-    let p = prev.find((x) => x.v.$uuid === n.v.$uuid)
+    const p = prev.find((x) => x.v.$uuid === n.v.$uuid)
     if (!p) return false
 
-    let props = n.p.settings.$props
+    const props = n.p.settings.$props
     if (!props) return false
 
     return props.some((x: any) => n.v[x] !== p.v[x])
@@ -277,8 +278,8 @@ export default {
   // (based on execInterval in ms)
   delayed_exec(v: any) {
     if (!v.script || !v.script.execInterval) return true
-    let t = this.now()
-    let dt = v.script.execInterval
+    const t = this.now()
+    const dt = v.script.execInterval
     if (!v.settings.$last_exec || t > v.settings.$last_exec + dt) {
       v.settings.$last_exec = t
       return true
@@ -293,9 +294,9 @@ export default {
 
     let name = ov.name
 
-    for (var k in ov.settings || {}) {
-      let val = ov.settings[k]
-      let reg = new RegExp(`\\$${k}`, 'g')
+    for (const k in ov.settings || {}) {
+      const val = ov.settings[k]
+      const reg = new RegExp(`\\$${k}`, 'g')
       name = name.replace(reg, val)
     }
 

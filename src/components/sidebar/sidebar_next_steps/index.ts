@@ -8,13 +8,13 @@ import { savePreferences } from 'hkclient-ts/lib/actions/preferences'
 import { makeGetCategory } from 'hkclient-ts/lib/selectors/entities/preferences'
 import { getCurrentUserId, getCurrentUser, isCurrentUserSystemAdmin } from 'hkclient-ts/lib/selectors/entities/users'
 
-import { getSteps } from '../../next_steps_view/steps'
-
 import { openModal, closeModal } from 'actions/views/modals'
 import { setShowNextStepsView } from 'actions/views/next_steps'
 import { showNextSteps, showNextStepsTips } from 'components/next_steps_view/steps'
 import { GlobalState } from 'types/store'
 import { Preferences } from 'utils/constants'
+
+import { getSteps } from '../../next_steps_view/steps'
 
 import SidebarNextSteps from './sidebar_next_steps'
 

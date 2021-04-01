@@ -16,8 +16,8 @@ export function useShader(): ShaderHookProps {
         filterShader = filterShader.filter((x) => x.owner !== prev.id)
         setShaders(filterShader)
       }
-      for (var Shader of skin.shaders) {
-        let shader = new Shader()
+      for (const Shader of skin.shaders) {
+        const shader = new Shader()
         shader.owner = skin.id
         setShaders((prevState) => [...prevState, shader])
       }
@@ -33,7 +33,7 @@ export function useShader(): ShaderHookProps {
       }
     }
     if (d.event === 'remove-shaders') {
-      let id = d.args.join('-')
+      const id = d.args.join('-')
       setShaders((prevState) => prevState.filter((x) => x.id !== id))
     }
   }, [])

@@ -1,4 +1,5 @@
 import { AdminConfig } from 'hkclient-ts/lib/types/config'
+
 import { translationData } from '../../support/intlProvider'
 
 let adminConfig: AdminConfig

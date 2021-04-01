@@ -8,8 +8,10 @@ import { Channel, ChannelMembership } from 'hkclient-ts/lib/types/channels'
 import { Theme } from 'hkclient-ts/lib/types/preferences'
 
 import ChannelHeaderPlug from 'plugins/channel_header_plug/channel_header_plug'
-import { mountWithIntl } from '../../tests/helpers/intl-test-helper'
+
 import { PluginComponent } from 'types/store/plugins'
+
+import { mountWithIntl } from '../../tests/helpers/intl-test-helper'
 
 describe('plugins/ChannelHeaderPlug', () => {
   const testPlug: PluginComponent = {

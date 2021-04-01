@@ -1,6 +1,7 @@
 import { CssClasses, Intent } from 'common'
 import { shallow } from 'enzyme'
 import React from 'react'
+
 import FormGroup from './formGroup'
 
 describe('<FormGroup>', () => {

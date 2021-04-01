@@ -1,8 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { ShowroomWin } from 'showroom/components'
-import { Candle } from './Candle'
+
 import { Layer, Stage } from 'react-konva'
+
+import { Candle } from './Candle'
 
 storiesOf('Components/Trading Chart/Primitive/Candle', module)
   // .addParameters({ component: Candle })

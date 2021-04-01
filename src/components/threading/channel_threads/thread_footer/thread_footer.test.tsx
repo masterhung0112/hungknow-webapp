@@ -8,6 +8,7 @@ import SimpleTooltip from 'components/widgets/simple_tooltip'
 
 import Timestamp from 'components/timestamp'
 import Avatars from 'components/widgets/users/avatars'
+
 import FollowButton from '../../common/follow_button'
 import Button from '../../common/button'
 

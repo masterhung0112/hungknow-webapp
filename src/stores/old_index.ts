@@ -9,10 +9,12 @@ import { clearUserCookie } from 'actions/views/cookie'
 import reduxInitialState from 'hkclient-ts/lib/store/initial_state'
 import { ActionTypes } from 'utils/constants'
 import { getBasePath } from 'selectors/general'
-import { combineReducersWithGlobalActions } from './hydrate_reducer'
+
 import { GeneralModule } from 'hkclient-ts/lib/modules/general'
 import { StorageModule } from 'modules/storage'
 import { GlobalState } from 'types/store'
+
+import { combineReducersWithGlobalActions } from './hydrate_reducer'
 
 function getAppReducer() {
   return require('../reducers')
@@ -124,7 +126,7 @@ export default function configureStore(initialState: GlobalState = undefined) {
               if (args.key && args.key.indexOf(KEY_PREFIX + 'storage:') === 0 && args.oldValue === null) {
                 const keyspace = args.key.substr((KEY_PREFIX + 'storage:').length)
 
-                var statePartial: Record<string, any> = {}
+                const statePartial: Record<string, any> = {}
                 statePartial[keyspace] = args.newValue
                 storageRehydrate(statePartial, persistor)(store.dispatch, store.getState)
               }

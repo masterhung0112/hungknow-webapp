@@ -18,6 +18,7 @@ import ToggleModalButton from 'components/toggle_modal_button'
 import DataGrid from 'components/admin_console/data_grid/data_grid'
 import UserGridName from 'components/admin_console/user_grid/user_grid_name'
 import UserGridRemove from 'components/admin_console/user_grid/user_grid_remove'
+
 import AddUsersToRoleModal from '../add_users_to_role_modal'
 
 export type Props = {

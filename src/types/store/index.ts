@@ -1,5 +1,6 @@
 import { GlobalState as BaseGlobalState } from 'hkclient-ts/lib/types/store'
 import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+
 import { PluginsState } from './plugins'
 import { ViewsState } from './views'
 

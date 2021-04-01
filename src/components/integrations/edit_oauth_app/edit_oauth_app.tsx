@@ -11,6 +11,7 @@ import { ActionResult } from 'hkclient-ts/lib/types/actions'
 import { browserHistory } from 'utils/browser_history'
 import LoadingScreen from 'components/loading_screen'
 import ConfirmModal from 'components/confirm_modal'
+
 import AbstractOAuthApp from '../abstract_oauth_app.jsx'
 
 const HEADER = { id: 'integrations.edit', defaultMessage: 'Edit' }

@@ -4,10 +4,11 @@
 import React, { ComponentProps } from 'react'
 import { shallow } from 'enzyme'
 
-import ThreadMenu from '../thread_menu'
 import Badge from 'components/widgets/badges/badge'
 
 import Avatars from 'components/widgets/users/avatars'
+
+import ThreadMenu from '../thread_menu'
 
 import ThreadItem from './thread_item'
 const users = [
