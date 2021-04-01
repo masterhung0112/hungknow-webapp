@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react'
 import { useIntl } from 'react-intl'
 
-import { Client4 } from 'mattermost-redux/client'
+import { Client4 } from 'hkclient-ts/lib/client'
 
 enum NotifyStatus {
   NotStarted = 'NOT_STARTED',

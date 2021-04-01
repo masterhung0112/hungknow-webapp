@@ -6,7 +6,7 @@ import React from 'react'
 import PDFJS from 'pdfjs-dist'
 import debounce from 'lodash/debounce'
 
-import { getFileDownloadUrl } from 'mattermost-redux/utils/file_utils'
+import { getFileDownloadUrl } from 'hkclient-ts/lib/utils/file_utils'
 
 import LoadingSpinner from 'components/widgets/loading/loading_spinner'
 import FileInfoPreview from 'components/file_info_preview'
