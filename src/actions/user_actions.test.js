@@ -10,7 +10,7 @@ import { getPreferenceKey } from 'hkclient-ts/lib/utils/preference_utils'
 
 import * as UserActions from 'actions/user_actions'
 import { getState } from 'stores/redux_store'
-import TestHelper from 'tests/helpers/client-test-helper'
+import TestHelper from 'testlib/helpers/client-test-helper'
 import { trackEvent } from 'actions/telemetry_actions.jsx'
 
 const mockStore = configureStore([thunk])

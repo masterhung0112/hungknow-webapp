@@ -6,7 +6,7 @@ import { shallow } from 'enzyme'
 
 import { DATE_LINE } from 'hkclient-ts/lib/utils/post_list'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import { PostListRowListIds, PostRequestTypes } from 'utils/constants'
 

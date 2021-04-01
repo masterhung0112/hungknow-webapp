@@ -6,7 +6,7 @@ import React from 'react'
 import { General } from 'hkclient-ts/lib/constants'
 
 import { clearFileInput } from 'utils/utils'
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import FileUpload from 'components/file_upload/file_upload.jsx'
 

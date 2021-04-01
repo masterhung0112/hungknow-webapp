@@ -5,9 +5,9 @@ import React from 'react'
 
 import { Posts } from 'hkclient-ts/lib/constants'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
-import { testComponentForLineBreak } from 'tests/helpers/line_break_helpers'
-import { testComponentForMarkdownHotkeys, makeSelectionEvent } from 'tests/helpers/markdown_hotkey_helpers.js'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
+import { testComponentForLineBreak } from 'testlib/helpers/line_break_helpers'
+import { testComponentForMarkdownHotkeys, makeSelectionEvent } from 'testlib/helpers/markdown_hotkey_helpers.js'
 import * as GlobalActions from 'actions/global_actions'
 import EmojiMap from 'utils/emoji_map'
 

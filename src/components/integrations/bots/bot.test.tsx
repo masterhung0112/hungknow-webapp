@@ -6,7 +6,7 @@ import { shallow } from 'enzyme'
 import { FormattedMessage } from 'react-intl'
 
 import Markdown from 'components/markdown'
-import TestHelper from 'tests/helpers/client-test-helper'
+import TestHelper from 'testlib/helpers/client-test-helper'
 import { TestHelper as UtilsTestHelper } from 'utils/test_helper'
 
 import Bot from './bot'

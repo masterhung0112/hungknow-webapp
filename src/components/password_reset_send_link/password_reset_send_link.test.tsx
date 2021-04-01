@@ -5,7 +5,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import { MemoryRouter } from 'react-router'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import PasswordResetSendLink from './password_reset_send_link'
 

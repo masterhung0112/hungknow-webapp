@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Posts } from 'hkclient-ts/lib/constants'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import RhsRootPost from 'components/rhs_root_post/rhs_root_post.jsx'
 import EmojiMap from 'utils/emoji_map'

@@ -4,7 +4,7 @@
 import React from 'react'
 import { OverlayTrigger as BaseOverlayTrigger } from 'react-bootstrap'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import ChannelInfoButton from './channel_info_button'
 

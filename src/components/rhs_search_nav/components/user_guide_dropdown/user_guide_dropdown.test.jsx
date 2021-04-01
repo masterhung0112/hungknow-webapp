@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 import MenuWrapper from 'components/widgets/menu/menu_wrapper'
 import Menu from 'components/widgets/menu/menu'
 import { trackEvent } from 'actions/telemetry_actions.jsx'

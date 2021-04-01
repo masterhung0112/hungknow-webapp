@@ -13,7 +13,7 @@ import { syncPostsInChannel } from 'actions/views/channel'
 
 import store from 'stores/redux_store.jsx'
 
-import configureStore from 'tests/test_store'
+import configureStore from 'testlib/test_store'
 
 import { browserHistory } from 'utils/browser_history'
 import Constants, { SocketEvents, UserStatuses, ActionTypes } from 'utils/constants'

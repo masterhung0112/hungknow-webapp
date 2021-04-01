@@ -7,7 +7,7 @@ import { ShallowWrapper } from 'enzyme'
 import { CategoryTypes } from 'hkclient-ts/lib/constants/channel_categories'
 import { ChannelType } from 'hkclient-ts/lib/types/channels'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 import Constants from 'utils/constants'
 import { TestHelper } from 'utils/test_helper'
 

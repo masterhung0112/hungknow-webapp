@@ -9,7 +9,7 @@ import configureStore from 'redux-mock-store'
 
 import EmojiMap from 'utils/emoji_map'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import InteractiveDialog from './interactive_dialog.jsx'
 

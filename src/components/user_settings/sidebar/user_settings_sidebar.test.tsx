@@ -8,7 +8,7 @@ import { UserProfile } from 'hkclient-ts/lib/types/users'
 
 import { SidebarPreferences } from 'hkclient-ts/lib/selectors/entities/preferences'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import UserSettingsSidebar from 'components/user_settings/sidebar/user_settings_sidebar'
 

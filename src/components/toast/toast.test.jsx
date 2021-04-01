@@ -5,7 +5,7 @@ import React from 'react'
 
 import { shallow } from 'enzyme'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import * as Utils from 'utils/utils.jsx'
 
 import Toast from './toast.jsx'

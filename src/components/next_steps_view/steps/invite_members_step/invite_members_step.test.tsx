@@ -5,7 +5,7 @@ import React from 'react'
 import { shallow, ShallowWrapper } from 'enzyme'
 
 import { TestHelper } from 'utils/test_helper'
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import InviteMembersStep from './invite_members_step'
 

@@ -6,12 +6,12 @@ import ReactRouterEnzymeContext from 'react-router-enzyme-context'
 
 import { isMobile } from 'utils/user_agent'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
-import { testComponentForLineBreak } from 'tests/helpers/line_break_helpers'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
+import { testComponentForLineBreak } from 'testlib/helpers/line_break_helpers'
 import { Constants, ModalIdentifiers } from 'utils/constants'
 import DeletePostModal from 'components/delete_post_modal'
 import EditPostModal from 'components/edit_post_modal/edit_post_modal.jsx'
-import { testComponentForMarkdownHotkeys, makeSelectionEvent } from 'tests/helpers/markdown_hotkey_helpers.js'
+import { testComponentForMarkdownHotkeys, makeSelectionEvent } from 'testlib/helpers/markdown_hotkey_helpers.js'
 import Textbox from 'components/textbox'
 
 jest.mock('actions/global_actions', () => ({

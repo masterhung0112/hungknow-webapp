@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import InvitationModalMembersStep from './invitation_modal_members_step.jsx'
 

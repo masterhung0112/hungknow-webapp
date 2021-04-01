@@ -5,8 +5,8 @@ import React from 'react'
 import moment from 'moment'
 import { createIntl } from 'react-intl'
 
-import { shallowWithIntl, mountWithIntl } from 'tests/helpers/intl-test-helper'
-import { fakeDate } from 'tests/helpers/date'
+import { shallowWithIntl, mountWithIntl } from 'testlib/helpers/intl-test-helper'
+import { fakeDate } from 'testlib/helpers/date'
 import defaultMessages from 'i18n/en.json'
 
 import Timestamp from './timestamp'

@@ -7,7 +7,7 @@
  */
 
 import Constants from 'utils/constants'
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 /**
  * @param  {string} [input] text input

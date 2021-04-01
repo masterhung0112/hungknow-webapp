@@ -10,7 +10,7 @@ import { Client4 } from 'hkclient-ts/lib/client'
 
 import { StatusOK } from 'hkclient-ts/lib/types/client4'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import NotifyLink, { DafaultBtnText } from './notify_link'
 

@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import PostPreHeader from 'components/post_view/post_pre_header'
 

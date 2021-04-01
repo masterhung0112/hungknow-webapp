@@ -8,13 +8,13 @@ import store from 'stores/redux_store.jsx'
 
 import Constants, { ValidationErrors } from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'
-import * as lineBreakHelpers from 'tests/helpers/line_break_helpers.js'
+import * as lineBreakHelpers from 'testlib/helpers/line_break_helpers.js'
 import {
   makeBoldHotkeyEvent,
   makeItalicHotkeyEvent,
   makeSelectionEvent,
-} from 'tests/helpers/markdown_hotkey_helpers.js'
-import * as ua from 'tests/helpers/user_agent_mocks'
+} from 'testlib/helpers/markdown_hotkey_helpers.js'
+import * as ua from 'testlib/helpers/user_agent_mocks'
 
 describe('Utils.getDisplayNameByUser', () => {
   afterEach(() => {

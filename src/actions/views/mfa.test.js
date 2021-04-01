@@ -6,7 +6,7 @@ jest.mock('hkclient-ts/lib/actions/users')
 import * as UserActions from 'hkclient-ts/lib/actions/users'
 
 import { activateMfa, deactivateMfa, generateMfaSecret } from 'actions/views/mfa'
-import configureStore from 'tests/test_store'
+import configureStore from 'testlib/test_store'
 
 describe('actions/views/mfa', () => {
   describe('activateMfa', () => {

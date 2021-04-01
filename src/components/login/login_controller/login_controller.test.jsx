@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import Constants from 'utils/constants'
 import LocalStorageStore from 'stores/local_storage_store'

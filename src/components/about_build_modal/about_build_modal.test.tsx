@@ -9,7 +9,7 @@ import { ClientConfig, ClientLicense } from 'hkclient-ts/lib/types/config'
 
 import AboutBuildModal from 'components/about_build_modal/about_build_modal'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import { AboutLinks } from 'utils/constants'
 

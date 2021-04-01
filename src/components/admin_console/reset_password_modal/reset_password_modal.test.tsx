@@ -8,7 +8,7 @@ import { shallow } from 'enzyme'
 import { UserNotifyProps, UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionResult } from 'hkclient-ts/lib/types/actions'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import { TestHelper } from 'utils/test_helper'
 
 import ResetPasswordModal from './reset_password_modal'

@@ -6,7 +6,7 @@ import { shallow } from 'enzyme'
 
 import { Preferences } from 'utils/constants'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import EmailNotificationSetting from 'components/user_settings/notifications/email_notification_setting/email_notification_setting'
 
 describe('components/user_settings/notifications/EmailNotificationSetting', () => {

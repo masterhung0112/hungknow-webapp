@@ -5,7 +5,7 @@ import { shallow } from 'enzyme'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import UpgradeLink from './upgrade_link'
 

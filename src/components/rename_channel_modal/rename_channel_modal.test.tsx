@@ -7,7 +7,7 @@ import { RequestStatus } from 'hkclient-ts/lib/constants'
 import { Channel } from 'hkclient-ts/lib/types/channels'
 import { Team } from 'hkclient-ts/lib/types/teams'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import { TestHelper } from 'utils/test_helper'
 

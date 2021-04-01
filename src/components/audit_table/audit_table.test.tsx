@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 import AuditTable from 'components/audit_table/audit_table'
 import { TestHelper } from 'utils/test_helper'
 

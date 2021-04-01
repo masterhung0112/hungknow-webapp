@@ -3,8 +3,8 @@
 
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
-import { testComponentForLineBreak } from 'tests/helpers/line_break_helpers'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
+import { testComponentForLineBreak } from 'testlib/helpers/line_break_helpers'
 
 import Constants from 'utils/constants'
 import EditChannelHeaderModal from 'components/edit_channel_header_modal/edit_channel_header_modal.jsx'

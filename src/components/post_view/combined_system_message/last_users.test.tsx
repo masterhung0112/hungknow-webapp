@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Posts } from 'hkclient-ts/lib/constants'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import LastUsers from './last_users'
 

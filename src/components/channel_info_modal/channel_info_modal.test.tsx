@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 
 import { Channel } from 'hkclient-ts/lib/types/channels'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import ChannelInfoModal from 'components/channel_info_modal/channel_info_modal'
 import { TestHelper } from 'utils/test_helper'
 

@@ -5,7 +5,7 @@ import React from 'react'
 
 import { shallow } from 'enzyme'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import MultiSelect, { Value } from './multiselect'
 import MultiSelectList, { Props as MultiSelectProps } from './multiselect_list'

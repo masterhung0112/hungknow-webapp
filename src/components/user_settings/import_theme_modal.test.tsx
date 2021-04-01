@@ -5,7 +5,7 @@ import React from 'react'
 
 import { Theme } from 'hkclient-ts/lib/types/preferences'
 
-import { mountWithIntl, shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl, shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import ImportThemeModal from './import_theme_modal'
 

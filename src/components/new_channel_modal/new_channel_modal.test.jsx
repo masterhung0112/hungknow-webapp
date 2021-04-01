@@ -9,7 +9,7 @@ import configureStore from 'redux-mock-store'
 
 import { Permissions } from 'hkclient-ts/lib/constants'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import Constants from 'utils/constants'
 import NewChannelModal from 'components/new_channel_modal/new_channel_modal.jsx'
 

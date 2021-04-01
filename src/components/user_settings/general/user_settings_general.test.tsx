@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store'
 
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 
-import { shallowWithIntl, mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl, mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import { TestHelper } from 'utils/test_helper'
 
 import UserSettingsGeneral, { UserSettingsGeneralTab } from './user_settings_general'

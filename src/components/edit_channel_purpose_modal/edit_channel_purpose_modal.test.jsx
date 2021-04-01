@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 import React from 'react'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
-import { testComponentForLineBreak } from 'tests/helpers/line_break_helpers'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
+import { testComponentForLineBreak } from 'testlib/helpers/line_break_helpers'
 import EditChannelPurposeModal from 'components/edit_channel_purpose_modal/edit_channel_purpose_modal.jsx'
 import Constants from 'utils/constants'
 

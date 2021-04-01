@@ -3,7 +3,7 @@
 
 import React, { ComponentProps } from 'react'
 
-import { mountWithIntl } from 'tests/helpers/intl-test-helper'
+import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import ThreadMenu from '../thread_menu'
 

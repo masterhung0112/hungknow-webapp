@@ -3,8 +3,8 @@
 
 import React from 'react'
 
-import { samplePlugin1 } from 'tests/helpers/admin_console_plugin_index_sample_pluings'
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { samplePlugin1 } from 'testlib/helpers/admin_console_plugin_index_sample_pluings'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import AdminSidebar from 'components/admin_console/admin_sidebar/admin_sidebar.jsx'
 import AdminDefinition from 'components/admin_console/admin_definition'

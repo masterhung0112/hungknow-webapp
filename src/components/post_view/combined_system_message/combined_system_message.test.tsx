@@ -9,7 +9,7 @@ import { UserProfile } from 'hkclient-ts/lib/types/users'
 
 import { ActionFunc } from 'hkclient-ts/lib/types/actions'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import CombinedSystemMessage, { CombinedSystemMessage as CombinedSystemMessageType } from './combined_system_message'
 

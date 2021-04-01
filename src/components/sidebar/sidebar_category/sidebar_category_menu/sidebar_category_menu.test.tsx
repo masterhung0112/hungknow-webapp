@@ -6,7 +6,7 @@ import React from 'react'
 import { CategoryTypes } from 'hkclient-ts/lib/constants/channel_categories'
 import { CategorySorting } from 'hkclient-ts/lib/types/channel_categories'
 
-import { shallowWithIntl } from 'tests/helpers/intl-test-helper'
+import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 
 import SidebarCategoryMenu from './sidebar_category_menu'
 
