@@ -23,6 +23,7 @@ import * as Selectors from 'hkclient-ts/lib/selectors/entities/admin'
 import { GlobalState } from 'types/store'
 
 import SystemUsersDropdown, { Props } from './system_users_dropdown'
+import { adminResetMfa } from 'actions/admin_actions.jsx'
 
 function mapStateToProps(state: GlobalState) {
   const bots = getExternalBotAccounts(state)
@@ -44,6 +45,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
         promoteGuestToUser,
         demoteUserToGuest,
         loadBots,
+        adminResetMfa,
       },
       dispatch
     ),

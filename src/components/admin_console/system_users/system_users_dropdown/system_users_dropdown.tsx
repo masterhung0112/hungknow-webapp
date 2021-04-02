@@ -12,7 +12,6 @@ import { ServerError } from 'hkclient-ts/lib/types/errors'
 import { Dictionary } from 'hkclient-ts/lib/types/utilities'
 import { Bot } from 'hkclient-ts/lib/types/bots'
 
-import { adminResetMfa } from 'actions/admin_actions.jsx'
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx'
 import { Constants } from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'
@@ -24,6 +23,7 @@ import SystemPermissionGate from 'components/permissions_gates/system_permission
 
 import MenuWrapper from 'components/widgets/menu/menu_wrapper'
 import Menu from 'components/widgets/menu/menu'
+import { ActionResult } from 'hkclient-ts/lib/types/actions'
 
 const ROWS_FROM_BOTTOM_TO_OPEN_UP = 3
 const TOTAL_USERS_TO_OPEN_UP = 5
@@ -46,6 +46,7 @@ export type Props = {
     promoteGuestToUser: (id: string) => Promise<{ error: ServerError }>
     demoteUserToGuest: (id: string) => Promise<{ error: ServerError }>
     loadBots: (page?: number, size?: number) => Promise<unknown>
+    adminResetMfa: (userId: string) => Promise<ActionResult>
   }
   doPasswordReset: (user: UserProfile) => void
   doEmailReset: (user: UserProfile) => void
@@ -111,9 +112,12 @@ export default class SystemUsersDropdown extends React.PureComponent<Props, Stat
     this.props.doEmailReset(this.props.user)
   }
 
-  handleResetMfa = (e: { preventDefault: () => void }) => {
+  handleResetMfa = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    adminResetMfa(this.props.user.id, null, this.props.onError)
+    const { error } = await this.props.actions.adminResetMfa(this.props.user.id)
+    if (error) {
+      this.props.onError(error)
+    }
   }
 
   handleShowDeactivateMemberModal = async (e: { preventDefault: () => void }) => {

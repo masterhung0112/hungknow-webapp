@@ -28,12 +28,24 @@ export async function reloadConfig(success, error) {
   }
 }
 
-export async function adminResetMfa(userId, success, error) {
-  const { data, error: err } = await UserActions.updateUserMfa(userId, false)(dispatch, getState)
-  if (data && success) {
-    success(data)
-  } else if (err && error) {
-    error({ id: err.server_error_id, ...err })
+// export async function adminResetMfa(userId, success, error) {
+//   const { data, error: err } = await UserActions.updateUserMfa(userId, false)(dispatch, getState)
+//   if (data && success) {
+//     success(data)
+//   } else if (err && error) {
+//     error({ id: err.server_error_id, ...err })
+//   }
+// }
+
+export function adminResetMfa(userId) {
+  return async (dispatch, getState) => {
+    const { data, error: err } = await UserActions.updateUserMfa(userId, false)(dispatch, getState)
+    if (data) {
+      return { data }
+    } else if (err) {
+      return { error: { id: err.server_error_id, ...err } }
+    }
+    return {}
   }
 }
 

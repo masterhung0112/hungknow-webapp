@@ -17,7 +17,7 @@ import { $ID } from 'hkclient-ts/lib/types/utilities'
 
 import { ServerError } from 'hkclient-ts/lib/types/errors'
 
-import { adminResetMfa, adminResetEmail } from 'actions/admin_actions.jsx'
+import { adminResetEmail } from 'actions/admin_actions.jsx'
 
 import { Constants } from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'
@@ -48,6 +48,7 @@ export type Props = {
     updateUserActive: (userId: string, active: boolean) => Promise<{ error: ServerError }>
     setNavigationBlocked: (blocked: boolean) => void
     addUserToTeam: (teamId: string, userId?: string) => Promise<{ data: TeamMembership; error?: any }>
+    adminResetMfa: (userId: string) => Promise<void>
   }
 }
 
@@ -175,7 +176,7 @@ export default class SystemUserDetail extends React.PureComponent<Props & RouteC
   // TODO: add error handler function
   handleResetMfa = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
     e.preventDefault()
-    adminResetMfa(this.props.user.id, null, null)
+    this.props.actions.adminResetMfa(this.props.user.id)
   }
 
   handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

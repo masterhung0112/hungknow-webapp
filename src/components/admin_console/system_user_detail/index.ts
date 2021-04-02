@@ -17,7 +17,7 @@ import { ServerError } from 'hkclient-ts/lib/types/errors'
 
 import { TeamMembership } from 'hkclient-ts/lib/types/teams'
 
-import { setNavigationBlocked } from 'actions/admin_actions.jsx'
+import { adminResetMfa, setNavigationBlocked } from 'actions/admin_actions.jsx'
 
 import SystemUserDetail from './system_user_detail'
 
@@ -52,6 +52,7 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
   const uiActions = bindActionCreators(
     {
       setNavigationBlocked,
+      adminResetMfa,
     },
     dispatch
   )
