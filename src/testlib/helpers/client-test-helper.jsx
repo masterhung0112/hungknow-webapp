@@ -3,7 +3,7 @@
 
 import jqd from 'jquery-deferred'
 
-import { Client4 } from 'mattermost-redux/client'
+import { Client4 } from 'hkclient-ts/lib/client'
 
 import WebSocketClient from 'client/websocket_client'
 
