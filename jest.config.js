@@ -17,8 +17,8 @@ module.exports = async () => {
       '^stores/(.*)$': '<rootDir>/stores/$1',
       '^utils$': '<rootDir>/utils',
       '^utils/(.*)$': '<rootDir>/utils/$1',
-      '^hktestlib$': '<rootDir>/test',
-      '^hktestlib/(.*)$': '<rootDir>/testlib/$1',
+      '^testlib$': '<rootDir>/test',
+      '^testlib/(.*)$': '<rootDir>/testlib/$1',
       '^actions$': '<rootDir>/actions',
       '^actions/(.*)$': '<rootDir>/actions/$1',
       '^reducers$': '<rootDir>/reducers',
@@ -36,5 +36,6 @@ module.exports = async () => {
       '^types/(.*)$': '<rootDir>/types/$1',
       '^constants/(.*)$': '<rootDir>/constants/$1',
     },
+    modulePaths: ['<rootDir>'],
   }
 }

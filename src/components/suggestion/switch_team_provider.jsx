@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
 import * as Selectors from 'hkclient-ts/lib/selectors/entities/teams'
 
 import { getCurrentLocale } from 'selectors/i18n'
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import Provider from './provider.jsx'
 import Suggestion from './suggestion.jsx'

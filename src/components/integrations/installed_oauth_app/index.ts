@@ -8,11 +8,12 @@ import { GlobalState } from 'hkclient-ts/lib/types/store'
 
 import { getDisplayNameByUser } from 'utils/utils'
 
-import InstalledOAuthApp, { InstalledOAuthAppProps } from './installed_oauth_app'
 import { OAuthApp } from 'hkclient-ts/lib/types/integrations'
 
+import InstalledOAuthApp, { InstalledOAuthAppProps } from './installed_oauth_app'
+
 function mapStateToProps(state: GlobalState, ownProps: InstalledOAuthAppProps) {
-  const oauthApp = ownProps.oauthApp || {} as OAuthApp
+  const oauthApp = ownProps.oauthApp || ({} as OAuthApp)
   return {
     creatorName: getDisplayNameByUser(state, getUser(state, oauthApp.creator_id)),
   }

@@ -19,5 +19,4 @@ export interface GlobalState extends BaseGlobalState {
   views: ViewsState
 }
 
-export type GetStateFunc = () => GlobalState;
-
+export type GetStateFunc = () => GlobalState

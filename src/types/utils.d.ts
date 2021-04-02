@@ -2,5 +2,5 @@
 // See LICENSE.txt for license information.
 
 type DeepPartial<T> = {
-    [P in keyof T]?: DeepPartial<T[P]>;
+  [P in keyof T]?: DeepPartial<T[P]>
 }

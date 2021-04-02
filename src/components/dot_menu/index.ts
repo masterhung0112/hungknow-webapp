@@ -22,8 +22,9 @@ import * as PostUtils from 'utils/post_utils.jsx'
 import { isArchivedChannel } from 'utils/channel_utils'
 import { getSiteURL } from 'utils/url'
 
-import DotMenu from './dot_menu'
 import { Team } from 'hkclient-ts/lib/types/teams'
+
+import DotMenu from './dot_menu'
 
 type Props = {
   post: Post
@@ -45,7 +46,7 @@ function mapStateToProps(state: GlobalState, ownProps: Props) {
   const config = getConfig(state)
   const userId = getCurrentUserId(state)
   const channel = getChannel(state, post.channel_id)
-  const currentTeam = getCurrentTeam(state) || {} as Team
+  const currentTeam = getCurrentTeam(state) || ({} as Team)
   const currentTeamUrl = `${getSiteURL()}/${currentTeam.name}`
 
   return {

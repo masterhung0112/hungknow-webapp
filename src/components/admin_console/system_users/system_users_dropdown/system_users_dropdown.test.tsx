@@ -43,7 +43,7 @@ describe('components/admin_console/system_users/system_users_dropdown/system_use
       promoteGuestToUser: jest.fn().mockResolvedValue({ data: true }),
       demoteUserToGuest: jest.fn().mockResolvedValue({ data: true }),
       loadBots: jest.fn(() => Promise.resolve([])),
-      adminResetMfa: jest.fn().mockRejectedValue({ data: true })
+      adminResetMfa: jest.fn().mockRejectedValue({ data: true }),
     },
     config: {
       GuestAccountsSettings: {

@@ -18,7 +18,7 @@ import { GlobalState } from 'types/store'
 
 const defaultStore = configureStore({})
 
-export const makeStore: MakeStore<GlobalState> = () => defaultStore// configureStore({})
+export const makeStore: MakeStore<GlobalState> = () => defaultStore // configureStore({})
 
 export const wrapper = createWrapper<GlobalState>(makeStore, { debug: false })
 

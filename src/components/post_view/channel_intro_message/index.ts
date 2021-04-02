@@ -28,15 +28,16 @@ import { GlobalState } from 'types/store'
 
 import { GenericAction } from 'hkclient-ts/lib/types/actions'
 
-import ChannelIntroMessage from './channel_intro_message'
 import { Channel } from 'hkclient-ts/lib/types/channels'
+
+import ChannelIntroMessage from './channel_intro_message'
 
 function mapStateToProps(state: GlobalState) {
   const config = getConfig(state)
   const enableUserCreation = config.EnableUserCreation === 'true'
   const isReadOnly = isCurrentChannelReadOnly(state)
   const team = getCurrentTeam(state)
-  const channel = getCurrentChannel(state) || {} as Channel
+  const channel = getCurrentChannel(state) || ({} as Channel)
   const teammate = getDirectTeammate(state, channel.id) as UserProfile
   const creator = getUser(state, channel.creator_id)
 

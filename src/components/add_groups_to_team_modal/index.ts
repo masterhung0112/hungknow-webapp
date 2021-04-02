@@ -31,7 +31,7 @@ type Props = {
 function mapStateToProps(state: GlobalState, ownProps: Props) {
   const searchTerm = state.views.search.modalSearch
 
-  const team = ownProps.team || getCurrentTeam(state) || {} as Team
+  const team = ownProps.team || getCurrentTeam(state) || ({} as Team)
 
   let groups = selectGroupsNotAssociatedToTeam(state, team.id)
   if (searchTerm) {

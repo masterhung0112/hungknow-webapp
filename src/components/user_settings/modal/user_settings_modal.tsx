@@ -11,7 +11,7 @@ import { defineMessages, FormattedMessage, injectIntl, IntlShape } from 'react-i
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { StatusOK } from 'hkclient-ts/lib/types/client4'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import Constants from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'

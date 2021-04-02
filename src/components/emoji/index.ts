@@ -13,7 +13,7 @@ import EmojiPage from 'components/emoji/emoji_page'
 import { Team } from 'hkclient-ts/lib/types/teams'
 
 function mapStateToProps(state: GlobalState) {
-  const team = getCurrentTeam(state) || {} as Team
+  const team = getCurrentTeam(state) || ({} as Team)
 
   return {
     teamId: team.id,

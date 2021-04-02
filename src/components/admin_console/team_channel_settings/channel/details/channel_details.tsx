@@ -857,7 +857,7 @@ export default class ChannelDetails extends React.PureComponent<ChannelDetailsPr
 
         {!isSynced && (
           <ChannelMembers
-            onRemoveCallback={this.addUserToRemove as any}
+            onRemoveCallback={this.addUserToRemove}
             onAddCallback={this.addUsersToAdd}
             usersToRemove={usersToRemove}
             usersToAdd={usersToAdd}

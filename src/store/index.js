@@ -19,6 +19,7 @@ import { transformSet } from 'store/utils'
 import { ActionTypes } from 'utils/constants'
 import { getBasePath } from 'selectors/general'
 import { StorageModule } from 'modules/storage'
+import { combineReducersWithGlobalActions } from 'stores/hydrate_reducer'
 
 function getAppReducer() {
   return require('../reducers') // eslint-disable-line global-require

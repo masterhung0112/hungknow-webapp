@@ -47,7 +47,7 @@ import { getSocketStatus } from 'selectors/views/websocket'
 import { browserHistory } from 'utils/browser_history'
 import { Constants, ActionTypes, EventTypes, PostRequestTypes } from 'utils/constants'
 import { isMobile } from 'utils/utils.jsx'
-import LocalStorageStore from 'stores/local_storage_store.jsx'
+import LocalStorageStore from 'stores/local_storage_store'
 import { isArchivedChannel } from 'utils/channel_utils'
 
 export function checkAndSetMobileView() {

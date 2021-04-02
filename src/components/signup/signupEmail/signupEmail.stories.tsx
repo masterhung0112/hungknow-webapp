@@ -26,14 +26,13 @@ const baseProps: any = {
       redirect: string
     ): Promise<ActionResultType> => {
       return {
-          data: true,
-        }
-      
+        data: true,
+      }
     },
     loginById: async (id: string, password: string, mfaToken?: string): Promise<ActionResultType> => {
       return {
-          data: true,
-        }
+        data: true,
+      }
     },
   },
   privacyPolicyLink: undefined,

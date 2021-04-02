@@ -7,7 +7,7 @@ import { getMyChannels, getMyChannelMemberships } from 'hkclient-ts/lib/selector
 
 import { sortChannelsByTypeAndDisplayName } from 'hkclient-ts/lib/utils/channel_utils'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import { Constants } from 'utils/constants'
 

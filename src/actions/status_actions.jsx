@@ -7,7 +7,7 @@ import { getPostsInCurrentChannel } from 'hkclient-ts/lib/selectors/entities/pos
 import { getDirectShowPreferences } from 'hkclient-ts/lib/selectors/entities/preferences'
 import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 import { Constants } from 'utils/constants'
 
 export function loadStatusesForChannelAndSidebar() {

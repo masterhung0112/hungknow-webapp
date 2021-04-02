@@ -13,7 +13,7 @@ import { Permissions } from 'hkclient-ts/lib/constants'
 import { sortChannelsByTypeAndDisplayName } from 'hkclient-ts/lib/utils/channel_utils'
 import { logError } from 'hkclient-ts/lib/actions/errors'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 import { Constants } from 'utils/constants'
 
 import Provider from './provider.jsx'

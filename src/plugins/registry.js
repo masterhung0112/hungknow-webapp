@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import reducerRegistry from 'hkclient-ts/lib/store/reducer_registry'
+// import reducerRegistry from 'hkclient-ts/lib/store/reducer_registry'
 
 import {
   registerPluginWebSocketEvent,
@@ -22,7 +22,7 @@ import {
   registerAdminConsoleCustomSetting,
 } from 'actions/admin_actions'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 import { ActionTypes } from 'utils/constants'
 import { generateId } from 'utils/utils.jsx'
 
@@ -418,7 +418,8 @@ export default class PluginRegistry {
   // under "state['plugins-<yourpluginid>']"
   // Accepts a reducer. Returns undefined.
   registerReducer(reducer) {
-    reducerRegistry.register('plugins-' + this.id, reducer)
+    //TODO: Open
+    // reducerRegistry.register('plugins-' + this.id, reducer)
   }
 
   // Register a handler for WebSocket events.

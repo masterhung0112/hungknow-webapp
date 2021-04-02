@@ -33,7 +33,7 @@ type OwnProps = {
 function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
   const searchTerm = state.views.search.modalSearch
 
-  const channel = ownProps.channel || getCurrentChannel(state) || {} as Channel
+  const channel = ownProps.channel || getCurrentChannel(state) || ({} as Channel)
 
   let groups = selectGroupsNotAssociatedToChannel(state, channel.id, channel.team_id)
   if (searchTerm) {

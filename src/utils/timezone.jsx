@@ -5,7 +5,7 @@ import moment from 'moment-timezone'
 
 import { getSupportedTimezones as getTimezones } from 'hkclient-ts/lib/selectors/entities/general'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 export function getSupportedTimezones(state = store.getState()) {
   return getTimezones(state)

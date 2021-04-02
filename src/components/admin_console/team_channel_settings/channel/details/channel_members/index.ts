@@ -88,19 +88,22 @@ function makeMapStateToProps() {
     let { usersToAdd } = props
 
     const config = getConfig(state)
-    const channelMembers = getChannelMembersInChannels(state)[channelId] || {} as UserIDMappedObjects<ChannelMembership>
-    const channel = getChannel(state, channelId) || { id: channelId } as Channel
+    const channelMembers =
+      getChannelMembersInChannels(state)[channelId] || ({} as UserIDMappedObjects<ChannelMembership>)
+    const channel = getChannel(state, channelId) || ({ id: channelId } as Channel)
     const searchTerm = state.views.search.userGridSearch?.term || ''
     const filters = state.views.search.userGridSearch?.filters || {}
 
     let totalCount: number
     if (Object.keys(filters).length === 0) {
-      const stats: ChannelStats = getAllChannelStats(state)[channelId] || {
-        member_count: 0,
-        channel_id: channelId,
-        pinnedpost_count: 0,
-        guest_count: 0,
-      } as ChannelStats
+      const stats: ChannelStats =
+        getAllChannelStats(state)[channelId] ||
+        ({
+          member_count: 0,
+          channel_id: channelId,
+          pinnedpost_count: 0,
+          guest_count: 0,
+        } as ChannelStats)
       totalCount = stats.member_count
     } else {
       const filteredUserStats: UsersStats = selectFilteredUsersStats(state) || {

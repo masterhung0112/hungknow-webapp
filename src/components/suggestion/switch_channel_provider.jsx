@@ -44,7 +44,7 @@ import Avatar from 'components/widgets/users/avatar'
 import StatusIcon from 'components/status_icon'
 
 import { getPostDraft } from 'selectors/rhs'
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 import { Constants, StoragePrefixes } from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'
 

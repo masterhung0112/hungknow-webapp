@@ -31,7 +31,7 @@ import { trackEvent } from 'actions/telemetry_actions.jsx'
 
 import { getDisplayedChannels } from 'selectors/views/channel_sidebar'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import * as Utils from 'utils/utils.jsx'
 import { Constants, Preferences, UserStatuses } from 'utils/constants'

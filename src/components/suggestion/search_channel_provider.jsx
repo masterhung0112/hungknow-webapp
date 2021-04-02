@@ -7,7 +7,7 @@ import {
   sortChannelsByTypeListAndDisplayName,
 } from 'hkclient-ts/lib/utils/channel_utils'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import Constants from 'utils/constants'
 import { getCurrentLocale } from 'selectors/i18n'

@@ -5,7 +5,7 @@ import regeneratorRuntime from 'regenerator-runtime'
 
 import { Client4 } from 'hkclient-ts/lib/client'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 import { ActionTypes } from 'utils/constants.jsx'
 import { getSiteURL } from 'utils/url'
 import PluginRegistry from 'plugins/registry'

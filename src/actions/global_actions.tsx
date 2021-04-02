@@ -46,7 +46,7 @@ import AppDispatcher from 'dispatcher/app_dispatcher.jsx'
 import { getCurrentLocale } from 'selectors/i18n'
 import { getIsRhsOpen, getRhsState } from 'selectors/rhs'
 import BrowserStore from 'stores/browser_store'
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 import LocalStorageStore from 'stores/local_storage_store'
 import WebSocketClient from 'client/web_websocket_client.jsx'
 
@@ -282,7 +282,7 @@ export function emitUserLoggedOutEvent(redirectTo = '/', shouldSignalLogout = tr
     LocalStorageStore.setWasLoggedIn(false)
   }
 
-  (dispatch(logout()) as any)
+  ;(dispatch(logout()) as any)
     .then(() => {
       if (shouldSignalLogout) {
         BrowserStore.signalLogout()

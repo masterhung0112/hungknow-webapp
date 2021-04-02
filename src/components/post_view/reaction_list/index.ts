@@ -14,8 +14,9 @@ import { Reaction } from 'hkclient-ts/lib/types/reactions'
 
 import { addReaction } from 'actions/post_actions.jsx'
 
-import ReactionList from './reaction_list'
 import { Channel } from 'hkclient-ts/lib/types/channels'
+
+import ReactionList from './reaction_list'
 
 type Props = {
   enableEmojiPicker: boolean
@@ -31,7 +32,7 @@ function makeMapStateToProps() {
     const config = getConfig(state)
     const enableEmojiPicker = config.EnableEmojiPicker === 'true' && !ownProps.isReadOnly
 
-    const channel = getChannel(state, ownProps.post.channel_id) || {} as Channel
+    const channel = getChannel(state, ownProps.post.channel_id) || ({} as Channel)
     const teamId = channel.team_id
 
     return {

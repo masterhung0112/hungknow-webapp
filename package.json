@@ -45,6 +45,7 @@
     "hammerjs": "2.0.8",
     "hamsterjs": "1.1.3",
     "highlight.js": "10.7.1",
+    "history": "5.0.0",
     "hkclient-ts": "github:masterhung0112/hkclient-ts#22e750ae171a6d6a3ac2c2d9d45f64a88d750bb4",
     "hoist-non-react-statics": "3.3.2",
     "html-to-react": "1.4.5",
@@ -60,7 +61,8 @@
     "marked": "github:mattermost/marked#be741d411d4642c4cd3e009645f4cb6baa7e92bb",
     "next": "^10.0.9",
     "next-redux-wrapper": "^6.0.2",
-    "p-queue": "7.0.0",
+    "p-queue": "6.6.1",
+    "prop-types": "15.7.2",
     "react": "17.0.1",
     "react-beautiful-dnd": "13.1.0",
     "react-bootstrap": "github:mattermost/react-bootstrap#c6957962364e0818a51bbfd13e89919903b422d6",
@@ -84,7 +86,8 @@
     "semver": "7.3.5",
     "styled-jsx": "^3.4.4",
     "tinycolor2": "1.4.2",
-    "use-async-effect": "2.2.3"
+    "use-async-effect": "2.2.3",
+    "xregexp": "5.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",

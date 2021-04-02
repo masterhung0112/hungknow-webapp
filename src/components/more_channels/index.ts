@@ -17,10 +17,11 @@ import { getOtherChannels, getChannelsInCurrentTeam } from 'hkclient-ts/lib/sele
 import { searchMoreChannels } from 'actions/channel_actions.jsx'
 import { openModal, closeModal } from 'actions/views/modals'
 
+import { Team } from 'hkclient-ts/lib/types/teams'
+
 import { GlobalState } from '../../types/store'
 
 import MoreChannels from './more_channels'
-import { Team } from 'hkclient-ts/lib/types/teams'
 
 const getNotArchivedOtherChannels = createSelector(
   getOtherChannels,
@@ -33,7 +34,7 @@ const getArchivedOtherChannels = createSelector(
 )
 
 function mapStateToProps(state: GlobalState) {
-  const team = getCurrentTeam(state) || {} as Team
+  const team = getCurrentTeam(state) || ({} as Team)
 
   return {
     channels: getNotArchivedOtherChannels(state) || [],
