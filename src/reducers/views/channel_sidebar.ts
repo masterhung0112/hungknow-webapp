@@ -3,12 +3,12 @@
 
 import { combineReducers } from 'redux'
 
-import { ChannelCategoryTypes, UserTypes } from 'mattermost-redux/action_types'
+import { ChannelCategoryTypes, UserTypes } from 'hkclient-ts/lib/action-types'
 
-import { GenericAction } from 'mattermost-redux/types/actions'
-import { ChannelCategory } from 'mattermost-redux/types/channel_categories'
+import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import { ChannelCategory } from 'hkclient-ts/lib/types/channel_categories'
 
-import { removeItem } from 'mattermost-redux/utils/array_utils'
+import { removeItem } from 'hkclient-ts/lib/utils/array_utils'
 
 import { DraggingState } from 'types/store'
 

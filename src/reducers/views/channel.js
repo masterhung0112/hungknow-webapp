@@ -3,7 +3,7 @@
 
 import { combineReducers } from 'redux'
 
-import { ChannelTypes, PostTypes, UserTypes, GeneralTypes } from 'mattermost-redux/action_types'
+import { ChannelTypes, PostTypes, UserTypes, GeneralTypes } from 'hkclient-ts/lib/action-types'
 
 import { ActionTypes, Constants, NotificationLevels } from 'utils/constants'
 

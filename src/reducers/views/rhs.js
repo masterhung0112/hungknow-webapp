@@ -3,7 +3,7 @@
 
 import { combineReducers } from 'redux'
 
-import { PostTypes, TeamTypes, SearchTypes } from 'mattermost-redux/action_types'
+import { PostTypes, TeamTypes, SearchTypes } from 'hkclient-ts/lib/action-types'
 
 import { ActionTypes, RHSStates } from 'utils/constants'
 
