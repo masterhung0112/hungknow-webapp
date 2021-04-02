@@ -25,4 +25,4 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(OpenIdConvert)
+export default connect(null, mapDispatchToProps)(OpenIdConvert as any)

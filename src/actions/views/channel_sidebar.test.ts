@@ -27,11 +27,11 @@ describe('setCategoryCollapsed', () => {
 
     const store = configureStore(initialState)
 
-    store.dispatch(Actions.setCategoryCollapsed(category1, true))
+    store.dispatch(Actions.setCategoryCollapsed(category1, true) as any)
 
     expect(isCategoryCollapsed(store.getState(), category1)).toBe(true)
 
-    store.dispatch(Actions.setCategoryCollapsed(category1, false))
+    store.dispatch(Actions.setCategoryCollapsed(category1, false) as any)
 
     expect(isCategoryCollapsed(store.getState(), category1)).toBe(false)
   })
@@ -200,7 +200,7 @@ describe('adjustTargetIndexForMove', () => {
 describe('multiSelectChannelTo', () => {
   const channelIds = ['one', 'two', 'three', 'four', 'five', 'six', 'seven']
 
-  const initialState = {
+  const initialState: any = {
     entities: {
       users: {
         currentUserId: 'user',

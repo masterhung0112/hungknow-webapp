@@ -32,4 +32,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageTokensModal)
+export default connect(mapStateToProps, mapDispatchToProps)(ManageTokensModal as any)

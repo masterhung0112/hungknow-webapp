@@ -64,7 +64,7 @@ describe('admin_console/system_user_detail/team_list/AbstractList', () => {
     return Promise.resolve(teamsWithMemberships)
   })
 
-  const defaultProps = {
+  const defaultProps: any = {
     userId: '1234',
     data: [],
     onPageChangedCallback: jest.fn(),

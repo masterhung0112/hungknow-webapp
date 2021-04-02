@@ -66,7 +66,7 @@ type State = {
 export default class ChangeURLModal extends React.PureComponent<Props, State> {
   private urlInput: React.RefObject<HTMLInputElement>
 
-  public static defaultProps = {
+  public static defaultProps: any = {
     show: false,
     title: 'Change URL',
     submitButtonText: 'Save',

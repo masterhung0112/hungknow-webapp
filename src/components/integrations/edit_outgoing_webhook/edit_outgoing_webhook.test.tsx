@@ -31,7 +31,7 @@ describe('components/integrations/EditOutgoingWebhook', () => {
     description: 'description',
     content_type: 'application/json',
   }
-  const updateOutgoingHookRequest = {
+  const updateOutgoingHookRequest: any = {
     status: 'not_started',
     error: null,
   }

@@ -9,7 +9,7 @@ import PluginState from 'hkclient-ts/lib/constants/plugins'
 import PluginManagement from 'components/admin_console/plugin_management/plugin_management'
 
 describe('components/PluginManagement', () => {
-  const defaultProps = {
+  const defaultProps: any = {
     config: {
       PluginSettings: {
         Enable: true,

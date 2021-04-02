@@ -42,7 +42,7 @@ export default abstract class AdminSettings<Props extends BaseProps, State exten
   private errorMessageRef: React.RefObject<HTMLDivElement>
   public constructor(props: Props) {
     super(props)
-    const stateInit = {
+    const stateInit: any = {
       saveNeeded: false,
       saving: false,
       serverError: null,

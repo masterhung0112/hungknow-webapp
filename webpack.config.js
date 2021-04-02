@@ -20,6 +20,10 @@ const plugins = [
 
   // CSS extraction is only enabled in production (see scssLoaders below).
   new MiniCssExtractPlugin({ filename: '[name].css' }),
+
+  new webpack.DefinePlugin({
+      COMMIT_HASH: JSON.stringify(childProcess.execSync('git rev-parse HEAD || echo dev').toString()),
+  }),
 ]
 
 const extractPlugin = {

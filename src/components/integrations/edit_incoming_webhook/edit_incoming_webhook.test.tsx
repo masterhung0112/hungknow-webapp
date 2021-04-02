@@ -35,7 +35,7 @@ describe('components/integrations/EditIncomingWebhook', () => {
     getIncomingHook: getIncomingHook as (hookId: string) => Promise<ActionResult>,
   }
 
-  const requiredProps = {
+  const requiredProps: any = {
     hookId: 'somehookid',
     teamId: 'testteamid',
     team: TestHelper.getTeamMock(),

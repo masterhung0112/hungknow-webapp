@@ -18,4 +18,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   ),
 })
 
-export default connect(null, mapDispatchToProps)(MenuItemToggleMuteChannel)
+export default connect(null, mapDispatchToProps)(MenuItemToggleMuteChannel as any)

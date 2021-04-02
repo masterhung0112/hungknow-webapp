@@ -598,7 +598,7 @@ describe('rhs view actions', () => {
   })
 
   describe('openAtPrevious', () => {
-    const batchingReducerBatch = {
+    const batchingReducerBatch: any = {
       type: 'BATCHING_REDUCER.BATCH',
       meta: {
         batch: true,

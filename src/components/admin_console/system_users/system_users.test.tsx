@@ -13,7 +13,7 @@ jest.useFakeTimers()
 
 describe('components/admin_console/system_users', () => {
   const USERS_PER_PAGE = 50
-  const defaultProps = {
+  const defaultProps: any = {
     teams: [],
     siteName: 'Site name',
     mfaEnabled: false,

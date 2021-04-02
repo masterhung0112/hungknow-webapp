@@ -18,9 +18,7 @@ describe('components/custom_status/custom_status_emoji', () => {
   const mockStore = configureStore()
   const store = mockStore({})
 
-  const getCustomStatus = () => {
-    return null
-  }
+  const getCustomStatus = () => null as any
   ;(CustomStatusSelectors.makeGetCustomStatus as jest.Mock).mockReturnValue(getCustomStatus)
   ;(EmojiSelectors.isCustomEmojiEnabled as jest.Mock).mockReturnValue(false)
   it('should match snapshot', () => {

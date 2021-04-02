@@ -28,7 +28,7 @@ import {
   getChannelsNameMapInTeam,
   getAllDirectChannels,
 } from 'hkclient-ts/lib/selectors/entities/channels'
-import { ChannelTypes } from 'hkclient-ts/lib/action_types'
+import { ChannelTypes } from 'hkclient-ts/lib/action-types'
 import { Channel, ChannelMembership } from 'hkclient-ts/lib/types/channels'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { DispatchFunc, GetStateFunc } from 'hkclient-ts/lib/types/actions'

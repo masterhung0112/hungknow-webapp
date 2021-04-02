@@ -9,7 +9,7 @@ import { readAccess } from './types'
 import SystemRolePermissionDropdown from './system_role_permission_dropdown'
 
 describe('admin_console/system_role_permission_dropdown', () => {
-  const props = {
+  const props: any = {
     section: {
       name: 'environemnt',
       hasDescription: true,

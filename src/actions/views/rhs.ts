@@ -58,7 +58,7 @@ function selectPostCardFromRightHandSideSearchWithPreviousState(post: Post, prev
 }
 
 export function updateRhsState(rhsState: string, channelId?: string) {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const action = {
       type: ActionTypes.UPDATE_RHS_STATE,
       state: rhsState,
@@ -104,7 +104,7 @@ function updateSearchResultsTerms(terms: string) {
 }
 
 export function performSearch(terms: string, isMentionSearch?: boolean) {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const teamId = getCurrentTeamId(getState())
     const config = getConfig(getState())
     const viewArchivedChannels = config.ExperimentalViewArchivedChannels === 'true'
@@ -131,7 +131,7 @@ export function performSearch(terms: string, isMentionSearch?: boolean) {
 }
 
 export function showSearchResults(isMentionSearch = false) {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const state = getState() as GlobalState
 
     const searchTerms = getSearchTerms(state)
@@ -158,7 +158,7 @@ export function showRHSPlugin(pluggableId: string) {
 }
 
 export function hideRHSPlugin(pluggableId: string) {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const state = getState() as GlobalState
 
     if (getPluggableId(state) === pluggableId) {
@@ -170,7 +170,7 @@ export function hideRHSPlugin(pluggableId: string) {
 }
 
 export function toggleRHSPlugin(pluggableId: string) {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const state = getState() as GlobalState
 
     if (getPluggableId(state) === pluggableId) {
@@ -265,7 +265,7 @@ export function showPinnedPosts(channelId?: string) {
 }
 
 export function showMentions() {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const termKeys = getCurrentUserMentionKeys(getState()).filter(({ key }) => {
       return key !== '@channel' && key !== '@all' && key !== '@here'
     })
@@ -297,7 +297,7 @@ export function showMentions() {
 }
 
 export function closeRightHandSide() {
-  return (dispatch: DispatchFunc) => {
+  return async (dispatch: DispatchFunc) => {
     dispatch(
       batchActions([
         {
@@ -363,7 +363,7 @@ export function openRHSSearch() {
     dispatch(updateSearchTerms(''))
     dispatch(updateSearchResultsTerms(''))
 
-    dispatch(updateRhsState(RHSStates.SEARCH))
+    dispatch(updateRhsState(RHSStates.SEARCH) as any)
 
     return { data: true }
   }
@@ -371,7 +371,7 @@ export function openRHSSearch() {
 
 export function openAtPrevious(previous: any) {
   // TODO Could not find the proper type. Seems to be in several props around
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     if (!previous) {
       return openRHSSearch()(dispatch)
     }

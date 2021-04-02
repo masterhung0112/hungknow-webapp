@@ -196,7 +196,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     // trackEvent('signup', 'signup_user_02_complete');
 
     this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-      const isOK = actionResult ? actionResult : undefined
+      const isOK = actionResult ? actionResult as ActionResult : undefined as ActionResult
 
       if (isOK && isOK.error) {
         if (isOK.error.server_error_id === 'api.user.login.not_verified.app_error') {
