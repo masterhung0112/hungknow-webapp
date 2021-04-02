@@ -148,4 +148,4 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
   }
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(ChannelMembers)
+export default connect(makeMapStateToProps, mapDispatchToProps)(ChannelMembers as any)

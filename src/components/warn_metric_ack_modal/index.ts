@@ -53,4 +53,4 @@ function mapDispatchToProps(dispatch: Dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WarnMetricAckModal)
+export default connect(mapStateToProps, mapDispatchToProps)(WarnMetricAckModal as any)

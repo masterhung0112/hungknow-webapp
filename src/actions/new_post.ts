@@ -78,7 +78,7 @@ export function setChannelReadAndViewed(
   websocketMessageProps: NewPostMessageProps,
   fetchedChannelMember: boolean
 ): ActionFunc {
-  return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
     const state = getState()
     const currentUserId = getCurrentUserId(state)
 
