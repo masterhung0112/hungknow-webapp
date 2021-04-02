@@ -469,7 +469,7 @@ export class UserSettingsGeneralTab extends React.Component<Props, State> {
     this.props.updateSection(section)
   }
 
-  setupInitialState(props: Props) {
+  setupInitialState(props: Props): State {
     const user = props.user
 
     return {

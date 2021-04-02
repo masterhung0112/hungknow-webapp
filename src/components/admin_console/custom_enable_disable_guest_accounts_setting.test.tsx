@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl'
 import CustomEnableDisableGuestAccountsSetting from './custom_enable_disable_guest_accounts_setting'
 
 describe('components/AdminConsole/CustomEnableDisableGuestAccountsSetting', () => {
-  const baseProps = {
+  const baseProps: any = {
     id: 'MySetting',
     value: false,
     onChange: jest.fn(),

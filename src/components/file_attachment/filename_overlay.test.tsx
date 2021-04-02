@@ -26,7 +26,7 @@ describe('components/file_attachment/FilenameOverlay', () => {
     clientId: '',
   }
 
-  const baseProps = {
+  const baseProps: any = {
     fileInfo,
     handleImageClick: emptyFunction,
     compactDisplay: false,

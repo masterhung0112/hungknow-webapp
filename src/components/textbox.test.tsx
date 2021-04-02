@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import Textbox from 'components/textbox/textbox'
 
 describe('components/TextBox', () => {
-  const baseProps = {
+  const baseProps: any = {
     channelId: 'channelId',
     currentUserId: 'currentUserId',
     currentTeamId: 'currentTeamId',

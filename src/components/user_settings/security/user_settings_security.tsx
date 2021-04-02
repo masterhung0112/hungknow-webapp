@@ -74,7 +74,7 @@ export default class SecurityTab extends React.PureComponent<Props, State> {
     this.state = this.getDefaultState()
   }
 
-  getDefaultState() {
+  getDefaultState(): State {
     return {
       currentPassword: '',
       newPassword: '',

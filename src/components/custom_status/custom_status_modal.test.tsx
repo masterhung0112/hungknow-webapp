@@ -14,7 +14,7 @@ jest.mock('selectors/views/custom_status')
 describe('components/custom_status/custom_status_modal', () => {
   const mockStore = configureStore()
   const store = mockStore({})
-  const baseProps = {
+  const baseProps: any = {
     onHide: jest.fn(),
   }
 

@@ -12,7 +12,7 @@ describe('components/audit_table/AuditTable', () => {
     getMissingProfilesByIds: () => jest.fn(),
   }
 
-  const baseProps = {
+  const baseProps: any = {
     audits: [],
     showUserId: true,
     showIp: true,

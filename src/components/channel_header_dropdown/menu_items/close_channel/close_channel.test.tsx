@@ -9,7 +9,7 @@ import Menu from 'components/widgets/menu/menu'
 import CloseChannel from './close_channel'
 
 describe('components/ChannelHeaderDropdown/MenuItem.CloseChannel', () => {
-  const baseProps = {
+  const baseProps: any = {
     isArchived: true,
     actions: {
       goToLastViewedChannel: jest.fn(),

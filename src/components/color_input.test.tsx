@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import ColorInput from './color_input'
 
 describe('components/ColorInput', () => {
-  const baseProps = {
+  const baseProps: any = {
     id: 'sidebarBg',
     onChange: jest.fn(),
     value: '#ffffff',

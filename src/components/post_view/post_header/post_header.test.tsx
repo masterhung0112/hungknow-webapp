@@ -9,7 +9,7 @@ import PostHeader from './post_header'
 
 describe('components/post_view/post_header', () => {
   const post = TestHelper.getPostMock()
-  const baseProps = {
+  const baseProps: any = {
     post,
     handleCommentClick: jest.fn(),
     handleCardClick: jest.fn(),

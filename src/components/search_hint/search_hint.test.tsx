@@ -9,7 +9,7 @@ import { searchHintOptions } from 'utils/constants'
 import SearchHint from 'components/search_hint/search_hint'
 
 describe('components/SearchHint', () => {
-  const baseProps = {
+  const baseProps: any = {
     withTitle: false,
     onOptionSelected: jest.fn(),
     options: searchHintOptions,

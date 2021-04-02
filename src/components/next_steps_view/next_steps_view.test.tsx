@@ -10,7 +10,7 @@ import NextStepsView from 'components/next_steps_view/next_steps_view'
 import { TestHelper } from 'utils/test_helper'
 
 describe('components/next_steps_view', () => {
-  const baseProps = {
+  const baseProps: any = {
     steps: [
       {
         id: 'step_1',

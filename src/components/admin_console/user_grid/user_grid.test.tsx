@@ -39,7 +39,7 @@ describe('components/admin_console/user_grid/UserGrid', () => {
   const membership2 = createMembership('userId2', false)
   const notSavedUser = createUser('userid-not-saved', 'user-not-saved', false)
   const scope: 'team' | 'channel' = 'team'
-  const baseProps = {
+  const baseProps: any = {
     users: [user1, user2],
     memberships: { [user1.id]: membership1, [user2.id]: membership2 },
 

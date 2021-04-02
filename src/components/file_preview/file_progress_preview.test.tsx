@@ -27,7 +27,7 @@ describe('component/file_preview/file_progress_preview', () => {
     clientId: '',
   }
 
-  const baseProps = {
+  const baseProps: any = {
     clientId: 'clientId',
     fileInfo,
     handleRemove,

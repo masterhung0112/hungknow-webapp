@@ -40,7 +40,7 @@ describe('components/RhsThread', () => {
 
   const directTeammate: UserProfile = TestHelper.getUserMock()
 
-  const baseProps = {
+  const baseProps: any = {
     posts: [post],
     selected: post,
     channel,

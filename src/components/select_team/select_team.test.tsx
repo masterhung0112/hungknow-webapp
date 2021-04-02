@@ -20,7 +20,7 @@ jest.mock('utils/policy_roles_adapter', () => ({
 
 describe('components/select_team/SelectTeam', () => {
   const addUserToTeam = jest.fn().mockResolvedValue({ data: true })
-  const baseProps = {
+  const baseProps: any = {
     currentUserRoles: 'system_admin',
     currentUserId: 'test',
     isMemberOfTeam: true,

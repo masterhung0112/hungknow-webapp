@@ -17,7 +17,7 @@ describe('components/submenu_modal', () => {
   const action1 = jest.fn().mockReturnValueOnce('default')
   const action2 = jest.fn().mockReturnValueOnce('default')
   const action3 = jest.fn().mockReturnValueOnce('default')
-  const baseProps = {
+  const baseProps: any = {
     elements: [
       {
         id: 'A',

@@ -10,7 +10,7 @@ import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import PasswordResetSendLink from './password_reset_send_link'
 
 describe('components/PasswordResetSendLink', () => {
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       sendPasswordResetEmail: jest.fn().mockResolvedValue({ data: true }),
     },

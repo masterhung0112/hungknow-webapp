@@ -11,7 +11,7 @@ import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 import SidebarCategoryMenu from './sidebar_category_menu'
 
 describe('components/sidebar/sidebar_category/sidebar_category_menu', () => {
-  const baseProps = {
+  const baseProps: any = {
     category: {
       id: 'category1',
       team_id: 'team1',

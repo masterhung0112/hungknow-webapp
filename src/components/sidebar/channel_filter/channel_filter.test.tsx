@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import ChannelFilter from 'components/sidebar/channel_filter/channel_filter'
 
 describe('components/sidebar/channel_filter', () => {
-  const baseProps = {
+  const baseProps: any = {
     unreadFilterEnabled: false,
     hasMultipleTeams: false,
     actions: {

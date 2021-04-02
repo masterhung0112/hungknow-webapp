@@ -12,7 +12,7 @@ import { TestHelper } from 'utils/test_helper'
 import AdminConsole from './admin_console'
 
 describe('components/AdminConsole', () => {
-  const baseProps = {
+  const baseProps: any = {
     config: {
       TestField: true,
       ExperimentalSettings: {

@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import PostEmoji from './post_emoji'
 
 describe('PostEmoji', () => {
-  const baseProps = {
+  const baseProps: any = {
     imageUrl: '/api/v4/emoji/1234/image',
     name: 'emoji',
   }

@@ -18,7 +18,7 @@ describe('components/post_view/PostAttachment', () => {
     message: 'post message',
   } as Post
 
-  const baseProps = {
+  const baseProps: any = {
     post,
     enableFormatting: true,
     options: {},

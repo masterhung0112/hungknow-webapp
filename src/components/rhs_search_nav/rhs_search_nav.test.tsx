@@ -10,7 +10,7 @@ import { RHSStates } from 'utils/constants'
 import RHSSearchNav from './rhs_search_nav'
 
 describe('components/RHSSearchNav', () => {
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       showFlaggedPosts: jest.fn(),
       showMentions: jest.fn(),

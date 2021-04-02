@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import ErrorLink from 'components/error_page/error_link'
 
 describe('components/error_page/ErrorLink', () => {
-  const baseProps = {
+  const baseProps: any = {
     url: 'https://docs.mattermost.com/deployment/sso-gitlab.html',
     messageId: 'error.oauth_missing_code.gitlab.link',
     defaultMessage: 'GitLab',

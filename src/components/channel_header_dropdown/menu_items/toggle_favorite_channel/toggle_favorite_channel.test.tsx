@@ -11,7 +11,7 @@ import Menu from 'components/widgets/menu/menu'
 import ToggleFavoriteChannel from './toggle_favorite_channel'
 
 describe('components/ChannelHeaderDropdown/MenuItem.ToggleFavoriteChannel', () => {
-  const baseProps = {
+  const baseProps: any = {
     channel: {
       id: 'channel_id',
       display_name: 'channel_display_name',

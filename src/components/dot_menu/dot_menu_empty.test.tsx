@@ -24,7 +24,7 @@ jest.mock('utils/post_utils', () => {
 
 describe('components/dot_menu/DotMenu returning empty ("")', () => {
   test('should match snapshot, return empty ("") on Center', () => {
-    const baseProps = {
+    const baseProps: any = {
       post: TestHelper.getPostMock({ id: 'post_id_1' }),
       isLicensed: false,
       postEditTimeLimit: '-1',

@@ -17,7 +17,7 @@ describe('components/sidebar/sidebar_channel/sidebar_channel_menu', () => {
   const testChannel = TestHelper.getChannelMock()
   const testCategory = TestHelper.getCategoryMock()
 
-  const baseProps = {
+  const baseProps: any = {
     channel: testChannel,
     channelLink: 'http://a.fake.link',
     categories: [testCategory],

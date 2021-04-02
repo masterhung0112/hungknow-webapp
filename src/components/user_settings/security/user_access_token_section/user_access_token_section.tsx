@@ -118,7 +118,7 @@ export default class UserAccessTokenSection extends React.PureComponent<Props, S
         tokenError: '',
         serverError: null,
         saving: false,
-      }
+      } as State
     }
     return { active: nextProps.active }
   }

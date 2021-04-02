@@ -47,7 +47,7 @@ describe('components/channel_invite_modal', () => {
     update_at: 1508265709607,
   } as Channel
 
-  const baseProps = {
+  const baseProps: any = {
     channel,
     profilesNotInCurrentChannel: [],
     profilesNotInCurrentTeam: [],

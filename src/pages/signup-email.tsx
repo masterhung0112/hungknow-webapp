@@ -1,23 +1,23 @@
 import { bindActionCreators } from 'redux'
 
 import SignupEmailComponent from 'components/signup/signupEmail'
-import { getConfig } from 'hkclient-ts/lib/selectors/general'
+import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
 import { GlobalState } from 'hkclient-ts/lib/types/store'
 import { connect } from 'react-redux'
 import { createUser, loginById } from 'hkclient-ts/lib/actions/users'
 import { getTeamInviteInfo } from 'hkclient-ts/lib/actions/teams'
-import { getPasswordConfig } from 'hkclient-ts/lib/utils/helpers'
+import { getPasswordConfig } from 'utils/utils.jsx'
 import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
-import { wrapper } from 'store/redux_store'
+import { wrapper } from 'stores/redux_store'
 import { loadMeAndConfig } from 'actions/views/root'
 import { setGlobalItem } from 'actions/storage'
 import { redirectUserToDefaultTeam } from 'actions/global_actions'
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   const results = await store.dispatch(loadMeAndConfig())
-  if (results && results[0] && results[0].error) {
+  if (results && results.error) {
     //TODO: Remove this
-    console.error('loadMeAndConfig error: ', results[0].error)
+    console.error('loadMeAndConfig error: ', results.error)
   }
 
   return {

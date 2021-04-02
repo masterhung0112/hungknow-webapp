@@ -7,7 +7,7 @@ import React from 'react'
 import ActionMenu from './action_menu'
 
 describe('components/post_view/message_attachments/ActionMenu', () => {
-  const baseProps = {
+  const baseProps: any = {
     postId: 'post1',
     action: {
       name: 'action',

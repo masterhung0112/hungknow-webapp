@@ -9,7 +9,7 @@ import { TestHelper } from 'utils/test_helper'
 import ManageTokensModal from './manage_tokens_modal'
 
 describe('components/admin_console/manage_tokens_modal/manage_tokens_modal.tsx', () => {
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       getUserAccessTokensForUser: jest.fn(),
     },

@@ -12,7 +12,7 @@ import Markdown from 'components/markdown/markdown'
 import EmojiMap from 'utils/emoji_map'
 
 describe('components/Markdown', () => {
-  const baseProps = {
+  const baseProps: any = {
     channelNamesMap: {},
     enableFormatting: true,
     mentionKeys: [],

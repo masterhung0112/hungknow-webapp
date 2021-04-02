@@ -1,9 +1,8 @@
-import { USERS_MODULE_NAME } from 'hkclient-ts/lib/constants'
-import { UsersAwareState } from 'hkclient-ts/lib/types/users'
+import { GlobalState } from 'types/store'
 
-export function getPrefix(state: UsersAwareState) {
-  if (state && state[USERS_MODULE_NAME] && state[USERS_MODULE_NAME].profiles) {
-    const user = state[USERS_MODULE_NAME].profiles[state[USERS_MODULE_NAME].currentUserId]
+export function getPrefix(state: GlobalState) {
+  if (state && state.entities.users && state.entities.users.profiles) {
+    const user = state.entities.users.profiles[state.entities.users.currentUserId]
     if (user) {
       return user.id + '_'
     }

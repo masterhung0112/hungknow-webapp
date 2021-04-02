@@ -14,7 +14,7 @@ describe('components/StatusDropdown', () => {
     setStatusDropdown: jest.fn(),
   }
 
-  const baseProps = {
+  const baseProps: any = {
     actions,
     userId: '',
     isCustomStatusEnabled: false,

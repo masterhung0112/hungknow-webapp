@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import SettingItemMin from './setting_item_min'
 
 describe('components/SettingItemMin', () => {
-  const baseProps = {
+  const baseProps: any = {
     title: 'title',
     disableOpen: false,
     section: 'section',

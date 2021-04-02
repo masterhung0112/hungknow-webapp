@@ -13,7 +13,7 @@ import WarnMetricAckModal from 'components/warn_metric_ack_modal/warn_metric_ack
 describe('components/WarnMetricAckModal', () => {
   const serverError = 'some error'
 
-  const baseProps = {
+  const baseProps: any = {
     stats: {
       registered_users: 200,
     },

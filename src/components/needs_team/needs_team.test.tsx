@@ -98,7 +98,7 @@ describe('components/needs_team', () => {
     getGroups: jest.fn().mockResolvedValue({ data: true }),
     getGroupsByUserId: jest.fn().mockResolvedValue({ data: true }),
   }
-  const baseProps = {
+  const baseProps: any = {
     license: {},
     actions,
     currentUser: {

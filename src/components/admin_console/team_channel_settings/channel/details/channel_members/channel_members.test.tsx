@@ -20,7 +20,7 @@ describe('admin_console/team_channel_settings/channel/ChannelMembers', () => {
   const membership3: ChannelMembership = Object.assign(TestHelper.getChannelMembershipMock({ user_id: 'user-3' }, {}))
   const channel: Channel = Object.assign(TestHelper.getChannelMock({ id: 'channel-1' }))
 
-  const baseProps = {
+  const baseProps: any = {
     filters: {},
     usersToRemove: {},
     usersToAdd: {},

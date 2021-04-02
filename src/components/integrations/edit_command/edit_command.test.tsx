@@ -48,7 +48,7 @@ describe('components/integrations/EditCommand', () => {
     error: null,
   }
 
-  const baseProps = {
+  const baseProps: any = {
     team,
     commandId: 'r5tpgt4iepf45jt768jz84djic',
     commands,

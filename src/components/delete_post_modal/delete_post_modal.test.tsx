@@ -39,7 +39,7 @@ describe('components/delete_post_modal', () => {
     metadata: {} as PostMetadata,
   }
 
-  const baseProps = {
+  const baseProps: any = {
     post,
     commentCount: 0,
     isRHS: false,

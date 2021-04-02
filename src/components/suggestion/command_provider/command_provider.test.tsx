@@ -9,7 +9,7 @@ import { Client4 } from 'hkclient-ts/lib/client'
 import CommandProvider, { CommandSuggestion, Results } from './command_provider'
 
 describe('CommandSuggestion', () => {
-  const baseProps = {
+  const baseProps: any = {
     item: {
       suggestion: '/invite',
       hint: '@[username] ~[channel]',

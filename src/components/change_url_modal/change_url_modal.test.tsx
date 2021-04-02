@@ -9,7 +9,7 @@ import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import ChangeURLModal from 'components/change_url_modal/change_url_modal'
 
 describe('components/ChangeURLModal', () => {
-  const baseProps = {
+  const baseProps: any = {
     show: true,
     onDataChanged: jest.fn(),
     currentTeamURL: 'http://example.com/channel/',

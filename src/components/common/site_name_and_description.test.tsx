@@ -8,7 +8,7 @@ import { FormattedMessage } from 'react-intl'
 import SiteNameAndDescription from 'components/common/site_name_and_description'
 
 describe('/components/common/SiteNameAndDescription', () => {
-  const baseProps = {
+  const baseProps: any = {
     customDescriptionText: '',
     siteName: 'Mattermost',
   }

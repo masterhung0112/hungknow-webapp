@@ -20,7 +20,7 @@ describe('OverlayTrigger', () => {
       [testId]: 'Actual value',
     },
   }
-  const baseProps = {
+  const baseProps: any = {
     overlay: <FormattedMessage id={testId} defaultMessage="Default value" />,
   }
 

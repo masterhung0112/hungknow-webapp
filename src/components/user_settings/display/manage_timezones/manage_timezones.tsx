@@ -15,7 +15,7 @@ type Actions = {
   updateMe: (user: UserProfile) => Promise<ActionResult>
 }
 
-type Props = {
+export type Props = {
   user: UserProfile
   updateSection: (section: string) => void
   useAutomaticTimezone: boolean

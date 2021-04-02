@@ -7,7 +7,7 @@ import { ActionResultType } from 'hkclient-ts/lib/types/actions'
 
 import SignupEmail, { SignupEmailProps } from './signupEmail'
 
-const baseProps = {
+const baseProps: any = {
   hasAccounts: false,
   enableSignUpWithEmail: true,
   customDescriptionText: undefined,
@@ -26,18 +26,15 @@ const baseProps = {
       inviteId: string,
       redirect: string
     ): Promise<ActionResultType> => {
-      return [
-        {
+      return {
           data: true,
-        },
-      ]
+        }
+      
     },
     loginById: async (id: string, password: string, mfaToken?: string): Promise<ActionResultType> => {
-      return [
-        {
+      return {
           data: true,
-        },
-      ]
+        }
     },
   },
   privacyPolicyLink: undefined,

@@ -11,7 +11,7 @@ import { ChannelType } from 'hkclient-ts/lib/types/channels'
 import SidebarCategory from 'components/sidebar/sidebar_category/sidebar_category'
 
 describe('components/sidebar/sidebar_category', () => {
-  const baseProps = {
+  const baseProps: any = {
     category: {
       id: 'category1',
       team_id: 'team1',

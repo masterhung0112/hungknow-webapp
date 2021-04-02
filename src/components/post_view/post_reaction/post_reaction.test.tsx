@@ -9,7 +9,7 @@ import { Emoji } from 'hkclient-ts/lib/types/emojis'
 import PostReaction from 'components/post_view/post_reaction/post_reaction'
 
 describe('components/post_view/PostReaction', () => {
-  const baseProps = {
+  const baseProps: any = {
     channelId: 'current_channel_id',
     postId: 'post_id_1',
     teamId: 'current_team_id',

@@ -10,7 +10,7 @@ import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import LocalizedInput from './localized_input'
 
 describe('components/localized_input/localized_input', () => {
-  const baseProps = {
+  const baseProps: any = {
     className: 'test-class',
     onChange: jest.fn(),
     placeholder: { id: 'test.placeholder', defaultMessage: 'placeholder to test' },

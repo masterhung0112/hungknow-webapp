@@ -7,7 +7,7 @@ import React from 'react'
 import SaveButton from 'components/save_button'
 
 describe('components/SaveButton', () => {
-  const baseProps = {
+  const baseProps: any = {
     saving: false,
   }
 

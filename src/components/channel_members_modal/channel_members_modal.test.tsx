@@ -13,7 +13,7 @@ import { ModalIdentifiers } from 'utils/constants'
 import ChannelMembersModal from './channel_members_modal'
 
 describe('components/ChannelMembersModal', () => {
-  const baseProps = {
+  const baseProps: any = {
     channel: {
       id: 'channel_id',
       display_name: 'channel_display_name',

@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import FloatingTimestamp from './floating_timestamp'
 
 describe('components/post_view/FloatingTimestamp', () => {
-  const baseProps = {
+  const baseProps: any = {
     isScrolling: true,
     isMobile: true,
     createAt: 1234,

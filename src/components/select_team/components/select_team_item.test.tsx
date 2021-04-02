@@ -9,7 +9,7 @@ import { Team } from 'hkclient-ts/lib/types/teams'
 import SelectTeamItem from './select_team_item'
 
 describe('components/select_team/components/SelectTeamItem', () => {
-  const baseProps = {
+  const baseProps: any = {
     team: { display_name: 'team_display_name', allow_open_invite: true } as Team,
     onTeamClick: jest.fn(),
     loading: false,

@@ -10,7 +10,7 @@ import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import RemovedFromChannelModal from 'components/removed_from_channel_modal/removed_from_channel_modal'
 
 describe('components/RemoveFromChannelModal', () => {
-  const baseProps = {
+  const baseProps: any = {
     currentUserId: 'current_user_id',
     channelName: 'test-channel',
     remover: 'Administrator',

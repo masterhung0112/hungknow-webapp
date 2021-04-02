@@ -9,7 +9,7 @@ import { UserProfile as UserProfileType } from 'hkclient-ts/lib/types/users'
 import UserProfile from './user_profile'
 
 describe('components/UserProfile', () => {
-  const baseProps = {
+  const baseProps: any = {
     displayName: 'nickname',
     isBusy: false,
     user: { username: 'username' } as UserProfileType,

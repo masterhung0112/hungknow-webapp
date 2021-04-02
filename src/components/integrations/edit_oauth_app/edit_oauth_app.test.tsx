@@ -35,7 +35,7 @@ describe('components/integrations/EditOAuthApp', () => {
     error: null,
   }
 
-  const baseProps = {
+  const baseProps: any = {
     team,
     oauthAppId: oauthApp.id,
     editOAuthAppRequest,

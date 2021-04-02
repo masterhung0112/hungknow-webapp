@@ -37,7 +37,7 @@ describe('components/integrations/InstalledOAuthApps', () => {
     },
   }
 
-  const baseProps = {
+  const baseProps: any = {
     team: {
       name: 'test',
     },

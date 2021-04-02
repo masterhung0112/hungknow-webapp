@@ -10,7 +10,7 @@ import { shallowWithIntl } from 'testlib/helpers/intl-test-helper'
 import InviteMembersStep from './invite_members_step'
 
 describe('components/next_steps_view/steps/invite_members_step', () => {
-  const baseProps = {
+  const baseProps: any = {
     id: 'invite_members_step',
     team: TestHelper.getTeamMock(),
     onSkip: jest.fn(),

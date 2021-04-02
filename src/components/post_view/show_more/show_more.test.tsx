@@ -12,7 +12,7 @@ describe('components/post_view/ShowMore', () => {
       <p>{'text'}</p>
     </div>
   )
-  const baseProps = {
+  const baseProps: any = {
     checkOverflow: 0,
     isAttachmentText: false,
     isRHSExpanded: false,

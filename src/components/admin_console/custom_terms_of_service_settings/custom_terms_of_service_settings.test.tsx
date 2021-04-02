@@ -9,7 +9,7 @@ import { AdminConfig } from 'hkclient-ts/lib/types/config'
 import CustomTermsOfServiceSettings from 'components/admin_console/custom_terms_of_service_settings/custom_terms_of_service_settings'
 
 describe('components/admin_console/CustomTermsOfServiceSettings', () => {
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       createTermsOfService: jest.fn(),
       getTermsOfService: jest.fn().mockResolvedValue({ data: { id: 'tos_id', text: 'tos_text' } }),

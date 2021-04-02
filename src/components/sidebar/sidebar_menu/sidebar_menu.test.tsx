@@ -7,7 +7,7 @@ import { mount, shallow } from 'enzyme'
 import SidebarMenu from './sidebar_menu'
 
 describe('components/sidebar/sidebar_menu', () => {
-  const baseProps = {
+  const baseProps: any = {
     id: 'menu_id',
     children: null,
     tooltipText: 'some tooltip text',

@@ -20,7 +20,7 @@ describe('components/multiselect/multiselect', () => {
     users.push({ id: `${i}`, label: `${i}`, value: `${i}` })
   }
 
-  const baseProps = {
+  const baseProps: any = {
     ariaLabelRenderer: element as any,
     handleAdd: jest.fn(),
     handleDelete: jest.fn(),

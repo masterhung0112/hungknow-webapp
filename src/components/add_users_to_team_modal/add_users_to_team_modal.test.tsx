@@ -41,7 +41,7 @@ describe('components/admin_console/add_users_to_team_modal/AddUsersToTeamModal',
     group_constrained: false,
   })
 
-  const baseProps = {
+  const baseProps: any = {
     team,
     users: [user1, user2],
 

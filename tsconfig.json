@@ -121,6 +121,9 @@
       ],
       "constants/*": [
         "constants/*"
+      ],
+      "storybook/*": [
+        "storybook/*"
       ]
     }
   },

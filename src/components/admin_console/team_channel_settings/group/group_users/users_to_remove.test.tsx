@@ -38,7 +38,7 @@ describe('components/admin_console/team_channel_settings/group/UsersToRemove', (
   const user2 = createUser('userid2', 'user-2', false)
   const membership2 = createMembership('userId2', true)
   const scope: 'team' | 'channel' = 'team'
-  const baseProps = {
+  const baseProps: any = {
     members: [user1, user2],
     memberships: { [user1.id]: membership1, [user2.id]: membership2 },
     total: 2,

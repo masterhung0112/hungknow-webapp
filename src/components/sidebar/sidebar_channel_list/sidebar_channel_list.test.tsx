@@ -55,7 +55,7 @@ describe('SidebarChannelList', () => {
     group_constrained: false,
   }
 
-  const baseProps = {
+  const baseProps: any = {
     currentTeam: TestHelper.getTeamMock({
       id: 'kemjcpu9bi877yegqjs18ndp4r',
       invite_id: 'ojsnudhqzbfzpk6e4n6ip1hwae',

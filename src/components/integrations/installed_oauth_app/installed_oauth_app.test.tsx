@@ -28,7 +28,7 @@ describe('components/integrations/InstalledOAuthApp', () => {
     error: null,
   }
 
-  const baseProps = {
+  const baseProps: any = {
     team,
     oauthApp,
     creatorName: 'somename',

@@ -26,7 +26,7 @@ describe('components/post_view/CombinedSystemMessage', () => {
     { id: 'user_id_2', username: 'User2' },
   ] as unknown) as UserProfile[]
 
-  const baseProps = {
+  const baseProps: any = {
     currentUserId: 'current_user_id',
     currentUsername: 'current_username',
     allUserIds: ['added_user_id_1', 'added_user_id_2', 'current_user_id', 'user_id_1'],

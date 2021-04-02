@@ -43,7 +43,7 @@ describe('ProductNoticesModal', () => {
     },
   ]
 
-  const baseProps = {
+  const baseProps: any = {
     version: '5.28.0',
     currentTeamId: 'currentTeamId',
     socketStatus: {

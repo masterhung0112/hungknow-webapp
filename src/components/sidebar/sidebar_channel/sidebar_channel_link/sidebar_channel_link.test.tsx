@@ -9,7 +9,7 @@ import { ChannelType } from 'hkclient-ts/lib/types/channels'
 import SidebarChannelLink from 'components/sidebar/sidebar_channel/sidebar_channel_link/sidebar_channel_link'
 
 describe('components/sidebar/sidebar_channel/sidebar_channel_link', () => {
-  const baseProps = {
+  const baseProps: any = {
     channel: {
       id: 'channel_id',
       display_name: 'channel_display_name',

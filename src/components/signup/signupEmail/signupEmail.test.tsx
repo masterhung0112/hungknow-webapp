@@ -6,14 +6,14 @@ import { defaultTestIntl, wrapIntlProvider, translationData } from 'hktestlib/in
 import '@testing-library/jest-dom'
 import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import userEvent from '@testing-library/user-event'
-import { General } from 'hkclient-ts/lib/constants'
+import { General } from 'hkclient-ts/lib/constants/general'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
 
 import SignupEmail, { SignupEmailProps } from './signupEmail'
 
 describe('components/SignupEmail', () => {
-  const baseProps = {
+  const baseProps: any = {
     location: { search: 'search_path' },
     hasAccounts: false,
     enableSignUpWithEmail: true,

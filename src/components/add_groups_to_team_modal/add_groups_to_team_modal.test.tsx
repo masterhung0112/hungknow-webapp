@@ -9,7 +9,7 @@ import { Groups } from 'hkclient-ts/lib/constants'
 import AddGroupsToTeamModal from 'components/add_groups_to_team_modal/add_groups_to_team_modal'
 
 describe('components/AddGroupsToTeamModal', () => {
-  const baseProps = {
+  const baseProps: any = {
     currentTeamName: 'foo',
     currentTeamId: '123',
     searchTerm: '',

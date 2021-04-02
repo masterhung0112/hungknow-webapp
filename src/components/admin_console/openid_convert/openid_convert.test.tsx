@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import OpenIdConvert from 'components/admin_console/openid_convert/openid_convert'
 
 describe('components/OpenIdConvert', () => {
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       updateConfig: jest.fn(),
     },

@@ -9,7 +9,7 @@ import { Client4 } from 'hkclient-ts/lib/client'
 import ExternalImage from './external_image'
 
 describe('ExternalImage', () => {
-  const baseProps = {
+  const baseProps: any = {
     children: jest.fn((src) => <img src={src} />),
     enableSVGs: true,
     imageMetadata: {

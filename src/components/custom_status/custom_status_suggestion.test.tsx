@@ -6,7 +6,7 @@ import React from 'react'
 import CustomStatusSuggestion from './custom_status_suggestion'
 
 describe('components/custom_status/custom_status_emoji', () => {
-  const baseProps = {
+  const baseProps: any = {
     handleSuggestionClick: jest.fn(),
     emoji: '',
     text: '',

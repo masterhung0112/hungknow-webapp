@@ -19,7 +19,7 @@ describe('admin_console/team_channel_settings/team/TeamMembers', () => {
   const membership3: TeamMembership = Object.assign(TestHelper.getTeamMembershipMock({ user_id: 'user-3' }))
   const team: Team = Object.assign(TestHelper.getTeamMock({ id: 'team-1' }))
 
-  const baseProps = {
+  const baseProps: any = {
     filters: {},
     teamId: 'team-1',
     team,

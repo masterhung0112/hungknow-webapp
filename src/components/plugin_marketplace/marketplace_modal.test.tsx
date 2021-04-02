@@ -72,7 +72,7 @@ describe('components/marketplace/', () => {
   })
 
   describe('InstalledPlugins', () => {
-    const baseProps = {
+    const baseProps: any = {
       changeTab: jest.fn(),
     }
 

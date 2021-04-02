@@ -32,7 +32,7 @@ describe('components/admin_console/reset_password_modal/reset_password_modal.tsx
     notify_props: notifyProps,
   })
 
-  const baseProps = {
+  const baseProps: any = {
     // eslint-disable-next-line @typescript-eslint/ban-types
     actions: { updateUserPassword: jest.fn<ActionResult, Array<{}>>(() => ({ data: '' })) },
     currentUserId: user.id,

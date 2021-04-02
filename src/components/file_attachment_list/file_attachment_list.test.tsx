@@ -21,7 +21,7 @@ describe('FileAttachmentList', () => {
     TestHelper.getFileInfoMock({ id: 'file_id_2', name: 'image_2.png', extension: 'png', create_at: 2 }),
     TestHelper.getFileInfoMock({ id: 'file_id_1', name: 'image_1.png', extension: 'png', create_at: 1 }),
   ]
-  const baseProps = {
+  const baseProps: any = {
     post,
     fileCount: 3,
     fileInfos,

@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import MsgTyping from 'components/msg_typing/msg_typing'
 
 describe('components/MsgTyping', () => {
-  const baseProps = {
+  const baseProps: any = {
     typingUsers: [],
     channelId: 'test',
     postId: null,

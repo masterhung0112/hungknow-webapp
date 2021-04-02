@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import UnreadChannelIndicator from './unread_channel_indicator'
 
 describe('UnreadChannelIndicator', () => {
-  const baseProps = {
+  const baseProps: any = {
     onClick: jest.fn(),
     show: true,
   }

@@ -22,7 +22,7 @@ describe('components/team_members_dropdown', () => {
     scheme_id: undefined,
   })
 
-  const baseProps = {
+  const baseProps: any = {
     user: user2,
     currentUser: user,
     teamMember: TestHelper.getTeamMembershipMock({ roles: 'channel_admin', scheme_admin: true }),

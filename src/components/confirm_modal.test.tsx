@@ -7,7 +7,7 @@ import React from 'react'
 import ConfirmModal from './confirm_modal'
 
 describe('ConfirmModal', () => {
-  const baseProps = {
+  const baseProps: any = {
     show: true,
     onConfirm: jest.fn(),
     onCancel: jest.fn(),

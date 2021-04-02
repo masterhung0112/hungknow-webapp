@@ -15,7 +15,7 @@ import MenuItemAction from 'components/widgets/menu/menu_items/menu_item_action'
 import MenuItemToggleMuteChannel from './toggle_mute_channel'
 
 describe('components/ChannelHeaderDropdown/MenuItemToggleMuteChannel', () => {
-  const baseProps = {
+  const baseProps: any = {
     user: {
       id: 'user_id',
     } as UserProfile,

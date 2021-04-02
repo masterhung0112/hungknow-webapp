@@ -30,7 +30,7 @@ describe('PostAttachmentOpenGraph', () => {
     },
   } as unknown) as Post
 
-  const baseProps = {
+  const baseProps: any = {
     post,
     postId: '',
     link: 'http://mattermost.com',

@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import Sidebar from 'components/sidebar/sidebar'
 
 describe('components/sidebar', () => {
-  const baseProps = {
+  const baseProps: any = {
     canCreatePublicChannel: true,
     canCreatePrivateChannel: true,
     canJoinPublicChannel: true,

@@ -9,7 +9,7 @@ import { NotificationLevels } from 'utils/constants'
 import UnmuteChannelButton from './unmute_channel_button'
 
 describe('components/ChannelHeaderMobile/UnmuteChannelButton', () => {
-  const baseProps = {
+  const baseProps: any = {
     user: {
       id: 'user_id',
     },

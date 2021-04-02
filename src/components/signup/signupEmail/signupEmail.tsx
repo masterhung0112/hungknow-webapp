@@ -9,11 +9,12 @@ import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
 import { Intent } from 'common'
 import { Button, FormGroup, InputGroup } from 'core/components'
-import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/lib/utils/helpers'
-import { PasswordConfig } from 'hkclient-ts/lib/types/config'
-import { UserActions, TeamActions } from 'hkclient-ts/lib/actions'
+import { isEmail } from 'hkclient-ts/lib/utils/helpers'
+import { isValidPassword, isValidUsername } from 'utils/utils.jsx'
+import * as UserActions from 'hkclient-ts/lib/actions/users'
+import * as TeamActions from 'hkclient-ts/lib/actions/teams'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
-import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
+import { ActionCreatorClient, ActionResult } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
 import { setGlobalItem } from 'actions/storage'
 
@@ -24,7 +25,7 @@ export interface SignupEmailProps {
   enableSignUpWithEmail: boolean
   customDescriptionText?: string
   siteName?: string
-  passwordConfig: PasswordConfig
+  passwordConfig: any
   termsOfServiceLink?: string
   privacyPolicyLink?: string
   actions: {
@@ -134,7 +135,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     }
 
     const usernameError = isValidUsername(providedUsername)
-    if (usernameError === 'Cannot use a reserved word as a username.') {
+    if (usernameError.id === 'Cannot use a reserved word as a username.') {
       this.setState({
         nameError: <FormattedMessage id="signup_user_completed.reserved" />,
         emailError: '',
@@ -166,7 +167,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
       this.setState({
         nameError: '',
         emailError: '',
-        passwordError: <FormattedMessage id={error.intl.id} />,
+        passwordError: error,
         serverError: '',
       })
       return false
@@ -194,8 +195,8 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     const { redirectTo } = this.state
     // trackEvent('signup', 'signup_user_02_complete');
 
-    this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-      const isOK = actionResult ? actionResult[0] : undefined
+    this.props.actions.loginById(data.id, user.password, '').then((actionResult: ActionResult) => {
+      const isOK = actionResult ? actionResult : undefined
 
       if (isOK && isOK.error) {
         if (isOK.error.server_error_id === 'api.user.login.not_verified.app_error') {

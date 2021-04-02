@@ -15,7 +15,7 @@ describe('components/post_view/combined_system_message/LastUsers', () => {
     mentionKeys: [{ key: '@username2' }, { key: '@username3' }, { key: '@username4' }],
     mentionHighlight: false,
   }
-  const baseProps = {
+  const baseProps: any = {
     actor: 'user_1',
     expandedLocale: {
       id: 'combined_system_message.added_to_channel.many_expanded',

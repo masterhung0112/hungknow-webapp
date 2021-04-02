@@ -11,7 +11,7 @@ import { TestHelper } from 'utils/test_helper'
 import SidebarDirectChannel from 'components/sidebar/sidebar_channel/sidebar_direct_channel/sidebar_direct_channel'
 
 describe('components/sidebar/sidebar_channel/sidebar_direct_channel', () => {
-  const baseProps = {
+  const baseProps: any = {
     channel: {
       id: 'channel_id',
       display_name: 'channel_display_name',

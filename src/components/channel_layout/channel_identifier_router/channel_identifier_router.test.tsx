@@ -11,7 +11,7 @@ import ChannelIdentifierRouter from './channel_identifier_router'
 jest.useFakeTimers()
 
 describe('components/channel_layout/CenterChannel', () => {
-  const baseProps = {
+  const baseProps: any = {
     match: {
       params: {
         identifier: 'identifier',

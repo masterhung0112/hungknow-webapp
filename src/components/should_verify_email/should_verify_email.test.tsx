@@ -7,7 +7,7 @@ import React from 'react'
 import ShouldVerifyEmail from './should_verify_email'
 
 describe('components/ShouldVerifyEmail', () => {
-  const baseProps = {
+  const baseProps: any = {
     location: {
       search: '',
     },

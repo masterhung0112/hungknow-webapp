@@ -11,7 +11,7 @@ import ChannelHeaderPlug from 'plugins/channel_header_plug/channel_header_plug'
 
 import { PluginComponent } from 'types/store/plugins'
 
-import { mountWithIntl } from '../../tests/helpers/intl-test-helper'
+import { mountWithIntl } from '../../testlib/helpers/intl-test-helper'
 
 describe('plugins/ChannelHeaderPlug', () => {
   const testPlug: PluginComponent = {

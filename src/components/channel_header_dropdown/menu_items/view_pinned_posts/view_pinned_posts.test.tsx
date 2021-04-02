@@ -9,7 +9,7 @@ import Menu from 'components/widgets/menu/menu'
 import ViewPinnedPosts from './view_pinned_posts'
 
 describe('components/ChannelHeaderDropdown/MenuItem.ViewPinnedPosts', () => {
-  const baseProps = {
+  const baseProps: any = {
     channel: {
       id: 'channel_id',
     },

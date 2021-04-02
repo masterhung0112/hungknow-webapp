@@ -6,7 +6,7 @@ import { Intent } from 'common'
 
 import InputGroup, { IInputGroupProps } from './inputGroup'
 
-const baseProps = {
+const baseProps: any = {
   inputRef: undefined,
   leftElement: undefined,
   leftIcon: undefined,

@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import MessageSubmitError from 'components/message_submit_error'
 
 describe('components/MessageSubmitError', () => {
-  const baseProps = {
+  const baseProps: any = {
     handleSubmit: jest.fn(),
   }
 

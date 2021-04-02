@@ -9,7 +9,7 @@ import ConfigurationBar from 'components/announcement_bar/configuration_bar/conf
 describe('components/ConfigurationBar', () => {
   const millisPerDay = 24 * 60 * 60 * 1000
 
-  const baseProps = {
+  const baseProps: any = {
     isLoggedIn: true,
     canViewSystemErrors: true,
     license: {

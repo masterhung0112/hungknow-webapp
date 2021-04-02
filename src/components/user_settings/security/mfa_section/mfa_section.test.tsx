@@ -11,7 +11,7 @@ import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import { browserHistory } from 'utils/browser_history'
 
 describe('MfaSection', () => {
-  const baseProps = {
+  const baseProps: any = {
     active: true,
     mfaActive: false,
     mfaAvailable: true,

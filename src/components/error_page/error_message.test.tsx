@@ -9,7 +9,7 @@ import ErrorMessage from 'components/error_page/error_message'
 import { ErrorPageTypes } from 'utils/constants'
 
 describe('components/error_page/ErrorMessage', () => {
-  const baseProps = {
+  const baseProps: any = {
     type: ErrorPageTypes.LOCAL_STORAGE,
     message: '',
     service: '',

@@ -19,7 +19,7 @@ import NewChannelFlow, {
 } from 'components/new_channel_flow/new_channel_flow'
 
 describe('components/NewChannelFlow', () => {
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       createChannel: jest.fn(() => {
         const data = {

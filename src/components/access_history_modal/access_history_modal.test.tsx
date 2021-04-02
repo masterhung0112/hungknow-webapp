@@ -9,7 +9,7 @@ import AuditTable from 'components/audit_table'
 import LoadingScreen from 'components/loading_screen'
 
 describe('components/AccessHistoryModal', () => {
-  const baseProps = {
+  const baseProps: any = {
     onHide: jest.fn(),
     actions: {
       getUserAudits: jest.fn(),

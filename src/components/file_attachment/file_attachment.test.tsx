@@ -33,7 +33,7 @@ describe('FileAttachment', () => {
     clientId: '',
   }
 
-  const baseProps = {
+  const baseProps: any = {
     fileInfo: baseFileInfo,
     handleImageClick: jest.fn(),
     index: 3,

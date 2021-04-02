@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import PictureSelector from 'components/picture_selector'
 
 describe('components/picture_selector', () => {
-  const baseProps = {
+  const baseProps: any = {
     name: 'picture_selector_test',
     onSelect: jest.fn(),
     onRemove: jest.fn(),

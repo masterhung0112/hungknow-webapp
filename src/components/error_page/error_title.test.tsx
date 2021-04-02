@@ -9,7 +9,7 @@ import ErrorTitle from 'components/error_page/error_title'
 import { ErrorPageTypes } from 'utils/constants'
 
 describe('components/error_page/ErrorTitle', () => {
-  const baseProps = {
+  const baseProps: any = {
     type: ErrorPageTypes.LOCAL_STORAGE,
     title: '',
   }

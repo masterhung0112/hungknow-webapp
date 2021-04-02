@@ -11,7 +11,7 @@ import ActionButton from 'components/post_view/message_attachments/action_button
 import { Constants } from 'utils/constants'
 
 describe('components/post_view/message_attachments/action_button.jsx', () => {
-  const baseProps = {
+  const baseProps: any = {
     action: { id: 'action_id_1', name: 'action_name_1', cookie: 'cookie-contents' },
     handleAction: jest.fn(),
     theme: (Constants.THEMES.default as unknown) as Theme,

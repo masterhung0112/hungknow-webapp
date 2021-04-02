@@ -66,7 +66,7 @@ describe('components/LeavePrivateChannelModal', () => {
     },
   }
 
-  const baseProps = {
+  const baseProps: any = {
     actions: {
       leaveChannel: jest.fn(),
     },

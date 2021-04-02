@@ -13,7 +13,7 @@ describe('components/user_settings/display/manage_timezones/manage_timezones', (
     id: 'user_id',
   }
 
-  const requiredProps = {
+  const requiredProps: any = {
     user: user as UserProfile,
     locale: '',
     useAutomaticTimezone: true,

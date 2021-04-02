@@ -30,7 +30,7 @@ describe('components/post_view/MessageAttachment', () => {
     footer_icon: 'footer_icon',
   } as MessageAttachmentType
 
-  const baseProps = {
+  const baseProps: any = {
     postId: 'post_id',
     attachment,
     currentRelativeTeamUrl: 'dummy_team',

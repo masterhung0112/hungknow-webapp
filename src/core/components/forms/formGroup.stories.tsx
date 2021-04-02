@@ -6,7 +6,7 @@ import { Intent } from 'common'
 import InputGroup from './inputGroup'
 import FormGroup, { FormGroupProps } from './formGroup'
 
-const baseProps = {
+const baseProps: any = {
   style: undefined,
   disabled: undefined,
   inline: undefined,

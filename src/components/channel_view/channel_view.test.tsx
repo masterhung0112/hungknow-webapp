@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import ChannelView from './channel_view'
 
 describe('components/channel_view', () => {
-  const baseProps = {
+  const baseProps: any = {
     channelId: 'channelId',
     channelRolesLoading: false,
     deactivatedChannel: false,

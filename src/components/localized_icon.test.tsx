@@ -8,7 +8,7 @@ import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
 import LocalizedIcon from './localized_icon'
 
 describe('LocalizedIcon', () => {
-  const baseProps = {
+  const baseProps: any = {
     title: {
       id: 'test.id',
       defaultMessage: 'test default message',

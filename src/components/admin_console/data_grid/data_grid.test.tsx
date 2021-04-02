@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import DataGrid from './data_grid'
 
 describe('components/admin_console/data_grid/DataGrid', () => {
-  const baseProps = {
+  const baseProps: any = {
     page: 1,
     startCount: 0,
     endCount: 0,

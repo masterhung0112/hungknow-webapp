@@ -116,7 +116,7 @@ export function getIsSearchGettingMore(state: GlobalState): boolean {
 }
 
 export function getPostDraft(state: GlobalState, prefixId: string, suffixId: string): PostDraft {
-  const defaultDraft = { message: '', fileInfos: [], uploadsInProgress: [] }
+  const defaultDraft: any = { message: '', fileInfos: [], uploadsInProgress: [] }
   const draft = makeGetGlobalItem(prefixId + suffixId, defaultDraft)(state)
 
   if (

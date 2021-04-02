@@ -35,7 +35,7 @@ describe('components/integrations/EditOutgoingWebhook', () => {
     status: 'not_started',
     error: null,
   }
-  const baseProps = {
+  const baseProps: any = {
     team,
     hookId: 'hook_id',
     updateOutgoingHookRequest,

@@ -9,7 +9,7 @@ import { TestHelper } from 'utils/test_helper'
 import CompleteProfileStep from './complete_profile_step'
 
 describe('components/next_steps_view/steps/complete_profile_step', () => {
-  const baseProps = {
+  const baseProps: any = {
     id: 'complete_profile_step',
     onSkip: jest.fn(),
     onFinish: jest.fn(),

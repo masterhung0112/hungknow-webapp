@@ -9,13 +9,13 @@ import SizeAwareImage from 'components/size_aware_image'
 import { TestHelper } from 'utils/test_helper'
 
 describe('components/SingleImageView', () => {
-  const baseProps = {
+  const baseProps: any = {
     postId: 'original_post_id',
     fileInfo: TestHelper.getFileInfoMock({ id: 'file_info_id' }),
     isRhsOpen: false,
     isEmbedVisible: true,
     actions: {
-      toggleEmbedVisibility: () => null,
+      toggleEmbedVisibility: () => null as any,
     },
   }
 

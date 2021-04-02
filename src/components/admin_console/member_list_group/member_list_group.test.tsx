@@ -27,7 +27,7 @@ describe('admin_console/team_channel_settings/group/GroupList', () => {
     setModalSearchTerm: jest.fn(),
   }
 
-  const baseProps = {
+  const baseProps: any = {
     searchTerm: '',
     users: [],
     groupID: 'group_id',

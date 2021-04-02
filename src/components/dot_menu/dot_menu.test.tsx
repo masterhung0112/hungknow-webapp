@@ -21,7 +21,7 @@ jest.mock('utils/utils', () => {
 })
 
 describe('components/dot_menu/DotMenu', () => {
-  const baseProps = {
+  const baseProps: any = {
     post: TestHelper.getPostMock({ id: 'post_id_1', is_pinned: false, type: '' as PostType }),
     isLicensed: false,
     postEditTimeLimit: '-1',

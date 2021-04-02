@@ -49,7 +49,7 @@ describe('FilePreview', () => {
     },
   }
 
-  const baseProps = {
+  const baseProps: any = {
     enableSVGs: false,
     fileInfos,
     uploadsInProgress,

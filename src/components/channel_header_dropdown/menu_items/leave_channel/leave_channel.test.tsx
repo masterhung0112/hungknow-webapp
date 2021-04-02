@@ -15,7 +15,7 @@ jest.mock('actions/global_actions', () => ({
 }))
 
 describe('components/ChannelHeaderDropdown/MenuItem.LeaveChannel', () => {
-  const baseProps = {
+  const baseProps: any = {
     channel: TestHelper.getChannelMock({
       id: 'channel_id',
       type: 'O',

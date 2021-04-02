@@ -9,7 +9,7 @@ import { General } from 'hkclient-ts/lib/constants'
 import MoreInfo from 'components/activity_log_modal/components/more_info'
 
 describe('components/activity_log_modal/MoreInfo', () => {
-  const baseProps = {
+  const baseProps: any = {
     locale: General.DEFAULT_LOCALE,
     currentSession: {
       props: { os: 'Linux', platform: 'Linux', browser: 'Desktop App' },

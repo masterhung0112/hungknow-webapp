@@ -9,7 +9,7 @@ import mattermostIcon from 'images/icon50x50.png'
 import SystemNotice from 'components/system_notice/system_notice'
 
 describe('components/SystemNotice', () => {
-  const baseProps = {
+  const baseProps: any = {
     currentUserId: 'someid',
     preferences: {},
     dismissedNotices: {},
@@ -42,7 +42,7 @@ describe('components/SystemNotice', () => {
   })
 
   test('should match snapshot for regular user, no notice', () => {
-    const props = { ...baseProps, notices: [] }
+    const props: any = { ...baseProps, notices: [] }
     const wrapper = shallow(<SystemNotice {...props} />)
     expect(wrapper).toMatchSnapshot()
   })

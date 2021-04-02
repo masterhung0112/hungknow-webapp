@@ -9,7 +9,7 @@ import Card from './card'
 import TitleAndButtonCardHeader from './title_and_button_card_header/title_and_button_card_header'
 
 describe('components/card/card', () => {
-  const baseProps = {
+  const baseProps: any = {
     expanded: false,
   }
 

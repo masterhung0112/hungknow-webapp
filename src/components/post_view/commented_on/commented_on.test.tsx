@@ -10,7 +10,7 @@ import CommentedOn from 'components/post_view/commented_on/commented_on'
 import CommentedOnFilesMessage from 'components/post_view/commented_on_files_message'
 
 describe('components/post_view/CommentedOn', () => {
-  const baseProps = {
+  const baseProps: any = {
     displayName: 'user_displayName',
     enablePostUsernameOverride: false,
     onCommentClick: jest.fn(),

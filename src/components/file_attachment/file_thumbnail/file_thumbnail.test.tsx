@@ -22,7 +22,7 @@ describe('FileThumbnail', () => {
     mime_type: '',
     clientId: '',
   }
-  const baseProps = {
+  const baseProps: any = {
     fileInfo,
     enableSVGs: false,
   }
