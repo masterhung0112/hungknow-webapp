@@ -215,7 +215,7 @@ export function sendEphemeralPost(message: string, channelId: string, parentId: 
     props: {},
   }
 
-  dispatch(handleNewPost(post))
+  dispatch(handleNewPost(post) as any)
 }
 
 export function sendAddToChannelEphemeralPost(
@@ -243,7 +243,7 @@ export function sendAddToChannelEphemeralPost(
     },
   }
 
-  dispatch(handleNewPost(post))
+  dispatch(handleNewPost(post) as any)
 }
 
 let lastTimeTypingSent = 0
@@ -282,7 +282,7 @@ export function emitUserLoggedOutEvent(redirectTo = '/', shouldSignalLogout = tr
     LocalStorageStore.setWasLoggedIn(false)
   }
 
-  dispatch(logout())
+  (dispatch(logout()) as any)
     .then(() => {
       if (shouldSignalLogout) {
         BrowserStore.signalLogout()

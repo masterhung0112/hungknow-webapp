@@ -24,7 +24,7 @@ import * as UserAgent from 'utils/user_agent'
 
 import { completePostReceive } from './new_post'
 
-export function handleNewPost(post, msg) {
+export function handleNewPost(post, msg = null) {
   return async (dispatch, getState) => {
     let websocketMessageProps = {}
     const state = getState()

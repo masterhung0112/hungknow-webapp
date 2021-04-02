@@ -64,4 +64,4 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
   return props
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SystemUserDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(SystemUserDetail as any)

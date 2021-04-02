@@ -4,14 +4,14 @@
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch, ActionCreatorsMapObject } from 'redux'
 
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import { Dictionary, UserIDMappedObjects } from 'hkclient-ts/lib/types/utilities'
 import { ServerError } from 'hkclient-ts/lib/types/errors'
 import { UserProfile, UsersStats, GetFilteredUsersStatsOpts } from 'hkclient-ts/lib/types/users'
 
 import { filterProfilesStartingWithTerm, profileListToMap } from 'hkclient-ts/lib/utils/user_utils'
 
 import { ActionResult, ActionFunc, GenericAction } from 'hkclient-ts/lib/types/actions'
-import { ChannelStats } from 'hkclient-ts/lib/types/channels'
+import { Channel, ChannelMembership, ChannelStats } from 'hkclient-ts/lib/types/channels'
 
 import { getChannelStats } from 'hkclient-ts/lib/actions/channels'
 import { getFilteredUsersStats } from 'hkclient-ts/lib/actions/users'
@@ -88,8 +88,8 @@ function makeMapStateToProps() {
     let { usersToAdd } = props
 
     const config = getConfig(state)
-    const channelMembers = getChannelMembersInChannels(state)[channelId] || {}
-    const channel = getChannel(state, channelId) || { channel_id: channelId }
+    const channelMembers = getChannelMembersInChannels(state)[channelId] || {} as UserIDMappedObjects<ChannelMembership>
+    const channel = getChannel(state, channelId) || { id: channelId } as Channel
     const searchTerm = state.views.search.userGridSearch?.term || ''
     const filters = state.views.search.userGridSearch?.filters || {}
 
@@ -100,7 +100,7 @@ function makeMapStateToProps() {
         channel_id: channelId,
         pinnedpost_count: 0,
         guest_count: 0,
-      }
+      } as ChannelStats
       totalCount = stats.member_count
     } else {
       const filteredUserStats: UsersStats = selectFilteredUsersStats(state) || {
@@ -148,4 +148,4 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
   }
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(ChannelMembers as any)
+export default connect(makeMapStateToProps, mapDispatchToProps)(ChannelMembers)

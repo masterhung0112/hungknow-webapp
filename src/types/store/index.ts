@@ -10,7 +10,7 @@ export type DraggingState = {
   id?: string
 }
 
-export type GlobalState = BaseGlobalState & {
+export interface GlobalState extends BaseGlobalState {
   plugins: PluginsState
   storage: {
     storage: Dictionary<any>

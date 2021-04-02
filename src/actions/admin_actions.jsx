@@ -28,6 +28,20 @@ export async function reloadConfig(success, error) {
   }
 }
 
+// export async function reloadConfig() {
+//   return async (dispatch) => {
+//     const { data, error: err } = await dispatch(AdminActions.reloadConfig())
+//     if (data) {
+//       dispatch(AdminActions.getConfig())
+//       dispatch(AdminActions.getEnvironmentConfig())
+//       return { data }
+//     } else if (error) {
+//       return { error: { id: err.server_error_id, ...err }}
+//     }
+//     return {}
+//   }
+// }
+
 // export async function adminResetMfa(userId, success, error) {
 //   const { data, error: err } = await UserActions.updateUserMfa(userId, false)(dispatch, getState)
 //   if (data && success) {

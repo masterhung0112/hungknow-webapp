@@ -1,10 +1,10 @@
 import { StorageTypes } from 'utils/constants'
-import { DispatchFunc } from 'hkclient-ts/lib/types/actions'
+import { ActionFunc, DispatchFunc, GetStateFunc } from 'hkclient-ts/lib/types/actions'
 import { Persistor } from 'redux-persist'
-import { GetStateFunc, GlobalState } from 'types/store'
+import { GlobalState } from 'types/store'
 import {getPrefix} from 'utils/storage_utils'
 
-export function setItem(name: string, value: any) {
+export function setItem(name: string, value: any): ActionFunc {
   return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
       const state = getState();
       const prefix = getPrefix(state);

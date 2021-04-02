@@ -39,6 +39,7 @@ import AtIcon from 'components/widgets/icons/at_icon.jsx'
 import SheidOutlineIcon from 'components/widgets/icons/shield_outline_icon.jsx'
 
 import './system_user_detail.scss'
+import { ActionResult } from 'hkclient-ts/lib/types/actions'
 
 export type Props = {
   user: UserProfile
@@ -48,7 +49,7 @@ export type Props = {
     updateUserActive: (userId: string, active: boolean) => Promise<{ error: ServerError }>
     setNavigationBlocked: (blocked: boolean) => void
     addUserToTeam: (teamId: string, userId?: string) => Promise<{ data: TeamMembership; error?: any }>
-    adminResetMfa: (userId: string) => Promise<void>
+    adminResetMfa: (userId: string) => Promise<ActionResult>
   }
 }
 

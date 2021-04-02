@@ -1,4 +1,4 @@
-import { GlobalState } from 'types/store'
+import { GlobalState } from "hkclient-ts/lib/types/store"
 
 export function getPrefix(state: GlobalState) {
   if (state && state.entities.users && state.entities.users.profiles) {

@@ -23,7 +23,7 @@ import ChannelInviteModal from 'components/channel_invite_modal'
 import ToggleModalButton from 'components/toggle_modal_button'
 import { FilterOptions } from 'components/admin_console/filter/filter'
 
-type Props = {
+export type Props = {
   channelId: string
   channel: Channel
   filters: GetFilteredUsersStatsOpts
