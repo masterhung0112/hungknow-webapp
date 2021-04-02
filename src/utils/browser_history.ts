@@ -3,4 +3,4 @@
 
 import { createBrowserHistory } from 'history'
 
-export const browserHistory = createBrowserHistory({ basename: window.basename })
+export const browserHistory = createBrowserHistory({ basename: (window as any).basename } as any)

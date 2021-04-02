@@ -29,6 +29,7 @@ import * as Emoji from 'utils/emoji.jsx'
 import { getSortedUsers } from 'utils/utils.jsx'
 
 import Reaction from './reaction'
+import { Channel } from 'hkclient-ts/lib/types/channels'
 
 type Props = {
   emojiName: string
@@ -57,7 +58,7 @@ function makeMapStateToProps() {
     if (emoji) {
       emojiImageUrl = getEmojiImageUrl(emoji as EmojiType)
     }
-    const channel = getChannel(state, ownProps.post.channel_id) || {}
+    const channel = getChannel(state, ownProps.post.channel_id) || {} as Channel
     const channelIsArchived = channel.delete_at !== 0
     const teamId = channel.team_id
     const currentUserId = getCurrentUserId(state)

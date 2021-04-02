@@ -94,6 +94,6 @@ export default class DataPrefetch extends React.PureComponent<Props> {
   }
 
   render() {
-    return null
+    return <></>
   }
 }

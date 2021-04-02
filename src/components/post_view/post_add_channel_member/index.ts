@@ -13,9 +13,10 @@ import { GlobalState } from 'hkclient-ts/lib/types/store'
 import { GenericAction } from 'hkclient-ts/lib/types/actions'
 
 import PostAddChannelMember, { Props } from './post_add_channel_member'
+import { Post } from 'hkclient-ts/lib/types/posts'
 
 function mapStateToProps(state: GlobalState, ownProps: Props) {
-  const post = getPost(state, ownProps.postId) || {}
+  const post = getPost(state, ownProps.postId) || {} as Post
   let channelType = ''
   if (post && post.channel_id) {
     const channel = getChannel(state, post.channel_id)

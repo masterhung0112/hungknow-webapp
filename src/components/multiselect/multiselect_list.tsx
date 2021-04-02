@@ -37,8 +37,8 @@ export default class MultiSelectList<T extends Value> extends React.PureComponen
   public static defaultProps = {
     options: [],
     perPage: 50,
-    onAction: () => null,
-  }
+    onAction: () => null as any,
+  } as any
 
   private toSelect = -1
   private listRef = React.createRef<HTMLDivElement>()

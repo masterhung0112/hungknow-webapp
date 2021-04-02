@@ -30,7 +30,7 @@ describe('components/integrations/EditOAuthApp', () => {
     id: 'dbcxd9wpzpbpfp8pad78xj12pr',
     name: 'test',
   } as Team
-  const editOAuthAppRequest = {
+  const editOAuthAppRequest: any = {
     status: 'not_started',
     error: null,
   }

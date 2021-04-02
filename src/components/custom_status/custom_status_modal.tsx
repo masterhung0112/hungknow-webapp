@@ -53,7 +53,7 @@ const defaultCustomStatusSuggestions: DefaultUserCustomStatus[] = [
 const CustomStatusModal: React.FC<Props> = (props: Props) => {
   const getCustomStatus = makeGetCustomStatus()
   const dispatch = useDispatch()
-  const currentCustomStatus = useSelector((state: GlobalState) => getCustomStatus(state)) || {}
+  const currentCustomStatus = useSelector((state: GlobalState) => getCustomStatus(state)) || {} as UserCustomStatus
   const recentCustomStatuses = useSelector((state: GlobalState) => getRecentCustomStatuses(state))
   const customStatusControlRef = useRef<HTMLDivElement>(null)
   const { formatMessage } = useIntl()

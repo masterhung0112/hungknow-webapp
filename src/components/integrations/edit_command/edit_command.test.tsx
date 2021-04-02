@@ -43,7 +43,7 @@ describe('components/integrations/EditCommand', () => {
     id: 'm5gix3oye3du8ghk4ko6h9cq7y',
   })
 
-  const editCommandRequest = {
+  const editCommandRequest: any = {
     status: 'not_started',
     error: null,
   }

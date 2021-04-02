@@ -40,6 +40,8 @@ import { ActionFunc } from 'hkclient-ts/lib/types/actions'
 import { setNavigationBlocked } from 'actions/admin_actions'
 
 import ChannelDetails, { ChannelDetailsActions } from './channel_details'
+import { Channel } from 'hkclient-ts/lib/types/channels'
+import { Team } from 'hkclient-ts/lib/types/teams'
 
 type OwnProps = {
   match: {
@@ -53,8 +55,8 @@ function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
   const config = getConfig(state)
   const guestAccountsEnabled = config.EnableGuestAccounts === 'true'
   const channelID = ownProps.match.params.channel_id
-  const channel = getChannel(state, channelID) || {}
-  const team = getTeam(state, channel.team_id) || {}
+  const channel = getChannel(state, channelID) || {} as Channel
+  const team = getTeam(state, channel.team_id) || {} as Team
   const groups = getGroupsAssociatedToChannel(state, channelID)
   const totalGroups = groups.length
   const allGroups = getAllGroups(state)

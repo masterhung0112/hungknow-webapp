@@ -10,9 +10,10 @@ import { loadRolesIfNeeded } from 'hkclient-ts/lib/actions/roles'
 import { GlobalState } from 'types/store'
 
 import EmojiPage from 'components/emoji/emoji_page'
+import { Team } from 'hkclient-ts/lib/types/teams'
 
 function mapStateToProps(state: GlobalState) {
-  const team = getCurrentTeam(state) || {}
+  const team = getCurrentTeam(state) || {} as Team
 
   return {
     teamId: team.id,

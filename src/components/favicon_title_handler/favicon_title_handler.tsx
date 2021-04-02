@@ -147,7 +147,7 @@ class FaviconTitleHandler extends React.PureComponent<Props> {
   }
 
   render() {
-    return null
+    return <></>
   }
 }
 

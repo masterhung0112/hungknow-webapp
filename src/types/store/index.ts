@@ -18,3 +18,6 @@ export type GlobalState = BaseGlobalState & {
   }
   views: ViewsState
 }
+
+export type GetStateFunc = () => GlobalState;
+

@@ -48,7 +48,7 @@ export default class Popover extends React.PureComponent<Props> {
         placement={placement}
         bsClass="popover"
         title={title}
-        bsSize={popoverSize && (SizeMap[popoverSize] as BSSizes)} // map our sizes to bootstrap
+        bsSize={popoverSize && (SizeMap[popoverSize] as BSSizes) || undefined} // map our sizes to bootstrap
         onMouseOut={onMouseOut!}
         onMouseOver={onMouseOver}
       >

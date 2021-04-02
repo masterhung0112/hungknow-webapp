@@ -59,7 +59,7 @@ describe('components/ColorInput', () => {
   test('should keep what the user types in the textbox until blur', () => {
     const wrapper = shallow(<ColorInput {...baseProps} />)
 
-    baseProps.onChange.mockImplementation((value) => wrapper.setProps({ value }))
+    baseProps.onChange.mockImplementation((value: any) => wrapper.setProps({ value }))
 
     wrapper.find('input').simulate('focus', { target: null })
     expect(wrapper.state('focused')).toBe(true)

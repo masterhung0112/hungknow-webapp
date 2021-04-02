@@ -270,7 +270,7 @@ describe('components/MarketplaceItem', () => {
     })
 
     test('should render with empty list of labels', () => {
-      const props = {
+      const props: any = {
         ...baseProps,
         labels: [],
       }

@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default class FormError extends React.PureComponent<Props> {
-  public static defaultProps = {
+  public static defaultProps: any = {
     error: null,
     errors: [],
   }

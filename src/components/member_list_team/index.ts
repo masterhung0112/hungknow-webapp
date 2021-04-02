@@ -96,7 +96,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
         loadStatusesForProfilesList,
         loadTeamMembersForProfilesList,
         setModalSearchTerm,
-      },
+      } as any,
       dispatch
     ),
   }

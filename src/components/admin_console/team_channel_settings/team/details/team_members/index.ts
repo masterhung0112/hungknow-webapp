@@ -133,4 +133,4 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamMembers)
+export default connect(mapStateToProps, mapDispatchToProps)(TeamMembers as any)

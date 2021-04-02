@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionResultType } from 'hkclient-ts/lib/types/actions'
 
@@ -18,7 +17,7 @@ const baseProps: any = {
     requireNumber: false,
     requireSymbol: false,
     requireUppercase: false,
-  } as PasswordConfig,
+  },
   actions: {
     createUser: async (
       user: UserProfile,

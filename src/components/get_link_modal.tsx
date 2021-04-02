@@ -21,7 +21,7 @@ type State = {
 
 export default class GetLinkModal extends React.PureComponent<Props, State> {
   private textAreaRef = React.createRef<HTMLTextAreaElement>()
-  public static defaultProps = {
+  public static defaultProps: any = {
     helpText: null,
   }
 

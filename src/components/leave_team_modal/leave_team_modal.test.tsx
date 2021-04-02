@@ -9,7 +9,7 @@ import { UserProfile } from 'hkclient-ts/lib/types/users'
 import LeaveTeamModal from 'components/leave_team_modal/leave_team_modal'
 
 describe('components/LeaveTeamModal', () => {
-  const requiredProps = {
+  const requiredProps: any = {
     currentUser: {
       id: 'test',
     } as UserProfile,

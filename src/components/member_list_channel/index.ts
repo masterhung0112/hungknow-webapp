@@ -98,7 +98,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
         loadProfilesAndTeamMembersAndChannelMembers,
         loadStatusesForProfilesList,
         loadTeamMembersAndChannelMembersForProfilesList,
-      },
+      } as any,
       dispatch
     ),
   }

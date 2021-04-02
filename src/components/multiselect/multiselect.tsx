@@ -45,7 +45,7 @@ export type Props<T extends Value> = {
   perPage: number
   placeholderText?: string
   saving?: boolean
-  submitImmediatelyOn?: (value: T) => void
+  submitImmediatelyOn?: (value: T) => boolean
   totalCount?: number
   users?: unknown[]
   valueWithImage: boolean
@@ -480,7 +480,7 @@ function defaultAriaLabelRenderer(option: Value) {
   return option.label
 }
 
-const nullComponent = () => null
+const nullComponent = () => null as any
 
 const paddedComponent = (WrappedComponent: any) => {
   return (props: { data: any }) => {

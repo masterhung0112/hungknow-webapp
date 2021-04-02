@@ -172,7 +172,7 @@ function mapDispatchToProps(dispatch: Dispatch) {
         searchProfiles,
         searchGroupChannels,
         setModalSearchTerm,
-      },
+      } as any,
       dispatch
     ),
   }

@@ -185,7 +185,7 @@ describe('getBestImageUrl', () => {
   })
 
   test('should return nothing with no OpenGraph images', () => {
-    const openGraphData = {
+    const openGraphData: any = {
       images: [],
     }
 

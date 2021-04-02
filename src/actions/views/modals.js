@@ -4,7 +4,7 @@
 import { ActionTypes } from 'utils/constants'
 
 export function openModal(modalData) {
-  return (dispatch) => {
+  return async (dispatch) => {
     const action = {
       type: ActionTypes.MODAL_OPEN,
       modalId: modalData.modalId,
@@ -18,7 +18,7 @@ export function openModal(modalData) {
 }
 
 export function closeModal(modalId) {
-  return (dispatch) => {
+  return async (dispatch) => {
     const action = {
       type: ActionTypes.MODAL_CLOSE,
       modalId,

@@ -4,11 +4,10 @@ import { shallow } from 'enzyme'
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
 import { defaultTestIntl, wrapIntlProvider, translationData } from 'hktestlib/intlProvider'
 import '@testing-library/jest-dom'
-import { PasswordConfig } from 'hkclient-ts/lib/types/config'
 import userEvent from '@testing-library/user-event'
-import { General } from 'hkclient-ts/lib/constants/general'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import Router from 'next/router'
+import Constants from 'utils/constants'
 
 import SignupEmail, { SignupEmailProps } from './signupEmail'
 
@@ -25,7 +24,7 @@ describe('components/SignupEmail', () => {
       requireNumber: false,
       requireSymbol: false,
       requireUppercase: false,
-    } as PasswordConfig,
+    },
     actions: {
       createUser: jest.fn(),
       loginById: jest.fn(),
@@ -149,8 +148,8 @@ describe('components/SignupEmail', () => {
     const usernameLength = defaultTestIntl.formatMessage(
       { id: 'signup_user_completed.usernameLength' },
       {
-        min: General.MIN_USERNAME_LENGTH,
-        max: General.MAX_USERNAME_LENGTH,
+        min: Constants.MIN_USERNAME_LENGTH,
+        max: Constants.MAX_USERNAME_LENGTH,
       }
     )
     expect(queryByText(usernameLength)).toBeInTheDocument()

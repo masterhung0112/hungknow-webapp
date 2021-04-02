@@ -24,7 +24,7 @@ interface State {
 }
 
 export default class PasswordResetSendLink extends React.PureComponent<Props, State> {
-  state = {
+  state: any = {
     error: null,
     updateText: null,
   }

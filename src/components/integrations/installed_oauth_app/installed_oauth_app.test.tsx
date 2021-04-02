@@ -23,7 +23,7 @@ describe('components/integrations/InstalledOAuthApp', () => {
     update_at: 1501365458934,
     callback_urls: ['https://test.com/callback', 'https://test.com/callback2'],
   }
-  const regenOAuthAppSecretRequest = {
+  const regenOAuthAppSecretRequest: any = {
     status: 'not_started',
     error: null,
   }

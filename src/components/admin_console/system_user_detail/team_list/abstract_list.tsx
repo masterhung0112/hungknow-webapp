@@ -42,7 +42,7 @@ type Paging = {
 }
 
 export default class AbstractList extends React.PureComponent<Props, State> {
-  public static defaultProps = {
+  public static defaultProps: any = {
     data: [],
   }
 

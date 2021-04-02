@@ -104,7 +104,7 @@ function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
       {
         prefetchChannelPosts,
         trackDMGMOpenChannels,
-      },
+      } as any,
       dispatch
     ),
   }

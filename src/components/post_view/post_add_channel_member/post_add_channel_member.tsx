@@ -60,24 +60,24 @@ export default class PostAddChannelMember extends React.PureComponent<Props, Sta
     this.setState({ expanded: true })
   }
 
+  andSeparator(key: number) {
+    return (
+      <FormattedMessage
+        key={key}
+        id={'post_body.check_for_out_of_channel_mentions.link.and'}
+        defaultMessage={' and '}
+      />
+    )
+  }
+
+  commaSeparator(key: number) {
+    return <span key={key}>{', '}</span>
+  }
+
   generateAtMentions(usernames = [] as string[]) {
     if (usernames.length === 1) {
       return <AtMention mentionName={usernames[0]} channelId={this.props.post?.channel_id} />
     } else if (usernames.length > 1) {
-      function andSeparator(key: number) {
-        return (
-          <FormattedMessage
-            key={key}
-            id={'post_body.check_for_out_of_channel_mentions.link.and'}
-            defaultMessage={' and '}
-          />
-        )
-      }
-
-      function commaSeparator(key: number) {
-        return <span key={key}>{', '}</span>
-      }
-
       if (this.state.expanded || usernames.length <= 3) {
         return (
           <span>
@@ -89,10 +89,10 @@ export default class PostAddChannelMember extends React.PureComponent<Props, Sta
                 if (idx === 0) {
                   return [el]
                 } else if (idx === arr.length - 1) {
-                  return [...acc, andSeparator(idx), el]
+                  return [...acc, this.andSeparator(idx), el]
                 }
 
-                return [...acc, commaSeparator(idx), el]
+                return [...acc, this.commaSeparator(idx), el]
               }, [] as JSX.Element[])}
           </span>
         )
@@ -103,7 +103,7 @@ export default class PostAddChannelMember extends React.PureComponent<Props, Sta
       return (
         <span>
           <AtMention key={firstUserName} mentionName={firstUserName} channelId={this.props.post?.channel_id} />
-          {commaSeparator(1)}
+          {this.commaSeparator(1)}
           <a className="PostBody_otherUsersLink" onClick={this.expand}>
             <FormattedMessage
               id={'post_body.check_for_out_of_channel_mentions.others'}
@@ -113,7 +113,7 @@ export default class PostAddChannelMember extends React.PureComponent<Props, Sta
               }}
             />
           </a>
-          {andSeparator(1)}
+          {this.andSeparator(1)}
           <AtMention key={lastUserName} mentionName={lastUserName} channelId={this.props.post?.channel_id} />
         </span>
       )

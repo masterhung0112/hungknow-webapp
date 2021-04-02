@@ -74,7 +74,7 @@ export default class SecurityTab extends React.PureComponent<Props, State> {
     this.state = this.getDefaultState()
   }
 
-  getDefaultState(): State {
+  getDefaultState() {
     return {
       currentPassword: '',
       newPassword: '',
@@ -85,7 +85,7 @@ export default class SecurityTab extends React.PureComponent<Props, State> {
       authService: this.props.user.auth_service,
       savingPassword: false,
       authorizedApps: [],
-    }
+    } as any
   }
 
   componentDidMount() {

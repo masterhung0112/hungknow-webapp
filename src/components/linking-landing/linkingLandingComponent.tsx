@@ -28,7 +28,7 @@ export default class LinkingLandingComponent extends PureComponent<
 
     let location = ''
 
-    if (!Utils.isServer) {
+    if (!Utils.isServer()) {
       location = window.location.href.replace('/landing#', '')
     }
 

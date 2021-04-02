@@ -12,7 +12,7 @@ import SystemRolePermission from './system_role_permission'
 
 describe('admin_console/system_role_permission', () => {
   test('should match snapshot', () => {
-    const props = {
+    const props: any = {
       readOnly: true,
       setSectionVisible: jest.fn(),
       section: {

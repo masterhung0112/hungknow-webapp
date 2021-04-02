@@ -58,7 +58,7 @@ describe('components/user_settings/display/UserSettingsDisplay', () => {
 
     wrapper.instance().handleAllow()
 
-    const expected = {
+    const expected: any = {
       clientId: '1234abcd',
       responseType: null,
       redirectUri: null,

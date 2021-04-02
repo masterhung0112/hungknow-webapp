@@ -13,7 +13,7 @@ describe('components/analytics/line_chart.tsx', () => {
   })
 
   test('should match snapshot, loaded without data', () => {
-    const data = {
+    const data: any = {
       datasets: [],
       labels: [],
     }

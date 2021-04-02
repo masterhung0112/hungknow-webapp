@@ -107,7 +107,7 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
   }
 
   componentWillUnmount() {
-    // if (!Utils.isServer) {
+    // if (!Utils.isServer()) {
       // (window as any).unbind('storage');
     // }
   }

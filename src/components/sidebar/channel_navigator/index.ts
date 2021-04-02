@@ -18,14 +18,14 @@ import ChannelNavigator from './channel_navigator'
 function goBack() {
   return () => {
     browserHistory.goBack()
-    return { data: null }
+    return { data: null } as any
   }
 }
 
 function goForward() {
   return () => {
     browserHistory.goForward()
-    return { data: null }
+    return { data: null } as any
   }
 }
 

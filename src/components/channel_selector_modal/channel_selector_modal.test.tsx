@@ -7,7 +7,7 @@ import { shallow } from 'enzyme'
 import ChannelSelectorModal from 'components/channel_selector_modal/channel_selector_modal'
 
 describe('components/ChannelSelectorModal', () => {
-  const defaultProps = {
+  const defaultProps: any = {
     excludeNames: [],
     currentSchemeId: 'xxx',
     alreadySelected: ['id1'],

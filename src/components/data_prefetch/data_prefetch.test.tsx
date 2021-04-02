@@ -28,7 +28,7 @@ jest.mock('actions/user_actions.jsx', () => ({
 }))
 
 describe('/components/data_prefetch', () => {
-  const defaultProps = {
+  const defaultProps: any = {
     currentChannelId: '',
     actions: {
       prefetchChannelPosts: jest.fn(() => Promise.resolve({})),
@@ -148,7 +148,7 @@ describe('/components/data_prefetch', () => {
         1: ['mentionChannel0', 'mentionChannel1'],
         2: ['unreadChannel0', 'unreadChannel1'],
         3: [],
-      },
+      } as any,
     }
     const wrapper = shallow<DataPrefetch>(<DataPrefetch {...props} />)
 
@@ -188,7 +188,7 @@ describe('/components/data_prefetch', () => {
       prefetchQueueObj: {
         1: [],
         2: ['unreadChannel0', 'unreadChannel1', 'unreadChannel2'],
-      },
+      } as any,
     }
     const wrapper = shallow<DataPrefetch>(<DataPrefetch {...props} />)
 

@@ -26,7 +26,7 @@ export function getChannelTypeFromProps(props: Props): ChannelType {
   if (!props.canCreatePrivateChannel && channelType === Constants.PRIVATE_CHANNEL) {
     channelType = Constants.OPEN_CHANNEL as ChannelType
   }
-  return channelType
+  return channelType as ChannelType
 }
 
 export type Props = {

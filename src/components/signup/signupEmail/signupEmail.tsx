@@ -195,7 +195,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     const { redirectTo } = this.state
     // trackEvent('signup', 'signup_user_02_complete');
 
-    this.props.actions.loginById(data.id, user.password, '').then((actionResult: ActionResult) => {
+    this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
       const isOK = actionResult ? actionResult : undefined
 
       if (isOK && isOK.error) {
@@ -257,7 +257,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
       const redirectTo = this.getRedirectTo()
 
       this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
-        const userProfile = result ? result[0] : undefined
+        const userProfile = result ? result : undefined
         if (userProfile && userProfile.error) {
           this.setState({
             serverError: userProfile.error.message,

@@ -29,7 +29,7 @@ type Props = {
 }
 
 export default class FilePreview extends React.PureComponent<Props> {
-  static defaultProps = {
+  static defaultProps: any = {
     fileInfos: [],
     uploadsInProgress: [],
     uploadsProgressPercent: {},

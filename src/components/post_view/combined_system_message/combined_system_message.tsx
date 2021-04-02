@@ -196,7 +196,7 @@ export class CombinedSystemMessage extends React.PureComponent<Props> {
   static defaultProps = {
     allUserIds: [],
     allUsernames: [],
-  }
+  } as any
 
   componentDidMount(): void {
     this.loadUserProfiles(this.props.allUserIds, this.props.allUsernames)

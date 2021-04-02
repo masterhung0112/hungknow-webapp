@@ -101,7 +101,7 @@ type State = {
 }
 
 export default class DotMenu extends React.PureComponent<Props, State> {
-  static defaultProps = {
+  static defaultProps: Partial<Props> = {
     commentCount: 0,
     isFlagged: false,
     isReadOnly: false,
