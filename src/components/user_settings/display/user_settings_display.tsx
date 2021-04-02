@@ -14,7 +14,7 @@ import Constants from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'
 import { getBrowserTimezone } from 'utils/timezone.jsx'
 
-import * as I18n from 'i18n/i18n.jsx'
+import * as I18n from 'i18n/i18n'
 import { t } from 'utils/i18n'
 
 import SettingItemMax from 'components/setting_item_max.jsx'

@@ -8,7 +8,7 @@ import ReactSelect, { ValueType } from 'react-select'
 import { ActionResult } from 'hkclient-ts/lib/types/actions'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 
-import * as I18n from 'i18n/i18n.jsx'
+import * as I18n from 'i18n/i18n'
 import SettingItemMax from 'components/setting_item_max.jsx'
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx'
 import { isKeyPressed } from 'utils/utils.jsx'

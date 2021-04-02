@@ -14,16 +14,14 @@ import reduxInitialState from 'hkclient-ts/lib/store/initial_state'
 
 import { storageRehydrate } from 'actions/storage'
 import { clearUserCookie } from 'actions/views/cookie'
-import appReducer from 'reducers'
 import { transformSet } from 'store/utils'
 import { ActionTypes } from 'utils/constants'
 import { getBasePath } from 'selectors/general'
 import { StorageModule } from 'modules/storage'
-import { combineReducersWithGlobalActions } from 'stores/hydrate_reducer'
+import { ViewsModule } from 'modules/views'
+import { PluginsModule } from 'modules/plugins'
 
-function getAppReducer() {
-  return require('../reducers') // eslint-disable-line global-require
-}
+import { combineReducersWithGlobalActions } from 'stores/hydrate_reducer'
 
 const usersSetTransform = ['profilesInChannel', 'profilesNotInChannel', 'profilesInTeam', 'profilesNotInTeam']
 
@@ -230,5 +228,10 @@ export default function configureStore(initialState) {
   }
 
   //   return configureServiceStore(initialState, appReducer, offlineOptions, getAppReducer)
-  return configureServiceStore(initialState, offlineOptions, [StorageModule], combineReducersWithGlobalActions)
+  return configureServiceStore(
+    initialState,
+    offlineOptions,
+    [StorageModule, ViewsModule, PluginsModule],
+    combineReducersWithGlobalActions
+  )
 }

@@ -4,7 +4,7 @@ import assert from 'assert'
 
 import { GeneralTypes } from 'hkclient-ts/lib/action-types'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import Constants, { ValidationErrors } from 'utils/constants'
 import * as Utils from 'utils/utils.jsx'

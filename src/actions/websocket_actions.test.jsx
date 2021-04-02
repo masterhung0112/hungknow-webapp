@@ -11,7 +11,7 @@ import { handleNewPost } from 'actions/post_actions'
 import { closeRightHandSide } from 'actions/views/rhs'
 import { syncPostsInChannel } from 'actions/views/channel'
 
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import configureStore from 'testlib/test_store'
 

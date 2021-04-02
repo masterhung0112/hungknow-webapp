@@ -37,6 +37,10 @@ module.exports = async () => {
       '^constants/(.*)$': '<rootDir>/constants/$1',
       '^modules/(.*)$': '<rootDir>/modules/$1',
       '^i18n/(.*)$': '<rootDir>/i18n/$1',
+      '^client/(.*)$': '<rootDir>/client/$1',
+      '^plugins$': '<rootDir>/plugins',
+      '^plugins/(.*)$': '<rootDir>/plugins/$1',
+      '^dispatcher/(.*)$': '<rootDir>/dispatcher/$1',
     },
   }
 }

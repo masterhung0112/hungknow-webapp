@@ -124,6 +124,9 @@
       ],
       "storybook/*": [
         "storybook/*"
+      ],
+      "client/*": [
+        "client/*"
       ]
     }
   },

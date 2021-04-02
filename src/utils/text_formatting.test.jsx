@@ -4,7 +4,7 @@
 import emojiRegex from 'emoji-regex'
 
 import { getEmojiMap } from 'selectors/emojis'
-import store from 'stores/redux_store.jsx'
+import store from 'stores/redux_store'
 
 import {
   formatText,
