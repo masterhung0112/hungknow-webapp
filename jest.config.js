@@ -35,7 +35,8 @@ module.exports = async () => {
       '^core/(.*)$': '<rootDir>/core/$1',
       '^types/(.*)$': '<rootDir>/types/$1',
       '^constants/(.*)$': '<rootDir>/constants/$1',
+      '^modules/(.*)$': '<rootDir>/modules/$1',
+      '^i18n/(.*)$': '<rootDir>/i18n/$1',
     },
-    modulePaths: ['<rootDir>'],
   }
 }
