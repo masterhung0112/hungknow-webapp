@@ -8,7 +8,7 @@ module.exports = async () => {
     testPathIgnorePatterns: ['/node_modules/'],
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|apng|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-        '<rootDir>/testlib/fileMock.js',
+        'identity-obj-proxy',
       '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
       '^.*i18n.*\\.(json)$': '<rootDir>/testlib/i18n_mock.json',
       '^bundle-loader\\?lazy\\!(.*)$': '$1',
