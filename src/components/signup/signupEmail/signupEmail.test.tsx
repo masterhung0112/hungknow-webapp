@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
-import { defaultTestIntl, wrapIntlProvider, translationData } from 'hktestlib/intlProvider'
+import { defaultTestIntl, wrapIntlProvider, translationData } from 'testlib/intlProvider'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
@@ -79,8 +79,8 @@ describe('components/SignupEmail', () => {
   })
 
   test('field has error message when invalid input', async () => {
-    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
-    const loginByIdMock = jest.fn().mockResolvedValue([{ data: 'login test' }])
+    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
+    const loginByIdMock = jest.fn().mockResolvedValue({ data: 'login test' })
 
     const props = {
       ...baseProps,
@@ -181,12 +181,10 @@ describe('components/SignupEmail', () => {
   })
 
   test('push correct url when login return not_verified', async () => {
-    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
-    const loginByIdMock = jest.fn().mockResolvedValue([
-      {
-        error: { server_error_id: 'api.user.login.not_verified.app_error' },
-      },
-    ])
+    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
+    const loginByIdMock = jest.fn().mockResolvedValue({
+      error: { server_error_id: 'api.user.login.not_verified.app_error' },
+    })
 
     const props = {
       ...baseProps,
@@ -220,12 +218,10 @@ describe('components/SignupEmail', () => {
   })
 
   test('push correct url when login return verified with redirect', async () => {
-    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
-    const loginByIdMock = jest.fn().mockResolvedValue([
-      {
-        data: { hello: 'world' },
-      },
-    ])
+    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
+    const loginByIdMock = jest.fn().mockResolvedValue({
+      data: { hello: 'world' },
+    })
 
     // Mock for router push function
     const { query, router } = Router
@@ -259,12 +255,10 @@ describe('components/SignupEmail', () => {
   })
 
   test('push correct url when login return verified without redirect call redirectTeam', async () => {
-    const createUserMock = jest.fn().mockResolvedValue([{ data: { id: 'hung' } as UserProfile }])
-    const loginByIdMock = jest.fn().mockResolvedValue([
-      {
-        data: { hello: 'world' },
-      },
-    ])
+    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
+    const loginByIdMock = jest.fn().mockResolvedValue({
+      data: { hello: 'world' },
+    })
     const redirectUserToDefaultTeamMock = jest.fn()
 
     // Mock for router push function

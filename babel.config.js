@@ -31,6 +31,7 @@ const config = {
     ],
   ],
   plugins: [
+    'lodash',
     '@babel/plugin-proposal-class-properties',
     '@babel/proposal-object-rest-spread',
     'react-hot-loader/babel',

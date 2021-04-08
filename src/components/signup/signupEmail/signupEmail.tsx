@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl'
 
 import logoImage from 'images/logo.png'
 import SiteNameAndDescription from 'components/siteNameAndDescription'
-import { Constants } from 'utils/constants'
+import { Constants, ValidationErrors } from 'utils/constants'
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
 import { Intent } from 'common'
@@ -135,7 +135,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     }
 
     const usernameError = isValidUsername(providedUsername)
-    if (usernameError.id === 'Cannot use a reserved word as a username.') {
+    if (usernameError && usernameError.id === ValidationErrors.RESERVED_NAME) {
       this.setState({
         nameError: <FormattedMessage id="signup_user_completed.reserved" />,
         emailError: '',
@@ -431,7 +431,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
         {/* {hasAccounts && <BackButton onClick={() => trackEvent('signup_email', 'click_back')}/>} */}
         <div id="signup_email_section" className="col-sm-12">
           <div className={cx(styles['signup-team__container'], styles['padding--less'])}>
-            <img alt={'signup team logo'} className={styles['signup-team__container-logo']} src={logoImage} />
+            {/* <img alt={'signup team logo'} className={styles['signup-team__container-logo']} src={logoImage} /> */}
             <SiteNameAndDescription customDescriptionText={customDescriptionText} siteName={siteName} />
             <h4 id="create_account" className={styles['signup-create-action']}>
               <FormattedMessage id="signup_user_completed.lets" defaultMessage="Let's create your account" />

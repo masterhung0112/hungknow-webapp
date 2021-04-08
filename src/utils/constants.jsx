@@ -1169,7 +1169,7 @@ export const Constants = {
   AUTO_RESPONDER: 'system_auto_responder',
   SYSTEM_MESSAGE_PROFILE_IMAGE: logoImage,
   RESERVED_TEAM_NAMES: ['signup', 'login', 'admin', 'channel', 'post', 'api', 'oauth', 'error', 'help', 'plugins'],
-  RESERVED_USERNAMES: ['valet', 'all', 'channel', 'here', 'matterbot', 'system'],
+  RESERVED_USERNAMES: ['valet', 'all', 'channel', 'here', 'matterbot', 'system', 'hungknowbot'],
   MONTHS: [
     'January',
     'February',
