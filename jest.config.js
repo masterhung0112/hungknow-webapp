@@ -2,6 +2,7 @@ module.exports = async () => {
   return {
     setupFilesAfterEnv: ['<rootDir>/testlib/setup.js'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+    clearMocks: true,
     verbose: true,
     rootDir: './src',
     snapshotSerializers: ['enzyme-to-json/serializer'],
@@ -42,5 +43,7 @@ module.exports = async () => {
       '^plugins/(.*)$': '<rootDir>/plugins/$1',
       '^dispatcher/(.*)$': '<rootDir>/dispatcher/$1',
     },
+    moduleDirectories: ['src', 'node_modules'],
+    moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   }
 }

@@ -25,7 +25,7 @@ describe('components/RenameChannelModal', () => {
     display_name: 'fake-team',
   })
 
-  const baseProps: any = {
+  const baseProps = {
     show: true,
     onHide: jest.fn(),
     channel: { ...channel },
