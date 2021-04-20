@@ -49,7 +49,7 @@ describe('root view actions', () => {
   test('loadMeAndConfig, with user logged in', async () => {
     const testStore = await mockStore({})
 
-    document.cookie = 'MMUSERID=userid'
+    document.cookie = 'HKUSERID=userid'
     localStorage.setItem('was_logged_in', 'true')
 
     await testStore.dispatch(Actions.loadMeAndConfig())

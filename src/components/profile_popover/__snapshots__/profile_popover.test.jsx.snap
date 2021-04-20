@@ -168,7 +168,6 @@ exports[`components/ProfilePopover should match snapshot 1`] = `
             "$$typeof": Symbol(react.memo),
             "WrappedComponent": [Function],
             "compare": null,
-            "displayName": "Connect(AddUserToChannelModal)",
             "type": [Function],
           }
         }
