@@ -239,7 +239,8 @@ class Timestamp extends PureComponent<Props, State> {
     return format.capitalize ? caps(rel) : rel
   }
 
-  formatDateTime(value: Date, format: DateTimeOptions): string {
+  //format: DateTimeOptions
+  formatDateTime(value: Date, format: any): string {
     const {
       timeZone,
       intl: { locale },

@@ -60,17 +60,17 @@
             }
         ],
         "no-var": "off",
-        "prefer-const": "off",
-        "react/prop-types": [
-          2,
-          {
-            "ignore": [
-              "location",
-              "history",
-              "component"
-            ]
-          }
-        ]
+        "prefer-const": "off"
+        // "react/prop-types": [
+        //   2,
+        //   {
+        //     "ignore": [
+        //       "location",
+        //       "history",
+        //       "component"
+        //     ]
+        //   }
+        // ]
     },
     "settings": {
         "react": {

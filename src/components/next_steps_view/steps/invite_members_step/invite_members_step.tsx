@@ -22,11 +22,11 @@ import UpgradeLink from 'components/widgets/links/upgrade_link'
 
 import { getSiteURL } from 'utils/url'
 import * as Utils from 'utils/utils'
+import NotifyLink from 'components/widgets/links/notify_link'
 
 import { StepComponentProps } from '../../steps'
 
 import './invite_members_step.scss'
-import NotifyLink from 'components/widgets/links/notify_link'
 
 type Props = StepComponentProps & {
   team: Team

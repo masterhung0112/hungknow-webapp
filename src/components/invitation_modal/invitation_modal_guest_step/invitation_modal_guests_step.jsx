@@ -15,13 +15,12 @@ import UpgradeLink from 'components/widgets/links/upgrade_link'
 
 import ChannelsInput from 'components/widgets/inputs/channels_input.jsx'
 import UsersEmailsInput from 'components/widgets/inputs/users_emails_input.jsx'
+import { localizeMessage } from 'utils/utils.jsx'
+import { t } from 'utils/i18n.jsx'
 
 import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subcription'
 
 import './invitation_modal_guests_step.scss'
-
-import { t } from 'utils/i18n.jsx'
-import { localizeMessage } from 'utils/utils.jsx'
 
 class InvitationModalGuestsStep extends React.PureComponent {
   static propTypes = {

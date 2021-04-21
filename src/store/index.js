@@ -93,12 +93,16 @@ export default function configureStore(initialState) {
       localforage
         .ready()
         .then(() => {
-          const persistor = persistStore(store, { storage: asyncSessionStorage, keyPrefix: KEY_PREFIX, ...options }, () => {
-            store.dispatch({
-              type: General.STORE_REHYDRATION_COMPLETE,
-              complete: true,
-            })
-          })
+          const persistor = persistStore(
+            store,
+            { storage: asyncSessionStorage, keyPrefix: KEY_PREFIX, ...options },
+            () => {
+              store.dispatch({
+                type: General.STORE_REHYDRATION_COMPLETE,
+                complete: true,
+              })
+            }
+          )
 
           localforage.configObservables({
             crossTabNotification: true,
