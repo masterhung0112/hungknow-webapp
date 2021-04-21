@@ -20,6 +20,7 @@ import { getBasePath } from 'selectors/general'
 import { StorageModule } from 'modules/storage'
 import { ViewsModule } from 'modules/views'
 import { PluginsModule } from 'modules/plugins'
+import { asyncSessionStorage } from 'redux-persist/storages'
 
 import { combineReducersWithGlobalActions } from 'stores/hydrate_reducer'
 
@@ -92,7 +93,7 @@ export default function configureStore(initialState) {
       localforage
         .ready()
         .then(() => {
-          const persistor = persistStore(store, { storage, keyPrefix: KEY_PREFIX, ...options }, () => {
+          const persistor = persistStore(store, { storage: asyncSessionStorage, keyPrefix: KEY_PREFIX, ...options }, () => {
             store.dispatch({
               type: General.STORE_REHYDRATION_COMPLETE,
               complete: true,
