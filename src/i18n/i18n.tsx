@@ -19,7 +19,7 @@ import uk from './uk.json'
 import zhTW from './zh-TW.json'
 import zhCN from './zh-CN.json'
 
-export type LanguageType = Record<string, { value: string; name: string; order: number; url: string }>
+export type LanguageType = Record<string, { value: string; name: string; order: number; url: any }>
 
 const languages: LanguageType = {
   de: {
