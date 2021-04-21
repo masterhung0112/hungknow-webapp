@@ -1,7 +1,9 @@
 import React from 'react'
 import cx from 'classnames'
-import * as ShowroomCssClasses from '../CssClasses'
+
 import { IProps } from 'common'
+
+import * as ShowroomCssClasses from '../CssClasses'
 
 export interface ShowroomWinProps extends IProps {
   /**

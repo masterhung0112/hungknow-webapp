@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { ShowroomWin } from 'showroom/components'
+
 import { Chart } from './Chart.component'
 import Data from './data/data.json'
 import { ChartConfig } from './constants'

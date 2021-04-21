@@ -1,4 +1,5 @@
 import merge from 'deepmerge'
+
 import partialDefaultConfig from '../../fixtures/partial_default_config.json'
 
 const getDefaultConfig = () => {

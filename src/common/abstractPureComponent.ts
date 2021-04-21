@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { isNodeEnv } from './utils'
 
 /**
@@ -36,6 +37,7 @@ export abstract class AbstractPureComponent<
    * [propTypes](https://facebook.github.io/react/docs/reusable-components.html#prop-validation) feature.
    * Like propTypes, these runtime checks run only in development mode.
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected validateProps(_props: P) {
     // implement in subclass
   }

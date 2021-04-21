@@ -1,4 +1,5 @@
 const path = require('path')
+
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -19,6 +20,10 @@ const plugins = [
 
   // CSS extraction is only enabled in production (see scssLoaders below).
   new MiniCssExtractPlugin({ filename: '[name].css' }),
+
+  new webpack.DefinePlugin({
+    COMMIT_HASH: JSON.stringify(childProcess.execSync('git rev-parse HEAD || echo dev').toString()),
+  }),
 ]
 
 const extractPlugin = {
@@ -82,13 +87,28 @@ module.exports = {
         test: /\.scss$/,
         use: scssLoaders,
       },
+      // {
+      //   test: /\.(eot|ttf|woff|woff2|svg|png|gif|jpe?g)$/,
+      //   loader: require.resolve('file-loader'),
+      //   options: {
+      //     name: '[name].[ext]?[hash]',
+      //     outputPath: 'assets/',
+      //   },
+      // },
       {
-        test: /\.(eot|ttf|woff|woff2|svg|png|gif|jpe?g)$/,
-        loader: require.resolve('file-loader'),
-        options: {
-          name: '[name].[ext]?[hash]',
-          outputPath: 'assets/',
-        },
+        test: /\.(png|eot|tiff|svg|woff2|woff|ttf|gif|mp3|jpg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'files/[contenthash].[ext]',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {},
+          },
+        ],
       },
     ],
   },

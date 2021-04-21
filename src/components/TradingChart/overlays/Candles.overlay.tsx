@@ -1,10 +1,11 @@
 import React from 'react'
 import { CandleData, OverlayMeta } from 'types/TradingChart'
+
 import { layout_cnv } from '../layoutCnv'
 import { OverlayProps, useOverlay } from '../Overlay'
 import { Candle } from '../primitives/Candle'
 
-export interface CandlesOverlayProps extends OverlayProps {}
+export type CandlesOverlayProps = OverlayProps
 
 export const Candles: React.FC<CandlesOverlayProps> & OverlayMeta = (props) => {
   const { data, sub, layout } = props

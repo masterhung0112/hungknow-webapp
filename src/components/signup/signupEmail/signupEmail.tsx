@@ -1,28 +1,31 @@
 import Link from 'next/link'
 import React, { SyntheticEvent } from 'react'
 import { FormattedMessage } from 'react-intl'
-import styles from './signupEmail.module.scss'
+
 import logoImage from 'images/logo.png'
 import SiteNameAndDescription from 'components/siteNameAndDescription'
-import { Constants } from 'utils/constants'
+import { Constants, ValidationErrors } from 'utils/constants'
 import FormattedMarkdownMessage from 'components/formattedMarkdownMessage'
 import cx from 'classnames'
 import { Intent } from 'common'
 import { Button, FormGroup, InputGroup } from 'core/components'
-import { isEmail, isValidPassword, isValidUsername } from 'hkclient-ts/lib/utils/helpers'
-import { PasswordConfig } from 'hkclient-ts/lib/types/config'
-import { UserActions, TeamActions } from 'hkclient-ts/lib/actions'
+import { isEmail } from 'hkclient-ts/lib/utils/helpers'
+import { isValidPassword, isValidUsername } from 'utils/utils.jsx'
+import * as UserActions from 'hkclient-ts/lib/actions/users'
+import * as TeamActions from 'hkclient-ts/lib/actions/teams'
 import { UserProfile } from 'hkclient-ts/lib/types/users'
-import { ActionCreatorClient } from 'hkclient-ts/lib/types/actions'
+import { ActionCreatorClient, ActionResult } from 'hkclient-ts/lib/types/actions'
 import Router from 'next/router'
 import { setGlobalItem } from 'actions/storage'
+
+import styles from './signupEmail.module.scss'
 
 export interface SignupEmailProps {
   hasAccounts: boolean
   enableSignUpWithEmail: boolean
   customDescriptionText?: string
   siteName?: string
-  passwordConfig: PasswordConfig
+  passwordConfig: any
   termsOfServiceLink?: string
   privacyPolicyLink?: string
   actions: {
@@ -85,7 +88,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     const token = query['t']
     const inviteId = query['id']
 
-    let redirect_to = query['redirect_to'] ?? ''
+    const redirect_to = query['redirect_to'] ?? ''
 
     this.setState((previousState: SignupEmailState) => {
       return {
@@ -132,7 +135,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     }
 
     const usernameError = isValidUsername(providedUsername)
-    if (usernameError === 'Cannot use a reserved word as a username.') {
+    if (usernameError && usernameError.id === ValidationErrors.RESERVED_NAME) {
       this.setState({
         nameError: <FormattedMessage id="signup_user_completed.reserved" />,
         emailError: '',
@@ -164,7 +167,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
       this.setState({
         nameError: '',
         emailError: '',
-        passwordError: <FormattedMessage id={error.intl.id} />,
+        passwordError: error,
         serverError: '',
       })
       return false
@@ -193,7 +196,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
     // trackEvent('signup', 'signup_user_02_complete');
 
     this.props.actions.loginById(data.id, user.password, '').then((actionResult) => {
-      const isOK = actionResult ? actionResult[0] : undefined
+      const isOK = actionResult ? (actionResult as ActionResult) : (undefined as ActionResult)
 
       if (isOK && isOK.error) {
         if (isOK.error.server_error_id === 'api.user.login.not_verified.app_error') {
@@ -254,7 +257,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
       const redirectTo = this.getRedirectTo()
 
       this.props.actions.createUser(user, this.state.token, this.state.inviteId, redirectTo).then((result) => {
-        const userProfile = result ? result[0] : undefined
+        const userProfile = result ? result : undefined
         if (userProfile && userProfile.error) {
           this.setState({
             serverError: userProfile.error.message,
@@ -428,7 +431,7 @@ export default class SignupEmail extends React.Component<SignupEmailProps, Signu
         {/* {hasAccounts && <BackButton onClick={() => trackEvent('signup_email', 'click_back')}/>} */}
         <div id="signup_email_section" className="col-sm-12">
           <div className={cx(styles['signup-team__container'], styles['padding--less'])}>
-            <img alt={'signup team logo'} className={styles['signup-team__container-logo']} src={logoImage} />
+            {/* <img alt={'signup team logo'} className={styles['signup-team__container-logo']} src={logoImage} /> */}
             <SiteNameAndDescription customDescriptionText={customDescriptionText} siteName={siteName} />
             <h4 id="create_account" className={styles['signup-create-action']}>
               <FormattedMessage id="signup_user_completed.lets" defaultMessage="Let's create your account" />

@@ -1,4 +1,5 @@
 import { GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout, TimeRange } from 'types/TradingChart'
+
 import { TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY } from './constants'
 import Utils from './utils'
 import log_scale from './logScale'
@@ -13,16 +14,16 @@ export function createGridMaker(
   GridMakerParams: GridMakerParams,
   master_grid: Layout | null = null
 ): GridMaker {
-  let { sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone } = GridMakerParams
+  const { sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone } = GridMakerParams
 
-  var gridLayout: GridLayout = { ti_map } as GridLayout
-  var lm = layers_meta[id]
-  var y_range_fn: TimeRangeCreator = null
-  var ls = grid.logScale
+  const gridLayout: GridLayout = { ti_map } as GridLayout
+  const lm = layers_meta[id]
+  let y_range_fn: TimeRangeCreator = null
+  const ls = grid.logScale
 
   if (lm && Object.keys(lm).length) {
     // Gets last y_range fn()
-    let yrs = Object.values(lm).filter((x) => x.y_range)
+    const yrs = Object.values(lm).filter((x) => x.y_range)
     // The first y_range() determines the range
     if (yrs.length) y_range_fn = yrs[0].y_range
   }
@@ -40,7 +41,7 @@ export function createGridMaker(
         timeRange = y_range_fn(timeRange.t1, timeRange.t2)
       } else {
         for (var i = 0, n = sub.length; i < n; i++) {
-          let x = sub[i]
+          const x = sub[i]
           if (x[2] > timeRange.t1) timeRange.t1 = x[2]
           if (x[3] < timeRange.t2) timeRange.t2 = x[3]
         }
@@ -48,8 +49,8 @@ export function createGridMaker(
     } else {
       // Offchart indicator range
       for (var i = 0; i < sub.length; i++) {
-        for (var j = 1; j < sub[i].length; j++) {
-          let v = sub[i][j]
+        for (let j = 1; j < sub[i].length; j++) {
+          const v = sub[i][j]
           if (v > timeRange.t1) timeRange.t1 = v
           if (v < timeRange.t2) timeRange.t2 = v
         }
@@ -104,10 +105,10 @@ export function createGridMaker(
     // TODO: add custom formatter f()
 
     gridLayout.prec = calc_precision(sub)
-    let lens = []
+    const lens = []
     lens.push(gridLayout.$_hi.toFixed(gridLayout.prec).length)
     lens.push(gridLayout.$_lo.toFixed(gridLayout.prec).length)
-    let str = '0'.repeat(Math.max(...lens)) + '    '
+    const str = '0'.repeat(Math.max(...lens)) + '    '
     gridLayout.sb = ctx.measureText(str).width
     gridLayout.sb = Math.max(Math.floor(gridLayout.sb), $p.config.SBMIN)
     gridLayout.sb = Math.min(gridLayout.sb, $p.config.SBMAX)
@@ -115,26 +116,26 @@ export function createGridMaker(
 
   // Calculate $ precision for the Y-axis
   function calc_precision(data: any[]) {
-    var max_r = 0,
+    let max_r = 0,
       max_l = 0
 
     let min = Infinity
     let max = -Infinity
 
     // Speed UP
-    for (var i = 0, n = data.length; i < n; i++) {
-      let x = data[i]
+    for (let i = 0, n = data.length; i < n; i++) {
+      const x = data[i]
       if (x[1] > max) max = x[1]
       else if (x[1] < min) min = x[1]
     }
     // Get max lengths of integer and fractional parts
     ;[min, max].forEach((x) => {
       // Fix undefined bug
-      var str = x != null ? x.toString() : ''
+      const str = x != null ? x.toString() : ''
       if (x < 0.000001) {
         // Parsing the exponential form. Gosh this
         // smells trickily
-        var [ls, rs] = str.split('e-')
+        const [ls, rs] = str.split('e-')
         var [l, r] = ls.split('.')
         if (!r) r = ''
         r = { length: r.length + parseInt(rs) || 0 } as string
@@ -152,7 +153,7 @@ export function createGridMaker(
     // Select precision scheme depending
     // on the left and right part lengths
     //
-    let even = max_r - (max_r % 2) + 2
+    const even = max_r - (max_r % 2) + 2
 
     if (max_l === 1) {
       return Math.min(8, Math.max(2, even))
@@ -167,18 +168,18 @@ export function createGridMaker(
   function calc_positions() {
     if (sub.length < 2) return
 
-    let dt = range.t2 - range.t1
+    const dt = range.t2 - range.t1
 
     // A pixel space available to draw on (x-axis)
     gridLayout.spacex = $p.width - gridLayout.sb
 
     // Candle capacity
-    let capacity = dt / interval
+    const capacity = dt / interval
     // Calculate candlestick step
     gridLayout.px_step = gridLayout.spacex / capacity
 
     // px / time ratio
-    let r = gridLayout.spacex / dt
+    const r = gridLayout.spacex / dt
     // First candle position (px)
     gridLayout.startx = (sub[0][0] - range.t1) * r
 
@@ -197,20 +198,20 @@ export function createGridMaker(
 
   // Select nearest good-loking t step (m is target scale)
   function time_step() {
-    let k = ti_map.ib ? 60000 : 1
-    let xrange = (range.t2 - range.t1) * k
-    let m = xrange * ($p.config.GRIDX / $p.width)
-    let s = TIMESCALES
+    const k = ti_map.ib ? 60000 : 1
+    const xrange = (range.t2 - range.t1) * k
+    const m = xrange * ($p.config.GRIDX / $p.width)
+    const s = TIMESCALES
     return Utils.nearest_a(m, s)[1] / k
   }
 
   // Select nearest good-loking $ step (m is target scale)
   function dollar_step() {
-    let yrange = gridLayout.$_hi - gridLayout.$_lo
-    let m = yrange * ($p.config.GRIDY / height)
-    let p = parseInt(yrange.toExponential().split('e')[1])
-    let d = Math.pow(10, p)
-    let s = $SCALES.map((x) => x * d)
+    const yrange = gridLayout.$_hi - gridLayout.$_lo
+    const m = yrange * ($p.config.GRIDY / height)
+    const p = parseInt(yrange.toExponential().split('e')[1])
+    const d = Math.pow(10, p)
+    const s = $SCALES.map((x) => x * d)
 
     // TODO: center the range (look at RSI for example,
     // it looks ugly when "80" is near the top)
@@ -218,39 +219,39 @@ export function createGridMaker(
   }
 
   function dollar_mult() {
-    let mult_hi = dollar_mult_hi()
-    let mult_lo = dollar_mult_lo()
+    const mult_hi = dollar_mult_hi()
+    const mult_lo = dollar_mult_lo()
     return Math.max(mult_hi, mult_lo)
   }
 
   // Price step multiplier (for the log-scale mode)
   function dollar_mult_hi() {
-    let h = Math.min(gridLayout.B, height)
+    const h = Math.min(gridLayout.B, height)
     if (h < $p.config.GRIDY) return 1
-    let n = h / $p.config.GRIDY // target grid N
-    let yrange = gridLayout.$_hi
+    const n = h / $p.config.GRIDY // target grid N
+    const yrange = gridLayout.$_hi
     if (gridLayout.$_lo > 0) {
       var yratio = gridLayout.$_hi / gridLayout.$_lo
     } else {
       yratio = gridLayout.$_hi / 1 // TODO: small values
     }
-    let m = yrange * ($p.config.GRIDY / h)
-    let p = parseInt(yrange.toExponential().split('e')[1])
+    const m = yrange * ($p.config.GRIDY / h)
+    const p = parseInt(yrange.toExponential().split('e')[1])
     return Math.pow(yratio, 1 / n)
   }
 
   function dollar_mult_lo() {
-    let h = Math.min(height - gridLayout.B, height)
+    const h = Math.min(height - gridLayout.B, height)
     if (h < $p.config.GRIDY) return 1
-    let n = h / $p.config.GRIDY // target grid N
-    let yrange = Math.abs(gridLayout.$_lo)
+    const n = h / $p.config.GRIDY // target grid N
+    const yrange = Math.abs(gridLayout.$_lo)
     if (gridLayout.$_hi < 0 && gridLayout.$_lo < 0) {
       var yratio = Math.abs(gridLayout.$_lo / gridLayout.$_hi)
     } else {
       yratio = Math.abs(gridLayout.$_lo) / 1
     }
-    let m = yrange * ($p.config.GRIDY / h)
-    let p = parseInt(yrange.toExponential().split('e')[1])
+    const m = yrange * ($p.config.GRIDY / h)
+    const p = parseInt(yrange.toExponential().split('e')[1])
     return Math.pow(yratio, 1 / n)
   }
 
@@ -267,17 +268,17 @@ export function createGridMaker(
         let year_0 = Utils.get_year(sub[0][0])
         for (var t0 = year_0; t0 < range.t1; t0 += gridLayout.t_step) {}
         let m0 = Utils.get_month(t0)*/
-      for (var i = 0; i < sub.length; i++) {
-        let p = sub[i]
-        let prev = sub[i - 1] || []
-        let prev_xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
-        let x = Math.floor((p[0] - range.t1) * r)
+      for (let i = 0; i < sub.length; i++) {
+        const p = sub[i]
+        const prev = sub[i - 1] || []
+        const prev_xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
+        const x = Math.floor((p[0] - range.t1) * r)
         // console.log('x', p[0] - range.t1, r, (p[0] - range.t1) * r)
 
         insert_line(prev, p, x)
 
         // Filtering lines that are too near
-        let xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
+        const xs = gridLayout.xs[gridLayout.xs.length - 1] || [0, []]
 
         if (prev_xs === xs) continue
 
@@ -313,7 +314,7 @@ export function createGridMaker(
       prev_t += timezone * HOUR
       p_t += timezone * HOUR
     }
-    let d = timezone * HOUR
+    const d = timezone * HOUR
 
     // TODO: take this block =========> (see below)
     if ((prev[0] || interval === YEAR) && Utils.get_year(p_t) !== Utils.get_year(prev_t)) {
@@ -336,7 +337,7 @@ export function createGridMaker(
     let t = gridLayout.xs[0][1][0]
     while (true) {
       t -= gridLayout.t_step
-      let x = Math.floor((t - range.t1) * r)
+      const x = Math.floor((t - range.t1) * r)
       if (x < 0) break
       // TODO: ==========> And insert it here somehow
       if (t % interval === 0) {
@@ -351,7 +352,7 @@ export function createGridMaker(
     let t = gridLayout.xs[gridLayout.xs.length - 1][1][0]
     while (true) {
       t += gridLayout.t_step
-      let x = Math.floor((t - range.t1) * r)
+      const x = Math.floor((t - range.t1) * r)
       if (x > gridLayout.spacex) break
       if (t % interval === 0) {
         gridLayout.xs.push([x, [t], interval])
@@ -361,14 +362,14 @@ export function createGridMaker(
 
   function grid_y() {
     // Prevent duplicate levels
-    let m = Math.pow(10, -gridLayout.prec)
+    const m = Math.pow(10, -gridLayout.prec)
     gridLayout.$_step = Math.max(m, dollar_step())
     gridLayout.ys = []
 
-    let y1 = gridLayout.$_lo - (gridLayout.$_lo % gridLayout.$_step)
+    const y1 = gridLayout.$_lo - (gridLayout.$_lo % gridLayout.$_step)
 
-    for (var y$ = y1; y$ <= gridLayout.$_hi; y$ += gridLayout.$_step) {
-      let y = Math.floor(y$ * gridLayout.A + gridLayout.B)
+    for (let y$ = y1; y$ <= gridLayout.$_hi; y$ += gridLayout.$_step) {
+      const y = Math.floor(y$ * gridLayout.A + gridLayout.B)
       if (y > height) continue
       gridLayout.ys.push([y, Utils.strip(y$)])
     }
@@ -382,18 +383,18 @@ export function createGridMaker(
 
     if (!sub.length) return
 
-    let v = Math.abs(sub[sub.length - 1][1] || 1)
-    let y1 = search_start_pos(v)
-    let y2 = search_start_neg(-v)
+    const v = Math.abs(sub[sub.length - 1][1] || 1)
+    const y1 = search_start_pos(v)
+    const y2 = search_start_neg(-v)
     let yp = -Infinity // Previous y value
-    let n = height / $p.config.GRIDY // target grid N
+    const n = height / $p.config.GRIDY // target grid N
 
-    let q = 1 + (gridLayout.$_mult - 1) / 2
+    const q = 1 + (gridLayout.$_mult - 1) / 2
 
     // Over 0
     for (var y$ = y1; y$ > 0; y$ /= gridLayout.$_mult) {
       y$ = log_rounder(y$, q)
-      let y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
+      const y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
       gridLayout.ys.push([y, Utils.strip(y$)])
       if (y > height) break
       if (y - yp < $p.config.GRIDY * 0.7) break
@@ -405,7 +406,7 @@ export function createGridMaker(
     yp = Infinity
     for (var y$ = y2; y$ < 0; y$ /= gridLayout.$_mult) {
       y$ = log_rounder(y$, q)
-      let y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
+      const y = Math.floor(math.log(y$) * gridLayout.A + gridLayout.B)
       if (yp - y < $p.config.GRIDY * 0.7) break
       gridLayout.ys.push([y, Utils.strip(y$)])
       if (y < 0) break
@@ -419,8 +420,8 @@ export function createGridMaker(
   // Search a start for the top grid so that
   // the fixed value always included
   function search_start_pos(value: number) {
-    let N = height / $p.config.GRIDY // target grid N
-    var y = Infinity,
+    const N = height / $p.config.GRIDY // target grid N
+    let y = Infinity,
       y$ = value,
       count = 0
     while (y > 0) {
@@ -432,8 +433,8 @@ export function createGridMaker(
   }
 
   function search_start_neg(value: number) {
-    let N = height / $p.config.GRIDY // target grid N
-    var y = -Infinity,
+    const N = height / $p.config.GRIDY // target grid N
+    let y = -Infinity,
       y$ = value,
       count = 0
     while (y < height) {
@@ -446,11 +447,11 @@ export function createGridMaker(
 
   // Make log scale levels look great again
   function log_rounder(x: number, quality: number) {
-    let s = Math.sign(x)
+    const s = Math.sign(x)
     x = Math.abs(x)
     if (x > 10) {
       for (var div = 10; div < MAX_INT; div *= 10) {
-        let nice = Math.floor(x / div) * div
+        const nice = Math.floor(x / div) * div
         if (x / nice > quality) {
           // More than 10% off
           break
@@ -460,7 +461,7 @@ export function createGridMaker(
       return s * Math.floor(x / div) * div
     } else if (x < 1) {
       for (var ro = 10; ro >= 1; ro--) {
-        let nice = Utils.round(x, ro)
+        const nice = Utils.round(x, ro)
         if (x / nice > quality) {
           // More than 10% off
           break

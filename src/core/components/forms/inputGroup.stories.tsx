@@ -1,10 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import InputGroup, { IInputGroupProps } from './inputGroup'
+
 import { ShowroomWin } from 'showroom/components'
 import { Intent } from 'common'
 
-const baseProps = {
+import InputGroup, { IInputGroupProps } from './inputGroup'
+
+const baseProps: any = {
   inputRef: undefined,
   leftElement: undefined,
   leftIcon: undefined,

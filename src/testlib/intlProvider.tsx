@@ -1,6 +1,7 @@
 import { createIntl, createIntlCache } from 'react-intl'
 import IntlProvider from 'components/intl-provider'
 import React from 'react'
+
 import enTranslationData from '../i18n/en.json'
 
 const cache = createIntlCache()

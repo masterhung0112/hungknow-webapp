@@ -2,10 +2,11 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { ShowroomWin } from 'showroom/components'
 import { Intent } from 'common'
+
 import InputGroup from './inputGroup'
 import FormGroup, { FormGroupProps } from './formGroup'
 
-const baseProps = {
+const baseProps: any = {
   style: undefined,
   disabled: undefined,
   inline: undefined,

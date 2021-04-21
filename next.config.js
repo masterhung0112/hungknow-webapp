@@ -90,10 +90,10 @@ module.exports = (phase, { defaultConfig }) => {
         ],
       })
 
-      // config.module.rules.push({
-      //   test: /\.scss$/,
-      //   use: scssLoaders,
-      // })
+      config.module.rules.push({
+        test: /\.scss$/,
+        use: scssLoaders,
+      })
 
       // Important: return the modified config
       return config

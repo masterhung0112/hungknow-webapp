@@ -1,5 +1,6 @@
 import { EventEmitterContext, EventEmitterProvider, EventEmitterValue } from './EventEmitterProvider'
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const withEventEmitterProvider = <T extends {} = {}>(Component: React.ComponentType<T>) => {
   return (props: T) => {
     return (

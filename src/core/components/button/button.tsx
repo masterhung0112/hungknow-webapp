@@ -1,6 +1,8 @@
 import React from 'react'
-import { AbstractButton } from './abstractButton'
+
 import { removeNonHTMLProps, IRefObject, isRefObject, IRefCallback } from 'common'
+
+import { AbstractButton } from './abstractButton'
 
 export class Button extends AbstractButton<React.ButtonHTMLAttributes<HTMLButtonElement>> {
   protected buttonRef: HTMLButtonElement | IRefObject<HTMLButtonElement> | null

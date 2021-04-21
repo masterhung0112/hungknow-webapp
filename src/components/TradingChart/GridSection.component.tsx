@@ -2,6 +2,7 @@ import { withEventEmitter } from 'components/Emitter/EventEmitterHook'
 import { EventEmitterContext, EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
 import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { ComponentBaseProps } from 'types/TradingChart'
+
 import { Grid, GridProps } from './Grid.component'
 import { useShader } from './useShader'
 
@@ -27,7 +28,7 @@ export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => 
 
     // Split offchart data between offchart grids
     if (grid_id > 0) {
-      let all = gridProps.data
+      const all = gridProps.data
       gridProps.data = [gridProps.data[grid_id - 1]]
       // Merge offchart overlays with custom ids with
       // the existing onse (by comparing the grid ids)
@@ -50,7 +51,7 @@ export const GridSection: React.FC<GridSectionProps> = ({ grid_id, common }) => 
     })
     // Zoom the sidebar
     on('rezoom-range', (detail) => {
-      let id = 'sb-' + detail.grid_id
+      const id = 'sb-' + detail.grid_id
       if (sbRefs.current[id]) {
         sbRefs.current[id].renderer.rezoom_range(detail.z, detail.diff1, detail.diff2)
       }

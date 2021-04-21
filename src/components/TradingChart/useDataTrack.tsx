@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { TimeRange } from 'types/TradingChart'
+
 import TI from './TiMapping'
 import Utils from './utils'
 
@@ -30,7 +31,7 @@ export function useDataTrack(): DataTrackHookProps {
 
   const data_changed = useCallback(
     (params: DataTrackParamHack) => {
-      let n = params.ohlcv
+      const n = params.ohlcv
       let changed = false
       if (dataTrackData._data_n0 !== n[0] && dataTrackData._data_len !== n.length) {
         changed = true
@@ -56,7 +57,7 @@ export function useDataTrack(): DataTrackHookProps {
       // If length of data in the Structure changed by > 1 point
       // emit a special event for DC to recalc the scripts
       // TODO: check overlays data too
-      let len = dataTrackData._data_len || 0
+      const len = dataTrackData._data_len || 0
       if (Math.abs(params.ohlcv.length - len) > 1 || dataTrackData._data_n0 !== params.ohlcv[0]) {
         // this.$emit('custom-event', {
         //     event: 'data-len-changed',
@@ -71,15 +72,15 @@ export function useDataTrack(): DataTrackHookProps {
     (n, p, params: DataTrackParamHack) => {
       n = n || [[0]]
       p = p || [[0]]
-      let dt = n[0] - p[0]
+      const dt = n[0] - p[0]
       if (dt !== 0 && dataTrackData._data_t) {
         // Convert t back to index
         try {
           // More precise method first
-          let nt = dataTrackData._data_t + 0.01 // fix for the filter lib
-          let res = Utils.fast_nearest(params.ohlcv, nt)
-          let cndl = params.ohlcv[res[0]]
-          var off = (nt - cndl[0]) / params.interval_ms
+          const nt = dataTrackData._data_t + 0.01 // fix for the filter lib
+          const res = Utils.fast_nearest(params.ohlcv, nt)
+          const cndl = params.ohlcv[res[0]]
+          const off = (nt - cndl[0]) / params.interval_ms
           params.goto(res[0] + off)
         } catch (e) {
           params.goto(params.ti_map.t2i(dataTrackData._data_t))

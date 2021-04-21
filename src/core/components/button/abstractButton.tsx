@@ -13,6 +13,7 @@ import {
   Utils,
 } from 'common'
 import { IconName } from '@blueprintjs/icons'
+
 import Icon from '../icon'
 import { Spinner } from '../spinner'
 

@@ -1,8 +1,8 @@
 // Canvas context for text measurments
 
 function Context($p: any) {
-  let el = document.createElement('canvas')
-  let ctx = el.getContext('2d')
+  const el = document.createElement('canvas')
+  const ctx = el.getContext('2d')
   ctx.font = $p.font
 
   return ctx

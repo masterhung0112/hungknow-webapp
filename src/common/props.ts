@@ -1,6 +1,8 @@
 import React from 'react'
-import { Intent } from './intent'
+
 import { IconName } from '@blueprintjs/icons'
+
+import { Intent } from './intent'
 
 /**
  * Alias for all valid HTML props for `<div>` element.

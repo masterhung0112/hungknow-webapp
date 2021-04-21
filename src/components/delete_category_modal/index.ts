@@ -1,0 +1,22 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
+
+import { connect } from 'react-redux'
+import { bindActionCreators, Dispatch } from 'redux'
+
+import { deleteCategory } from 'hkclient-ts/lib/actions/channel_categories'
+
+import DeleteCategoryModal from './delete_category_modal'
+
+function mapDispatchToProps(dispatch: Dispatch) {
+  return {
+    actions: bindActionCreators(
+      {
+        deleteCategory,
+      },
+      dispatch
+    ),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(DeleteCategoryModal)

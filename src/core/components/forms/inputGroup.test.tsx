@@ -1,8 +1,11 @@
 import React from 'react'
-import InputGroup from './inputGroup'
-import Icon from '../icon'
+
 import { CssClasses } from 'common'
 import { fireEvent, render } from '@testing-library/react'
+
+import Icon from '../icon'
+
+import InputGroup from './inputGroup'
 import '@testing-library/jest-dom'
 
 describe('<InputGroup>', () => {

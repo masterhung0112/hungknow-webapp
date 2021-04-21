@@ -1,8 +1,10 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { Button } from './button'
+
 import { Intent } from 'common'
 import { ShowroomWin } from 'showroom/components'
+
+import { Button } from './button'
 
 storiesOf('Core/Components/Button/React', module)
   .addParameters({ component: Button })

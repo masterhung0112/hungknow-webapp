@@ -7,7 +7,7 @@ export type CustomEventParams = {
 
 function useNative() {
   try {
-    var p = new NativeCustomEvent('cat', { detail: { foo: 'bar' } })
+    const p = new NativeCustomEvent('cat', { detail: { foo: 'bar' } })
     return 'cat' === p.type && 'bar' === p.detail.foo
   } catch (e) {}
   return false
@@ -18,7 +18,7 @@ export default useNative()
   : // IE >= 9
   'undefined' !== typeof document && 'function' === typeof document.createEvent
   ? function CustomEvent(type: string, params: CustomEventParams) {
-      var e = document.createEvent('CustomEvent')
+      const e = document.createEvent('CustomEvent')
       if (params) {
         e.initCustomEvent(type, params.bubbles, params.cancelable, params.detail)
       } else {
@@ -28,7 +28,7 @@ export default useNative()
     }
   : // IE <= 8
     function CustomEvent(type: string, params: CustomEventParams) {
-      var e = (document as any).createEventObject()
+      const e = (document as any).createEventObject()
       e.type = type
       if (params) {
         e.bubbles = Boolean(params.bubbles)

@@ -1,8 +1,8 @@
 import { withEventEmitter, withEventEmitterProvider } from 'components/Emitter/EventEmitterHook'
-import { EventEmitterContext, EventEmitterProvider, EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
+import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
 import React from 'react'
-import { Stage } from 'react-konva'
 import { CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange } from 'types/TradingChart'
+
 import { IB_TF_WARN, SECOND } from './constants'
 import Context from './Context'
 import { CursorUpdater } from './CursorUpdater'
@@ -181,7 +181,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // Overwite & keep the original references
     // Quick fix for IB mode (switch 2 next lines)
     // TODO: wtf?
-    let sub = this.subset(r)
+    const sub = this.subset(r)
     // this.range = { ...r }
     // console.log('set time', r)
     this.range = { ...r }
@@ -212,7 +212,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // if (this._hook_xlocked) this.ce('?x-locked', state)
   }
   calc_interval() {
-    let tf = Utils.parse_tf(this.forced_tf)
+    const tf = Utils.parse_tf(this.forced_tf)
     if (this.ohlcv.length < 2 && !tf) return
     this.interval_ms = tf || Utils.detect_interval(this.ohlcv)
     this.interval = this.props.ib ? 1 : this.interval_ms
@@ -220,7 +220,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     Utils.warn(() => this.props.ib && !this.chart.tf, IB_TF_WARN, SECOND)
   }
   set_ytransform(s: any) {
-    let obj = this.y_transforms[s.grid_id] || {}
+    const obj = this.y_transforms[s.grid_id] || {}
     Object.assign(obj, s)
     this.y_transforms = {
       ...this.y_transforms,
@@ -256,7 +256,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     }
   }
   subset(range = this.range) {
-    var [res, index] = this.filter(this.ohlcv, range.t1 - this.interval, range.t2)
+    const [res, index] = this.filter(this.ohlcv, range.t1 - this.interval, range.t2)
     // index = 4148
     // console.log('subset', range.t2, range.t1, res.length, index)
 
@@ -289,7 +289,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
   }
   overlay_subset(source: any[], side: string) {
     return source.map((d, i) => {
-      let res = Utils.fast_filter(
+      const res = Utils.fast_filter(
         d.data,
         this.ti_map.i2t_mode(this.range.t1 - this.interval, d.indexSrc),
         this.ti_map.i2t_mode(this.range.t2, d.indexSrc)
@@ -367,11 +367,11 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // this.last_candle = this.ohlcv ? this.ohlcv[this.ohlcv.length - 1] : undefined
     // this.last_values = { onchart: [], offchart: [] }
     this.onchart.forEach((x, i) => {
-      let d = x.data || []
+      const d = x.data || []
       this.last_values.onchart[i] = d[d.length - 1]
     })
     this.offchart.forEach((x, i) => {
-      let d = x.data || []
+      const d = x.data || []
       this.last_values.offchart[i] = d[d.length - 1]
     })
   }
@@ -420,7 +420,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     return p
   }
   get botbar_props() {
-    let p = Object.assign(
+    const p = Object.assign(
       {
         width: this._layout.botbar.width,
         height: this._layout.botbar.height,
@@ -453,7 +453,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     return this.props.ib ? Utils.fast_filter_i : Utils.fast_filter
   }
   get styles() {
-    let w = this.props.toolbar ? this.props.config.TOOLBAR : 0
+    const w = this.props.toolbar ? this.props.config.TOOLBAR : 0
     return { 'margin-left': `${w}px` }
   }
   get meta() {

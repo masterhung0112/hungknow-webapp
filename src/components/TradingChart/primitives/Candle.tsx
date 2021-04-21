@@ -1,6 +1,7 @@
 import { CandleData } from 'types/TradingChart'
 import { Line, Rect } from 'react-konva'
 import React from 'react'
+
 import { DefaultStyles } from '../defaultStyles'
 
 export type CandleProps = {
@@ -14,12 +15,12 @@ export const Candle: React.FC<CandleProps> = ({ data }) => {
   const body_color = green ? style.colorCandleUp : style.colorCandleDw
   const wick_color = green ? style.colorWickUp : style.colorWickDw
 
-  let w = Math.max(data.w, 1)
-  let hw = Math.max(Math.floor(w * 0.5), 1)
-  let h = Math.abs(data.o - data.c)
-  let max_h = data.c === data.o ? 1 : 2
-  let x05 = Math.floor(data.x) - 0.5
-  let s = green ? 1 : -1
+  const w = Math.max(data.w, 1)
+  const hw = Math.max(Math.floor(w * 0.5), 1)
+  const h = Math.abs(data.o - data.c)
+  const max_h = data.c === data.o ? 1 : 2
+  const x05 = Math.floor(data.x) - 0.5
+  const s = green ? 1 : -1
 
   return (
     <>

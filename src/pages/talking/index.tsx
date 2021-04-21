@@ -5,7 +5,7 @@ import { UserAgent, Utils } from 'utils'
 import * as GlobalActions from 'actions/global_actions'
 import { connect } from 'react-redux'
 import { GlobalState } from 'hkclient-ts/lib/types/store'
-import { getConfig } from 'hkclient-ts/lib/selectors/general'
+import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
 import { loadMeAndConfig } from 'actions/views/root'
 import { getSiteURL } from 'utils/url'
 import { setUrl } from 'hkclient-ts/lib/actions/general'
@@ -107,9 +107,9 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
   }
 
   componentWillUnmount() {
-    if (!Utils.isServer) {
-      // (window as any).unbind('storage');
-    }
+    // if (!Utils.isServer()) {
+    // (window as any).unbind('storage');
+    // }
   }
 
   render() {

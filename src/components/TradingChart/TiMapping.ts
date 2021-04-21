@@ -31,7 +31,7 @@ export default class TI {
   }
 
   init(params: any, res: any) {
-    let { sub, interval, meta, $props: $p, interval_ms, sub_start, ib } = params
+    const { sub, interval, meta, $props: $p, interval_ms, sub_start, ib } = params
 
     this.ti_map = []
     this.it_map = []
@@ -50,14 +50,14 @@ export default class TI {
 
   // Make maps for the main subset
   map_sub(res: any) {
-    for (var i = 0; i < res.length; i++) {
-      let t = res[i][0]
-      let _i = this.ss + i
+    for (let i = 0; i < res.length; i++) {
+      const t = res[i][0]
+      const _i = this.ss + i
       this.ti_map[t] = _i
       this.it_map[_i] = t
 
       // Overwrite t with i
-      let copy = [...res[i]]
+      const copy = [...res[i]]
       copy[0] = _i
       this.sub_i.push(copy)
     }
@@ -68,14 +68,14 @@ export default class TI {
   parse(data: any, mode: any) {
     if (!this.ib || !this.sub[0] || mode === 'data') return data
 
-    let res = []
+    const res = []
     let k = 0 // Candlestick index
 
     if (mode === 'calc') {
-      let shift = Utils.index_shift(this.sub, data)
+      const shift = Utils.index_shift(this.sub, data)
       for (var i = 0; i < data.length; i++) {
-        let _i = this.ss + i
-        let copy = [...data[i]]
+        const _i = this.ss + i
+        const copy = [...data[i]]
         copy[0] = _i + shift
         res.push(copy)
       }
@@ -85,16 +85,16 @@ export default class TI {
     // If indicator data starts after ohlcv, calc the first index
     if (data.length) {
       try {
-        let k1 = Utils.fast_nearest(this.sub, data[0][0])[0]
+        const k1 = Utils.fast_nearest(this.sub, data[0][0])[0]
         if (k1 !== null && k1 >= 0) k = k1
       } catch (e) {}
     }
 
-    let t0 = this.sub[0][0]
-    let tN = this.sub[this.sub.length - 1][0]
+    const t0 = this.sub[0][0]
+    const tN = this.sub[this.sub.length - 1][0]
 
     for (var i = 0; i < data.length; i++) {
-      let copy = [...data[i]]
+      const copy = [...data[i]]
       let tk = this.sub[k][0]
       let t = data[i][0]
       let index = this.ti_map[t]
@@ -108,7 +108,7 @@ export default class TI {
 
         // Linear interpolation
         else {
-          let tk2 = this.sub[k + 1][0]
+          const tk2 = this.sub[k + 1][0]
           index = tk === tk2 ? this.ss + k : this.ss + k + (t - tk) / (tk2 - tk)
           t = data[i + 1] ? data[i + 1][0] : undefined
         }
@@ -130,31 +130,31 @@ export default class TI {
     if (!this.ib || !this.sub.length) return i // Regular mode
 
     // Discrete mapping
-    let res = this.it_map[i]
+    const res = this.it_map[i]
     if (res !== undefined) return res
     // Linear extrapolation
     else if (i >= this.ss + this.sub_i.length) {
-      let di = i - (this.ss + this.sub_i.length) + 1
-      let last = this.sub[this.sub.length - 1]
+      const di = i - (this.ss + this.sub_i.length) + 1
+      const last = this.sub[this.sub.length - 1]
       return last[0] + di * this.tf
     } else if (i < this.ss) {
-      let di = i - this.ss
+      const di = i - this.ss
       return this.sub[0][0] + di * this.tf
     }
 
     // Linear Interpolation
-    let i1 = Math.floor(i) - this.ss
+    const i1 = Math.floor(i) - this.ss
     let i2 = i1 + 1
-    let len = this.sub.length
+    const len = this.sub.length
 
     if (i2 >= len) i2 = len - 1
 
-    let sub1 = this.sub[i1]
-    let sub2 = this.sub[i2]
+    const sub1 = this.sub[i1]
+    const sub2 = this.sub[i2]
 
     if (sub1 && sub2) {
-      let t1 = sub1[0]
-      let t2 = sub2[0]
+      const t1 = sub1[0]
+      const t2 = sub2[0]
       return t1 + (t2 - t1) * (i - i1 - this.ss)
     }
     return undefined
@@ -172,26 +172,26 @@ export default class TI {
     if (!this.sub.length) return undefined
 
     // Discrete mapping
-    let res = this.ti_map[t]
+    const res = this.ti_map[t]
     if (res !== undefined) return res
 
-    let t0 = this.sub[0][0]
-    let tN = this.sub[this.sub.length - 1][0]
+    const t0 = this.sub[0][0]
+    const tN = this.sub[this.sub.length - 1][0]
 
     // Linear extrapolation
     if (t < t0) {
       return this.ss - (t0 - t) / this.tf
     } else if (t > tN) {
-      let k = this.sub.length - 1
+      const k = this.sub.length - 1
       return this.ss + k - (tN - t) / this.tf
     }
 
     try {
       // Linear Interpolation
-      let i = Utils.fast_nearest(this.sub, t)
-      let tk = this.sub[i[0]][0]
-      let tk2 = this.sub[i[1]][0]
-      let k = (t - tk) / (tk2 - tk)
+      const i = Utils.fast_nearest(this.sub, t)
+      const tk = this.sub[i[0]][0]
+      const tk2 = this.sub[i[1]][0]
+      const k = (t - tk) / (tk2 - tk)
       return this.ss + i[0] + k * (i[1] - i[0])
     } catch (e) {}
 
@@ -220,8 +220,8 @@ export default class TI {
   // Used by tv.goto()
   gt2i(smth: any, ohlcv: any) {
     if (smth > MAX_ARR) {
-      let E = 0.1 // Fixes the arrayslicer bug
-      let [i1, i2] = Utils.fast_nearest(ohlcv, smth + E)
+      const E = 0.1 // Fixes the arrayslicer bug
+      const [i1, i2] = Utils.fast_nearest(ohlcv, smth + E)
       if (typeof i1 === 'number') {
         return i1
       } else {

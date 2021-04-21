@@ -1,15 +1,22 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { Layer, Line, Stage } from 'react-konva'
 import { DataCore, Layout, MainLayout, OverlayMeta, TimeRange } from 'types/TradingChart'
+
+import Hammer from 'hammerjs'
+
+import Hamster from 'hamsterjs'
+
+import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
+
+import { withEventEmitter } from 'components/Emitter/EventEmitterHook'
+
 import { OverlayProps } from './Overlay'
 import { Candles } from './overlays/Candles.overlay'
 import Utils from './utils'
-import Hammer from 'hammerjs'
-import Hamster from 'hamsterjs'
+
 import * as math from './math'
 import FrameAnimation from './frame'
-import { EventEmitterValue } from 'components/Emitter/EventEmitterProvider'
-import { withEventEmitter } from 'components/Emitter/EventEmitterHook'
+
 import { CrossHair } from './Cursor.component'
 
 class GridModel {
@@ -36,7 +43,7 @@ class GridModel {
   fade: any
   pinch: any
   crosshair: any
-  trackpad: boolean = false
+  trackpad = false
   $emit: any
 
   constructor(canvas: any, props: any) {
@@ -68,8 +75,8 @@ class GridModel {
     this.hm = Hamster(this.canvas)
     this.hm.wheel((event: any, delta: number) => this.mousezoom(-delta * 50, event))
 
-    let mc = (this.mc = new Hammer(this.canvas, { domEvents: true }))
-    let T = Utils.is_mobile ? 10 : 0
+    const mc = (this.mc = new Hammer(this.canvas, { domEvents: true }))
+    const T = Utils.is_mobile ? 10 : 0
     mc.add(new Hammer.Pan({ threshold: T }))
     mc.add(new Hammer.Tap())
     mc.add(new Hammer.Pinch({ threshold: 0 }))
@@ -82,7 +89,7 @@ class GridModel {
       if (this.cursor.mode === 'aim') {
         return this.emit_cursor_coord(event)
       }
-      let tfrm = this.props.y_transform
+      const tfrm = this.props.y_transform
       this.drug = {
         x: event.center.x + this.offset_x,
         y: event.center.y + this.offset_y,
@@ -169,7 +176,7 @@ class GridModel {
       this.sim_mousedown(event)
     })
 
-    let add = addEventListener
+    const add = addEventListener
     add('gesturestart', this.gesturestart)
     add('gesturechange', this.gesturechange)
     add('gestureend', this.gestureend)
@@ -267,10 +274,10 @@ class GridModel {
   }
 
   pan_fade(event: any) {
-    let dt = Utils.now() - this.drug.t0
-    let dx = this.range.t2 - this.drug.r.t2
+    const dt = Utils.now() - this.drug.t0
+    const dx = this.range.t2 - this.drug.r.t2
     let v = (42 * dx) / dt
-    let v0 = Math.abs(v * 0.01)
+    const v0 = Math.abs(v * 0.01)
     if (dt > 500) return
     if (this.fade) this.fade.stop()
     this.fade = new FrameAnimation((self: any) => {
@@ -286,7 +293,7 @@ class GridModel {
 
   calc_offset() {
     // getBoundingClientRect
-    let rect = this.canvas.getClientRect()
+    const rect = this.canvas.getClientRect()
     this.offset_x = -rect.x
     this.offset_y = -rect.y
   }
@@ -306,7 +313,7 @@ class GridModel {
   }
 
   show_hide_layer(event: any) {
-    let l = this.overlays.filter((x) => x.id === event.id)
+    const l = this.overlays.filter((x) => x.id === event.id)
     if (l.length) l[0].display = event.display
   }
 
@@ -326,7 +333,7 @@ class GridModel {
 
     this.grid(items)
 
-    let overlays = []
+    const overlays = []
     overlays.push(...this.overlays)
 
     // z-index sorting
@@ -335,7 +342,7 @@ class GridModel {
     overlays.forEach((l) => {
       if (!l.display) return
       // this.ctx.save()
-      let r = l.renderer
+      const r = l.renderer
       if (r.pre_draw) r.pre_draw(drawContext)
       r.draw(drawContext)
       if (r.post_draw) r.post_draw(drawContext)
@@ -349,8 +356,8 @@ class GridModel {
   }
 
   apply_shaders(drawContext: any) {
-    let layout = this.props.layout.grids[this.id]
-    let props = {
+    const layout = this.props.layout.grids[this.id]
+    const props = {
       layout: layout,
       range: this.range,
       interval: this.interval,
@@ -362,7 +369,7 @@ class GridModel {
       config: this.props.config,
       meta: this.props.meta,
     }
-    for (var s of this.props.shaders) {
+    for (const s of this.props.shaders) {
       // this.ctx.save()
       s.draw(drawContext, props)
       // this.ctx.restore()
@@ -448,13 +455,13 @@ class GridModel {
     // if speed is low, scroll shoud be slower
     if (delta < 0 && this.data.length <= this.MIN_ZOOM) return
     if (delta > 0 && this.data.length > this.MAX_ZOOM) return
-    let k = this.interval / 1000
-    let diff = delta * k * this.data.length
-    let tl = this.props.config.ZOOM_MODE === 'tl'
+    const k = this.interval / 1000
+    const diff = delta * k * this.data.length
+    const tl = this.props.config.ZOOM_MODE === 'tl'
     if (event.originalEvent.ctrlKey || tl) {
-      let offset = event.originalEvent.offsetX
-      let diff1 = (offset / (this.canvas.width() - 1)) * diff
-      let diff2 = diff - diff1
+      const offset = event.originalEvent.offsetX
+      const diff1 = (offset / (this.canvas.width() - 1)) * diff
+      const diff2 = diff - diff1
       // console.log('diff1', diff1, this.canvas.width())
       this.range.t1 -= diff1
       this.range.t2 += diff2
@@ -463,10 +470,10 @@ class GridModel {
     }
 
     if (tl) {
-      let offset = event.originalEvent.offsetY
-      let diff1 = (offset / (this.canvas.height - 1)) * 2
-      let diff2 = 2 - diff1
-      let z = diff / (this.range.t2 - this.range.t1)
+      const offset = event.originalEvent.offsetY
+      const diff1 = (offset / (this.canvas.height - 1)) * 2
+      const diff2 = 2 - diff1
+      const z = diff / (this.range.t2 - this.range.t1)
       //rezoom_range(z, diff_x, diff_y)
       this.props.emit('rezoom-range', {
         grid_id: this.id,
@@ -480,16 +487,16 @@ class GridModel {
   }
 
   mousedrag(x: number, y: number) {
-    let dt = (this.drug.t * (this.drug.x - x)) / this.layout.width
+    const dt = (this.drug.t * (this.drug.x - x)) / this.layout.width
 
     let d$ = this.layout.$_hi - this.layout.$_lo
     d$ *= (this.drug.y - y) / this.layout.height
-    let offset = this.drug.o + d$
+    const offset = this.drug.o + d$
 
-    let ls = this.layout.grid.logScale
+    const ls = this.layout.grid.logScale
 
     if (ls && this.drug.y_r) {
-      let dy = this.drug.y - y
+      const dy = this.drug.y - y
       var range = this.drug.y_r.slice()
       range.t1 = math.exp((0 - this.drug.B + dy) / this.layout.A)
       range.t2 = math.exp((this.layout.height - this.drug.B + dy) / this.layout.A)
@@ -512,8 +519,8 @@ class GridModel {
     if (scale > 1 && this.data.length <= this.MIN_ZOOM) return
     if (scale < 1 && this.data.length > this.MAX_ZOOM) return
 
-    let t = this.pinch.t
-    let nt = (t * 1) / scale
+    const t = this.pinch.t
+    const nt = (t * 1) / scale
 
     this.range.t1 = this.pinch.r[0] - (nt - t) * 0.5
     this.range.t2 = this.pinch.r[1] + (nt - t) * 0.5
@@ -522,7 +529,7 @@ class GridModel {
   }
 
   trackpad_scroll(event: any) {
-    let dt = this.range.t2 - this.range.t1
+    const dt = this.range.t2 - this.range.t1
 
     this.range.t1 += event.deltaX * dt * 0.011
     this.range.t2 += event.deltaX * dt * 0.011
@@ -540,9 +547,9 @@ class GridModel {
 
     if (!this.range || this.data.length < 2) return
 
-    let l = this.data.length - 1
-    let data = this.data
-    let range = this.range
+    const l = this.data.length - 1
+    const data = this.data
+    const range = this.range
 
     range.t1 = Utils.clamp(range.t1, -Infinity, data[l][0] - this.interval * 5.5)
 
@@ -560,7 +567,7 @@ class GridModel {
 
   // Propagate mouse event to overlays
   propagate(name: string, event: any) {
-    for (var layer of this.overlays) {
+    for (const layer of this.overlays) {
       if (layer.renderer[name]) {
         layer.renderer[name](event)
       }
@@ -576,7 +583,7 @@ class GridModel {
   }
 
   destroy() {
-    let rm = removeEventListener
+    const rm = removeEventListener
     rm('gesturestart', this.gesturestart)
     rm('gesturechange', this.gesturechange)
     rm('gestureend', this.gestureend)
@@ -650,8 +657,8 @@ const GridBase: React.FC<GridProps> = (props) => {
       last: any
     }[] = []
     const count: Record<string, number> = {}
-    for (let d of data) {
-      let comp = supportedOverlays[registry[d.type]]
+    for (const d of data) {
+      const comp = supportedOverlays[registry[d.type]]
       if (comp) {
         // if (comp.methods.calc) {
         //   comp = inject_renderer(comp)
@@ -698,7 +705,7 @@ const GridBase: React.FC<GridProps> = (props) => {
     // Custom overlay components overwrite built-ins:
     const tempRegistry = { ...registry }
     supportedOverlays.forEach((x, i) => {
-      let use_for = x.use_for
+      const use_for = x.use_for
       if (x.tool)
         tools.push({
           use_for,

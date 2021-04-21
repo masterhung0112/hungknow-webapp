@@ -1,7 +1,9 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import SignupController from './signupController'
+
 import mockNextRouter from 'mocks/mockNextRouter'
+
+import SignupController from './signupController'
 
 const baseProps = {
   isLicensed: true,

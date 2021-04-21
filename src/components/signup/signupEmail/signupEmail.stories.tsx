@@ -1,11 +1,12 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import SignupEmail, { SignupEmailProps } from './signupEmail'
-import { PasswordConfig } from 'hkclient-ts/lib/types/config'
+
 import { UserProfile } from 'hkclient-ts/lib/types/users'
 import { ActionResultType } from 'hkclient-ts/lib/types/actions'
 
-const baseProps = {
+import SignupEmail, { SignupEmailProps } from './signupEmail'
+
+const baseProps: any = {
   hasAccounts: false,
   enableSignUpWithEmail: true,
   customDescriptionText: undefined,
@@ -16,7 +17,7 @@ const baseProps = {
     requireNumber: false,
     requireSymbol: false,
     requireUppercase: false,
-  } as PasswordConfig,
+  },
   actions: {
     createUser: async (
       user: UserProfile,
@@ -24,18 +25,14 @@ const baseProps = {
       inviteId: string,
       redirect: string
     ): Promise<ActionResultType> => {
-      return [
-        {
-          data: true,
-        },
-      ]
+      return {
+        data: true,
+      }
     },
     loginById: async (id: string, password: string, mfaToken?: string): Promise<ActionResultType> => {
-      return [
-        {
-          data: true,
-        },
-      ]
+      return {
+        data: true,
+      }
     },
   },
   privacyPolicyLink: undefined,
