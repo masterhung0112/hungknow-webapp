@@ -29,6 +29,7 @@
     "task": "node ./tasksfile.js"
   },
   "dependencies": {
+    "dynamic-virtualized-list": "github:mattermost/dynamic-virtualized-list#119db968c96643c7106d4d2c965f05b2e251bc83",
     "@formatjs/intl-pluralrules": "4.0.6",
     "@formatjs/intl-relativetimeformat": "6.2.3",
     "@redux-offline/redux-offline": "2.6.0",
@@ -62,6 +63,7 @@
     "localforage": "^1.9.0",
     "localforage-observable": "^2.1.1",
     "lodash": "4.17.21",
+    "mark.js": "8.11.1",
     "marked": "github:mattermost/marked#be741d411d4642c4cd3e009645f4cb6baa7e92bb",
     "moment-timezone": "0.5.33",
     "next": "^10.0.9",
