@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {createSelector} from 'reselect';
-import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {Team} from 'hkclient-redux/types/teams';
 import {UserThread, ThreadsState, UserThreadType, UserThreadSynthetic} from 'hkclient-redux/types/threads';

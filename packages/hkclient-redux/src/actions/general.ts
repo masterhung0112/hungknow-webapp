@@ -4,7 +4,7 @@ import {Client4} from 'hkclient-redux/client';
 
 import {GeneralTypes} from 'hkclient-redux/action_types';
 
-import {getServerVersion} from 'selectors/entities/general';
+import {getServerVersion} from 'hkclient-redux/selectors/entities/general';
 import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
 import {GeneralState} from 'hkclient-redux/types/general';
 import {LogLevel} from 'hkclient-redux/types/client4';

@@ -11,7 +11,7 @@ import {
 import {
     getThread,
     getThreadsInCurrentTeam,
-} from 'selectors/entities/threads';
+} from 'hkclient-redux/selectors/entities/threads';
 
 import {Client4} from 'hkclient-redux/client';
 

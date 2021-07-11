@@ -4,7 +4,7 @@
 import assert from 'assert';
 
 import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import * as Selectors from 'selectors/entities/bots';
+import * as Selectors from 'hkclient-redux/selectors/entities/bots';
 
 describe('Selectors.Bots', () => {
     const userID1 = 'currentUser';

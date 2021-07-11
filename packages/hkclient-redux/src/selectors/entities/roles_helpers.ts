@@ -3,7 +3,7 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentUser} from 'selectors/entities/common';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {UserProfile} from 'hkclient-redux/types/users';

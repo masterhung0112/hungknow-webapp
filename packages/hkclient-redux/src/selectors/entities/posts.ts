@@ -6,9 +6,9 @@ import {createSelector} from 'reselect';
 
 import {Posts, Preferences} from 'hkclient-redux/constants';
 
-import {getCurrentUser} from 'selectors/entities/common';
-import {getMyPreferences} from 'selectors/entities/preferences';
-import {getUsers, getCurrentUserId} from 'selectors/entities/users';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
+import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
+import {getUsers, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {Channel} from 'hkclient-redux/types/channels';
 import {

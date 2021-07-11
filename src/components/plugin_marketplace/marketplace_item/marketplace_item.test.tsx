@@ -5,7 +5,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import ConfirmModal from 'components/confirm_modal'
-import { mountWithIntl as mount } from 'testlib/helpers/intl-test-helper'
+import { mountWithIntl as mount } from 'tests/helpers/intl-test-helper'
 
 import MarketplaceItem, {
   UpdateDetails,

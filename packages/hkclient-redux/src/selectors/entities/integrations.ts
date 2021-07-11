@@ -3,7 +3,7 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 
 import {OutgoingWebhook, Command} from 'hkclient-redux/types/integrations';
 import {GlobalState} from 'hkclient-redux/types/store';

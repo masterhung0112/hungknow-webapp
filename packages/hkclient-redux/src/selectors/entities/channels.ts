@@ -7,16 +7,16 @@ import {createSelector} from 'reselect';
 import {General, Permissions, Preferences} from 'hkclient-redux/constants';
 import {CategoryTypes} from 'constants/channel_categories';
 
-import {getCategoryInTeamByType} from 'selectors/entities/channel_categories';
+import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {
     getCurrentChannelId,
     getCurrentUser,
     getUsers,
     getMyChannelMemberships,
     getMyCurrentChannelMembership,
-} from 'selectors/entities/common';
-import {getConfig, getLicense, hasNewPermissions} from 'selectors/entities/general';
-import {getLastPostPerChannel} from 'selectors/entities/posts';
+} from 'hkclient-redux/selectors/entities/common';
+import {getConfig, getLicense, hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
+import {getLastPostPerChannel} from 'hkclient-redux/selectors/entities/posts';
 import {
     getFavoritesPreferences,
     getMyPreferences,
@@ -24,14 +24,14 @@ import {
     getVisibleTeammate,
     getVisibleGroupIds,
     isCollapsedThreadsEnabled,
-} from 'selectors/entities/preferences';
-import {haveICurrentChannelPermission, haveIChannelPermission, haveITeamPermission} from 'selectors/entities/roles';
+} from 'hkclient-redux/selectors/entities/preferences';
+import {haveICurrentChannelPermission, haveIChannelPermission, haveITeamPermission} from 'hkclient-redux/selectors/entities/roles';
 import {
     getCurrentTeamId,
     getCurrentTeamMembership,
     getMyTeams,
     getTeamMemberships,
-} from 'selectors/entities/teams';
+} from 'hkclient-redux/selectors/entities/teams';
 import {
     getCurrentUserId,
     getStatusForUserId,

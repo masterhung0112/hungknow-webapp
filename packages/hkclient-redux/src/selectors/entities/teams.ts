@@ -5,8 +5,8 @@ import {createSelector} from 'reselect';
 
 import {Permissions} from 'hkclient-redux/constants';
 
-import {getConfig, getCurrentUrl, isCompatibleWithJoinViewTeamPermissions} from 'selectors/entities/general';
-import {haveISystemPermission} from 'selectors/entities/roles_helpers';
+import {getConfig, getCurrentUrl, isCompatibleWithJoinViewTeamPermissions} from 'hkclient-redux/selectors/entities/general';
+import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles_helpers';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {Team, TeamMembership, TeamStats} from 'hkclient-redux/types/teams';

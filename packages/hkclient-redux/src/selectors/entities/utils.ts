@@ -3,8 +3,8 @@
 
 import {createSelector} from 'reselect';
 
-import {getMyChannelMemberships, getAllChannels} from 'selectors/entities/channels';
-import {getCurrentUserId} from 'selectors/entities/users';
+import {getMyChannelMemberships, getAllChannels} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {Channel} from 'hkclient-redux/types/channels';

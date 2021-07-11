@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 import {General} from 'hkclient-redux/constants';
 
-import {getCurrentUser} from 'selectors/entities/common';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
 import {GlobalState} from 'hkclient-redux/types/store';
 
 export function getCurrentUserLocale(state: GlobalState, defaultLocale = General.DEFAULT_LOCALE) {

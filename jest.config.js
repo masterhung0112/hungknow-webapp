@@ -2,7 +2,7 @@ module.exports = async () => {
   //'set-tz/utc'
   return {
     setupFiles: ['jest-canvas-mock'],
-    setupFilesAfterEnv: ['<rootDir>/src/testlib/setup.js'],
+    setupFilesAfterEnv: ['<rootDir>/src/tests/setup.js'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
     clearMocks: true,
     verbose: false,
@@ -13,15 +13,15 @@ module.exports = async () => {
       '^.+\\.(jpg|jpeg|png|apng|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
         'identity-obj-proxy',
       '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
-      '^.*i18n.*\\.(json)$': '<rootDir>/src/testlib/i18n_mock.json',
+      '^.*i18n.*\\.(json)$': '<rootDir>/src/tests/i18n_mock.json',
       '^bundle-loader\\?lazy\\!(.*)$': '$1',
       '^store$': '<rootDir>/src/store',
       '^store/(.*)$': '<rootDir>/src/store/$1',
       '^stores/(.*)$': '<rootDir>/src/stores/$1',
       '^utils$': '<rootDir>/src/utils',
       '^utils/(.*)$': '<rootDir>/src/utils/$1',
-      '^testlib$': '<rootDir>/src/test',
-      '^testlib/(.*)$': '<rootDir>/src/testlib/$1',
+      '^tests$': '<rootDir>/src/test',
+      '^tests/(.*)$': '<rootDir>/src/tests/$1',
       '^actions$': '<rootDir>/src/actions',
       '^actions/(.*)$': '<rootDir>/src/actions/$1',
       '^reducers$': '<rootDir>/src/reducers',

@@ -5,7 +5,7 @@ import assert from 'assert';
 
 import {General} from 'hkclient-redux/constants';
 
-import * as Selectors from 'selectors/entities/general';
+import * as Selectors from 'hkclient-redux/selectors/entities/general';
 
 describe('Selectors.General', () => {
     it('canUploadFilesOnMobile', () => {

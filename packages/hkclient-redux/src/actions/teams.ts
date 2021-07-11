@@ -5,11 +5,11 @@ import {General} from '../constants';
 import {ChannelTypes, TeamTypes, UserTypes} from 'hkclient-redux/action_types';
 import EventEmitter from 'hkclient-redux/utils/event_emitter';
 
-import {isCompatibleWithJoinViewTeamPermissions} from 'selectors/entities/general';
+import {isCompatibleWithJoinViewTeamPermissions} from 'hkclient-redux/selectors/entities/general';
 
-import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 
-import {getCurrentUserId} from 'selectors/entities/users';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult, batchActions, Action} from 'hkclient-redux/types/actions';
 

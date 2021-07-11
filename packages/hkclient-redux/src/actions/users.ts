@@ -11,9 +11,9 @@ import {getUserIdFromChannelName, isDirectChannel, isDirectChannelVisible, isGro
 import {removeUserFromList} from 'hkclient-redux/utils/user_utils';
 import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
 
-import {getConfig, getServerVersion} from 'selectors/entities/general';
+import {getConfig, getServerVersion} from 'hkclient-redux/selectors/entities/general';
 
-import {getCurrentUserId, getUsers} from 'selectors/entities/users';
+import {getCurrentUserId, getUsers} from 'hkclient-redux/selectors/entities/users';
 
 import {Dictionary} from 'hkclient-redux/types/utilities';
 

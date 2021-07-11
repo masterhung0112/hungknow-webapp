@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": [
     "plugin:mattermost/react",
     "plugin:cypress/recommended",
@@ -21,8 +22,8 @@
   "settings": {
     "import/resolver": "webpack",
     "react": {
-      "pragma": "React",
-      "version": "detect"
+        "pragma": "React",
+        "version": "detect"
     }
   },
   "rules": {
@@ -64,19 +65,7 @@
     "no-only-tests/no-only-tests": ["error", {"focus": ["only", "skip"]}],
     "react/style-prop-object": [2, {
       "allow": ["Timestamp"]
-    }],
-    // "prettier/prettier": [
-    //   "error",
-    //   {
-    //     "printWidth": 120,
-    //     "singleQuote": true,
-    //     "trailingComma": "es5",
-    //     "semi": false,
-    //     "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-    //     "no-unused-vars": ["error"],
-    //     "endOfLine": "auto"
-    //   }
-    // ]
+    }]
   },
   "overrides": [
     {
@@ -87,7 +76,6 @@
       "rules": {
         "camelcase": 0,
         "no-shadow": 0,
-        "@typescript-eslint/explicit-module-boundary-types": "off",
         "import/no-unresolved": 0, // ts handles this better
         "@typescript-eslint/naming-convention": [
           2,
@@ -121,13 +109,6 @@
         "@typescript-eslint/no-empty-function": 0,
         "@typescript-eslint/prefer-interface": 0,
         "@typescript-eslint/explicit-function-return-type": 0,
-        "indent": [
-          2,
-          4,
-          {
-            "SwitchCase": 0
-          }
-        ],
         "@typescript-eslint/indent": [
           2,
           4,
@@ -143,38 +124,21 @@
             "variables": false
           }
         ]
-        // "prettier/prettier": [
-        //   "error",
-        //   {
-        //     "printWidth": 120,
-        //     "singleQuote": true,
-        //     "trailingComma": "es5",
-        //     "semi": false,
-        //     "no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-        //     "no-unused-vars": ["error"],
-        //     "endOfLine": "auto"
-        //   }
-        // ],
-        // "no-extra-semi": "off",
-        // "@typescript-eslint/no-extra-semi": ["off"],
-        // "@typescript-eslint/no-explicit-any": "off",
-        // "@typescript-eslint/ban-types": "off",
-        // "@typescript-eslint/naming-convention": "off",
-        // "no-var": "off",
-        // "prefer-const": "off"
       }
     },
     {
-      "files": ["tests/**", "**/*.test.*"],
+      "files": ["tests/**", "**/*.test.*", "tests/*.js"],
       "env": {
         "jest": true
       },
       "rules": {
         "func-names": 0,
         "global-require": 0,
+        "max-lines": 0,
         "new-cap": 0,
-        "prefer-arrow-callback": 0,
-        "no-import-assign": 0
+        "no-import-assign": 0,
+        "no-process-env": 0,
+        "prefer-arrow-callback": 0
       }
     },
     {
@@ -237,6 +201,5 @@
         "no-unused-expressions": 0
       }
     }
-  ],
-  "ignorePatterns": ["**/build/*"]
+  ]
 }

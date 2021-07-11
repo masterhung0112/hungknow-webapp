@@ -12,8 +12,8 @@ import {CategoryTypes} from '../constants/channel_categories';
 import {MarkUnread} from '../constants/channels';
 
 import {getAllCategoriesByIds, getCategory} from 'hkclient-redux/selectors/entities/channel_categories';
-import {isFavoriteChannel} from 'selectors/entities/channels';
-import {getMyPreferences} from 'selectors/entities/preferences';
+import {isFavoriteChannel} from 'hkclient-redux/selectors/entities/channels';
+import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
 
 import TestHelper, {DEFAULT_SERVER} from 'hkclient-redux/test/test_helper';
 

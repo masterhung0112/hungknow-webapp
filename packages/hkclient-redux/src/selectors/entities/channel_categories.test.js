@@ -5,11 +5,11 @@ import {General, Preferences} from 'hkclient-redux/constants';
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 import {MarkUnread} from 'hkclient-redux/constants/channels';
 
-import {getCurrentChannelId, getMyChannelMemberships} from 'selectors/entities/channels';
-import {getConfig} from 'selectors/entities/general';
-import {getLastPostPerChannel} from 'selectors/entities/posts';
-import {getMyPreferences} from 'selectors/entities/preferences';
-import {getCurrentUserId} from 'selectors/entities/users';
+import {getCurrentChannelId, getMyChannelMemberships} from 'hkclient-redux/selectors/entities/channels';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getLastPostPerChannel} from 'hkclient-redux/selectors/entities/posts';
+import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import mergeObjects from 'hkclient-redux/test/merge_objects';
 

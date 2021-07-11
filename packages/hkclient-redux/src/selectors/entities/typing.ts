@@ -3,8 +3,8 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentChannelId, getUsers} from 'selectors/entities/common';
-import {getTeammateNameDisplaySetting} from 'selectors/entities/preferences';
+import {getCurrentChannelId, getUsers} from 'hkclient-redux/selectors/entities/common';
+import {getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {Typing} from 'hkclient-redux/types/typing';

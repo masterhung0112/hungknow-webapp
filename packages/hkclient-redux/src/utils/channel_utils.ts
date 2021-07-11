@@ -4,8 +4,8 @@
 import {General, Preferences, Permissions, Users} from '../constants';
 import {MarkUnread} from 'constants/channels';
 
-import {hasNewPermissions} from 'selectors/entities/general';
-import {haveITeamPermission, haveIChannelPermission} from 'selectors/entities/roles';
+import {hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
+import {haveITeamPermission, haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 import {Channel, ChannelMembership, ChannelType, ChannelNotifyProps} from 'hkclient-redux/types/channels';
 import {Post} from 'hkclient-redux/types/posts';
 import {UsersState, UserProfile, UserNotifyProps} from 'hkclient-redux/types/users';

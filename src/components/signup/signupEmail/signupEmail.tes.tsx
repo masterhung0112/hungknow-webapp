@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
-import { defaultTestIntl, wrapIntlProvider, translationData } from 'testlib/intlProvider'
+import { defaultTestIntl, wrapIntlProvider, translationData } from 'tests/intlProvider'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { UserProfile } from 'hkclient-redux/types/users'

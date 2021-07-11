@@ -5,9 +5,9 @@ import assert from 'assert';
 
 import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
 import TestHelper from 'hkclient-redux/test/test_helper';
-import * as Selectors from 'selectors/entities/roles';
+import * as Selectors from 'hkclient-redux/selectors/entities/roles';
 import {General} from 'hkclient-redux/constants';
-import {getMySystemPermissions, getMySystemRoles, getRoles} from 'selectors/entities/roles_helpers';
+import {getMySystemPermissions, getMySystemRoles, getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
 
 describe('Selectors.Roles', () => {
     const team1 = TestHelper.fakeTeamWithId();

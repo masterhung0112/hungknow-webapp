@@ -3,7 +3,7 @@
 
 import {createSelector} from 'reselect';
 
-import {getConfig} from 'selectors/entities/general';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import {CustomEmoji} from 'hkclient-redux/types/emojis';
 import {GlobalState} from 'hkclient-redux/types/store';

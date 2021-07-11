@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {General, Posts, Preferences, Permissions} from '../constants';
-import {hasNewPermissions} from 'selectors/entities/general';
-import {haveIChannelPermission} from 'selectors/entities/roles';
+import {hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
+import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {PreferenceType} from 'hkclient-redux/types/preferences';

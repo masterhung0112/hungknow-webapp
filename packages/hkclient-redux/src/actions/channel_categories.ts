@@ -18,8 +18,8 @@ import {
     getCategoryIdsForTeam,
     getCategoryInTeamByType,
     getCategoryInTeamWithChannel,
-} from 'selectors/entities/channel_categories';
-import {getCurrentUserId} from 'selectors/entities/users';
+} from 'hkclient-redux/selectors/entities/channel_categories';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {
     ActionFunc,

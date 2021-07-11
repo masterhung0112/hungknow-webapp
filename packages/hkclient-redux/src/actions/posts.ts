@@ -6,10 +6,10 @@ import {General, Preferences, Posts} from '../constants';
 import {PostTypes, ChannelTypes, FileTypes, IntegrationTypes} from 'hkclient-redux/action_types';
 
 import {getCurrentChannelId, getMyChannelMember as getMyChannelMemberSelector} from 'hkclient-redux/selectors/entities/channels';
-import {getCustomEmojisByName as selectCustomEmojisByName} from 'selectors/entities/emojis';
-import {getConfig} from 'selectors/entities/general';
-import * as Selectors from 'selectors/entities/posts';
-import {getCurrentUserId, getUsersByUsername} from 'selectors/entities/users';
+import {getCustomEmojisByName as selectCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import * as Selectors from 'hkclient-redux/selectors/entities/posts';
+import {getCurrentUserId, getUsersByUsername} from 'hkclient-redux/selectors/entities/users';
 
 import {parseNeededCustomEmojisFromText} from 'hkclient-redux/utils/emoji_utils';
 import {isCombinedUserActivityPost} from 'hkclient-redux/utils/post_list';
@@ -22,7 +22,7 @@ import {Reaction} from 'hkclient-redux/types/reactions';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {CustomEmoji} from 'hkclient-redux/types/emojis';
-import {isCollapsedThreadsEnabled} from 'selectors/entities/preferences';
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
 import {getProfilesByIds, getProfilesByUsernames, getStatusesByIds} from './users';
 import {

@@ -10,17 +10,17 @@ import {General, Preferences} from '../constants';
 import {CategoryTypes} from 'constants/channel_categories';
 import {MarkUnread} from 'constants/channels';
 
-import {getCategoryInTeamByType} from 'selectors/entities/channel_categories';
+import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {
     getChannel as getChannelSelector,
     getChannelsNameMapInTeam,
     getMyChannelMember as getMyChannelMemberSelector,
     getRedirectChannelNameForTeam,
     isManuallyUnread,
-} from 'selectors/entities/channels';
-import {getConfig, getServerVersion} from 'selectors/entities/general';
-import {getCurrentTeamId} from 'selectors/entities/teams';
-import {getCurrentUserId} from 'selectors/entities/users';
+} from 'hkclient-redux/selectors/entities/channels';
+import {getConfig, getServerVersion} from 'hkclient-redux/selectors/entities/general';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
 

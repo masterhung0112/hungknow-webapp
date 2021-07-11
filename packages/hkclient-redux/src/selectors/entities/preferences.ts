@@ -5,7 +5,7 @@ import {createSelector} from 'reselect';
 
 import {General, Preferences} from 'hkclient-redux/constants';
 
-import {getConfig, getFeatureFlagValue, getLicense} from 'selectors/entities/general';
+import {getConfig, getFeatureFlagValue, getLicense} from 'hkclient-redux/selectors/entities/general';
 
 import {PreferenceType, Theme} from 'hkclient-redux/types/preferences';
 import {UserProfile} from 'hkclient-redux/types/users';

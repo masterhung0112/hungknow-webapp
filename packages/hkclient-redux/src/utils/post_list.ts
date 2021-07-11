@@ -3,10 +3,10 @@
 import moment from 'moment-timezone';
 import * as reselect from 'reselect';
 import {Posts, Preferences} from '../constants';
-import {makeGetPostsForIds} from 'selectors/entities/posts';
-import {getBool} from 'selectors/entities/preferences';
-import {isTimezoneEnabled} from 'selectors/entities/timezone';
-import {getCurrentUser} from 'selectors/entities/users';
+import {makeGetPostsForIds} from 'hkclient-redux/selectors/entities/posts';
+import {getBool} from 'hkclient-redux/selectors/entities/preferences';
+import {isTimezoneEnabled} from 'hkclient-redux/selectors/entities/timezone';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {createIdsSelector, memoizeResult} from 'hkclient-redux/utils/helpers';
 import {isUserActivityPost, shouldFilterJoinLeavePost, isFromWebhook} from 'hkclient-redux/utils/post_utils';
 import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';

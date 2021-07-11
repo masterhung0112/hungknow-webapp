@@ -4,7 +4,7 @@ import React from 'react'
 
 import InfiniteScroll from 'components/common/infinite_scroll.jsx'
 
-import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
+import { mountWithIntl } from 'tests/helpers/intl-test-helper'
 
 describe('/components/common/InfiniteScroll', () => {
   const baseProps = {

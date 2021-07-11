@@ -5,7 +5,7 @@ import assert from 'assert';
 
 import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
 import TestHelper from 'hkclient-redux/test/test_helper';
-import * as Selectors from 'selectors/entities/teams';
+import * as Selectors from 'hkclient-redux/selectors/entities/teams';
 import {General} from 'hkclient-redux/constants';
 
 describe('Selectors.Teams', () => {

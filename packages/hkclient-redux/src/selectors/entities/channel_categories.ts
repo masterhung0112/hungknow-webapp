@@ -8,11 +8,11 @@ import {createSelector} from 'reselect';
 import {General, Preferences} from 'hkclient-redux/constants';
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
-import {getCurrentChannelId, getMyChannelMemberships, makeGetChannelsForIds} from 'selectors/entities/channels';
-import {getCurrentUserLocale} from 'selectors/entities/i18n';
-import {getLastPostPerChannel} from 'selectors/entities/posts';
+import {getCurrentChannelId, getMyChannelMemberships, makeGetChannelsForIds} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentUserLocale} from 'hkclient-redux/selectors/entities/i18n';
+import {getLastPostPerChannel} from 'hkclient-redux/selectors/entities/posts';
 import {getMyPreferences, getTeammateNameDisplaySetting, shouldAutocloseDMs, getInt, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUserId} from 'selectors/entities/users';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 import {ChannelCategory, ChannelCategoryType, CategorySorting} from 'hkclient-redux/types/channel_categories';

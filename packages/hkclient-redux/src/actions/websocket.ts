@@ -3,7 +3,7 @@
 
 import {UserTypes} from 'hkclient-redux/action_types';
 
-import {getCurrentUserId, getUsers} from 'selectors/entities/users';
+import {getCurrentUserId, getUsers} from 'hkclient-redux/selectors/entities/users';
 
 import {ActionFunc, DispatchFunc, GetStateFunc, batchActions} from 'hkclient-redux/types/actions';
 

@@ -3,9 +3,9 @@
 import {IntegrationTypes} from 'hkclient-redux/action_types';
 import {General} from '../constants';
 import {Client4} from 'hkclient-redux/client';
-import {getCurrentUserId} from 'selectors/entities/users';
-import {getCurrentChannelId} from 'selectors/entities/channels';
-import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 
 import {batchActions, DispatchFunc, GetStateFunc, ActionFunc} from 'hkclient-redux/types/actions';
 

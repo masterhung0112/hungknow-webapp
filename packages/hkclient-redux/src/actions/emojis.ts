@@ -3,7 +3,7 @@
 import {Client4} from 'hkclient-redux/client';
 import {EmojiTypes} from 'hkclient-redux/action_types';
 import {General, Emoji} from '../constants';
-import {getCustomEmojisByName as selectCustomEmojisByName} from 'selectors/entities/emojis';
+import {getCustomEmojisByName as selectCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
 import {parseNeededCustomEmojisFromText} from 'hkclient-redux/utils/emoji_utils';
 
 import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult} from 'hkclient-redux/types/actions';

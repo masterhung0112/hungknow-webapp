@@ -3,7 +3,7 @@
 
 import React from 'react'
 import { shallow } from 'enzyme'
-import 'testlib/helpers/localstorage.jsx'
+import 'tests/helpers/localstorage.jsx'
 
 import AnnouncementBar from 'components/announcement_bar/default_announcement_bar/announcement_bar'
 

@@ -5,8 +5,8 @@ import {createSelector} from 'reselect';
 
 import {ScopeTypes} from 'constants/schemes';
 
-import {getAllChannels} from 'selectors/entities/channels';
-import {getTeams} from 'selectors/entities/teams';
+import {getAllChannels} from 'hkclient-redux/selectors/entities/channels';
+import {getTeams} from 'hkclient-redux/selectors/entities/teams';
 
 import {Channel} from 'hkclient-redux/types/channels';
 import {Scheme} from 'hkclient-redux/types/schemes';

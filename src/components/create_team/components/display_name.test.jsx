@@ -4,7 +4,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { FormattedMessage } from 'react-intl'
 
-import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
+import { mountWithIntl } from 'tests/helpers/intl-test-helper'
 import DisplayName from 'components/create_team/components/display_name.jsx'
 import Constants from 'utils/constants'
 import { cleanUpUrlable } from 'utils/url'

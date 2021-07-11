@@ -7,8 +7,8 @@ import {Client4} from 'hkclient-redux/client';
 
 import {Preferences} from '../constants';
 
-import {getMyPreferences as getMyPreferencesSelector, makeGetCategory} from 'selectors/entities/preferences';
-import {getCurrentUserId} from 'selectors/entities/users';
+import {getMyPreferences as getMyPreferencesSelector, makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 import {GetStateFunc, DispatchFunc, ActionFunc} from 'hkclient-redux/types/actions';
 import {PreferenceType, Theme} from 'hkclient-redux/types/preferences';

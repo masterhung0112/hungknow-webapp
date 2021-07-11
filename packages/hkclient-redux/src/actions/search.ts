@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 import {Client4} from 'hkclient-redux/client';
 import {SearchTypes} from 'hkclient-redux/action_types';
-import {getCurrentTeamId} from 'selectors/entities/teams';
-import {getCurrentUserId, getCurrentUserMentionKeys} from 'selectors/entities/users';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentUserId, getCurrentUserMentionKeys} from 'hkclient-redux/selectors/entities/users';
 
 import {ActionResult, batchActions, DispatchFunc, GetStateFunc, ActionFunc} from 'hkclient-redux/types/actions';
 

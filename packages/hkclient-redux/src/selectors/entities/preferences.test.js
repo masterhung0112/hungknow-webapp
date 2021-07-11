@@ -5,7 +5,7 @@ import assert from 'assert';
 
 import {General, Preferences} from 'hkclient-redux/constants';
 
-import * as Selectors from 'selectors/entities/preferences';
+import * as Selectors from 'hkclient-redux/selectors/entities/preferences';
 
 import mergeObjects from 'hkclient-redux/test/merge_objects';
 

@@ -3,7 +3,7 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentUserLocale} from 'selectors/entities/i18n';
+import {getCurrentUserLocale} from 'hkclient-redux/selectors/entities/i18n';
 
 import {FileInfo, FileSearchResultItem} from 'hkclient-redux/types/files';
 import {GlobalState} from 'hkclient-redux/types/store';

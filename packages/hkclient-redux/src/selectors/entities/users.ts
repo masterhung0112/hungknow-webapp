@@ -12,9 +12,9 @@ import {
     getUsers,
     getMembersInTeam,
     getMembersInChannel,
-} from 'selectors/entities/common';
-import {getConfig, getLicense} from 'selectors/entities/general';
-import {getDirectShowPreferences, getTeammateNameDisplaySetting} from 'selectors/entities/preferences';
+} from 'hkclient-redux/selectors/entities/common';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
+import {getDirectShowPreferences, getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
 
 import {
     displayUsername,
