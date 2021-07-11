@@ -4,12 +4,12 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {Client4} from 'hkclient-redux/client';
-
 import Root from 'components/root/root';
 import * as GlobalActions from 'actions/global_actions';
 import * as Utils from 'utils/utils';
 import Constants, {StoragePrefixes} from 'utils/constants';
+
+import {Client4} from 'hkclient-redux/client';
 
 jest.mock('fastclick', () => ({
     attach: () => {}, // eslint-disable-line no-empty-function

@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {setTeamListSearch} from 'actions/views/search';
+
 import {getDataRetentionCustomPolicyTeams, searchDataRetentionCustomPolicyTeams as searchTeams} from 'hkclient-redux/actions/admin';
 import {getTeamsInPolicy, searchTeamsInPolicy} from 'hkclient-redux/selectors/entities/teams';
 import {getDataRetentionCustomPolicy} from 'hkclient-redux/selectors/entities/admin';
@@ -12,9 +16,6 @@ import {teamListToMap, filterTeamsStartingWithTerm} from 'hkclient-redux/utils/t
 import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
 
 import {Team, TeamSearchOpts} from 'hkclient-redux/types/teams';
-
-import {GlobalState} from 'types/store';
-import {setTeamListSearch} from 'actions/views/search';
 
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {DataRetentionCustomPolicy} from 'hkclient-redux/types/data_retention';

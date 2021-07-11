@@ -3,9 +3,9 @@
 
 import {combineReducers} from 'redux';
 
-import {UserTypes} from 'hkclient-redux/action_types';
-
 import {ActionTypes, Locations} from 'utils/constants';
+
+import {UserTypes} from 'hkclient-redux/action_types';
 
 function emojiPickerCustomPage(state = 0, action) {
     switch (action.type) {

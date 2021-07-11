@@ -4,9 +4,9 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {OpenGraphMetadata, Post} from 'hkclient-redux/types/posts';
-
 import ExternalImage from 'components/external_image';
+
+import {OpenGraphMetadata, Post} from 'hkclient-redux/types/posts';
 
 import PostAttachmentOpenGraph, {getBestImageUrl} from './post_attachment_opengraph';
 

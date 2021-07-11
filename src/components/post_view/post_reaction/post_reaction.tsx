@@ -8,10 +8,6 @@ import {FormattedMessage} from 'react-intl';
 
 import {Dispatch} from 'redux';
 
-import Permissions from 'hkclient-redux/constants/permissions';
-
-import {Emoji} from 'hkclient-redux/types/emojis';
-
 import {Locations} from 'utils/constants';
 import {localizeMessage} from 'utils/utils.jsx';
 
@@ -19,6 +15,9 @@ import OverlayTrigger from 'components/overlay_trigger';
 import ChannelPermissionGate from 'components/permissions_gates/channel_permission_gate';
 import EmojiIcon from 'components/widgets/icons/emoji_icon';
 import EmojiPickerOverlay from 'components/emoji_picker/emoji_picker_overlay.jsx';
+
+import {Emoji} from 'hkclient-redux/types/emojis';
+import Permissions from 'hkclient-redux/constants/permissions';
 
 const TOP_OFFSET = -7;
 

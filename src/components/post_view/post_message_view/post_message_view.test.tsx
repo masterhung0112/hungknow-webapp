@@ -4,13 +4,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import PostMessageView from 'components/post_view/post_message_view/post_message_view';
+
 import {Posts} from 'hkclient-redux/constants';
 
 import {Post, PostType} from 'hkclient-redux/types/posts';
 
 import {Theme} from 'hkclient-redux/types/preferences';
-
-import PostMessageView from 'components/post_view/post_message_view/post_message_view';
 
 describe('components/post_view/PostAttachment', () => {
     const post = {

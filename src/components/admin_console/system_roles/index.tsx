@@ -4,9 +4,9 @@
 
 import {connect} from 'react-redux';
 
-import {getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
-
 import {GlobalState} from 'types/store';
+
+import {getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
 
 import SystemRoles from './system_roles';
 

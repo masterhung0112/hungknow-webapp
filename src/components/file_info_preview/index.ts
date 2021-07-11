@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {GlobalState} from 'types/store';
 
 import {canDownloadFiles} from 'utils/file_utils.jsx';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import FileInfoPreview from './file_info_preview';
 

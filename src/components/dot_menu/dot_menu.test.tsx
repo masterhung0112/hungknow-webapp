@@ -3,12 +3,12 @@
 
 import React from 'react';
 
-import {PostType} from 'hkclient-redux/types/posts';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import {Locations, PostTypes} from 'utils/constants';
 import {TestHelper} from 'utils/test_helper';
+
+import {PostType} from 'hkclient-redux/types/posts';
 
 import DotMenu, {PLUGGABLE_COMPONENT, DotMenuClass} from './dot_menu';
 

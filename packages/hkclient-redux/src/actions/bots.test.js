@@ -4,14 +4,15 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as BotActions from 'actions/bots';
-import * as UserActions from 'actions/users';
+import * as BotActions from 'hkclient-redux/actions/bots';
+import * as UserActions from 'hkclient-redux/actions/users';
+
 import {Client4} from 'hkclient-redux/client';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
 import configureStore from 'hkclient-redux/test/test_store';
 
-describe('Actions.Bots', () => {
+describe('hkclient-redux/actions.Bots', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

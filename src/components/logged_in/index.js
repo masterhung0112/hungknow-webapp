@@ -4,14 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {browserHistory} from 'utils/browser_history';
+
+import {checkIfMFARequired} from 'utils/route';
+
+import {getChannelURL} from 'utils/utils';
+
 import {autoUpdateTimezone} from 'hkclient-redux/actions/timezone';
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {getLicense, getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser, shouldShowTermsOfService} from 'hkclient-redux/selectors/entities/users';
-
-import {browserHistory} from 'utils/browser_history';
-import {checkIfMFARequired} from 'utils/route';
-import {getChannelURL} from 'utils/utils';
 
 import LoggedIn from './logged_in.jsx';
 

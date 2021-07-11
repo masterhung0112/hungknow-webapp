@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {getLogs} from 'hkclient-redux/actions/admin';
 
 import * as Selectors from 'hkclient-redux/selectors/entities/admin';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {GlobalState} from 'types/store';
 
 import Logs from './logs';
 

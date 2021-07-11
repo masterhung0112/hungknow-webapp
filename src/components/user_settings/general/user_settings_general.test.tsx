@@ -5,10 +5,10 @@ import React from 'react';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {shallowWithIntl, mountWithIntl} from 'tests/helpers/intl-test-helper';
 import {TestHelper} from 'utils/test_helper';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 import UserSettingsGeneral, {UserSettingsGeneralTab} from './user_settings_general';
 

@@ -4,10 +4,6 @@
 
 import React, {CSSProperties} from 'react';
 
-import {AppBinding} from 'hkclient-redux/types/apps';
-
-import {Post} from 'hkclient-redux/types/posts';
-
 import * as Utils from 'utils/utils';
 import LinkOnlyRenderer from 'utils/markdown/link_only_renderer';
 import {TextFormattingOptions} from 'utils/text_formatting';
@@ -15,10 +11,13 @@ import {TextFormattingOptions} from 'utils/text_formatting';
 import Markdown from 'components/markdown';
 import ShowMore from 'components/post_view/show_more';
 
+import {fillBindingsInformation} from 'utils/apps';
+
 import ButtonBinding from '../button_binding';
 import SelectBinding from '../select_binding';
 
-import {fillBindingsInformation} from 'utils/apps';
+import {Post} from 'hkclient-redux/types/posts';
+import {AppBinding} from 'hkclient-redux/types/apps';
 
 type Props = {
 

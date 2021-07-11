@@ -3,13 +3,13 @@
 
 import React from 'react';
 
-import {memoizeResult} from 'hkclient-redux/utils/helpers';
-import {Role} from 'hkclient-redux/types/roles';
-
 import {t} from 'utils/i18n';
 
 import AdminPanel from 'components/widgets/admin_console/admin_panel';
 import Constants from 'utils/constants';
+
+import {Role} from 'hkclient-redux/types/roles';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
 
 import SystemRolePermission from './system_role_permission';
 import {PermissionsToUpdate, PermissionToUpdate, SystemSection} from './types';

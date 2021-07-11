@@ -4,17 +4,16 @@
 import React, {ReactNode} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {General, Posts} from 'hkclient-redux/constants';
-import {Post} from 'hkclient-redux/types/posts';
-
-import {Channel} from 'hkclient-redux/types/channels';
-
 import * as Utils from 'utils/utils.jsx';
 import {TextFormattingOptions} from 'utils/text_formatting';
 
 import Markdown from 'components/markdown';
 import CombinedSystemMessage from 'components/post_view/combined_system_message';
 import PostAddChannelMember from 'components/post_view/post_add_channel_member';
+
+import {Channel} from 'hkclient-redux/types/channels';
+import {Post} from 'hkclient-redux/types/posts';
+import {General, Posts} from 'hkclient-redux/constants';
 
 function renderUsername(value: string): ReactNode {
     const username = (value[0] === '@') ? value : `@${value}`;

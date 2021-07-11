@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions';
+
 import {
     linkGroupSyncable,
     unlinkGroupSyncable,
@@ -16,8 +18,6 @@ import {
 import {getProfilesInGroup} from 'hkclient-redux/actions/users';
 import {getGroup, getGroupTeams, getGroupChannels, getGroupMemberCount} from 'hkclient-redux/selectors/entities/groups';
 import {getProfilesInGroup as selectProfilesInGroup} from 'hkclient-redux/selectors/entities/users';
-
-import {setNavigationBlocked} from 'actions/admin_actions';
 
 import GroupDetails from './group_details.jsx';
 

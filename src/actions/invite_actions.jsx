@@ -1,15 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {addUsersToTeam} from 'actions/team_actions';
+
+import {t} from 'utils/i18n';
+
+import {isGuest, localizeMessage} from 'utils/utils';
+
 import * as TeamActions from 'hkclient-redux/actions/teams';
 import {getTeamMember} from 'hkclient-redux/selectors/entities/teams';
 import {getChannelMembersInChannels} from 'hkclient-redux/selectors/entities/channels';
 import {joinChannel} from 'hkclient-redux/actions/channels';
-
-import {addUsersToTeam} from 'actions/team_actions';
-
-import {t} from 'utils/i18n';
-import {isGuest, localizeMessage} from 'utils/utils';
 
 export function sendMembersInvites(teamId, users, emails) {
     return async (dispatch, getState) => {

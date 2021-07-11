@@ -6,10 +6,10 @@ import React from 'react';
 import {injectIntl} from 'react-intl';
 import debounce from 'lodash/debounce';
 
-import {getEmojiImageUrl} from 'hkclient-redux/utils/emoji_utils';
-
 import imgTrans from 'images/img_trans.gif';
 import {intlShape} from 'utils/react_intl';
+
+import {getEmojiImageUrl} from 'hkclient-redux/utils/emoji_utils';
 
 const SCROLLING_ADDITIONAL_VISUAL_SPACING = 10; // to make give the emoji some visual 'breathing room'
 const EMOJI_LAZY_LOAD_SCROLL_THROTTLE = 150;

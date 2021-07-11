@@ -4,17 +4,16 @@
 import {connect} from 'react-redux';
 import {Dispatch, bindActionCreators} from 'redux';
 
-import {savePreferences} from 'hkclient-redux/actions/preferences';
-import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUserId, getCurrentUser, isCurrentUserSystemAdmin} from 'hkclient-redux/selectors/entities/users';
-
-import {getSteps} from '../../next_steps_view/steps';
-
 import {openModal, closeModal} from 'actions/views/modals';
 import {setShowNextStepsView} from 'actions/views/next_steps';
 import {showNextSteps, showNextStepsTips} from 'components/next_steps_view/steps';
 import {GlobalState} from 'types/store';
 import {Preferences} from 'utils/constants';
+
+import {getSteps} from '../../next_steps_view/steps';
+import {getCurrentUserId, getCurrentUser, isCurrentUserSystemAdmin} from 'hkclient-redux/selectors/entities/users';
+import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
+import {savePreferences} from 'hkclient-redux/actions/preferences';
 
 import SidebarNextSteps from './sidebar_next_steps';
 

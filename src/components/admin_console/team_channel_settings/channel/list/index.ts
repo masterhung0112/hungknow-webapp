@@ -4,15 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {Constants} from 'utils/constants';
+
 import {createSelector} from 'reselect';
 
 import {getAllChannelsWithCount as getData, searchAllChannels} from 'hkclient-redux/actions/channels';
 import {getAllChannels} from 'hkclient-redux/selectors/entities/channels';
 import {GenericAction, ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
 import {ChannelWithTeamData, ChannelSearchOpts} from 'hkclient-redux/types/channels';
-
-import {GlobalState} from 'types/store';
-import {Constants} from 'utils/constants';
 
 import List from './channel_list';
 

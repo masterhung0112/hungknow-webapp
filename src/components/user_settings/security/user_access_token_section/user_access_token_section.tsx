@@ -4,9 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import * as UserUtils from 'hkclient-redux/utils/user_utils';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 import Constants from 'utils/constants';
 import {isMobile} from 'utils/user_agent';
@@ -18,6 +15,9 @@ import SaveButton from 'components/save_button';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import WarningIcon from 'components/widgets/icons/fa_warning_icon';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import * as UserUtils from 'hkclient-redux/utils/user_utils';
 
 const SECTION_TOKENS = 'tokens';
 const TOKEN_CREATING = 'creating';

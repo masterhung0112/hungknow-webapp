@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
 import {ModalIdentifiers} from 'utils/constants';
 import {isModalOpen} from 'selectors/views/modals';
 import {openModal} from 'actions/views/modals';
 
 import {GlobalState} from 'types/store';
+
+import {ActionFunc} from 'hkclient-redux/types/actions';
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 
 import TeamMembersModal from './team_members_modal';
 

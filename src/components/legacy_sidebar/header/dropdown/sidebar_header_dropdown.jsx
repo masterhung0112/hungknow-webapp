@@ -8,8 +8,6 @@ import * as GlobalActions from 'actions/global_actions';
 import {Constants, ModalIdentifiers} from 'utils/constants';
 import {cmdOrCtrlPressed, isKeyPressed} from 'utils/utils';
 
-import SidebarHeaderDropdownButton from '../sidebar_header_dropdown_button.jsx';
-
 import UserSettingsModal from 'components/user_settings/modal';
 
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
@@ -17,6 +15,8 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import MainMenu from 'components/main_menu';
 
 import {isAdmin} from 'utils/utils.jsx';
+
+import SidebarHeaderDropdownButton from '../sidebar_header_dropdown_button.jsx';
 
 export default class SidebarHeaderDropdown extends React.PureComponent {
     static propTypes = {

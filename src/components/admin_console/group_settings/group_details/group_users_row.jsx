@@ -5,9 +5,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-
 import Avatar from 'components/widgets/users/avatar';
+
+import {Client4} from 'hkclient-redux/client';
 
 export default class GroupUsersRow extends React.PureComponent {
     static propTypes = {

@@ -1,3 +1,3 @@
-import StorageTypes from './storage'
+import StorageTypes from './storage';
 
-export { StorageTypes }
+export {StorageTypes};

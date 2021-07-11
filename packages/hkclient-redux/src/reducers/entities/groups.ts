@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {GroupTypes} from 'hkclient-redux/action_types';
 import {GroupChannel, GroupSyncablesState, GroupTeam, Group} from 'hkclient-redux/types/groups';
 import {GenericAction} from 'hkclient-redux/types/actions';

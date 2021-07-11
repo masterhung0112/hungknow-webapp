@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Emoji} from 'hkclient-redux/types/emojis';
-
 import PostReaction from 'components/post_view/post_reaction/post_reaction';
+
+import {Emoji} from 'hkclient-redux/types/emojis';
 
 describe('components/post_view/PostReaction', () => {
     const baseProps = {

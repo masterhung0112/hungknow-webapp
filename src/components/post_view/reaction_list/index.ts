@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {addReaction} from 'actions/post_actions.jsx';
+
 import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {makeGetReactionsForPost} from 'hkclient-redux/selectors/entities/posts';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
@@ -11,8 +13,6 @@ import {GlobalState} from 'hkclient-redux/types/store';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Post} from 'hkclient-redux/types/posts';
 import {Reaction} from 'hkclient-redux/types/reactions';
-
-import {addReaction} from 'actions/post_actions.jsx';
 
 import ReactionList from './reaction_list';
 

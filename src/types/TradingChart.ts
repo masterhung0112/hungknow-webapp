@@ -1,39 +1,48 @@
 export type CandleData = {
-  /** c-coordinate (px) */
-  x: number
-  /** width (px) */
-  w: number
-  /** open (px) */
-  o: number
-  /** high (px) */
-  h: number
-  /** low (px) */
-  l: number
-  /** close (px) */
-  c: number
-  /** Candle data e.g. [1553378400000, ...] */
-  raw: any[]
+
+    /** c-coordinate (px) */
+    x: number;
+
+    /** width (px) */
+    w: number;
+
+    /** open (px) */
+    o: number;
+
+    /** high (px) */
+    h: number;
+
+    /** low (px) */
+    l: number;
+
+    /** close (px) */
+    c: number;
+
+    /** Candle data e.g. [1553378400000, ...] */
+    raw: any[];
 }
 
 export type TimeRange = {
-  /** Left-bound of the range | Index (in IB mode) */
-  t1: number
-  /** Right-bound of the range | Index (in IB mode) */
-  t2: number
 
-  exp: boolean
+    /** Left-bound of the range | Index (in IB mode) */
+    t1: number;
+
+    /** Right-bound of the range | Index (in IB mode) */
+    t2: number;
+
+    exp: boolean;
 }
 
 export type TimeRangeCreator = (hi: number, lo: number, exp?: boolean) => TimeRange
 
 export type TimeIndexData = {
-  TimeIndexMap: any[]
-  IndexTimeMap: any[]
-  SubIndex: any[]
-  IndexBased: any
-  Sub: any
-  SubStart: any
-  IntervalMs: number
+    TimeIndexMap: any[];
+    IndexTimeMap: any[];
+    SubIndex: any[];
+    IndexBased: any;
+    Sub: any;
+    SubStart: any;
+    IntervalMs: number;
 }
 
 /**
@@ -43,23 +52,24 @@ export type TimeIndexData = {
  * indicator calculations and drawing tools (and much more).
  */
 export interface DataCube {
-  /** Original chart data. Use it for direct access */
-  data: Object
 
-  /** Reference to trading-vue component */
-  tv: any
+    /** Original chart data. Use it for direct access */
+    data: Object;
 
-  /** DC Settings object */
-  sett: Object
+    /** Reference to trading-vue component */
+    tv: any;
 
-  /** Script Engine state */
-  se_state: Object
+    /** DC Settings object */
+    sett: Object;
 
-  /** Web-worker interface */
-  ww: Object
+    /** Script Engine state */
+    se_state: Object;
 
-  /** 
-   * Adds a new overlay to the selected array reactively 
+    /** Web-worker interface */
+    ww: Object;
+
+    /**
+   * Adds a new overlay to the selected array reactively
    * @returns Overlay datacube id
    * @example
    * dc.add('onchart', {
@@ -71,17 +81,17 @@ export interface DataCube {
       }
       }) // -> "onchart.Spline0"
    **/
-  add(side: 'onchart' | 'offchart', overlay: Object): string
+    add(side: 'onchart' | 'offchart', overlay: Object): string;
 
-  /**
+    /**
    * Gets all objects matching the query.
    * @param query query (String)
    * @returns Array of objects
    * @example dc.get('onchart.Spline')  // -> [{id: "onchart.Spline0", name: "EMA", ...}]
    */
-  get(query: string): any[]
+    get(query: string): any[];
 
-  /**
+    /**
    * Gets first object matching the query.
    * @param query query string
    * @example
@@ -90,16 +100,16 @@ export interface DataCube {
     dc.get_one('onchart.Spline')  // -> {id: "onchart.Spline0", name: "EMA", ...}
     dc.get_one('onchart.Spline.data')  // -> [ ... ]
    */
-  get_one(query: string): any
+    get_one(query: string): any;
 
-  /**
+    /**
    * Changes values of selected objects.
    * @param query string
    * @param data (Object|Array) New value
    */
-  set(query: string, data: Object | Object[]): void
+    set(query: string, data: Object | Object[]): void;
 
-  /**
+    /**
    * Merges objects pulled by query with new data. Objects can be of type Object or Array.
    * If the type is Array, DC will first consider the data as time series and try to combine them by timestamp.
    * Note: time series must be sorted before merging
@@ -118,18 +128,18 @@ export interface DataCube {
     dc.get('chart.data') // ->
     // [[10001, 1, 1, 1, 1 ], [10002, 2, 2, 2, 2 ], [10003, 3, 3, 3, 3 ]]
    */
-  merge(query: string, data: Object | Object[]): void
+    merge(query: string, data: Object | Object[]): void;
 
-  /**
+    /**
    * Removes all overlays matching query.
    * @param query
    * @example
    * dc.del('.') // Remove everything (except the main chart)
    * dc.del('Spline') // Remove all overlays with id/name 'Spline'
    */
-  del(query: string): void
+    del(query: string): void;
 
-  /**
+    /**
    * Updates/appends a data point, depending on the timestamp (or current time).
    * @param data Specifies an update, see examples below
    * @returns true if a new candle is formed
@@ -154,74 +164,82 @@ export interface DataCube {
           'BB': [8955, 8522] // query => [value, value, ...]
       })
    */
-  update(data: Object): boolean
+    update(data: Object): boolean;
 
-  /**
+    /**
    * Excludes specific query from results (for all query-based methods).
    * @param query
    * @example
    * dc.lock('onchart.Spline')
    * dc.get('onchart.Spline')  // -> []
    */
-  lock(query: string): void
+    lock(query: string): void;
 
-  /**
+    /**
    * Enables the query back.
    * @param query
    * @example
    * dc.unlock('onchart.Spline')
    * dc.get('onchart.Spline')  // -> [{id: "onchart.Spline0", name: "EMA", ...}]
    */
-  unlock(query: string): void
+    unlock(query: string): void;
 
-  /**
+    /**
    * Show/Hide all overlays by query.
    * @param query
    * @example
    * dc.show('onchart.Spline')
    * dc.hide('.')
    */
-  show(query: string): void
-  hide(query: string): void
+    show(query: string): void;
+    hide(query: string): void;
 }
 
 export type DataCubSettings = {
-  /** Update aggregation interval, default = 100 */
-  aggregation: number
-  /** 0 === Exec on all data, default = 0 */
-  script_depth: number
-  /** Auto scroll to a new candle, default = true */
-  auto_scroll: boolean
-  /** Enable overlays scripts, default = true */
-  scripts: boolean
-  /** Use node.js instead of WW */
-  node_url: string
-  /** Shift+click measurment, default = true */
-  shift_measure: string
-  /** WebWorker RAM limit (MB), default = 0 */
-  ww_ram_limit: number
+
+    /** Update aggregation interval, default = 100 */
+    aggregation: number;
+
+    /** 0 === Exec on all data, default = 0 */
+    script_depth: number;
+
+    /** Auto scroll to a new candle, default = true */
+    auto_scroll: boolean;
+
+    /** Enable overlays scripts, default = true */
+    scripts: boolean;
+
+    /** Use node.js instead of WW */
+    node_url: string;
+
+    /** Shift+click measurment, default = true */
+    shift_measure: string;
+
+    /** WebWorker RAM limit (MB), default = 0 */
+    ww_ram_limit: number;
 }
 
 export type CursorData = {
-  /** Current x position (px) */
-  x: number
 
-  /** Current y position (px) */
-  y: number
+    /** Current x position (px) */
+    x: number;
 
-  /** Current timestamp (ms) */
-  t: number
+    /** Current y position (px) */
+    y: number;
 
-  /** Current price level */
-  y$: number
+    /** Current timestamp (ms) */
+    t: number;
 
-  /** Current grid id */
-  grid_id: number
+    /** Current price level */
+    y$: number;
 
-  /** true during scrolling, false otherwise */
-  locked: boolean
+    /** Current grid id */
+    grid_id: number;
 
-  /** Current indicator values in a specific format
+    /** true during scrolling, false otherwise */
+    locked: boolean;
+
+    /** Current indicator values in a specific format
    *  Values format
    *  values: {
    *   "<grid_id>": {
@@ -245,282 +263,290 @@ export type CursorData = {
    *     }
    * }
    */
-  values: Record<number, Record<string, any>>
+    values: Record<number, Record<string, any>>;
 
-  /** True when scrolling is locked (drawing mode) */
-  scroll_lock?: boolean
+    /** True when scrolling is locked (drawing mode) */
+    scroll_lock?: boolean;
 
-  mode: string
+    mode: string;
 }
 
 export interface GridSettings {
-  logScale?: boolean
-  height?: number // Grid height (weight)
-  id?: number // New grid id (merge with another, offchart only)
+    logScale?: boolean;
+    height?: number; // Grid height (weight)
+    id?: number; // New grid id (merge with another, offchart only)
 }
 
 export interface GridLayout extends Layout {
-  // id: string
-  // height: number
-  // width: number
-  logScale?: number | null
+
+    // id: string
+    // height: number
+    // width: number
+    logScale?: number | null;
 }
 
 export interface ComponentBaseProps {
-  // Common props
-  title_txt: string
-  layout: MainLayout
-  sub: any
-  range: TimeRange
-  interval: number
-  cursor: CursorData
-  colors: any
-  font: any
-  y_ts: any
-  tv_id: string
-  config: any
-  buttons: any
-  meta: any
-  skin: any
-  data: DataCore[]
+
+    // Common props
+    title_txt: string;
+    layout: MainLayout;
+    sub: any;
+    range: TimeRange;
+    interval: number;
+    cursor: CursorData;
+    colors: any;
+    font: any;
+    y_ts: any;
+    tv_id: string;
+    config: any;
+    buttons: any;
+    meta: any;
+    skin: any;
+    data: DataCore[];
 }
 export interface LayoutComponentProps extends ComponentBaseProps {
-  overlays: any
+    overlays: any;
 }
 export interface BotBarProps extends ComponentBaseProps {
-  width: number
-  height: number
-  rerender: Function
+    width: number;
+    height: number;
+    rerender: Function;
 }
 
 export interface DataCore {
-  type: string
-  name?: string
-  data: any
-  settings: Record<string, string>
-  grid: GridLayout
-  tf?: number // Forced timeframe, e.g. '1s'...'1Y' | Number
-  i0: number
-  loading?: boolean
-  last: any
-  main?: boolean
+    type: string;
+    name?: string;
+    data: any;
+    settings: Record<string, string>;
+    grid: GridLayout;
+    tf?: number; // Forced timeframe, e.g. '1s'...'1Y' | Number
+    i0: number;
+    loading?: boolean;
+    last: any;
+    main?: boolean;
 }
 
 /** Key is grid_id */
-export type LayersMeta = Record<string, { y_range: TimeRangeCreator; x_range: TimeRangeCreator }[]>
+export type LayersMeta = Record<string, Array<{ y_range: TimeRangeCreator; x_range: TimeRangeCreator }>>
 export interface GridMakerParams {
-  sub: any[]
-  interval: any
-  range: TimeRange
-  ctx: any
-  $p: any
-  layers_meta: LayersMeta
-  ti_map: any
-  height: number
-  y_t: any
-  grid: GridLayout // Parent grid
-  timezone: any
+    sub: any[];
+    interval: any;
+    range: TimeRange;
+    ctx: any;
+    $p: any;
+    layers_meta: LayersMeta;
+    ti_map: any;
+    height: number;
+    y_t: any;
+    grid: GridLayout; // Parent grid
+    timezone: any;
 
-  // grids: any
-  // offsub: any[]
-  // y_transforms: any
+    // grids: any
+    // offsub: any[]
+    // y_transforms: any
 
-  // $props: any
-  // chart: any
+    // $props: any
+    // chart: any
 }
 
 export interface LayoutParams {
-  chart: any
-  sub: any[]
-  offsub: any[]
-  interval: any
-  range: TimeRange
-  ctx: any
-  layers_meta: LayersMeta
-  ti_map: any
-  $props: any
-  y_transforms: any
+    chart: any;
+    sub: any[];
+    offsub: any[];
+    interval: any;
+    range: TimeRange;
+    ctx: any;
+    layers_meta: LayersMeta;
+    ti_map: any;
+    $props: any;
+    y_transforms: any;
 }
 
 export interface GridMaker {
-  create(): GridLayout
-  readonly layout: Layout
-  sidebar: any
-  // readonly sideBar: any
+    create(): GridLayout;
+    readonly layout: Layout;
+    sidebar: any;
+
+    // readonly sideBar: any
 }
 
 export interface MainLayout {
-  grids: Layout[]
-  botbar: any
+    grids: Layout[];
+    botbar: any;
 }
 
 export interface Layout {
-  type: string
+    type: string;
 
-  /** Upper bound of price-range */
-  $_hi: number
-  /** Upper bound of price-range */
-  $_lo: number
-  /** Grid price step */
-  $_step: number
-  /** Grid price multipler (log-scale mode) */
-  $_mult: number
+    /** Upper bound of price-range */
+    $_hi: number;
 
-  /** Grid time step */
-  t_step: number
+    /** Upper bound of price-range */
+    $_lo: number;
 
-  /** Scale transform coefficient */
-  A: number
+    /** Grid price step */
+    $_step: number;
 
-  /** Scale transform coefficient */
-  B: number
+    /** Grid price multipler (log-scale mode) */
+    $_mult: number;
 
-  /** Grid ID */
-  id: number
+    /** Grid time step */
+    t_step: number;
 
-  /** Sidebar precision (decimals after point) */
-  prec: number
+    /** Scale transform coefficient */
+    A: number;
 
-  /** Grid height (px) */
-  height: number
+    /** Scale transform coefficient */
+    B: number;
 
-  /** Grid width (without sidebar, px) */
-  width: number
+    /** Grid ID */
+    id: number;
 
-  /** Grid offset from the top (px) */
-  offset: number
+    /** Sidebar precision (decimals after point) */
+    prec: number;
 
-  /** Candlestick step (px) */
-  px_step: number
+    /** Grid height (px) */
+    height: number;
 
-  /** Sidebar width */
-  sb: number
+    /** Grid width (without sidebar, px) */
+    width: number;
 
-  /** Drawing area width (px) */
-  spacex: number
+    /** Grid offset from the top (px) */
+    offset: number;
 
-  /** First candle position (px) */
-  startx: number
+    /** Candlestick step (px) */
+    px_step: number;
 
-  /** Time-index mapping for IB mode */
-  ti_map: TimeIndexData
+    /** Sidebar width */
+    sb: number;
 
-  /** Candles subset */
-  candles: CandleData[]
+    /** Drawing area width (px) */
+    spacex: number;
 
-  /** Volume bars positions and sizes */
-  volume: any[]
+    /** First candle position (px) */
+    startx: number;
 
-  /** vertical grid lines [[x, candle], ...] */
-  xs: [number, any, any?][]
+    /** Time-index mapping for IB mode */
+    ti_map: TimeIndexData;
 
-  /** horizontal grid lines [[y, price], ...] */
-  ys: [number, any][]
+    /** Candles subset */
+    candles: CandleData[];
 
-  // grids: GridLayout[]
-  grid: GridLayout
-  botbar: {
-    width: number
-    height: number
-    offset: number
-    xs: any[]
-  }
+    /** Volume bars positions and sizes */
+    volume: any[];
 
-  master_grid: GridLayout
+    /** vertical grid lines [[x, candle], ...] */
+    xs: Array<[number, any, any?]>;
 
-  range: TimeRange
+    /** horizontal grid lines [[y, price], ...] */
+    ys: Array<[number, any]>;
 
-  /**
+    // grids: GridLayout[]
+    grid: GridLayout;
+    botbar: {
+        width: number;
+        height: number;
+        offset: number;
+        xs: any[];
+    };
+
+    master_grid: GridLayout;
+
+    range: TimeRange;
+
+    /**
    * Returns y-coordinate for given price
    * @param price price number
    * @returns pixels (number)
    */
-  // $2screen(price: number): number
+    // $2screen(price: number): number
 
-  /**
+    /**
    * Returns x-coordinate for given timestamp
    * @param t time (number)
    * @returns pixels (number)
    */
-  // t2screen(t: number): number
+    // t2screen(t: number): number
 
-  /**
+    /**
    * Returns price for given y-coordinate
    * @param y y (number)
    * @returns price (number)
    */
-  // screen2$(y: number): number
+    // screen2$(y: number): number
 
-  /**
+    /**
    * Returns time for given x-coordinate
    * @param x x (number)
    * @returns time (number)
    */
-  // screen2t(x: number): number
+    // screen2t(x: number): number
 
-  /**
+    /**
    * Returns x-coordinate of nearest candle for given time
    * @param t time (number)
    * @returns pixels (number)
    */
-  // t_magnet(t: number): number
+    // t_magnet(t: number): number
 
-  /**
+    /**
    * Returns nearest candle for given time
    * @param t time (Number)
    * @returns Candle Object
    */
-  // c_magnet(t: number): CandleData
+    // c_magnet(t: number): CandleData
 }
 
 export type OverlayData = {
-  /** Overlay unique id (within current grid) ,e.g 'EMA_1' */
-  id: string
-  /** Overlay unique num (within current grid) */
-  num: number
 
-  /** Candlestick interval, ms (e.g. 1 min = 60000 ) */
-  interval: number
+    /** Overlay unique id (within current grid) ,e.g 'EMA_1' */
+    id: string;
 
-  /** Crosshair position and selected values, see below */
-  cursor: Object
+    /** Overlay unique num (within current grid) */
+    num: number;
 
-  /** All colors from TradingVue.vue combined */
-  colors: Object
+    /** Candlestick interval, ms (e.g. 1 min = 60000 ) */
+    interval: number;
 
-  /** Layout API object */
-  layout: Object
+    /** Crosshair position and selected values, see below */
+    cursor: Object;
 
-  /** Current subset of candlestick data */
-  sub: any[]
+    /** All colors from TradingVue.vue combined */
+    colors: Object;
 
-  /** Current subset of indicator data */
-  data: DataCore[]
+    /** Layout API object */
+    layout: Object;
 
-  /** Indicator's settings, defined in data.json */
-  settings: Record<string, string>
+    /** Current subset of candlestick data */
+    sub: any[];
 
-  /** Current grid id */
-  grid_id: number
+    /** Current subset of indicator data */
+    data: DataCore[];
 
-  /** Chart config, see 'constants.js' */
-  config: Object
+    /** Indicator's settings, defined in data.json */
+    settings: Record<string, string>;
 
-  /** Contains the last price and other info */
-  meta: Object
+    /** Current grid id */
+    grid_id: number;
 
-  /** The first global index of the current subset */
-  i0: number
+    /** Chart config, see 'constants.js' */
+    config: Object;
+
+    /** Contains the last price and other info */
+    meta: Object;
+
+    /** The first global index of the current subset */
+    i0: number;
 }
 
 export interface OverlayMeta {
-  use_for: string[]
-  tool?: string[]
+    use_for: string[];
+    tool?: string[];
 }
 export interface ToolData {
-  type: string
-  group?: string
-  hint?: string
-  settings: Record<string, string>
-  data: any[]
+    type: string;
+    group?: string;
+    hint?: string;
+    settings: Record<string, string>;
+    data: any[];
 }

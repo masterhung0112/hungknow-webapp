@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {PostTypes, TeamTypes, ThreadTypes, UserTypes} from 'hkclient-redux/action_types';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Team} from 'hkclient-redux/types/teams';
@@ -204,7 +205,6 @@ export const countsReducer = (state: ThreadsState['counts'] = {}, action: Generi
             total_unread_mentions: 0,
         };
         const unreadMentionDiff = newUnreadMentions - prevUnreadMentions;
-
 
         counts.total_unread_mentions += unreadMentionDiff;
 

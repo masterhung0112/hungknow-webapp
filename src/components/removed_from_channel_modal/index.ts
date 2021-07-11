@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {getCurrentUserId, getUser} from 'hkclient-redux/selectors/entities/users';
-
 import {GlobalState} from 'types/store';
+
+import {getCurrentUserId, getUser} from 'hkclient-redux/selectors/entities/users';
 
 import RemovedFromChannelModal from './removed_from_channel_modal';
 

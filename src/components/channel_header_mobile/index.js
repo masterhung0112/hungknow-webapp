@@ -5,6 +5,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter, matchPath} from 'react-router-dom';
 
+import {
+    closeRightHandSide as closeRhs,
+    closeMenu as closeRhsMenu,
+} from 'actions/views/rhs';
+
+import {close as closeLhs} from 'actions/views/lhs';
+
+import {getIsRhsOpen} from 'selectors/rhs';
+
 import {createSelector} from 'reselect';
 
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
@@ -15,14 +24,6 @@ import {
 } from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
-
-import {
-    closeRightHandSide as closeRhs,
-    closeMenu as closeRhsMenu,
-} from 'actions/views/rhs';
-import {close as closeLhs} from 'actions/views/lhs';
-
-import {getIsRhsOpen} from 'selectors/rhs';
 
 import ChannelHeaderMobile from './channel_header_mobile';
 

@@ -5,8 +5,6 @@ import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {FileInfo} from 'hkclient-redux/types/files';
-
 import {FileDropdownPluginComponent} from 'types/store/plugins';
 
 import {fileSizeToString, copyToClipboard, localizeMessage} from 'utils/utils';
@@ -21,6 +19,8 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import FileThumbnail from 'components/file_attachment/file_thumbnail';
 import Timestamp, {RelativeRanges} from 'components/timestamp';
 import ViewImageModal from 'components/view_image';
+
+import {FileInfo} from 'hkclient-redux/types/files';
 
 import './file_search_result_item.scss';
 

@@ -4,12 +4,12 @@
 import React from 'react';
 import {ShallowWrapper} from 'enzyme';
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 import Constants from 'utils/constants';
 import {TestHelper} from 'utils/test_helper';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
 import SidebarChannelMenu, {SidebarChannelMenu as SidebarChannelMenuType} from './sidebar_channel_menu';
 

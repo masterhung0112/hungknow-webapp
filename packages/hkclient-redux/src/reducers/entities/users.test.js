@@ -3,10 +3,11 @@
 
 import assert from 'assert';
 
-import {UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
-import reducer from 'reducers/entities/users';
+import reducer from 'hkclient-redux/reducers/entities/users';
 
-describe('Reducers.users', () => {
+import {UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
+
+describe('hkclient-redux/reducers.users', () => {
     describe('profilesInChannel', () => {
         it('initial state', () => {
             const state = undefined;

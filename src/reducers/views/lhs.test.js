@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {TeamTypes} from 'hkclient-redux/action_types';
-
 import lhsReducer from 'reducers/views/lhs';
 import {ActionTypes} from 'utils/constants';
+
+import {TeamTypes} from 'hkclient-redux/action_types';
 
 describe('Reducers.LHS', () => {
     const initialState = {

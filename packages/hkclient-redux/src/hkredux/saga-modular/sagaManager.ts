@@ -1,9 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {ISagaItemManager, ISagaRegistration, ISagaWithArguments} from './contracts';
 import {SagaMiddleware, Task} from 'redux-saga';
-import {sagaEquals} from './sagaComparer';
+
 import {getMap} from 'redux-dynamic-modules-core';
+
+import {ISagaItemManager, ISagaRegistration, ISagaWithArguments} from './contracts';
+
+import {sagaEquals} from './sagaComparer';
 
 /**
  * Creates saga items which can be used to start and stop sagas dynamically

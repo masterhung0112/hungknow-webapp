@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {setUserGridSearch} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
@@ -15,9 +19,6 @@ import {getFilteredUsersStats, getProfiles, searchProfiles} from 'hkclient-redux
 
 import {getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
 import {getProfiles as selectProfiles, getFilteredUsersStats as selectFilteredUserStats, makeSearchProfilesStartingWithTerm, filterProfiles, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {setUserGridSearch} from 'actions/views/search';
-import {GlobalState} from 'types/store';
 
 import SystemRoleUsers, {Props} from './system_role_users';
 

@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {getEmojiImageUrl} from 'hkclient-redux/utils/emoji_utils';
 import AnyTeamPermissionGate from 'components/permissions_gates/any_team_permission_gate';
-import Permissions from 'hkclient-redux/constants/permissions';
 
 import imgTrans from 'images/img_trans.gif';
+
+import {getEmojiImageUrl} from 'hkclient-redux/utils/emoji_utils';
+import Permissions from 'hkclient-redux/constants/permissions';
 
 export default class EmojiPickerPreview extends React.PureComponent {
     static propTypes = {

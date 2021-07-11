@@ -1,6 +1,6 @@
-import configureStore from 'store'
-import { MakeStore, createWrapper } from 'next-redux-wrapper'
-import { GlobalState } from 'types/store'
+import configureStore from 'store';
+import {MakeStore, createWrapper} from 'next-redux-wrapper';
+import {GlobalState} from 'types/store';
 
 // Create the default store
 // const store = configureStore();
@@ -16,11 +16,11 @@ import { GlobalState } from 'types/store'
 //     windowAny.store = store;
 // }
 
-const defaultStore = configureStore({})
+const defaultStore = configureStore({});
 
-export const makeStore: MakeStore<GlobalState> = () => defaultStore // configureStore({})
+export const makeStore: MakeStore<GlobalState> = () => defaultStore; // configureStore({})
 
-export const wrapper = createWrapper<GlobalState>(makeStore, { debug: false })
+export const wrapper = createWrapper<GlobalState>(makeStore, {debug: false});
 
 // export default wrapper
-export default defaultStore
+export default defaultStore;

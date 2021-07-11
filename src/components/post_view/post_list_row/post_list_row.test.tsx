@@ -4,10 +4,6 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import * as PostListUtils from 'hkclient-redux/utils/post_list';
-
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import CombinedUserActivityPost from 'components/post_view/combined_user_activity_post';
 import Post from 'components/post_view/post';
 import DateSeparator from 'components/post_view/date_separator';
@@ -15,6 +11,9 @@ import NewMessageSeparator from 'components/post_view/new_message_separator/new_
 import ChannelIntroMessage from 'components/post_view/channel_intro_message/';
 
 import {PostListRowListIds} from 'utils/constants';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
+import * as PostListUtils from 'hkclient-redux/utils/post_list';
 
 import PostListRow from './post_list_row';
 

@@ -3,13 +3,15 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
+import {getCurrentLocale} from 'selectors/i18n';
+
+import {isEmbedVisible} from 'selectors/posts';
+
 import {makeGetFilesForPost} from 'hkclient-redux/selectors/entities/files';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {GlobalState} from 'types/store';
-import {getCurrentLocale} from 'selectors/i18n';
-import {isEmbedVisible} from 'selectors/posts';
 
 import FileAttachmentList from './file_attachment_list';
 

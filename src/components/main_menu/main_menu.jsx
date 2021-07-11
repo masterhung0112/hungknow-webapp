@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {injectIntl, FormattedMessage} from 'react-intl';
 
-import {Permissions} from 'hkclient-redux/constants';
-
 import * as GlobalActions from 'actions/global_actions';
 import {Constants, ModalIdentifiers} from 'utils/constants';
 import {intlShape} from 'utils/react_intl';
@@ -31,6 +29,8 @@ import UpgradeLink from 'components/widgets/links/upgrade_link';
 
 import Menu from 'components/widgets/menu/menu';
 import TeamGroupsManageModal from 'components/team_groups_manage_modal';
+
+import {Permissions} from 'hkclient-redux/constants';
 
 import withGetCloudSubscription from '../common/hocs/cloud/with_get_cloud_subscription';
 

@@ -1,6 +1,6 @@
 import { isMinimumServerVersion } from 'hkclient-redux/utils/helpers'
 import { GeneralAwareState, GeneralState } from 'hkclient-redux/types/general'
-import General from 'constants/general'
+import General from 'hkclient-redux/constants/general'
 import { createSelector } from 'reselect'
 
 export const generalSelector = (state: GeneralAwareState): GeneralState => {

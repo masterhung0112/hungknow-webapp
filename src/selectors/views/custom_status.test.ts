@@ -1,14 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import configureStore from 'store';
+
+import {makeGetCustomStatus, getRecentCustomStatuses, isCustomStatusEnabled, showStatusDropdownPulsatingDot, showPostHeaderUpdateStatusButton} from 'selectors/views/custom_status';
+
+import {TestHelper} from 'utils/test_helper';
+
 import * as UserSelectors from 'hkclient-redux/selectors/entities/users';
 import * as GeneralSelectors from 'hkclient-redux/selectors/entities/general';
 import * as PreferenceSelectors from 'hkclient-redux/selectors/entities/preferences';
 import {Preferences} from 'hkclient-redux/constants';
 
-import configureStore from 'store';
-import {makeGetCustomStatus, getRecentCustomStatuses, isCustomStatusEnabled, showStatusDropdownPulsatingDot, showPostHeaderUpdateStatusButton} from 'selectors/views/custom_status';
-
-import {TestHelper} from 'utils/test_helper';
 import {CustomStatusDuration} from 'hkclient-redux/types/users';
 
 jest.mock('hkclient-redux/selectors/entities/users');

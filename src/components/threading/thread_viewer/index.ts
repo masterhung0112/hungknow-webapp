@@ -4,6 +4,20 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
+import {getSocketStatus} from 'selectors/views/websocket';
+
+import {getHighlightedPostId} from 'selectors/rhs';
+
+import {makeGetThreadLastViewedAt} from 'selectors/views/threads';
+
+import {selectPostCard} from 'actions/views/rhs';
+
+import {updateThreadLastOpened} from 'actions/views/threads';
+
+import {GlobalState} from 'types/store';
+
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {makeGetPostsForThread, getPost} from 'hkclient-redux/selectors/entities/posts';
@@ -15,14 +29,6 @@ import {getThread as fetchThread, updateThreadRead} from 'hkclient-redux/actions
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Post} from 'hkclient-redux/types/posts';
 import {UserThread} from 'hkclient-redux/types/threads';
-
-import {Preferences} from 'utils/constants';
-import {getSocketStatus} from 'selectors/views/websocket';
-import {getHighlightedPostId} from 'selectors/rhs';
-import {makeGetThreadLastViewedAt} from 'selectors/views/threads';
-import {selectPostCard} from 'actions/views/rhs';
-import {updateThreadLastOpened} from 'actions/views/threads';
-import {GlobalState} from 'types/store';
 
 import ThreadViewer from './thread_viewer';
 

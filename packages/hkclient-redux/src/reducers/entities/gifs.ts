@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {GifTypes} from 'hkclient-redux/action_types';
 import {GenericAction} from 'hkclient-redux/types/actions';
 

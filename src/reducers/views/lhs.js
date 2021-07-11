@@ -3,9 +3,9 @@
 
 import {combineReducers} from 'redux';
 
-import {TeamTypes} from 'hkclient-redux/action_types';
-
 import {ActionTypes} from 'utils/constants';
+
+import {TeamTypes} from 'hkclient-redux/action_types';
 
 function isOpen(state = false, action) {
     switch (action.type) {

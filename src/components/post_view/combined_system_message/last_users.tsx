@@ -4,11 +4,11 @@
 import React from 'react';
 import {injectIntl, IntlShape, MessageDescriptor} from 'react-intl';
 
-import {Posts} from 'hkclient-redux/constants';
-
 import {t} from 'utils/i18n';
 import Markdown from 'components/markdown';
 import {TextFormattingOptions} from 'utils/text_formatting';
+
+import {Posts} from 'hkclient-redux/constants';
 
 const typeMessage = {
     [Posts.POST_TYPES.ADD_TO_CHANNEL]: {

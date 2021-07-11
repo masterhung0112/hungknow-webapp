@@ -5,6 +5,31 @@ import {ComponentProps} from 'react';
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
+
+import {GlobalState} from 'types/store';
+
+import {openModal} from 'actions/views/modals';
+
+import {doAppCall, postEphemeralCallResponseForPost} from 'actions/apps';
+
+import {
+    flagPost,
+    unflagPost,
+    pinPost,
+    unpinPost,
+    setEditingPost,
+    markPostAsUnread,
+} from 'actions/post_actions.jsx';
+
+import * as PostUtils from 'utils/post_utils.jsx';
+
+import {isArchivedChannel} from 'utils/channel_utils';
+
+import {getSiteURL} from 'utils/url';
+
+import {Locations} from 'utils/constants';
+
 import {getLicense, getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
@@ -22,28 +47,7 @@ import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 
 import {Post} from 'hkclient-redux/types/posts';
 
-import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
 import {setThreadFollow} from 'hkclient-redux/actions/threads';
-
-import {GlobalState} from 'types/store';
-
-import {openModal} from 'actions/views/modals';
-import {doAppCall, postEphemeralCallResponseForPost} from 'actions/apps';
-
-import {
-    flagPost,
-    unflagPost,
-    pinPost,
-    unpinPost,
-    setEditingPost,
-    markPostAsUnread,
-} from 'actions/post_actions.jsx';
-import * as PostUtils from 'utils/post_utils.jsx';
-
-import {isArchivedChannel} from 'utils/channel_utils';
-import {getSiteURL} from 'utils/url';
-
-import {Locations} from 'utils/constants';
 
 import DotMenu from './dot_menu';
 

@@ -1,34 +1,34 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getConfig } from 'hkclient-redux/selectors/entities/general'
-import { getUser, getStatusForUserId } from 'hkclient-redux/selectors/entities/users'
-import { Client4 } from 'hkclient-redux/client'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getUser, getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
+import {Client4} from 'hkclient-redux/client';
 
-import PostProfilePicture from './post_profile_picture'
+import PostProfilePicture from './post_profile_picture';
 
 function mapStateToProps(state, ownProps) {
-  const config = getConfig(state)
-  const user = getUser(state, ownProps.userId)
-  const enablePostIconOverride = config.EnablePostIconOverride === 'true'
+    const config = getConfig(state);
+    const user = getUser(state, ownProps.userId);
+    const enablePostIconOverride = config.EnablePostIconOverride === 'true';
 
-  const overrideIconUrl =
-    enablePostIconOverride && ownProps.post && ownProps.post.props && ownProps.post.props.override_icon_url
-  let overwriteIcon
-  if (overrideIconUrl) {
-    overwriteIcon = Client4.getAbsoluteUrl(overrideIconUrl)
-  }
+    const overrideIconUrl =
+    enablePostIconOverride && ownProps.post && ownProps.post.props && ownProps.post.props.override_icon_url;
+    let overwriteIcon;
+    if (overrideIconUrl) {
+        overwriteIcon = Client4.getAbsoluteUrl(overrideIconUrl);
+    }
 
-  return {
-    enablePostIconOverride: config.EnablePostIconOverride === 'true',
-    overwriteIcon,
-    hasImageProxy: config.HasImageProxy === 'true',
-    status: getStatusForUserId(state, ownProps.userId),
-    isBot: Boolean(user && user.is_bot),
-    user,
-  }
+    return {
+        enablePostIconOverride: config.EnablePostIconOverride === 'true',
+        overwriteIcon,
+        hasImageProxy: config.HasImageProxy === 'true',
+        status: getStatusForUserId(state, ownProps.userId),
+        isBot: Boolean(user && user.is_bot),
+        user,
+    };
 }
 
-export default connect(mapStateToProps)(PostProfilePicture)
+export default connect(mapStateToProps)(PostProfilePicture);

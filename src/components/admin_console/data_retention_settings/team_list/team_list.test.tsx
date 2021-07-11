@@ -6,6 +6,7 @@ import {shallow} from 'enzyme';
 
 import TeamList from 'components/admin_console/data_retention_settings/team_list/team_list';
 import {TestHelper} from 'utils/test_helper';
+
 import {Team} from 'hkclient-redux/types/teams';
 
 describe('components/admin_console/data_retention_settings/team_list', () => {

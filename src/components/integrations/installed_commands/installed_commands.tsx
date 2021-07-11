@@ -4,16 +4,19 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import * as Utils from 'utils/utils.jsx';
+
+import BackstageList from 'components/backstage/components/backstage_list.jsx';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
 import {Team} from 'hkclient-redux/types/teams';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 import {Command} from 'hkclient-redux/types/integrations';
 import {ActionResult} from 'hkclient-redux/types/actions';
 
-import * as Utils from 'utils/utils.jsx';
-import BackstageList from 'components/backstage/components/backstage_list.jsx';
 import InstalledCommand, {matchesFilter} from '../installed_command.jsx';
-import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
 type Props = {
     team: Team;

@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {removeUserFromTeamAndGetStats} from 'actions/team_actions.jsx';
+
 import {getChannelStats} from 'hkclient-redux/actions/channels';
 import {
     getMyTeamMembers,
@@ -19,8 +21,6 @@ import {getCurrentRelativeTeamUrl, getCurrentTeam} from 'hkclient-redux/selector
 import {GlobalState} from 'hkclient-redux/types/store';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {removeUserFromTeamAndGetStats} from 'actions/team_actions.jsx';
 
 import TeamMembersDropdown from './team_members_dropdown';
 

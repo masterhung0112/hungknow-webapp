@@ -5,10 +5,6 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import {Modal, Tooltip} from 'react-bootstrap';
 import {defineMessages, FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {Team} from 'hkclient-redux/types/teams';
-import {ServerError} from 'hkclient-redux/types/errors';
-
 import LocalizedInput from 'components/localized_input/localized_input';
 import OverlayTrigger from 'components/overlay_trigger';
 import {browserHistory} from 'utils/browser_history';
@@ -16,6 +12,10 @@ import Constants from 'utils/constants.jsx';
 import {t} from 'utils/i18n';
 import {getShortenedURL, validateChannelUrl} from 'utils/url';
 import * as Utils from 'utils/utils.jsx';
+
+import {ServerError} from 'hkclient-redux/types/errors';
+import {Team} from 'hkclient-redux/types/teams';
+import {Channel} from 'hkclient-redux/types/channels';
 
 const holders = defineMessages({
     maxLength: {

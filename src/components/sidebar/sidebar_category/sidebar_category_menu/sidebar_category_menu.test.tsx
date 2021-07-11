@@ -3,10 +3,10 @@
 
 import React from 'react';
 
+import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
+
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 import {CategorySorting} from 'hkclient-redux/types/channel_categories';
-
-import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import SidebarCategoryMenu from './sidebar_category_menu';
 

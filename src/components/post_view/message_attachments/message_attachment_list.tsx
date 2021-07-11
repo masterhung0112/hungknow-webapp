@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 import React from 'react';
 
+import {TextFormattingOptions} from 'utils/text_formatting';
+
 import {MessageAttachment as MessageAttachmentType} from 'hkclient-redux/types/message_attachments';
 import {PostImage} from 'hkclient-redux/types/posts';
 import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import {TextFormattingOptions} from 'utils/text_formatting';
 
 import MessageAttachment from './message_attachment';
 

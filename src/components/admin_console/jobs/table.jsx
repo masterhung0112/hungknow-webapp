@@ -7,11 +7,11 @@ import classNames from 'classnames';
 
 import {FormattedDate, FormattedMessage, FormattedTime, injectIntl} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-
 import {JobStatuses, exportFormats, JobTypes} from 'utils/constants';
 import {intlShape} from 'utils/react_intl';
 import * as Utils from 'utils/utils.jsx';
+
+import {Client4} from 'hkclient-redux/client';
 import './table.scss';
 
 class JobTable extends React.PureComponent {

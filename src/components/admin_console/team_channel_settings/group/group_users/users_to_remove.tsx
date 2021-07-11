@@ -4,16 +4,18 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import UserGridName from 'components/admin_console/user_grid/user_grid_name';
+
+import DataGrid, {Row, Column} from 'components/admin_console/data_grid/data_grid';
+
+import {FilterOptions} from 'components/admin_console/filter/filter';
+
 import {ActionResult} from 'hkclient-redux/types/actions';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {TeamMembership} from 'hkclient-redux/types/teams';
 import {ChannelMembership} from 'hkclient-redux/types/channels';
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 import GeneralConstants from 'hkclient-redux/constants/general';
-
-import UserGridName from 'components/admin_console/user_grid/user_grid_name';
-import DataGrid, {Row, Column} from 'components/admin_console/data_grid/data_grid';
-import {FilterOptions} from 'components/admin_console/filter/filter';
 
 import GroupUsersRole from './users_to_remove_role';
 import UsersToRemoveGroups from './users_to_remove_groups';

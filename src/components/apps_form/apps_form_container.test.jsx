@@ -3,11 +3,11 @@
 
 import React from 'react';
 
-import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
-
 import EmojiMap from 'utils/emoji_map';
 
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
+
+import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
 
 import AppsFormContainer from './apps_form_container';
 

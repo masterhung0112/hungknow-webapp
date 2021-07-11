@@ -3,15 +3,16 @@
 
 import React from 'react';
 
+import {NotificationLevels} from 'utils/constants';
+
+import {localizeMessage} from 'utils/utils';
+
+import Menu from 'components/widgets/menu/menu';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Channel, ChannelNotifyProps} from 'hkclient-redux/types/channels';
 
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {NotificationLevels} from 'utils/constants';
-import {localizeMessage} from 'utils/utils';
-
-import Menu from 'components/widgets/menu/menu';
 
 export type Actions = {
     updateChannelNotifyProps(userId: string, channelId: string, props: Partial<ChannelNotifyProps>): ActionFunc;

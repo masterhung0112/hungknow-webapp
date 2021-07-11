@@ -5,11 +5,11 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {Modal} from 'react-bootstrap';
 
-import {Channel, ChannelType} from 'hkclient-redux/types/channels';
-
 import {browserHistory} from 'utils/browser_history';
 
 import DeleteChannelModal, {Props} from 'components/delete_channel_modal/delete_channel_modal';
+
+import {Channel, ChannelType} from 'hkclient-redux/types/channels';
 
 describe('components/delete_channel_modal', () => {
     const channel: Channel = {

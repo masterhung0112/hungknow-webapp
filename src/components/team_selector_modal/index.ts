@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, AnyAction, bindActionCreators, Dispatch} from 'redux';
 
+import {setModalSearchTerm} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {getTeams as loadTeams, searchTeams} from 'hkclient-redux/actions/teams';
 import {getTeams} from 'hkclient-redux/selectors/entities/teams';
 
 import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
-
-import {setModalSearchTerm} from 'actions/views/search';
-
-import {GlobalState} from 'types/store';
 
 import TeamSelectorModal from './team_selector_modal';
 

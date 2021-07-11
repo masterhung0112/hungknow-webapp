@@ -5,10 +5,10 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {shallow} from 'enzyme';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import ChannelInviteModal from 'components/channel_invite_modal';
 import {ModalIdentifiers} from 'utils/constants';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 import ChannelMembersModal from './channel_members_modal';
 

@@ -5,12 +5,6 @@ import React, {CSSProperties} from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {AnalyticsRow} from 'hkclient-redux/types/admin';
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {WarnMetricStatus} from 'hkclient-redux/types/config';
-
 import {getSiteURL} from 'utils/url';
 import {t} from 'utils/i18n';
 import {Constants, ModalIdentifiers, WarnMetricTypes} from 'utils/constants';
@@ -24,6 +18,12 @@ import * as Utils from 'utils/utils.jsx';
 
 import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
 import ErrorLink from 'components/error_page/error_link';
+
+import {WarnMetricStatus} from 'hkclient-redux/types/config';
+import {ActionFunc} from 'hkclient-redux/types/actions';
+import {AnalyticsRow} from 'hkclient-redux/types/admin';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 type Props = {
     user: UserProfile;

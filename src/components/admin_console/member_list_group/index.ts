@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {setModalSearchTerm} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {getGroupStats} from 'hkclient-redux/actions/groups';
 import {searchProfiles, getProfilesInGroup} from 'hkclient-redux/actions/users';
 
@@ -11,10 +15,6 @@ import {getGroupMemberCount} from 'hkclient-redux/selectors/entities/groups';
 import {getProfilesInGroup as selectProfiles, searchProfilesInGroup} from 'hkclient-redux/selectors/entities/users';
 
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
-
-import {setModalSearchTerm} from 'actions/views/search';
-
-import {GlobalState} from 'types/store';
 
 import MemberListGroup, {Props as MemberListGroupProps} from './member_list_group';
 

@@ -1,17 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import LocalStorageStore from 'stores/local_storage_store';
+
+import {Constants, Preferences} from 'utils/constants';
+
+import {getItemFromStorage} from 'selectors/storage';
+
+import EmojiMap from 'utils/emoji_map';
+
 import {createSelector} from 'reselect';
 
 import {getCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import LocalStorageStore from 'stores/local_storage_store';
-
-import {Constants, Preferences} from 'utils/constants';
-import {getItemFromStorage} from 'selectors/storage';
-import EmojiMap from 'utils/emoji_map';
 import {get} from 'hkclient-redux/selectors/entities/preferences';
 
 export const getEmojiMap = createSelector(

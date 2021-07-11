@@ -2,11 +2,12 @@
 // See LICENSE.txt for license information.
 import React from 'react';
 
-import {getUserIdFromChannelName} from 'hkclient-redux/utils/channel_utils';
 import {imageURLForUser} from 'utils/utils.jsx';
 import Constants from 'utils/constants';
 import Avatar from 'components/widgets/users/avatar';
 import BotBadge from 'components/widgets/badges/bot_badge';
+
+import {getUserIdFromChannelName} from 'hkclient-redux/utils/channel_utils';
 import Suggestion from '../suggestion';
 
 import {Channel} from 'hkclient-redux/types/channels';

@@ -1,6 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {getCategoriesForCurrentTeam, getChannelsInCategoryOrder, getDisplayedChannels} from 'selectors/views/channel_sidebar';
+
+import {DraggingState, GlobalState} from 'types/store';
+
+import {ActionTypes} from 'utils/constants';
+
 import {createCategory as createCategoryRedux, moveChannelsToCategory} from 'hkclient-redux/actions/channel_categories';
 import {General} from 'hkclient-redux/constants';
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
@@ -8,10 +14,6 @@ import {getCategory, makeGetChannelIdsForCategory} from 'hkclient-redux/selector
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
 import {insertMultipleWithoutDuplicates} from 'hkclient-redux/utils/array_utils';
-
-import {getCategoriesForCurrentTeam, getChannelsInCategoryOrder, getDisplayedChannels} from 'selectors/views/channel_sidebar';
-import {DraggingState, GlobalState} from 'types/store';
-import {ActionTypes} from 'utils/constants';
 
 export function setUnreadFilterEnabled(enabled: boolean) {
     return {

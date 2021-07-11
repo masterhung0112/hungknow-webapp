@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {getIsRhsOpen} from 'selectors/rhs';
+
 import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentRelativeTeamUrl, getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-
-import {getIsRhsOpen} from 'selectors/rhs';
 
 import ChannelInfoModal from './channel_info_modal';
 

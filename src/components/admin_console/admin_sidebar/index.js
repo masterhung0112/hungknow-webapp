@@ -4,11 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {getNavigationBlocked} from 'selectors/views/admin';
+
+import {getAdminDefinition, getConsoleAccess} from 'selectors/admin_console';
+
 import {getPlugins} from 'hkclient-redux/actions/admin';
 import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-
-import {getNavigationBlocked} from 'selectors/views/admin';
-import {getAdminDefinition, getConsoleAccess} from 'selectors/admin_console';
 
 import AdminSidebar from './admin_sidebar.jsx';
 

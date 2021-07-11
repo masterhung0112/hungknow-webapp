@@ -3,11 +3,11 @@
 
 import React from 'react';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {localizeMessage} from 'utils/utils';
 
 import Menu from 'components/widgets/menu/menu';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Action = {
     favoriteChannel: (channelId: string) => void;

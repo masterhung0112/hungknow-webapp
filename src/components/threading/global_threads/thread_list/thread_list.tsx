@@ -5,10 +5,10 @@ import React, {memo, useCallback, PropsWithChildren} from 'react';
 import {FormattedMessage, useIntl} from 'react-intl';
 import {useDispatch} from 'react-redux';
 
-import {markAllThreadsInTeamRead} from 'hkclient-redux/actions/threads';
-
 import SimpleTooltip from 'components/widgets/simple_tooltip';
 import Header from 'components/widgets/header';
+
+import {markAllThreadsInTeamRead} from 'hkclient-redux/actions/threads';
 
 import Button from '../../common/button';
 

@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
 import {getTheme, makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentTeamId, getMyTeamsCount} from 'hkclient-redux/selectors/entities/teams';
 
 import {saveTheme, deleteTeamSpecificThemes} from 'hkclient-redux/actions/preferences';
-
-import {Preferences} from 'utils/constants';
 
 import UserSettingsTheme from './user_settings_theme.jsx';
 

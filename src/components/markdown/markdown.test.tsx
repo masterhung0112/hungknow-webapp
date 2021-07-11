@@ -4,12 +4,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {TeamType} from 'hkclient-redux/types/teams';
-
 import {TestHelper} from 'utils/test_helper';
 
 import Markdown from 'components/markdown/markdown';
 import EmojiMap from 'utils/emoji_map';
+
+import {TeamType} from 'hkclient-redux/types/teams';
 
 describe('components/Markdown', () => {
     const baseProps = {

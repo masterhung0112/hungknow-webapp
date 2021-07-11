@@ -5,10 +5,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
-import Permissions from 'hkclient-redux/constants/permissions';
-
 import {browserHistory} from 'utils/browser_history';
 
 import {getRelativeChannelURL} from 'utils/url';
@@ -17,6 +13,10 @@ import NewChannelFlow from 'components/new_channel_flow';
 import SearchableChannelList from 'components/searchable_channel_list.jsx';
 import TeamPermissionGate from 'components/permissions_gates/team_permission_gate';
 import {ModalIdentifiers} from 'utils/constants';
+
+import Permissions from 'hkclient-redux/constants/permissions';
+import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
+import {Channel} from 'hkclient-redux/types/channels';
 
 const CHANNELS_CHUNK_SIZE = 50;
 const CHANNELS_PER_PAGE = 50;

@@ -4,26 +4,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-
-import {getCurrentChannel, getCurrentChannelStats, getChannelMemberCountsByGroup as selectChannelMemberCountsByGroup} from 'hkclient-redux/selectors/entities/channels';
-import {getCurrentUserId, isCurrentUserSystemAdmin, getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
-import {haveICurrentChannelPermission} from 'hkclient-redux/selectors/entities/roles';
-import {getChannelTimezones, getChannelMemberCountsByGroup} from 'hkclient-redux/actions/channels';
-import {get, getInt, getBool} from 'hkclient-redux/selectors/entities/preferences';
-import {
-    getCurrentUsersLatestPost,
-    getLatestReplyablePostId,
-    makeGetMessageInHistoryItem,
-} from 'hkclient-redux/selectors/entities/posts';
-import {getAssociatedGroupsForReferenceByMention} from 'hkclient-redux/selectors/entities/groups';
-import {
-    addMessageIntoHistory,
-    moveHistoryIndexBack,
-    moveHistoryIndexForward,
-    removeReaction,
-} from 'hkclient-redux/actions/posts';
 import {Permissions, Posts, Preferences as PreferencesRedux} from 'hkclient-redux/constants';
 
 import {connectionErrorCount} from 'selectors/views/system';
@@ -42,6 +22,25 @@ import {setGlobalItem, actionOnGlobalItemsWithPrefix} from 'actions/storage';
 import {openModal} from 'actions/views/modals';
 import {Constants, Preferences, StoragePrefixes, TutorialSteps, UserStatuses} from 'utils/constants';
 import {canUploadFiles} from 'utils/file_utils';
+import {
+    addMessageIntoHistory,
+    moveHistoryIndexBack,
+    moveHistoryIndexForward,
+    removeReaction,
+} from 'hkclient-redux/actions/posts';
+import {getAssociatedGroupsForReferenceByMention} from 'hkclient-redux/selectors/entities/groups';
+import {
+    getCurrentUsersLatestPost,
+    getLatestReplyablePostId,
+    makeGetMessageInHistoryItem,
+} from 'hkclient-redux/selectors/entities/posts';
+import {get, getInt, getBool} from 'hkclient-redux/selectors/entities/preferences';
+import {getChannelTimezones, getChannelMemberCountsByGroup} from 'hkclient-redux/actions/channels';
+import {haveICurrentChannelPermission} from 'hkclient-redux/selectors/entities/roles';
+import {getCurrentUserId, isCurrentUserSystemAdmin, getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentChannel, getCurrentChannelStats, getChannelMemberCountsByGroup as selectChannelMemberCountsByGroup} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 
 import CreatePost from './create_post.jsx';
 

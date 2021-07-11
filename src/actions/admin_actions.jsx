@@ -1,18 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import {emitUserLoggedOutEvent} from 'actions/global_actions';
+
+import {getOnNavigationConfirmed} from 'selectors/views/admin';
+
+import store from 'stores/redux_store.jsx';
+
+import {ActionTypes} from 'utils/constants';
+
 import * as AdminActions from 'hkclient-redux/actions/admin';
 import * as UserActions from 'hkclient-redux/actions/users';
 import * as TeamActions from 'hkclient-redux/actions/teams';
 import {Client4} from 'hkclient-redux/client';
 import {bindClientFunc} from 'hkclient-redux/actions/helpers';
-
-import {trackEvent} from 'actions/telemetry_actions.jsx';
-
-import {emitUserLoggedOutEvent} from 'actions/global_actions';
-import {getOnNavigationConfirmed} from 'selectors/views/admin';
-import store from 'stores/redux_store.jsx';
-import {ActionTypes} from 'utils/constants';
 
 const dispatch = store.dispatch;
 const getState = store.getState;

@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
-import {GlobalState} from 'hkclient-redux/types/store';
-
 import Constants from 'utils/constants';
 import {isFeatureEnabled} from 'utils/utils';
+
+import {GlobalState} from 'hkclient-redux/types/store';
 
 import TextboxLinks from './textbox_links';
 

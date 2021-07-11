@@ -2,6 +2,12 @@
 // See LICENSE.txt for license information.
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
+import {canManageMembers} from 'utils/channel_utils.jsx';
+
+import {MentionKey} from 'utils/text_formatting';
+
 import {createSelector} from 'reselect';
 
 import {getChannel} from 'hkclient-redux/selectors/entities/channels';
@@ -12,12 +18,6 @@ import {
 import {getCurrentUserMentionKeys} from 'hkclient-redux/selectors/entities/users';
 import {Post} from 'hkclient-redux/types/posts';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {GlobalState} from 'types/store';
-
-import {canManageMembers} from 'utils/channel_utils.jsx';
-
-import {MentionKey} from 'utils/text_formatting';
 
 import PostMarkdown from './post_markdown';
 

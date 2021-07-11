@@ -4,8 +4,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Client4} from 'hkclient-redux/client';
-
 import ProfilePicture from 'components/profile_picture';
 import MessageIcon from 'components/widgets/icons/message_icon';
 import {UserStatuses} from 'utils/constants';
@@ -14,6 +12,8 @@ import BotBadge from 'components/widgets/badges/bot_badge';
 import GuestBadge from 'components/widgets/badges/guest_badge';
 import SharedUserIndicator from 'components/shared_user_indicator';
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
+
+import {Client4} from 'hkclient-redux/client';
 
 export default class PopoverListMembersItem extends React.PureComponent {
     static propTypes = {

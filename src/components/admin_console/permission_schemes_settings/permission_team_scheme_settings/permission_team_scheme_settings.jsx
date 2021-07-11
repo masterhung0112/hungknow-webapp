@@ -20,10 +20,10 @@ import AdminPanelWithButton from 'components/widgets/admin_console/admin_panel_w
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
+import LocalizedInput from 'components/localized_input/localized_input';
+
 import PermissionsTree, {EXCLUDED_PERMISSIONS} from '../permissions_tree';
 import GuestPermissionsTree, {GUEST_INCLUDED_PERMISSIONS} from '../guest_permissions_tree';
-
-import LocalizedInput from 'components/localized_input/localized_input';
 
 import TeamInList from './team_in_list';
 

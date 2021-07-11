@@ -4,12 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import BrowserStore from 'stores/browser_store';
+
+import {getCurrentLocale} from 'selectors/i18n';
+
 import {getTeams} from 'hkclient-redux/actions/teams';
 import {getProfilesInTeam} from 'hkclient-redux/actions/users';
 import {getTeamsList} from 'hkclient-redux/selectors/entities/teams';
-
-import BrowserStore from 'stores/browser_store';
-import {getCurrentLocale} from 'selectors/i18n';
 
 import TeamAnalytics from './team_analytics.jsx';
 

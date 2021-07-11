@@ -5,11 +5,11 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {shallow} from 'enzyme';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 import ChannelInfoModal from 'components/channel_info_modal/channel_info_modal';
 import {TestHelper} from 'utils/test_helper';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 describe('components/ChannelInfoModal', () => {
     const mockChannel = TestHelper.getChannelMock({

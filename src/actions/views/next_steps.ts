@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {ActionTypes, Preferences, RecommendedNextSteps} from 'utils/constants';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-
-import {ActionTypes, Preferences, RecommendedNextSteps} from 'utils/constants';
 
 export function setShowNextStepsView(show: boolean) {
     return {

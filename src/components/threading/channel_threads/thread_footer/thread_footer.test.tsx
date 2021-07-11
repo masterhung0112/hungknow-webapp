@@ -8,13 +8,14 @@ import SimpleTooltip from 'components/widgets/simple_tooltip';
 
 import Timestamp from 'components/timestamp';
 import Avatars from 'components/widgets/users/avatars';
-import FollowButton from '../../common/follow_button';
 
 import {mockStore} from 'tests/test_store';
 
-import {UserThread} from 'hkclient-redux/types/threads';
-
 import {fakeDate} from 'tests/helpers/date';
+
+import FollowButton from '../../common/follow_button';
+
+import {UserThread} from 'hkclient-redux/types/threads';
 
 import ThreadFooter from './thread_footer';
 

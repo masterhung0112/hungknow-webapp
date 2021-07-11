@@ -4,12 +4,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import ChannelSelect from 'components/channel_select/channel_select';
 import Constants from 'utils/constants';
 
 import {TestHelper} from 'utils/test_helper';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 describe('components/ChannelSelect', () => {
     const defaultProps = {

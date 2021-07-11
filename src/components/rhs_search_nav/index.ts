@@ -5,8 +5,6 @@ import {ComponentProps} from 'react';
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {
     openModal,
     closeModal,
@@ -23,6 +21,8 @@ import {getIsRhsOpen, getRhsState} from 'selectors/rhs';
 import {isModalOpen} from 'selectors/views/modals';
 import {ModalIdentifiers} from 'utils/constants';
 import {GlobalState} from 'types/store/index';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import RHSSearchNav from './rhs_search_nav';
 

@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
+import {GlobalState} from 'types/store';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
 import {GenericAction} from 'hkclient-redux/types/actions';
@@ -11,10 +15,6 @@ import {getStandardAnalytics} from 'hkclient-redux/actions/admin';
 import {getCloudSubscription, getCloudCustomer} from 'hkclient-redux/actions/cloud';
 
 import {isCurrentUserSystemAdmin} from 'hkclient-redux/selectors/entities/users';
-
-import {openModal} from 'actions/views/modals';
-
-import {GlobalState} from 'types/store';
 
 import PaymentAnnouncementBar from './payment_announcement_bar';
 

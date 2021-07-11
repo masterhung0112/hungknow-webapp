@@ -6,9 +6,9 @@ import {shallow} from 'enzyme';
 
 import AtMention from 'components/at_mention/at_mention';
 
-import {General} from 'hkclient-redux/constants';
-
 import {TestHelper} from 'utils/test_helper';
+
+import {General} from 'hkclient-redux/constants';
 
 /* eslint-disable global-require */
 

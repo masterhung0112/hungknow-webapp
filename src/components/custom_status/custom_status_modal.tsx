@@ -6,12 +6,6 @@ import classNames from 'classnames';
 import {FormattedMessage, useIntl} from 'react-intl';
 import moment, {Moment} from 'moment-timezone';
 
-import {setCustomStatus, unsetCustomStatus, removeRecentCustomStatus} from 'hkclient-redux/actions/users';
-import {setCustomStatusInitialisationState} from 'hkclient-redux/actions/preferences';
-import {Preferences} from 'hkclient-redux/constants';
-import {UserCustomStatus, CustomStatusDuration} from 'hkclient-redux/types/users';
-import {Emoji} from 'hkclient-redux/types/emojis';
-
 import {loadCustomEmojisIfNeeded} from 'actions/emoji_actions';
 import GenericModal from 'components/generic_modal';
 import EmojiIcon from 'components/widgets/icons/emoji_icon';
@@ -28,6 +22,12 @@ import {t} from 'utils/i18n';
 import CustomStatusSuggestion from 'components/custom_status/custom_status_suggestion';
 import ExpiryMenu from 'components/custom_status/expiry_menu';
 import DateTimeInput, {getRoundedTime} from 'components/custom_status/date_time_input';
+
+import {Emoji} from 'hkclient-redux/types/emojis';
+import {UserCustomStatus, CustomStatusDuration} from 'hkclient-redux/types/users';
+import {Preferences} from 'hkclient-redux/constants';
+import {setCustomStatusInitialisationState} from 'hkclient-redux/actions/preferences';
+import {setCustomStatus, unsetCustomStatus, removeRecentCustomStatus} from 'hkclient-redux/actions/users';
 
 import 'components/category_modal.scss';
 import './custom_status.scss';

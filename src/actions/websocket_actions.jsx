@@ -4,6 +4,25 @@
 
 import {batchActions} from 'redux-batched-actions';
 
+import {getSelectedChannelId} from 'selectors/rhs';
+
+import {isThreadOpen, isThreadManuallyUnread} from 'selectors/views/threads';
+
+import {openModal} from 'actions/views/modals';
+
+import {incrementWsErrorCount, resetWsErrorCount} from 'actions/views/system';
+
+import {closeRightHandSide} from 'actions/views/rhs';
+
+import {syncPostsInChannel} from 'actions/views/channel';
+
+import {updateThreadLastOpened} from 'actions/views/threads';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {loadChannelsForCurrentUser} from 'actions/channel_actions.jsx';
+
+import {loadCustomEmojisIfNeeded} from 'actions/emoji_actions';
 import {
     ChannelTypes,
     EmojiTypes,
@@ -76,18 +95,8 @@ import {getStandardAnalytics} from 'hkclient-redux/actions/admin';
 
 import {fetchAppBindings} from 'hkclient-redux/actions/apps';
 
-import {getSelectedChannelId} from 'selectors/rhs';
-import {isThreadOpen, isThreadManuallyUnread} from 'selectors/views/threads';
 
-import {openModal} from 'actions/views/modals';
-import {incrementWsErrorCount, resetWsErrorCount} from 'actions/views/system';
-import {closeRightHandSide} from 'actions/views/rhs';
-import {syncPostsInChannel} from 'actions/views/channel';
-import {updateThreadLastOpened} from 'actions/views/threads';
 
-import {browserHistory} from 'utils/browser_history';
-import {loadChannelsForCurrentUser} from 'actions/channel_actions.jsx';
-import {loadCustomEmojisIfNeeded} from 'actions/emoji_actions';
 import {redirectUserToDefaultTeam} from 'actions/global_actions';
 import {handleNewPost} from 'actions/post_actions.jsx';
 import * as StatusActions from 'actions/status_actions.jsx';

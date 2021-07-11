@@ -12,6 +12,7 @@ import {Post} from 'hkclient-redux/types/posts';
 import {FileSearchResults, FileSearchResultItem} from 'hkclient-redux/types/files';
 
 import {SearchParameter} from 'hkclient-redux/types/search';
+
 import {getChannelAndMyMember, getChannelMembers} from './channels';
 import {forceLogoutIfNecessary} from './helpers';
 import {logError} from './errors';

@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions.jsx';
+
 import {getUser} from 'hkclient-redux/selectors/entities/users';
 import {updateUserActive} from 'hkclient-redux/actions/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
@@ -16,8 +18,6 @@ import {GlobalState} from 'hkclient-redux/types/store';
 import {ServerError} from 'hkclient-redux/types/errors';
 
 import {TeamMembership} from 'hkclient-redux/types/teams';
-
-import {setNavigationBlocked} from 'actions/admin_actions.jsx';
 
 import SystemUserDetail from './system_user_detail';
 

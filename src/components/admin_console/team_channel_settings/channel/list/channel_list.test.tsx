@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {TestHelper} from 'utils/test_helper';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 import ChannelList from './channel_list';
 

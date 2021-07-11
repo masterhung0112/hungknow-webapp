@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {updateTeamMemberSchemeRoles, getTeamMembersForUser, getTeamsForUser, removeUserFromTeam} from 'hkclient-redux/actions/teams';
-
 import {getCurrentLocale} from 'selectors/i18n';
+
+import {updateTeamMemberSchemeRoles, getTeamMembersForUser, getTeamsForUser, removeUserFromTeam} from 'hkclient-redux/actions/teams';
 
 import ManageTeamsModal from './manage_teams_modal';
 

@@ -4,15 +4,14 @@
 import React from 'react';
 import {Route, Switch, Redirect, RouteComponentProps} from 'react-router-dom';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
-import {Team} from 'hkclient-redux/types/teams';
-
 import AnnouncementBar from 'components/announcement_bar';
 import BackButton from 'components/common/back_button';
 import DisplayName from 'components/create_team/components/display_name';
 import SiteNameAndDescription from 'components/common/site_name_and_description';
 import TeamUrl from 'components/create_team/components/team_url';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
 

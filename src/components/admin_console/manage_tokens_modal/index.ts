@@ -4,10 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {getUserAccessTokensForUser} from 'hkclient-redux/actions/users';
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {GlobalState} from 'types/store';
 
 import ManageTokensModal, {Props} from './manage_tokens_modal';
 

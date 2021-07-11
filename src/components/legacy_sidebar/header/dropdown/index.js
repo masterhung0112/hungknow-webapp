@@ -4,17 +4,18 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
+import {Preferences, TutorialSteps} from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {getFirstAdminVisitMarketplaceStatus} from 'hkclient-redux/actions/general';
 import {getConfig, getFirstAdminVisitMarketplaceStatus as firstAdminVisitMarketplaceStatus} from 'hkclient-redux/selectors/entities/general';
 
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
-
-import {openModal} from 'actions/views/modals';
-
-import {Preferences, TutorialSteps} from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 import SidebarHeaderDropdown from './sidebar_header_dropdown.jsx';
 

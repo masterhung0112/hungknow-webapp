@@ -4,20 +4,24 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {markPostAsUnread, emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
+
+import {isEmbedVisible} from 'selectors/posts';
+
+import {getEmojiMap} from 'selectors/emojis';
+
+import {isArchivedChannel} from 'utils/channel_utils';
+
+import {Preferences} from 'utils/constants';
+
+import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis.js';
+
 import {isChannelReadOnlyById, getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {makeGetReactionsForPost} from 'hkclient-redux/selectors/entities/posts';
 import {makeGetDisplayName, getUser} from 'hkclient-redux/selectors/entities/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {get, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-
-import {markPostAsUnread, emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
-import {isEmbedVisible} from 'selectors/posts';
-import {getEmojiMap} from 'selectors/emojis';
-import {isArchivedChannel} from 'utils/channel_utils';
-import {Preferences} from 'utils/constants';
-
-import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis.js';
 
 import RhsRootPost from './rhs_root_post.jsx';
 

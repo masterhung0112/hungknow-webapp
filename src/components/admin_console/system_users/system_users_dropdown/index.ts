@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import {updateUserActive, revokeAllSessionsForUser, promoteGuestToUser, demoteUserToGuest} from 'hkclient-redux/actions/users';
@@ -14,8 +16,6 @@ import {loadBots} from 'hkclient-redux/actions/bots';
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
 
 import * as Selectors from 'hkclient-redux/selectors/entities/admin';
-
-import {GlobalState} from 'types/store';
 
 import SystemUsersDropdown, {Props} from './system_users_dropdown';
 

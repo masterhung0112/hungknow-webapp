@@ -5,6 +5,7 @@ import React from 'react';
 import {getVideoId, ytRegex, handleYoutubeTime} from 'utils/youtube';
 
 import ExternalImage from 'components/external_image';
+
 import {OpenGraphMetadata} from 'hkclient-redux/types/posts';
 
 type Props = {

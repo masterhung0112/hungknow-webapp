@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom';
 
+import {updateToastStatus} from 'actions/views/channel';
+
 import {createSelector} from 'reselect';
 
 import {Posts} from 'hkclient-redux/constants';
@@ -13,8 +15,6 @@ import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {makePreparePostIdsForPostList} from 'hkclient-redux/utils/post_list';
 import {getCurrentChannel, countCurrentChannelUnreadMessages, isManuallyUnread} from 'hkclient-redux/selectors/entities/channels';
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-
-import {updateToastStatus} from 'actions/views/channel';
 
 import ToastWrapper from './toast_wrapper.jsx';
 export function makeGetRootPosts() {

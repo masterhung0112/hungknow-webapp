@@ -4,11 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Posts} from 'hkclient-redux/constants';
-import {Post} from 'hkclient-redux/types/posts';
-
-import {Theme} from 'hkclient-redux/types/preferences';
-
 import * as PostUtils from 'utils/post_utils';
 import * as Utils from 'utils/utils';
 
@@ -16,6 +11,10 @@ import PostMarkdown from 'components/post_markdown';
 import Pluggable from 'plugins/pluggable';
 import ShowMore from 'components/post_view/show_more';
 import {TextFormattingOptions} from 'utils/text_formatting';
+
+import {Theme} from 'hkclient-redux/types/preferences';
+import {Post} from 'hkclient-redux/types/posts';
+import {Posts} from 'hkclient-redux/constants';
 
 type Props = {
     post: Post; /* The post to render the message for */

@@ -1,15 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {getGlobalItem} from 'selectors/storage';
+
+import {arePreviewsCollapsed} from 'selectors/preferences';
+
+import {Preferences, StoragePrefixes} from 'utils/constants';
+
 import {createSelector} from 'reselect';
 
 import {getPost} from 'hkclient-redux/selectors/entities/posts';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getBool as getBoolPreference} from 'hkclient-redux/selectors/entities/preferences';
-
-import {getGlobalItem} from 'selectors/storage';
-import {arePreviewsCollapsed} from 'selectors/preferences';
-import {Preferences, StoragePrefixes} from 'utils/constants';
 
 export const getEditingPost = createSelector(
     'getEditingPost',

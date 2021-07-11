@@ -6,6 +6,10 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {setNavigationBlocked} from 'actions/admin_actions.jsx';
+
 import {
     getDataRetentionCustomPolicy as fetchPolicy,
     getDataRetentionCustomPolicyTeams as fetchPolicyTeams,
@@ -24,10 +28,6 @@ import {
     PatchDataRetentionCustomPolicy,
 } from 'hkclient-redux/types/data_retention';
 import {Team} from 'hkclient-redux/types/teams';
-
-import {GlobalState} from 'types/store';
-
-import {setNavigationBlocked} from 'actions/admin_actions.jsx';
 
 import {getTeamsInPolicy} from 'hkclient-redux/selectors/entities/teams';
 

@@ -3,9 +3,9 @@
 
 import {combineReducers} from 'redux';
 
-import {ChannelTypes, PostTypes, UserTypes, GeneralTypes} from 'hkclient-redux/action_types';
-
 import {ActionTypes, Constants, NotificationLevels} from 'utils/constants';
+
+import {ChannelTypes, PostTypes, UserTypes, GeneralTypes} from 'hkclient-redux/action_types';
 
 function postVisibility(state = {}, action) {
     switch (action.type) {

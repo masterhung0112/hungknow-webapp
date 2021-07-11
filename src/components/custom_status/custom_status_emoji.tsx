@@ -6,11 +6,13 @@ import {useSelector} from 'react-redux';
 
 import OverlayTrigger from 'components/overlay_trigger';
 import RenderEmoji from 'components/emoji/render_emoji';
-import {CustomStatusDuration} from 'hkclient-redux/types/users';
+
 import {getCurrentUserTimezone} from 'selectors/general';
 import {makeGetCustomStatus, isCustomStatusEnabled, isCustomStatusExpired} from 'selectors/views/custom_status';
 import {GlobalState} from 'types/store';
 import Constants from 'utils/constants';
+
+import {CustomStatusDuration} from 'hkclient-redux/types/users';
 
 import ExpiryTime from './expiry_time';
 

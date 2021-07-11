@@ -5,10 +5,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {Channel} from 'hkclient-redux/types/channels';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import * as Utils from 'utils/utils.jsx';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 
@@ -16,6 +12,10 @@ import Constants from 'utils/constants';
 
 // import {t} from 'utils/i18n';
 import {isKeyPressed} from 'utils/utils';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Channel} from 'hkclient-redux/types/channels';
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 type Props = {
     currentUser: UserProfile;

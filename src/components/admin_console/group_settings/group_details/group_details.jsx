@@ -5,8 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 
-import {Groups} from 'hkclient-redux/constants';
-
 import {t} from 'utils/i18n';
 import {localizeMessage} from 'utils/utils.jsx';
 
@@ -23,6 +21,8 @@ import TeamSelectorModal from 'components/team_selector_modal';
 import ChannelSelectorModal from 'components/channel_selector_modal';
 import Menu from 'components/widgets/menu/menu';
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
+
+import {Groups} from 'hkclient-redux/constants';
 
 export default class GroupDetails extends React.PureComponent {
     static propTypes = {

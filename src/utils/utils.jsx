@@ -9,26 +9,6 @@ import cssVars from 'css-vars-ponyfill';
 
 import moment from 'moment';
 
-import {
-    getChannel as getChannelAction,
-    getChannelByNameAndTeamName,
-    getChannelMember,
-    joinChannel,
-} from 'hkclient-redux/actions/channels';
-import {getPost as getPostAction} from 'hkclient-redux/actions/posts';
-import {getTeamByName as getTeamByNameAction} from 'hkclient-redux/actions/teams';
-import {Client4} from 'hkclient-redux/client';
-import {Posts} from 'hkclient-redux/constants';
-import {
-    getChannel,
-    getChannelsNameMapInTeam,
-    getMyChannelMemberships,
-    getRedirectChannelNameForTeam,
-} from 'hkclient-redux/selectors/entities/channels';
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {getPost} from 'hkclient-redux/selectors/entities/posts';
-import {getBool, getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUser, getCurrentUserId, getUser} from 'hkclient-redux/selectors/entities/users';
 import {blendColors, changeOpacity} from 'hkclient-redux/utils/theme_utils';
 import {displayUsername} from 'hkclient-redux/utils/user_utils';
 import {
@@ -57,6 +37,26 @@ import {getCurrentLocale, getTranslations} from 'selectors/i18n';
 
 import PurchaseLink from 'components/announcement_bar/purchase_link/purchase_link';
 import ContactUsButton from 'components/announcement_bar/contact_sales/contact_us';
+import {getCurrentUser, getCurrentUserId, getUser} from 'hkclient-redux/selectors/entities/users';
+import {getBool, getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
+import {getPost} from 'hkclient-redux/selectors/entities/posts';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {
+    getChannel,
+    getChannelsNameMapInTeam,
+    getMyChannelMemberships,
+    getRedirectChannelNameForTeam,
+} from 'hkclient-redux/selectors/entities/channels';
+import {Posts} from 'hkclient-redux/constants';
+import {Client4} from 'hkclient-redux/client';
+import {getTeamByName as getTeamByNameAction} from 'hkclient-redux/actions/teams';
+import {getPost as getPostAction} from 'hkclient-redux/actions/posts';
+import {
+    getChannel as getChannelAction,
+    getChannelByNameAndTeamName,
+    getChannelMember,
+    joinChannel,
+} from 'hkclient-redux/actions/channels';
 
 import {joinPrivateChannelPrompt} from './channel_utils';
 

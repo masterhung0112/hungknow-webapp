@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {PostAction} from 'hkclient-redux/types/integration_actions';
-
 import {GlobalState} from 'types/store';
 import {autocompleteChannels} from 'actions/channel_actions';
 import {autocompleteUsers} from 'actions/user_actions';
 import {selectAttachmentMenuAction} from 'actions/views/posts';
+
+import {PostAction} from 'hkclient-redux/types/integration_actions';
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import ActionMenu from './action_menu';
 

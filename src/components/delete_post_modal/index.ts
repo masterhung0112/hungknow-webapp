@@ -5,12 +5,13 @@ import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import {GlobalState} from 'types/store';
+
+import {deleteAndRemovePost} from 'actions/post_actions.jsx';
+
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {Post} from 'hkclient-redux/types/posts';
 import {makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
-
-import {GlobalState} from 'types/store';
-import {deleteAndRemovePost} from 'actions/post_actions.jsx';
 
 import DeletePostModal from './delete_post_modal';
 

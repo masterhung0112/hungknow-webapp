@@ -3,15 +3,15 @@
 
 import React from 'react';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Channel, ChannelStats, ChannelMembership} from 'hkclient-redux/types/channels';
-
 import Constants from 'utils/constants';
 import * as UserAgent from 'utils/user_agent';
 
 import ChannelMembersDropdown from 'components/channel_members_dropdown';
 import SearchableUserList from 'components/searchable_user_list/searchable_user_list_container.jsx';
 import LoadingScreen from 'components/loading_screen';
+
+import {Channel, ChannelStats, ChannelMembership} from 'hkclient-redux/types/channels';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 const USERS_PER_PAGE = 50;
 

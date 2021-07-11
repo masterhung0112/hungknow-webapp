@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {GlobalState} from 'types/store';
 
 import {closeModal} from 'actions/views/modals';
 import {isModalOpen} from 'selectors/views/modals';
 import {ModalIdentifiers} from 'utils/constants';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import ConfirmNotifyAdminModal from './confirm_notify_admin_modal';
 

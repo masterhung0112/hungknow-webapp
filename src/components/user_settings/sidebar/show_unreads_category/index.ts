@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {shouldShowUnreadsCategory} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {GlobalState} from 'types/store';
 
 import ShowUnreadsCategory from './show_unreads_category';
 

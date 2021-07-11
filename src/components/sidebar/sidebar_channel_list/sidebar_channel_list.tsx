@@ -10,22 +10,26 @@ import classNames from 'classnames';
 
 import debounce from 'lodash/debounce';
 
+import {trackEvent} from 'actions/telemetry_actions';
+
+import {DraggingState} from 'types/store';
+
+import {Constants, DraggingStates, DraggingStateTypes} from 'utils/constants';
+
+import * as Utils from 'utils/utils';
+
+import * as ChannelUtils from 'utils/channel_utils.jsx';
+
+import GlobalThreadsLink from 'components/threading/global_threads_link';
+
 import {General} from 'hkclient-redux/constants';
 import {Channel} from 'hkclient-redux/types/channels';
 import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
 import {Team} from 'hkclient-redux/types/teams';
 
-import {trackEvent} from 'actions/telemetry_actions';
-import {DraggingState} from 'types/store';
-import {Constants, DraggingStates, DraggingStateTypes} from 'utils/constants';
-import * as Utils from 'utils/utils';
-import * as ChannelUtils from 'utils/channel_utils.jsx';
-
 import SidebarCategory from '../sidebar_category';
 import UnreadChannelIndicator from '../unread_channel_indicator';
 import UnreadChannels from '../unread_channels';
-
-import GlobalThreadsLink from 'components/threading/global_threads_link';
 
 export function renderView(props: any) {
     return (

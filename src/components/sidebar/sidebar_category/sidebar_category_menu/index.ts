@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {Dispatch, bindActionCreators, ActionCreatorsMapObject} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
 import {setCategoryMuted, setCategorySorting} from 'hkclient-redux/actions/channel_categories';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {CategorySorting} from 'hkclient-redux/types/channel_categories';
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {openModal} from 'actions/views/modals';
 
 import SidebarCategoryMenu from './sidebar_category_menu';
 

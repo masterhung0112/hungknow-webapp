@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
+
 import {AppBinding, AppCallResponse} from 'hkclient-redux/types/apps';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import SelectBinding, {SelectBinding as SelectBindingUnwrapped} from './select_binding';
 

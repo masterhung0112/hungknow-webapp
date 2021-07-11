@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {submitInteractiveDialog} from 'hkclient-redux/actions/integrations';
-
 import {getEmojiMap} from 'selectors/emojis';
+
+import {submitInteractiveDialog} from 'hkclient-redux/actions/integrations';
 
 import InteractiveDialog from './interactive_dialog';
 

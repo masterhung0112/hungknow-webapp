@@ -1,5 +1,5 @@
 export const ViewsConstants = {
-  VIEWS_MODULE_NAME: 'views' as const,
-}
+    VIEWS_MODULE_NAME: 'views' as const,
+};
 
-export default ViewsConstants
+export default ViewsConstants;

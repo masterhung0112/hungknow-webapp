@@ -5,11 +5,11 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {Modal} from 'react-bootstrap';
 
-import {PostType, PostMetadata} from 'hkclient-redux/types/posts';
-
 import {browserHistory} from 'utils/browser_history';
 
 import DeletePostModal from 'components/delete_post_modal/delete_post_modal';
+
+import {PostType, PostMetadata} from 'hkclient-redux/types/posts';
 
 jest.mock('utils/browser_history', () => ({
     browserHistory: {

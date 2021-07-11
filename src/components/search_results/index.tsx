@@ -3,6 +3,18 @@
 
 import {connect} from 'react-redux';
 
+import {
+    getSearchResultsTerms,
+    getIsSearchingTerm,
+    getIsSearchingFlaggedPost,
+    getIsSearchingPinnedPost,
+    getIsSearchGettingMore,
+} from 'selectors/rhs';
+
+import {GlobalState} from 'types/store';
+
+import {Preferences} from 'utils/constants.jsx';
+
 import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getSearchMatches, getSearchResults} from 'hkclient-redux/selectors/entities/posts';
@@ -12,16 +24,6 @@ import {getCurrentSearchForCurrentTeam} from 'hkclient-redux/selectors/entities/
 import {Post} from 'hkclient-redux/types/posts';
 import {FileSearchResultItem} from 'hkclient-redux/types/files';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-
-import {
-    getSearchResultsTerms,
-    getIsSearchingTerm,
-    getIsSearchingFlaggedPost,
-    getIsSearchingPinnedPost,
-    getIsSearchGettingMore,
-} from 'selectors/rhs';
-import {GlobalState} from 'types/store';
-import {Preferences} from 'utils/constants.jsx';
 
 import SearchResults from './search_results';
 import {StateProps, OwnProps} from './types';

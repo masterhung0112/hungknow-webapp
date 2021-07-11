@@ -3,6 +3,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {loadOutgoingHooksAndProfilesForTeam} from 'actions/integration_actions';
+
 import * as Actions from 'hkclient-redux/actions/integrations';
 import {getOutgoingHooks} from 'hkclient-redux/selectors/entities/integrations';
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
@@ -11,8 +13,6 @@ import {getUsers} from 'hkclient-redux/selectors/entities/users';
 import {haveITeamPermission} from 'hkclient-redux/selectors/entities/roles';
 import {Permissions} from 'hkclient-redux/constants';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {loadOutgoingHooksAndProfilesForTeam} from 'actions/integration_actions';
 
 import InstalledOutgoingWebhook from './installed_outgoing_webhooks.jsx';
 

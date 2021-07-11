@@ -3,10 +3,10 @@
 
 import {combineReducers} from 'redux';
 
+import {ActionTypes, ModalIdentifiers} from 'utils/constants';
+
 import type {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
 import type {GenericAction} from 'hkclient-redux/types/actions';
-
-import {ActionTypes, ModalIdentifiers} from 'utils/constants';
 
 // plugins tracks the set of marketplace plugins returned by the server
 function plugins(state: MarketplacePlugin[] = [], action: GenericAction): MarketplacePlugin[] {

@@ -4,8 +4,9 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/preferences';
-import {login} from 'actions/users';
+import * as Actions from 'hkclient-redux/actions/preferences';
+import {login} from 'hkclient-redux/actions/users';
+
 import {Client4} from 'hkclient-redux/client';
 import {Preferences} from '../constants';
 
@@ -14,7 +15,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('Actions.Preferences', () => {
+describe('hkclient-redux/actions.Preferences', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

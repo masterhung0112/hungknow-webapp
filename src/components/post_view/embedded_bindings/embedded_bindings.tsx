@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 import React from 'react';
 
+import {TextFormattingOptions} from 'utils/text_formatting';
+
 import {Post} from 'hkclient-redux/types/posts';
 
 import {AppBinding} from 'hkclient-redux/types/apps';
-
-import {TextFormattingOptions} from 'utils/text_formatting';
 
 import EmbeddedBinding from './embedded_binding';
 

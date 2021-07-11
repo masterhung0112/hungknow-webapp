@@ -3,16 +3,18 @@
 
 import React from 'react';
 
+import Constants from 'utils/constants';
+
+import * as UserAgent from 'utils/user_agent';
+
+import SearchableUserList from 'components/searchable_user_list/searchable_user_list_container.jsx';
+
+import TeamMembersDropdown from 'components/team_members_dropdown';
+
 import {ActionResult} from 'hkclient-redux/types/actions';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {TeamMembership, TeamStats, GetTeamMembersOpts} from 'hkclient-redux/types/teams';
 import {Teams} from 'hkclient-redux/constants';
-
-import Constants from 'utils/constants';
-import * as UserAgent from 'utils/user_agent';
-
-import SearchableUserList from 'components/searchable_user_list/searchable_user_list_container.jsx';
-import TeamMembersDropdown from 'components/team_members_dropdown';
 
 const USERS_PER_PAGE = 50;
 

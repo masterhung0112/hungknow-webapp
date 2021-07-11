@@ -5,10 +5,6 @@ import React, {ReactNode, MouseEvent} from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {Permissions} from 'hkclient-redux/constants';
-
-import {Team} from 'hkclient-redux/types/teams';
-
 import {emitUserLoggedOutEvent} from 'actions/global_actions';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
@@ -27,6 +23,9 @@ import SiteNameAndDescription from 'components/common/site_name_and_description'
 import LogoutIcon from 'components/widgets/icons/fa_logout_icon';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {Permissions} from 'hkclient-redux/constants';
 
 import InfiniteScroll from '../common/infinite_scroll';
 

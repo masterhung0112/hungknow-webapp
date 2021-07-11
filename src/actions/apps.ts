@@ -1,21 +1,24 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {openModal} from 'actions/views/modals';
+
+import AppsForm from 'components/apps_form';
+
+import {ModalIdentifiers} from 'utils/constants';
+
+import {getSiteURL, shouldOpenInNewTab} from 'utils/url';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {makeCallErrorResponse} from 'utils/apps';
+
 import {Client4} from 'hkclient-redux/client';
 import {Action, ActionFunc, DispatchFunc} from 'hkclient-redux/types/actions';
 import {AppCallResponse, AppForm, AppCallType, AppCallRequest, AppContext} from 'hkclient-redux/types/apps';
 import {AppCallTypes, AppCallResponseTypes} from 'hkclient-redux/constants/apps';
 import {Post} from 'hkclient-redux/types/posts';
 import {CommandArgs} from 'hkclient-redux/types/integrations';
-
-import {openModal} from 'actions/views/modals';
-
-import AppsForm from 'components/apps_form';
-
-import {ModalIdentifiers} from 'utils/constants';
-import {getSiteURL, shouldOpenInNewTab} from 'utils/url';
-import {browserHistory} from 'utils/browser_history';
-import {makeCallErrorResponse} from 'utils/apps';
 
 import {sendEphemeralPost} from './global_actions';
 

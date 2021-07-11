@@ -3,9 +3,9 @@
 
 import React from 'react';
 
-import {PostImage} from 'hkclient-redux/types/posts';
-
 import {getImageSrc} from 'utils/post_utils.jsx';
+
+import {PostImage} from 'hkclient-redux/types/posts';
 
 interface Props {
     children: (src: string) => React.ReactNode;

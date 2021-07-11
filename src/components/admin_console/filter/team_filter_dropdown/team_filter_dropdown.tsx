@@ -4,14 +4,16 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import LoadingSpinner from 'components/widgets/loading/loading_spinner';
+
+import InfiniteScroll from 'components/gif_picker/components/InfiniteScroll';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {createSelector} from 'reselect';
 
 import {Team, TeamSearchOpts} from 'hkclient-redux/types/teams';
 import {debounce} from 'hkclient-redux/actions/helpers';
-
-import LoadingSpinner from 'components/widgets/loading/loading_spinner';
-import InfiniteScroll from 'components/gif_picker/components/InfiniteScroll';
-import * as Utils from 'utils/utils.jsx';
 
 import {FilterOption, FilterValues} from '../filter';
 

@@ -1,7 +1,8 @@
 declare namespace Cypress {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface Chainable<Subject = any> {
-    /**
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    interface Chainable<Subject = any> {
+
+        /**
      * Get configuration.
      * See https://api.mattermost.com/#tag/system/paths/~1config/get
      * @returns {AdminConfig} `out.config` as `AdminConfig`
@@ -11,9 +12,9 @@ declare namespace Cypress {
      *       // do something with config
      *   });
      */
-    apiGetConfig(): Chainable<{ config: AdminConfig }>
+        apiGetConfig(): Chainable<{ config: AdminConfig }>;
 
-    /**
+        /**
      * Update configuration.
      * See https://api.mattermost.com/#tag/system/paths/~1config/put
      * @param {AdminConfig} newConfig - new config
@@ -24,6 +25,6 @@ declare namespace Cypress {
      *       // do something with config
      *   });
      */
-    apiUpdateConfig(newConfig: AdminConfig): Chainable<AdminConfig>
-  }
+        apiUpdateConfig(newConfig: AdminConfig): Chainable<AdminConfig>;
+    }
 }

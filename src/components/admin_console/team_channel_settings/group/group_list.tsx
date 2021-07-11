@@ -4,10 +4,10 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import AbstractList from 'components/admin_console/team_channel_settings/abstract_list.jsx';
+
 import {Group} from 'hkclient-redux/types/groups';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import AbstractList from 'components/admin_console/team_channel_settings/abstract_list.jsx';
 
 import GroupRow from './group_row';
 

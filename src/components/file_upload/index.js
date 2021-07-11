@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {uploadFile, handleFileUploadEnd} from 'actions/file_actions.jsx';
 import {getCurrentLocale} from 'selectors/i18n';
 import {canUploadFiles} from 'utils/file_utils';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import FileUpload from './file_upload.jsx';
 

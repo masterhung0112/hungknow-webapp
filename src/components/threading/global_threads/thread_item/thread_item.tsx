@@ -6,6 +6,18 @@ import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 import {useSelector, useDispatch} from 'react-redux';
 
+import * as Utils from 'utils/utils';
+
+import Badge from 'components/widgets/badges/badge';
+
+import Timestamp from 'components/timestamp';
+
+import Avatars from 'components/widgets/users/avatars';
+
+import Button from 'components/threading/common/button';
+
+import SimpleTooltip from 'components/widgets/simple_tooltip';
+
 import {UserThread} from 'hkclient-redux/types/threads';
 import {$ID} from 'hkclient-redux/types/utilities';
 
@@ -18,22 +30,16 @@ import {getThread} from 'hkclient-redux/selectors/entities/threads';
 import {getPost, makeGetPostsForThread} from 'hkclient-redux/selectors/entities/posts';
 import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 
-import * as Utils from 'utils/utils';
-
 import './thread_item.scss';
-
-import Badge from 'components/widgets/badges/badge';
-import Timestamp from 'components/timestamp';
-import Avatars from 'components/widgets/users/avatars';
-import Button from 'components/threading/common/button';
-import SimpleTooltip from 'components/widgets/simple_tooltip';
 
 import Markdown from 'components/markdown';
 
 import ThreadMenu from '../thread_menu';
 
 import {THREADING_TIME} from '../../common/options';
+
 import {GlobalState} from 'types/store';
+
 import {useThreadRouting} from '../../hooks';
 
 type Props = {

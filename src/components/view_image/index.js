@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {canDownloadFiles} from 'utils/file_utils.jsx';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getPost} from 'hkclient-redux/selectors/entities/posts';
-
-import {canDownloadFiles} from 'utils/file_utils.jsx';
 
 import ViewImage from './view_image.jsx';
 

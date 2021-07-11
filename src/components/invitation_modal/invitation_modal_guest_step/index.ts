@@ -3,6 +3,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {isAdmin} from 'utils/utils.jsx';
+
 import {
     getConfig,
     getLicense,
@@ -10,10 +14,6 @@ import {
 } from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getSubscriptionStats} from 'hkclient-redux/actions/cloud';
-
-import {GlobalState} from 'types/store';
-
-import {isAdmin} from 'utils/utils.jsx';
 
 import InvitationModalGuestsStep from './invitation_modal_guests_step';
 

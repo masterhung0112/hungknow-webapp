@@ -5,12 +5,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 
-import {Preferences} from 'hkclient-redux/constants';
-
 import SettingItemMax from 'components/setting_item_max.jsx';
 import SettingItemMin from 'components/setting_item_min';
 
 import {AdvancedSections} from 'utils/constants';
+
+import {Preferences} from 'hkclient-redux/constants';
 
 export default class JoinLeaveSection extends React.PureComponent {
     static propTypes = {

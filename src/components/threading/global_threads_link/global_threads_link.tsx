@@ -7,16 +7,17 @@ import classNames from 'classnames';
 import {useIntl} from 'react-intl';
 import {useSelector, useDispatch} from 'react-redux';
 
+import {t} from 'utils/i18n';
+
+import {isUnreadFilterEnabled} from 'selectors/views/channel_sidebar';
+
+import ChannelMentionBadge from 'components/sidebar/sidebar_channel/channel_mention_badge';
+
 import {getThreadCountsInCurrentTeam} from 'hkclient-redux/selectors/entities/threads';
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 import {getThreads} from 'hkclient-redux/actions/threads';
 
-import {t} from 'utils/i18n';
-
-import {isUnreadFilterEnabled} from 'selectors/views/channel_sidebar';
 import {useThreadRouting} from '../hooks';
-
-import ChannelMentionBadge from 'components/sidebar/sidebar_channel/channel_mention_badge';
 
 import ThreadsIcon from './threads_icon';
 

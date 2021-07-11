@@ -4,6 +4,18 @@
 import {connect} from 'react-redux';
 import {AnyAction, bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
+
+import {Preferences} from 'utils/constants';
+
+import {shouldShowDotMenu} from 'utils/post_utils.jsx';
+
+import {getSelectedPostCard} from 'selectors/rhs';
+
+import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis';
+
 import {removePost} from 'hkclient-redux/actions/posts';
 import {isCurrentChannelReadOnly} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
@@ -12,14 +24,6 @@ import {get, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import {Post} from 'hkclient-redux/types/posts';
-
-import {GlobalState} from 'types/store';
-
-import {emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
-import {Preferences} from 'utils/constants';
-import {shouldShowDotMenu} from 'utils/post_utils.jsx';
-import {getSelectedPostCard} from 'selectors/rhs';
-import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis';
 
 import PostInfo from './post_info';
 

@@ -5,8 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 
-import GeneralConstants from 'hkclient-redux/constants/general';
-
 import ConfirmModal from 'components/confirm_modal';
 
 import {PermissionsScope, DefaultRolePermissions} from 'utils/constants';
@@ -20,6 +18,8 @@ import BlockableLink from 'components/admin_console/blockable_link';
 import AdminPanelTogglable from 'components/widgets/admin_console/admin_panel_togglable';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
+import GeneralConstants from 'hkclient-redux/constants/general';
 
 import PermissionsTree, {EXCLUDED_PERMISSIONS} from '../permissions_tree';
 import GuestPermissionsTree, {GUEST_INCLUDED_PERMISSIONS} from '../guest_permissions_tree';

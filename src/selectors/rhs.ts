@@ -1,6 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {makeGetGlobalItem} from 'selectors/storage';
+
+import {PostTypes} from 'utils/constants';
+
+import {localizeMessage} from 'utils/utils.jsx';
+
+import {GlobalState} from 'types/store';
+
+import {RhsState, FakePost, PostDraft, SearchType} from 'types/store/rhs';
+
 import {createSelector} from 'reselect';
 
 import {makeGetChannel} from 'hkclient-redux/selectors/entities/channels';
@@ -8,12 +18,6 @@ import {Post, PostType} from 'hkclient-redux/types/posts';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {Channel} from 'hkclient-redux/types/channels';
 import {$ID} from 'hkclient-redux/types/utilities';
-
-import {makeGetGlobalItem} from 'selectors/storage';
-import {PostTypes} from 'utils/constants';
-import {localizeMessage} from 'utils/utils.jsx';
-import {GlobalState} from 'types/store';
-import {RhsState, FakePost, PostDraft, SearchType} from 'types/store/rhs';
 
 export function getSelectedPostId(state: GlobalState): $ID<Post> {
     return state.views.rhs.selectedPostId;

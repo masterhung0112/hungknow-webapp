@@ -5,19 +5,18 @@ import {shallow} from 'enzyme';
 
 import React from 'react';
 
+import MessageAttachmentList from 'components/post_view/message_attachments/message_attachment_list';
+import PostAttachmentOpenGraph from 'components/post_view/post_attachment_opengraph';
+import PostImageComponent from 'components/post_view/post_image';
+import YoutubeVideo from 'components/youtube_video';
+
+import {getEmbedFromMetadata} from 'hkclient-redux/utils/post_utils';
 import {
     Post,
     PostEmbed,
     PostImage,
     PostMetadata,
 } from 'hkclient-redux/types/posts';
-
-import {getEmbedFromMetadata} from 'hkclient-redux/utils/post_utils';
-
-import MessageAttachmentList from 'components/post_view/message_attachments/message_attachment_list';
-import PostAttachmentOpenGraph from 'components/post_view/post_attachment_opengraph';
-import PostImageComponent from 'components/post_view/post_image';
-import YoutubeVideo from 'components/youtube_video';
 
 import PostBodyAdditionalContent, {Props} from './post_body_additional_content';
 

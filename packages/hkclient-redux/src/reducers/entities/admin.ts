@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {AdminTypes, UserTypes} from 'hkclient-redux/action_types';
 import {Stats} from 'hkclient-redux/constants';
 import PluginState from 'hkclient-redux/constants/plugins';
@@ -693,6 +694,7 @@ export default combineReducers({
 
     // total custom retention policies
     dataRetentionCustomPoliciesCount,
+
     // the last trial license the server used.
     prevTrialLicense,
 });

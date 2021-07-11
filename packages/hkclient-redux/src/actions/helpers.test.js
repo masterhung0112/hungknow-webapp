@@ -3,13 +3,14 @@
 
 import assert from 'assert';
 
+import {forceLogoutIfNecessary} from 'hkclient-redux/actions/helpers';
+
 import {UserTypes} from 'hkclient-redux/action_types';
-import {forceLogoutIfNecessary} from 'actions/helpers';
 import {Client4} from 'hkclient-redux/client';
 import {ClientError} from 'hkclient-redux/client/client4';
 import configureStore, {mockDispatch} from 'hkclient-redux/test/test_store';
 
-describe('Actions.Helpers', () => {
+describe('hkclient-redux/actions.Helpers', () => {
     describe('forceLogoutIfNecessary', () => {
         const token = 'token';
 

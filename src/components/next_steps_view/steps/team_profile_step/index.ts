@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {patchTeam, removeTeamIcon, setTeamIcon} from 'hkclient-redux/actions/teams';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-
-import {GlobalState} from 'types/store';
 
 import TeamProfileStep from './team_profile_step';
 

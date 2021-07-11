@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
 import LocalStorageStore from 'stores/local_storage_store';
+
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
 // setPreviousTeamId is a pseudo-action that writes not to the Redux store, but back to local
 // storage.

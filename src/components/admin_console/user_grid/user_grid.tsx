@@ -4,13 +4,15 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import Badge from 'components/widgets/badges/badge';
+
+import {FilterOptions} from 'components/admin_console/filter/filter';
+
+import DataGrid, {Row, Column} from 'components/admin_console/data_grid/data_grid';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {TeamMembership} from 'hkclient-redux/types/teams';
 import {ChannelMembership} from 'hkclient-redux/types/channels';
-
-import Badge from 'components/widgets/badges/badge';
-import {FilterOptions} from 'components/admin_console/filter/filter';
-import DataGrid, {Row, Column} from 'components/admin_console/data_grid/data_grid';
 
 import UserGridName from './user_grid_name';
 import UserGridRemove from './user_grid_remove';

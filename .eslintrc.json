@@ -65,7 +65,8 @@
     "no-only-tests/no-only-tests": ["error", {"focus": ["only", "skip"]}],
     "react/style-prop-object": [2, {
       "allow": ["Timestamp"]
-    }]
+    }],
+    "header/header": "off"
   },
   "overrides": [
     {

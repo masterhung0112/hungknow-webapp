@@ -3,13 +3,14 @@
 
 import React from 'react';
 
+import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
+
+import Markdown from 'components/markdown';
+
 import {changeOpacity} from 'hkclient-redux/utils/theme_utils';
 import {Theme} from 'hkclient-redux/types/preferences';
 import {PostAction, PostActionOption} from 'hkclient-redux/types/integration_actions';
 import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
-import Markdown from 'components/markdown';
 
 type Props = {
     action: PostAction;

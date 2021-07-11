@@ -4,6 +4,14 @@
 import React from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 
+import InstalledCommands from 'components/integrations/installed_commands';
+
+import AddCommand from 'components/integrations/add_command';
+
+import EditCommand from 'components/integrations/edit_command';
+
+import ConfirmIntegration from 'components/integrations/confirm_integration';
+
 import {Team} from 'hkclient-redux/types/teams';
 
 import {UserProfile} from 'hkclient-redux/types/users';
@@ -11,11 +19,6 @@ import {UserProfile} from 'hkclient-redux/types/users';
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 
 import {Command} from 'hkclient-redux/types/integrations';
-
-import InstalledCommands from 'components/integrations/installed_commands';
-import AddCommand from 'components/integrations/add_command';
-import EditCommand from 'components/integrations/edit_command';
-import ConfirmIntegration from 'components/integrations/confirm_integration';
 
 interface IProps {
     component: any;

@@ -8,8 +8,9 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
 import CameraIcon from 'components/widgets/icons/camera_icon';
 
-import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 import {PluginComponent} from 'types/store/plugins';
+
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 
 const customStyles: React.CSSProperties = {
     left: 'inherit',

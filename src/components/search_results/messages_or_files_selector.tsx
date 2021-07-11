@@ -4,11 +4,12 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {SearchFilterType} from '../search/types';
 import {SearchType} from 'types/store/rhs';
 
 import * as Utils from 'utils/utils.jsx';
 import Constants from 'utils/constants';
+
+import {SearchFilterType} from '../search/types';
 
 import FilesFilterMenu from './files_filter_menu';
 

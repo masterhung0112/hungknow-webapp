@@ -6,13 +6,15 @@ import {FormattedMessage, useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {GlobalState} from 'types/store';
+
+import Input from 'components/input';
+
+import {StepComponentProps} from 'components/next_steps_view/steps';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {patchConfig} from 'hkclient-redux/actions/admin';
 import {DispatchFunc} from 'hkclient-redux/types/actions';
 import {isEmail} from 'hkclient-redux/utils/helpers';
-
-import Input from 'components/input';
-import {StepComponentProps} from 'components/next_steps_view/steps';
 
 import './enter_support_email.scss';
 

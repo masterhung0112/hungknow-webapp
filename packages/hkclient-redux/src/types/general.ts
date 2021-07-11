@@ -1,6 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {General} from 'hkclient-redux/constants';
+
 import {ClientConfig, ClientLicense, WarnMetricStatus} from './config';
 
 import {Dictionary} from './utilities';
@@ -22,3 +24,7 @@ export type SystemSetting = {
     name: string;
     value: string;
 };
+
+export interface GeneralAwareState {
+    [General.GENERAL_MODULE_NAME]: GeneralState;
+}

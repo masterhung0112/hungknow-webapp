@@ -5,9 +5,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
 import ToggleModalButtonRedux from 'components/toggle_modal_button_redux';
+
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
 import menuItem from './menu_item';
 

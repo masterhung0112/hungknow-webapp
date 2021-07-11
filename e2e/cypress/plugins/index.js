@@ -9,21 +9,21 @@
 // https://on.cypress.io/plugins-guide
 // ***********************************************************
 
-import { dbGetUser } from './db_request'
+import {dbGetUser} from './db_request';
 
 const log = (message) => {
-  console.log(message)
-  return null
-}
+    console.log(message);
+    return null;
+};
 
 /**
  * @type {Cypress.PluginConfig}
  */
 module.exports = (on, config) => {
-  on('task', {
-    dbGetUser,
-    log,
-  })
+    on('task', {
+        dbGetUser,
+        log,
+    });
 
-  return config
-}
+    return config;
+};

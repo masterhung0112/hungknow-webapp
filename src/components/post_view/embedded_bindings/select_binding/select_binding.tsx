@@ -5,6 +5,16 @@ import React from 'react';
 
 import {injectIntl, IntlShape} from 'react-intl';
 
+import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
+
+import MenuActionProvider from 'components/suggestion/menu_action_provider';
+
+import AutocompleteSelector from 'components/autocomplete_selector';
+
+import PostContext from 'components/post_view/post_context';
+
+import {createCallContext, createCallRequest} from 'utils/apps';
+
 import {ActionResult} from 'hkclient-redux/types/actions';
 
 import {Post} from 'hkclient-redux/types/posts';
@@ -13,13 +23,6 @@ import {AppBinding} from 'hkclient-redux/types/apps';
 import {Channel} from 'hkclient-redux/types/channels';
 
 import {AppBindingLocations, AppCallResponseTypes, AppCallTypes, AppExpandLevels} from 'hkclient-redux/constants/apps';
-
-import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
-
-import MenuActionProvider from 'components/suggestion/menu_action_provider';
-import AutocompleteSelector from 'components/autocomplete_selector';
-import PostContext from 'components/post_view/post_context';
-import {createCallContext, createCallRequest} from 'utils/apps';
 
 type Option = {
     text: string;

@@ -1,6 +1,22 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {loadChannelsForCurrentUser} from 'actions/channel_actions.jsx';
+
+import {loadNewDMIfNeeded, loadNewGMIfNeeded} from 'actions/user_actions.jsx';
+
+import {selectPostAndHighlight} from 'actions/views/rhs';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {joinPrivateChannelPrompt} from 'utils/channel_utils';
+
+import {ActionTypes, Constants, ErrorPageTypes} from 'utils/constants';
+
+import {isSystemAdmin} from 'utils/utils';
+
+import {isComment, getPostURL} from 'utils/post_utils';
+
 import {getChannel, getChannelMember, selectChannel, joinChannel, getChannelStats} from 'hkclient-redux/actions/channels';
 import {getPostThread} from 'hkclient-redux/actions/posts';
 import {getMissingProfilesByIds} from 'hkclient-redux/actions/users';
@@ -9,16 +25,6 @@ import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 import {getUserIdFromChannelName} from 'hkclient-redux/utils/channel_utils';
-
-import {loadChannelsForCurrentUser} from 'actions/channel_actions.jsx';
-import {loadNewDMIfNeeded, loadNewGMIfNeeded} from 'actions/user_actions.jsx';
-import {selectPostAndHighlight} from 'actions/views/rhs';
-
-import {browserHistory} from 'utils/browser_history';
-import {joinPrivateChannelPrompt} from 'utils/channel_utils';
-import {ActionTypes, Constants, ErrorPageTypes} from 'utils/constants';
-import {isSystemAdmin} from 'utils/utils';
-import {isComment, getPostURL} from 'utils/post_utils';
 
 let privateChannelJoinPromptVisible = false;
 

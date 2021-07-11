@@ -3,14 +3,16 @@
 
 import {connect} from 'react-redux';
 
+import {getAutoSortedCategoryIds, getDraggingState, isChannelSelected} from 'selectors/views/channel_sidebar';
+
+import {GlobalState} from 'types/store';
+
+import {NotificationLevels} from 'utils/constants';
+
 import {getMyChannelMemberships} from 'hkclient-redux/selectors/entities/common';
 import {getCurrentChannelId, makeGetChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-
-import {getAutoSortedCategoryIds, getDraggingState, isChannelSelected} from 'selectors/views/channel_sidebar';
-import {GlobalState} from 'types/store';
-import {NotificationLevels} from 'utils/constants';
 
 import {getMsgCountInChannel} from 'hkclient-redux/utils/channel_utils';
 

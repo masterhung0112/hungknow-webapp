@@ -4,7 +4,6 @@ import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
-import EventEmitter from 'hkclient-redux/utils/event_emitter';
 import StatusIcon from 'components/status_icon';
 import Timestamp from 'components/timestamp';
 import OverlayTrigger from 'components/overlay_trigger';
@@ -25,6 +24,8 @@ import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
 import CustomStatusModal from 'components/custom_status/custom_status_modal';
 import CustomStatusText from 'components/custom_status/custom_status_text';
 import ExpiryTime from 'components/custom_status/expiry_time';
+
+import EventEmitter from 'hkclient-redux/utils/event_emitter';
 import {UserCustomStatus, UserProfile, UserTimezone, CustomStatusDuration} from 'hkclient-redux/types/users';
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {ServerError} from 'hkclient-redux/types/errors';

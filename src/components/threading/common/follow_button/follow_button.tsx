@@ -6,8 +6,9 @@ import {useIntl} from 'react-intl';
 
 import classNames from 'classnames';
 
-import Button from '../button';
 import {t} from 'utils/i18n';
+
+import Button from '../button';
 
 type Props = {
     isFollowing: boolean | null | undefined;

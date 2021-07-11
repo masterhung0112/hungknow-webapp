@@ -6,6 +6,7 @@ import {BotTypes} from 'hkclient-redux/action_types';
 
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {Bot, BotPatch} from 'hkclient-redux/types/bots';
+
 import {bindClientFunc} from './helpers';
 
 const BOTS_PER_PAGE_DEFAULT = 20;

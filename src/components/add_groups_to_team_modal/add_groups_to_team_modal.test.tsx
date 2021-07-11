@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Groups} from 'hkclient-redux/constants';
-
 import AddGroupsToTeamModal from 'components/add_groups_to_team_modal/add_groups_to_team_modal';
+
+import {Groups} from 'hkclient-redux/constants';
 
 describe('components/AddGroupsToTeamModal', () => {
     const baseProps = {

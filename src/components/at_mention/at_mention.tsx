@@ -4,15 +4,15 @@
 import React from 'react';
 import {Overlay} from 'react-bootstrap';
 
+import ProfilePopover from 'components/profile_popover';
+
+import {popOverOverlayPosition} from 'utils/position_utils';
+
 import {Client4} from 'hkclient-redux/client';
 import {displayUsername} from 'hkclient-redux/utils/user_utils';
 import {NameMappedObjects, UsernameMappedObjects} from 'hkclient-redux/types/utilities';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Group} from 'hkclient-redux/types/groups';
-
-import ProfilePopover from 'components/profile_popover';
-
-import {popOverOverlayPosition} from 'utils/position_utils';
 
 const spaceRequiredForPopOver = 300;
 

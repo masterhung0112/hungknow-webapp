@@ -7,6 +7,7 @@ import nock from 'nock';
 import {ClientError, HEADER_X_VERSION_ID} from 'hkclient-redux/client/client4';
 import TestHelper from 'hkclient-redux/test/test_helper';
 import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
+
 import {rudderAnalytics, RudderTelemetryHandler} from './rudder';
 
 jest.mock('rudder-sdk-js', () => {

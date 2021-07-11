@@ -8,18 +8,6 @@ import {Link, useRouteMatch} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import classNames from 'classnames';
 
-import {
-    getThreadOrderInCurrentTeam,
-    getUnreadThreadOrderInCurrentTeam,
-    getThreadCountsInCurrentTeam,
-    getThread,
-} from 'hkclient-redux/selectors/entities/threads';
-
-import {getThreads} from 'hkclient-redux/actions/threads';
-import {selectChannel} from 'hkclient-redux/actions/channels';
-
-import {getPost} from 'hkclient-redux/selectors/entities/posts';
-
 import {GlobalState} from 'types/store/index';
 
 import {useGlobalState} from 'stores/hooks';
@@ -32,6 +20,16 @@ import RHSSearchNav from 'components/rhs_search_nav';
 import Header from 'components/widgets/header';
 import LoadingScreen from 'components/loading_screen';
 import NoResultsIndicator from 'components/no_results_indicator';
+
+import {getPost} from 'hkclient-redux/selectors/entities/posts';
+import {selectChannel} from 'hkclient-redux/actions/channels';
+import {getThreads} from 'hkclient-redux/actions/threads';
+import {
+    getThreadOrderInCurrentTeam,
+    getUnreadThreadOrderInCurrentTeam,
+    getThreadCountsInCurrentTeam,
+    getThread,
+} from 'hkclient-redux/selectors/entities/threads';
 
 import {useThreadRouting} from '../hooks';
 import ChatIllustration from '../common/chat_illustration';

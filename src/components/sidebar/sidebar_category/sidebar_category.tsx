@@ -7,10 +7,6 @@ import {FormattedMessage} from 'react-intl';
 import {Draggable, Droppable} from 'react-beautiful-dnd';
 import classNames from 'classnames';
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-import {ChannelCategory, CategorySorting} from 'hkclient-redux/types/channel_categories';
-import {localizeMessage} from 'hkclient-redux/utils/i18n_utils';
-
 import {trackEvent} from 'actions/telemetry_actions';
 
 import OverlayTrigger from 'components/overlay_trigger';
@@ -20,6 +16,10 @@ import {DraggingState} from 'types/store';
 import Constants, {A11yCustomEventTypes, DraggingStateTypes, DraggingStates} from 'utils/constants';
 import {t} from 'utils/i18n';
 import {isKeyPressed} from 'utils/utils';
+
+import {localizeMessage} from 'hkclient-redux/utils/i18n_utils';
+import {ChannelCategory, CategorySorting} from 'hkclient-redux/types/channel_categories';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
 import SidebarChannel from '../sidebar_channel';
 import {SidebarCategoryHeader} from '../sidebar_category_header';

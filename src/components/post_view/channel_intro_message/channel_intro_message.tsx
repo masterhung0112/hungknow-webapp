@@ -5,12 +5,6 @@ import {FormattedDate, FormattedMessage} from 'react-intl';
 
 import React from 'react';
 
-import {Permissions} from 'hkclient-redux/constants';
-
-import {UserProfile as UserProfileRedux} from 'hkclient-redux/types/users';
-
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {Constants, ModalIdentifiers} from 'utils/constants';
 import EditChannelHeaderModal from 'components/edit_channel_header_modal';
 import ProfilePicture from 'components/profile_picture';
@@ -25,6 +19,10 @@ import AddGroupsToTeamModal from 'components/add_groups_to_team_modal';
 
 import {getMonthLong} from 'utils/i18n.jsx';
 import * as Utils from 'utils/utils.jsx';
+
+import {Channel} from 'hkclient-redux/types/channels';
+import {UserProfile as UserProfileRedux} from 'hkclient-redux/types/users';
+import {Permissions} from 'hkclient-redux/constants';
 
 import AddMembersButton from './add_members_button';
 

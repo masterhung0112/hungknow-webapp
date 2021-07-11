@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {leaveDirectChannel} from 'actions/views/channel';
+
 import {Client4} from 'hkclient-redux/client';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {ActionFunc} from 'hkclient-redux/types/actions';
@@ -14,8 +16,6 @@ import {UserProfile} from 'hkclient-redux/types/users';
 import {getCurrentChannelId, getRedirectChannelNameForTeam} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUser, getUser} from 'hkclient-redux/selectors/entities/users';
-
-import {leaveDirectChannel} from 'actions/views/channel';
 
 import SidebarDirectChannel from './sidebar_direct_channel';
 

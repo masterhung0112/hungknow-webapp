@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {IntegrationTypes, UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Command, IncomingWebhook, OutgoingWebhook, OAuthApp} from 'hkclient-redux/types/integrations';
@@ -284,6 +285,7 @@ export default combineReducers({
 
     // object to represent registered oauth apps with app id as the key
     oauthApps,
+
     // object to represent the list of ids for oauth apps associated to apps
     appsOAuthAppIDs,
 

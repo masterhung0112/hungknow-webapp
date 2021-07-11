@@ -3,17 +3,17 @@
 
 import {connect} from 'react-redux';
 
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-import {getUserTimezone} from 'hkclient-redux/selectors/entities/timezone';
-import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';
-import {getBool} from 'hkclient-redux/selectors/entities/preferences';
-import {UserTimezone} from 'hkclient-redux/types/users';
-
 import {areTimezonesEnabledAndSupported} from 'selectors/general';
 
 import {GlobalState} from 'types/store';
 
 import {Preferences} from 'utils/constants';
+
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getUserTimezone} from 'hkclient-redux/selectors/entities/timezone';
+import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';
+import {getBool} from 'hkclient-redux/selectors/entities/preferences';
+import {UserTimezone} from 'hkclient-redux/types/users';
 
 import Timestamp, {Props as TimestampProps, supportsHourCycle} from './timestamp';
 

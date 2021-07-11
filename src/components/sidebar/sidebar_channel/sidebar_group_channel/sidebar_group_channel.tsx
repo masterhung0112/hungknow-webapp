@@ -3,14 +3,14 @@
 
 import React from 'react';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import {browserHistory} from 'utils/browser_history';
 import Constants from 'utils/constants';
 
 import SidebarChannelLink from 'components/sidebar/sidebar_channel/sidebar_channel_link';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
     channel: Channel;

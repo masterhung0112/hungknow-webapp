@@ -6,10 +6,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {memoizeResult} from 'hkclient-redux/utils/helpers';
-import {Team} from 'hkclient-redux/types/teams';
-import {Channel} from 'hkclient-redux/types/channels';
-
 import Markdown from 'components/markdown';
 import GlobeIcon from 'components/widgets/icons/globe_icon';
 import LockIcon from 'components/widgets/icons/lock_icon';
@@ -20,6 +16,10 @@ import {ChannelNamesMap} from 'utils/text_formatting';
 import Constants from 'utils/constants.jsx';
 import {getSiteURL} from 'utils/url';
 import * as Utils from 'utils/utils.jsx';
+
+import {Channel} from 'hkclient-redux/types/channels';
+import {Team} from 'hkclient-redux/types/teams';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
 
 const headerMarkdownOptions = {singleline: false, mentionHighlight: false};
 

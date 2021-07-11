@@ -4,8 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {AdminConfig} from 'hkclient-redux/types/config';
-
 import * as Utils from 'utils/utils.jsx';
 import Card from 'components/card/card';
 import BlockableLink from 'components/admin_console/blockable_link';
@@ -15,6 +13,8 @@ import {keepForeverOption, yearsOption, daysOption, FOREVER, YEARS, DAYS} from '
 
 import './global_policy_form.scss';
 import SaveButton from 'components/save_button';
+
+import {AdminConfig} from 'hkclient-redux/types/config';
 import {ServerError} from 'hkclient-redux/types/errors';
 
 type ValueType = {

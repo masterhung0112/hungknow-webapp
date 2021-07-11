@@ -3,14 +3,14 @@
 
 import React from 'react';
 
-import {RESOURCE_KEYS} from 'hkclient-redux/constants/permissions_sysconsole';
-
 import {samplePlugin1} from 'tests/helpers/admin_console_plugin_index_sample_pluings';
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import AdminSidebar from 'components/admin_console/admin_sidebar/admin_sidebar.jsx';
 import AdminDefinition from 'components/admin_console/admin_definition';
 import {generateIndex} from 'utils/admin_console_index';
+
+import {RESOURCE_KEYS} from 'hkclient-redux/constants/permissions_sysconsole';
 
 jest.mock('utils/utils', () => {
     const original = jest.requireActual('utils/utils');

@@ -3,13 +3,15 @@
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import {closeModal} from 'actions/views/modals';
+
+import {setShowPreviewOnEditChannelHeaderModal} from 'actions/views/textbox';
+
+import {showPreviewOnEditChannelHeaderModal} from 'selectors/views/textbox';
+
 import {getBool} from 'hkclient-redux/selectors/entities/preferences';
 import {patchChannel} from 'hkclient-redux/actions/channels';
 import {Preferences} from 'hkclient-redux/constants';
-
-import {closeModal} from 'actions/views/modals';
-import {setShowPreviewOnEditChannelHeaderModal} from 'actions/views/textbox';
-import {showPreviewOnEditChannelHeaderModal} from 'selectors/views/textbox';
 
 import {isModalOpen} from '../../selectors/views/modals';
 import {ModalIdentifiers} from '../../utils/constants';

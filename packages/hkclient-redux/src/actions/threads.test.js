@@ -6,7 +6,7 @@ import nock from 'nock';
 import {
     getThread as fetchThread,
     getThreads as fetchThreads,
-} from 'actions/threads';
+} from 'hkclient-redux/actions/threads';
 
 import {
     getThread,
@@ -72,7 +72,7 @@ function mockUserThread({
     return [thread, {userId, otherUserId, channelId, postId, threadId}];
 }
 
-describe('Actions.Threads', () => {
+describe('hkclient-redux/actions.Threads', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

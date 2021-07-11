@@ -4,6 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
+
+import {loadProfilesAndTeamMembers, loadTeamMembersForProfilesList} from 'actions/user_actions.jsx';
+
+import {setModalSearchTerm} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {getTeamStats, getTeamMembers} from 'hkclient-redux/actions/teams';
 import {GetTeamMembersOpts, TeamStats, TeamMembership} from 'hkclient-redux/types/teams';
 import {haveITeamPermission} from 'hkclient-redux/selectors/entities/roles';
@@ -13,12 +21,6 @@ import {Permissions} from 'hkclient-redux/constants';
 import {searchProfiles} from 'hkclient-redux/actions/users';
 import {ActionFunc, GenericAction, ActionResult} from 'hkclient-redux/types/actions';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
-import {loadProfilesAndTeamMembers, loadTeamMembersForProfilesList} from 'actions/user_actions.jsx';
-import {setModalSearchTerm} from 'actions/views/search';
-
-import {GlobalState} from 'types/store';
 
 import MemberListTeam from './member_list_team';
 

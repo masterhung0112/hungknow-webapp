@@ -5,8 +5,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Action, ActionFunc} from 'hkclient-redux/types/actions';
-
 import deferComponentRender from 'components/deferComponentRender';
 import ChannelHeader from 'components/channel_header';
 import CreatePost from 'components/create_post';
@@ -16,6 +14,8 @@ import PostView from 'components/post_view';
 import TutorialView from 'components/tutorial';
 import {clearMarks, mark, measure, trackEvent} from 'actions/telemetry_actions.jsx';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
+import {Action, ActionFunc} from 'hkclient-redux/types/actions';
 
 type Props = {
     channelId: string;

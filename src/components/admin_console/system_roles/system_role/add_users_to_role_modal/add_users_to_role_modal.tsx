@@ -5,6 +5,18 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import {displayEntireNameForUser, localizeMessage, isGuest} from 'utils/utils.jsx';
+
+import ProfilePicture from 'components/profile_picture';
+
+import GuestBadge from 'components/widgets/badges/guest_badge';
+
+import BotBadge from 'components/widgets/badges/bot_badge';
+
+import MultiSelect, {Value} from 'components/multiselect/multiselect';
+
+import AddIcon from 'components/widgets/icons/fa_add_icon';
+
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Role} from 'hkclient-redux/types/roles';
@@ -13,13 +25,6 @@ import {filterProfilesStartingWithTerm, profileListToMap} from 'hkclient-redux/u
 import {filterProfiles} from 'hkclient-redux/selectors/entities/users';
 
 import {Client4} from 'hkclient-redux/client';
-
-import {displayEntireNameForUser, localizeMessage, isGuest} from 'utils/utils.jsx';
-import ProfilePicture from 'components/profile_picture';
-import GuestBadge from 'components/widgets/badges/guest_badge';
-import BotBadge from 'components/widgets/badges/bot_badge';
-import MultiSelect, {Value} from 'components/multiselect/multiselect';
-import AddIcon from 'components/widgets/icons/fa_add_icon';
 
 const USERS_PER_PAGE = 50;
 const MAX_SELECTABLE_VALUES = 20;

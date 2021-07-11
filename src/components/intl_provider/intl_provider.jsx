@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {IntlProvider as BaseIntlProvider} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-import {setLocalizeFunction} from 'hkclient-redux/utils/i18n_utils';
-
 import * as I18n from 'i18n/i18n';
 
 import {localizeMessage} from 'utils/utils';
+
+import {Client4} from 'hkclient-redux/client';
+import {setLocalizeFunction} from 'hkclient-redux/utils/i18n_utils';
 
 export default class IntlProvider extends React.PureComponent {
     static propTypes = {

@@ -3,13 +3,13 @@
 
 import React from 'react';
 
-import {RequestStatus} from 'hkclient-redux/constants';
-import {Channel} from 'hkclient-redux/types/channels';
-import {Team} from 'hkclient-redux/types/teams';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import {TestHelper} from 'utils/test_helper';
+
+import {RequestStatus} from 'hkclient-redux/constants';
+import {Channel} from 'hkclient-redux/types/channels';
+import {Team} from 'hkclient-redux/types/teams';
 
 import RenameChannelModal, {RenameChannelModal as RenameChannelModalClass} from './rename_channel_modal';
 

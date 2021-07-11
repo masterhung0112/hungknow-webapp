@@ -7,9 +7,6 @@ import {FormattedMessage, injectIntl} from 'react-intl';
 
 import {Tooltip} from 'react-bootstrap';
 
-import {Posts} from 'hkclient-redux/constants/index';
-import * as ReduxPostUtils from 'hkclient-redux/utils/post_utils';
-
 import PostMessageContainer from 'components/post_view/post_message_view';
 import FileAttachmentListContainer from 'components/file_attachment_list';
 import CommentIcon from 'components/common/comment_icon';
@@ -31,6 +28,9 @@ import Constants, {Locations} from 'utils/constants';
 import * as PostUtils from 'utils/post_utils.jsx';
 import {intlShape} from 'utils/react_intl';
 import * as Utils from 'utils/utils.jsx';
+
+import * as ReduxPostUtils from 'hkclient-redux/utils/post_utils';
+import {Posts} from 'hkclient-redux/constants/index';
 
 class SearchResultsItem extends React.PureComponent {
     static propTypes = {

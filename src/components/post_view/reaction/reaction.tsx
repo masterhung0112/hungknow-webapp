@@ -4,12 +4,12 @@
 import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 
-import {Post} from 'hkclient-redux/types/posts';
-import {Reaction as ReactionType} from 'hkclient-redux/types/reactions';
-
 import OverlayTrigger from 'components/overlay_trigger';
 
 import * as Utils from 'utils/utils';
+
+import {Post} from 'hkclient-redux/types/posts';
+import {Reaction as ReactionType} from 'hkclient-redux/types/reactions';
 
 import ReactionTooltip from './reaction_tooltip';
 import './reaction.scss';

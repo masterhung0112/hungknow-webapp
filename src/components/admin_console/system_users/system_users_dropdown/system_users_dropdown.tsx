@@ -4,14 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import * as UserUtils from 'hkclient-redux/utils/user_utils';
-import {Permissions} from 'hkclient-redux/constants';
-import {AdminConfig} from 'hkclient-redux/types/config';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {ServerError} from 'hkclient-redux/types/errors';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {Bot} from 'hkclient-redux/types/bots';
-
 import {adminResetMfa} from 'actions/admin_actions.jsx';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import {Constants} from 'utils/constants';
@@ -24,6 +16,14 @@ import SystemPermissionGate from 'components/permissions_gates/system_permission
 
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
+
+import {Bot} from 'hkclient-redux/types/bots';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {ServerError} from 'hkclient-redux/types/errors';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {AdminConfig} from 'hkclient-redux/types/config';
+import {Permissions} from 'hkclient-redux/constants';
+import * as UserUtils from 'hkclient-redux/utils/user_utils';
 
 const ROWS_FROM_BOTTOM_TO_OPEN_UP = 3;
 const TOTAL_USERS_TO_OPEN_UP = 5;

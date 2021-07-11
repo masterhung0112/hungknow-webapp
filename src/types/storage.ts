@@ -1,12 +1,12 @@
-import { Dictionary } from 'hkclient-redux/types/utilities'
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
-import StorageConstants from '../constants/storage'
+import StorageConstants from '../constants/storage';
 
 export interface StorageAwareState {
-  [StorageConstants.STORAGE_MODULE_NAME]: StorageState
+    [StorageConstants.STORAGE_MODULE_NAME]: StorageState;
 }
 
 export type StorageState = Readonly<{
-  storage: Dictionary<any>
-  initialized: boolean
+    storage: Dictionary<any>;
+    initialized: boolean;
 }>

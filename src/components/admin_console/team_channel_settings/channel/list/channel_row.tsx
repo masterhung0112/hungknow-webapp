@@ -6,12 +6,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 
-import {ChannelWithTeamData} from 'hkclient-redux/types/channels';
-
 import {Constants} from 'utils/constants';
 import GlobeIcon from 'components/widgets/icons/globe_icon';
 import LockIcon from 'components/widgets/icons/lock_icon';
 import ArchiveIcon from 'components/widgets/icons/archive_icon';
+
+import {ChannelWithTeamData} from 'hkclient-redux/types/channels';
 
 interface Props {
     channel: ChannelWithTeamData;

@@ -1,299 +1,305 @@
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-library/react'
-import { defaultTestIntl, wrapIntlProvider, translationData } from 'tests/intlProvider'
-import '@testing-library/jest-dom'
-import userEvent from '@testing-library/user-event'
-import { UserProfile } from 'hkclient-redux/types/users'
-import Router from 'next/router'
-import Constants from 'utils/constants'
+import {render, fireEvent, waitFor, BoundFunction, GetByText} from '@testing-library/react';
+import {defaultTestIntl, wrapIntlProvider, translationData} from 'tests/intlProvider';
+import '@testing-library/jest-dom';
+import userEvent from '@testing-library/user-event';
 
-import SignupEmail, { SignupEmailProps } from './signupEmail'
+import Router from 'next/router';
+import Constants from 'utils/constants';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+
+import SignupEmail, {SignupEmailProps} from './signupEmail';
 
 describe('components/SignupEmail', () => {
-  const baseProps: any = {
-    location: { search: 'search_path' },
-    hasAccounts: false,
-    enableSignUpWithEmail: true,
-    customDescriptionText: undefined,
-    siteName: 'Hung Know',
-    passwordConfig: {
-      minimumLength: 3,
-      requireLowercase: false,
-      requireNumber: false,
-      requireSymbol: false,
-      requireUppercase: false,
-    },
-    actions: {
-      createUser: jest.fn(),
-      loginById: jest.fn(),
-      setGlobalItem: jest.fn(),
-      getTeamInviteInfo: jest.fn(),
-      redirectUserToDefaultTeam: jest.fn(),
-    },
-  } as SignupEmailProps
+    const baseProps: any = {
+        location: {search: 'search_path'},
+        hasAccounts: false,
+        enableSignUpWithEmail: true,
+        customDescriptionText: undefined,
+        siteName: 'Hung Know',
+        passwordConfig: {
+            minimumLength: 3,
+            requireLowercase: false,
+            requireNumber: false,
+            requireSymbol: false,
+            requireUppercase: false,
+        },
+        actions: {
+            createUser: jest.fn(),
+            loginById: jest.fn(),
+            setGlobalItem: jest.fn(),
+            getTeamInviteInfo: jest.fn(),
+            redirectUserToDefaultTeam: jest.fn(),
+        },
+    } as SignupEmailProps;
 
-  const validEmail = 'validemail@gmail.com'
-  const validUserName = 'HungBui'
-  const validPassword = 'password@'
+    const validEmail = 'validemail@gmail.com';
+    const validUserName = 'HungBui';
+    const validPassword = 'password@';
 
-  const inputCorrectValue = (getByLabelText: BoundFunction<GetByText>) => {
-    const emailInput = getByLabelText(translationData['signup_user_completed.whatis'])
-    userEvent.clear(emailInput)
-    userEvent.type(emailInput, validEmail)
+    const inputCorrectValue = (getByLabelText: BoundFunction<GetByText>) => {
+        const emailInput = getByLabelText(translationData['signup_user_completed.whatis']);
+        userEvent.clear(emailInput);
+        userEvent.type(emailInput, validEmail);
 
-    const usernameInput = getByLabelText(translationData['signup_user_completed.chooseUser'])
-    userEvent.clear(usernameInput)
-    userEvent.type(usernameInput, validUserName)
+        const usernameInput = getByLabelText(translationData['signup_user_completed.chooseUser']);
+        userEvent.clear(usernameInput);
+        userEvent.type(usernameInput, validUserName);
 
-    const passwordInput = getByLabelText(translationData['signup_user_completed.choosePwd'])
-    userEvent.clear(passwordInput)
-    userEvent.type(passwordInput, validPassword)
-  }
+        const passwordInput = getByLabelText(translationData['signup_user_completed.choosePwd']);
+        userEvent.clear(passwordInput);
+        userEvent.type(passwordInput, validPassword);
+    };
 
-  beforeEach(() => {
-    jest.clearAllMocks()
+    beforeEach(() => {
+        jest.clearAllMocks();
 
-    Router.router.push = jest.fn()
-    Router.query['redirect_to'] = undefined
-  })
+        Router.router.push = jest.fn();
+        Router.query.redirect_to = undefined;
+    });
 
-  it('has enough fields', () => {
-    const wrapper = shallow(<SignupEmail {...baseProps} />)
-    // console.log(wrapper.debug())
-    const emailFormGroup = wrapper.find('FormGroup[labelFor="email"]')
-    expect(emailFormGroup.exists()).toBeTruthy()
-    const emailInputGroup = emailFormGroup.find('InputGroup[type="email"]')
-    expect(emailInputGroup.exists()).toBeTruthy()
+    it('has enough fields', () => {
+        const wrapper = shallow(<SignupEmail {...baseProps}/>);
 
-    const usernameFormGroup = wrapper.find('FormGroup[labelFor="name"]')
-    expect(usernameFormGroup.exists()).toBeTruthy()
-    const usernameInputGroup = usernameFormGroup.find('InputGroup[type="text"]')
-    expect(usernameInputGroup.exists()).toBeTruthy()
+        // console.log(wrapper.debug())
+        const emailFormGroup = wrapper.find('FormGroup[labelFor="email"]');
+        expect(emailFormGroup.exists()).toBeTruthy();
+        const emailInputGroup = emailFormGroup.find('InputGroup[type="email"]');
+        expect(emailInputGroup.exists()).toBeTruthy();
 
-    const passwordFormGroup = wrapper.find('FormGroup[labelFor="password"]')
-    expect(passwordFormGroup.exists()).toBeTruthy()
-    const passwordInputGroup = passwordFormGroup.find('InputGroup[type="password"]')
-    expect(passwordInputGroup.exists()).toBeTruthy()
-  })
+        const usernameFormGroup = wrapper.find('FormGroup[labelFor="name"]');
+        expect(usernameFormGroup.exists()).toBeTruthy();
+        const usernameInputGroup = usernameFormGroup.find('InputGroup[type="text"]');
+        expect(usernameInputGroup.exists()).toBeTruthy();
 
-  test('field has error message when invalid input', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({ data: 'login test' })
+        const passwordFormGroup = wrapper.find('FormGroup[labelFor="password"]');
+        expect(passwordFormGroup.exists()).toBeTruthy();
+        const passwordInputGroup = passwordFormGroup.find('InputGroup[type="password"]');
+        expect(passwordInputGroup.exists()).toBeTruthy();
+    });
 
-    const props = {
-      ...baseProps,
-      actions: {
-        ...baseProps.actions,
-        createUser: createUserMock,
-        loginById: loginByIdMock,
-      },
-    }
+    test('field has error message when invalid input', async () => {
+        const createUserMock = jest.fn().mockResolvedValue({data: {id: 'hung'} as UserProfile});
+        const loginByIdMock = jest.fn().mockResolvedValue({data: 'login test'});
 
-    const { getByText, queryByText, getByLabelText, unmount, container } = render(
-      wrapIntlProvider(<SignupEmail {...props} />)
-    )
+        const props = {
+            ...baseProps,
+            actions: {
+                ...baseProps.actions,
+                createUser: createUserMock,
+                loginById: loginByIdMock,
+            },
+        };
 
-    // Check email help text display by default
-    expect(queryByText(translationData['signup_user_completed.emailHelp'])).toBeInTheDocument()
-    expect(queryByText(translationData['signup_user_completed.required'])).not.toBeInTheDocument()
+        const {getByText, queryByText, getByLabelText, unmount, container} = render(
+            wrapIntlProvider(<SignupEmail {...props}/>),
+        );
 
-    expect(queryByText(translationData['signup_user_completed.userHelp'])).toBeInTheDocument()
-    // expect(queryByText(translationData['signup_user_completed.required'])).not.toBeInTheDocument()
+        // Check email help text display by default
+        expect(queryByText(translationData['signup_user_completed.emailHelp'])).toBeInTheDocument();
+        expect(queryByText(translationData['signup_user_completed.required'])).not.toBeInTheDocument();
 
-    const createButton = getByText(translationData['signup_user_completed.create'])
-    // Click create button, we expect error message displaying on every fields
-    fireEvent.click(createButton)
+        expect(queryByText(translationData['signup_user_completed.userHelp'])).toBeInTheDocument();
 
-    // Check email error not to be displayed
-    expect(queryByText(translationData['signup_user_completed.emailHelp'])).not.toBeInTheDocument()
-    expect(queryByText(translationData['signup_user_completed.required'])).toBeInTheDocument()
+        // expect(queryByText(translationData['signup_user_completed.required'])).not.toBeInTheDocument()
 
-    // When email error is displaying, the user help is still displaying
-    expect(queryByText(translationData['signup_user_completed.userHelp'])).toBeInTheDocument()
+        const createButton = getByText(translationData['signup_user_completed.create']);
 
-    expect(queryByText(translationData['signup_user_completed.validEmail'])).not.toBeInTheDocument()
+        // Click create button, we expect error message displaying on every fields
+        fireEvent.click(createButton);
 
-    const emailInput = getByLabelText(translationData['signup_user_completed.whatis'])
-    // Input invalid email, hope error message appear
-    // fireEvent.change(emailInput, { target: { value: 'invalid_email' } })
+        // Check email error not to be displayed
+        expect(queryByText(translationData['signup_user_completed.emailHelp'])).not.toBeInTheDocument();
+        expect(queryByText(translationData['signup_user_completed.required'])).toBeInTheDocument();
 
-    userEvent.type(emailInput, 'invalid_email')
+        // When email error is displaying, the user help is still displaying
+        expect(queryByText(translationData['signup_user_completed.userHelp'])).toBeInTheDocument();
 
-    fireEvent.click(createButton)
-    expect(queryByText(translationData['signup_user_completed.validEmail'])).toBeInTheDocument()
+        expect(queryByText(translationData['signup_user_completed.validEmail'])).not.toBeInTheDocument();
 
-    // Input valid email, hope error message disappear
-    // fireEvent.change(emailInput, { target: { value: 'valid_email@gmail.com' } })
-    userEvent.clear(emailInput)
-    userEvent.type(emailInput, 'valid_email@gmail.com')
-    fireEvent.click(createButton)
-    expect(queryByText(translationData['signup_user_completed.validEmail'])).not.toBeInTheDocument()
+        const emailInput = getByLabelText(translationData['signup_user_completed.whatis']);
 
-    const usernameInput = getByLabelText(translationData['signup_user_completed.chooseUser'])
+        // Input invalid email, hope error message appear
+        // fireEvent.change(emailInput, { target: { value: 'invalid_email' } })
 
-    // Input reserved username, hope error message appear
-    userEvent.clear(usernameInput)
-    userEvent.type(usernameInput, 'hungknowbot')
-    fireEvent.click(createButton)
-    expect(queryByText(translationData['signup_user_completed.reserved'])).toBeInTheDocument()
+        userEvent.type(emailInput, 'invalid_email');
 
-    // Input invalid username, hope error message appear
-    userEvent.clear(usernameInput)
-    userEvent.type(usernameInput, 'a')
-    fireEvent.click(createButton)
+        fireEvent.click(createButton);
+        expect(queryByText(translationData['signup_user_completed.validEmail'])).toBeInTheDocument();
 
-    // Generate final message
-    const usernameLength = defaultTestIntl.formatMessage(
-      { id: 'signup_user_completed.usernameLength' },
-      {
-        min: Constants.MIN_USERNAME_LENGTH,
-        max: Constants.MAX_USERNAME_LENGTH,
-      }
-    )
-    expect(queryByText(usernameLength)).toBeInTheDocument()
+        // Input valid email, hope error message disappear
+        // fireEvent.change(emailInput, { target: { value: 'valid_email@gmail.com' } })
+        userEvent.clear(emailInput);
+        userEvent.type(emailInput, 'valid_email@gmail.com');
+        fireEvent.click(createButton);
+        expect(queryByText(translationData['signup_user_completed.validEmail'])).not.toBeInTheDocument();
 
-    // Input invalid username, hope error message appear
-    userEvent.clear(usernameInput)
-    userEvent.type(usernameInput, 'HungBui')
+        const usernameInput = getByLabelText(translationData['signup_user_completed.chooseUser']);
 
-    const passwordInput = getByLabelText(translationData['signup_user_completed.choosePwd'])
-    userEvent.clear(passwordInput)
-    userEvent.type(passwordInput, 'password@')
+        // Input reserved username, hope error message appear
+        userEvent.clear(usernameInput);
+        userEvent.type(usernameInput, 'hungknowbot');
+        fireEvent.click(createButton);
+        expect(queryByText(translationData['signup_user_completed.reserved'])).toBeInTheDocument();
 
-    // Never call createUser method before
-    expect(createUserMock).toHaveBeenCalledTimes(0)
-    fireEvent.click(createButton)
-    expect(container.querySelector('#email-error')).toBeNull()
-    expect(container.querySelector('#name-error')).toBeNull()
-    expect(container.querySelector('#password-error')).toBeNull()
+        // Input invalid username, hope error message appear
+        userEvent.clear(usernameInput);
+        userEvent.type(usernameInput, 'a');
+        fireEvent.click(createButton);
 
-    // After click, createUser need to do its Promise
-    await waitFor(() => {
-      expect(createUserMock).toHaveBeenCalledTimes(1)
-    })
+        // Generate final message
+        const usernameLength = defaultTestIntl.formatMessage(
+            {id: 'signup_user_completed.usernameLength'},
+            {
+                min: Constants.MIN_USERNAME_LENGTH,
+                max: Constants.MAX_USERNAME_LENGTH,
+            },
+        );
+        expect(queryByText(usernameLength)).toBeInTheDocument();
 
-    // After login, expect loginById immediately
-    expect(loginByIdMock).toHaveBeenCalledTimes(1)
+        // Input invalid username, hope error message appear
+        userEvent.clear(usernameInput);
+        userEvent.type(usernameInput, 'HungBui');
 
-    unmount()
-  })
+        const passwordInput = getByLabelText(translationData['signup_user_completed.choosePwd']);
+        userEvent.clear(passwordInput);
+        userEvent.type(passwordInput, 'password@');
 
-  test('push correct url when login return not_verified', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({
-      error: { server_error_id: 'api.user.login.not_verified.app_error' },
-    })
+        // Never call createUser method before
+        expect(createUserMock).toHaveBeenCalledTimes(0);
+        fireEvent.click(createButton);
+        expect(container.querySelector('#email-error')).toBeNull();
+        expect(container.querySelector('#name-error')).toBeNull();
+        expect(container.querySelector('#password-error')).toBeNull();
 
-    const props = {
-      ...baseProps,
-      actions: {
-        ...baseProps.actions,
-        createUser: createUserMock,
-        loginById: loginByIdMock,
-      },
-    }
+        // After click, createUser need to do its Promise
+        await waitFor(() => {
+            expect(createUserMock).toHaveBeenCalledTimes(1);
+        });
 
-    const { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />))
-    inputCorrectValue(getByLabelText)
+        // After login, expect loginById immediately
+        expect(loginByIdMock).toHaveBeenCalledTimes(1);
 
-    // Mock for router push function
-    const { router } = Router
+        unmount();
+    });
 
-    // With valid data, click create button
-    const createButton = getByText(translationData['signup_user_completed.create'])
-    fireEvent.click(createButton)
+    test('push correct url when login return not_verified', async () => {
+        const createUserMock = jest.fn().mockResolvedValue({data: {id: 'hung'} as UserProfile});
+        const loginByIdMock = jest.fn().mockResolvedValue({
+            error: {server_error_id: 'api.user.login.not_verified.app_error'},
+        });
 
-    // Wait for function to be called
-    await waitFor(() => {
-      expect(loginByIdMock).toHaveBeenCalledTimes(1)
-    })
+        const props = {
+            ...baseProps,
+            actions: {
+                ...baseProps.actions,
+                createUser: createUserMock,
+                loginById: loginByIdMock,
+            },
+        };
 
-    // Verify the correct URL was pushed to router
-    const normalizedUrl = '/should_verify_email?email=' + encodeURIComponent(validEmail)
-    expect(router.push).toBeCalledWith(normalizedUrl)
+        const {getByText, getByLabelText, unmount} = render(wrapIntlProvider(<SignupEmail {...props}/>));
+        inputCorrectValue(getByLabelText);
 
-    unmount()
-  })
+        // Mock for router push function
+        const {router} = Router;
 
-  test('push correct url when login return verified with redirect', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({
-      data: { hello: 'world' },
-    })
+        // With valid data, click create button
+        const createButton = getByText(translationData['signup_user_completed.create']);
+        fireEvent.click(createButton);
 
-    // Mock for router push function
-    const { query, router } = Router
-    query['redirect_to'] = encodeURIComponent('/signup_email_test')
-    router.push = jest.fn()
+        // Wait for function to be called
+        await waitFor(() => {
+            expect(loginByIdMock).toHaveBeenCalledTimes(1);
+        });
 
-    const props = {
-      ...baseProps,
-      actions: {
-        ...baseProps.actions,
-        createUser: createUserMock,
-        loginById: loginByIdMock,
-      },
-    }
+        // Verify the correct URL was pushed to router
+        const normalizedUrl = '/should_verify_email?email=' + encodeURIComponent(validEmail);
+        expect(router.push).toBeCalledWith(normalizedUrl);
 
-    const { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />))
-    inputCorrectValue(getByLabelText)
+        unmount();
+    });
 
-    // With valid data, click create button
-    const createButton = getByText(translationData['signup_user_completed.create'])
-    fireEvent.click(createButton)
+    test('push correct url when login return verified with redirect', async () => {
+        const createUserMock = jest.fn().mockResolvedValue({data: {id: 'hung'} as UserProfile});
+        const loginByIdMock = jest.fn().mockResolvedValue({
+            data: {hello: 'world'},
+        });
 
-    // Wait for function to be called
-    await waitFor(() => {
-      expect(loginByIdMock).toHaveBeenCalledTimes(1)
-    })
+        // Mock for router push function
+        const {query, router} = Router;
+        query.redirect_to = encodeURIComponent('/signup_email_test');
+        router.push = jest.fn();
 
-    // Verify the correct URL was pushed to router
-    expect(router.push).toBeCalledWith(encodeURIComponent('/signup_email_test'))
-    unmount()
-  })
+        const props = {
+            ...baseProps,
+            actions: {
+                ...baseProps.actions,
+                createUser: createUserMock,
+                loginById: loginByIdMock,
+            },
+        };
 
-  test('push correct url when login return verified without redirect call redirectTeam', async () => {
-    const createUserMock = jest.fn().mockResolvedValue({ data: { id: 'hung' } as UserProfile })
-    const loginByIdMock = jest.fn().mockResolvedValue({
-      data: { hello: 'world' },
-    })
-    const redirectUserToDefaultTeamMock = jest.fn()
+        const {getByText, getByLabelText, unmount} = render(wrapIntlProvider(<SignupEmail {...props}/>));
+        inputCorrectValue(getByLabelText);
 
-    // Mock for router push function
-    const { router } = Router
-    router.push = jest.fn()
+        // With valid data, click create button
+        const createButton = getByText(translationData['signup_user_completed.create']);
+        fireEvent.click(createButton);
 
-    const props = {
-      ...baseProps,
-      actions: {
-        ...baseProps.actions,
-        createUser: createUserMock,
-        loginById: loginByIdMock,
-        redirectUserToDefaultTeam: redirectUserToDefaultTeamMock,
-      },
-    }
+        // Wait for function to be called
+        await waitFor(() => {
+            expect(loginByIdMock).toHaveBeenCalledTimes(1);
+        });
 
-    const { getByText, getByLabelText, unmount } = render(wrapIntlProvider(<SignupEmail {...props} />))
-    inputCorrectValue(getByLabelText)
+        // Verify the correct URL was pushed to router
+        expect(router.push).toBeCalledWith(encodeURIComponent('/signup_email_test'));
+        unmount();
+    });
 
-    // With valid data, click create button
-    const createButton = getByText(translationData['signup_user_completed.create'])
+    test('push correct url when login return verified without redirect call redirectTeam', async () => {
+        const createUserMock = jest.fn().mockResolvedValue({data: {id: 'hung'} as UserProfile});
+        const loginByIdMock = jest.fn().mockResolvedValue({
+            data: {hello: 'world'},
+        });
+        const redirectUserToDefaultTeamMock = jest.fn();
 
-    // Redirect function have never been called before
-    expect(redirectUserToDefaultTeamMock).not.toHaveBeenCalled()
+        // Mock for router push function
+        const {router} = Router;
+        router.push = jest.fn();
 
-    fireEvent.click(createButton)
+        const props = {
+            ...baseProps,
+            actions: {
+                ...baseProps.actions,
+                createUser: createUserMock,
+                loginById: loginByIdMock,
+                redirectUserToDefaultTeam: redirectUserToDefaultTeamMock,
+            },
+        };
 
-    // Wait for function to be called
-    await waitFor(() => {
-      expect(loginByIdMock).toHaveBeenCalledTimes(1)
-    })
+        const {getByText, getByLabelText, unmount} = render(wrapIntlProvider(<SignupEmail {...props}/>));
+        inputCorrectValue(getByLabelText);
 
-    // Verify the correct URL was pushed to router
-    expect(router.push).not.toHaveBeenCalled()
-    expect(redirectUserToDefaultTeamMock).toHaveBeenCalled()
-    unmount()
-  })
-})
+        // With valid data, click create button
+        const createButton = getByText(translationData['signup_user_completed.create']);
+
+        // Redirect function have never been called before
+        expect(redirectUserToDefaultTeamMock).not.toHaveBeenCalled();
+
+        fireEvent.click(createButton);
+
+        // Wait for function to be called
+        await waitFor(() => {
+            expect(loginByIdMock).toHaveBeenCalledTimes(1);
+        });
+
+        // Verify the correct URL was pushed to router
+        expect(router.push).not.toHaveBeenCalled();
+        expect(redirectUserToDefaultTeamMock).toHaveBeenCalled();
+        unmount();
+    });
+});

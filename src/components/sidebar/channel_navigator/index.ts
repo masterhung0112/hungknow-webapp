@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {shouldShowUnreadsCategory} from 'hkclient-redux/selectors/entities/preferences';
-
 import {openModal} from 'actions/views/modals';
 import {browserHistory} from 'utils/browser_history';
 
 import {GlobalState} from 'types/store';
+
+import {shouldShowUnreadsCategory} from 'hkclient-redux/selectors/entities/preferences';
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import ChannelNavigator from './channel_navigator';
 

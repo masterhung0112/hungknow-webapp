@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {injectIntl, FormattedMessage} from 'react-intl';
 
-import {debounce} from 'hkclient-redux/actions/helpers';
-import {isEmail} from 'hkclient-redux/utils/helpers';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import InviteMembersIcon from 'components/widgets/icons/invite_members_icon';
@@ -21,6 +18,9 @@ import {getSiteURL} from 'utils/url';
 import {t} from 'utils/i18n.jsx';
 import {localizeMessage} from 'utils/utils.jsx';
 import {Constants} from 'utils/constants';
+
+import {isEmail} from 'hkclient-redux/utils/helpers';
+import {debounce} from 'hkclient-redux/actions/helpers';
 import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subscription';
 
 import './invitation_modal_members_step.scss';

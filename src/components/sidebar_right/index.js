@@ -4,8 +4,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
-
 import {setRhsExpanded, showPinnedPosts, showChannelFiles, openRHSSearch, closeRightHandSide, openAtPrevious, updateSearchTerms} from 'actions/views/rhs';
 import {
     getIsRhsExpanded,
@@ -18,6 +16,8 @@ import {
     getPreviousRhsState,
 } from 'selectors/rhs';
 import {RHSStates} from 'utils/constants';
+
+import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
 
 import SidebarRight from './sidebar_right.jsx';
 

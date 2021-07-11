@@ -6,9 +6,6 @@ import React from 'react';
 import classNames from 'classnames';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
-import {Posts} from 'hkclient-redux/constants';
-import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
-
 import * as GlobalActions from 'actions/global_actions';
 import Constants, {StoragePrefixes, ModalIdentifiers, Locations, A11yClassNames} from 'utils/constants';
 import {t} from 'utils/i18n';
@@ -43,6 +40,9 @@ import TutorialTip from 'components/tutorial/tutorial_tip';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import MessageSubmitError from 'components/message_submit_error';
+
+import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
+import {Posts} from 'hkclient-redux/constants';
 
 const KeyCodes = Constants.KeyCodes;
 

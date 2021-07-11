@@ -4,9 +4,6 @@
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
-import {getChannelByNameAndTeamName, getChannelMember, joinChannel} from 'hkclient-redux/actions/channels';
-import {getUserByEmail} from 'hkclient-redux/actions/users';
-
 import {emitChannelClickEvent} from 'actions/global_actions';
 import {
     goToChannelByChannelName,
@@ -17,6 +14,9 @@ import {
     getPathFromIdentifier,
 } from 'components/channel_layout/channel_identifier_router/actions';
 import {joinPrivateChannelPrompt} from 'utils/channel_utils';
+
+import {getUserByEmail} from 'hkclient-redux/actions/users';
+import {getChannelByNameAndTeamName, getChannelMember, joinChannel} from 'hkclient-redux/actions/channels';
 
 jest.mock('actions/global_actions', () => ({
     emitChannelClickEvent: jest.fn(),

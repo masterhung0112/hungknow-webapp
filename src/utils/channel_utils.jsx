@@ -1,5 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {openModal} from 'actions/views/modals';
+
+import JoinPrivateChannelModal from 'components/join_private_channel_modal';
+
+import LocalStorageStore from 'stores/local_storage_store';
+
+import Constants, {ModalIdentifiers} from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 import Permissions from 'hkclient-redux/constants/permissions';
 
@@ -7,14 +17,6 @@ import {removeUserFromTeam} from 'hkclient-redux/actions/teams';
 import {TeamTypes} from 'hkclient-redux/action_types';
 import {getRedirectChannelNameForTeam} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {openModal} from 'actions/views/modals';
-
-import JoinPrivateChannelModal from 'components/join_private_channel_modal';
-import LocalStorageStore from 'stores/local_storage_store';
-
-import Constants, {ModalIdentifiers} from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 import {browserHistory} from './browser_history';
 

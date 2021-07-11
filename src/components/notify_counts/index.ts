@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {getUnreadStatusInCurrentTeam, basicUnreadMeta} from 'hkclient-redux/selectors/entities/channels';
-
 import {GlobalState} from 'types/store';
+
+import {getUnreadStatusInCurrentTeam, basicUnreadMeta} from 'hkclient-redux/selectors/entities/channels';
 
 import NotifyCounts from './notify_counts';
 

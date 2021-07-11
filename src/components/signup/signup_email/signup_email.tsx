@@ -7,11 +7,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {ServerError} from 'hkclient-redux/types/errors';
-
-import {isEmail} from 'hkclient-redux/utils/helpers';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 import * as GlobalActions from 'actions/global_actions';
 import {browserHistory} from 'utils/browser_history';
@@ -25,6 +20,10 @@ import LoadingScreen from 'components/loading_screen';
 import SiteNameAndDescription from 'components/common/site_name_and_description';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
+
+import {isEmail} from 'hkclient-redux/utils/helpers';
+import {ServerError} from 'hkclient-redux/types/errors';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 type TeamInviteInfo = {
     display_name: string;

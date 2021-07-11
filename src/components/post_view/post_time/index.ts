@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
-
 import {GlobalState} from 'types/store';
+
+import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 
 import PostTime from './post_time';
 

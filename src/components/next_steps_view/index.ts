@@ -4,16 +4,19 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {setShowNextStepsView} from 'actions/views/next_steps';
+
+import {closeRightHandSide} from 'actions/views/rhs';
+
+import {GlobalState} from 'types/store';
+
+import {Preferences} from 'utils/constants';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getProfiles} from 'hkclient-redux/actions/users';
 import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUser, isCurrentUserSystemAdmin} from 'hkclient-redux/selectors/entities/users';
 import {getTeam, getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-
-import {setShowNextStepsView} from 'actions/views/next_steps';
-import {closeRightHandSide} from 'actions/views/rhs';
-import {GlobalState} from 'types/store';
-import {Preferences} from 'utils/constants';
 
 import {getSteps, isFirstAdmin} from './steps';
 

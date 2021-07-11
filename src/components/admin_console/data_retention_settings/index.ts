@@ -6,13 +6,13 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {getDataRetentionCustomPolicies as fetchDataRetentionCustomPolicies, deleteDataRetentionCustomPolicy, updateConfig} from 'hkclient-redux/actions/admin';
 import {getDataRetentionCustomPolicies, getDataRetentionCustomPoliciesCount} from 'hkclient-redux/selectors/entities/admin';
 import {GenericAction, ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
 import {DataRetentionCustomPolicies} from 'hkclient-redux/types/data_retention';
 import {createJob, getJobsByType} from 'hkclient-redux/actions/jobs';
-
-import {GlobalState} from 'types/store';
 
 import {JobTypeBase, JobType} from 'hkclient-redux/types/jobs';
 

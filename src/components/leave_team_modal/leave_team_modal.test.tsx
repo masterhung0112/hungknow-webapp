@@ -4,9 +4,9 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import LeaveTeamModal from 'components/leave_team_modal/leave_team_modal';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 describe('components/LeaveTeamModal', () => {
     const requiredProps = {

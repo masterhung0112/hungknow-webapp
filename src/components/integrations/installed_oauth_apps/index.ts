@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {loadOAuthAppsAndProfiles} from 'actions/integration_actions';
+
 import {regenOAuthAppSecret, deleteOAuthApp} from 'hkclient-redux/actions/integrations';
 import {getAppsOAuthAppIDs, getOAuthApps} from 'hkclient-redux/selectors/entities/integrations';
 import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
@@ -15,8 +17,6 @@ import {GlobalState} from 'hkclient-redux/types/store';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {loadOAuthAppsAndProfiles} from 'actions/integration_actions';
 
 import InstalledOAuthApps from './installed_oauth_apps';
 

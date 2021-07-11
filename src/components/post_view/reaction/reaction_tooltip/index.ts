@@ -3,6 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
+import * as Utils from 'utils/utils';
+
 import {createSelector} from 'reselect';
 
 import {getCurrentUserId, makeGetProfilesForReactions} from 'hkclient-redux/selectors/entities/users';
@@ -12,10 +16,6 @@ import {Reaction as ReactionType} from 'hkclient-redux/types/reactions';
 import {UserProfile} from 'hkclient-redux/types/users';
 
 import {displayUsername} from 'hkclient-redux/utils/user_utils';
-
-import {GlobalState} from 'types/store';
-
-import * as Utils from 'utils/utils';
 
 import ReactionTooltip from './reaction_tooltip';
 

@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {getUserAudits} from 'hkclient-redux/actions/users';
 import {getCurrentUserId, getUserAudits as getCurrentUserAudits} from 'hkclient-redux/selectors/entities/users';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {GlobalState} from 'types/store';
 
 import AccessHistoryModal from './access_history_modal';
 

@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {searchMoreChannels} from 'actions/channel_actions.jsx';
+
+import {openModal, closeModal} from 'actions/views/modals';
+
 import {createSelector} from 'reselect';
 
 import {RequestStatus} from 'hkclient-redux/constants';
@@ -14,9 +18,6 @@ import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getChannels, getArchivedChannels, joinChannel} from 'hkclient-redux/actions/channels';
 import {getOtherChannels, getChannelsInCurrentTeam} from 'hkclient-redux/selectors/entities/channels';
-
-import {searchMoreChannels} from 'actions/channel_actions.jsx';
-import {openModal, closeModal} from 'actions/views/modals';
 
 import {GlobalState} from '../../types/store';
 

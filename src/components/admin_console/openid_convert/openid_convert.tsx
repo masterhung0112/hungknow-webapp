@@ -5,10 +5,6 @@ import React from 'react';
 
 import {FormattedMessage} from 'react-intl';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {AdminConfig} from 'hkclient-redux/types/config';
-
 import {BaseProps} from 'components/admin_console/admin_settings';
 
 import {browserHistory} from 'utils/browser_history';
@@ -17,6 +13,9 @@ import {Constants} from 'utils/constants';
 import FormError from 'components/form_error';
 
 import imagePath from 'images/openid-convert/emoticon-outline.svg';
+
+import {AdminConfig} from 'hkclient-redux/types/config';
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import './openid_convert.scss';
 

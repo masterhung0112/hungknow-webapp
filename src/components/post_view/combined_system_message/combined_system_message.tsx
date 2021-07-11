@@ -4,14 +4,15 @@
 import React from 'react';
 import {injectIntl, IntlShape, MessageDescriptor} from 'react-intl';
 
+import {t} from 'utils/i18n';
+
+import Markdown from 'components/markdown';
+
 import {Posts} from 'hkclient-redux/constants';
 
 import {UserProfile} from 'hkclient-redux/types/users';
 
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {t} from 'utils/i18n';
-import Markdown from 'components/markdown';
 
 import LastUsers from './last_users';
 

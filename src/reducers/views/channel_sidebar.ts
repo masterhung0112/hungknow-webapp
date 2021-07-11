@@ -3,16 +3,16 @@
 
 import {combineReducers} from 'redux';
 
+import {DraggingState} from 'types/store';
+
+import {ActionTypes} from 'utils/constants';
+
 import {ChannelCategoryTypes, UserTypes} from 'hkclient-redux/action_types';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
 
 import {removeItem} from 'hkclient-redux/utils/array_utils';
-
-import {DraggingState} from 'types/store';
-
-import {ActionTypes} from 'utils/constants';
 
 export function unreadFilterEnabled(state = false, action: GenericAction) {
     switch (action.type) {

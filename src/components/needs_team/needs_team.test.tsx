@@ -4,11 +4,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {TeamType} from 'hkclient-redux/types/teams';
-
 import {TestHelper} from 'utils/test_helper';
 
 import NeedsTeam from 'components/needs_team/needs_team';
+
+import {TeamType} from 'hkclient-redux/types/teams';
 
 jest.mock('actions/global_actions', () => ({
     emitCloseRightHandSide: jest.fn(),

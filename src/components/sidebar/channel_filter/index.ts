@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {getMyTeams} from 'hkclient-redux/selectors/entities/teams';
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {setUnreadFilterEnabled} from 'actions/views/channel_sidebar';
 import {isUnreadFilterEnabled} from 'selectors/views/channel_sidebar';
 import {GlobalState} from 'types/store';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {getMyTeams} from 'hkclient-redux/selectors/entities/teams';
 
 import ChannelFilter from './channel_filter';
 

@@ -5,6 +5,22 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 import {withRouter} from 'react-router-dom';
 
+import {GlobalState} from 'types/store';
+
+import {setPreviousTeamId} from 'actions/local_storage';
+
+import {getPreviousTeamId} from 'selectors/local_storage';
+
+import {loadStatusesForChannelAndSidebar} from 'actions/status_actions';
+
+import {addUserToTeam} from 'actions/team_actions';
+
+import {markChannelAsReadOnFocus} from 'actions/views/channel';
+
+import {getSelectedThreadIdInCurrentTeam} from 'selectors/views/threads';
+
+import {checkIfMFARequired} from 'utils/route';
+
 import {loadProfilesForDirect} from 'hkclient-redux/actions/users';
 import {fetchMyChannelsAndMembers, viewChannel} from 'hkclient-redux/actions/channels';
 import {getMyTeamUnreads, getTeamByName, selectTeam} from 'hkclient-redux/actions/teams';
@@ -15,16 +31,6 @@ import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getCurrentTeamId, getMyTeams} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {Action} from 'hkclient-redux/types/actions';
-
-import {GlobalState} from 'types/store';
-
-import {setPreviousTeamId} from 'actions/local_storage';
-import {getPreviousTeamId} from 'selectors/local_storage';
-import {loadStatusesForChannelAndSidebar} from 'actions/status_actions';
-import {addUserToTeam} from 'actions/team_actions';
-import {markChannelAsReadOnFocus} from 'actions/views/channel';
-import {getSelectedThreadIdInCurrentTeam} from 'selectors/views/threads';
-import {checkIfMFARequired} from 'utils/route';
 
 import NeedsTeam from './needs_team';
 

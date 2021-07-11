@@ -5,15 +5,6 @@ import React, {HTMLAttributes} from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import classNames from 'classnames';
 
-import {Posts} from 'hkclient-redux/constants';
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {Channel} from 'hkclient-redux/types/channels';
-import {ExtendedPost} from 'hkclient-redux/actions/posts';
-import {Post} from 'hkclient-redux/types/posts';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {UserThread} from 'hkclient-redux/types/threads';
-import {isFromWebhook} from 'hkclient-redux/utils/post_utils';
-
 import Constants from 'utils/constants';
 import DelayedAction from 'utils/delayed_action';
 import * as Utils from 'utils/utils.jsx';
@@ -28,6 +19,15 @@ import RhsRootPost from 'components/rhs_root_post';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import {FakePost} from 'types/store/rhs';
 import {THREADING_TIME as BASE_THREADING_TIME} from 'components/threading/common/options';
+
+import {isFromWebhook} from 'hkclient-redux/utils/post_utils';
+import {UserThread} from 'hkclient-redux/types/threads';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Post} from 'hkclient-redux/types/posts';
+import {ExtendedPost} from 'hkclient-redux/actions/posts';
+import {Channel} from 'hkclient-redux/types/channels';
+import {ActionFunc} from 'hkclient-redux/types/actions';
+import {Posts} from 'hkclient-redux/constants';
 
 import './thread_viewer.scss';
 

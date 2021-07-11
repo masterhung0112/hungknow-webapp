@@ -6,6 +6,16 @@ import {bindActionCreators} from 'redux';
 
 import {isEmpty} from 'lodash';
 
+import {closeModal, openModal} from 'actions/views/modals';
+
+import {isModalOpen} from 'selectors/views/modals';
+
+import {ModalIdentifiers, Constants} from 'utils/constants';
+
+import {isAdmin} from 'utils/utils';
+
+import {sendMembersInvites, sendGuestsInvites} from 'actions/invite_actions';
+
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {getChannelsInCurrentTeam} from 'hkclient-redux/selectors/entities/channels';
 import {haveIChannelPermission, haveICurrentTeamPermission} from 'hkclient-redux/selectors/entities/roles';
@@ -15,12 +25,6 @@ import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {searchChannels as reduxSearchChannels} from 'hkclient-redux/actions/channels';
 import {getTeam} from 'hkclient-redux/actions/teams';
 import {Permissions} from 'hkclient-redux/constants';
-
-import {closeModal, openModal} from 'actions/views/modals';
-import {isModalOpen} from 'selectors/views/modals';
-import {ModalIdentifiers, Constants} from 'utils/constants';
-import {isAdmin} from 'utils/utils';
-import {sendMembersInvites, sendGuestsInvites} from 'actions/invite_actions';
 
 import InvitationModal from './invitation_modal.jsx';
 

@@ -5,6 +5,16 @@ import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import {TutorialSteps, Preferences} from 'utils/constants';
+
+import {goToLastViewedChannel} from 'actions/views/channel';
+
+import {setShowNextStepsView} from 'actions/views/next_steps';
+
+import {isOnboardingHidden, showNextSteps, showNextStepsTips} from 'components/next_steps_view/steps';
+
+import {GlobalState} from 'types/store';
+
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentChannel, getDirectTeammate} from 'hkclient-redux/selectors/entities/channels';
 import {getMyChannelRoles} from 'hkclient-redux/selectors/entities/roles';
@@ -15,15 +25,6 @@ import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 import {getProfiles} from 'hkclient-redux/actions/users';
 
 import {Action, ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
-
-import {TutorialSteps, Preferences} from 'utils/constants';
-
-import {goToLastViewedChannel} from 'actions/views/channel';
-
-import {setShowNextStepsView} from 'actions/views/next_steps';
-
-import {isOnboardingHidden, showNextSteps, showNextStepsTips} from 'components/next_steps_view/steps';
-import {GlobalState} from 'types/store';
 
 import ChannelView from './channel_view';
 

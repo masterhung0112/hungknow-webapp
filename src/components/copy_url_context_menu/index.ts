@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 
 import {GlobalState} from 'types/store/index.js';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {copyToClipboard} from 'utils/utils';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import CopyUrlContextMenu from './copy_url_context_menu';
 

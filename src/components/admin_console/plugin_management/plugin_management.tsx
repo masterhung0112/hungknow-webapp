@@ -7,19 +7,23 @@ import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 
+import * as Utils from 'utils/utils.jsx';
+
+import LoadingScreen from 'components/loading_screen';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
+
+import ConfirmModal from 'components/confirm_modal';
+
+import {appsPluginID} from 'utils/apps';
+
 import PluginState from 'hkclient-redux/constants/plugins';
 import {AdminConfig} from 'hkclient-redux/types/config';
-
-import * as Utils from 'utils/utils.jsx';
-import LoadingScreen from 'components/loading_screen';
-import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
-import ConfirmModal from 'components/confirm_modal';
 
 import AdminSettings, {BaseProps, BaseState} from '../admin_settings';
 import BooleanSetting from '../boolean_setting';
 import SettingsGroup from '../settings_group.jsx';
 import TextSetting from '../text_setting';
-import {appsPluginID} from 'utils/apps';
 
 const PluginItemState = ({state}: {state: number}) => {
     switch (state) {

@@ -6,17 +6,19 @@ import {Link} from 'react-router-dom';
 
 import {ConnectedComponent} from 'react-redux';
 
+import * as Utils from 'utils/utils.jsx';
+
+import ProfilePicture from 'components/profile_picture';
+
+import BotBadge from 'components/widgets/badges/bot_badge';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 import {ServerError} from 'hkclient-redux/types/errors';
-
-import * as Utils from 'utils/utils.jsx';
-import ProfilePicture from 'components/profile_picture';
-import BotBadge from 'components/widgets/badges/bot_badge';
-
-import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 
 type Props = {
     user: UserProfile;

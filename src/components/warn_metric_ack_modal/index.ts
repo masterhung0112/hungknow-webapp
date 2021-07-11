@@ -4,14 +4,14 @@
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {closeModal} from 'actions/views/modals';
+
 import {GlobalState} from 'hkclient-redux/types/store';
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {getStandardAnalytics, sendWarnMetricAck} from 'hkclient-redux/actions/admin';
 
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {closeModal} from 'actions/views/modals';
 
 import {isModalOpen} from '../../selectors/views/modals';
 import {ModalIdentifiers} from '../../utils/constants';

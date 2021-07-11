@@ -7,10 +7,6 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import {DynamicSizeList} from 'dynamic-virtualized-list';
 import {injectIntl} from 'react-intl';
 
-import {isDateLine, isStartOfNewMessages} from 'hkclient-redux/utils/post_list';
-
-import EventEmitter from 'hkclient-redux/utils/event_emitter';
-
 import Constants, {PostListRowListIds, EventTypes, PostRequestTypes} from 'utils/constants';
 import DelayedAction from 'utils/delayed_action';
 import {getPreviousPostId, getLatestPostId, getNewMessageIndex} from 'utils/post_utils.jsx';
@@ -21,6 +17,9 @@ import FloatingTimestamp from 'components/post_view/floating_timestamp';
 import PostListRow from 'components/post_view/post_list_row';
 import ScrollToBottomArrows from 'components/post_view/scroll_to_bottom_arrows';
 import ToastWrapper from 'components/toast_wrapper';
+
+import EventEmitter from 'hkclient-redux/utils/event_emitter';
+import {isDateLine, isStartOfNewMessages} from 'hkclient-redux/utils/post_list';
 
 const OVERSCAN_COUNT_BACKWARD = 80;
 const OVERSCAN_COUNT_FORWARD = 80;

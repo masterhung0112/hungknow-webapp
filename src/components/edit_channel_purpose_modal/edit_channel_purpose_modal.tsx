@@ -5,11 +5,12 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
+import Constants from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {Channel} from 'hkclient-redux/types/channels';
 import {ActionResult} from 'hkclient-redux/types/actions';
-
-import Constants from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 type Actions = {
     patchChannel: (channelId: string, patch: Partial<Channel>) => Promise<ActionResult>;

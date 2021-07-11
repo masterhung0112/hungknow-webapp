@@ -5,14 +5,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-import {Dictionary, RelationOneToOne} from 'hkclient-redux/types/utilities';
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {Channel} from 'hkclient-redux/types/channels';
-import {UserProfile} from 'hkclient-redux/types/users';
-
-import {filterProfilesStartingWithTerm} from 'hkclient-redux/utils/user_utils';
-
 import {displayEntireNameForUser, localizeMessage, isGuest} from 'utils/utils.jsx';
 import ProfilePicture from 'components/profile_picture';
 import MultiSelect, {Value} from 'components/multiselect/multiselect';
@@ -21,6 +13,13 @@ import GuestBadge from 'components/widgets/badges/guest_badge';
 import BotBadge from 'components/widgets/badges/bot_badge';
 
 import Constants from 'utils/constants';
+
+import {filterProfilesStartingWithTerm} from 'hkclient-redux/utils/user_utils';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Channel} from 'hkclient-redux/types/channels';
+import {ActionFunc} from 'hkclient-redux/types/actions';
+import {Dictionary, RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {Client4} from 'hkclient-redux/client';
 
 const USERS_PER_PAGE = 50;
 const MAX_SELECTABLE_VALUES = 20;

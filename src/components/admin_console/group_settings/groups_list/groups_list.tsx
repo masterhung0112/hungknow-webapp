@@ -4,8 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {GroupSearchOpts, MixedUnlinkedGroupRedux} from 'hkclient-redux/types/groups';
-
 import * as Utils from 'utils/utils';
 
 import GroupRow from 'components/admin_console/group_settings/group_row';
@@ -14,6 +12,8 @@ import PreviousIcon from 'components/widgets/icons/fa_previous_icon';
 import SearchIcon from 'components/widgets/icons/search_icon';
 import CheckboxCheckedIcon from 'components/widgets/icons/checkbox_checked_icon';
 import {Constants} from 'utils/constants';
+
+import {GroupSearchOpts, MixedUnlinkedGroupRedux} from 'hkclient-redux/types/groups';
 
 const LDAP_GROUPS_PAGE_SIZE = 200;
 

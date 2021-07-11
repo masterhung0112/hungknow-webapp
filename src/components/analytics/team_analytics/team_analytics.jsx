@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedDate, FormattedMessage} from 'react-intl';
 
-import {General} from 'hkclient-redux/constants';
-
 import LoadingScreen from 'components/loading_screen';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
@@ -20,6 +18,8 @@ import StatisticCount from 'components/analytics/statistic_count';
 import TableChart from 'components/analytics/table_chart';
 
 import {getMonthLong} from 'utils/i18n';
+
+import {General} from 'hkclient-redux/constants';
 
 import {formatPostsPerDayData, formatUsersWithPostsPerDayData} from '../format';
 

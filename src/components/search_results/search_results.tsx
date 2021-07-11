@@ -9,10 +9,6 @@ import Scrollbars from 'react-custom-scrollbars';
 
 import classNames from 'classnames';
 
-import {debounce} from 'hkclient-redux/actions/helpers';
-import {FileSearchResultItem as FileSearchResultItemType} from 'hkclient-redux/types/files';
-import {Post} from 'hkclient-redux/types/posts';
-
 import {getFilesDropdownPluginMenuItems} from 'selectors/plugins';
 
 import * as Utils from 'utils/utils.jsx';
@@ -27,6 +23,10 @@ import FlagIcon from 'components/widgets/icons/flag_icon';
 import FileSearchResultItem from 'components/file_search_results';
 
 import {NoResultsVariant} from 'components/no_results_indicator/types';
+
+import {Post} from 'hkclient-redux/types/posts';
+import {FileSearchResultItem as FileSearchResultItemType} from 'hkclient-redux/types/files';
+import {debounce} from 'hkclient-redux/actions/helpers';
 
 import MessageOrFileSelector from './messages_or_files_selector';
 import FilesFilterMenu from './files_filter_menu';

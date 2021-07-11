@@ -5,16 +5,15 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import {Role} from 'hkclient-redux/types/roles';
-
 import {t} from 'utils/i18n';
 import {browserHistory} from 'utils/browser_history';
 
 import FormattedAdminHeader from 'components/widgets/admin_console/formatted_admin_header';
 import AdminPanel from 'components/widgets/admin_console/admin_panel';
 import DataGrid, {Row, Column} from 'components/admin_console/data_grid/data_grid';
+
+import {Role} from 'hkclient-redux/types/roles';
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
 type Props = {
     roles: Dictionary<Role>;

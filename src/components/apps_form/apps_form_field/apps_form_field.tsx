@@ -3,13 +3,6 @@
 
 import React from 'react';
 
-import {AppField, AppSelectOption} from 'hkclient-redux/types/apps';
-import {Channel} from 'hkclient-redux/types/channels';
-import {UserProfile} from 'hkclient-redux/types/users';
-
-import {AppFieldTypes} from 'hkclient-redux/constants/apps';
-import {displayUsername} from 'hkclient-redux/utils/user_utils';
-
 import GenericUserProvider from 'components/suggestion/generic_user_provider.jsx';
 import GenericChannelProvider from 'components/suggestion/generic_channel_provider.jsx';
 
@@ -20,6 +13,12 @@ import BoolSetting from 'components/widgets/settings/bool_setting';
 import Provider from 'components/suggestion/provider';
 
 import Markdown from 'components/markdown';
+
+import {displayUsername} from 'hkclient-redux/utils/user_utils';
+import {AppFieldTypes} from 'hkclient-redux/constants/apps';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Channel} from 'hkclient-redux/types/channels';
+import {AppField, AppSelectOption} from 'hkclient-redux/types/apps';
 
 import AppsFormSelectField from './apps_form_select_field';
 

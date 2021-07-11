@@ -3,14 +3,14 @@
 
 import {connect} from 'react-redux';
 
+import {getDisplayNameByUser} from 'utils/utils.jsx';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getUser} from 'hkclient-redux/selectors/entities/users';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 
 import {Post} from 'hkclient-redux/types/posts';
-
-import {getDisplayNameByUser} from 'utils/utils.jsx';
 
 import CommentedOn from './commented_on';
 

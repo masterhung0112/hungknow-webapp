@@ -6,8 +6,6 @@ import {FormattedMessage} from 'react-intl';
 import {debounce, isEqual} from 'lodash';
 
 import {Constants} from 'utils/constants';
-import {ChannelSearchOpts, ChannelWithTeamData} from 'hkclient-redux/types/channels';
-import {Dictionary} from 'hkclient-redux/types/utilities';
 
 import DataGrid, {Column, Row} from 'components/admin_console/data_grid/data_grid';
 import TeamFilterDropdown from 'components/admin_console/filter/team_filter_dropdown';
@@ -18,6 +16,9 @@ import GlobeIcon from 'components/widgets/icons/globe_icon';
 import LockIcon from 'components/widgets/icons/lock_icon';
 import ArchiveIcon from 'components/widgets/icons/archive_icon';
 import {isArchivedChannel} from 'utils/channel_utils';
+
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {ChannelSearchOpts, ChannelWithTeamData} from 'hkclient-redux/types/channels';
 import {ActionResult} from 'hkclient-redux/types/actions';
 
 type Props = {

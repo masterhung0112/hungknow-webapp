@@ -5,6 +5,8 @@ import {bindActionCreators} from 'redux';
 
 import {connect} from 'react-redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions';
+
 import {getTeam} from 'hkclient-redux/selectors/entities/teams';
 
 import {getTeam as fetchTeam, membersMinusGroupMembers, patchTeam, removeUserFromTeam, updateTeamMemberSchemeRoles, addUserToTeam} from 'hkclient-redux/actions/teams';
@@ -16,8 +18,6 @@ import {
     unlinkGroupSyncable,
     patchGroupSyncable,
 } from 'hkclient-redux/actions/groups';
-
-import {setNavigationBlocked} from 'actions/admin_actions';
 
 import TeamDetails from './team_details';
 

@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import configureStore from 'store';
+
 import {CategorySorting} from 'hkclient-redux/types/channel_categories';
 import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 import {insertWithoutDuplicates} from 'hkclient-redux/utils/array_utils';
-
-import configureStore from 'store';
 
 import * as Actions from './channel_sidebar';
 

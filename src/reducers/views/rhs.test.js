@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {SearchTypes} from 'hkclient-redux/action_types';
-
 import rhsReducer from 'reducers/views/rhs';
 import {ActionTypes, RHSStates} from 'utils/constants';
+
+import {SearchTypes} from 'hkclient-redux/action_types';
 
 describe('Reducers.RHS', () => {
     const initialState = {

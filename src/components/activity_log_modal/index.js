@@ -4,10 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {getCurrentLocale} from 'selectors/i18n';
+
 import {getSessions, revokeSession} from 'hkclient-redux/actions/users';
 import {getCurrentUserId, getUserSessions} from 'hkclient-redux/selectors/entities/users';
-
-import {getCurrentLocale} from 'selectors/i18n';
 
 import ActivityLogModal from './activity_log_modal.jsx';
 

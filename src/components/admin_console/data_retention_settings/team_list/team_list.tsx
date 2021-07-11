@@ -6,14 +6,16 @@ import {FormattedMessage} from 'react-intl';
 import {debounce} from 'lodash';
 
 import Constants from 'utils/constants';
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {Team, TeamSearchOpts} from 'hkclient-redux/types/teams';
-import {Dictionary} from 'hkclient-redux/types/utilities';
 
 import * as Utils from 'utils/utils.jsx';
 
 import DataGrid, {Column, Row} from 'components/admin_console/data_grid/data_grid';
+
 import TeamIcon from 'components/widgets/team_icon/team_icon';
+
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {Team, TeamSearchOpts} from 'hkclient-redux/types/teams';
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
 import './team_list.scss';
 

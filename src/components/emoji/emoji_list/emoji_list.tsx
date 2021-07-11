@@ -4,11 +4,6 @@
 import React, {ChangeEvent, ChangeEventHandler} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Emoji} from 'hkclient-redux/constants';
-import {CustomEmoji} from 'hkclient-redux/types/emojis';
-import {ServerError} from 'hkclient-redux/types/errors';
-import {deleteCustomEmoji} from 'hkclient-redux/actions/emojis';
-
 import LoadingScreen from 'components/loading_screen';
 import SaveButton from 'components/save_button';
 import EmojiListItem from 'components/emoji/emoji_list_item';
@@ -18,6 +13,11 @@ import SearchIcon from 'components/widgets/icons/fa_search_icon';
 import LocalizedInput from 'components/localized_input/localized_input';
 
 import {t} from 'utils/i18n.jsx';
+
+import {deleteCustomEmoji} from 'hkclient-redux/actions/emojis';
+import {ServerError} from 'hkclient-redux/types/errors';
+import {CustomEmoji} from 'hkclient-redux/types/emojis';
+import {Emoji} from 'hkclient-redux/constants';
 
 const EMOJI_PER_PAGE = 50;
 const EMOJI_SEARCH_DELAY_MILLISECONDS = 200;

@@ -5,13 +5,13 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import SearchGrid from 'components/gif_picker/components/SearchGrid';
+
 import {
     searchCategory,
     searchIfNeededInitial,
     saveSearchScrollPosition,
 } from 'hkclient-redux/actions/gifs';
-
-import SearchGrid from 'components/gif_picker/components/SearchGrid';
 
 const mapDispatchToProps = ({
     searchCategory,

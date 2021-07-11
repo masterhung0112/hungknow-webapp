@@ -3,11 +3,12 @@
 
 import {connect} from 'react-redux';
 
+import {getToastStatus} from 'selectors/views/channel';
+
+import {GlobalState} from 'types/store';
+
 import {getPost} from 'hkclient-redux/selectors/entities/posts';
 import * as PostListUtils from 'hkclient-redux/utils/post_list';
-
-import {getToastStatus} from 'selectors/views/channel';
-import {GlobalState} from 'types/store';
 
 import FloatingTimestamp from './floating_timestamp';
 

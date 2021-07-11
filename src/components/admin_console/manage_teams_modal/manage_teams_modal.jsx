@@ -6,12 +6,12 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-
 import {filterAndSortTeamsByDisplayName} from 'utils/team_utils.jsx';
 import * as Utils from 'utils/utils.jsx';
 import LoadingScreen from 'components/loading_screen';
 import Avatar from 'components/widgets/users/avatar';
+
+import {Client4} from 'hkclient-redux/client';
 
 import ManageTeamsDropdown from './manage_teams_dropdown.jsx';
 import RemoveFromTeamButton from './remove_from_team_button.jsx';

@@ -3,14 +3,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {closeMenu as closeRhsMenu} from 'actions/views/rhs';
+
+import {Preferences} from 'utils/constants';
+
+import {GlobalState} from 'types/store';
+
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {closeMenu as closeRhsMenu} from 'actions/views/rhs';
-import {Preferences} from 'utils/constants';
-import {GlobalState} from 'types/store';
 
 import TutorialTip from './tutorial_tip';
 

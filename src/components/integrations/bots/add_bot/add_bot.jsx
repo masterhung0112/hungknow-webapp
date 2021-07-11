@@ -7,9 +7,6 @@ import {Link} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 import {Tooltip} from 'react-bootstrap';
 
-import * as UserUtils from 'hkclient-redux/utils/user_utils';
-import {General} from 'hkclient-redux/constants';
-
 import BotDefaultIcon from 'images/bot_default_icon.png';
 
 import {browserHistory} from 'utils/browser_history';
@@ -21,6 +18,9 @@ import FormError from 'components/form_error';
 import {AcceptedProfileImageTypes, Constants, ValidationErrors} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
 import * as FileUtils from 'utils/file_utils.jsx';
+
+import {General} from 'hkclient-redux/constants';
+import * as UserUtils from 'hkclient-redux/utils/user_utils';
 
 const roleOptionSystemAdmin = 'System Admin';
 const roleOptionMember = 'Member';

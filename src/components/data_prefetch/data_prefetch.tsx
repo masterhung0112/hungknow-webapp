@@ -4,11 +4,12 @@
 import React from 'react';
 import PQueue from 'p-queue';
 
+import {Constants} from 'utils/constants';
+
+import {loadProfilesForSidebar} from 'actions/user_actions.jsx';
+
 import {Channel} from 'hkclient-redux/types/channels';
 import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import {Constants} from 'utils/constants';
-import {loadProfilesForSidebar} from 'actions/user_actions.jsx';
 
 const queue = new PQueue({concurrency: 2});
 

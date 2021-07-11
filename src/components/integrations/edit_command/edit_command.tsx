@@ -4,14 +4,14 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Team} from 'hkclient-redux/types/teams';
-import {Command} from 'hkclient-redux/types/integrations';
-import {RelationOneToOne} from 'hkclient-redux/types/utilities';
-
 import {browserHistory} from 'utils/browser_history';
 import {t} from 'utils/i18n';
 import LoadingScreen from 'components/loading_screen';
 import ConfirmModal from 'components/confirm_modal';
+
+import {RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {Command} from 'hkclient-redux/types/integrations';
+import {Team} from 'hkclient-redux/types/teams';
 import AbstractCommand from '../abstract_command.jsx';
 
 const HEADER = {id: t('integrations.edit'), defaultMessage: 'Edit'};

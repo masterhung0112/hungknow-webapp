@@ -3,14 +3,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
+import {GlobalState} from 'types/store';
+
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {Preferences} from 'utils/constants';
-
-import {GlobalState} from 'types/store';
 
 import TutorialIntroScreens from './tutorial_intro_screens';
 

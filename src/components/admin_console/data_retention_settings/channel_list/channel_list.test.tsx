@@ -5,8 +5,10 @@ import React from 'react';
 import {shallow} from 'enzyme';
 
 import ChannelList from 'components/admin_console/data_retention_settings/channel_list/channel_list';
-import {Channel} from 'hkclient-redux/types/channels';
+
 import {TestHelper} from 'utils/test_helper';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 describe('components/admin_console/data_retention_settings/channel_list', () => {
     const channel: Channel = Object.assign(TestHelper.getChannelMock({id: 'channel-1'}));

@@ -7,16 +7,16 @@ import {FormattedMessage, defineMessages} from 'react-intl';
 import {isNil} from 'lodash';
 import classNames from 'classnames';
 
-import {ChannelModeration as ChannelPermissions} from 'hkclient-redux/types/channels';
-import {Permissions, Roles} from 'hkclient-redux/constants';
-import {ChannelModerationRoles} from 'hkclient-redux/types/roles';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
 import {t} from 'utils/i18n';
 
 import AdminPanel from 'components/widgets/admin_console/admin_panel';
 import CheckboxCheckedIcon from 'components/widgets/icons/checkbox_checked_icon';
+
+import {ChannelModerationRoles} from 'hkclient-redux/types/roles';
+import {Permissions, Roles} from 'hkclient-redux/constants';
+import {ChannelModeration as ChannelPermissions} from 'hkclient-redux/types/channels';
 
 const PERIOD_TO_SLASH_REGEX = /\./g;
 

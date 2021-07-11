@@ -4,14 +4,14 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Team} from 'hkclient-redux/types/teams';
-import {OutgoingWebhook} from 'hkclient-redux/types/integrations';
-import {ServerError} from 'hkclient-redux/types/errors';
-
 import {browserHistory} from 'utils/browser_history';
 import ConfirmModal from 'components/confirm_modal';
 import AbstractOutgoingWebhook from 'components/integrations/abstract_outgoing_webhook.jsx';
 import LoadingScreen from 'components/loading_screen';
+
+import {ServerError} from 'hkclient-redux/types/errors';
+import {OutgoingWebhook} from 'hkclient-redux/types/integrations';
+import {Team} from 'hkclient-redux/types/teams';
 
 const HEADER = {id: 'integrations.edit', defaultMessage: 'Edit'};
 const FOOTER = {id: 'update_outgoing_webhook.update', defaultMessage: 'Update'};

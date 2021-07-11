@@ -4,8 +4,6 @@
 import React from 'react';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
-import {Team} from 'hkclient-redux/types/teams';
-
 import * as GlobalActions from 'actions/global_actions';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
@@ -16,6 +14,8 @@ import AboutBuildModal from 'components/about_build_modal';
 import CommercialSupportModal from 'components/commercial_support_modal';
 
 import Menu from 'components/widgets/menu/menu';
+
+import {Team} from 'hkclient-redux/types/teams';
 
 import MenuItemBlockableLink from './menu_item_blockable_link';
 

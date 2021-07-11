@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import {Client4} from 'hkclient-redux/client';
 
 import * as FileUtils from 'hkclient-redux/utils/file_utils';

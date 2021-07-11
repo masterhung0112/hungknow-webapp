@@ -11,19 +11,17 @@ import {DragDropContext, Droppable, DroppableProvided, DropResult} from 'react-b
 
 import {Dispatch} from 'redux';
 
-import Permissions from 'hkclient-redux/constants/permissions';
-
-import {Team, TeamMembership} from 'hkclient-redux/types/teams';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import {GenericAction, GetStateFunc} from 'hkclient-redux/types/actions';
-
 import {Constants} from 'utils/constants.jsx';
 import {filterAndSortTeamsByDisplayName} from 'utils/team_utils.jsx';
 import * as Utils from 'utils/utils.jsx';
 
 import SystemPermissionGate from 'components/permissions_gates/system_permission_gate';
 import Pluggable from 'plugins/pluggable';
+
+import {GenericAction, GetStateFunc} from 'hkclient-redux/types/actions';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Team, TeamMembership} from 'hkclient-redux/types/teams';
+import Permissions from 'hkclient-redux/constants/permissions';
 
 import {ThreadsState} from 'hkclient-redux/types/threads';
 

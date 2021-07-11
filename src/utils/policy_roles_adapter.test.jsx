@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Permissions} from 'hkclient-redux/constants/index';
-
 import {rolesFromMapping, mappingValueFromRoles} from 'utils/policy_roles_adapter';
+
+import {Permissions} from 'hkclient-redux/constants/index';
 
 describe('PolicyRolesAdapter', () => {
     let roles = {};

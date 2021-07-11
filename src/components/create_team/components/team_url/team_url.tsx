@@ -6,9 +6,6 @@ import React from 'react';
 import {Button, Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Team} from 'hkclient-redux/types/teams';
-import {Client4Error} from 'hkclient-redux/types/client4';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
 import Constants from 'utils/constants.jsx';
@@ -17,6 +14,9 @@ import logoImage from 'images/logo.png';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import OverlayTrigger from 'components/overlay_trigger';
+
+import {Client4Error} from 'hkclient-redux/types/client4';
+import {Team} from 'hkclient-redux/types/teams';
 
 type State = {
     isLoading: boolean;

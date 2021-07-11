@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {Client4} from 'hkclient-redux/client';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
-
-import {GlobalState} from 'types/store';
 
 import LinkingLandingPage from './linking_landing_page';
 

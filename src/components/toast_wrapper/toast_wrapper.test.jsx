@@ -3,12 +3,12 @@
 
 import React from 'react';
 
-import {DATE_LINE} from 'hkclient-redux/utils/post_list';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import {PostListRowListIds} from 'utils/constants';
 import {browserHistory} from 'utils/browser_history';
+
+import {DATE_LINE} from 'hkclient-redux/utils/post_list';
 
 import ToastWrapper from './toast_wrapper.jsx';
 

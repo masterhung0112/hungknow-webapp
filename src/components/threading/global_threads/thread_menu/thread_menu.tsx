@@ -5,12 +5,6 @@ import React, {memo, useCallback, ReactNode} from 'react';
 import {useIntl} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {Preferences} from 'hkclient-redux/constants';
-import {$ID} from 'hkclient-redux/types/utilities';
-import {UserThread} from 'hkclient-redux/types/threads';
-import {get} from 'hkclient-redux/selectors/entities/preferences';
-
-import {setThreadFollow, updateThreadRead} from 'hkclient-redux/actions/threads';
 import {manuallyMarkThreadAsUnread} from 'actions/views/threads';
 
 import {
@@ -26,6 +20,12 @@ import Menu from 'components/widgets/menu/menu';
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 
 import {GlobalState} from 'types/store';
+
+import {setThreadFollow, updateThreadRead} from 'hkclient-redux/actions/threads';
+import {get} from 'hkclient-redux/selectors/entities/preferences';
+import {UserThread} from 'hkclient-redux/types/threads';
+import {$ID} from 'hkclient-redux/types/utilities';
+import {Preferences} from 'hkclient-redux/constants';
 
 import {useThreadRouting} from '../../hooks';
 

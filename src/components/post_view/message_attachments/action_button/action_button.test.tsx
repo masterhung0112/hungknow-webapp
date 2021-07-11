@@ -4,11 +4,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import ActionButton from 'components/post_view/message_attachments/action_button/action_button';
+
+import {Constants} from 'utils/constants';
+
 import {Theme} from 'hkclient-redux/types/preferences';
 import {changeOpacity} from 'hkclient-redux/utils/theme_utils';
-
-import ActionButton from 'components/post_view/message_attachments/action_button/action_button';
-import {Constants} from 'utils/constants';
 
 describe('components/post_view/message_attachments/action_button.jsx', () => {
     const baseProps = {

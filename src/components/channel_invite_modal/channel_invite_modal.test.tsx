@@ -5,13 +5,13 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {Modal} from 'react-bootstrap';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Channel} from 'hkclient-redux/types/channels';
-import {RelationOneToOne} from 'hkclient-redux/types/utilities';
-
 import {Value} from 'components/multiselect/multiselect';
 
 import ChannelInviteModal from 'components/channel_invite_modal/channel_invite_modal';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Channel} from 'hkclient-redux/types/channels';
+import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 
 type UserProfileValue = Value & UserProfile;
 

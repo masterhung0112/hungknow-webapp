@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getCurrentLocale} from 'selectors/i18n';
+
+import {GlobalState} from 'types/store';
+
 import {
     getTeamsForUser,
     getTeamMembersForUser,
@@ -12,10 +16,6 @@ import {
 } from 'hkclient-redux/actions/teams';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {getCurrentLocale} from 'selectors/i18n';
-
-import {GlobalState} from 'types/store';
 
 import TeamList from './team_list';
 

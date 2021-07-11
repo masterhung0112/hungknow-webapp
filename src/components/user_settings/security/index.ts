@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {getPasswordConfig} from 'utils/utils.jsx';
+
+import {Preferences} from 'utils/constants';
+
 import {getMe, updateUserPassword} from 'hkclient-redux/actions/users';
 import {getAuthorizedOAuthApps, deauthorizeOAuthApp} from 'hkclient-redux/actions/integrations';
 import * as UserUtils from 'hkclient-redux/utils/user_utils';
@@ -12,9 +16,6 @@ import {getBool} from 'hkclient-redux/selectors/entities/preferences';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
-
-import {getPasswordConfig} from 'utils/utils.jsx';
-import {Preferences} from 'utils/constants';
 
 import SecurityTab from './user_settings_security';
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 /**
  * Returns true if `node` is null/undefined, false, empty string, or an array
@@ -6,13 +6,14 @@ import React from 'react'
  * checked, for performance reasons.
  */
 export function isReactNodeEmpty(node?: React.ReactNode, skipArray = false): boolean {
-  return (
-    node == null ||
+    return (
+        node == null ||
     node === '' ||
     node === false ||
     (!skipArray &&
       Array.isArray(node) &&
+
       // only recurse one level through arrays, for performance
       (node.length === 0 || node.every((n) => isReactNodeEmpty(n, true))))
-  )
+    );
 }

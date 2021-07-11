@@ -3,12 +3,6 @@
 
 import keyMirror from 'key-mirror';
 
-import Permissions from 'hkclient-redux/constants/permissions';
-
-import {CustomStatusDuration} from 'hkclient-redux/types/users';
-
-import * as PostListUtils from 'hkclient-redux/utils/post_list';
-
 import audioIcon from 'images/icons/audio.svg';
 import codeIcon from 'images/icons/code.svg';
 import excelIcon from 'images/icons/excel.svg';
@@ -30,6 +24,10 @@ import windows10ThemeImage from 'images/themes/windows_dark.png';
 import logoWebhook from 'images/webhook_icon.jpg';
 
 import {t} from 'utils/i18n';
+
+import * as PostListUtils from 'hkclient-redux/utils/post_list';
+import {CustomStatusDuration} from 'hkclient-redux/types/users';
+import Permissions from 'hkclient-redux/constants/permissions';
 
 import githubCSS from '!!file-loader?name=files/code_themes/[hash].[ext]!highlight.js/styles/github.css';
 

@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {General} from 'hkclient-redux/constants';
-
 import ActivityLogModal from 'components/activity_log_modal/activity_log_modal.jsx';
 import LoadingScreen from 'components/loading_screen';
+
+import {General} from 'hkclient-redux/constants';
 
 describe('components/ActivityLogModal', () => {
     const baseProps = {

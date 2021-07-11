@@ -4,13 +4,13 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {AnalyticsRow} from 'hkclient-redux/types/admin';
-
 import * as Utils from 'utils/utils.jsx';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
+
+import {AnalyticsRow} from 'hkclient-redux/types/admin';
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
 import './feature_discovery.scss';
 import {ClientLicense} from 'hkclient-redux/types/config';

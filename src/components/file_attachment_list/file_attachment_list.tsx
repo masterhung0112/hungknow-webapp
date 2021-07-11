@@ -3,17 +3,16 @@
 
 import React from 'react';
 
-import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
-
-import {FileInfo} from 'hkclient-redux/types/files';
-import {Post} from 'hkclient-redux/types/posts';
-
 import {FileTypes} from 'utils/constants';
 import {getFileType} from 'utils/utils';
 
 import FileAttachment from 'components/file_attachment';
 import SingleImageView from 'components/single_image_view';
 import ViewImageModal from 'components/view_image';
+
+import {Post} from 'hkclient-redux/types/posts';
+import {FileInfo} from 'hkclient-redux/types/files';
+import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
 
 export type Props = {
 

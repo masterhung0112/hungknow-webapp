@@ -6,9 +6,6 @@ import {useDispatch} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {Team} from 'hkclient-redux/types/teams';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import {toggleShortcutsModal} from 'actions/global_actions';
 import {openModal, closeModal} from 'actions/views/modals';
@@ -28,6 +25,9 @@ import {
 } from 'utils/constants';
 import CloseIcon from 'components/widgets/icons/close_icon';
 import * as Utils from 'utils/utils';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {PreferenceType} from 'hkclient-redux/types/preferences';
 
 import {getAnalyticsCategory} from './step_helpers';
 import IncidentsSvg from './images/incidents.svg';

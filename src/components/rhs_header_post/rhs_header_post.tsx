@@ -5,14 +5,14 @@ import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import OverlayTrigger from 'components/overlay_trigger';
 
 import Constants, {RHSStates} from 'utils/constants';
 import {isMobile} from 'utils/utils.jsx';
 import {browserHistory} from 'utils/browser_history';
 import FollowButton from 'components/threading/common/follow_button';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 interface RhsHeaderPostProps {
     isExpanded: boolean;

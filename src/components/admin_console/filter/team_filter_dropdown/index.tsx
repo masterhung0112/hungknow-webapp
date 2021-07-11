@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {createSelector} from 'reselect';
 
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
 import {TeamSearchOpts} from 'hkclient-redux/types/teams';
 import {getTeams as fetchTeams, searchTeams} from 'hkclient-redux/actions/teams';
 import {getTeams} from 'hkclient-redux/selectors/entities/teams';
-
-import {GlobalState} from 'types/store';
 
 import TeamFilterDropdown from './team_filter_dropdown';
 

@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import PluginState from 'hkclient-redux/constants/plugins';
-
 import PluginManagement from 'components/admin_console/plugin_management/plugin_management';
+
+import PluginState from 'hkclient-redux/constants/plugins';
 
 describe('components/PluginManagement', () => {
     const defaultProps = {

@@ -4,12 +4,12 @@
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 import {connect} from 'react-redux';
 
-import {canManageChannelMembers} from 'hkclient-redux/selectors/entities/channels';
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
 import {openModal} from 'actions/views/modals';
 
 import {GlobalState} from 'types/store';
+
+import {canManageChannelMembers} from 'hkclient-redux/selectors/entities/channels';
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import ChannelMembersModal from './channel_members_modal';
 

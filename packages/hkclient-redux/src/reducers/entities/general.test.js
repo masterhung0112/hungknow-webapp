@@ -6,7 +6,7 @@ import assert from 'assert';
 import reducer from 'hkclient-redux/reducers/entities/general';
 import {GeneralTypes} from 'hkclient-redux/action_types';
 
-describe('reducers.entities.general', () => {
+describe('hkclient-redux/reducers.entities.general', () => {
     describe('firstAdminVisitMarketplaceStatus', () => {
         it('initial state', () => {
             const state = {};

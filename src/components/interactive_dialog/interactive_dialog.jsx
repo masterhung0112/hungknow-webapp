@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import SpinnerButton from 'components/spinner_button';
+
+import {localizeMessage} from 'utils/utils.jsx';
+
 import {
     checkDialogElementForError,
     checkIfErrorsMatchElements,
 } from 'hkclient-redux/utils/integration_utils';
-
-import SpinnerButton from 'components/spinner_button';
-
-import {localizeMessage} from 'utils/utils.jsx';
 
 import DialogElement from './dialog_element';
 import DialogIntroductionText from './dialog_introduction_text';

@@ -5,12 +5,12 @@ import React from 'react';
 import ReactSelect, {ValueType} from 'react-select';
 import {FormattedMessage} from 'react-intl';
 
-import {Preferences} from 'hkclient-redux/constants';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
 import SettingItemMax from 'components/setting_item_max';
 import SettingItemMin from 'components/setting_item_min';
 import {localizeMessage} from 'utils/utils';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {Preferences} from 'hkclient-redux/constants';
 
 type Limit = {
     value: number;

@@ -4,17 +4,17 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getChannel} from 'hkclient-redux/selectors/entities/channels';
-import {getPost, makeIsPostCommentMention, makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
-import {get, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
 import {markPostAsUnread} from 'actions/post_actions';
 import {selectPost, selectPostCard} from 'actions/views/rhs';
 
 import {isArchivedChannel} from 'utils/channel_utils';
 import {Preferences} from 'utils/constants';
 import {areConsecutivePostsBySameUser, makeCreateAriaLabelForPost} from 'utils/post_utils.jsx';
+
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {get, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+import {getPost, makeIsPostCommentMention, makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
+import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 
 import Post from './post.jsx';
 

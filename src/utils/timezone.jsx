@@ -3,9 +3,9 @@
 
 import moment from 'moment-timezone';
 
-import {getSupportedTimezones as getTimezones} from 'hkclient-redux/selectors/entities/general';
-
 import store from 'stores/redux_store.jsx';
+
+import {getSupportedTimezones as getTimezones} from 'hkclient-redux/selectors/entities/general';
 
 export function getSupportedTimezones(state = store.getState()) {
     return getTimezones(state);

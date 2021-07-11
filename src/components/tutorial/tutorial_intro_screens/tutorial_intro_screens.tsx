@@ -10,6 +10,7 @@ import {useSafeUrl} from 'utils/url';
 import AppIcons from 'images/appIcons.png';
 import ModalToggleButtonRedux from 'components/toggle_modal_button_redux';
 import InvitationModal from 'components/invitation_modal';
+
 import {PreferenceType} from 'hkclient-redux/types/preferences';
 
 const NUM_SCREENS = 3;

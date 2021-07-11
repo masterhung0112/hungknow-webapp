@@ -3,19 +3,19 @@
 
 import React from 'react';
 
-import {Post, PostEmbed} from 'hkclient-redux/types/posts';
-
-import {getEmbedFromMetadata} from 'hkclient-redux/utils/post_utils';
-import {AppBinding} from 'hkclient-redux/types/apps';
-
 import MessageAttachmentList from 'components/post_view/message_attachments/message_attachment_list';
 import PostAttachmentOpenGraph from 'components/post_view/post_attachment_opengraph';
 import PostImage from 'components/post_view/post_image';
 import YoutubeVideo from 'components/youtube_video';
 
 import {PostWillRenderEmbedPluginComponent} from 'types/store/plugins';
-import EmbeddedBindings from '../embedded_bindings/embedded_bindings';
+
 import {TextFormattingOptions} from 'utils/text_formatting';
+
+import EmbeddedBindings from '../embedded_bindings/embedded_bindings';
+import {AppBinding} from 'hkclient-redux/types/apps';
+import {getEmbedFromMetadata} from 'hkclient-redux/utils/post_utils';
+import {Post, PostEmbed} from 'hkclient-redux/types/posts';
 
 export type Props = {
     post: Post;

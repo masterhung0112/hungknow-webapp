@@ -4,9 +4,6 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {GlobalState} from 'types/store';
 
 import {installPlugin} from 'actions/marketplace';
@@ -14,6 +11,9 @@ import {closeModal} from 'actions/views/modals';
 import {ModalIdentifiers} from 'utils/constants';
 import {getInstalling, getError} from 'selectors/views/marketplace';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import MarketplaceItemPlugin, {MarketplaceItemPluginProps} from './marketplace_item_plugin';
 

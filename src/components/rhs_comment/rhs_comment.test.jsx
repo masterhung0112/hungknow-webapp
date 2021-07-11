@@ -21,6 +21,7 @@ jest.mock('utils/post_utils.jsx', () => ({
 }));
 
 import {isMobile} from 'utils/utils';
+
 import UserProfile from '../user_profile';
 
 jest.mock('utils/utils', () => ({

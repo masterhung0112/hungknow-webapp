@@ -3,13 +3,13 @@
 
 jest.mock('hkclient-redux/actions/users');
 
-import * as UserActions from 'hkclient-redux/actions/users';
-
 import {
     login,
     loginById,
 } from 'actions/views/login';
 import configureStore from 'store';
+
+import * as UserActions from 'hkclient-redux/actions/users';
 
 describe('actions/views/login', () => {
     describe('login', () => {

@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {getChannel} from 'hkclient-redux/selectors/entities/channels';
-
 import {GlobalState} from 'types/store';
+
+import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 
 import FileSearchResultItem from './file_search_result_item';
 

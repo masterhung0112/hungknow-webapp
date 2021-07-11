@@ -4,12 +4,12 @@
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 import {connect} from 'react-redux';
 
+import {closeModal, openModal} from 'actions/views/modals';
+
 import {getGroupsAssociatedToChannel, unlinkGroupSyncable, patchGroupSyncable} from 'hkclient-redux/actions/groups';
 import {getMyChannelMember} from 'hkclient-redux/actions/channels';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {closeModal, openModal} from 'actions/views/modals';
 
 import ChannelGroupsManageModal from './channel_groups_manage_modal';
 

@@ -5,10 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
-import {ChannelWithTeamData, ChannelSearchOpts} from 'hkclient-redux/types/channels';
-import {debounce} from 'hkclient-redux/actions/helpers';
-
 import {browserHistory} from 'utils/browser_history';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
@@ -22,6 +18,10 @@ import GlobeIcon from 'components/widgets/icons/globe_icon';
 import LockIcon from 'components/widgets/icons/lock_icon';
 import ArchiveIcon from 'components/widgets/icons/archive_icon';
 import SharedChannelIndicator from 'components/shared_channel_indicator';
+
+import {debounce} from 'hkclient-redux/actions/helpers';
+import {ChannelWithTeamData, ChannelSearchOpts} from 'hkclient-redux/types/channels';
+import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
 
 import './channel_list.scss';
 interface ChannelListProps {

@@ -3,8 +3,6 @@
 
 import React, {PureComponent} from 'react';
 
-import {UserProfile as UserProfileType} from 'hkclient-redux/types/users';
-
 import {imageURLForUser, isMobile, isGuest} from 'utils/utils.jsx';
 
 import OverlayTrigger, {BaseOverlayTrigger} from 'components/overlay_trigger';
@@ -12,6 +10,8 @@ import ProfilePopover from 'components/profile_popover';
 import BotBadge from 'components/widgets/badges/bot_badge';
 import GuestBadge from 'components/widgets/badges/guest_badge';
 import SharedUserIndicator from 'components/shared_user_indicator';
+
+import {UserProfile as UserProfileType} from 'hkclient-redux/types/users';
 
 export type UserProfileProps = {
     userId: string;

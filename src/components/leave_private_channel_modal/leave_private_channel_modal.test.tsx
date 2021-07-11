@@ -4,9 +4,9 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import LeavePrivateChannelModal from 'components/leave_private_channel_modal/leave_private_channel_modal';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 describe('components/LeavePrivateChannelModal', () => {
     const channels = {

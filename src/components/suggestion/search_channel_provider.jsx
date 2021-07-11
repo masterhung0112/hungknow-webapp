@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {isDirectChannel, isGroupChannel, sortChannelsByTypeListAndDisplayName} from 'hkclient-redux/utils/channel_utils';
-
 import store from 'stores/redux_store.jsx';
 
 import Constants from 'utils/constants';
 import {getCurrentLocale} from 'selectors/i18n';
+
+import {isDirectChannel, isGroupChannel, sortChannelsByTypeListAndDisplayName} from 'hkclient-redux/utils/channel_utils';
 
 import Provider from './provider.jsx';
 import SearchChannelSuggestion from './search_channel_suggestion';

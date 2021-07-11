@@ -4,16 +4,19 @@
 import React from 'react';
 import {IntlShape, injectIntl} from 'react-intl';
 
+import {trackEvent} from 'actions/telemetry_actions';
+
+import ProfilePicture from 'components/profile_picture';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {Constants} from 'utils/constants';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {Channel} from 'hkclient-redux/types/channels';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {PreferenceType} from 'hkclient-redux/types/preferences';
-
-import {trackEvent} from 'actions/telemetry_actions';
-import ProfilePicture from 'components/profile_picture';
-import {browserHistory} from 'utils/browser_history';
-import {Constants} from 'utils/constants';
 
 import SidebarChannelLink from '../sidebar_channel_link';
 

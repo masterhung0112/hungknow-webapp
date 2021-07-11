@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {
     updateMe,
     setDefaultProfileImage,
     uploadProfileImage,
 } from 'hkclient-redux/actions/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {GlobalState} from 'types/store';
 
 import CompleteProfileStep from './complete_profile_step';
 

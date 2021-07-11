@@ -4,14 +4,14 @@
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {getEmojiMap} from 'selectors/emojis';
+
+import {GlobalState} from 'types/store';
+
 import {createCustomEmoji} from 'hkclient-redux/actions/emojis';
 
 import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
 import {CustomEmoji} from 'hkclient-redux/types/emojis';
-
-import {getEmojiMap} from 'selectors/emojis';
-
-import {GlobalState} from 'types/store';
 
 import AddEmoji from './add_emoji';
 

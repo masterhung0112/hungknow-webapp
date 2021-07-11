@@ -3,12 +3,12 @@
 
 import {connect} from 'react-redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
-
 import {GlobalState} from 'types/store';
 
 import {isGuest} from 'utils/utils.jsx';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
 
 import ErrorPage from './error_page';
 

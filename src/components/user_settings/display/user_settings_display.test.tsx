@@ -4,10 +4,10 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 import UserSettingsDisplay from 'components/user_settings/display/user_settings_display';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 describe('components/user_settings/display/UserSettingsDisplay', () => {
     const user = {

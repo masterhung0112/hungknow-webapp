@@ -3,6 +3,7 @@
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getUserTimezone} from 'hkclient-redux/selectors/entities/timezone';
 import {DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+
 import {updateMe} from './users';
 export function autoUpdateTimezone(deviceTimezone: string) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {

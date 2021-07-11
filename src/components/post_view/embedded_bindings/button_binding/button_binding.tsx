@@ -5,17 +5,19 @@ import React from 'react';
 
 import {injectIntl, IntlShape} from 'react-intl';
 
+import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
+
+import Markdown from 'components/markdown';
+
+import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
+
+import {createCallContext, createCallRequest} from 'utils/apps';
+
 import {AppBinding} from 'hkclient-redux/types/apps';
 import {ActionResult} from 'hkclient-redux/types/actions';
 import {AppBindingLocations, AppCallResponseTypes, AppCallTypes, AppExpandLevels} from 'hkclient-redux/constants/apps';
 import {Channel} from 'hkclient-redux/types/channels';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
-
-import Markdown from 'components/markdown';
-import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
-import {createCallContext, createCallRequest} from 'utils/apps';
 
 type Props = {
     intl: IntlShape;

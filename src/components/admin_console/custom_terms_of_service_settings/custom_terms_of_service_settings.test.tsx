@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {AdminConfig} from 'hkclient-redux/types/config';
-
 import CustomTermsOfServiceSettings from 'components/admin_console/custom_terms_of_service_settings/custom_terms_of_service_settings';
+
+import {AdminConfig} from 'hkclient-redux/types/config';
 
 describe('components/admin_console/CustomTermsOfServiceSettings', () => {
     const baseProps = {

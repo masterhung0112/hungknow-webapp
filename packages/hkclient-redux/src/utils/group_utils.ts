@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 import {General} from '../constants';
 import {Group} from 'hkclient-redux/types/groups';
+
 import {getSuggestionsSplitByMultiple} from './user_utils';
 
 export function filterGroupsMatchingTerm(groups: Group[], term: string): Group[] {

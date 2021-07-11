@@ -4,8 +4,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {GlobalState} from 'types/store';
 
 import {toggleEmbedVisibility} from 'actions/post_actions';
@@ -13,6 +11,8 @@ import {toggleEmbedVisibility} from 'actions/post_actions';
 import {getIsRhsOpen} from 'selectors/rhs';
 
 import SingleImageView from 'components/single_image_view/single_image_view';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 function mapStateToProps(state: GlobalState) {
     const isRhsOpen = getIsRhsOpen(state);

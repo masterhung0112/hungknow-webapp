@@ -3,13 +3,15 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
+import {Preferences, TutorialSteps} from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
-
-import {GlobalState} from 'types/store';
-import {Preferences, TutorialSteps} from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 import SidebarHeader from './sidebar_header';
 

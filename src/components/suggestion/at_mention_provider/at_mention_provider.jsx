@@ -3,9 +3,9 @@
 
 import XRegExp from 'xregexp';
 
-import {getSuggestionsSplitBy, getSuggestionsSplitByMultiple} from 'hkclient-redux/utils/user_utils';
-
 import {Constants} from 'utils/constants';
+
+import {getSuggestionsSplitBy, getSuggestionsSplitByMultiple} from 'hkclient-redux/utils/user_utils';
 
 import Provider from '../provider.jsx';
 

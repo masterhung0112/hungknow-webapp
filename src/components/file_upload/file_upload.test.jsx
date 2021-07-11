@@ -3,12 +3,12 @@
 
 import React from 'react';
 
-import {General} from 'hkclient-redux/constants';
-
 import {clearFileInput} from 'utils/utils';
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import FileUpload from 'components/file_upload/file_upload.jsx';
+
+import {General} from 'hkclient-redux/constants';
 
 const generatedIdRegex = /[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}/;
 

@@ -4,14 +4,15 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/groups';
+import * as Actions from 'hkclient-redux/actions/groups';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {Groups} from '../constants';
 import TestHelper from 'hkclient-redux/test/test_helper';
 import configureStore from 'hkclient-redux/test/test_store';
 
-describe('Actions.Groups', () => {
+describe('hkclient-redux/actions.Groups', () => {
     let store;
 
     beforeEach(() => {

@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions.jsx';
+
 import {loadRolesIfNeeded, editRole} from 'hkclient-redux/actions/roles';
 
 import {getRoles} from 'hkclient-redux/selectors/entities/roles';
@@ -13,8 +15,6 @@ import {getScheme, makeGetSchemeTeams} from 'hkclient-redux/selectors/entities/s
 import {getScheme as loadScheme, patchScheme, createScheme, getSchemeTeams as loadSchemeTeams} from 'hkclient-redux/actions/schemes';
 
 import {updateTeamScheme} from 'hkclient-redux/actions/teams';
-
-import {setNavigationBlocked} from 'actions/admin_actions.jsx';
 
 import PermissionTeamSchemeSettings from './permission_team_scheme_settings.jsx';
 

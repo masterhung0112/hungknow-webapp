@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {GlobalState} from 'types/store';
 
 import {AnnouncementBarMessages} from 'utils/constants';
 import {dismissNotice} from 'actions/views/notice';
 import {getSiteURL} from 'utils/url';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import ConfigurationBar from './configuration_bar';
 

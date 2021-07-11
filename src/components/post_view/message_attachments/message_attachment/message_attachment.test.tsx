@@ -4,15 +4,16 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {Constants} from 'utils/constants';
+
+import ExternalImage from 'components/external_image';
+
+import MessageAttachment from 'components/post_view/message_attachments/message_attachment/message_attachment';
+
 import {MessageAttachment as MessageAttachmentType} from 'hkclient-redux/types/message_attachments';
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {PostImage} from 'hkclient-redux/types/posts';
 import {PostAction} from 'hkclient-redux/types/integration_actions';
-
-import {Constants} from 'utils/constants';
-
-import ExternalImage from 'components/external_image';
-import MessageAttachment from 'components/post_view/message_attachments/message_attachment/message_attachment';
 
 describe('components/post_view/MessageAttachment', () => {
     const attachment = {

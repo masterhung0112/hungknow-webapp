@@ -3,9 +3,9 @@
 
 import React from 'react';
 
-import {ChannelNotifyProps} from 'hkclient-redux/types/channels';
-
 import {NotificationLevels} from 'utils/constants';
+
+import {ChannelNotifyProps} from 'hkclient-redux/types/channels';
 
 type Actions = {
     updateChannelNotifyProps: (userId: string, channelId: string, props: ChannelNotifyProps) => void;

@@ -4,13 +4,13 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
-import {SidebarPreferences} from 'hkclient-redux/selectors/entities/preferences';
-
 import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 
 import UserSettingsSidebar from 'components/user_settings/sidebar/user_settings_sidebar';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+
+import {SidebarPreferences} from 'hkclient-redux/selectors/entities/preferences';
 
 import {UserSettingsSidebarProps} from './user_settings_sidebar';
 

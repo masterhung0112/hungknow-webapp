@@ -4,13 +4,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {OAuthApp} from 'hkclient-redux/types/integrations';
-
-import {Team} from 'hkclient-redux/types/teams';
-
 import {browserHistory} from 'utils/browser_history';
 
 import EditOAuthApp from 'components/integrations/edit_oauth_app/edit_oauth_app';
+
+import {OAuthApp} from 'hkclient-redux/types/integrations';
+
+import {Team} from 'hkclient-redux/types/teams';
 
 describe('components/integrations/EditOAuthApp', () => {
     const oauthApp: OAuthApp = {

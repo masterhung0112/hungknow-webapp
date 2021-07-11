@@ -4,11 +4,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import Menu from 'components/widgets/menu/menu';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 
 import {TestHelper} from '../../../../utils/test_helper';
-
-import Menu from 'components/widgets/menu/menu';
 
 import SystemUsersDropdown, {Props} from './system_users_dropdown';
 

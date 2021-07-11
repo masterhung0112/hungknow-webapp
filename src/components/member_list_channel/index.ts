@@ -4,6 +4,17 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {
+    loadProfilesAndTeamMembersAndChannelMembers,
+    loadTeamMembersAndChannelMembersForProfilesList,
+} from 'actions/user_actions.jsx';
+
+import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
+
+import {setModalSearchTerm} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {createSelector} from 'reselect';
 
 import {searchProfilesInCurrentChannel, getProfilesInCurrentChannel} from 'hkclient-redux/selectors/entities/users';
@@ -15,15 +26,6 @@ import {sortByUsername} from 'hkclient-redux/utils/user_utils';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
-
-import {
-    loadProfilesAndTeamMembersAndChannelMembers,
-    loadTeamMembersAndChannelMembersForProfilesList,
-} from 'actions/user_actions.jsx';
-import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
-import {setModalSearchTerm} from 'actions/views/search';
-
-import {GlobalState} from 'types/store';
 
 import MemberListChannel, {Props} from './member_list_channel';
 

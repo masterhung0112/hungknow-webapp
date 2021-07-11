@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import SidebarCategory from 'components/sidebar/sidebar_category/sidebar_category';
+
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 import {CategorySorting} from 'hkclient-redux/types/channel_categories';
-
-import SidebarCategory from 'components/sidebar/sidebar_category/sidebar_category';
 
 describe('components/sidebar/sidebar_category', () => {
     const baseProps = {

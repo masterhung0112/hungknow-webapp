@@ -4,14 +4,14 @@
 import React, {EventHandler, MouseEvent} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Post} from 'hkclient-redux/types/posts';
-
 import Constants from 'utils/constants';
 import * as PostUtils from 'utils/post_utils.jsx';
 import PostInfo from 'components/post_view/post_info';
 import UserProfile from 'components/user_profile';
 import BotBadge from 'components/widgets/badges/bot_badge';
 import Badge from 'components/widgets/badges/badge';
+
+import {Post} from 'hkclient-redux/types/posts';
 
 import PostHeaderCustomStatus from './post_header_custom_status';
 

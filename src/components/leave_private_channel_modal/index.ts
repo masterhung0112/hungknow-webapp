@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {leaveChannel} from 'actions/views/channel';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import LeavePrivateChannelModal from './leave_private_channel_modal';
 

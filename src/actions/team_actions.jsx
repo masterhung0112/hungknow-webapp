@@ -1,6 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {browserHistory} from 'utils/browser_history';
+
+import {Preferences} from 'utils/constants';
+
 import {TeamTypes} from 'hkclient-redux/action_types';
 import {viewChannel, getChannelStats} from 'hkclient-redux/actions/channels';
 import * as TeamActions from 'hkclient-redux/actions/teams';
@@ -8,9 +12,6 @@ import {getCurrentChannelId, isManuallyUnread} from 'hkclient-redux/selectors/en
 import {getUser} from 'hkclient-redux/actions/users';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {browserHistory} from 'utils/browser_history';
-import {Preferences} from 'utils/constants';
 
 export function removeUserFromTeamAndGetStats(teamId, userId) {
     return async (dispatch, getState) => {

@@ -5,12 +5,12 @@ import React from 'react';
 
 import {isEmpty} from 'lodash';
 
-import {CloudCustomer, Subscription} from 'hkclient-redux/types/cloud';
-
 import {browserHistory} from 'utils/browser_history';
 import {isCustomerCardExpired} from 'utils/cloud_utils';
 import {AnnouncementBarTypes} from 'utils/constants';
 import {t} from 'utils/i18n';
+
+import {CloudCustomer, Subscription} from 'hkclient-redux/types/cloud';
 
 import AnnouncementBar from '../default_announcement_bar';
 import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subscription';

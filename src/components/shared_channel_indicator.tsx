@@ -5,10 +5,10 @@ import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import OverlayTrigger from 'components/overlay_trigger';
 import {Constants} from 'utils/constants';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 type Props = {
     className?: string;

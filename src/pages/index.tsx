@@ -1,43 +1,44 @@
 // import styles from '../styles/Home.module.css'
 // import Root from 'components/root'
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
+
 // import { NextPageContext } from "next";
-import { GlobalState } from 'hkclient-redux/types/store'
+import {GlobalState} from 'hkclient-redux/types/store';
 
 class Index extends React.Component {
-  // note that since _app is wrapped no need to wrap page
-  // public static async getInitialProps({
-  //   store,
-  //   pathname,
-  //   query,
-  //   req
-  // }: NextPageContext<GlobalState>) {
-  //   console.log("2. Page.getInitialProps uses the store to dispatch things", {
-  //     pathname,
-  //     query
-  //   });
+    // note that since _app is wrapped no need to wrap page
+    // public static async getInitialProps({
+    //   store,
+    //   pathname,
+    //   query,
+    //   req
+    // }: NextPageContext<GlobalState>) {
+    //   console.log("2. Page.getInitialProps uses the store to dispatch things", {
+    //     pathname,
+    //     query
+    //   });
 
-  //   if (req) {
-  //     // All async actions must be await'ed
-  //     await store.dispatch({ type: "PAGE", payload: "server" });
+    //   if (req) {
+    //     // All async actions must be await'ed
+    //     await store.dispatch({ type: "PAGE", payload: "server" });
 
-  //     // Some custom thing for this particular page
-  //     return { pageProp: "server" };
-  //   }
+    //     // Some custom thing for this particular page
+    //     return { pageProp: "server" };
+    //   }
 
-  //   // await is not needed if action is synchronous
-  //   store.dispatch({ type: "PAGE", payload: "client" });
+    //   // await is not needed if action is synchronous
+    //   store.dispatch({ type: "PAGE", payload: "client" });
 
-  //   // Some custom thing for this particular page
-  //   return { pageProp: "client" };
-  // }
+    //   // Some custom thing for this particular page
+    //   return { pageProp: "client" };
+    // }
 
-  public render() {
+    public render() {
     // console.log('5. Page.render');
     // const { pageProp, appProp, entities } = this.props;
-    return <p>Hello</p>
-  }
+        return <p>Hello</p>;
+    }
 }
 
-export default connect((state) => state)(Index)
+export default connect((state) => state)(Index);

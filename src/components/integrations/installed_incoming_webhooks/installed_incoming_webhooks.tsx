@@ -4,19 +4,22 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import BackstageList from 'components/backstage/components/backstage_list.jsx';
+
+import InstalledIncomingWebhook, {matchesFilter} from 'components/integrations/installed_incoming_webhook.jsx';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
+import Constants from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {Team} from 'hkclient-redux/types/teams';
 import {Channel} from 'hkclient-redux/types/channels';
 import {IncomingWebhook} from 'hkclient-redux/types/integrations';
 import {ActionResult} from 'hkclient-redux/types/actions';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {IDMappedObjects} from 'hkclient-redux/types/utilities';
-
-import BackstageList from 'components/backstage/components/backstage_list.jsx';
-import InstalledIncomingWebhook, {matchesFilter} from 'components/integrations/installed_incoming_webhook.jsx';
-import FormattedMarkdownMessage from 'components/formatted_markdown_message';
-
-import Constants from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 type Props = {
     team: Team;

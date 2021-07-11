@@ -5,13 +5,15 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FormattedMessage} from 'react-intl';
 
+import {pageVisited} from 'actions/telemetry_actions';
+
+import FormattedAdminHeader from 'components/widgets/admin_console/formatted_admin_header';
+
+import AlertBanner from 'components/alert_banner';
+
 import {DispatchFunc} from 'hkclient-redux/types/actions';
 import {getCloudCustomer} from 'hkclient-redux/actions/cloud';
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {pageVisited} from 'actions/telemetry_actions';
-import FormattedAdminHeader from 'components/widgets/admin_console/formatted_admin_header';
-import AlertBanner from 'components/alert_banner';
 
 import PaymentInfoDisplay from './payment_info_display';
 

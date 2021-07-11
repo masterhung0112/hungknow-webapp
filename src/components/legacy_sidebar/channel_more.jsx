@@ -5,10 +5,10 @@ import React from 'react';
 import {FormattedMessage, injectIntl} from 'react-intl';
 import {PropTypes} from 'prop-types';
 
-import {Permissions} from 'hkclient-redux/constants';
-
 import TeamPermissionGate from 'components/permissions_gates/team_permission_gate';
 import {intlShape} from 'utils/react_intl';
+
+import {Permissions} from 'hkclient-redux/constants';
 
 class ChannelMore extends React.PureComponent {
     static propTypes = {

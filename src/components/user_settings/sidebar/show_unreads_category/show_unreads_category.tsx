@@ -4,11 +4,12 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import SettingItemMax from 'components/setting_item_max';
+
+import SettingItemMin from 'components/setting_item_min';
+
 import {Preferences} from 'hkclient-redux/constants';
 import {PreferenceType} from 'hkclient-redux/types/preferences';
-
-import SettingItemMax from 'components/setting_item_max';
-import SettingItemMin from 'components/setting_item_min';
 
 type Props = {
     active: boolean;

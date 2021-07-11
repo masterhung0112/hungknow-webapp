@@ -5,10 +5,6 @@ import React, {RefObject} from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Groups} from 'hkclient-redux/constants';
-
-import {Group, GroupsWithCount, SyncablePatch, SyncableType} from 'hkclient-redux/types/groups';
-
 import Constants from 'utils/constants';
 import {localizeMessage} from 'utils/utils.jsx';
 
@@ -16,6 +12,9 @@ import MultiSelect, {Value} from 'components/multiselect/multiselect';
 import groupsAvatar from 'images/groups-avatar.png';
 import AddIcon from 'components/widgets/icons/fa_add_icon';
 import Nbsp from 'components/html_entities/nbsp';
+
+import {Group, GroupsWithCount, SyncablePatch, SyncableType} from 'hkclient-redux/types/groups';
+import {Groups} from 'hkclient-redux/constants';
 
 const GROUPS_PER_PAGE = 50;
 const MAX_SELECTABLE_VALUES = 10;

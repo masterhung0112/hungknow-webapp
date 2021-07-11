@@ -4,12 +4,8 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
-
 import {GlobalState} from 'types/store';
 import {getListing, getInstalledListing} from 'selectors/views/marketplace';
-import {setFirstAdminVisitMarketplaceStatus} from 'hkclient-redux/actions/general';
-import {getFirstAdminVisitMarketplaceStatus} from 'hkclient-redux/selectors/entities/general';
 
 import {isModalOpen} from 'selectors/views/modals';
 import {ModalIdentifiers} from 'utils/constants';
@@ -17,6 +13,10 @@ import {getSiteURL} from 'utils/url';
 
 import {closeModal} from 'actions/views/modals';
 import {fetchListing, filterListing} from 'actions/marketplace';
+
+import {getFirstAdminVisitMarketplaceStatus} from 'hkclient-redux/selectors/entities/general';
+import {setFirstAdminVisitMarketplaceStatus} from 'hkclient-redux/actions/general';
+import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
 
 import {MarketplaceModal} from './marketplace_modal';
 

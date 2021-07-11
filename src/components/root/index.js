@@ -4,12 +4,13 @@
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import {loadMeAndConfig} from 'actions/views/root';
+
+import LocalStorageStore from 'stores/local_storage_store';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {shouldShowTermsOfService, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getTeam} from 'hkclient-redux/selectors/entities/teams';
-
-import {loadMeAndConfig} from 'actions/views/root';
-import LocalStorageStore from 'stores/local_storage_store';
 
 import Root from './root.jsx';
 

@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {Modal} from 'react-bootstrap';
 
-import {getFilePreviewUrl, getFileUrl, getFileDownloadUrl} from 'hkclient-redux/utils/file_utils';
-
 import * as GlobalActions from 'actions/global_actions';
 import Constants, {FileTypes, ZoomSettings} from 'utils/constants';
 import * as Utils from 'utils/utils';
@@ -14,6 +12,8 @@ import AudioVideoPreview from 'components/audio_video_preview';
 import CodePreview from 'components/code_preview';
 import FileInfoPreview from 'components/file_info_preview';
 import LoadingImagePreview from 'components/loading_image_preview';
+
+import {getFilePreviewUrl, getFileUrl, getFileDownloadUrl} from 'hkclient-redux/utils/file_utils';
 const PDFPreview = React.lazy(() => import('components/pdf_preview'));
 
 import ImagePreview from './image_preview';

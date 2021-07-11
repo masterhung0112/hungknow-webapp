@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import {getLicenseConfig} from 'hkclient-redux/actions/general';
-import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
-import {getPrevTrialLicense} from 'hkclient-redux/actions/admin';
-
 import {requestTrialLicense} from 'actions/admin_actions';
 
 import {GlobalState} from 'types/store';
+
+import {getLicenseConfig} from 'hkclient-redux/actions/general';
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
+import {getPrevTrialLicense} from 'hkclient-redux/actions/admin';
 
 import FeatureDiscovery from './feature_discovery';
 

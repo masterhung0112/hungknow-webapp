@@ -3,6 +3,25 @@
 
 import {batchActions} from 'redux-batched-actions';
 
+import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
+
+import {loadCustomStatusEmojisForPostList} from 'actions/emoji_actions';
+
+import {getLastViewedChannelName} from 'selectors/local_storage';
+
+import {getLastPostsApiTimeForChannel} from 'selectors/views/channel';
+
+import {getSocketStatus} from 'selectors/views/websocket';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {Constants, ActionTypes, EventTypes, PostRequestTypes} from 'utils/constants';
+
+import {isMobile} from 'utils/utils.jsx';
+
+import LocalStorageStore from 'stores/local_storage_store.jsx';
+
+import {isArchivedChannel} from 'utils/channel_utils';
 import {
     leaveChannel as leaveChannelRedux,
     joinChannel,
@@ -34,17 +53,7 @@ import {makeAddLastViewAtToProfiles} from 'hkclient-redux/selectors/entities/uti
 import {getChannelByName} from 'hkclient-redux/utils/channel_utils';
 import EventEmitter from 'hkclient-redux/utils/event_emitter';
 
-import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
-import {loadCustomStatusEmojisForPostList} from 'actions/emoji_actions';
-import {getLastViewedChannelName} from 'selectors/local_storage';
-import {getLastPostsApiTimeForChannel} from 'selectors/views/channel';
-import {getSocketStatus} from 'selectors/views/websocket';
 
-import {browserHistory} from 'utils/browser_history';
-import {Constants, ActionTypes, EventTypes, PostRequestTypes} from 'utils/constants';
-import {isMobile} from 'utils/utils.jsx';
-import LocalStorageStore from 'stores/local_storage_store.jsx';
-import {isArchivedChannel} from 'utils/channel_utils';
 
 export function checkAndSetMobileView() {
     return (dispatch) => {

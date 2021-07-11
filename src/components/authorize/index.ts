@@ -4,10 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {allowOAuth2, getOAuthAppInfo} from 'actions/admin_actions.jsx';
+
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
 import {OAuthApp} from 'hkclient-redux/types/integrations';
-
-import {allowOAuth2, getOAuthAppInfo} from 'actions/admin_actions.jsx';
 
 import Authorize, {Params} from './authorize';
 

@@ -1,59 +1,70 @@
-import { CandleData, Layout, TimeRange } from 'types/TradingChart'
+import {CandleData, Layout, TimeRange} from 'types/TradingChart';
 
-import Utils from './utils'
-import { smth2i } from './IndexBase'
-import * as math from './math'
+import Utils from './utils';
+import {smth2i} from './IndexBase';
+import * as math from './math';
 
 // Time to screen coordinates
 export function t2screen(layout: Layout, t: number, range: TimeRange): number {
-  const { ti_map: timeIndexData } = layout
-  const { IndexBased } = timeIndexData
-  if (IndexBased) t = smth2i(timeIndexData, t)
-  const dt = range.t2 - range.t1
-  const r = layout.spacex / dt
-  return Math.floor((t - range.t1) * r) - 0.5
+    const {ti_map: timeIndexData} = layout;
+    const {IndexBased} = timeIndexData;
+    if (IndexBased) {
+        t = smth2i(timeIndexData, t);
+    }
+    const dt = range.t2 - range.t1;
+    const r = layout.spacex / dt;
+    return Math.floor((t - range.t1) * r) - 0.5;
 }
 
 // $ to screen coordinates
 export function $2screen(layout: Layout, y: number): number {
-  if (layout.grid.logScale) y = math.log(y)
-  return Math.floor(y * layout.A + layout.B) - 0.5
+    if (layout.grid.logScale) {
+        y = math.log(y);
+    }
+    return Math.floor(y * layout.A + layout.B) - 0.5;
 }
 
 // Screen-Y to dollar value (or whatever)
 export function screen2$(layout: Layout, y: number): number {
-  if (layout.grid.logScale) return math.exp((y - layout.B) / layout.A)
-  return (y - layout.B) / layout.A
+    if (layout.grid.logScale) {
+        return math.exp((y - layout.B) / layout.A);
+    }
+    return (y - layout.B) / layout.A;
 }
 
 // Time-axis nearest step
 export function t_magnet(layout: Layout, t: number): number | undefined {
-  const { ti_map } = layout
+    const {ti_map} = layout;
 
-  if (ti_map.IndexBased) t = smth2i(ti_map, t)
-  const cn = layout.candles || layout.master_grid.candles
-  const arr = cn.map((x) => x.raw[0])
-  const i = Utils.nearest_a(t, arr)[0]
-  if (!cn[i]) return undefined
-  return Math.floor(cn[i].x) - 0.5
+    if (ti_map.IndexBased) {
+        t = smth2i(ti_map, t);
+    }
+    const cn = layout.candles || layout.master_grid.candles;
+    const arr = cn.map((x) => x.raw[0]);
+    const i = Utils.nearest_a(t, arr)[0];
+    if (!cn[i]) {
+        return undefined;
+    }
+    return Math.floor(cn[i].x) - 0.5;
 }
 
 // Screen-X to timestamp
 export function screen2t(layout: Layout, x: number, range: TimeRange): number {
-  // TODO: most likely Math.floor not needed
-  // return Math.floor(range.t1 + x / r)
-  const dt = range.t2 - range.t1
-  const r = layout.spacex / dt
-  return range.t1 + x / r
+    // TODO: most likely Math.floor not needed
+    // return Math.floor(range.t1 + x / r)
+    const dt = range.t2 - range.t1;
+    const r = layout.spacex / dt;
+    return range.t1 + x / r;
 }
+
 // $-axis nearest step
 // export function $_magnet(price) {}
 // Nearest candlestick
 export function c_magnet(layout: Layout, t: number): CandleData {
-  const cn = layout.candles || layout.master_grid.candles
-  const arr = cn.map((x) => x.raw[0])
-  const i = Utils.nearest_a(t, arr)[0]
-  return cn[i]
+    const cn = layout.candles || layout.master_grid.candles;
+    const arr = cn.map((x) => x.raw[0]);
+    const i = Utils.nearest_a(t, arr)[0];
+    return cn[i];
 }
 
 // export function layoutFn(self: Layout, range: TimeRange) {

@@ -4,6 +4,20 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
+import {setShowPreviewOnEditPostModal} from 'actions/views/textbox';
+
+import {showPreviewOnEditPostModal} from 'selectors/views/textbox';
+
+import {hideEditPostModal} from 'actions/post_actions';
+
+import {editPost} from 'actions/views/posts';
+
+import {getEditingPost} from 'selectors/posts';
+
+import Constants from 'utils/constants';
+
 import {addMessageIntoHistory} from 'hkclient-redux/actions/posts';
 import {Preferences, Permissions} from 'hkclient-redux/constants';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
@@ -12,14 +26,6 @@ import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getBool} from 'hkclient-redux/selectors/entities/preferences';
-
-import {openModal} from 'actions/views/modals';
-import {setShowPreviewOnEditPostModal} from 'actions/views/textbox';
-import {showPreviewOnEditPostModal} from 'selectors/views/textbox';
-import {hideEditPostModal} from 'actions/post_actions';
-import {editPost} from 'actions/views/posts';
-import {getEditingPost} from 'selectors/posts';
-import Constants from 'utils/constants';
 
 import EditPostModal from './edit_post_modal.jsx';
 

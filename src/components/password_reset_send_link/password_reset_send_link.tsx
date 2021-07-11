@@ -4,13 +4,13 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ServerError} from 'hkclient-redux/types/errors';
-import {isEmail} from 'hkclient-redux/utils/helpers';
-
 import BackButton from 'components/common/back_button';
 import LocalizedInput from 'components/localized_input/localized_input';
 
 import {t} from 'utils/i18n.jsx';
+
+import {isEmail} from 'hkclient-redux/utils/helpers';
+import {ServerError} from 'hkclient-redux/types/errors';
 
 interface Props {
     actions: {

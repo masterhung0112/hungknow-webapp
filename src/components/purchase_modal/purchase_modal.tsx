@@ -9,9 +9,6 @@ import {Elements} from '@stripe/react-stripe-js';
 
 import {isEmpty} from 'lodash';
 
-import {CloudCustomer, Product} from 'hkclient-redux/types/cloud';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
 import upgradeImage from 'images/cloud/upgrade.svg';
 import wavesBackground from 'images/cloud/waves.svg';
 import blueDots from 'images/cloud/blue.svg';
@@ -30,6 +27,9 @@ import Badge from 'components/widgets/badges/badge';
 import {areBillingDetailsValid, BillingDetails} from 'types/cloud/sku';
 
 import {getNextBillingDate} from 'utils/utils';
+
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {CloudCustomer, Product} from 'hkclient-redux/types/cloud';
 
 import PaymentForm from '../payment_form/payment_form';
 

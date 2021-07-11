@@ -4,17 +4,20 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {clearChannelSelection, multiSelectChannelAdd, multiSelectChannelTo} from 'actions/views/channel_sidebar';
+
+import {isChannelSelected} from 'selectors/views/channel_sidebar';
+
+import {GlobalState} from 'types/store';
+
+import {NotificationLevels} from 'utils/constants';
+
 import {getMyChannelMemberships} from 'hkclient-redux/selectors/entities/common';
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
 import {Channel} from 'hkclient-redux/types/channels';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {getMsgCountInChannel, isChannelMuted} from 'hkclient-redux/utils/channel_utils';
-
-import {clearChannelSelection, multiSelectChannelAdd, multiSelectChannelTo} from 'actions/views/channel_sidebar';
-import {isChannelSelected} from 'selectors/views/channel_sidebar';
-import {GlobalState} from 'types/store';
-import {NotificationLevels} from 'utils/constants';
 
 import SidebarChannelLink from './sidebar_channel_link';
 

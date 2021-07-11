@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
 import {leaveChannel} from 'actions/views/channel';
+
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import SidebarBaseChannel from './sidebar_base_channel';
 

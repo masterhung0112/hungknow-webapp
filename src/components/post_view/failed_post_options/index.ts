@@ -4,10 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {createPost} from 'actions/post_actions';
+
 import {removePost} from 'hkclient-redux/actions/posts';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {createPost} from 'actions/post_actions';
 
 import FailedPostOptions from './failed_post_options';
 

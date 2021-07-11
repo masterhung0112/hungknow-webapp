@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {addUserToTeamFromInvite} from 'actions/team_actions';
+
+import {login} from 'actions/views/login';
+
 import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 import {getTeamByName, getMyTeamMember} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {RequestStatus} from 'hkclient-redux/constants';
-
-import {addUserToTeamFromInvite} from 'actions/team_actions';
-
-import {login} from 'actions/views/login';
 
 import LoginController from './login_controller.jsx';
 

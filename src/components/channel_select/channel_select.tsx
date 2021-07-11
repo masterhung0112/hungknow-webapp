@@ -3,10 +3,10 @@
 
 import React from 'react';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import Constants from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
     channels: Channel[];

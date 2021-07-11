@@ -3,13 +3,15 @@
 
 import React from 'react';
 
+import messageHtmlToComponent from 'utils/message_html_to_component';
+
+import EmojiMap from 'utils/emoji_map';
+
+import {ChannelNamesMap, TextFormattingOptions, formatText, MentionKey} from 'utils/text_formatting';
+
 import {Team} from 'hkclient-redux/types/teams';
 import {PostImage, PostType} from 'hkclient-redux/types/posts';
 import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import messageHtmlToComponent from 'utils/message_html_to_component';
-import EmojiMap from 'utils/emoji_map';
-import {ChannelNamesMap, TextFormattingOptions, formatText, MentionKey} from 'utils/text_formatting';
 
 type Props = {
 

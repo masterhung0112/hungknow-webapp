@@ -5,11 +5,12 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {shallow} from 'enzyme';
 
+import {mountWithIntl} from 'tests/helpers/intl-test-helper';
+
+import {TestHelper} from 'utils/test_helper';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionResult} from 'hkclient-redux/types/actions';
-
-import {mountWithIntl} from 'tests/helpers/intl-test-helper';
-import {TestHelper} from 'utils/test_helper';
 
 import ResetEmailModal from './reset_email_modal';
 

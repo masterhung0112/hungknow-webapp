@@ -3,9 +3,9 @@
 
 import React from 'react';
 
-import {Theme} from 'hkclient-redux/types/preferences';
-
 import {mountWithIntl, shallowWithIntl} from 'tests/helpers/intl-test-helper';
+
+import {Theme} from 'hkclient-redux/types/preferences';
 
 import ImportThemeModal from './import_theme_modal';
 

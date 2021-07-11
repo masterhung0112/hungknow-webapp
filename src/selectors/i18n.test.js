@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {General} from 'hkclient-redux/constants';
-
 import {getCurrentLocale, getTranslations} from 'selectors/i18n';
+
+import {General} from 'hkclient-redux/constants';
 
 describe('selectors/i18n', () => {
     describe('getCurrentLocale', () => {

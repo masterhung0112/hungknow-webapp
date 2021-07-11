@@ -4,13 +4,13 @@
 import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 
-import {getFileDownloadUrl} from 'hkclient-redux/utils/file_utils';
-import {FileInfo} from 'hkclient-redux/types/files';
-
 import OverlayTrigger from 'components/overlay_trigger';
 import AttachmentIcon from 'components/widgets/icons/attachment_icon';
 import {trimFilename} from 'utils/file_utils';
 import {localizeMessage} from 'utils/utils.jsx';
+
+import {FileInfo} from 'hkclient-redux/types/files';
+import {getFileDownloadUrl} from 'hkclient-redux/utils/file_utils';
 
 type Props = {
 

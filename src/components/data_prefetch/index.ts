@@ -4,6 +4,14 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {prefetchChannelPosts} from 'actions/views/channel';
+
+import {trackDMGMOpenChannels} from 'actions/user_actions';
+
+import {getCategoriesForCurrentTeam} from 'selectors/views/channel_sidebar';
+
+import {GlobalState} from 'types/store';
+
 import {getCurrentChannelId, getUnreadChannels} from 'hkclient-redux/selectors/entities/channels';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {memoizeResult} from 'hkclient-redux/utils/helpers';
@@ -15,13 +23,6 @@ import {PostList} from 'hkclient-redux/types/posts';
 
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
-
-import {prefetchChannelPosts} from 'actions/views/channel';
-import {trackDMGMOpenChannels} from 'actions/user_actions';
-
-import {getCategoriesForCurrentTeam} from 'selectors/views/channel_sidebar';
-
-import {GlobalState} from 'types/store';
 
 import {isCollapsedThreadsEnabled} from '../../packages/hkclient-redux/src/selectors/entities/preferences';
 

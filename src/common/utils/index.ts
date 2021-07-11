@@ -1,2 +1,2 @@
-export * from './jsUtils'
-export * from './reactUtils'
+export * from './jsUtils';
+export * from './reactUtils';

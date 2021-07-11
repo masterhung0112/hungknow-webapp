@@ -1,6 +1,30 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {addRecentEmoji} from 'actions/emoji_actions';
+
+import * as StorageActions from 'actions/storage';
+
+import {loadNewDMIfNeeded, loadNewGMIfNeeded} from 'actions/user_actions.jsx';
+
+import * as RhsActions from 'actions/views/rhs';
+
+import {manuallyMarkThreadAsUnread} from 'actions/views/threads';
+
+import {isEmbedVisible, isInlineImageVisible} from 'selectors/posts';
+
+import {getSelectedPostId, getSelectedPostCardId, getRhsState} from 'selectors/rhs';
+
+import {
+    ActionTypes,
+    Constants,
+    RHSStates,
+    StoragePrefixes,
+} from 'utils/constants';
+
+import {matchEmoticons} from 'utils/emoticons';
+
+import * as UserAgent from 'utils/user_agent';
 import {SearchTypes} from 'hkclient-redux/action_types';
 import {getMyChannelMember} from 'hkclient-redux/actions/channels';
 import {getChannel, getMyChannelMember as getMyChannelMemberSelector} from 'hkclient-redux/selectors/entities/channels';
@@ -12,21 +36,6 @@ import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {canEditPost, comparePosts} from 'hkclient-redux/utils/post_utils';
 
-import {addRecentEmoji} from 'actions/emoji_actions';
-import * as StorageActions from 'actions/storage';
-import {loadNewDMIfNeeded, loadNewGMIfNeeded} from 'actions/user_actions.jsx';
-import * as RhsActions from 'actions/views/rhs';
-import {manuallyMarkThreadAsUnread} from 'actions/views/threads';
-import {isEmbedVisible, isInlineImageVisible} from 'selectors/posts';
-import {getSelectedPostId, getSelectedPostCardId, getRhsState} from 'selectors/rhs';
-import {
-    ActionTypes,
-    Constants,
-    RHSStates,
-    StoragePrefixes,
-} from 'utils/constants';
-import {matchEmoticons} from 'utils/emoticons';
-import * as UserAgent from 'utils/user_agent';
 
 import {completePostReceive} from './new_post';
 

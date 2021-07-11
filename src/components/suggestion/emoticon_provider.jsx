@@ -3,15 +3,15 @@
 
 import React from 'react';
 
-import {autocompleteCustomEmojis} from 'hkclient-redux/actions/emojis';
-import {getEmojiImageUrl} from 'hkclient-redux/utils/emoji_utils';
-
 import {getEmojiMap, getRecentEmojis} from 'selectors/emojis';
 
 import store from 'stores/redux_store.jsx';
 
 import * as Emoticons from 'utils/emoticons';
 import {compareEmojis} from 'utils/emoji_utils';
+
+import {getEmojiImageUrl} from 'hkclient-redux/utils/emoji_utils';
+import {autocompleteCustomEmojis} from 'hkclient-redux/actions/emojis';
 
 import Suggestion from './suggestion.jsx';
 import Provider from './provider.jsx';

@@ -1,6 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {AdminTypes, ChannelTypes, TeamTypes, UserTypes, SchemeTypes, GroupTypes} from 'hkclient-redux/action_types';
 import {teamListToMap} from 'hkclient-redux/utils/team_utils';
 import {Team, TeamMembership, TeamUnread} from 'hkclient-redux/types/teams';
@@ -484,7 +485,6 @@ function totalCount(state = 0, action: GenericAction) {
         return state;
     }
 }
-
 
 export default combineReducers({
 

@@ -7,11 +7,6 @@ import FastClick from 'fastclick';
 import {Route, Switch, Redirect} from 'react-router-dom';
 
 import {rudderAnalytics, RudderTelemetryHandler} from 'hkclient-redux/client/rudder';
-import {Client4} from 'hkclient-redux/client';
-import {setUrl} from 'hkclient-redux/actions/general';
-import {setSystemEmojis} from 'hkclient-redux/actions/emojis';
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 
 import * as UserAgent from 'utils/user_agent';
 import {EmojiIndicesByAlias} from 'utils/emoji.jsx';
@@ -52,6 +47,12 @@ import {getSiteURL} from 'utils/url';
 import {enableDevModeFeatures, isDevMode} from 'utils/utils';
 
 import A11yController from 'utils/a11y_controller';
+
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {setSystemEmojis} from 'hkclient-redux/actions/emojis';
+import {setUrl} from 'hkclient-redux/actions/general';
+import {Client4} from 'hkclient-redux/client';
 
 const CreateTeam = makeAsyncComponent(LazyCreateTeam);
 const ErrorPage = makeAsyncComponent(LazyErrorPage);

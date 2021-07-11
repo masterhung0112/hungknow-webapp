@@ -4,12 +4,13 @@
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
+import * as Actions from 'actions/post_actions';
+
+import {Constants, ActionTypes, RHSStates} from 'utils/constants';
+
 import {ChannelTypes, SearchTypes} from 'hkclient-redux/action_types';
 import * as PostActions from 'hkclient-redux/actions/posts';
 import {Posts} from 'hkclient-redux/constants';
-
-import * as Actions from 'actions/post_actions';
-import {Constants, ActionTypes, RHSStates} from 'utils/constants';
 
 const mockStore = configureStore([thunk]);
 

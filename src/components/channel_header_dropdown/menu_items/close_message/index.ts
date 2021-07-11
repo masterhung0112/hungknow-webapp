@@ -4,12 +4,13 @@
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {leaveDirectChannel} from 'actions/views/channel';
+
+import {GlobalState} from 'types/store';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getCurrentTeam, getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {getRedirectChannelNameForTeam} from 'hkclient-redux/selectors/entities/channels';
-
-import {leaveDirectChannel} from 'actions/views/channel';
-import {GlobalState} from 'types/store';
 
 import CloseMessage from './close_message';
 

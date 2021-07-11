@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {userSelectorOptionsFromFilter} from 'utils/filter_users';
+
 import {getUser, getProfiles, getProfilesInTeam, getProfilesWithoutTeam, makeSearchProfilesStartingWithTerm, searchProfilesInTeam} from 'hkclient-redux/selectors/entities/users';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import {userSelectorOptionsFromFilter} from 'utils/filter_users';
 
 const ALL_USERS = '';
 const NO_TEAM = 'no_team';

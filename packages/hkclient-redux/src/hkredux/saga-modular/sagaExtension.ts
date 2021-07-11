@@ -2,13 +2,14 @@
 // See LICENSE.txt for license information.
 import {default as createSagaMiddleware, SagaMiddleware} from 'redux-saga';
 import {IExtension, getRefCountedManager, IModuleManager} from 'redux-dynamic-modules-core';
+
 import {ISagaRegistration, ISagaModule, ISagaItemManager} from './contracts';
 import {getSagaManager} from './sagaManager';
 import {sagaEquals} from './sagaComparer';
 
 export type SagaExtensionContext = {
-  moduleManager?: IModuleManager;
-  sagaManager?: ISagaItemManager<ISagaRegistration<any>>;
+    moduleManager?: IModuleManager;
+    sagaManager?: ISagaItemManager<ISagaRegistration<any>>;
 } & Record<string, any>
 
 /**

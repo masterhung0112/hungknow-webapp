@@ -8,8 +8,6 @@ import AsyncSelect from 'react-select/lib/AsyncCreatable';
 import {components} from 'react-select';
 import classNames from 'classnames';
 
-import {isEmail} from 'hkclient-redux/utils/helpers';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import MailIcon from 'components/widgets/icons/mail_icon';
 import MailPlusIcon from 'components/widgets/icons/mail_plus_icon';
@@ -22,6 +20,8 @@ import {imageURLForUser, getDisplayName, getLongDisplayNameParts} from 'utils/ut
 
 import {t} from 'utils/i18n.jsx';
 import {isGuest} from 'utils/utils';
+
+import {isEmail} from 'hkclient-redux/utils/helpers';
 
 import './users_emails_input.scss';
 

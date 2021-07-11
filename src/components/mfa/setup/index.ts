@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {activateMfa, generateMfaSecret} from 'actions/views/mfa';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
-
-import {activateMfa, generateMfaSecret} from 'actions/views/mfa';
 
 import Setup from './setup';
 

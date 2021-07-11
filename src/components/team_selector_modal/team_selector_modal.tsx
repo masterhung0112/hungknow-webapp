@@ -5,10 +5,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {ActionResult} from 'hkclient-redux/types/actions';
-
-import {Team} from 'hkclient-redux/types/teams';
-
 import Constants, {ModalIdentifiers} from 'utils/constants';
 import {localizeMessage} from 'utils/utils.jsx';
 
@@ -18,6 +14,9 @@ import TeamIcon from 'components/widgets/team_icon/team_icon';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import {imageURLForTeam} from 'utils/utils';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {ActionResult} from 'hkclient-redux/types/actions';
 
 const TEAMS_PER_PAGE = 50;
 

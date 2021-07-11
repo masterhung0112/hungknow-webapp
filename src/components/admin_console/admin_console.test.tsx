@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Team} from 'hkclient-redux/types/teams';
-
 import AdminDefinition from 'components/admin_console/admin_definition';
 import {TestHelper} from 'utils/test_helper';
+
+import {Team} from 'hkclient-redux/types/teams';
 
 import AdminConsole from './admin_console';
 

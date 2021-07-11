@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {combineReducers} from 'redux';
+
 import {FileTypes, PostTypes, UserTypes} from 'hkclient-redux/action_types';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Post} from 'hkclient-redux/types/posts';

@@ -4,12 +4,6 @@
 import React from 'react';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
-import Groups from 'hkclient-redux/constants/groups';
-
-import {Group} from 'hkclient-redux/types/groups';
-
-import {Channel} from 'hkclient-redux/types/channels';
-
 import AddGroupsToChannelModal from 'components/add_groups_to_channel_modal';
 
 import {ModalIdentifiers} from 'utils/constants';
@@ -24,6 +18,10 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
 
 import * as Utils from 'utils/utils.jsx';
+
+import {Channel} from 'hkclient-redux/types/channels';
+import {Group} from 'hkclient-redux/types/groups';
+import Groups from 'hkclient-redux/constants/groups';
 
 type Props = {
     channel: Channel;

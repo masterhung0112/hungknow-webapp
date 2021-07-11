@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getDisplayNameByUser} from 'utils/utils';
+
 import {getUser, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 
 import {deleteCustomEmoji} from 'hkclient-redux/actions/emojis';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {getDisplayNameByUser} from 'utils/utils';
 
 import {GlobalState} from '../../../types/store';
 

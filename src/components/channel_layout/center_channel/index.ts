@@ -3,15 +3,15 @@
 
 import {connect} from 'react-redux';
 
-import {getTeamByName} from 'hkclient-redux/selectors/entities/teams';
-import {getRedirectChannelNameForTeam} from 'hkclient-redux/selectors/entities/channels';
-import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-
 import {getIsRhsOpen, getIsRhsMenuOpen} from 'selectors/rhs';
 import {getIsLhsOpen} from 'selectors/lhs';
 import {getLastViewedChannelNameByTeamName} from 'selectors/local_storage';
 
 import {GlobalState} from 'types/store';
+
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+import {getRedirectChannelNameForTeam} from 'hkclient-redux/selectors/entities/channels';
+import {getTeamByName} from 'hkclient-redux/selectors/entities/teams';
 
 import CenterChannel from './center_channel';
 

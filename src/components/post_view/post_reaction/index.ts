@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {addReaction} from 'actions/post_actions.jsx';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import PostReaction from './post_reaction';
 

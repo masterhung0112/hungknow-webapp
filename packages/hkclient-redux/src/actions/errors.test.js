@@ -4,13 +4,14 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import {logError} from 'actions/errors';
+import {logError} from 'hkclient-redux/actions/errors';
+
 import {Client4} from 'hkclient-redux/client';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
 import configureStore from 'hkclient-redux/test/test_store';
 
-describe('Actions.Errors', () => {
+describe('hkclient-redux/actions.Errors', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

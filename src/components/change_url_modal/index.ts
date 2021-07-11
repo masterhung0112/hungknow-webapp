@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {getSiteURL} from 'utils/url';
+
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {getSiteURL} from 'utils/url';
 
 import ChangeURLModal from './change_url_modal';
 

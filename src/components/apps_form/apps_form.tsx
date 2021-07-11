@@ -5,13 +5,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage, injectIntl, WrappedComponentProps} from 'react-intl';
 
-import {
-    checkDialogElementForError, checkIfErrorsMatchElements,
-} from 'hkclient-redux/utils/integration_utils';
-import {AppCallResponse, AppField, AppForm, AppFormValues, AppSelectOption, FormResponseData, AppLookupResponse} from 'hkclient-redux/types/apps';
-import {DialogElement} from 'hkclient-redux/types/integrations';
-import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
-
 import {DoAppCallResult} from 'types/apps';
 
 import SpinnerButton from 'components/spinner_button';
@@ -21,6 +14,13 @@ import ModalSuggestionList from 'components/suggestion/modal_suggestion_list';
 import {localizeMessage} from 'utils/utils.jsx';
 
 import Markdown from 'components/markdown';
+
+import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
+import {DialogElement} from 'hkclient-redux/types/integrations';
+import {AppCallResponse, AppField, AppForm, AppFormValues, AppSelectOption, FormResponseData, AppLookupResponse} from 'hkclient-redux/types/apps';
+import {
+    checkDialogElementForError, checkIfErrorsMatchElements,
+} from 'hkclient-redux/utils/integration_utils';
 
 import AppsFormField from './apps_form_field';
 import AppsFormHeader from './apps_form_header';

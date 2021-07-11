@@ -2,19 +2,26 @@
 // See LICENSE.txt for license information.
 import * as redux from 'redux';
 import {createStore as createStoreRedux, IModule} from 'redux-dynamic-modules-core';
-import {offlineConfig} from './helpers';
+
 // eslint-disable-next-line no-duplicate-imports
 import {Reducer, Action} from 'redux';
-import {GlobalState, SagaStore} from 'hkclient-redux/types/store';
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import initialState from './initial_state';
+
 import {offline} from '@redux-offline/redux-offline';
 import defaultOfflineConfig from '@redux-offline/redux-offline/lib/defaults';
-import {createMiddleware} from './middleware';
+
 import {getSagaExtension, SagaExtensionContext} from 'hkredux/saga-modular';
 import {getThunkExtension} from 'hkredux/thunkMiddleware';
 import {EntitiesModule} from 'modules/reducerModule';
+
+import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
+import {GlobalState, SagaStore} from 'hkclient-redux/types/store';
 import {enableBatching} from 'hkclient-redux/types/actions';
+
+import {createMiddleware} from './middleware';
+
+import initialState from './initial_state';
+
+import {offlineConfig} from './helpers';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function bindMiddlware(offlineConfigMiddleware: any, clientOptions: any) {
@@ -33,11 +40,11 @@ function bindMiddlware(offlineConfigMiddleware: any, clientOptions: any) {
 export const advancedCombineReducersWithBatchActions = <S>(
     advancedCombineReducers: typeof redux.combineReducers = redux.combineReducers,
 ) => (reducersMap: redux.ReducersMapObject<S, any>): Reducer<S> => {
-        const newReducers = advancedCombineReducers(reducersMap);
+    const newReducers = advancedCombineReducers(reducersMap);
 
-        // return newReducers
-        return enableBatching(newReducers);
-    };
+    // return newReducers
+    return enableBatching(newReducers);
+};
 
 export default function configureServiceStore<S>(
     preloadedState: S,

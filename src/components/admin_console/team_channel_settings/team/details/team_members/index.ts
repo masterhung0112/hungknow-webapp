@@ -4,6 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {loadProfilesAndReloadTeamMembers, searchProfilesAndTeamMembers} from 'actions/user_actions.jsx';
+
+import {setUserGridSearch, setUserGridFilters} from 'actions/views/search';
+
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {ServerError} from 'hkclient-redux/types/errors';
 import {UserProfile, UsersStats, GetFilteredUsersStatsOpts} from 'hkclient-redux/types/users';
@@ -17,10 +23,6 @@ import {getFilteredUsersStats} from 'hkclient-redux/actions/users';
 import {getMembersInTeams, getTeamStats, getTeam} from 'hkclient-redux/selectors/entities/teams';
 import {getProfilesInTeam, searchProfilesInTeam, filterProfiles, getFilteredUsersStats as selectFilteredUsersStats} from 'hkclient-redux/selectors/entities/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {GlobalState} from 'types/store';
-import {loadProfilesAndReloadTeamMembers, searchProfilesAndTeamMembers} from 'actions/user_actions.jsx';
-import {setUserGridSearch, setUserGridFilters} from 'actions/views/search';
 
 import TeamMembers from './team_members';
 

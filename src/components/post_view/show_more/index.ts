@@ -3,12 +3,12 @@
 
 import {connect} from 'react-redux';
 
-import {get} from 'hkclient-redux/selectors/entities/preferences';
-
 import {getIsRhsExpanded, getIsRhsOpen} from 'selectors/rhs';
 import {Preferences} from 'utils/constants';
 
 import {GlobalState} from 'types/store';
+
+import {get} from 'hkclient-redux/selectors/entities/preferences';
 
 import ShowMore from './show_more';
 

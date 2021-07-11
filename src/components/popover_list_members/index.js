@@ -4,18 +4,22 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
+
+import {loadProfilesAndStatusesInChannel} from 'actions/user_actions.jsx';
+
+import {openModal} from 'actions/views/modals';
+
+import {canManageMembers} from 'utils/channel_utils.jsx';
+
+import {sortUsersByStatusAndDisplayName} from 'utils/utils.jsx';
+
 import {createSelector} from 'reselect';
 
 import {getAllChannelStats} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUserId, getUserStatuses, makeGetProfilesInChannel} from 'hkclient-redux/selectors/entities/users';
 import {getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
-
-import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
-import {loadProfilesAndStatusesInChannel} from 'actions/user_actions.jsx';
-import {openModal} from 'actions/views/modals';
-import {canManageMembers} from 'utils/channel_utils.jsx';
-import {sortUsersByStatusAndDisplayName} from 'utils/utils.jsx';
 
 import PopoverListMembers from './popover_list_members.jsx';
 

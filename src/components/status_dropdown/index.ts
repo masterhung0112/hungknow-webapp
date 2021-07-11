@@ -4,6 +4,18 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
+import {setStatusDropdown} from 'actions/views/status_dropdown';
+
+import {getCurrentUserTimezone} from 'selectors/general';
+
+import {makeGetCustomStatus, isCustomStatusEnabled, showStatusDropdownPulsatingDot, isCustomStatusExpired} from 'selectors/views/custom_status';
+
+import {isStatusDropdownOpen} from 'selectors/views/status_dropdown';
+
+import {GlobalState} from 'types/store';
+
 import {setStatus, unsetCustomStatus} from 'hkclient-redux/actions/users';
 import {Client4} from 'hkclient-redux/client';
 import {Preferences} from 'hkclient-redux/constants';
@@ -11,14 +23,7 @@ import {Preferences} from 'hkclient-redux/constants';
 import {get, isTimedDNDEnabled} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUser, getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
 
-import {openModal} from 'actions/views/modals';
-import {setStatusDropdown} from 'actions/views/status_dropdown';
-
-import {getCurrentUserTimezone} from 'selectors/general';
-import {makeGetCustomStatus, isCustomStatusEnabled, showStatusDropdownPulsatingDot, isCustomStatusExpired} from 'selectors/views/custom_status';
-import {isStatusDropdownOpen} from 'selectors/views/status_dropdown';
 import {GenericAction} from 'hkclient-redux/types/actions';
-import {GlobalState} from 'types/store';
 
 import StatusDropdown from './status_dropdown';
 

@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {Constants} from 'utils/constants';
 import SystemUsersList from 'components/admin_console/system_users/list/system_users_list';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 describe('components/admin_console/system_users/list', () => {
     const defaultProps = {

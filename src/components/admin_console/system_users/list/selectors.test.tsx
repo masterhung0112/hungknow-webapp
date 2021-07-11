@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {getUsers} from 'components/admin_console/system_users/list/selectors';
+
 import * as users from 'hkclient-redux/selectors/entities/users';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import {getUsers} from 'components/admin_console/system_users/list/selectors';
 
 jest.mock('hkclient-redux/selectors/entities/users');
 

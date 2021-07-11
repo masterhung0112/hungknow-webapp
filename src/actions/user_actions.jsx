@@ -3,6 +3,20 @@
 
 import PQueue from 'p-queue';
 
+import {loadCustomEmojisForCustomStatusesByUserIds} from 'actions/emoji_actions';
+
+import {loadStatusesForProfilesList, loadStatusesForProfilesMap} from 'actions/status_actions.jsx';
+
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import {getDisplayedChannels} from 'selectors/views/channel_sidebar';
+
+import store from 'stores/redux_store.jsx';
+
+import * as Utils from 'utils/utils.jsx';
+
+import {Constants, Preferences, UserStatuses} from 'utils/constants';
+
 import {getChannelAndMyMember, getChannelMembersByIds} from 'hkclient-redux/actions/channels';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getTeamMembersByIds} from 'hkclient-redux/actions/teams';
@@ -22,17 +36,6 @@ import {getCurrentTeamId, getTeamMember} from 'hkclient-redux/selectors/entities
 import * as Selectors from 'hkclient-redux/selectors/entities/users';
 import {legacyMakeFilterAutoclosedDMs, makeFilterManuallyClosedDMs} from 'hkclient-redux/selectors/entities/channel_categories';
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-
-import {loadCustomEmojisForCustomStatusesByUserIds} from 'actions/emoji_actions';
-import {loadStatusesForProfilesList, loadStatusesForProfilesMap} from 'actions/status_actions.jsx';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
-
-import {getDisplayedChannels} from 'selectors/views/channel_sidebar';
-
-import store from 'stores/redux_store.jsx';
-
-import * as Utils from 'utils/utils.jsx';
-import {Constants, Preferences, UserStatuses} from 'utils/constants';
 
 export const queue = new PQueue({concurrency: 4});
 const dispatch = store.dispatch;

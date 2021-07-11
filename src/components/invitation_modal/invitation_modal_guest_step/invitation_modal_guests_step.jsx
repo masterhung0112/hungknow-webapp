@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {isEmail} from 'hkclient-redux/utils/helpers';
-import {debounce} from 'hkclient-redux/actions/helpers';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import InviteIcon from 'components/widgets/icons/invite_icon';
 import CloseCircleIcon from 'components/widgets/icons/close_circle_icon';
@@ -15,12 +12,15 @@ import UpgradeLink from 'components/widgets/links/upgrade_link';
 
 import ChannelsInput from 'components/widgets/inputs/channels_input.jsx';
 import UsersEmailsInput from 'components/widgets/inputs/users_emails_input.jsx';
-import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subscription';
 
 import './invitation_modal_guests_step.scss';
 
 import {t} from 'utils/i18n.jsx';
 import {localizeMessage} from 'utils/utils.jsx';
+
+import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subscription';
+import {debounce} from 'hkclient-redux/actions/helpers';
+import {isEmail} from 'hkclient-redux/utils/helpers';
 
 class InvitationModalGuestsStep extends React.PureComponent {
     static propTypes = {

@@ -3,13 +3,13 @@
 
 import {combineReducers} from 'redux';
 
+import {ActionTypes, RHSStates} from 'utils/constants';
+
 import {
     PostTypes,
     TeamTypes,
     SearchTypes,
 } from 'hkclient-redux/action_types';
-
-import {ActionTypes, RHSStates} from 'utils/constants';
 
 function selectedPostId(state = '', action) {
     switch (action.type) {

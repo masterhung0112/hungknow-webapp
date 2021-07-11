@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-import {loadRolesIfNeeded} from 'hkclient-redux/actions/roles';
-
 import {GlobalState} from 'types/store';
 
 import EmojiPage from 'components/emoji/emoji_page';
+
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {loadRolesIfNeeded} from 'hkclient-redux/actions/roles';
 
 function mapStateToProps(state: GlobalState) {
     const team = getCurrentTeam(state) || {};

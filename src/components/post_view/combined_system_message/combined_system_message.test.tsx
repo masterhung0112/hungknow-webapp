@@ -3,13 +3,13 @@
 
 import React from 'react';
 
+import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
+
 import {General, Posts} from 'hkclient-redux/constants';
 
 import {UserProfile} from 'hkclient-redux/types/users';
 
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import CombinedSystemMessage, {CombinedSystemMessage as CombinedSystemMessageType} from './combined_system_message';
 

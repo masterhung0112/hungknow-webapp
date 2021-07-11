@@ -4,17 +4,21 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
+import {getSiteURL} from 'utils/url';
+
+import * as Utils from 'utils/utils.jsx';
+
+import BackstageList from 'components/backstage/components/backstage_list.jsx';
+
+import Constants from 'utils/constants';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
 import {Bot as BotType} from 'hkclient-redux/types/bots';
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 import {UserProfile, UserAccessToken} from 'hkclient-redux/types/users';
 import {ActionResult} from 'hkclient-redux/types/actions';
 import {Team} from 'hkclient-redux/types/teams';
-
-import {getSiteURL} from 'utils/url';
-import * as Utils from 'utils/utils.jsx';
-import BackstageList from 'components/backstage/components/backstage_list.jsx';
-import Constants from 'utils/constants';
-import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
 import Bot, {matchesFilter} from './bot';
 

@@ -6,6 +6,16 @@ import {bindActionCreators, Dispatch} from 'redux';
 
 import {withRouter} from 'react-router-dom';
 
+import {setNavigationBlocked, deferNavigation, cancelNavigation, confirmNavigation} from 'actions/admin_actions.jsx';
+
+import {getNavigationBlocked, showNavigationPrompt} from 'selectors/views/admin';
+
+import {getAdminDefinition, getConsoleAccess} from 'selectors/admin_console';
+
+import LocalStorageStore from 'stores/local_storage_store';
+
+import {GlobalState} from 'types/store';
+
 import {getConfig, getEnvironmentConfig, updateConfig} from 'hkclient-redux/actions/admin';
 import {loadRolesIfNeeded, editRole} from 'hkclient-redux/actions/roles';
 import * as Selectors from 'hkclient-redux/selectors/entities/admin';
@@ -19,14 +29,6 @@ import {ConsoleAccess} from 'hkclient-redux/types/admin';
 
 import {General} from 'hkclient-redux/constants';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {setNavigationBlocked, deferNavigation, cancelNavigation, confirmNavigation} from 'actions/admin_actions.jsx';
-import {getNavigationBlocked, showNavigationPrompt} from 'selectors/views/admin';
-import {getAdminDefinition, getConsoleAccess} from 'selectors/admin_console';
-
-import LocalStorageStore from 'stores/local_storage_store';
-
-import {GlobalState} from 'types/store';
 
 import AdminConsole from './admin_console';
 

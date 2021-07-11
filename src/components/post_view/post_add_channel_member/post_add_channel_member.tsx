@@ -4,13 +4,13 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Post} from 'hkclient-redux/types/posts';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {sendAddToChannelEphemeralPost} from 'actions/global_actions';
 import {Constants} from 'utils/constants';
 import {t} from 'utils/i18n';
 import AtMention from 'components/at_mention';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Post} from 'hkclient-redux/types/posts';
 
 interface Actions {
     addChannelMember: (channelId: string, userId: string) => void;

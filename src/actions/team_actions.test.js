@@ -4,13 +4,14 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import * as Actions from 'actions/team_actions.jsx';
+
+import {browserHistory} from 'utils/browser_history';
+
 import * as TeamActions from 'hkclient-redux/actions/teams';
 import * as channelActions from 'hkclient-redux/actions/channels';
 import * as userActions from 'hkclient-redux/actions/users';
 import {ChannelTypes} from 'hkclient-redux/action_types';
-
-import * as Actions from 'actions/team_actions.jsx';
-import {browserHistory} from 'utils/browser_history';
 
 jest.mock('hkclient-redux/actions/teams', () => ({
     addUsersToTeamGracefully: jest.fn(() => {

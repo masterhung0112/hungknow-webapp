@@ -3,13 +3,13 @@
 
 import {connect} from 'react-redux';
 
-import {Preferences} from 'hkclient-redux/constants';
-import {getTheme, getBool} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
-
 import {getIsRhsExpanded, getIsRhsOpen} from 'selectors/rhs';
 
 import {GlobalState} from 'types/store';
+
+import {Preferences} from 'hkclient-redux/constants';
+import {getTheme, getBool} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 
 import PostMessageView from './post_message_view';
 

@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getOpenGraphMetadataForUrl} from 'hkclient-redux/selectors/entities/posts';
-
-import {GlobalState} from 'types/store';
 
 import YoutubeVideo from './youtube_video';
 

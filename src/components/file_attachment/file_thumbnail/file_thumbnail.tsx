@@ -3,15 +3,16 @@
 
 import React from 'react';
 
-import {getFileThumbnailUrl, getFileUrl} from 'hkclient-redux/utils/file_utils';
-import {FileInfo} from 'hkclient-redux/types/files';
-
 import Constants, {FileTypes} from 'utils/constants';
+
 import {
     getFileType,
     getIconClassName,
     isGIFImage,
 } from 'utils/utils.jsx';
+
+import {getFileThumbnailUrl, getFileUrl} from 'hkclient-redux/utils/file_utils';
+import {FileInfo} from 'hkclient-redux/types/files';
 
 type Props = {
     enableSVGs: boolean;

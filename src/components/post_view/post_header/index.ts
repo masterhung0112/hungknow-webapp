@@ -3,13 +3,14 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
+import {isGuest} from 'utils/utils.jsx';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getUser} from 'hkclient-redux/selectors/entities/users';
 
 import {Client4} from 'hkclient-redux/client';
-
-import {GlobalState} from 'types/store';
-import {isGuest} from 'utils/utils.jsx';
 
 import PostHeader, {Props} from './post_header';
 

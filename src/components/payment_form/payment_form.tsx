@@ -9,14 +9,14 @@ import {
     StripeCardElementChangeEvent,
 } from '@stripe/stripe-js';
 
-import {PaymentMethod} from 'hkclient-redux/types/cloud';
-
 import {BillingDetails} from 'types/cloud/sku';
 
 import DropdownInput from 'components/dropdown_input';
 import Input from 'components/input';
 import * as Utils from 'utils/utils';
 import {COUNTRIES} from 'utils/countries';
+
+import {PaymentMethod} from 'hkclient-redux/types/cloud';
 
 import StateSelector from './state_selector';
 import CardInput, {CardInputType} from './card_input';

@@ -5,10 +5,10 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import * as Utils from 'utils/utils.jsx';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionResult} from 'hkclient-redux/types/actions';
-
-import * as Utils from 'utils/utils.jsx';
 
 interface PasswordConfig {
     minimumLength: number;

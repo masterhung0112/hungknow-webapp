@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions.jsx';
+
 import {loadRolesIfNeeded, editRole} from 'hkclient-redux/actions/roles';
 
 import {getRoles} from 'hkclient-redux/selectors/entities/roles';
 import {getLicense, getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {setNavigationBlocked} from 'actions/admin_actions.jsx';
 
 import PermissionSystemSchemeSettings from './permission_system_scheme_settings.jsx';
 

@@ -5,14 +5,14 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import {MovementMode, DropResult} from 'react-beautiful-dnd';
 
+import {TestHelper} from 'utils/test_helper';
+
+import {DraggingStates, DraggingStateTypes} from 'utils/constants';
+
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 import {CategorySorting} from 'hkclient-redux/types/channel_categories';
 import {ChannelType} from 'hkclient-redux/types/channels';
 import {TeamType} from 'hkclient-redux/types/teams';
-
-import {TestHelper} from 'utils/test_helper';
-
-import {DraggingStates, DraggingStateTypes} from 'utils/constants';
 
 import SidebarChannelList from './sidebar_channel_list';
 

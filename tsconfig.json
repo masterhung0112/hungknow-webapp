@@ -18,7 +18,7 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "experimentalDecorators": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "components/*": [
@@ -32,6 +32,9 @@
       ],
       "common/*": [
         "src/common/*"
+      ],
+      "utils": [
+        "src/utils"
       ],
       "utils/*": [
         "src/utils/*"
@@ -108,8 +111,14 @@
       "modules/*": [
         "src/modules/*"
       ],
-      "reselect": ["packages/reselect/src"]
-    }
+      "reselect": [
+        "packages/reselect/src"
+      ],
+      "plugins/*": [
+        "src/plugins/*"
+      ]
+    },
+    "isolatedModules": true
   },
   "include": [
     "./src/**/*"

@@ -3,17 +3,21 @@
 
 import React from 'react';
 
+import MenuActionProvider from 'components/suggestion/menu_action_provider';
+
+import GenericUserProvider from 'components/suggestion/generic_user_provider.jsx';
+
+import GenericChannelProvider from 'components/suggestion/generic_channel_provider.jsx';
+
+import AutocompleteSelector from 'components/autocomplete_selector';
+
+import PostContext from 'components/post_view/post_context';
+
 import {ActionResult, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
 import {PostAction} from 'hkclient-redux/types/integration_actions';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Channel} from 'hkclient-redux/types/channels';
 import {ServerError} from 'hkclient-redux/types/errors';
-
-import MenuActionProvider from 'components/suggestion/menu_action_provider';
-import GenericUserProvider from 'components/suggestion/generic_user_provider.jsx';
-import GenericChannelProvider from 'components/suggestion/generic_channel_provider.jsx';
-import AutocompleteSelector from 'components/autocomplete_selector';
-import PostContext from 'components/post_view/post_context';
 
 type Error = ServerError & {id: string};
 

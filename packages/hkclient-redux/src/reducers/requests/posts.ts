@@ -1,9 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {PostTypes} from 'hkclient-redux/action_types';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {PostsRequestsStatuses, RequestStatusType} from 'hkclient-redux/types/requests';
+
 import {handleRequest, initialRequestState} from './helpers';
 
 function createPost(state: RequestStatusType = initialRequestState(), action: GenericAction): RequestStatusType {

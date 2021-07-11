@@ -1,18 +1,22 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {setRecentEmojis} from 'actions/local_storage';
+
+import {getEmojiMap, getRecentEmojis, isCustomEmojiEnabled} from 'selectors/emojis';
+
+import {isCustomStatusEnabled, makeGetCustomStatus} from 'selectors/views/custom_status';
+
+import {ActionTypes, Preferences} from 'utils/constants';
+
+import {EmojiIndicesByAlias} from 'utils/emoji';
+
 import * as EmojiActions from 'hkclient-redux/actions/emojis';
 import {getCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
-import {setRecentEmojis} from 'actions/local_storage';
-import {getEmojiMap, getRecentEmojis, isCustomEmojiEnabled} from 'selectors/emojis';
-import {isCustomStatusEnabled, makeGetCustomStatus} from 'selectors/views/custom_status';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
-
-import {ActionTypes, Preferences} from 'utils/constants';
-import {EmojiIndicesByAlias} from 'utils/emoji';
 
 export function loadRecentlyUsedCustomEmojis() {
     return async (dispatch, getState) => {

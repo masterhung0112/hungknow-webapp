@@ -4,11 +4,11 @@
 import {Stripe} from '@stripe/stripe-js';
 import {getCode} from 'country-list';
 
-import {Client4} from 'hkclient-redux/client';
-
 import {getConfirmCardSetup} from 'components/payment_form/stripe';
 
 import {StripeSetupIntent, BillingDetails} from 'types/cloud/sku';
+
+import {Client4} from 'hkclient-redux/client';
 
 // Returns true for success, and false for any error
 export function completeStripeAddPaymentMethod(

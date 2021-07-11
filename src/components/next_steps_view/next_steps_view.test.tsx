@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Team} from 'hkclient-redux/types/teams';
-
 import NextStepsView from 'components/next_steps_view/next_steps_view';
 import {TestHelper} from 'utils/test_helper';
+
+import {Team} from 'hkclient-redux/types/teams';
 
 describe('components/next_steps_view', () => {
     const baseProps = {

@@ -7,12 +7,6 @@ import {FormattedMessage} from 'react-intl';
 import {debounce, partition, differenceBy} from 'lodash';
 import classNames from 'classnames';
 
-import {Client4} from 'hkclient-redux/client';
-import {Channel} from 'hkclient-redux/types/channels';
-import {RelationOneToOne} from 'hkclient-redux/types/utilities';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {browserHistory} from 'utils/browser_history';
 import Constants from 'utils/constants';
 import {displayEntireNameForUser, localizeMessage, isGuest, isMobile} from 'utils/utils.jsx';
@@ -23,6 +17,12 @@ import GuestBadge from 'components/widgets/badges/guest_badge';
 import BotBadge from 'components/widgets/badges/bot_badge';
 import Timestamp from 'components/timestamp';
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {Channel} from 'hkclient-redux/types/channels';
+import {Client4} from 'hkclient-redux/client';
 
 const USERS_PER_PAGE = 50;
 const MAX_SELECTABLE_VALUES = Constants.MAX_USERS_IN_GM - 1;

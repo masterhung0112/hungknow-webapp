@@ -3,6 +3,8 @@
 
 import {connect} from 'react-redux';
 
+import {Preferences} from 'utils/constants';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getUser, getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
 import {get} from 'hkclient-redux/selectors/entities/preferences';
@@ -10,8 +12,6 @@ import {Client4} from 'hkclient-redux/client';
 import {Post} from 'hkclient-redux/types/posts';
 
 import {GlobalState} from '../../types/store';
-
-import {Preferences} from 'utils/constants';
 
 import PostProfilePicture from './post_profile_picture';
 

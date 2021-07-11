@@ -5,12 +5,6 @@
 import React, {CSSProperties} from 'react';
 import truncate from 'lodash/truncate';
 
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {PostAction, PostActionOption} from 'hkclient-redux/types/integration_actions';
-import {MessageAttachment as MessageAttachmentType, MessageAttachmentField} from 'hkclient-redux/types/message_attachments';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {PostImage} from 'hkclient-redux/types/posts';
-
 import {isUrlSafe} from 'utils/url';
 import {Constants} from 'utils/constants';
 import * as Utils from 'utils/utils';
@@ -22,10 +16,16 @@ import Markdown from 'components/markdown';
 import ShowMore from 'components/post_view/show_more';
 import SizeAwareImage from 'components/size_aware_image';
 
+import {trackEvent} from 'actions/telemetry_actions';
+
 import ActionButton from '../action_button';
 import ActionMenu from '../action_menu';
 
-import {trackEvent} from 'actions/telemetry_actions';
+import {PostImage} from 'hkclient-redux/types/posts';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {MessageAttachment as MessageAttachmentType, MessageAttachmentField} from 'hkclient-redux/types/message_attachments';
+import {PostAction, PostActionOption} from 'hkclient-redux/types/integration_actions';
+import {ActionResult} from 'hkclient-redux/types/actions';
 
 type Props = {
 

@@ -5,11 +5,12 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import ReactSelect, {ValueType} from 'react-select';
 
+import SettingItemMax from 'components/setting_item_max.jsx';
+
+import {getBrowserTimezone} from 'utils/timezone';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionResult} from 'hkclient-redux/types/actions';
-
-import SettingItemMax from 'components/setting_item_max.jsx';
-import {getBrowserTimezone} from 'utils/timezone';
 
 type Actions = {
     updateMe: (user: UserProfile) => Promise<ActionResult>;

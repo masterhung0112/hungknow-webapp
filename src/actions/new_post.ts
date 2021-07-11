@@ -4,6 +4,16 @@
 import * as Redux from 'redux';
 import {batchActions} from 'redux-batched-actions';
 
+import {GlobalState} from 'types/store';
+
+import {updateThreadLastOpened} from 'actions/views/threads';
+
+import {sendDesktopNotification} from 'actions/notification_actions.jsx';
+
+import {ActionTypes} from 'utils/constants';
+
+import {isThreadOpen, makeGetThreadLastViewedAt} from 'selectors/views/threads';
+
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
 import {
@@ -29,14 +39,6 @@ import {
     isSystemMessage,
     shouldIgnorePost,
 } from 'hkclient-redux/utils/post_utils';
-
-import {GlobalState} from 'types/store';
-
-import {updateThreadLastOpened} from 'actions/views/threads';
-import {sendDesktopNotification} from 'actions/notification_actions.jsx';
-
-import {ActionTypes} from 'utils/constants';
-import {isThreadOpen, makeGetThreadLastViewedAt} from 'selectors/views/threads';
 
 type NewPostMessageProps = {
     mentions: string[];

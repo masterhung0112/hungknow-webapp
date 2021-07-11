@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
-import {getCurrentChannel, getMyCurrentChannelMembership} from 'hkclient-redux/selectors/entities/channels';
-
 import {getCurrentLocale} from 'selectors/i18n';
 import {GlobalState} from 'types/store/index';
+
+import {getCurrentChannel, getMyCurrentChannelMembership} from 'hkclient-redux/selectors/entities/channels';
 
 import CallButton from './call_button';
 

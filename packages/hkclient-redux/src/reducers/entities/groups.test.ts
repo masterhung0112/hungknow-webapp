@@ -6,7 +6,7 @@ import assert from 'assert';
 import {GroupTypes} from 'hkclient-redux/action_types';
 import reducer from 'hkclient-redux/reducers/entities/groups';
 
-describe('reducers/entities/groups', () => {
+describe('hkclient-redux/reducers/entities/groups', () => {
     describe('syncables', () => {
         it('initial state', () => {
             const state = undefined;

@@ -4,6 +4,8 @@
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {getSiteURL} from 'utils/url';
+
 import {createSelector} from 'reselect';
 
 import {patchChannel} from 'hkclient-redux/actions/channels';
@@ -11,8 +13,6 @@ import {getTeam} from 'hkclient-redux/selectors/entities/teams';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {getSiteURL} from 'utils/url';
 
 import RenameChannelModal from './rename_channel_modal';
 

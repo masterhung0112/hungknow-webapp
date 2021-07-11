@@ -6,14 +6,6 @@ import classNames from 'classnames';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 import {Tooltip} from 'react-bootstrap';
 
-import Permissions from 'hkclient-redux/constants/permissions';
-import {Post} from 'hkclient-redux/types/posts';
-import {AppBinding} from 'hkclient-redux/types/apps';
-import {AppCallResponseTypes, AppCallTypes, AppExpandLevels} from 'hkclient-redux/constants/apps';
-import {UserThread} from 'hkclient-redux/types/threads';
-import {Team} from 'hkclient-redux/types/teams';
-import {$ID} from 'hkclient-redux/types/utilities';
-
 import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
 import {Locations, ModalIdentifiers, Constants} from 'utils/constants';
 import DeletePostModal from 'components/delete_post_modal';
@@ -28,6 +20,14 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import DotsHorizontalIcon from 'components/widgets/icons/dots_horizontal';
 import {PluginComponent} from 'types/store/plugins';
 import {createCallContext, createCallRequest} from 'utils/apps';
+
+import {$ID} from 'hkclient-redux/types/utilities';
+import {Team} from 'hkclient-redux/types/teams';
+import {UserThread} from 'hkclient-redux/types/threads';
+import {AppCallResponseTypes, AppCallTypes, AppExpandLevels} from 'hkclient-redux/constants/apps';
+import {AppBinding} from 'hkclient-redux/types/apps';
+import {Post} from 'hkclient-redux/types/posts';
+import Permissions from 'hkclient-redux/constants/permissions';
 
 const MENU_BOTTOM_MARGIN = 80;
 

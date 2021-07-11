@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {AnyAction, bindActionCreators, Dispatch} from 'redux';
 
+import {loadCommandsAndProfilesForTeam} from 'actions/integration_actions';
+
 import {getCommands} from 'hkclient-redux/selectors/entities/integrations';
 import {getUsers} from 'hkclient-redux/selectors/entities/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {loadCommandsAndProfilesForTeam} from 'actions/integration_actions';
 
 import CommandsContainer from './commands_container';
 

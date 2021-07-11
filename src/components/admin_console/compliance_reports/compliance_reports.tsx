@@ -4,15 +4,18 @@
 import React from 'react';
 import {FormattedDate, FormattedMessage, FormattedTime} from 'react-intl';
 
+import LoadingScreen from 'components/loading_screen';
+
+import ReloadIcon from 'components/widgets/icons/fa_reload_icon';
+
+import LocalizedInput from 'components/localized_input/localized_input';
+
+import {t} from 'utils/i18n.jsx';
+
 import {Client4} from 'hkclient-redux/client';
 import {Compliance} from 'hkclient-redux/types/compliance';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import LoadingScreen from 'components/loading_screen';
-import ReloadIcon from 'components/widgets/icons/fa_reload_icon';
-import LocalizedInput from 'components/localized_input/localized_input';
-import {t} from 'utils/i18n.jsx';
 
 type Props = {
 

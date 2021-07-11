@@ -4,6 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {switchToChannelById} from 'actions/views/channel';
+
+import {openModal} from 'actions/views/modals';
+
+import {close} from 'actions/views/lhs';
+
+import {getIsLhsOpen} from 'selectors/lhs';
+
 import {Preferences} from 'hkclient-redux/constants/index';
 import {
     getCurrentChannel,
@@ -17,11 +25,6 @@ import {getBool as getBoolPreference, getSidebarPreferences, isCollapsedThreadsE
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {haveICurrentTeamPermission} from 'hkclient-redux/selectors/entities/roles';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-
-import {switchToChannelById} from 'actions/views/channel';
-import {openModal} from 'actions/views/modals';
-import {close} from 'actions/views/lhs';
-import {getIsLhsOpen} from 'selectors/lhs';
 
 import Sidebar from './sidebar.jsx';
 

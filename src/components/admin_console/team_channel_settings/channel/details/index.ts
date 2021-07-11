@@ -5,6 +5,8 @@ import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
 import {connect} from 'react-redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getChannel, getChannelModerations} from 'hkclient-redux/selectors/entities/channels';
 import {getAllGroups, getGroupsAssociatedToChannel} from 'hkclient-redux/selectors/entities/groups';
@@ -36,8 +38,6 @@ import {getTeam} from 'hkclient-redux/selectors/entities/teams';
 import {GlobalState} from 'hkclient-redux/types/store';
 
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {setNavigationBlocked} from 'actions/admin_actions';
 
 import ChannelDetails, {ChannelDetailsActions} from './channel_details';
 

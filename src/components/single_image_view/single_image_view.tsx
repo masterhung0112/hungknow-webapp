@@ -3,9 +3,6 @@
 
 import React from 'react';
 
-import {getFilePreviewUrl, getFileUrl} from 'hkclient-redux/utils/file_utils';
-import {FileInfo} from 'hkclient-redux/types/files';
-
 import SizeAwareImage from 'components/size_aware_image';
 import {FileTypes} from 'utils/constants';
 import {
@@ -13,6 +10,9 @@ import {
 } from 'utils/utils';
 
 import ViewImageModal from 'components/view_image';
+
+import {FileInfo} from 'hkclient-redux/types/files';
+import {getFilePreviewUrl, getFileUrl} from 'hkclient-redux/utils/file_utils';
 
 const PREVIEW_IMAGE_MIN_DIMENSION = 50;
 

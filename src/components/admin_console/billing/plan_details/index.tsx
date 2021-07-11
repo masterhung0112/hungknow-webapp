@@ -5,10 +5,10 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {useSelector} from 'react-redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {getCurrentLocale} from 'selectors/i18n';
 import {GlobalState} from 'types/store';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import {seatsAndSubscriptionDates, getPlanDetailElements, planDetailsTopElements, currentPlanText, featureList} from './plan_details';
 

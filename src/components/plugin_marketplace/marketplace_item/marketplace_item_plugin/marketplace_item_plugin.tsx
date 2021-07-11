@@ -9,15 +9,14 @@ import {FormattedMessage} from 'react-intl';
 
 import {Link} from 'react-router-dom';
 
-import type {MarketplaceLabel} from 'hkclient-redux/types/marketplace';
-
-import MarketplaceItem from '../marketplace_item';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import ConfirmModal from 'components/confirm_modal';
 import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
 
 import {localizeMessage} from 'utils/utils';
+
+import MarketplaceItem from '../marketplace_item';
+import type {MarketplaceLabel} from 'hkclient-redux/types/marketplace';
 
 type UpdateVersionProps = {
     version: string;

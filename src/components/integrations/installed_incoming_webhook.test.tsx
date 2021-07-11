@@ -5,10 +5,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {shallow} from 'enzyme';
 
-import {IncomingWebhook} from 'hkclient-redux/types/integrations';
-
 import DeleteIntegration from 'components/integrations/delete_integration.jsx';
 import InstalledIncomingWebhook from 'components/integrations/installed_incoming_webhook.jsx';
+
+import {IncomingWebhook} from 'hkclient-redux/types/integrations';
 
 describe('components/integrations/InstalledIncomingWebhook', () => {
     const incomingWebhook: IncomingWebhook = {

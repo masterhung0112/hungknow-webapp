@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
 import {joinChannelById, switchToChannel} from 'actions/views/channel';
+
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import QuickSwitchModal, {Props} from './quick_switch_modal';
 

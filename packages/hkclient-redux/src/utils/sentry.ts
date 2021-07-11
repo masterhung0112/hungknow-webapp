@@ -27,7 +27,7 @@ export function cleanUrlForLogging(baseUrl: string, apiUrl: string): string {
         'usernames', 'me', 'username', 'email', 'default', 'sessions', 'revoke', 'all', 'audits', 'device', 'status',
         'search', 'switch', 'authorized', 'authorize', 'deauthorize', 'tokens', 'disable', 'enable', 'exists', 'unread',
         'invite', 'batch', 'stats', 'import', 'schemeRoles', 'direct', 'group', 'convert', 'view', 'search_autocomplete',
-        'thread', 'info', 'flagged', 'pinned', 'pin', 'unpin', 'opengraph', 'actions', 'thumbnail', 'preview', 'link',
+        'thread', 'info', 'flagged', 'pinned', 'pin', 'unpin', 'opengraph', 'hkclient-redux/actions', 'thumbnail', 'preview', 'link',
         'delete', 'logs', 'ping', 'config', 'hkclient-redux/client', 'license', 'websocket', 'webrtc', 'token', 'regen_token',
         'autocomplete', 'execute', 'regen_secret', 'policy', 'type', 'cancel', 'reload', 'environment', 's3_test', 'file',
         'caches', 'invalidate', 'database', 'recycle', 'compliance', 'reports', 'cluster', 'ldap', 'test', 'sync', 'saml',

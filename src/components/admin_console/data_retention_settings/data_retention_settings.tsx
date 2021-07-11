@@ -5,9 +5,6 @@ import React, {createRef, RefObject} from 'react';
 import {FormattedMessage} from 'react-intl';
 import ReactSelect from 'react-select';
 
-import {AdminConfig} from 'hkclient-redux/types/config';
-import {DataRetentionCustomPolicies, DataRetentionCustomPolicy} from 'hkclient-redux/types/data_retention';
-
 import {JobTypes} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
 import DataGrid, {Row, Column} from 'components/admin_console/data_grid/data_grid';
@@ -18,6 +15,9 @@ import JobsTable from 'components/admin_console/jobs';
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
 import {browserHistory} from 'utils/browser_history';
+
+import {DataRetentionCustomPolicies, DataRetentionCustomPolicy} from 'hkclient-redux/types/data_retention';
+import {AdminConfig} from 'hkclient-redux/types/config';
 import {JobTypeBase, JobType} from 'hkclient-redux/types/jobs';
 import {ActionResult} from 'hkclient-redux/types/actions';
 import './data_retention_settings.scss';

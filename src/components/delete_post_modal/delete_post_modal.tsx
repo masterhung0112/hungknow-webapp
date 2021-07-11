@@ -6,10 +6,10 @@ import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 import {matchPath} from 'react-router-dom';
 
-import {Post} from 'hkclient-redux/types/posts';
-
 import * as UserAgent from 'utils/user_agent';
 import {browserHistory} from 'utils/browser_history';
+
+import {Post} from 'hkclient-redux/types/posts';
 
 const urlFormatForDMGMPermalink = '/:teamName/messages/:username/:postid';
 const urlFormatForChannelPermalink = '/:teamName/channels/:channelname/:postid';

@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
 import {sendVerificationEmail} from 'hkclient-redux/actions/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
-
-import {openModal} from 'actions/views/modals';
 
 import UserSettingsModal, {Props} from './user_settings_modal';
 

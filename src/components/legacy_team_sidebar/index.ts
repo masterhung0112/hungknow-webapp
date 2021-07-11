@@ -6,6 +6,16 @@ import {bindActionCreators, Dispatch} from 'redux';
 
 import {withRouter} from 'react-router-dom';
 
+import {getCurrentLocale} from 'selectors/i18n';
+
+import {getIsLhsOpen} from 'selectors/lhs';
+
+import {switchTeam, updateTeamsOrderForUser} from 'actions/team_actions.jsx';
+
+import {Preferences} from 'utils/constants.jsx';
+
+import {GlobalState} from 'types/store';
+
 import {getTeams} from 'hkclient-redux/actions/teams';
 
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
@@ -20,12 +30,6 @@ import {get, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/
 import {ClientConfig} from 'hkclient-redux/types/config';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {getCurrentLocale} from 'selectors/i18n';
-import {getIsLhsOpen} from 'selectors/lhs';
-import {switchTeam, updateTeamsOrderForUser} from 'actions/team_actions.jsx';
-import {Preferences} from 'utils/constants.jsx';
-import {GlobalState} from 'types/store';
 
 import {getThreadCounts} from 'hkclient-redux/selectors/entities/threads';
 

@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import {Constants} from 'utils/constants';
+
 import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getUser} from 'hkclient-redux/selectors/entities/users';
 import {getTeamByName, getTeamMemberships} from 'hkclient-redux/selectors/entities/teams';
-
-import {Constants} from 'utils/constants';
 
 import PostView from './post_view.jsx';
 

@@ -3,9 +3,9 @@
 
 import React from 'react';
 
-import {Posts} from 'hkclient-redux/constants';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
+
+import {Posts} from 'hkclient-redux/constants';
 
 import LastUsers from './last_users';
 

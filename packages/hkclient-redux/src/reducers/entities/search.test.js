@@ -3,14 +3,15 @@
 
 import assert from 'assert';
 
+import reducer from 'hkclient-redux/reducers/entities/search';
+
 import {
     PostTypes,
     SearchTypes,
     UserTypes,
 } from 'hkclient-redux/action_types';
-import reducer from 'reducers/entities/search';
 
-describe('reducers.entities.search', () => {
+describe('hkclient-redux/reducers.entities.search', () => {
     describe('results', () => {
         it('initial state', () => {
             const inputState = undefined; // eslint-disable-line no-undef

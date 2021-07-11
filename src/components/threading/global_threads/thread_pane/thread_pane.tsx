@@ -5,20 +5,24 @@ import React, {memo, useCallback, ReactNode} from 'react';
 import {useIntl} from 'react-intl';
 import {useSelector, useDispatch} from 'react-redux';
 
+import {t} from 'utils/i18n';
+
+import {GlobalState} from 'types/store';
+
+import SimpleTooltip from 'components/widgets/simple_tooltip';
+
+import Header from 'components/widgets/header';
+
 import {UserThread} from 'hkclient-redux/types/threads';
 import {setThreadFollow} from 'hkclient-redux/actions/threads';
 
 import {makeGetChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getPost, makeGetPostsForThread} from 'hkclient-redux/selectors/entities/posts';
 
-import {t} from 'utils/i18n';
-
-import {GlobalState} from 'types/store';
 import ThreadMenu from '../thread_menu';
 import Button from '../../common/button';
 import FollowButton from '../../common/follow_button';
-import SimpleTooltip from 'components/widgets/simple_tooltip';
-import Header from 'components/widgets/header';
+
 import {useThreadRouting} from '../../hooks';
 
 import './thread_pane.scss';

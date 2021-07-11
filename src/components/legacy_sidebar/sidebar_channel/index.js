@@ -4,6 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {Constants, NotificationLevels, StoragePrefixes} from 'utils/constants';
+
+import {leaveChannel, leaveDirectChannel} from 'actions/views/channel';
+
+import {open as openLhs} from 'actions/views/lhs.js';
+
+import {getPostDraft} from 'selectors/rhs';
+
 import {Client4} from 'hkclient-redux/client';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 
@@ -23,12 +31,6 @@ import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
 
 import {displayUsername} from 'hkclient-redux/utils/user_utils';
-
-import {Constants, NotificationLevels, StoragePrefixes} from 'utils/constants';
-
-import {leaveChannel, leaveDirectChannel} from 'actions/views/channel';
-import {open as openLhs} from 'actions/views/lhs.js';
-import {getPostDraft} from 'selectors/rhs';
 
 import SidebarChannel from './sidebar_channel.jsx';
 

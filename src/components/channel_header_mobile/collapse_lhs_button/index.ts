@@ -4,9 +4,9 @@
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {toggle as toggleLhs} from 'actions/views/lhs';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import CollapseLhsButton from './collapse_lhs_button';
 

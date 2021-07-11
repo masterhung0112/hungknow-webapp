@@ -6,12 +6,12 @@ import assert from 'assert';
 
 import {createIntl} from 'react-intl';
 
-import {Preferences} from 'hkclient-redux/constants';
-
 import * as PostUtils from 'utils/post_utils.jsx';
 import {PostListRowListIds, Constants} from 'utils/constants';
 import {TestHelper} from 'utils/test_helper';
 import EmojiMap from 'utils/emoji_map';
+
+import {Preferences} from 'hkclient-redux/constants';
 
 const enMessages = require('../i18n/en');
 

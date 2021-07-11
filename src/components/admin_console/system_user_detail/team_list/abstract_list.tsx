@@ -4,10 +4,10 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
 import NextIcon from 'components/widgets/icons/fa_next_icon';
 import PreviousIcon from 'components/widgets/icons/fa_previous_icon';
+
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import './abstract_list.scss';
 

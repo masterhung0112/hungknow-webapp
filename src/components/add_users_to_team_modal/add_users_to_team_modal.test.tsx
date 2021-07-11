@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {TestHelper} from 'utils/test_helper';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Team} from 'hkclient-redux/types/teams';
-
-import {TestHelper} from 'utils/test_helper';
 
 import AddUsersToTeamModal from './add_users_to_team_modal';
 

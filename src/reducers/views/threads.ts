@@ -3,11 +3,11 @@
 
 import {combineReducers} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {ViewsState} from 'types/store/views';
 
 import {Threads} from 'utils/constants';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 export const selectedThreadIdInTeam = (state: ViewsState['threads']['selectedThreadIdInTeam'] | null = null, action: GenericAction) => {
     switch (action.type) {

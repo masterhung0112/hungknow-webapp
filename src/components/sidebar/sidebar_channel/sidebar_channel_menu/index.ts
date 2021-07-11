@@ -4,6 +4,18 @@
 import {connect} from 'react-redux';
 import {Dispatch, bindActionCreators, ActionCreatorsMapObject} from 'redux';
 
+import {unmuteChannel, muteChannel} from 'actions/channel_actions';
+
+import {addChannelsInSidebar} from 'actions/views/channel_sidebar';
+
+import {openModal} from 'actions/views/modals';
+
+import {getCategoriesForCurrentTeam, getDisplayedChannels} from 'selectors/views/channel_sidebar';
+
+import {GlobalState} from 'types/store';
+
+import {getSiteURL} from 'utils/url';
+
 import {favoriteChannel, unfavoriteChannel, markChannelAsRead} from 'hkclient-redux/actions/channels';
 import Permissions from 'hkclient-redux/constants/permissions';
 import {isFavoriteChannel} from 'hkclient-redux/selectors/entities/channels';
@@ -14,16 +26,6 @@ import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {Action} from 'hkclient-redux/types/actions';
 import {Channel} from 'hkclient-redux/types/channels';
 import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
-
-import {unmuteChannel, muteChannel} from 'actions/channel_actions';
-import {addChannelsInSidebar} from 'actions/views/channel_sidebar';
-import {openModal} from 'actions/views/modals';
-
-import {getCategoriesForCurrentTeam, getDisplayedChannels} from 'selectors/views/channel_sidebar';
-
-import {GlobalState} from 'types/store';
-
-import {getSiteURL} from 'utils/url';
 
 import SidebarChannelMenu from './sidebar_channel_menu';
 

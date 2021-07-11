@@ -1,11 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import marketplaceReducer from 'reducers/views/marketplace';
+
+import {ActionTypes, ModalIdentifiers} from 'utils/constants';
+
 import type {MarketplacePlugin} from 'hkclient-redux/types/marketplace';
 import type {GenericAction} from 'hkclient-redux/types/actions';
-
-import marketplaceReducer from 'reducers/views/marketplace';
-import {ActionTypes, ModalIdentifiers} from 'utils/constants';
 
 describe('marketplace', () => {
     test('initial state', () => {

@@ -1,6 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {allAtMentions} from 'utils/text_formatting';
+
+import {getEmojiMap} from 'selectors/emojis';
+
+import Constants, {PostListRowListIds, Preferences} from 'utils/constants';
+
+import {formatWithRenderer} from 'utils/markdown';
+
+import MentionableRenderer from 'utils/markdown/mentionable_renderer';
+
+import * as Utils from 'utils/utils.jsx';
+
+import {isMobile} from 'utils/user_agent';
+
 import {createSelector} from 'reselect';
 
 import {Client4} from 'hkclient-redux/client';
@@ -14,16 +28,6 @@ import {Permissions, Posts} from 'hkclient-redux/constants';
 import * as PostListUtils from 'hkclient-redux/utils/post_list';
 import {getUserIdFromChannelName} from 'hkclient-redux/utils/channel_utils';
 import {canEditPost as canEditPostRedux} from 'hkclient-redux/utils/post_utils';
-
-import {allAtMentions} from 'utils/text_formatting';
-
-import {getEmojiMap} from 'selectors/emojis';
-
-import Constants, {PostListRowListIds, Preferences} from 'utils/constants';
-import {formatWithRenderer} from 'utils/markdown';
-import MentionableRenderer from 'utils/markdown/mentionable_renderer';
-import * as Utils from 'utils/utils.jsx';
-import {isMobile} from 'utils/user_agent';
 
 import * as Emoticons from './emoticons';
 

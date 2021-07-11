@@ -4,13 +4,13 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import * as Utils from 'utils/utils.jsx';
 import {t} from 'utils/i18n.jsx';
 
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import LocalizedInput from 'components/localized_input/localized_input';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 type Props = {
     currentUser: UserProfile;

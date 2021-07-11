@@ -3,13 +3,13 @@
 
 import {batchActions} from 'redux-batched-actions';
 
-import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
-import {GetStateFunc, DispatchFunc} from 'hkclient-redux/types/actions';
-
 import {browserHistory} from 'utils/browser_history';
 
 import {GlobalState} from 'types/store';
 import {Threads} from 'utils/constants';
+
+import {GetStateFunc, DispatchFunc} from 'hkclient-redux/types/actions';
+import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 
 export function updateThreadLastOpened(threadId: string, lastViewedAt: number) {
     return {

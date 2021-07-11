@@ -5,12 +5,13 @@ import React from 'react';
 
 import {FormattedMessage} from 'react-intl';
 
-import type {MarketplaceLabel} from 'hkclient-redux/types/marketplace';
-
-import MarketplaceItem from '../marketplace_item';
 import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
 
 import {localizeMessage} from 'utils/utils';
+
+import type {MarketplaceLabel} from 'hkclient-redux/types/marketplace';
+
+import MarketplaceItem from '../marketplace_item';
 
 export type MarketplaceItemAppProps = {
     id: string;

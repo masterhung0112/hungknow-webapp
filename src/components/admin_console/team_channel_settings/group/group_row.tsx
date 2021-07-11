@@ -5,14 +5,14 @@ import React from 'react';
 
 import {FormattedMessage} from 'react-intl';
 
-import {Group} from 'hkclient-redux/types/groups';
-
 import ToggleModalButton from 'components/toggle_modal_button';
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
 import GroupMembersModal from 'components/admin_console/team_channel_settings/group/group_members_modal';
 
 import {localizeMessage} from 'utils/utils.jsx';
+
+import {Group} from 'hkclient-redux/types/groups';
 
 interface GroupRowProps {
     group: Partial<Group>;

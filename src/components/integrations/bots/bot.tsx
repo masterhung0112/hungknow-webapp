@@ -6,16 +6,16 @@ import {Link} from 'react-router-dom';
 
 import {FormattedMessage} from 'react-intl';
 
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {Bot as BotType} from 'hkclient-redux/types/bots';
-import {UserProfile, UserAccessToken} from 'hkclient-redux/types/users';
-import {Team} from 'hkclient-redux/types/teams';
-
 import ConfirmModal from 'components/confirm_modal';
 import Markdown from 'components/markdown';
 import SaveButton from 'components/save_button';
 import WarningIcon from 'components/widgets/icons/fa_warning_icon';
 import * as Utils from 'utils/utils.jsx';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {UserProfile, UserAccessToken} from 'hkclient-redux/types/users';
+import {Bot as BotType} from 'hkclient-redux/types/bots';
+import {ActionResult} from 'hkclient-redux/types/actions';
 
 export function matchesFilter(bot: BotType, filter?: string, owner?: UserProfile): boolean {
     if (!filter) {

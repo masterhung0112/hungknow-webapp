@@ -3,15 +3,15 @@
 
 import configureStore from 'redux-mock-store';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Team} from 'hkclient-redux/types/teams';
-
 import {browserHistory} from 'utils/browser_history';
 import {closeRightHandSide, closeMenu as closeRhsMenu} from 'actions/views/rhs';
 import {close as closeLhs} from 'actions/views/lhs';
 import LocalStorageStore from 'stores/local_storage_store';
 import reduxStore from 'stores/redux_store';
 import {redirectUserToDefaultTeam, toggleSideBarRightMenuAction, getTeamRedirectChannelIfIsAccesible} from 'actions/global_actions';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 jest.mock('actions/views/rhs', () => ({
     closeMenu: jest.fn(),

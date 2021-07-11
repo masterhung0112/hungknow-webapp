@@ -4,15 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {setNavigationBlocked} from 'actions/admin_actions.jsx';
+
 import {GenericAction, ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
 import {Role} from 'hkclient-redux/types/roles';
 import {updateUserRoles} from 'hkclient-redux/actions/users';
 import {editRole} from 'hkclient-redux/actions/roles';
 import {getRolesById} from 'hkclient-redux/selectors/entities/roles';
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
-
-import {GlobalState} from 'types/store';
-import {setNavigationBlocked} from 'actions/admin_actions.jsx';
 
 import SystemRole from './system_role';
 

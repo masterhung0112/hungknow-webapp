@@ -4,9 +4,9 @@
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {goToLastViewedChannel} from 'actions/views/channel';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import CloseChannel from './close_channel';
 

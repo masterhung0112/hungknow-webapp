@@ -1,7 +1,8 @@
 declare namespace Cypress {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface Chainable<Subject = any> {
-    /**
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    interface Chainable<Subject = any> {
+
+        /**
      * Logout a user's active session from server via API.
      * See https://api.mattermost.com/#tag/users/paths/~1users~1logout/post
      * Clears all cookies espececially `MMAUTHTOKEN`, `HKUSERID` and `MMCSRF`.
@@ -9,9 +10,9 @@ declare namespace Cypress {
      * @example
      *   cy.apiLogout();
      */
-    apiLogout()
+        apiLogout();
 
-    /**
+        /**
      * Login as admin via API.
      * See https://api.mattermost.com/#tag/users/paths/~1users~1login/post
      * @returns {UserProfile} out.user: `UserProfile` object
@@ -19,6 +20,6 @@ declare namespace Cypress {
      * @example
      *   cy.apiAdminLogin();
      */
-    apiAdminLogin(): Chainable<UserProfile>
-  }
+        apiAdminLogin(): Chainable<UserProfile>;
+    }
 }

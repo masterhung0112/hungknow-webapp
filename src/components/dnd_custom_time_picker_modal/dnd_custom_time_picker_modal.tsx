@@ -5,7 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
 import {UserStatus} from 'hkclient-redux/types/users';
 
 import GenericModal from 'components/generic_modal';
@@ -16,6 +15,8 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 
 import './dnd_custom_time_picker_modal.scss';
 import {toUTCUnix} from 'utils/datetime';
+
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 type Props = {
     onHide: () => void;

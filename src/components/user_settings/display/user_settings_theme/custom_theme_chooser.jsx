@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {defineMessages, FormattedMessage} from 'react-intl';
 
-import {setThemeDefaults} from 'hkclient-redux/utils/theme_utils';
-
 import {t} from 'utils/i18n';
 
 import Constants from 'utils/constants';
@@ -15,6 +13,8 @@ import Constants from 'utils/constants';
 import LocalizedIcon from 'components/localized_icon';
 import OverlayTrigger from 'components/overlay_trigger';
 import Popover from 'components/widgets/popover';
+
+import {setThemeDefaults} from 'hkclient-redux/utils/theme_utils';
 
 import ColorChooser from './color_chooser';
 

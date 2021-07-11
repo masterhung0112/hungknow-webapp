@@ -11,6 +11,7 @@ import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult} from 'hkclient-red
 import {SystemEmoji, CustomEmoji} from 'hkclient-redux/types/emojis';
 
 import {Dictionary} from 'hkclient-redux/types/utilities';
+
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
 import {getProfilesByIds} from './users';

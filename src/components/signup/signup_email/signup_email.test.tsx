@@ -4,11 +4,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import SignupEmail, {PasswordConfig} from 'components/signup/signup_email/signup_email';
 
 import {browserHistory} from 'utils/browser_history';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 describe('components/SignupEmail', () => {
     const requiredProps = {

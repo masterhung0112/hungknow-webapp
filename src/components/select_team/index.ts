@@ -5,6 +5,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 import {withRouter} from 'react-router-dom';
 
+import {GlobalState} from 'types/store';
+
+import {addUserToTeam} from 'actions/team_actions';
+
+import {isGuest} from 'utils/utils';
+
 import {getTeams} from 'hkclient-redux/actions/teams';
 import {loadRolesIfNeeded} from 'hkclient-redux/actions/roles';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
@@ -12,11 +18,6 @@ import {Permissions} from 'hkclient-redux/constants';
 import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
 import {getSortedListableTeams, getTeamMemberships} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-
-import {GlobalState} from 'types/store';
-
-import {addUserToTeam} from 'actions/team_actions';
-import {isGuest} from 'utils/utils';
 
 import SelectTeam from './select_team';
 

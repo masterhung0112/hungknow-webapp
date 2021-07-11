@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {addReaction} from 'actions/post_actions.jsx';
+
+import * as Emoji from 'utils/emoji.jsx';
+
 import {createSelector} from 'reselect';
 
 import {removeReaction} from 'hkclient-redux/actions/posts';
@@ -23,10 +27,6 @@ import {Emoji as EmojiType} from 'hkclient-redux/types/emojis';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Post} from 'hkclient-redux/types/posts';
 import {Reaction as ReactionType} from 'hkclient-redux/types/reactions';
-
-import {addReaction} from 'actions/post_actions.jsx';
-
-import * as Emoji from 'utils/emoji.jsx';
 
 import Reaction from './reaction';
 

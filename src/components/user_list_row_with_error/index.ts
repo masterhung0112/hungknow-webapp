@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import {GlobalState} from 'types/store';
 
 import UserListRow from './user_list_row_with_error';
 

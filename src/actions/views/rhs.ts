@@ -4,6 +4,20 @@
 import debounce from 'lodash/debounce';
 import {batchActions} from 'redux-batched-actions';
 
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import {getSearchTerms, getRhsState, getPluggableId, getFilesSearchExtFilter} from 'selectors/rhs';
+
+import {ActionTypes, RHSStates, Constants} from 'utils/constants';
+
+import * as Utils from 'utils/utils';
+
+import {getBrowserUtcOffset, getUtcOffsetForTimeZone} from 'utils/timezone';
+
+import {RhsState} from 'types/store/rhs';
+
+import {GlobalState} from 'types/store';
+
 import {SearchTypes} from 'hkclient-redux/action_types';
 import {
     clearSearch,
@@ -22,14 +36,6 @@ import {getUserTimezone} from 'hkclient-redux/selectors/entities/timezone';
 import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';
 import {DispatchFunc, GenericAction, GetStateFunc} from 'hkclient-redux/types/actions';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {trackEvent} from 'actions/telemetry_actions.jsx';
-import {getSearchTerms, getRhsState, getPluggableId, getFilesSearchExtFilter} from 'selectors/rhs';
-import {ActionTypes, RHSStates, Constants} from 'utils/constants';
-import * as Utils from 'utils/utils';
-import {getBrowserUtcOffset, getUtcOffsetForTimeZone} from 'utils/timezone';
-import {RhsState} from 'types/store/rhs';
-import {GlobalState} from 'types/store';
 
 function selectPostFromRightHandSideSearchWithPreviousState(post: Post, previousRhsState?: RhsState) {
     return async (dispatch: DispatchFunc, getState: GetStateFunc) => {

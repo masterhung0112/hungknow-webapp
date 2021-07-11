@@ -4,6 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {createCategory, clearChannelSelection} from 'actions/views/channel_sidebar';
+
+import {isUnreadFilterEnabled} from 'selectors/views/channel_sidebar';
+
+import {openModal} from 'actions/views/modals';
+
+import {GlobalState} from 'types/store';
+
+import {getIsLhsOpen} from 'selectors/lhs';
+
 import {fetchMyCategories} from 'hkclient-redux/actions/channel_categories';
 import {Preferences} from 'hkclient-redux/constants';
 import Permissions from 'hkclient-redux/constants/permissions';
@@ -12,12 +22,6 @@ import {getBool} from 'hkclient-redux/selectors/entities/preferences';
 import {haveICurrentChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {createCategory, clearChannelSelection} from 'actions/views/channel_sidebar';
-import {isUnreadFilterEnabled} from 'selectors/views/channel_sidebar';
-import {openModal} from 'actions/views/modals';
-import {GlobalState} from 'types/store';
-import {getIsLhsOpen} from 'selectors/lhs';
 
 import Sidebar from './sidebar';
 

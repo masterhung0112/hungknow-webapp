@@ -4,19 +4,16 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ClientConfig, ClientLicense} from 'hkclient-redux/types/config';
-
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import {AnalyticsRow} from 'hkclient-redux/types/admin';
-
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
 import {Preferences} from 'utils/constants';
 import {t} from 'utils/i18n';
 import LocalizedIcon from 'components/localized_icon';
 import MattermostLogo from 'components/widgets/icons/mattermost_logo';
 import {Notice} from 'components/system_notice/types';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {AnalyticsRow} from 'hkclient-redux/types/admin';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {ClientConfig, ClientLicense} from 'hkclient-redux/types/config';
 
 type Props = {
     currentUserId: string;

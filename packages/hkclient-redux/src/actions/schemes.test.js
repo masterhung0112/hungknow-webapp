@@ -4,13 +4,14 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/schemes';
+import * as Actions from 'hkclient-redux/actions/schemes';
+
 import {Client4} from 'hkclient-redux/client';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
 import configureStore from 'hkclient-redux/test/test_store';
 
-describe('Actions.Schemes', () => {
+describe('hkclient-redux/actions.Schemes', () => {
     let store;
 
     beforeAll(() => {

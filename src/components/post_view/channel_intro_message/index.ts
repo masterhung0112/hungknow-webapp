@@ -5,6 +5,14 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
+import {getDisplayNameByUser} from 'utils/utils.jsx';
+
+import {getCurrentLocale} from 'selectors/i18n';
+
+import {GlobalState} from 'types/store';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentChannel, getDirectTeammate, isCurrentChannelReadOnly} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
@@ -12,12 +20,6 @@ import {getProfilesInCurrentChannel, getCurrentUserId, getUser, getTotalUsersSta
 import {get, getTheme} from 'hkclient-redux/selectors/entities/preferences';
 
 import {getTotalUsersStats} from 'hkclient-redux/actions/users';
-
-import {Preferences} from 'utils/constants';
-import {getDisplayNameByUser} from 'utils/utils.jsx';
-import {getCurrentLocale} from 'selectors/i18n';
-
-import {GlobalState} from 'types/store';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
 

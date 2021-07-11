@@ -5,20 +5,22 @@ import React from 'react';
 
 import {Store} from 'redux';
 
+import globalStore from 'stores/redux_store';
+
+import * as UserAgent from 'utils/user_agent';
+
+import * as Utils from 'utils/utils';
+
+import {Constants} from 'utils/constants';
+
+import {GlobalState} from 'types/store';
+
 import {Client4} from 'hkclient-redux/client';
 import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
 import {AutocompleteSuggestion, CommandArgs} from 'hkclient-redux/types/integrations';
 
-import globalStore from 'stores/redux_store';
-
-import * as UserAgent from 'utils/user_agent';
-import * as Utils from 'utils/utils';
-import {Constants} from 'utils/constants';
-
 import Suggestion from '../suggestion';
 import Provider from '../provider';
-
-import {GlobalState} from 'types/store';
 
 import {AppCommandParser} from './app_command_parser/app_command_parser';
 import {intlShim} from './app_command_parser/app_command_parser_dependencies';

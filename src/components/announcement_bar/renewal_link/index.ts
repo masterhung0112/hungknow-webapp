@@ -4,9 +4,9 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {openModal} from 'actions/views/modals';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import RenewalLink from './renewal_link';
 

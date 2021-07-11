@@ -4,13 +4,14 @@
 import React from 'react';
 import {defineMessages, FormattedDate, FormattedMessage, FormattedTime, injectIntl, IntlShape} from 'react-intl';
 
+import {t} from 'utils/i18n';
+
+import {isSystemAdmin, toTitleCase} from 'utils/utils.jsx';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {Audit} from 'hkclient-redux/types/audits';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {t} from 'utils/i18n';
-import {isSystemAdmin, toTitleCase} from 'utils/utils.jsx';
 
 const holders = defineMessages({
     sessionRevoked: {

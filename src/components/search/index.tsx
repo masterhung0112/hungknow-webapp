@@ -4,9 +4,6 @@
 import {connect} from 'react-redux';
 import {AnyAction, bindActionCreators, Dispatch} from 'redux';
 
-import {getMorePostsForSearch, getMoreFilesForSearch} from 'hkclient-redux/actions/search';
-import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
-
 import {
     updateSearchTerms,
     updateSearchTermsForShortcut,
@@ -26,6 +23,9 @@ import {autocompleteUsersInTeam} from 'actions/user_actions';
 import {getRhsState, getSearchTerms, getSearchType, getIsSearchingTerm, getIsRhsOpen, getIsRhsExpanded} from 'selectors/rhs';
 import {RHSStates} from 'utils/constants';
 import {GlobalState} from 'types/store';
+
+import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
+import {getMorePostsForSearch, getMoreFilesForSearch} from 'hkclient-redux/actions/search';
 
 import Search from './search';
 import type {StateProps, DispatchProps, OwnProps} from './types';

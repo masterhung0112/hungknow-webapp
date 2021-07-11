@@ -4,11 +4,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import EmojiMap from 'utils/emoji_map.js';
+
 import {Team} from 'hkclient-redux/types/teams';
 import {CustomEmoji} from 'hkclient-redux/types/emojis';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import EmojiMap from 'utils/emoji_map.js';
 
 import AddEmoji, {AddEmojiProps} from './add_emoji';
 

@@ -4,9 +4,9 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {AdminConfig} from 'hkclient-redux/types/config';
-
 import FormattedAdminHeader from 'components/widgets/admin_console/formatted_admin_header';
+
+import {AdminConfig} from 'hkclient-redux/types/config';
 
 type Props = {
     config: AdminConfig;

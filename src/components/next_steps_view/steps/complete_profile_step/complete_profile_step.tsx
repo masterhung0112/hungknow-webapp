@@ -5,8 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {pageVisited, trackEvent} from 'actions/telemetry_actions';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import {getAnalyticsCategory} from 'components/next_steps_view/step_helpers';
@@ -14,6 +12,8 @@ import Input from 'components/input';
 import PictureSelector from 'components/picture_selector';
 import {AcceptedProfileImageTypes} from 'utils/constants';
 import * as Utils from 'utils/utils';
+
+import {UserProfile} from 'hkclient-redux/types/users';
 
 import {StepComponentProps} from '../../steps';
 

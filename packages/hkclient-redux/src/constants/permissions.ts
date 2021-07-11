@@ -343,5 +343,4 @@ values.SYSCONSOLE_WRITE_PERMISSIONS = [
     values.SYSCONSOLE_WRITE_EXPERIMENTAL_BLEVE,
 ];
 
-
 export default values;

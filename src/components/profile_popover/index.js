@@ -1,73 +1,73 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { getCurrentUserId, getStatusForUserId, getUser } from 'hkclient-redux/selectors/entities/users'
-import { getCurrentTeam, getCurrentRelativeTeamUrl, getTeamMember } from 'hkclient-redux/selectors/entities/teams'
+import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
+import {getMembershipForCurrentEntities} from 'actions/views/profile_popover';
+import {closeModal, openModal} from 'actions/views/modals';
+
+import {areTimezonesEnabledAndSupported} from 'selectors/general';
+import {getRhsState} from 'selectors/rhs';
+
+import {makeGetCustomStatus, isCustomStatusEnabled} from 'selectors/views/custom_status';
+
 import {
-  getChannelMembersInChannels,
-  canManageAnyChannelMembersInCurrentTeam,
-} from 'hkclient-redux/selectors/entities/channels'
+    getChannelMembersInChannels,
+    canManageAnyChannelMembersInCurrentTeam,
+} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentUserId, getStatusForUserId, getUser} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentTeam, getCurrentRelativeTeamUrl, getTeamMember} from 'hkclient-redux/selectors/entities/teams';
 
-import { openDirectChannelToUserId } from 'actions/channel_actions.jsx'
-import { getMembershipForCurrentEntities } from 'actions/views/profile_popover'
-import { closeModal, openModal } from 'actions/views/modals'
+import ProfilePopover from './profile_popover.jsx';
 
-import { areTimezonesEnabledAndSupported } from 'selectors/general'
-import { getRhsState } from 'selectors/rhs'
+function mapStateToProps(state, {userId, channelId}) {
+    const team = getCurrentTeam(state);
+    const teamMember = getTeamMember(state, team.id, userId);
+    const getCustomStatus = makeGetCustomStatus();
 
-import { makeGetCustomStatus, isCustomStatusEnabled } from 'selectors/views/custom_status'
+    let isTeamAdmin = false;
+    if (teamMember && teamMember.scheme_admin) {
+        isTeamAdmin = true;
+    }
 
-import ProfilePopover from './profile_popover.jsx'
+    const channelMember = getChannelMembersInChannels(state)?.[channelId]?.[userId];
 
-function mapStateToProps(state, { userId, channelId }) {
-  const team = getCurrentTeam(state)
-  const teamMember = getTeamMember(state, team.id, userId)
-  const getCustomStatus = makeGetCustomStatus()
+    let isChannelAdmin = false;
+    if (getRhsState(state) !== 'search' && channelMember != null && channelMember.scheme_admin) {
+        isChannelAdmin = true;
+    }
 
-  let isTeamAdmin = false
-  if (teamMember && teamMember.scheme_admin) {
-    isTeamAdmin = true
-  }
-
-  const channelMember = getChannelMembersInChannels(state)?.[channelId]?.[userId]
-
-  let isChannelAdmin = false
-  if (getRhsState(state) !== 'search' && channelMember != null && channelMember.scheme_admin) {
-    isChannelAdmin = true
-  }
-
-  return {
-    currentTeamId: team.id,
-    currentUserId: getCurrentUserId(state),
-    enableTimezone: areTimezonesEnabledAndSupported(state),
-    isTeamAdmin,
-    isChannelAdmin,
-    isInCurrentTeam: Boolean(teamMember) && teamMember.delete_at === 0,
-    canManageAnyChannelMembersInCurrentTeam: canManageAnyChannelMembersInCurrentTeam(state),
-    status: getStatusForUserId(state, userId),
-    teamUrl: getCurrentRelativeTeamUrl(state),
-    user: getUser(state, userId),
-    modals: state.views.modals.modalState,
-    customStatus: getCustomStatus(state, userId),
-    isCustomStatusEnabled: isCustomStatusEnabled(state),
-  }
+    return {
+        currentTeamId: team.id,
+        currentUserId: getCurrentUserId(state),
+        enableTimezone: areTimezonesEnabledAndSupported(state),
+        isTeamAdmin,
+        isChannelAdmin,
+        isInCurrentTeam: Boolean(teamMember) && teamMember.delete_at === 0,
+        canManageAnyChannelMembersInCurrentTeam: canManageAnyChannelMembersInCurrentTeam(state),
+        status: getStatusForUserId(state, userId),
+        teamUrl: getCurrentRelativeTeamUrl(state),
+        user: getUser(state, userId),
+        modals: state.views.modals.modalState,
+        customStatus: getCustomStatus(state, userId),
+        isCustomStatusEnabled: isCustomStatusEnabled(state),
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        closeModal,
-        openDirectChannelToUserId,
-        openModal,
-        getMembershipForCurrentEntities,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators(
+            {
+                closeModal,
+                openDirectChannelToUserId,
+                openModal,
+                getMembershipForCurrentEntities,
+            },
+            dispatch,
+        ),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePopover)
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePopover);

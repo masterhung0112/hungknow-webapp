@@ -4,12 +4,13 @@ import {bindActionCreators, Dispatch} from 'redux';
 
 import {connect} from 'react-redux';
 
+import {toggleInlineImageVisibility} from 'actions/post_actions';
+
+import {isInlineImageVisible} from 'selectors/posts';
+
 import {GlobalState} from 'hkclient-redux/types/store';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {toggleInlineImageVisibility} from 'actions/post_actions';
-import {isInlineImageVisible} from 'selectors/posts';
 
 import MarkdownImageExpand, {Props} from './markdown_image_expand';
 

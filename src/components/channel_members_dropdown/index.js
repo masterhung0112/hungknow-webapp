@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {canManageMembers} from 'utils/channel_utils.jsx';
+
 import {getChannelStats, updateChannelMemberSchemeRoles, removeChannelMember, getChannelMember} from 'hkclient-redux/actions/channels';
 import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
 import {Permissions} from 'hkclient-redux/constants';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {canManageMembers} from 'utils/channel_utils.jsx';
 
 import ChannelMembersDropdown from './channel_members_dropdown.jsx';
 

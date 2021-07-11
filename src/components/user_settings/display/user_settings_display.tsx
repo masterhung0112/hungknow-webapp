@@ -6,10 +6,6 @@ import React from 'react';
 
 import {FormattedMessage} from 'react-intl';
 
-import {getTimezoneRegion} from 'hkclient-redux/utils/timezone_utils';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {UserProfile, UserTimezone} from 'hkclient-redux/types/users';
-
 import {trackEvent} from 'actions/telemetry_actions';
 
 import Constants from 'utils/constants';
@@ -24,6 +20,10 @@ import SettingItemMax from 'components/setting_item_max.jsx';
 import SettingItemMin from 'components/setting_item_min';
 import ThemeSetting from 'components/user_settings/display/user_settings_theme';
 import BackIcon from 'components/widgets/icons/fa_back_icon';
+
+import {UserProfile, UserTimezone} from 'hkclient-redux/types/users';
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {getTimezoneRegion} from 'hkclient-redux/utils/timezone_utils';
 
 import ManageTimezones from './manage_timezones';
 import ManageLanguages from './manage_languages';

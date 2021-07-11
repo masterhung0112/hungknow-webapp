@@ -4,15 +4,15 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {getMyTeams} from 'hkclient-redux/selectors/entities/teams';
-import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {deferNavigation} from 'actions/admin_actions.jsx';
 import {getCurrentLocale} from 'selectors/i18n';
 import {getNavigationBlocked} from 'selectors/views/admin';
 
 import {GlobalState} from 'types/store';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
+import {getMyTeams} from 'hkclient-redux/selectors/entities/teams';
 
 import AdminNavbarDropdown from './admin_navbar_dropdown';
 

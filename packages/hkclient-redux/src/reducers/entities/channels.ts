@@ -2,13 +2,14 @@
 // See LICENSE.txt for license information.
 
 /* eslint-disable max-lines */
+import {MarkUnread} from 'hkclient-redux/constants/channels';
+
 import {combineReducers} from 'redux';
 import shallowEquals from 'shallow-equals';
 
 import {AdminTypes, ChannelTypes, UserTypes, SchemeTypes, GroupTypes, PostTypes} from 'hkclient-redux/action_types';
 
 import {General} from 'hkclient-redux/constants';
-import {MarkUnread} from 'constants/channels';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {
@@ -889,6 +890,7 @@ export default combineReducers({
 
     // object where every key is the channel id and has an object with the channel members detail
     myMembers,
+
     // object where every key is the channel id and has an object with the channel roles
     roles,
 

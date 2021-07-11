@@ -8,12 +8,12 @@ export const DEFERRED = Symbol('DEFERRED');
 
 const createExposedPromise = () => {
     const deferred: {
-    resolve: any;
-    reject: any;
-  } = {
-      resolve: undefined,
-      reject: undefined,
-  };
+        resolve: any;
+        reject: any;
+    } = {
+        resolve: undefined,
+        reject: undefined,
+    };
 
     const promise = new Promise((resolve, reject) => {
         deferred.resolve = resolve;

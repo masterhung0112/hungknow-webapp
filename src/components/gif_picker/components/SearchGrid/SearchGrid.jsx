@@ -5,8 +5,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {saveSearchScrollPosition} from 'hkclient-redux/actions/gifs';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
 import NoResultsIndicator from 'components/no_results_indicator/no_results_indicator.tsx';
@@ -14,6 +12,8 @@ import {NoResultsVariant} from 'components/no_results_indicator/types';
 
 import InfiniteScroll from 'components/gif_picker/components/InfiniteScroll';
 import SearchItem from 'components/gif_picker/components/SearchItem';
+
+import {saveSearchScrollPosition} from 'hkclient-redux/actions/gifs';
 
 import './SearchGrid.scss';
 

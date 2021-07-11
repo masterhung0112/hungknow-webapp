@@ -4,17 +4,19 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {Value} from 'components/multiselect/multiselect';
+
+import {addUsersToChannel} from 'actions/channel_actions';
+
+import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
+
+import {GlobalState} from 'types/store';
+
 import {getTeamStats} from 'hkclient-redux/actions/teams';
 import {getProfilesNotInChannel, searchProfiles} from 'hkclient-redux/actions/users';
 import {getProfilesNotInCurrentChannel, getProfilesNotInCurrentTeam, getProfilesNotInTeam, getUserStatuses, makeGetProfilesNotInChannel} from 'hkclient-redux/selectors/entities/users';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import {Value} from 'components/multiselect/multiselect';
-
-import {addUsersToChannel} from 'actions/channel_actions';
-import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
-import {GlobalState} from 'types/store';
 
 import ChannelInviteModal, {Props} from './channel_invite_modal';
 

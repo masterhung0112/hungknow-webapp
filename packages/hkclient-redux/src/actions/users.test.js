@@ -2,10 +2,12 @@
 // See LICENSE.txt for license information.
 
 import fs from 'fs';
+
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/users';
+import * as Actions from 'hkclient-redux/actions/users';
+
 import {Client4} from 'hkclient-redux/client';
 import {RequestStatus} from '../constants';
 import TestHelper from 'hkclient-redux/test/test_helper';
@@ -14,7 +16,7 @@ import deepFreeze from 'hkclient-redux/utils/deep_freeze';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('Actions.Users', () => {
+describe('hkclient-redux/actions.Users', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

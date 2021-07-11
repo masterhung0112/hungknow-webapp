@@ -4,10 +4,10 @@
 import React from 'react';
 import {Action} from 'redux';
 
+import {SearchType} from 'types/store/rhs';
+
 import {ActionFunc, DispatchFunc} from 'hkclient-redux/types/actions';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {SearchType} from 'types/store/rhs';
 
 export type SearchFilterType = 'all' | 'documents' | 'spreadsheets' | 'presentations' | 'code' | 'images' | 'audio' | 'video';
 

@@ -4,11 +4,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {TestHelper} from 'utils/test_helper';
+
+import EditCommand from 'components/integrations/edit_command/edit_command';
+
 import {Team} from 'hkclient-redux/types/teams';
 import {Command} from 'hkclient-redux/types/integrations';
-
-import {TestHelper} from 'utils/test_helper';
-import EditCommand from 'components/integrations/edit_command/edit_command';
 
 describe('components/integrations/EditCommand', () => {
     const getCustomTeamCommands = jest.fn(

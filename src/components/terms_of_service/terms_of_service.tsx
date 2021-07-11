@@ -5,9 +5,6 @@ import React from 'react';
 import {Button, ButtonGroup} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {memoizeResult} from 'hkclient-redux/utils/helpers';
-import {TermsOfService as ReduxTermsOfService} from 'hkclient-redux/types/terms_of_service';
-
 import * as GlobalActions from 'actions/global_actions';
 import AnnouncementBar from 'components/announcement_bar';
 import LoadingScreen from 'components/loading_screen';
@@ -20,6 +17,9 @@ import messageHtmlToComponent from 'utils/message_html_to_component';
 import {formatText} from 'utils/text_formatting';
 import {Constants} from 'utils/constants.jsx';
 import EmojiMap from 'utils/emoji_map';
+
+import {TermsOfService as ReduxTermsOfService} from 'hkclient-redux/types/terms_of_service';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
 
 export interface UpdateMyTermsOfServiceStatusResponse {
     terms_of_service_create_at: number;

@@ -6,13 +6,13 @@ import {Modal} from 'react-bootstrap';
 import {Provider} from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
-
 import EmojiMap from 'utils/emoji_map';
 
 import {mountWithIntl, shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import Markdown from 'components/markdown';
+
+import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
 
 import AppsForm from './apps_form';
 

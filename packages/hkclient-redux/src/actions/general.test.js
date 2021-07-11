@@ -4,8 +4,9 @@
 import assert from 'assert';
 import nock from 'nock';
 
+import * as Actions from 'hkclient-redux/actions/general';
+
 import {GeneralTypes} from 'hkclient-redux/action_types';
-import * as Actions from 'actions/general';
 import {Client4} from 'hkclient-redux/client';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
@@ -14,7 +15,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 import {FormattedError} from './helpers.ts';
 
 const OK_RESPONSE = {status: 'OK'};
-describe('Actions.General', () => {
+describe('hkclient-redux/actions.General', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

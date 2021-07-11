@@ -3,10 +3,10 @@
 
 import React from 'react';
 
-import {Client4} from 'hkclient-redux/client';
-
 import ProfilePicture from 'components/profile_picture';
 import * as Utils from 'utils/utils.jsx';
+
+import {Client4} from 'hkclient-redux/client';
 import {UserProfile} from 'hkclient-redux/types/users';
 import './admin_user_card.scss';
 

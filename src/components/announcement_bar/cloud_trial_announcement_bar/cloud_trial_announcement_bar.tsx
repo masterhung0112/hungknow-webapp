@@ -7,15 +7,10 @@ import {isEmpty} from 'lodash';
 
 import {FormattedMessage} from 'react-intl';
 
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {AnalyticsRow} from 'hkclient-redux/types/admin';
-import {Subscription} from 'hkclient-redux/types/cloud';
-
 import {trackEvent} from 'actions/telemetry_actions';
 
 import {t} from 'utils/i18n';
+
 import PurchaseModal from 'components/purchase_modal';
 
 import {
@@ -27,9 +22,16 @@ import {
     TrialPeriodDays,
 } from 'utils/constants';
 
+import {getLocaleDateFromUTC} from 'utils/utils';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {AnalyticsRow} from 'hkclient-redux/types/admin';
+import {Subscription} from 'hkclient-redux/types/cloud';
+
 import AnnouncementBar from '../default_announcement_bar';
 import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subscription';
-import {getLocaleDateFromUTC} from 'utils/utils';
 
 type Props = {
     userIsAdmin: boolean;

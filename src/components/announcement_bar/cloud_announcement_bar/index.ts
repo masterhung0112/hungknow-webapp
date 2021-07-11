@@ -4,6 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {openModal} from 'actions/views/modals';
+
+import {GlobalState} from 'types/store';
+
+import {Preferences} from 'utils/constants';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 import {GenericAction} from 'hkclient-redux/types/actions';
@@ -12,12 +18,6 @@ import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
 import {getCloudSubscription} from 'hkclient-redux/actions/cloud';
 
 import {getCurrentUser, isCurrentUserSystemAdmin} from 'hkclient-redux/selectors/entities/users';
-
-import {openModal} from 'actions/views/modals';
-
-import {GlobalState} from 'types/store';
-
-import {Preferences} from 'utils/constants';
 
 import UserLimitAnnouncementBar from './user_limit_announcement_bar';
 

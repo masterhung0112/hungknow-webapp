@@ -3,6 +3,12 @@
 
 import moment from 'moment-timezone';
 
+import {GlobalState} from 'types/store';
+
+import {getCurrentUserTimezone} from 'selectors/general';
+
+import {getCurrentMomentForTimezone} from 'utils/timezone';
+
 import {createSelector} from 'reselect';
 
 import {getCurrentUser, getUser} from 'hkclient-redux/selectors/entities/users';
@@ -11,10 +17,6 @@ import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {get} from 'hkclient-redux/selectors/entities/preferences';
 import {Preferences} from 'hkclient-redux/constants';
 import {CustomStatusDuration, UserCustomStatus} from 'hkclient-redux/types/users';
-
-import {GlobalState} from 'types/store';
-import {getCurrentUserTimezone} from 'selectors/general';
-import {getCurrentMomentForTimezone} from 'utils/timezone';
 
 export function makeGetCustomStatus(): (state: GlobalState, userID?: string) => UserCustomStatus {
     return createSelector(

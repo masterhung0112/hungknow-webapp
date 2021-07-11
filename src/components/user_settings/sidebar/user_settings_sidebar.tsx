@@ -4,12 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
-import {SidebarPreferences} from 'hkclient-redux/selectors/entities/preferences';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
 import LocalizedIcon from 'components/localized_icon';
@@ -20,6 +14,10 @@ import {t} from 'utils/i18n';
 
 import SettingItemMax from 'components/setting_item_max.jsx';
 import SettingItemMin from 'components/setting_item_min';
+
+import {SidebarPreferences} from 'hkclient-redux/selectors/entities/preferences';
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 import ShowUnreadsCategory from './show_unreads_category';
 import LimitVisibleGMsDMs from './limit_visible_gms_dms';

@@ -7,12 +7,12 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
-
 import {IgnoreChannelMentions, NotificationLevels, NotificationSections} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
 
 import NotificationSection from 'components/channel_notifications_modal/components/notification_section.jsx';
+
+import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
 
 export default class ChannelNotificationsModal extends React.PureComponent {
     static propTypes = {

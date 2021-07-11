@@ -4,14 +4,14 @@
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
-import {Preferences, General} from 'hkclient-redux/constants';
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
-
 import * as UserActions from 'actions/user_actions';
 import {getState} from 'stores/redux_store';
 import TestHelper from 'tests/helpers/client-test-helper';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {Preferences, General} from 'hkclient-redux/constants';
 
 const mockStore = configureStore([thunk]);
 

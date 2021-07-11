@@ -6,6 +6,7 @@ import React from 'react';
 
 import {browserHistory} from 'utils/browser_history';
 import {t} from 'utils/i18n';
+
 import AbstractCommand from '../abstract_command.jsx';
 
 const HEADER = {id: t('integrations.add'), defaultMessage: 'Add'};

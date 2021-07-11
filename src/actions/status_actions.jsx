@@ -1,18 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {loadCustomEmojisForCustomStatusesByUserIds} from 'actions/emoji_actions';
+
+import store from 'stores/redux_store.jsx';
+
+import {Constants} from 'utils/constants';
+
 import {getStatusesByIds} from 'hkclient-redux/actions/users';
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {getPostsInCurrentChannel} from 'hkclient-redux/selectors/entities/posts';
 import {getDirectShowPreferences} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 
-import {loadCustomEmojisForCustomStatusesByUserIds} from 'actions/emoji_actions';
-import store from 'stores/redux_store.jsx';
-import {Constants} from 'utils/constants';
-
 export function loadStatusesForChannelAndSidebar() {
-    return (dispatch, getState) => {
+    return async (dispatch, getState) => {
         const state = getState();
         const statusesToLoad = {};
 
@@ -44,7 +46,7 @@ export function loadStatusesForChannelAndSidebar() {
 }
 
 export function loadStatusesForProfilesList(users) {
-    return (dispatch) => {
+    return async (dispatch) => {
         if (users == null) {
             return {data: false};
         }
@@ -61,7 +63,7 @@ export function loadStatusesForProfilesList(users) {
 }
 
 export function loadStatusesForProfilesMap(users) {
-    return (dispatch) => {
+    return async (dispatch) => {
         if (users == null) {
             return;
         }
@@ -78,7 +80,7 @@ export function loadStatusesForProfilesMap(users) {
 }
 
 export function loadStatusesByIds(userIds) {
-    return (dispatch) => {
+    return async (dispatch) => {
         if (userIds.length === 0) {
             return {data: false};
         }

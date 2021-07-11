@@ -5,6 +5,18 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {uniq, difference} from 'lodash';
 
+import Constants from 'utils/constants';
+
+import {browserHistory} from 'utils/browser_history';
+
+import FormError from 'components/form_error';
+
+import BlockableLink from 'components/admin_console/blockable_link';
+
+import SaveChangesPanel from 'components/admin_console/team_channel_settings/save_changes_panel';
+
+import {isError} from 'types/actions';
+
 import {Role} from 'hkclient-redux/types/roles';
 import {Client4} from 'hkclient-redux/client';
 
@@ -13,15 +25,6 @@ import {Dictionary} from 'hkclient-redux/types/utilities';
 import {ActionResult} from 'hkclient-redux/types/actions';
 
 import Permissions from 'hkclient-redux/constants/permissions';
-
-import Constants from 'utils/constants';
-import {browserHistory} from 'utils/browser_history';
-
-import FormError from 'components/form_error';
-import BlockableLink from 'components/admin_console/blockable_link';
-import SaveChangesPanel from 'components/admin_console/team_channel_settings/save_changes_panel';
-
-import {isError} from 'types/actions';
 
 import SystemRoleUsers from './system_role_users';
 import SystemRolePermissions from './system_role_permissions';

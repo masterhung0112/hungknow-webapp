@@ -6,8 +6,6 @@ import React from 'react';
 import classNames from 'classnames';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
-import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
-
 import * as GlobalActions from 'actions/global_actions';
 
 import Constants, {Locations} from 'utils/constants';
@@ -35,6 +33,8 @@ import Textbox from 'components/textbox';
 import TextboxLinks from 'components/textbox/textbox_links';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import MessageSubmitError from 'components/message_submit_error';
+
+import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
 
 const KeyCodes = Constants.KeyCodes;
 

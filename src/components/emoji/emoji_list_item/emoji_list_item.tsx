@@ -3,13 +3,14 @@
 
 import React from 'react';
 
+import DeleteEmoji from 'components/emoji/delete_emoji_modal';
+
+import AnyTeamPermissionGate from 'components/permissions_gates/any_team_permission_gate';
+
 import Permissions from 'hkclient-redux/constants/permissions';
 import {Client4} from 'hkclient-redux/client';
 import {CustomEmoji} from 'hkclient-redux/types/emojis';
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import DeleteEmoji from 'components/emoji/delete_emoji_modal';
-import AnyTeamPermissionGate from 'components/permissions_gates/any_team_permission_gate';
 
 export type Props = {
     emoji: CustomEmoji;

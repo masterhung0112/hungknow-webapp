@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {General} from 'hkclient-redux/constants';
-
 import * as TeamUtils from 'utils/team_utils.jsx';
+
+import {General} from 'hkclient-redux/constants';
 
 describe('TeamUtils.filterAndSortTeamsByDisplayName', () => {
     const teamA = {id: 'team_id_a', name: 'team-a', display_name: 'Team A', delete_at: 0};

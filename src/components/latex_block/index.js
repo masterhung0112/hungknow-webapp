@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getConfig } from 'hkclient-redux/selectors/entities/general'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import LatexBlock from './latex_block.jsx'
+import LatexBlock from './latex_block.jsx';
 
 function mapStateToProps(state) {
-  const config = getConfig(state)
-  return {
-    enableLatex: config.EnableLatex === 'true',
-  }
+    const config = getConfig(state);
+    return {
+        enableLatex: config.EnableLatex === 'true',
+    };
 }
 
-export default connect(mapStateToProps)(LatexBlock)
+export default connect(mapStateToProps)(LatexBlock);

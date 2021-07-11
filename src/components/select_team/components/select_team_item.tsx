@@ -4,14 +4,14 @@
 import React, {ReactNode, MouseEvent} from 'react';
 import {Tooltip} from 'react-bootstrap';
 
-import {Team} from 'hkclient-redux/types/teams';
-
 import LocalizedIcon from 'components/localized_icon';
 import OverlayTrigger from 'components/overlay_trigger';
 import TeamInfoIcon from 'components/widgets/icons/team_info_icon';
 
 import {t} from 'utils/i18n';
 import * as Utils from 'utils/utils.jsx';
+
+import {Team} from 'hkclient-redux/types/teams';
 
 type Props = {
     team: Team;

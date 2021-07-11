@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {setModalSearchTerm} from 'actions/views/search';
+
 import {getGroupsNotAssociatedToChannel, linkGroupSyncable, getAllGroupsAssociatedToChannel, getAllGroupsAssociatedToTeam} from 'hkclient-redux/actions/groups';
 import {getTeam} from 'hkclient-redux/actions/teams';
 import {getGroupsNotAssociatedToChannel as selectGroupsNotAssociatedToChannel} from 'hkclient-redux/selectors/entities/groups';
@@ -12,9 +16,6 @@ import {getCurrentChannel} from 'hkclient-redux/selectors/entities/channels';
 import {Channel} from 'hkclient-redux/types/channels';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {Group} from 'hkclient-redux/types/groups';
-
-import {GlobalState} from 'types/store';
-import {setModalSearchTerm} from 'actions/views/search';
 
 import AddGroupsToChannelModal, {Props} from './add_groups_to_channel_modal';
 

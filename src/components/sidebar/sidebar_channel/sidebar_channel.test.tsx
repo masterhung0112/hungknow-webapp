@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import SidebarChannel from 'components/sidebar/sidebar_channel/sidebar_channel';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 describe('components/sidebar/sidebar_channel', () => {
     const baseProps = {

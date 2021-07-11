@@ -4,11 +4,6 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {GlobalState} from 'types/store';
 
 import {isAdmin} from 'utils/utils.jsx';
@@ -16,6 +11,10 @@ import {isModalOpen} from 'selectors/views/modals';
 import {ModalIdentifiers} from 'utils/constants';
 
 import {closeModal, openModal} from 'actions/views/modals';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import UserLimitModal from './user_limit_modal';
 

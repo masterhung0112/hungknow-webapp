@@ -4,10 +4,11 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {DoAppCall, PostEphemeralCallResponseForContext} from 'types/apps';
 
 import {doAppCall, postEphemeralCallResponseForContext} from 'actions/apps';
+
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 
 import AppsFormContainer from './apps_form_container';
 

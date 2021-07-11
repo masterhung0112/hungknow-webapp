@@ -4,12 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getDraggingState, makeGetFilteredChannelIdsForCategory} from 'selectors/views/channel_sidebar';
+
+import {GlobalState} from 'types/store';
+
 import {setCategoryCollapsed, setCategorySorting} from 'hkclient-redux/actions/channel_categories';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
-
-import {getDraggingState, makeGetFilteredChannelIdsForCategory} from 'selectors/views/channel_sidebar';
-import {GlobalState} from 'types/store';
 
 import SidebarCategory from './sidebar_category';
 

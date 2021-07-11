@@ -5,13 +5,13 @@ import {connect} from 'react-redux';
 
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
-
-import {getChannel} from 'hkclient-redux/actions/channels';
-
 import {DoAppCall, PostEphemeralCallResponseForPost} from 'types/apps';
 
 import {doAppCall, postEphemeralCallResponseForPost} from 'actions/apps';
+
+import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
+
+import {getChannel} from 'hkclient-redux/actions/channels';
 
 import ButtonBinding from './button_binding';
 

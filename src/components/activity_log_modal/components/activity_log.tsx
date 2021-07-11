@@ -4,11 +4,12 @@
 import React from 'react';
 import {FormattedDate, FormattedMessage, FormattedTime} from 'react-intl';
 
+import {localizeMessage} from 'utils/utils.jsx';
+
+import {getMonthLong, t} from 'utils/i18n';
+
 import {General} from 'hkclient-redux/constants';
 import {Session} from 'hkclient-redux/types/sessions';
-
-import {localizeMessage} from 'utils/utils.jsx';
-import {getMonthLong, t} from 'utils/i18n';
 
 import MoreInfo from './more_info';
 

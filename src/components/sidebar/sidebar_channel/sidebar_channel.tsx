@@ -5,11 +5,11 @@ import React from 'react';
 import {Draggable} from 'react-beautiful-dnd';
 import classNames from 'classnames';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import {DraggingState} from 'types/store';
 import Constants, {DraggingStates} from 'utils/constants';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 import SidebarBaseChannel from './sidebar_base_channel';
 import SidebarDirectChannel from './sidebar_direct_channel';

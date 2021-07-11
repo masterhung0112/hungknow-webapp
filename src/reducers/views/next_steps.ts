@@ -3,10 +3,10 @@
 
 import {combineReducers} from 'redux';
 
+import {ActionTypes} from 'utils/constants';
+
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {UserTypes} from 'hkclient-redux/action_types';
-
-import {ActionTypes} from 'utils/constants';
 
 export function show(state = false, action: GenericAction) {
     switch (action.type) {

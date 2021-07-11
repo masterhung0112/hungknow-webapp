@@ -5,15 +5,17 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {editPost} from 'actions/views/posts';
+
+import {GlobalState} from 'types/store';
+
+import {Preferences} from 'utils/constants';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getOpenGraphMetadataForUrl} from 'hkclient-redux/selectors/entities/posts';
 import {getBool} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {editPost} from 'actions/views/posts';
-import {GlobalState} from 'types/store';
-import {Preferences} from 'utils/constants';
 
 import PostAttachmentOpenGraph, {Props} from './post_attachment_opengraph';
 

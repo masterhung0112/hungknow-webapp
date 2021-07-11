@@ -5,9 +5,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {searchIfNeededInitial, searchGfycat} from 'hkclient-redux/actions/gifs';
-
 import SearchGrid from 'components/gif_picker/components/SearchGrid';
+
+import {searchIfNeededInitial, searchGfycat} from 'hkclient-redux/actions/gifs';
 
 function mapStateToProps(state) {
     return {

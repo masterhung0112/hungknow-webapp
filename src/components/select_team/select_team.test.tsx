@@ -4,11 +4,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Team} from 'hkclient-redux/types/teams';
-
 import SelectTeam, {TEAMS_PER_PAGE} from 'components/select_team/select_team';
 
 import {emitUserLoggedOutEvent} from 'actions/global_actions';
+
+import {Team} from 'hkclient-redux/types/teams';
 
 jest.mock('actions/global_actions', () => ({
     emitUserLoggedOutEvent: jest.fn(),

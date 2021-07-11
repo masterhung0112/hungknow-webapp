@@ -5,8 +5,6 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import assert from 'assert';
 
-import {ChannelType, Channel} from 'hkclient-redux/types/channels';
-
 import * as Utils from 'utils/utils';
 import Constants from 'utils/constants';
 import NewChannelFlow, {
@@ -16,6 +14,8 @@ import NewChannelFlow, {
     getChannelTypeFromProps,
     Props,
 } from 'components/new_channel_flow/new_channel_flow';
+
+import {ChannelType, Channel} from 'hkclient-redux/types/channels';
 
 describe('components/NewChannelFlow', () => {
     const baseProps = {

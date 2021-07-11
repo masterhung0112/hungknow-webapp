@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {get, makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {updateUserActive, revokeAllSessionsForUser} from 'hkclient-redux/actions/users';
-
-import {Preferences} from 'utils/constants';
 
 import AdvancedSettingsDisplay from './user_settings_advanced.jsx';
 

@@ -4,15 +4,15 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ChannelType, Channel} from 'hkclient-redux/types/channels';
-import {ServerError} from 'hkclient-redux/types/errors';
-
 import Constants, {ModalIdentifiers} from 'utils/constants';
 import * as Utils from 'utils/utils';
 import {cleanUpUrlable} from 'utils/url';
 
 import NewChannelModal from 'components/new_channel_modal';
 import ChangeURLModal from 'components/change_url_modal';
+
+import {ServerError} from 'hkclient-redux/types/errors';
+import {ChannelType, Channel} from 'hkclient-redux/types/channels';
 
 export const SHOW_NEW_CHANNEL = 1;
 export const SHOW_EDIT_URL = 2;

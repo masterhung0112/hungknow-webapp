@@ -42,3 +42,5 @@ storybook-static
 .DS_Store
 *.pem
 *.scss.d.ts
+
+yarn.lock

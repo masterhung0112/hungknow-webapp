@@ -5,10 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Tooltip} from 'react-bootstrap';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {TeamMembership} from 'hkclient-redux/types/teams';
-import {ChannelMembership} from 'hkclient-redux/types/channels';
-
 import {Constants} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
 
@@ -17,6 +13,10 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import OverlayTrigger from 'components/overlay_trigger';
 
 import DropdownIcon from 'components/widgets/icons/fa_dropdown_icon';
+
+import {ChannelMembership} from 'hkclient-redux/types/channels';
+import {TeamMembership} from 'hkclient-redux/types/teams';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 export type BaseMembership = {
     user_id: string;

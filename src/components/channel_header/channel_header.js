@@ -7,10 +7,6 @@ import {Tooltip, Overlay} from 'react-bootstrap';
 import {FormattedMessage, injectIntl} from 'react-intl';
 import classNames from 'classnames';
 
-import {Permissions} from 'hkclient-redux/constants';
-import {memoizeResult} from 'hkclient-redux/utils/helpers';
-import {displayUsername} from 'hkclient-redux/utils/user_utils';
-
 import 'bootstrap';
 
 import EditChannelHeaderModal from 'components/edit_channel_header_modal';
@@ -41,6 +37,10 @@ import ChannelHeaderPlug from 'plugins/channel_header_plug';
 
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
 import CustomStatusText from 'components/custom_status/custom_status_text';
+
+import {displayUsername} from 'hkclient-redux/utils/user_utils';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
+import {Permissions} from 'hkclient-redux/constants';
 
 import HeaderIconWrapper from './components/header_icon_wrapper';
 

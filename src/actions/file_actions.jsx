@@ -4,12 +4,12 @@
 import {batchActions} from 'redux-batched-actions';
 import request from 'superagent';
 
+import * as Utils from 'utils/utils.jsx';
+
 import {FileTypes} from 'hkclient-redux/action_types';
 import {getLogErrorAction} from 'hkclient-redux/actions/errors';
 import {forceLogoutIfNecessary} from 'hkclient-redux/actions/helpers';
 import {Client4} from 'hkclient-redux/client';
-
-import * as Utils from 'utils/utils.jsx';
 
 export function uploadFile(file, name, channelId, rootId, clientId) {
     return (dispatch) => {

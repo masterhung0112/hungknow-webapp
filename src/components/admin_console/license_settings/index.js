@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {requestTrialLicense, upgradeToE0Status, upgradeToE0, restartServer, ping} from 'actions/admin_actions';
+
 import {getLicenseConfig} from 'hkclient-redux/actions/general';
 import {uploadLicense, removeLicense, getPrevTrialLicense} from 'hkclient-redux/actions/admin';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {requestTrialLicense, upgradeToE0Status, upgradeToE0, restartServer, ping} from 'actions/admin_actions';
 
 import LicenseSettings from './license_settings.jsx';
 

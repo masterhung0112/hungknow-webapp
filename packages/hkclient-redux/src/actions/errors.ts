@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import {serializeError, ErrorObject} from 'serialize-error';
+
 import {ErrorTypes} from 'hkclient-redux/action_types';
 import {Client4} from 'hkclient-redux/client';
 import EventEmitter from 'hkclient-redux/utils/event_emitter';

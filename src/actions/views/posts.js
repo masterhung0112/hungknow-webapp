@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {ActionTypes, AnnouncementBarTypes} from 'utils/constants';
+
 import * as PostActions from 'hkclient-redux/actions/posts';
 
 import {logError} from 'hkclient-redux/actions/errors';
-
-import {ActionTypes, AnnouncementBarTypes} from 'utils/constants';
 
 export function editPost(post) {
     return async (dispatch, getState) => {

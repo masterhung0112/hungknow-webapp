@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {haveITeamPermission} from 'hkclient-redux/selectors/entities/roles';
-
 import {GlobalState} from 'types/store';
+
+import {haveITeamPermission} from 'hkclient-redux/selectors/entities/roles';
 
 import TeamPermissionGate from './team_permission_gate';
 

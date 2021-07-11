@@ -4,9 +4,6 @@
 import React from 'react';
 import {IntlShape, injectIntl} from 'react-intl';
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-import {ChannelCategory, CategorySorting} from 'hkclient-redux/types/channel_categories';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import DeleteCategoryModal from 'components/delete_category_modal';
 import EditCategoryModal from 'components/edit_category_modal';
@@ -15,6 +12,9 @@ import SidebarMenuType from 'components/sidebar/sidebar_menu/sidebar_menu';
 import Menu from 'components/widgets/menu/menu';
 import {ModalIdentifiers} from 'utils/constants';
 import {Props as SubmenuItemProps} from 'components/widgets/menu/menu_items/submenu_item';
+
+import {ChannelCategory, CategorySorting} from 'hkclient-redux/types/channel_categories';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
 type Props = {
     currentTeamId: string;

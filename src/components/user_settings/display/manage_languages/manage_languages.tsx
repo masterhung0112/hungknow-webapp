@@ -5,14 +5,14 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import ReactSelect, {ValueType} from 'react-select';
 
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import * as I18n from 'i18n/i18n.jsx';
 import SettingItemMax from 'components/setting_item_max.jsx';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import {isKeyPressed} from 'utils/utils.jsx';
 import Constants from 'utils/constants';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {ActionResult} from 'hkclient-redux/types/actions';
 
 type Actions = {
     updateMe: (user: UserProfile) => Promise<ActionResult>;

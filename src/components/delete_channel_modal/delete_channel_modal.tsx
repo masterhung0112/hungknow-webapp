@@ -5,11 +5,11 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {browserHistory} from 'utils/browser_history';
 import Constants from 'utils/constants';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 export type Props = {
     onHide: () => void;

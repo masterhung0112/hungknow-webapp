@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {autoResetStatus} from 'actions/user_actions.jsx';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {setStatus} from 'hkclient-redux/actions/users';
 import {Preferences} from 'hkclient-redux/constants';
 import {get} from 'hkclient-redux/selectors/entities/preferences';
 import {getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {autoResetStatus} from 'actions/user_actions.jsx';
 
 import ResetStatusModal from './reset_status_modal.jsx';
 

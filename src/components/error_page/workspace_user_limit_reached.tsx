@@ -4,12 +4,12 @@
 import React, {useEffect} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-
 import computerWithAlert from 'images/cloud/computer-with-alert.svg';
 import mattermostCloud from 'images/cloud/mattermost-cloud.svg';
 import wavesBackground from 'images/cloud/waves.svg';
 import blueDots from 'images/cloud/blue.svg';
+
+import {Client4} from 'hkclient-redux/client';
 
 const WorkspaceUserLimitReached: React.FC = () => {
     useEffect(() => {

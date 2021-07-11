@@ -4,11 +4,11 @@
 import {shallow} from 'enzyme';
 import React from 'react';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import {loadProfilesForSidebar} from 'actions/user_actions.jsx';
 
 import {TestHelper} from 'utils/test_helper';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 import DataPrefetch from './data_prefetch';
 

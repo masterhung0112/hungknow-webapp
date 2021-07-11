@@ -5,11 +5,6 @@ import React, {useEffect, useState} from 'react';
 import {FormattedDate, FormattedMessage, FormattedNumber} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 
-import {getCloudProducts, getCloudSubscription, getInvoices} from 'hkclient-redux/actions/cloud';
-import {Client4} from 'hkclient-redux/client';
-import {Invoice} from 'hkclient-redux/types/cloud';
-import {GlobalState} from 'hkclient-redux/types/store';
-
 import LoadingSpinner from 'components/widgets/loading/loading_spinner';
 
 import {pageVisited, trackEvent} from 'actions/telemetry_actions';
@@ -17,6 +12,11 @@ import FormattedAdminHeader from 'components/widgets/admin_console/formatted_adm
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import noBillingHistoryGraphic from 'images/no_billing_history_graphic.svg';
 import {CloudLinks} from 'utils/constants';
+
+import {GlobalState} from 'hkclient-redux/types/store';
+import {Invoice} from 'hkclient-redux/types/cloud';
+import {Client4} from 'hkclient-redux/client';
+import {getCloudProducts, getCloudSubscription, getInvoices} from 'hkclient-redux/actions/cloud';
 
 import './billing_history.scss';
 

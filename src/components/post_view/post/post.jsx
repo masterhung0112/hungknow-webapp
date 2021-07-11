@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {injectIntl} from 'react-intl';
 
-import {Posts} from 'hkclient-redux/constants';
-import {isMeMessage as checkIsMeMessage} from 'hkclient-redux/utils/post_utils';
-
 import * as PostUtils from 'utils/post_utils.jsx';
 import Constants, {A11yCustomEventTypes} from 'utils/constants';
 import {intlShape} from 'utils/react_intl';
@@ -17,6 +14,9 @@ import PostHeader from 'components/post_view/post_header';
 import PostContext from 'components/post_view/post_context';
 import PostPreHeader from 'components/post_view/post_pre_header';
 import ThreadFooter from 'components/threading/channel_threads/thread_footer';
+
+import {isMeMessage as checkIsMeMessage} from 'hkclient-redux/utils/post_utils';
+import {Posts} from 'hkclient-redux/constants';
 
 class Post extends React.PureComponent {
     static propTypes = {

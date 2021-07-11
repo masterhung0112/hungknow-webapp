@@ -5,17 +5,19 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import RevokeTokenButton from 'components/admin_console/revoke_token_button';
+
+import LoadingScreen from 'components/loading_screen';
+
+import Avatar from 'components/widgets/users/avatar';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
+
 import {Client4} from 'hkclient-redux/client';
 import {UserAccessToken, UserProfile} from 'hkclient-redux/types/users';
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import * as UserUtils from 'hkclient-redux/utils/user_utils';
-
-import RevokeTokenButton from 'components/admin_console/revoke_token_button';
-import LoadingScreen from 'components/loading_screen';
-import Avatar from 'components/widgets/users/avatar';
-
-import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 
 export type Props = {
 

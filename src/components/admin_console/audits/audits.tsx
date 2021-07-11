@@ -4,13 +4,13 @@
 import React, {CSSProperties} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Audit} from 'hkclient-redux/types/audits';
-
 import ComplianceReports from 'components/admin_console/compliance_reports';
 import AuditTable from 'components/audit_table';
 import LoadingScreen from 'components/loading_screen';
 
 import ReloadIcon from 'components/widgets/icons/fa_reload_icon';
+
+import {Audit} from 'hkclient-redux/types/audits';
 
 type Props = {
     isLicensed: boolean;

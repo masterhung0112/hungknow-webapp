@@ -4,13 +4,15 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {getGlobalItem} from 'selectors/storage';
+
+import {removeGlobalItem} from 'actions/storage';
+
+import {addUserToTeamFromInvite} from 'actions/team_actions';
+
 import {getConfig, getLicense, getSubscriptionStats as subscriptionStatsSelector} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getTeamInviteInfo} from 'hkclient-redux/actions/teams';
-
-import {getGlobalItem} from 'selectors/storage';
-import {removeGlobalItem} from 'actions/storage';
-import {addUserToTeamFromInvite} from 'actions/team_actions';
 
 import SignupController from './signup_controller.jsx';
 

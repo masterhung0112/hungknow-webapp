@@ -1,6 +1,22 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import * as PostActions from 'actions/post_actions.jsx';
+
+import {executeCommand} from 'actions/command';
+
+import {runMessageWillBePostedHooks, runSlashCommandWillBePostedHooks} from 'actions/hooks';
+
+import {setGlobalItem, actionOnGlobalItemsWithPrefix} from 'actions/storage';
+
+import EmojiMap from 'utils/emoji_map';
+
+import {getPostDraft} from 'selectors/rhs';
+
+import * as Utils from 'utils/utils.jsx';
+
+import {Constants, StoragePrefixes} from 'utils/constants';
+
 import {createSelector} from 'reselect';
 
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
@@ -19,16 +35,6 @@ import {
 } from 'hkclient-redux/actions/posts';
 import {Posts} from 'hkclient-redux/constants';
 import {isPostPendingOrFailed} from 'hkclient-redux/utils/post_utils';
-
-import * as PostActions from 'actions/post_actions.jsx';
-import {executeCommand} from 'actions/command';
-import {runMessageWillBePostedHooks, runSlashCommandWillBePostedHooks} from 'actions/hooks';
-import {setGlobalItem, actionOnGlobalItemsWithPrefix} from 'actions/storage';
-import EmojiMap from 'utils/emoji_map';
-import {getPostDraft} from 'selectors/rhs';
-
-import * as Utils from 'utils/utils.jsx';
-import {Constants, StoragePrefixes} from 'utils/constants';
 
 export function clearCommentDraftUploads() {
     return actionOnGlobalItemsWithPrefix(StoragePrefixes.COMMENT_DRAFT, (_key, value) => {

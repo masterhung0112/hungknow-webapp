@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {MarkUnread} from 'hkclient-redux/constants/channels';
+
 import {General, Preferences, Permissions, Users} from '../constants';
-import {MarkUnread} from 'constants/channels';
 
 import {hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
 import {haveITeamPermission, haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';

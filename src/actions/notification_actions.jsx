@@ -3,6 +3,18 @@
 
 import semver from 'semver';
 
+import {browserHistory} from 'utils/browser_history';
+
+import Constants, {NotificationLevels, UserStatuses} from 'utils/constants';
+
+import {showNotification} from 'utils/notifications';
+
+import {isDesktopApp, isMacApp, isMobileApp, isWindowsApp} from 'utils/user_agent';
+
+import * as Utils from 'utils/utils.jsx';
+
+import {stripMarkdown} from 'utils/markdown';
+
 import {logError} from 'hkclient-redux/actions/errors';
 import {getProfilesByIds} from 'hkclient-redux/actions/users';
 import {getCurrentChannel, getMyChannelMember, makeGetChannel} from 'hkclient-redux/selectors/entities/channels';
@@ -12,13 +24,6 @@ import {getCurrentUserId, getCurrentUser, getStatusForUserId, getUser} from 'hkc
 import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
 import {isSystemMessage} from 'hkclient-redux/utils/post_utils';
 import {displayUsername} from 'hkclient-redux/utils/user_utils';
-
-import {browserHistory} from 'utils/browser_history';
-import Constants, {NotificationLevels, UserStatuses} from 'utils/constants';
-import {showNotification} from 'utils/notifications';
-import {isDesktopApp, isMacApp, isMobileApp, isWindowsApp} from 'utils/user_agent';
-import * as Utils from 'utils/utils.jsx';
-import {stripMarkdown} from 'utils/markdown';
 
 const NOTIFY_TEXT_MAX_LENGTH = 50;
 

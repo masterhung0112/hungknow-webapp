@@ -6,6 +6,18 @@ import 'bootstrap';
 import React from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 
+import AnnouncementBar from 'components/announcement_bar';
+
+import SystemNotice from 'components/system_notice';
+
+import ModalController from 'components/modal_controller';
+
+import SchemaAdminSettings from 'components/admin_console/schema_admin_settings';
+
+import DiscardChangesModal from 'components/discard_changes_modal';
+
+import BackstageNavbar from 'components/backstage/components/backstage_navbar';
+
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {AdminConfig, EnvironmentConfig, ClientLicense} from 'hkclient-redux/types/config';
 import {Role} from 'hkclient-redux/types/roles';
@@ -13,15 +25,6 @@ import {ConsoleAccess} from 'hkclient-redux/types/admin';
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {CloudState} from 'hkclient-redux/types/cloud';
 import {Team} from 'hkclient-redux/types/teams';
-
-import AnnouncementBar from 'components/announcement_bar';
-import SystemNotice from 'components/system_notice';
-import ModalController from 'components/modal_controller';
-
-import SchemaAdminSettings from 'components/admin_console/schema_admin_settings';
-import DiscardChangesModal from 'components/discard_changes_modal';
-
-import BackstageNavbar from 'components/backstage/components/backstage_navbar';
 
 import AdminSidebar from './admin_sidebar';
 import Highlight from './highlight';

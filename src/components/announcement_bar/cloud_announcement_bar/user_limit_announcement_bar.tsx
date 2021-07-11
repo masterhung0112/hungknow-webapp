@@ -5,15 +5,10 @@ import React from 'react';
 
 import {isEmpty} from 'lodash';
 
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {AnalyticsRow} from 'hkclient-redux/types/admin';
-import {Subscription} from 'hkclient-redux/types/cloud';
-
 import {trackEvent} from 'actions/telemetry_actions';
 
 import {t} from 'utils/i18n';
+
 import PurchaseModal from 'components/purchase_modal';
 
 import {
@@ -23,6 +18,12 @@ import {
     ModalIdentifiers,
     TELEMETRY_CATEGORIES,
 } from 'utils/constants';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {AnalyticsRow} from 'hkclient-redux/types/admin';
+import {Subscription} from 'hkclient-redux/types/cloud';
 
 import AnnouncementBar from '../default_announcement_bar';
 import withGetCloudSubscription from '../../common/hocs/cloud/with_get_cloud_subscription';

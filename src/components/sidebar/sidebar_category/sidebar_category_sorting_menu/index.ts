@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {setCategorySorting} from 'hkclient-redux/actions/channel_categories';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
 import {Preferences} from 'hkclient-redux/constants';
-
-import {GlobalState} from 'types/store';
 
 import SidebarCategorySortingMenu from './sidebar_category_sorting_menu';
 

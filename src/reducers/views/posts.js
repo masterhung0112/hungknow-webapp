@@ -3,9 +3,9 @@
 
 import {combineReducers} from 'redux';
 
-import {UserTypes} from 'hkclient-redux/action_types';
-
 import {ActionTypes} from 'utils/constants';
+
+import {UserTypes} from 'hkclient-redux/action_types';
 
 const defaultState = {
     show: false,

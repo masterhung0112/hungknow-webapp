@@ -6,8 +6,6 @@ import {FormattedMessage} from 'react-intl';
 import {useDispatch, useSelector} from 'react-redux';
 import {getName} from 'country-list';
 
-import {getCloudCustomer, updateCloudCustomer, updateCloudCustomerAddress} from 'hkclient-redux/actions/cloud';
-
 import BlockableLink from 'components/admin_console/blockable_link';
 import DropdownInput from 'components/dropdown_input';
 import StateSelector from 'components/payment_form/state_selector';
@@ -17,6 +15,8 @@ import {GlobalState} from 'types/store';
 import {browserHistory} from 'utils/browser_history';
 import {COUNTRIES} from 'utils/countries';
 import * as Utils from 'utils/utils';
+
+import {getCloudCustomer, updateCloudCustomer, updateCloudCustomerAddress} from 'hkclient-redux/actions/cloud';
 
 import './company_info_edit.scss';
 

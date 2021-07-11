@@ -1,10 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+
 import assert from 'assert';
 
 import {General, Preferences, Permissions} from 'hkclient-redux/constants';
-import {CategoryTypes} from 'constants/channel_categories';
 
 import mergeObjects from 'hkclient-redux/test/merge_objects';
 import TestHelper from 'hkclient-redux/test/test_helper';

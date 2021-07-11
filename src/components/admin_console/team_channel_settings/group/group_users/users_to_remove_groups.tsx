@@ -5,10 +5,10 @@ import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import OverlayTrigger from 'components/overlay_trigger';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Group} from 'hkclient-redux/types/groups';
-
-import OverlayTrigger from 'components/overlay_trigger';
 
 type ProfileWithGroups = Partial<UserProfile & {
     groups: Array<Partial<Group>>;

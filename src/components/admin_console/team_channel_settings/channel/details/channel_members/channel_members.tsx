@@ -4,14 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {ServerError} from 'hkclient-redux/types/errors';
-import {UserProfile, UsersStats, GetFilteredUsersStatsOpts} from 'hkclient-redux/types/users';
-import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
-import GeneralConstants from 'hkclient-redux/constants/general';
-
 import {t} from 'utils/i18n';
 import Constants from 'utils/constants';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
@@ -22,6 +14,13 @@ import {BaseMembership} from 'components/admin_console/user_grid/user_grid_role_
 import ChannelInviteModal from 'components/channel_invite_modal';
 import ToggleModalButton from 'components/toggle_modal_button';
 import {FilterOptions} from 'components/admin_console/filter/filter';
+
+import GeneralConstants from 'hkclient-redux/constants/general';
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
+import {UserProfile, UsersStats, GetFilteredUsersStatsOpts} from 'hkclient-redux/types/users';
+import {ServerError} from 'hkclient-redux/types/errors';
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
 type Props = {
     channelId: string;

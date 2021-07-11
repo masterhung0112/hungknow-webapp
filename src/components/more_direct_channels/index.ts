@@ -7,6 +7,18 @@ import {bindActionCreators, ActionCreatorsMapObject, Dispatch} from 'redux';
 
 import {intersectionBy} from 'lodash';
 
+import {Constants} from 'utils/constants';
+
+import {openDirectChannelToUserId, openGroupChannelToUserIds} from 'actions/channel_actions';
+
+import {loadStatusesForProfilesList, loadStatusesByIds} from 'actions/status_actions.jsx';
+
+import {loadProfilesForGroupChannels} from 'actions/user_actions.jsx';
+
+import {setModalSearchTerm} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {
     getProfiles,
     getProfilesInTeam,
@@ -34,14 +46,6 @@ import {Channel} from 'hkclient-redux/types/channels';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {sortByUsername, filterProfilesStartingWithTerm} from 'hkclient-redux/utils/user_utils';
 import {memoizeResult} from 'hkclient-redux/utils/helpers';
-
-import {Constants} from 'utils/constants';
-import {openDirectChannelToUserId, openGroupChannelToUserIds} from 'actions/channel_actions';
-import {loadStatusesForProfilesList, loadStatusesByIds} from 'actions/status_actions.jsx';
-import {loadProfilesForGroupChannels} from 'actions/user_actions.jsx';
-import {setModalSearchTerm} from 'actions/views/search';
-
-import {GlobalState} from 'types/store';
 
 import MoreDirectChannels, {GroupChannel} from './more_direct_channels';
 

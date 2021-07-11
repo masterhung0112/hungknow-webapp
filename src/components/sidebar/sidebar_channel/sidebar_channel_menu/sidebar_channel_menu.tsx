@@ -4,10 +4,6 @@
 import React from 'react';
 import {IntlShape, injectIntl} from 'react-intl';
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-import {Channel} from 'hkclient-redux/types/channels';
-import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import ChannelInviteModal from 'components/channel_invite_modal';
 import EditCategoryModal from 'components/edit_category_modal';
@@ -16,6 +12,10 @@ import SidebarMenuType from 'components/sidebar/sidebar_menu/sidebar_menu';
 import Menu from 'components/widgets/menu/menu';
 import Constants, {ModalIdentifiers} from 'utils/constants';
 import {copyToClipboard} from 'utils/utils';
+
+import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
+import {Channel} from 'hkclient-redux/types/channels';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
 type Props = {
     channel: Channel;

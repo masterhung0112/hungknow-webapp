@@ -5,10 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {debounce} from 'hkclient-redux/actions/helpers';
-
-import {Team, TeamSearchOpts, TeamsWithCount} from 'hkclient-redux/types/teams';
-
 import {browserHistory} from 'utils/browser_history';
 
 import * as Utils from 'utils/utils.jsx';
@@ -19,6 +15,9 @@ import TeamIcon from 'components/widgets/team_icon/team_icon';
 
 import './team_list.scss';
 import {FilterOptions} from 'components/admin_console/filter/filter';
+
+import {Team, TeamSearchOpts, TeamsWithCount} from 'hkclient-redux/types/teams';
+import {debounce} from 'hkclient-redux/actions/helpers';
 
 const ROW_HEIGHT = 80;
 

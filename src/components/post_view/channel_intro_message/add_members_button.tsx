@@ -4,10 +4,6 @@ import React from 'react';
 
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
-import {Permissions} from 'hkclient-redux/constants';
-
 import ToggleModalButtonRedux from 'components/toggle_modal_button_redux';
 import ToggleModalButton from 'components/toggle_modal_button.jsx';
 import InvitationModal from 'components/invitation_modal';
@@ -21,6 +17,9 @@ import * as Utils from 'utils/utils.jsx';
 import './add_members_button.scss';
 
 import LoadingSpinner from 'components/widgets/loading/loading_spinner';
+
+import {Permissions} from 'hkclient-redux/constants';
+import {Channel} from 'hkclient-redux/types/channels';
 
 import MembersSvg from './members_illustration.svg';
 

@@ -6,13 +6,14 @@ import {shallow} from 'enzyme';
 
 import {set} from 'lodash';
 
-import {UserThread} from 'hkclient-redux/types/threads';
-
 import * as Utils from 'utils/utils';
-import ThreadMenu from '../thread_menu';
+
 import Badge from 'components/widgets/badges/badge';
 
 import {GlobalState} from 'types/store';
+
+import ThreadMenu from '../thread_menu';
+import {UserThread} from 'hkclient-redux/types/threads';
 
 import ThreadItem from './thread_item';
 

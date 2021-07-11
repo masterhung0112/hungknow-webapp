@@ -2,13 +2,14 @@
 // See LICENSE.txt for license information.
 import {connect} from 'react-redux';
 
+import Constants from 'utils/constants';
+
+import {GlobalState} from 'types/store';
+
 import {Permissions} from 'hkclient-redux/constants';
 import {getChannelsNameMapInCurrentTeam} from 'hkclient-redux/selectors/entities/channels';
 import {getLicense, getConfig} from 'hkclient-redux/selectors/entities/general';
 import {haveICurrentTeamPermission} from 'hkclient-redux/selectors/entities/roles';
-
-import Constants from 'utils/constants';
-import {GlobalState} from 'types/store';
 
 import TutorialView from './tutorial_view';
 

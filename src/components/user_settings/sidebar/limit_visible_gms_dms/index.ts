@@ -3,12 +3,12 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {savePreferences} from 'hkclient-redux/actions/preferences';
 import {Preferences} from 'hkclient-redux/constants';
 import {getInt} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {GlobalState} from 'types/store';
 
 import LimitVisibleGMsDMs from './limit_visible_gms_dms';
 

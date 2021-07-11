@@ -6,10 +6,10 @@ import React from 'react';
 import PDFJS from 'pdfjs-dist';
 import debounce from 'lodash/debounce';
 
-import {getFileDownloadUrl} from 'hkclient-redux/utils/file_utils';
-
 import LoadingSpinner from 'components/widgets/loading/loading_spinner';
 import FileInfoPreview from 'components/file_info_preview';
+
+import {getFileDownloadUrl} from 'hkclient-redux/utils/file_utils';
 
 const INITIAL_RENDERED_PAGES = 3;
 

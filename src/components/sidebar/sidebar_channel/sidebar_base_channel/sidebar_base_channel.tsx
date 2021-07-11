@@ -3,8 +3,6 @@
 
 import React from 'react';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import * as GlobalActions from 'actions/global_actions';
 
@@ -12,6 +10,8 @@ import SidebarChannelLink from 'components/sidebar/sidebar_channel/sidebar_chann
 import SharedChannelIndicator from 'components/shared_channel_indicator';
 import {localizeMessage} from 'utils/utils';
 import Constants from 'utils/constants';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
     channel: Channel;

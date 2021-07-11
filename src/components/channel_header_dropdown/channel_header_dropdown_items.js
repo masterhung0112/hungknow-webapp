@@ -4,8 +4,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {Permissions} from 'hkclient-redux/constants';
-
 import {Constants, ModalIdentifiers} from 'utils/constants';
 import {localizeMessage, isGuest} from 'utils/utils';
 
@@ -28,6 +26,8 @@ import ChannelGroupsManageModal from 'components/channel_groups_manage_modal';
 import ChannelPermissionGate from 'components/permissions_gates/channel_permission_gate';
 
 import Menu from 'components/widgets/menu/menu';
+
+import {Permissions} from 'hkclient-redux/constants';
 
 import MenuItemLeaveChannel from './menu_items/leave_channel';
 import MenuItemCloseChannel from './menu_items/close_channel';

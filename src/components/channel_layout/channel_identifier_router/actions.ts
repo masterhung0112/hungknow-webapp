@@ -3,6 +3,16 @@
 
 import {History} from 'history';
 
+import {openDirectChannelToUserId} from 'actions/channel_actions';
+
+import * as GlobalActions from 'actions/global_actions';
+
+import {joinPrivateChannelPrompt} from 'utils/channel_utils';
+
+import {Constants} from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {joinChannel, getChannelByNameAndTeamName, getChannelMember, markGroupChannelOpen, fetchMyChannelsAndMembers} from 'hkclient-redux/actions/channels';
 import {getUser, getUserByUsername, getUserByEmail} from 'hkclient-redux/actions/users';
 import {getTeamByName} from 'hkclient-redux/selectors/entities/teams';
@@ -11,12 +21,6 @@ import {getChannelByName, getOtherChannels, getChannel, getChannelsNameMapInTeam
 import {GetStateFunc, DispatchFunc, ActionFunc} from 'hkclient-redux/types/actions';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {openDirectChannelToUserId} from 'actions/channel_actions';
-import * as GlobalActions from 'actions/global_actions';
-import {joinPrivateChannelPrompt} from 'utils/channel_utils';
-import {Constants} from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 import {Match, MatchAndHistory} from './channel_identifier_router';
 

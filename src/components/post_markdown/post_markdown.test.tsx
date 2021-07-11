@@ -4,12 +4,12 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Posts} from 'hkclient-redux/constants';
-import {Post, PostType} from 'hkclient-redux/types/posts';
-
 import PostMarkdown from 'components/post_markdown/post_markdown';
 import Markdown from 'components/markdown';
 import {TestHelper} from 'utils/test_helper';
+
+import {Post, PostType} from 'hkclient-redux/types/posts';
+import {Posts} from 'hkclient-redux/constants';
 
 describe('components/PostMarkdown', () => {
     const baseProps = {

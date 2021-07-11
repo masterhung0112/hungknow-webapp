@@ -4,14 +4,15 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {deactivateMfa} from 'actions/views/mfa';
+
+import Constants from 'utils/constants';
+
 import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {deactivateMfa} from 'actions/views/mfa';
-import Constants from 'utils/constants';
 
 import MfaSection from './mfa_section';
 

@@ -4,11 +4,11 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
 import LoadingScreen from 'components/loading_screen';
 
 import FormattedAdminHeader from 'components/widgets/admin_console/formatted_admin_header';
+
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import LogList from './log_list';
 

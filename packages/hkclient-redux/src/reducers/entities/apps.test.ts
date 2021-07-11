@@ -3,6 +3,7 @@
 
 import {AppsTypes} from '../../action_types';
 import {AppBinding} from '../../types/apps';
+
 import * as Reducers from './apps';
 
 describe('bindings', () => {

@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {Audit} from 'hkclient-redux/types/audits';
 import {getAudits} from 'hkclient-redux/actions/admin';
 import * as Selectors from 'hkclient-redux/selectors/entities/admin';
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
-
-import {GlobalState} from 'types/store';
 
 import Audits from './audits';
 

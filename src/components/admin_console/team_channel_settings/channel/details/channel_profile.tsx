@@ -7,9 +7,6 @@ import {FormattedMessage} from 'react-intl';
 
 import classNames from 'classnames';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {Team} from 'hkclient-redux/types/teams';
-
 import {t} from 'utils/i18n';
 
 import AdminPanel from 'components/widgets/admin_console/admin_panel';
@@ -17,6 +14,9 @@ import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx'
 import ArchiveIcon from 'components/widgets/icons/archive_icon';
 import UnarchiveIcon from 'components/widgets/icons/unarchive_icon';
 import SharedChannelIndicator from 'components/shared_channel_indicator';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {Channel} from 'hkclient-redux/types/channels';
 
 import './channel_profile.scss';
 interface ChannelProfileProps {

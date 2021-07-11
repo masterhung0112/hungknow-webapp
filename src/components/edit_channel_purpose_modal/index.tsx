@@ -3,14 +3,14 @@
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
+import Constants from 'utils/constants';
+
 import {getBool} from 'hkclient-redux/selectors/entities/preferences';
 import {patchChannel} from 'hkclient-redux/actions/channels';
 import {ActionFunc, GenericAction, ActionResult} from 'hkclient-redux/types/actions';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {GlobalState} from 'types/store';
-
-import Constants from 'utils/constants';
 
 import EditChannelPurposeModal from './edit_channel_purpose_modal';
 

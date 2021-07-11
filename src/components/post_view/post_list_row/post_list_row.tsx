@@ -5,10 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
-import * as PostListUtils from 'hkclient-redux/utils/post_list';
-
-import {Channel} from 'hkclient-redux/types/channels';
-
 import CombinedUserActivityPost from 'components/post_view/combined_user_activity_post';
 import Post from 'components/post_view/post';
 import DateSeparator from 'components/post_view/date_separator';
@@ -16,6 +12,9 @@ import NewMessageSeparator from 'components/post_view/new_message_separator/new_
 import ChannelIntroMessage from 'components/post_view/channel_intro_message/';
 import {isIdNotPost} from 'utils/post_utils';
 import {PostListRowListIds, Locations} from 'utils/constants';
+
+import {Channel} from 'hkclient-redux/types/channels';
+import * as PostListUtils from 'hkclient-redux/utils/post_list';
 
 export type PostListRowProps = {
     channel?: Channel;

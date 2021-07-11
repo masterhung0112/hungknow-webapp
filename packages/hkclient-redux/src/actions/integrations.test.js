@@ -4,8 +4,9 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/integrations';
-import * as TeamsActions from 'actions/teams';
+import * as Actions from 'hkclient-redux/actions/integrations';
+import * as TeamsActions from 'hkclient-redux/actions/teams';
+
 import {Client4} from 'hkclient-redux/client';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
@@ -13,7 +14,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('Actions.Integrations', () => {
+describe('hkclient-redux/actions.Integrations', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

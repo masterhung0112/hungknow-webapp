@@ -3,6 +3,12 @@
 
 import {connect} from 'react-redux';
 
+import {getPenultimateViewedChannelName} from 'selectors/local_storage';
+
+import {Constants} from 'utils/constants';
+
+import * as Utils from 'utils/utils';
+
 import {createSelector} from 'reselect';
 
 import {
@@ -21,11 +27,6 @@ import {
     isCurrentChannelReadOnly,
     getRedirectChannelNameForTeam,
 } from 'hkclient-redux/selectors/entities/channels';
-
-import {getPenultimateViewedChannelName} from 'selectors/local_storage';
-
-import {Constants} from 'utils/constants';
-import * as Utils from 'utils/utils';
 
 import Desktop from './channel_header_dropdown';
 import Items from './channel_header_dropdown_items';

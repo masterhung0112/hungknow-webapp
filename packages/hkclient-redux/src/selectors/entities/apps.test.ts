@@ -1,8 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {GlobalState} from 'hkclient-redux/types/store';
+
 import * as Selectors from 'hkclient-redux/selectors/entities/apps';
-import {GlobalState} from 'types/store';
 import {AppBinding} from 'hkclient-redux/types/apps';
 import {AppBindingLocations} from 'hkclient-redux/constants/apps';
 

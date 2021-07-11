@@ -5,14 +5,6 @@ import {batchActions} from 'redux-batched-actions';
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import * as PostActions from 'hkclient-redux/actions/posts';
-import * as SearchActions from 'hkclient-redux/actions/search';
-import {SearchTypes} from 'hkclient-redux/action_types';
-import {DispatchFunc} from 'hkclient-redux/types/actions';
-import {Post} from 'hkclient-redux/types/posts';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
-
 import {
     updateRhsState,
     selectPostFromRightHandSideSearch,
@@ -35,11 +27,24 @@ import {
     suppressRHS,
     unsuppressRHS,
 } from 'actions/views/rhs';
+
 import {trackEvent} from 'actions/telemetry_actions.jsx';
+
 import {ActionTypes, RHSStates, Constants} from 'utils/constants';
+
 import {getBrowserUtcOffset} from 'utils/timezone.jsx';
+
 import {GlobalState} from 'types/store';
+
 import {ViewsState} from 'types/store/views';
+
+import * as PostActions from 'hkclient-redux/actions/posts';
+import * as SearchActions from 'hkclient-redux/actions/search';
+import {SearchTypes} from 'hkclient-redux/action_types';
+import {DispatchFunc} from 'hkclient-redux/types/actions';
+import {Post} from 'hkclient-redux/types/posts';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {IDMappedObjects} from 'hkclient-redux/types/utilities';
 
 const mockStore = configureStore<GlobalState, DispatchFunc>([thunk]);
 

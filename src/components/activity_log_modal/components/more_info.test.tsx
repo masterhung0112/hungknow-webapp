@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {General} from 'hkclient-redux/constants';
-
 import MoreInfo from 'components/activity_log_modal/components/more_info';
 import {TestHelper} from 'utils/test_helper';
+
+import {General} from 'hkclient-redux/constants';
 
 describe('components/activity_log_modal/MoreInfo', () => {
     const baseProps = {

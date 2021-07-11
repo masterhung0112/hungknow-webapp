@@ -3,22 +3,6 @@
 
 import {batchActions} from 'redux-batched-actions';
 
-import {
-    createDirectChannel,
-    fetchMyChannelsAndMembers,
-    getChannelByNameAndTeamName,
-    getChannelStats,
-    selectChannel,
-} from 'hkclient-redux/actions/channels';
-import {logout, loadMe} from 'hkclient-redux/actions/users';
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentTeamId, getMyTeams, getTeam, getMyTeamMember, getTeamMemberships} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUser, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-import {getCurrentChannelStats, getCurrentChannelId, getMyChannelMember, getRedirectChannelNameForTeam, getChannelsNameMapInTeam, getAllDirectChannels} from 'hkclient-redux/selectors/entities/channels';
-import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
-import {ChannelTypes} from 'hkclient-redux/action_types';
-import {fetchAppBindings} from 'hkclient-redux/actions/apps';
-import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
 import {Team} from 'hkclient-redux/types/teams';
@@ -42,6 +26,22 @@ import WebSocketClient from 'client/web_websocket_client.jsx';
 import {ActionTypes, Constants, PostTypes, RHSStates, ModalIdentifiers} from 'utils/constants';
 import {filterAndSortTeamsByDisplayName} from 'utils/team_utils.jsx';
 import * as Utils from 'utils/utils.jsx';
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
+import {fetchAppBindings} from 'hkclient-redux/actions/apps';
+import {ChannelTypes} from 'hkclient-redux/action_types';
+import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
+import {getCurrentChannelStats, getCurrentChannelId, getMyChannelMember, getRedirectChannelNameForTeam, getChannelsNameMapInTeam, getAllDirectChannels} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentUser, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentTeamId, getMyTeams, getTeam, getMyTeamMember, getTeamMemberships} from 'hkclient-redux/selectors/entities/teams';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {logout, loadMe} from 'hkclient-redux/actions/users';
+import {
+    createDirectChannel,
+    fetchMyChannelsAndMembers,
+    getChannelByNameAndTeamName,
+    getChannelStats,
+    selectChannel,
+} from 'hkclient-redux/actions/channels';
 import SubMenuModal from '../components/widgets/menu/menu_modals/submenu_modal/submenu_modal';
 
 import {openModal} from './views/modals';

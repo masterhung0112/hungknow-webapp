@@ -4,9 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import * as Utils from 'utils/utils.jsx';
 
 import MenuIcon from 'components/widgets/icons/menu_icon';
@@ -15,6 +12,9 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Avatar from 'components/widgets/users/avatar';
 
 import AdminNavbarDropdown from 'components/admin_console/admin_navbar_dropdown';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Client4} from 'hkclient-redux/client';
 
 type Props = {
     currentUser: UserProfile;

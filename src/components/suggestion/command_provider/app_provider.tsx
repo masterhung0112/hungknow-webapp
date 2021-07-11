@@ -7,8 +7,9 @@ import {Store} from 'redux';
 
 import globalStore from 'stores/redux_store';
 
-import Provider from '../provider';
 import {GlobalState} from 'types/store';
+
+import Provider from '../provider';
 
 import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
 

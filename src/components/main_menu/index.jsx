@@ -4,22 +4,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {
-    getConfig,
-    getLicense,
-    getFirstAdminVisitMarketplaceStatus,
-    getSubscriptionStats as selectSubscriptionStats,
-} from 'hkclient-redux/selectors/entities/general';
-import {
-    getMyTeams,
-    getJoinableTeamIds,
-    getCurrentTeam,
-} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-import {haveITeamPermission, haveICurrentTeamPermission, haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
-import {getSubscriptionStats} from 'hkclient-redux/actions/cloud';
-import {Permissions} from 'hkclient-redux/constants';
-
 import {RHSStates, TrialPeriodDays} from 'utils/constants';
 import {getRemainingDaysFromFutureTimestamp} from 'utils/utils.jsx';
 
@@ -33,6 +17,22 @@ import {
     showNextStepsTips,
     showNextSteps,
 } from 'components/next_steps_view/steps';
+
+import {Permissions} from 'hkclient-redux/constants';
+import {getSubscriptionStats} from 'hkclient-redux/actions/cloud';
+import {haveITeamPermission, haveICurrentTeamPermission, haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {
+    getMyTeams,
+    getJoinableTeamIds,
+    getCurrentTeam,
+} from 'hkclient-redux/selectors/entities/teams';
+import {
+    getConfig,
+    getLicense,
+    getFirstAdminVisitMarketplaceStatus,
+    getSubscriptionStats as selectSubscriptionStats,
+} from 'hkclient-redux/selectors/entities/general';
 
 import MainMenu from './main_menu.jsx';
 

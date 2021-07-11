@@ -8,8 +8,6 @@ import {Link} from 'react-router-dom';
 
 import {isEmpty} from 'lodash';
 
-import {Client4} from 'hkclient-redux/client';
-
 import {browserHistory} from 'utils/browser_history';
 import * as GlobalActions from 'actions/global_actions';
 import logoImage from 'images/logo.png';
@@ -21,6 +19,8 @@ import LocalizedIcon from 'components/localized_icon';
 import LoadingScreen from 'components/loading_screen';
 import {Constants} from 'utils/constants';
 import {t} from 'utils/i18n';
+
+import {Client4} from 'hkclient-redux/client';
 
 export default class SignupController extends React.PureComponent {
     static propTypes = {

@@ -4,8 +4,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import {Client4} from 'hkclient-redux/client';
-
 import * as Utils from 'utils/utils.jsx';
 import ProfilePicture from 'components/profile_picture';
 import UserProfile from 'components/user_profile';
@@ -13,6 +11,8 @@ import UserProfile from 'components/user_profile';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import Nbsp from 'components/html_entities/nbsp';
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
+
+import {Client4} from 'hkclient-redux/client';
 
 export default class UserListRow extends React.PureComponent {
     static propTypes = {

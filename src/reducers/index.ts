@@ -18,4 +18,4 @@
 // }
 
 // export default reducer
-export default {}
+export default {};

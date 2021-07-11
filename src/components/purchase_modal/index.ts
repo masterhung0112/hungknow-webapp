@@ -5,11 +5,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 import {Stripe} from '@stripe/stripe-js';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
-import {getCloudProducts, getCloudSubscription} from 'hkclient-redux/actions/cloud';
-import {getClientConfig} from 'hkclient-redux/actions/general';
-
 import {GlobalState} from 'types/store';
 import {BillingDetails} from 'types/cloud/sku';
 
@@ -20,6 +15,11 @@ import {ModalIdentifiers} from 'utils/constants';
 
 import {closeModal} from 'actions/views/modals';
 import {completeStripeAddPaymentMethod, subscribeCloudSubscription} from 'actions/cloud';
+
+import {getClientConfig} from 'hkclient-redux/actions/general';
+import {getCloudProducts, getCloudSubscription} from 'hkclient-redux/actions/cloud';
+import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import PurchaseModal from './purchase_modal';
 

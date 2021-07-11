@@ -6,6 +6,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
+import SharedChannelIndicator from 'components/shared_channel_indicator';
+
+import BotBadge from 'components/widgets/badges/bot_badge';
+
+import GuestBadge from 'components/widgets/badges/guest_badge';
+
+import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
+
+import {getPostDraft} from 'selectors/rhs';
+
+import store from 'stores/redux_store.jsx';
+
+import {Constants, StoragePrefixes} from 'utils/constants';
+
+import * as Utils from 'utils/utils.jsx';
+
 import {UserTypes} from 'hkclient-redux/action_types';
 import {Client4} from 'hkclient-redux/client';
 import {
@@ -36,16 +52,6 @@ import {getChannels, searchChannels} from 'hkclient-redux/actions/channels';
 import {logError} from 'hkclient-redux/actions/errors';
 import {getLastPostPerChannel} from 'hkclient-redux/selectors/entities/posts';
 import {sortChannelsByTypeAndDisplayName, isGroupChannelVisible, isUnreadChannel} from 'hkclient-redux/utils/channel_utils';
-
-import SharedChannelIndicator from 'components/shared_channel_indicator';
-import BotBadge from 'components/widgets/badges/bot_badge';
-import GuestBadge from 'components/widgets/badges/guest_badge';
-import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
-
-import {getPostDraft} from 'selectors/rhs';
-import store from 'stores/redux_store.jsx';
-import {Constants, StoragePrefixes} from 'utils/constants';
-import * as Utils from 'utils/utils.jsx';
 
 import {Preferences} from 'hkclient-redux/constants';
 import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';

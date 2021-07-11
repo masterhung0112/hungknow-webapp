@@ -4,6 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {loadProfilesAndTeamMembers, loadProfilesWithoutTeam} from 'actions/user_actions';
+
+import {setSystemUsersSearch} from 'actions/views/search';
+
+import {SearchUserTeamFilter} from 'utils/constants';
+
 import {getTeams, getTeamStats} from 'hkclient-redux/actions/teams';
 import {
     getUser,
@@ -19,13 +27,6 @@ import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {Stats} from 'hkclient-redux/constants';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {GlobalState} from 'types/store';
-
-import {loadProfilesAndTeamMembers, loadProfilesWithoutTeam} from 'actions/user_actions';
-
-import {setSystemUsersSearch} from 'actions/views/search';
-import {SearchUserTeamFilter} from 'utils/constants';
 
 import SystemUsers from './system_users';
 

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import LinkingLandingComponent from 'components/linking-landing'
+import LinkingLandingComponent from 'components/linking-landing';
 
 export default class LinkingLandingPage extends React.PureComponent {
-  render() {
-    return <LinkingLandingComponent />
-  }
+    render() {
+        return <LinkingLandingComponent/>;
+    }
 }

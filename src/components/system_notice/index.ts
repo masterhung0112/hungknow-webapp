@@ -4,6 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
+import {dismissNotice} from 'actions/views/notice';
+
+import Notices from 'components/system_notice/notices';
+
+import SystemNotice from 'components/system_notice/system_notice';
+
+import {GlobalState} from 'types/store';
+
 import {createSelector} from 'reselect';
 
 import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
@@ -14,14 +24,6 @@ import {Permissions} from 'hkclient-redux/constants';
 import {getStandardAnalytics} from 'hkclient-redux/actions/admin';
 
 import {PreferenceType} from 'hkclient-redux/types/preferences';
-
-import {Preferences} from 'utils/constants';
-
-import {dismissNotice} from 'actions/views/notice';
-
-import Notices from 'components/system_notice/notices';
-import SystemNotice from 'components/system_notice/system_notice';
-import {GlobalState} from 'types/store';
 
 function makeMapStateToProps() {
     const getCategory = makeGetCategory();

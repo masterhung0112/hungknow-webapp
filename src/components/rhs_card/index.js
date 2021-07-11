@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {getSelectedPostCard} from 'selectors/rhs';
+
 import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {getSelectedPostCard} from 'selectors/rhs';
 
 import RhsCard from './rhs_card.jsx';
 

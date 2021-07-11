@@ -3,13 +3,13 @@
 
 import assert from 'assert';
 
-import {WebsocketEvents} from 'hkclient-redux/constants';
+import typingReducer from 'hkclient-redux/reducers/entities/typing';
 
-import typingReducer from 'reducers/entities/typing';
+import {WebsocketEvents} from 'hkclient-redux/constants';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
 
-describe('Reducers.Typing', () => {
+describe('hkclient-redux/reducers.Typing', () => {
     it('initial state', async () => {
         let state = {};
 

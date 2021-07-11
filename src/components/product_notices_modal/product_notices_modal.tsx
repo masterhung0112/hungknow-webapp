@@ -4,9 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ProductNotices, ProductNotice} from 'hkclient-redux/types/product_notices';
-import {WebsocketStatus} from 'hkclient-redux/types/websocket';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
 import Markdown from 'components/markdown';
@@ -16,6 +13,9 @@ import PreviousIcon from 'components/widgets/icons/fa_previous_icon';
 import AdminEyeIcon from 'components/widgets/icons/admin_eye_icon';
 
 import {isDesktopApp, getDesktopVersion} from 'utils/user_agent';
+
+import {WebsocketStatus} from 'hkclient-redux/types/websocket';
+import {ProductNotices, ProductNotice} from 'hkclient-redux/types/product_notices';
 
 import './product_notices_modal.scss';
 

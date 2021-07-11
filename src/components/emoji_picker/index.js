@@ -4,10 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getCustomEmojis, searchCustomEmojis} from 'hkclient-redux/actions/emojis';
-
 import {incrementEmojiPickerPage, setUserSkinTone} from 'actions/emoji_actions';
 import {getEmojiMap, getRecentEmojis, getUserSkinTone} from 'selectors/emojis';
+
+import {getCustomEmojis, searchCustomEmojis} from 'hkclient-redux/actions/emojis';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 
 import EmojiPicker from './emoji_picker.jsx';

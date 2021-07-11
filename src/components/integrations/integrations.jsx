@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Permissions} from 'hkclient-redux/constants';
-
 import BotAccountsIcon from 'images/bot_default_icon.png';
 
 import * as Utils from 'utils/utils.jsx';
@@ -17,6 +15,8 @@ import SlashCommandIcon from 'images/slash_command_icon.jpg';
 
 import SystemPermissionGate from 'components/permissions_gates/system_permission_gate';
 import TeamPermissionGate from 'components/permissions_gates/team_permission_gate';
+
+import {Permissions} from 'hkclient-redux/constants';
 
 import IntegrationOption from './integration_option.jsx';
 

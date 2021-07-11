@@ -6,7 +6,7 @@ import React from 'react';
 import MobileChannelHeaderPlug from 'plugins/mobile_channel_header_plug/mobile_channel_header_plug';
 import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 import {createCallContext, createCallRequest} from 'utils/apps';
-import {AppCallResponseTypes, AppCallTypes} from 'hkclient-redux/constants/apps';
+import {AppCallResponseTypes, AppCallTypes} from 'mattermost-redux/constants/apps';
 
 describe('plugins/MobileChannelHeaderPlug', () => {
     const testPlug = {

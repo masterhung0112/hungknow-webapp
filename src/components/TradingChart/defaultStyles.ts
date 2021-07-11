@@ -1,79 +1,80 @@
-import { ChartConfig } from './constants'
+import {ChartConfig} from './constants';
 
 export const DefaultStyles = {
-  titleTxt: 'TradingVue.js',
-  id: 'trading-vue-js',
-  width: 800,
-  height: 421,
+    titleTxt: 'TradingVue.js',
+    id: 'trading-vue-js',
+    width: 800,
+    height: 421,
 
-  colorTitle: '#42b883',
+    colorTitle: '#42b883',
 
-  colorBack: '#121826',
+    colorBack: '#121826',
 
-  colorGrid: '#2f3240',
+    colorGrid: '#2f3240',
 
-  colorText: '#dedddd',
+    colorText: '#dedddd',
 
-  colorTextHL: '#fff',
+    colorTextHL: '#fff',
 
-  colorScale: '#838383',
+    colorScale: '#838383',
 
-  colorCross: '#8091a0',
+    colorCross: '#8091a0',
 
-  colorCandleUp: '#23a776',
+    colorCandleUp: '#23a776',
 
-  colorCandleDw: '#e54150',
+    colorCandleDw: '#e54150',
 
-  colorWickUp: '#23a77688',
+    colorWickUp: '#23a77688',
 
-  colorWickDw: '#e5415088',
+    colorWickDw: '#e5415088',
 
-  colorWickSm: 'transparent', // deprecated
+    colorWickSm: 'transparent', // deprecated
 
-  colorVolUp: '#79999e42',
+    colorVolUp: '#79999e42',
 
-  colorVolDw: '#ef535042',
+    colorVolDw: '#ef535042',
 
-  colorPanel: '#565c68',
+    colorPanel: '#565c68',
 
-  colorTbBack: '#000000',
-  colorTbBorder: '#8282827d',
+    colorTbBack: '#000000',
+    colorTbBorder: '#8282827d',
 
-  colors: {
-    black: '#000000',
-    cross: '#888888',
-  },
+    colors: {
+        black: '#000000',
+        cross: '#888888',
+    },
 
-  font: ChartConfig.FONT,
+    font: ChartConfig.FONT,
 
-  toolbar: false,
-  data: {},
+    toolbar: false,
+    data: {},
 
-  // Your overlay classes here
-  overlays: (): any[] => {
-    return []
-  },
+    // Your overlay classes here
+    overlays: (): any[] => {
+        return [];
+    },
 
-  // Overwrites ChartConfig values,
-  // see constants.js
-  chartConfig: function () {
-    return {}
-  },
+    // Overwrites ChartConfig values,
+    // see constants.js
+    chartConfig() {
+        return {};
+    },
 
-  legendButtons: (): any[] => {
-    return []
-  },
+    legendButtons: (): any[] => {
+        return [];
+    },
 
-  indexBased: false,
+    indexBased: false,
 
-  extensions: (): any[] => {
-    return []
-  },
-  xSettings: function () {
-    return {}
-  },
+    extensions: (): any[] => {
+        return [];
+    },
+    xSettings() {
+        return {};
+    },
 
-  skin: 'black',
-  // Skin Name
-  timezone: 0,
-}
+    skin: 'black',
+
+    // Skin Name
+    timezone: 0,
+};

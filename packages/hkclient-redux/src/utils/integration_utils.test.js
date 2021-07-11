@@ -2,6 +2,7 @@
 // See LICENSE.txt for license information.
 
 import assert from 'assert';
+
 import {checkDialogElementForError, checkIfErrorsMatchElements} from 'hkclient-redux/utils/integration_utils';
 
 describe('integration utils', () => {

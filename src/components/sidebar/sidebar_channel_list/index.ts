@@ -4,15 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {moveCategory} from 'hkclient-redux/actions/channel_categories';
-import {getCurrentChannelId, getUnreadChannelIds} from 'hkclient-redux/selectors/entities/channels';
-import {shouldShowUnreadsCategory, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-import {getThreadCountsInCurrentTeam} from 'hkclient-redux/selectors/entities/threads';
-import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {switchToChannelById} from 'actions/views/channel';
+
 import {switchToGlobalThreads} from 'actions/views/threads';
+
 import {
     moveChannelsInSidebar,
     setDraggingState,
@@ -20,14 +15,24 @@ import {
     clearChannelSelection,
     multiSelectChannelAdd,
 } from 'actions/views/channel_sidebar';
+
 import {close} from 'actions/views/lhs';
+
 import {
     getDisplayedChannels,
     getDraggingState,
     getCategoriesForCurrentTeam,
     isUnreadFilterEnabled,
 } from 'selectors/views/channel_sidebar';
+
 import {GlobalState} from 'types/store';
+
+import {moveCategory} from 'hkclient-redux/actions/channel_categories';
+import {getCurrentChannelId, getUnreadChannelIds} from 'hkclient-redux/selectors/entities/channels';
+import {shouldShowUnreadsCategory, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+import {getThreadCountsInCurrentTeam} from 'hkclient-redux/selectors/entities/threads';
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import SidebarChannelList from './sidebar_channel_list';
 

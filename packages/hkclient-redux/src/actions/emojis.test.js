@@ -2,10 +2,12 @@
 // See LICENSE.txt for license information.
 
 import fs from 'fs';
+
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/emojis';
+import * as Actions from 'hkclient-redux/actions/emojis';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {GeneralTypes} from 'hkclient-redux/action_types';
@@ -14,7 +16,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('Actions.Emojis', () => {
+describe('hkclient-redux/actions.Emojis', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

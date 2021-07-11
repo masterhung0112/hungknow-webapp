@@ -5,12 +5,12 @@ import React, {useEffect, useState} from 'react';
 
 import {FormattedMessage} from 'react-intl';
 
-import {Client4} from 'hkclient-redux/client';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import {
     ModalIdentifiers,
 } from 'utils/constants';
+
+import {Client4} from 'hkclient-redux/client';
 
 import NoInternetConnection from '../no_internet_connection/no_internet_connection';
 import './renew_link.scss';

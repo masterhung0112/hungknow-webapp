@@ -1,9 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {getBool as getBoolPreference} from 'hkclient-redux/selectors/entities/preferences';
 
 import {GlobalState} from 'types/store';
 import {Preferences} from 'utils/constants';
+
+import {getBool as getBoolPreference} from 'hkclient-redux/selectors/entities/preferences';
 
 export const arePreviewsCollapsed = (state: GlobalState) => {
     return getBoolPreference(

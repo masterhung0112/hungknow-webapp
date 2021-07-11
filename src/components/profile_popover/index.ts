@@ -4,18 +4,6 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {getCurrentUserId, getStatusForUserId, getUser} from 'hkclient-redux/selectors/entities/users';
-import {
-    getCurrentTeam,
-    getCurrentRelativeTeamUrl,
-    getTeamMember,
-} from 'hkclient-redux/selectors/entities/teams';
-import {
-    getChannelMembersInChannels,
-    canManageAnyChannelMembersInCurrentTeam,
-    getCurrentChannelId,
-} from 'hkclient-redux/selectors/entities/channels';
-
 import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
 import {getMembershipForEntities} from 'actions/views/profile_popover';
 import {closeModal, openModal} from 'actions/views/modals';
@@ -24,6 +12,18 @@ import {areTimezonesEnabledAndSupported, getCurrentUserTimezone} from 'selectors
 import {getRhsState, getSelectedPost} from 'selectors/rhs';
 
 import {makeGetCustomStatus, isCustomStatusEnabled, isCustomStatusExpired} from 'selectors/views/custom_status';
+
+import {
+    getChannelMembersInChannels,
+    canManageAnyChannelMembersInCurrentTeam,
+    getCurrentChannelId,
+} from 'hkclient-redux/selectors/entities/channels';
+import {
+    getCurrentTeam,
+    getCurrentRelativeTeamUrl,
+    getTeamMember,
+} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentUserId, getStatusForUserId, getUser} from 'hkclient-redux/selectors/entities/users';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {GlobalState} from '../../types/store';
 

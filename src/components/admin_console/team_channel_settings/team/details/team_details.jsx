@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import {FormattedMessage} from 'react-intl';
 import {cloneDeep} from 'lodash';
 
-import {Groups} from 'hkclient-redux/constants';
-
 import {browserHistory} from 'utils/browser_history';
 
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 import BlockableLink from 'components/admin_console/blockable_link';
 import FormError from 'components/form_error';
+
+import {Groups} from 'hkclient-redux/constants';
 
 import RemoveConfirmModal from '../../remove_confirm_modal';
 import {NeedDomainsError, NeedGroupsError, UsersWillBeRemovedError} from '../../errors';

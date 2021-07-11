@@ -5,13 +5,11 @@ import React, {ComponentProps} from 'react';
 import {set} from 'lodash';
 import {shallow} from 'enzyme';
 
-import {setThreadFollow, updateThreadRead} from 'hkclient-redux/actions/threads';
 jest.mock('hkclient-redux/actions/threads');
 
 import {manuallyMarkThreadAsUnread} from 'actions/views/threads';
 jest.mock('actions/views/threads');
 
-import ThreadMenu from '../thread_menu';
 import Menu from 'components/widgets/menu/menu';
 
 import {
@@ -23,6 +21,9 @@ jest.mock('actions/post_actions');
 import {copyToClipboard} from 'utils/utils';
 import {fakeDate} from 'tests/helpers/date';
 import {GlobalState} from 'types/store';
+
+import ThreadMenu from '../thread_menu';
+import {setThreadFollow, updateThreadRead} from 'hkclient-redux/actions/threads';
 jest.mock('utils/utils');
 
 const mockRouting = {

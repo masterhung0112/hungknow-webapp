@@ -7,16 +7,6 @@ import {Redirect, RouteComponentProps} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 import {Overlay, Tooltip} from 'react-bootstrap';
 
-import {isEmail} from 'hkclient-redux/utils/helpers';
-
-import {Team, TeamMembership} from 'hkclient-redux/types/teams';
-
-import {UserProfile} from 'hkclient-redux/types/users';
-
-import {$ID} from 'hkclient-redux/types/utilities';
-
-import {ServerError} from 'hkclient-redux/types/errors';
-
 import {adminResetMfa, adminResetEmail} from 'actions/admin_actions.jsx';
 
 import {Constants} from 'utils/constants';
@@ -37,6 +27,12 @@ import TeamList from 'components/admin_console/system_user_detail/team_list';
 import EmailIcon from 'components/widgets/icons/email_icon';
 import AtIcon from 'components/widgets/icons/at_icon';
 import SheidOutlineIcon from 'components/widgets/icons/shield_outline_icon';
+
+import {ServerError} from 'hkclient-redux/types/errors';
+import {$ID} from 'hkclient-redux/types/utilities';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Team, TeamMembership} from 'hkclient-redux/types/teams';
+import {isEmail} from 'hkclient-redux/utils/helpers';
 
 import './system_user_detail.scss';
 

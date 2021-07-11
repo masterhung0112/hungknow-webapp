@@ -6,11 +6,6 @@ import {useIntl} from 'react-intl';
 import {useSelector, useDispatch} from 'react-redux';
 import tinycolor from 'tinycolor2';
 
-import {$ID} from 'hkclient-redux/types/utilities';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {getUser as selectUser, makeDisplayNameGetter} from 'hkclient-redux/selectors/entities/users';
-import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
-
 import {GlobalState} from 'types/store';
 
 import {t} from 'utils/i18n';
@@ -18,6 +13,11 @@ import {imageURLForUser} from 'utils/utils';
 
 import SimpleTooltip, {useSynchronizedImmediate} from 'components/widgets/simple_tooltip';
 import Avatar from 'components/widgets/users/avatar';
+
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {getUser as selectUser, makeDisplayNameGetter} from 'hkclient-redux/selectors/entities/users';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {$ID} from 'hkclient-redux/types/utilities';
 
 import './avatars.scss';
 import {getMissingProfilesByIds} from 'hkclient-redux/actions/users';

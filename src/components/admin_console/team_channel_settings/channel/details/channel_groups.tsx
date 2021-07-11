@@ -4,14 +4,14 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Group} from 'hkclient-redux/types/groups';
-import {Channel} from 'hkclient-redux/types/channels';
-
 import {t} from 'utils/i18n';
 
 import AdminPanel from 'components/widgets/admin_console/admin_panel';
 import ToggleModalButton from 'components/toggle_modal_button';
 import AddGroupsToChannelModal from 'components/add_groups_to_channel_modal';
+
+import {Channel} from 'hkclient-redux/types/channels';
+import {Group} from 'hkclient-redux/types/groups';
 import GroupList from '../../group';
 
 interface ChannelGroupsProps {

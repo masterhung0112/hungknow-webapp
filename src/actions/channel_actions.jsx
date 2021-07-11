@@ -3,6 +3,16 @@
 
 import {batchActions} from 'redux-batched-actions';
 
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import {loadNewDMIfNeeded, loadNewGMIfNeeded, loadProfilesForSidebar} from 'actions/user_actions.jsx';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {Constants, Preferences, NotificationLevels} from 'utils/constants';
+
+import {getDirectChannelName} from 'utils/utils';
+
 import {PreferenceTypes} from 'hkclient-redux/action_types';
 import * as ChannelActions from 'hkclient-redux/actions/channels';
 import {savePreferences} from 'hkclient-redux/actions/preferences';
@@ -10,12 +20,6 @@ import {getMyChannelMemberships} from 'hkclient-redux/selectors/entities/common'
 import {getChannelByName, getUnreadChannelIds, getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentTeamUrl, getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {trackEvent} from 'actions/telemetry_actions.jsx';
-import {loadNewDMIfNeeded, loadNewGMIfNeeded, loadProfilesForSidebar} from 'actions/user_actions.jsx';
-import {browserHistory} from 'utils/browser_history';
-import {Constants, Preferences, NotificationLevels} from 'utils/constants';
-import {getDirectChannelName} from 'utils/utils';
 
 export function openDirectChannelToUserId(userId) {
     return async (dispatch, getState) => {

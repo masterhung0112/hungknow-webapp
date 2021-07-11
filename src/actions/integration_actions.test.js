@@ -4,9 +4,9 @@
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
-import {getProfilesByIds} from 'hkclient-redux/actions/users';
-
 import * as Actions from 'actions/integration_actions.jsx';
+
+import {getProfilesByIds} from 'hkclient-redux/actions/users';
 
 jest.mock('hkclient-redux/actions/users', () => ({
     getProfilesByIds: jest.fn(() => {

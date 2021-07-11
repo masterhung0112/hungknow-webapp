@@ -4,9 +4,9 @@
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {openRHSSearch} from 'actions/views/rhs';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 import ShowSearchButton from './show_search_button';
 

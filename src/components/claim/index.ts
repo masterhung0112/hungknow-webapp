@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getPasswordConfig} from 'utils/utils.jsx';
+
 import {switchLdapToEmail} from 'hkclient-redux/actions/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {GlobalState} from 'hkclient-redux/types/store';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {getPasswordConfig} from 'utils/utils.jsx';
 
 import ClaimController from './claim_controller';
 

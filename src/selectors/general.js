@@ -1,13 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import * as UserAgent from 'utils/user_agent';
+
 import {createSelector} from 'reselect';
 
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getTimezoneForUserProfile} from 'hkclient-redux/selectors/entities/timezone';
-
-import * as UserAgent from 'utils/user_agent';
 
 export function areTimezonesEnabledAndSupported(state) {
     if (UserAgent.isInternetExplorer()) {

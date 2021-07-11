@@ -4,6 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {loadChannelMembersForProfilesList, loadTeamMembersForProfilesList} from 'actions/user_actions.jsx';
+
+import {setModalSearchTerm, setModalFilters} from 'actions/views/search';
+
 import {memoizeResult} from 'hkclient-redux/utils/helpers';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {ActionResult, GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
@@ -14,10 +20,6 @@ import {filterProfiles} from 'hkclient-redux/selectors/entities/users';
 import {getMembersInTeams} from 'hkclient-redux/selectors/entities/teams';
 import {getChannelMembersInChannels} from 'hkclient-redux/selectors/entities/channels';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {GlobalState} from 'types/store';
-import {loadChannelMembersForProfilesList, loadTeamMembersForProfilesList} from 'actions/user_actions.jsx';
-import {setModalSearchTerm, setModalFilters} from 'actions/views/search';
 
 import UsersToRemove, {Filters, Memberships} from './users_to_remove';
 

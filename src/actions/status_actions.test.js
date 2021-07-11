@@ -5,10 +5,10 @@ import clone from 'clone';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
+import * as Actions from 'actions/status_actions.jsx';
+
 import {Preferences} from 'hkclient-redux/constants';
 import {getStatusesByIds} from 'hkclient-redux/actions/users';
-
-import * as Actions from 'actions/status_actions.jsx';
 
 jest.mock('hkclient-redux/actions/users', () => ({
     getStatusesByIds: jest.fn(() => {

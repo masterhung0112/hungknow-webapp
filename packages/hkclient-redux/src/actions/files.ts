@@ -6,6 +6,7 @@ import {FileTypes} from 'hkclient-redux/action_types';
 import {batchActions, DispatchFunc, GetStateFunc, ActionFunc, Action} from 'hkclient-redux/types/actions';
 
 import {FileUploadResponse, FileSearchResultItem} from 'hkclient-redux/types/files';
+
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
 

@@ -5,15 +5,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {withRouter} from 'react-router-dom';
 
-import {getRecentPostsChunkInChannel, makeGetPostsChunkAroundPost, getUnreadPostsChunk, getPost} from 'hkclient-redux/selectors/entities/posts';
-import {isManuallyUnread} from 'hkclient-redux/selectors/entities/channels';
-import {memoizeResult} from 'hkclient-redux/utils/helpers';
-import {markChannelAsRead, markChannelAsViewed} from 'hkclient-redux/actions/channels';
-import {makePreparePostIdsForPostList} from 'hkclient-redux/utils/post_list';
-import {RequestStatus} from 'hkclient-redux/constants';
-
 import {updateNewMessagesAtInChannel} from 'actions/global_actions';
+
 import {getLatestPostId, makeCreateAriaLabelForPost} from 'utils/post_utils.jsx';
+
 import {
     checkAndSetMobileView,
     loadPosts,
@@ -22,6 +17,13 @@ import {
     syncPostsInChannel,
     loadLatestPosts,
 } from 'actions/views/channel';
+
+import {getRecentPostsChunkInChannel, makeGetPostsChunkAroundPost, getUnreadPostsChunk, getPost} from 'hkclient-redux/selectors/entities/posts';
+import {isManuallyUnread} from 'hkclient-redux/selectors/entities/channels';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
+import {markChannelAsRead, markChannelAsViewed} from 'hkclient-redux/actions/channels';
+import {makePreparePostIdsForPostList} from 'hkclient-redux/utils/post_list';
+import {RequestStatus} from 'hkclient-redux/constants';
 
 import PostList from './post_list.jsx';
 

@@ -3,12 +3,12 @@
 
 import {connect} from 'react-redux';
 
-import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-
 import {ModalIdentifiers} from 'utils/constants';
 import {isModalOpen} from 'selectors/views/modals';
 
 import {GlobalState} from 'types/store';
+
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 
 import AboutBuildModal from './about_build_modal';
 

@@ -1,5 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {GlobalState} from 'types/store';
+
+import {RecommendedNextSteps, Preferences} from 'utils/constants';
+
+import {localizeMessage} from 'utils/utils';
+
 import {createSelector} from 'reselect';
 
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
@@ -7,10 +13,6 @@ import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
 import {UserProfile} from 'hkclient-redux/types/users';
 
 import {getCurrentUser, getUsers} from 'hkclient-redux/selectors/entities/users';
-
-import {GlobalState} from 'types/store';
-import {RecommendedNextSteps, Preferences} from 'utils/constants';
-import {localizeMessage} from 'utils/utils';
 
 import CompleteProfileStep from './steps/complete_profile_step';
 import SetupPreferencesStep from './steps/setup_preferences_step/setup_preferences_step';

@@ -5,10 +5,6 @@ import React from 'react';
 import classNames from 'classnames';
 import {FormattedMessage} from 'react-intl';
 
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Team} from 'hkclient-redux/types/teams';
-
 import {pageVisited, trackEvent} from 'actions/telemetry_actions';
 import Accordion from 'components/accordion';
 import Card from 'components/card/card';
@@ -16,6 +12,10 @@ import {getAnalyticsCategory} from 'components/next_steps_view/step_helpers';
 import {Preferences, RecommendedNextSteps} from 'utils/constants';
 
 import loadingIcon from 'images/spinner-48x48-blue.apng';
+
+import {Team} from 'hkclient-redux/types/teams';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {PreferenceType} from 'hkclient-redux/types/preferences';
 
 import {StepType} from './steps';
 import './next_steps_view.scss';

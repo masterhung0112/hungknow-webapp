@@ -5,6 +5,28 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
+import {goToLastViewedChannel} from 'actions/views/channel';
+
+import {openModal, closeModal} from 'actions/views/modals';
+
+import {
+    showFlaggedPosts,
+    showPinnedPosts,
+    showChannelFiles,
+    showMentions,
+    closeRightHandSide,
+} from 'actions/views/rhs';
+
+import {makeGetCustomStatus, isCustomStatusEnabled, isCustomStatusExpired} from 'selectors/views/custom_status';
+
+import {getIsRhsOpen, getRhsState} from 'selectors/rhs';
+
+import {isModalOpen} from 'selectors/views/modals';
+
+import {getAnnouncementBarCount} from 'selectors/views/announcement_bar';
+
+import {ModalIdentifiers} from 'utils/constants';
+
 import {
     favoriteChannel,
     unfavoriteChannel,
@@ -29,21 +51,6 @@ import {
     makeGetProfilesInChannel,
 } from 'hkclient-redux/selectors/entities/users';
 import {getUserIdFromChannelName} from 'hkclient-redux/utils/channel_utils';
-
-import {goToLastViewedChannel} from 'actions/views/channel';
-import {openModal, closeModal} from 'actions/views/modals';
-import {
-    showFlaggedPosts,
-    showPinnedPosts,
-    showChannelFiles,
-    showMentions,
-    closeRightHandSide,
-} from 'actions/views/rhs';
-import {makeGetCustomStatus, isCustomStatusEnabled, isCustomStatusExpired} from 'selectors/views/custom_status';
-import {getIsRhsOpen, getRhsState} from 'selectors/rhs';
-import {isModalOpen} from 'selectors/views/modals';
-import {getAnnouncementBarCount} from 'selectors/views/announcement_bar';
-import {ModalIdentifiers} from 'utils/constants';
 
 import ChannelHeader from './channel_header';
 

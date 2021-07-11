@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
+import {setChannelListSearch, setChannelListFilters} from 'actions/views/search';
+
 import {getDataRetentionCustomPolicyChannels, searchDataRetentionCustomPolicyChannels as searchChannels} from 'hkclient-redux/actions/admin';
 import {filterChannelList, getChannelsInPolicy, searchChannelsInPolicy} from 'hkclient-redux/selectors/entities/channels';
 import {getDataRetentionCustomPolicy} from 'hkclient-redux/selectors/entities/admin';
@@ -13,9 +17,6 @@ import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/acti
 
 import {Channel, ChannelSearchOpts, ChannelWithTeamData} from 'hkclient-redux/types/channels';
 
-import {GlobalState} from 'types/store';
-
-import {setChannelListSearch, setChannelListFilters} from 'actions/views/search';
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {DataRetentionCustomPolicy} from 'hkclient-redux/types/data_retention';
 

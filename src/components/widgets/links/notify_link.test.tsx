@@ -6,11 +6,11 @@ import {ReactWrapper} from 'enzyme';
 
 import {act} from 'react-dom/test-utils';
 
+import {mountWithIntl} from 'tests/helpers/intl-test-helper';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {StatusOK} from 'hkclient-redux/types/client4';
-
-import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 
 import NotifyLink, {DafaultBtnText} from './notify_link';
 

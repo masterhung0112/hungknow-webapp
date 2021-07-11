@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {setModalSearchTerm} from 'actions/views/search';
+
 import {getGroupsNotAssociatedToTeam, linkGroupSyncable, getAllGroupsAssociatedToTeam} from 'hkclient-redux/actions/groups';
 import {getGroupsNotAssociatedToTeam as selectGroupsNotAssociatedToTeam} from 'hkclient-redux/selectors/entities/groups';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
@@ -11,7 +13,6 @@ import {Team} from 'hkclient-redux/types/teams';
 import {Group} from 'hkclient-redux/types/groups';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 
-import {setModalSearchTerm} from 'actions/views/search';
 import {GlobalState} from '../../types/store';
 
 import AddGroupsToTeamModal, {Actions} from './add_groups_to_team_modal';

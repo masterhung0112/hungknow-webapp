@@ -4,7 +4,8 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/jobs';
+import * as Actions from 'hkclient-redux/actions/jobs';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {RequestStatus} from '../constants';
@@ -13,7 +14,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('Actions.Jobs', () => {
+describe('hkclient-redux/actions.Jobs', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

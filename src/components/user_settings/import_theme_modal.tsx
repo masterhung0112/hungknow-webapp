@@ -5,11 +5,12 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage, WrappedComponentProps, injectIntl} from 'react-intl';
 
+import ModalStore from 'stores/modal_store.jsx';
+
+import Constants from 'utils/constants';
+
 import {blendColors, setThemeDefaults} from 'hkclient-redux/utils/theme_utils';
 import {Theme} from 'hkclient-redux/types/preferences';
-
-import ModalStore from 'stores/modal_store.jsx';
-import Constants from 'utils/constants';
 
 const ActionTypes = Constants.ActionTypes;
 

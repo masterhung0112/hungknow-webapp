@@ -4,6 +4,12 @@
 import {bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
 
+import {autocompleteUsersInChannel} from 'actions/views/channel';
+
+import {searchAssociatedGroupsForReference} from 'actions/views/group';
+
+import {autocompleteChannels} from 'actions/channel_actions';
+
 import {getAssociatedGroupsForReference} from 'hkclient-redux/selectors/entities/groups';
 import {getLicense} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
@@ -17,10 +23,6 @@ import {makeAddLastViewAtToProfiles} from 'hkclient-redux/selectors/entities/uti
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {autocompleteUsersInChannel} from 'actions/views/channel';
-import {searchAssociatedGroupsForReference} from 'actions/views/group';
-import {autocompleteChannels} from 'actions/channel_actions';
 
 import Textbox from './textbox';
 

@@ -8,7 +8,6 @@ import {getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {getTeam} from 'hkclient-redux/selectors/entities/teams';
 import {UserMentionKey} from 'hkclient-redux/selectors/entities/users';
 
-
 import {GlobalState} from 'hkclient-redux/types/store';
 
 import {Dictionary, NameMappedObjects} from 'hkclient-redux/types/utilities';

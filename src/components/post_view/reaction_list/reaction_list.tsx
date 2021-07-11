@@ -6,12 +6,6 @@ import React from 'react';
 import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import Permissions from 'hkclient-redux/constants/permissions';
-import {Post} from 'hkclient-redux/types/posts';
-import {Reaction as ReactionType} from 'hkclient-redux/types/reactions';
-import {Emoji} from 'hkclient-redux/types/emojis';
-import {isCustomEmoji} from 'hkclient-redux/utils/emoji_utils';
-
 import Constants from 'utils/constants';
 import Reaction from 'components/post_view/reaction';
 import EmojiPickerOverlay from 'components/emoji_picker/emoji_picker_overlay.jsx';
@@ -19,6 +13,12 @@ import AddReactionIcon from 'components/widgets/icons/add_reaction_icon';
 import OverlayTrigger from 'components/overlay_trigger';
 import ChannelPermissionGate from 'components/permissions_gates/channel_permission_gate';
 import {localizeMessage} from 'utils/utils.jsx';
+
+import {isCustomEmoji} from 'hkclient-redux/utils/emoji_utils';
+import {Emoji} from 'hkclient-redux/types/emojis';
+import {Reaction as ReactionType} from 'hkclient-redux/types/reactions';
+import {Post} from 'hkclient-redux/types/posts';
+import Permissions from 'hkclient-redux/constants/permissions';
 
 const DEFAULT_EMOJI_PICKER_RIGHT_OFFSET = 15;
 const EMOJI_PICKER_WIDTH_OFFSET = 260;

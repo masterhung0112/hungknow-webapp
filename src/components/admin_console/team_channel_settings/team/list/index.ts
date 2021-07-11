@@ -4,6 +4,8 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {createSelector} from 'reselect';
 
 import {getTeams as fetchTeams, searchTeams} from 'hkclient-redux/actions/teams';
@@ -12,8 +14,6 @@ import {getTeams} from 'hkclient-redux/selectors/entities/teams';
 import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import {TeamSearchOpts, TeamsWithCount} from 'hkclient-redux/types/teams';
-
-import {GlobalState} from 'types/store';
 
 import TeamList from './team_list';
 

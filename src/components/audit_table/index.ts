@@ -4,12 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {getMissingProfilesByIds} from 'hkclient-redux/actions/users';
 import {getUser, getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {getChannelByName, getDirectTeammate} from 'hkclient-redux/selectors/entities/channels';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {GlobalState} from 'types/store';
 
 import AuditTable from './audit_table';
 

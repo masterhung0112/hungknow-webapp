@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {ActionTypes} from 'utils/constants';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 export function isOpen(state = false, action: GenericAction) {
     switch (action.type) {

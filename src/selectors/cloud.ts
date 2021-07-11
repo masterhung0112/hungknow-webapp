@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {GlobalState} from 'types/store';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-
-import {GlobalState} from 'types/store';
 
 export enum InquiryType {
     Technical = 'technical',

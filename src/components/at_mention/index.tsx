@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
 import {getCurrentUserId, getUsersByUsername} from 'hkclient-redux/selectors/entities/users';
 import {getAllGroupsForReferenceByName} from 'hkclient-redux/selectors/entities/groups';
-
-import {GlobalState} from 'types/store';
 
 import AtMention from './at_mention';
 

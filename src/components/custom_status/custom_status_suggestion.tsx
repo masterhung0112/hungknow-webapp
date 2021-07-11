@@ -5,11 +5,11 @@ import {Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
-import {UserCustomStatus} from 'hkclient-redux/types/users';
-
 import OverlayTrigger from 'components/overlay_trigger';
 import RenderEmoji from 'components/emoji/render_emoji';
 import Constants, {durationValues} from 'utils/constants';
+
+import {UserCustomStatus} from 'hkclient-redux/types/users';
 
 import CustomStatusText from './custom_status_text';
 

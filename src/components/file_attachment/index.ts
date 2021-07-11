@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {getFilesDropdownPluginMenuItems} from 'selectors/plugins';
 import {GlobalState} from 'types/store';
 import {canDownloadFiles} from 'utils/file_utils';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import FileAttachment from './file_attachment';
 

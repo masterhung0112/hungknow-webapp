@@ -15,26 +15,26 @@
 /* eslint-disable max-nested-callbacks */
 
 describe('Widgets - Popover', () => {
-  before(() => {
-    cy.requireStorybookServer()
+    before(() => {
+        cy.requireStorybookServer();
 
-    // # Go to widget story and verify that it renders regular popup
-    cy.toWidgetStory('/story/popover--basic-popover')
-    cy.get('.sidebar-container')
-      .should('be.visible')
-      .within(() => {
-        cy.findByText('basic popover').should('exist')
-      })
-  })
-  it('verify UI', () => {
+        // # Go to widget story and verify that it renders regular popup
+        cy.toWidgetStory('/story/popover--basic-popover');
+        cy.get('.sidebar-container').
+            should('be.visible').
+            within(() => {
+                cy.findByText('basic popover').should('exist');
+            });
+    });
+    it('verify UI', () => {
     // # Get the root of the iframe where the component is rendered
-    cy.iframe('#storybook-preview-iframe', '#popover').as('iframePopover')
-    cy.get('@iframePopover')
-      .should('be.visible')
-      .and('have.class', 'popover popover-sm popover-info right')
-      .and('have.css', 'margin-left', '10px')
-    cy.get('@iframePopover').within(() => {
-      cy.get('.popover-content').should('be.visible').and('have.text', 'some text')
-    })
-  })
-})
+        cy.iframe('#storybook-preview-iframe', '#popover').as('iframePopover');
+        cy.get('@iframePopover').
+            should('be.visible').
+            and('have.class', 'popover popover-sm popover-info right').
+            and('have.css', 'margin-left', '10px');
+        cy.get('@iframePopover').within(() => {
+            cy.get('.popover-content').should('be.visible').and('have.text', 'some text');
+        });
+    });
+});

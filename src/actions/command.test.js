@@ -5,18 +5,16 @@ import configureStore from 'redux-mock-store';
 
 import thunk from 'redux-thunk';
 
-import {Client4} from 'hkclient-redux/client';
-
-import * as Channels from 'hkclient-redux/selectors/entities/channels';
-import * as Teams from 'hkclient-redux/selectors/entities/teams';
-
-import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
-
 import {ActionTypes, Constants} from 'utils/constants';
 import * as UserAgent from 'utils/user_agent';
 import * as GlobalActions from 'actions/global_actions';
 import * as Utils from 'utils/utils.jsx';
 import UserSettingsModal from 'components/user_settings/modal';
+
+import {AppCallResponseTypes} from 'hkclient-redux/constants/apps';
+import * as Teams from 'hkclient-redux/selectors/entities/teams';
+import * as Channels from 'hkclient-redux/selectors/entities/channels';
+import {Client4} from 'hkclient-redux/client';
 
 import {executeCommand} from './command';
 const mockStore = configureStore([thunk]);

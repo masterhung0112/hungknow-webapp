@@ -1,5 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
+import {Task} from 'redux-saga';
+
+import {Store} from 'redux';
+
 import {AdminState} from './admin';
 import {Bot} from './bots';
 import {ChannelsState} from './channels';
@@ -29,8 +33,6 @@ import {Typing} from './typing';
 import {UsersState} from './users';
 import {Dictionary} from './utilities';
 import {AppsState} from './apps';
-import {Task} from 'redux-saga';
-import {Store} from 'redux';
 
 export type GlobalState = {
     entities: {
@@ -90,5 +92,5 @@ export type GlobalState = {
 };
 
 export interface SagaStore extends Store {
-  getSagaTasks?: () => Task[];
+    getSagaTasks?: () => Task[];
 }

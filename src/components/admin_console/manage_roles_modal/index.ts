@@ -4,11 +4,11 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
 
 import {updateUserRoles} from 'hkclient-redux/actions/users';
-
-import {GlobalState} from 'types/store';
 
 import ManageRolesModal, {Props} from './manage_roles_modal';
 

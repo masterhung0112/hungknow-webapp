@@ -3,12 +3,12 @@
 
 import {cloneDeep} from 'lodash';
 
+import AdminDefinition from 'components/admin_console/admin_definition.jsx';
+
 import {createSelector} from 'reselect';
 
 import {getMySystemPermissions} from 'hkclient-redux/selectors/entities/roles_helpers';
 import {ResourceToSysConsolePermissionsTable, RESOURCE_KEYS} from 'hkclient-redux/constants/permissions_sysconsole';
-
-import AdminDefinition from 'components/admin_console/admin_definition.jsx';
 
 export const getAdminDefinition = createSelector(
     'getAdminDefinition',

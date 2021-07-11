@@ -3,6 +3,10 @@
 
 import React from 'react';
 
+import store from 'stores/redux_store.jsx';
+
+import {Constants} from 'utils/constants';
+
 import {
     getChannelsInCurrentTeam,
 } from 'hkclient-redux/selectors/entities/channels';
@@ -14,9 +18,6 @@ import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 import {Permissions} from 'hkclient-redux/constants';
 import {sortChannelsByTypeAndDisplayName} from 'hkclient-redux/utils/channel_utils';
 import {logError} from 'hkclient-redux/actions/errors';
-
-import store from 'stores/redux_store.jsx';
-import {Constants} from 'utils/constants';
 
 import Provider from './provider.jsx';
 import Suggestion from './suggestion.jsx';

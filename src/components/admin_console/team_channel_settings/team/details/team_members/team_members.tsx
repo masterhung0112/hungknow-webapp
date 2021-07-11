@@ -4,13 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ServerError} from 'hkclient-redux/types/errors';
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {UserProfile, UsersStats, GetFilteredUsersStatsOpts} from 'hkclient-redux/types/users';
-import {TeamMembership, Team} from 'hkclient-redux/types/teams';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import GeneralConstants from 'hkclient-redux/constants/general';
-
 import {t} from 'utils/i18n';
 import Constants from 'utils/constants';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
@@ -21,6 +14,13 @@ import {BaseMembership} from 'components/admin_console/user_grid/user_grid_role_
 import AddUsersToTeamModal from 'components/add_users_to_team_modal';
 import ToggleModalButton from 'components/toggle_modal_button';
 import {FilterOptions} from 'components/admin_console/filter/filter';
+
+import GeneralConstants from 'hkclient-redux/constants/general';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import {TeamMembership, Team} from 'hkclient-redux/types/teams';
+import {UserProfile, UsersStats, GetFilteredUsersStatsOpts} from 'hkclient-redux/types/users';
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {ServerError} from 'hkclient-redux/types/errors';
 
 type Props = {
     teamId: string;

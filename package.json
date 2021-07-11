@@ -92,13 +92,18 @@
     "redux-dynamic-modules-thunk": "5.2.3",
     "redux-persist": "4.9.1",
     "redux-saga": "^1.1.3",
+    "regenerator-runtime": "0.13.7",
     "semver": "7.3.5",
     "styled-jsx": "^3.4.4",
     "superagent": "6.1.0",
     "tinycolor2": "1.4.2",
     "use-async-effect": "2.2.3",
     "xregexp": "5.0.2",
-    "yup": "0.32.9"
+    "yup": "0.32.9",
+    "serialize-error": "8.0.1",
+    "rudder-sdk-js": "1.0.16",
+    "shallow-equals": "1.0.0",
+    "stream-browserify": "3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -177,7 +182,7 @@
     "isomorphic-fetch": "3.0.0",
     "jest": "^26.4.2",
     "jest-canvas-mock": "2.3.1",
-    "mini-css-extract-plugin": "^1.3.9",
+    "mini-css-extract-plugin": "1.4.1",
     "npm-run-all": "^4.1.5",
     "postcss-loader": "^5.2.0",
     "prettier": "2.3.2",
@@ -193,7 +198,15 @@
     "test-jest": "^1.0.1",
     "ts-jest": "26.5.3",
     "typed-scss-modules": "^4.1.0",
-    "typescript": "^4.2.3"
+    "typescript": "4.2.4",
+    "awesome-typescript-loader": "^5.2.1",
+    "copy-webpack-plugin": "8.1.1",
+    "webpack-livereload-plugin": "3.0.1",
+    "webpack-node-externals": "2.5.2",
+    "webpack-pwa-manifest": "4.3.0",
+    "html-webpack-plugin": "5.3.1",
+    "@types/shallow-equals": "1.0.0"
+
   },
   "workspaces": []
 }

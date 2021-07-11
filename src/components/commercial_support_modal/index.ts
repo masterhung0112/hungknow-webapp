@@ -3,13 +3,13 @@
 
 import {connect} from 'react-redux';
 
-import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-
 import {ModalIdentifiers} from 'utils/constants';
 import {isModalOpen} from 'selectors/views/modals';
 
 import {GlobalState} from 'types/store';
+
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 
 import CommercialSupportModal from './commercial_support_modal';
 

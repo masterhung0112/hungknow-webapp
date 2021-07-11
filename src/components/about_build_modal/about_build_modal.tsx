@@ -5,13 +5,13 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {ClientConfig, ClientLicense} from 'hkclient-redux/types/config';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import MattermostLogo from 'components/widgets/icons/mattermost_logo';
 import Nbsp from 'components/html_entities/nbsp';
 
 import {AboutLinks} from 'utils/constants';
+
+import {ClientConfig, ClientLicense} from 'hkclient-redux/types/config';
 
 import AboutBuildModalCloud from './about_build_modal_cloud/about_build_modal_cloud';
 

@@ -4,10 +4,6 @@
 import React from 'react';
 import {injectIntl, IntlShape} from 'react-intl';
 
-import {Preferences} from 'hkclient-redux/constants';
-import {ChannelCategory, CategorySorting} from 'hkclient-redux/types/channel_categories';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
 import Constants from 'utils/constants';
 
 import {trackEvent} from 'actions/telemetry_actions';
@@ -16,6 +12,10 @@ import SidebarMenu from 'components/sidebar/sidebar_menu';
 import SidebarMenuType from 'components/sidebar/sidebar_menu/sidebar_menu';
 import Menu from 'components/widgets/menu/menu';
 import {Props as SubmenuItemProps} from 'components/widgets/menu/menu_items/submenu_item';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {ChannelCategory, CategorySorting} from 'hkclient-redux/types/channel_categories';
+import {Preferences} from 'hkclient-redux/constants';
 
 type Props = {
     category: ChannelCategory;

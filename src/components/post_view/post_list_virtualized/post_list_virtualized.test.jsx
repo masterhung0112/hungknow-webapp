@@ -4,13 +4,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {DATE_LINE} from 'hkclient-redux/utils/post_list';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import {PostListRowListIds, PostRequestTypes} from 'utils/constants';
 
 import PostListRow from 'components/post_view/post_list_row';
+
+import {DATE_LINE} from 'hkclient-redux/utils/post_list';
 
 import PostList from './post_list_virtualized';
 

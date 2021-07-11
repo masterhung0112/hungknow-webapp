@@ -4,15 +4,17 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {setGlobalItem} from 'actions/storage';
+
+import {loginById} from 'actions/views/login';
+
+import {getPasswordConfig} from 'utils/utils.jsx';
+
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
 
 import {createUser} from 'hkclient-redux/actions/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getTeamInviteInfo} from 'hkclient-redux/actions/teams';
-
-import {setGlobalItem} from 'actions/storage';
-import {loginById} from 'actions/views/login';
-import {getPasswordConfig} from 'utils/utils.jsx';
 
 import {GlobalState} from '../../../types/store';
 

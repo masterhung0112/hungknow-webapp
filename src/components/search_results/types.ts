@@ -4,12 +4,12 @@
 import React from 'react';
 import {IntlShape} from 'react-intl';
 
+import {SearchType} from 'types/store/rhs';
+
 import {Post} from 'hkclient-redux/types/posts';
 import {FileInfo} from 'hkclient-redux/types/files';
 
 import {SearchFilterType} from '../search/types';
-
-import {SearchType} from 'types/store/rhs';
 
 export type OwnProps = {
     [key: string]: any;

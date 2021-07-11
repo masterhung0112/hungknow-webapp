@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import * as I18n from 'i18n/i18n';
+
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentUserLocale} from 'hkclient-redux/selectors/entities/i18n';
 import {General} from 'hkclient-redux/constants';
-
-import * as I18n from 'i18n/i18n';
 
 // This is a placeholder for if we ever implement browser-locale detection
 export function getCurrentLocale(state) {

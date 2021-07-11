@@ -1,14 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+
+import {MarkUnread} from 'hkclient-redux/constants/channels';
+
 import * as Redux from 'redux';
+
 import {ChannelTypes, PreferenceTypes, UserTypes} from 'hkclient-redux/action_types';
 
 import {Client4} from 'hkclient-redux/client';
-
-import {General, Preferences} from '../constants';
-import {CategoryTypes} from 'constants/channel_categories';
-import {MarkUnread} from 'constants/channels';
 
 import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {
@@ -30,6 +31,8 @@ import {PreferenceType} from 'hkclient-redux/types/preferences';
 
 import {getChannelsIdForTeam, getChannelByName} from 'hkclient-redux/utils/channel_utils';
 import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
+
+import {General, Preferences} from '../constants';
 
 import {addChannelToInitialCategory, addChannelToCategory} from './channel_categories';
 import {logError} from './errors';
@@ -1282,7 +1285,7 @@ export function markChannelAsRead(channelId: string, prevChannelId?: string, upd
 }
 
 export function markChannelAsReadOnServer(channelId: string, prevChannelId?: string): ActionFunc {
-    return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         Client4.viewMyChannel(channelId, prevChannelId).then().catch((error) => {
             forceLogoutIfNecessary(error, dispatch, getState);
             dispatch(logError(error));

@@ -4,14 +4,15 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/roles';
+import * as Actions from 'hkclient-redux/actions/roles';
+
 import {Client4} from 'hkclient-redux/client';
 import {RequestStatus} from '../constants';
 
 import TestHelper from 'hkclient-redux/test/test_helper';
 import configureStore from 'hkclient-redux/test/test_store';
 
-describe('Actions.Roles', () => {
+describe('hkclient-redux/actions.Roles', () => {
     let store;
 
     beforeAll(() => {

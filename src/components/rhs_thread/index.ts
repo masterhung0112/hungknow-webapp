@@ -4,14 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getSelectedChannel, getSelectedPost} from 'selectors/rhs';
+
+import {selectPostCard} from 'actions/views/rhs';
+
+import {GlobalState} from 'types/store';
+
 import {makeGetPostsForThread} from 'hkclient-redux/selectors/entities/posts';
 import {removePost, getPostThread} from 'hkclient-redux/actions/posts';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {getSelectedChannel, getSelectedPost} from 'selectors/rhs';
-import {selectPostCard} from 'actions/views/rhs';
-import {GlobalState} from 'types/store';
 
 import RhsThread from './rhs_thread';
 

@@ -7,7 +7,6 @@ import {General, Permissions} from 'hkclient-redux/constants';
 
 import channelsReducer, * as Reducers from './channels';
 
-
 describe('channels', () => {
     describe('RECEIVED_CHANNEL_DELETED', () => {
         test('should mark channel as deleted', () => {

@@ -6,10 +6,6 @@ import {FormattedMessage} from 'react-intl';
 import debounce from 'lodash/debounce';
 import {Tabs, Tab, SelectCallback} from 'react-bootstrap';
 
-import {PluginStatusRedux} from 'hkclient-redux/types/plugins';
-import type {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-
 import FullScreenModal from 'components/widgets/modals/full_screen_modal';
 import RootPortal from 'components/root_portal';
 import QuickInput from 'components/quick_input';
@@ -21,6 +17,10 @@ import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx'
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 import {t} from 'utils/i18n';
 import {localizeMessage} from 'utils/utils';
+
+import {Dictionary} from 'hkclient-redux/types/utilities';
+import type {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
+import {PluginStatusRedux} from 'hkclient-redux/types/plugins';
 
 import './marketplace_modal.scss';
 import MarketplaceList from './marketplace_list/marketplace_list';

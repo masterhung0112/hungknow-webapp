@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {GlobalState} from 'types/store';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import FilePreview from './file_preview';
 

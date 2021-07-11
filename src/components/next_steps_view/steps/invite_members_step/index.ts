@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {GlobalState} from 'types/store';
+
 import {sendEmailInvitesToTeamGracefully, regenerateTeamInviteId} from 'hkclient-redux/actions/teams';
 import {getConfig, getLicense, getSubscriptionStats} from 'hkclient-redux/selectors/entities/general';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
 import {ServerError} from 'hkclient-redux/types/errors';
 import {TeamInviteWithError} from 'hkclient-redux/types/teams';
-
-import {GlobalState} from 'types/store';
 
 import InviteMembersStep from './invite_members_step';
 

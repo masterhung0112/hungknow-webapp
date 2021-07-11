@@ -4,11 +4,11 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {TestHelper} from 'utils/test_helper';
+
 import {Channel} from 'hkclient-redux/types/channels';
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {TestHelper} from 'utils/test_helper';
 
 import RhsThread from './rhs_thread';
 

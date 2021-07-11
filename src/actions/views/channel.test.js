@@ -4,15 +4,18 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
+import {browserHistory} from 'utils/browser_history';
+
+import * as Actions from 'actions/views/channel';
+
+import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
+
+import {ActionTypes, PostRequestTypes} from 'utils/constants';
+
 import {General, Posts, RequestStatus} from 'hkclient-redux/constants';
 import {leaveChannel, markChannelAsRead} from 'hkclient-redux/actions/channels';
 import * as UserActions from 'hkclient-redux/actions/users';
 import * as PostActions from 'hkclient-redux/actions/posts';
-
-import {browserHistory} from 'utils/browser_history';
-import * as Actions from 'actions/views/channel';
-import {openDirectChannelToUserId} from 'actions/channel_actions.jsx';
-import {ActionTypes, PostRequestTypes} from 'utils/constants';
 
 const mockStore = configureStore([thunk]);
 

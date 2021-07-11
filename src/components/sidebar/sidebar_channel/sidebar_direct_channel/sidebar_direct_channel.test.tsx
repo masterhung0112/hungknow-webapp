@@ -3,12 +3,12 @@
 
 import React from 'react';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 import {TestHelper} from 'utils/test_helper';
 
 import SidebarDirectChannel from 'components/sidebar/sidebar_channel/sidebar_direct_channel/sidebar_direct_channel';
+
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 describe('components/sidebar/sidebar_channel/sidebar_direct_channel', () => {
     const baseProps = {

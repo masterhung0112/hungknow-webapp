@@ -6,12 +6,12 @@ import {useDispatch} from 'react-redux';
 
 import {FormattedMessage} from 'react-intl';
 
-import {DispatchFunc} from 'hkclient-redux/types/actions';
-
 import {openModal} from 'actions/views/modals';
 import {trackEvent} from 'actions/telemetry_actions';
 import {ModalIdentifiers} from 'utils/constants';
 import PurchaseModal from 'components/purchase_modal';
+
+import {DispatchFunc} from 'hkclient-redux/types/actions';
 
 import './link.scss';
 

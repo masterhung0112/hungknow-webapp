@@ -4,6 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {loadProfilesAndReloadChannelMembers, searchProfilesAndChannelMembers} from 'actions/user_actions';
+
+import {setUserGridSearch, setUserGridFilters} from 'actions/views/search';
+
+import {GlobalState} from 'types/store';
+
 import {Dictionary} from 'hkclient-redux/types/utilities';
 import {ServerError} from 'hkclient-redux/types/errors';
 import {UserProfile, UsersStats, GetFilteredUsersStatsOpts} from 'hkclient-redux/types/users';
@@ -19,10 +25,6 @@ import {getFilteredUsersStats} from 'hkclient-redux/actions/users';
 import {getChannelMembersInChannels, getAllChannelStats, getChannel} from 'hkclient-redux/selectors/entities/channels';
 import {makeGetProfilesInChannel, makeSearchProfilesInChannel, filterProfiles, getFilteredUsersStats as selectFilteredUsersStats} from 'hkclient-redux/selectors/entities/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
-import {loadProfilesAndReloadChannelMembers, searchProfilesAndChannelMembers} from 'actions/user_actions';
-import {setUserGridSearch, setUserGridFilters} from 'actions/views/search';
-import {GlobalState} from 'types/store';
 
 import ChannelMembers from './channel_members';
 

@@ -4,10 +4,10 @@
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
+import {closeModal, openModal} from 'actions/views/modals';
+
 import {getGroupsAssociatedToTeam, unlinkGroupSyncable, patchGroupSyncable} from 'hkclient-redux/actions/groups';
 import {getMyTeamMembers} from 'hkclient-redux/actions/teams';
-
-import {closeModal, openModal} from 'actions/views/modals';
 
 import TeamGroupsManageModal from './team_groups_manage_modal';
 

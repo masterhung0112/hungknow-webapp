@@ -1,6 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {GlobalState} from 'types/store';
+
+import {ViewsState} from 'types/store/views';
+
+import {getIsRhsOpen, getSelectedPostId} from 'selectors/rhs';
+
 import {createSelector} from 'reselect';
 
 import {$ID} from 'hkclient-redux/types/utilities';
@@ -10,10 +16,6 @@ import {getThreads} from 'hkclient-redux/selectors/entities/threads';
 
 import {Team} from 'hkclient-redux/types/teams';
 import {UserThread} from 'hkclient-redux/types/threads';
-
-import {GlobalState} from 'types/store';
-import {ViewsState} from 'types/store/views';
-import {getIsRhsOpen, getSelectedPostId} from 'selectors/rhs';
 
 export function getSelectedThreadIdInTeam(state: GlobalState) {
     return state.views.threads.selectedThreadIdInTeam;

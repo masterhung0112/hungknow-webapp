@@ -3,6 +3,7 @@
 
 import {TeamTypes, ThreadTypes, PostTypes} from 'hkclient-redux/action_types';
 import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+
 import threadsReducer from './threads';
 
 describe('threads', () => {

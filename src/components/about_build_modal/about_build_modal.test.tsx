@@ -5,13 +5,13 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {shallow} from 'enzyme';
 
-import {ClientConfig, ClientLicense} from 'hkclient-redux/types/config';
-
 import AboutBuildModal from 'components/about_build_modal/about_build_modal';
 
 import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 
 import {AboutLinks} from 'utils/constants';
+
+import {ClientConfig, ClientLicense} from 'hkclient-redux/types/config';
 
 import AboutBuildModalCloud from './about_build_modal_cloud/about_build_modal_cloud';
 

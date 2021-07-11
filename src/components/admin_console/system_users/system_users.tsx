@@ -4,15 +4,6 @@
 import React, {ChangeEvent} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {debounce} from 'hkclient-redux/actions/helpers';
-import {Permissions} from 'hkclient-redux/constants';
-
-import {ActionFunc} from 'hkclient-redux/types/actions';
-
-import {Team} from 'hkclient-redux/types/teams';
-
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {getStandardAnalytics} from 'actions/admin_actions';
 import {Constants, UserSearchOptions, SearchUserTeamFilter, UserFilters} from 'utils/constants';
 import * as Utils from 'utils/utils';
@@ -25,6 +16,12 @@ import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import SystemPermissionGate from 'components/permissions_gates/system_permission_gate';
 import ConfirmModal from 'components/confirm_modal';
 import {emitUserLoggedOutEvent} from 'actions/global_actions';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Team} from 'hkclient-redux/types/teams';
+import {ActionFunc} from 'hkclient-redux/types/actions';
+import {Permissions} from 'hkclient-redux/constants';
+import {debounce} from 'hkclient-redux/actions/helpers';
 
 import SystemUsersList from './list';
 

@@ -3,6 +3,8 @@
 
 /* eslint-disable max-nested-callbacks */
 
+import {GlobalState} from 'types/store';
+
 import {createSelector} from 'reselect';
 
 import {
@@ -24,8 +26,6 @@ import {CategorySorting, ChannelCategory} from 'hkclient-redux/types/channel_cat
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
 import {memoizeResult} from 'hkclient-redux/utils/helpers';
-
-import {GlobalState} from 'types/store';
 
 export function isUnreadFilterEnabled(state: GlobalState) {
     return state.views.channelSidebar.unreadFilterEnabled;

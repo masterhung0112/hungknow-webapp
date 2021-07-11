@@ -1,11 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import ThreadConstants from 'hkclient-redux/constants/threads';
+
 import {uniq} from 'lodash';
+
 import {ThreadTypes, PostTypes, UserTypes} from 'hkclient-redux/action_types';
 import {Client4} from 'hkclient-redux/client';
-
-import ThreadConstants from 'constants/threads';
 
 import {DispatchFunc, GetStateFunc, batchActions} from 'hkclient-redux/types/actions';
 

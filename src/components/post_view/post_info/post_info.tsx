@@ -5,12 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {Tooltip} from 'react-bootstrap';
 
-import {Posts} from 'hkclient-redux/constants';
-import * as ReduxPostUtils from 'hkclient-redux/utils/post_utils';
-
-import {Post} from 'hkclient-redux/types/posts';
-import {ExtendedPost} from 'hkclient-redux/actions/posts';
-
 import * as PostUtils from 'utils/post_utils.jsx';
 import * as Utils from 'utils/utils.jsx';
 import Constants, {Locations} from 'utils/constants';
@@ -21,6 +15,11 @@ import PostFlagIcon from 'components/post_view/post_flag_icon';
 import PostReaction from 'components/post_view/post_reaction';
 import PostTime from 'components/post_view/post_time';
 import InfoSmallIcon from 'components/widgets/icons/info_small_icon';
+
+import {ExtendedPost} from 'hkclient-redux/actions/posts';
+import {Post} from 'hkclient-redux/types/posts';
+import * as ReduxPostUtils from 'hkclient-redux/utils/post_utils';
+import {Posts} from 'hkclient-redux/constants';
 
 type Props = {
 

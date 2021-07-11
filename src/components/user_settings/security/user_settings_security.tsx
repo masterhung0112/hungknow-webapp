@@ -6,10 +6,6 @@ import React from 'react';
 import {FormattedDate, FormattedMessage, FormattedTime} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {OAuthApp} from 'hkclient-redux/types/integrations';
-
 import Constants from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
 import icon50 from 'images/icon50x50.png';
@@ -18,6 +14,10 @@ import ActivityLogModal from 'components/activity_log_modal';
 import SettingItemMax from 'components/setting_item_max.jsx';
 import SettingItemMin from 'components/setting_item_min';
 import ToggleModalButton from 'components/toggle_modal_button.jsx';
+
+import {OAuthApp} from 'hkclient-redux/types/integrations';
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {UserProfile} from 'hkclient-redux/types/users';
 
 import MfaSection from './mfa_section';
 import UserAccessTokenSection from './user_access_token_section';

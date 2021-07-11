@@ -6,9 +6,6 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {ActionResult} from 'hkclient-redux/types/actions';
-
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import {browserHistory} from 'utils/browser_history';
 import Constants from 'utils/constants';
@@ -20,6 +17,9 @@ import SwitchChannelProvider from 'components/suggestion/switch_channel_provider
 import NoResultsIndicator from 'components/no_results_indicator/no_results_indicator';
 
 import {NoResultsVariant} from 'components/no_results_indicator/types';
+
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {Channel} from 'hkclient-redux/types/channels';
 
 const CHANNEL_MODE = 'channel';
 

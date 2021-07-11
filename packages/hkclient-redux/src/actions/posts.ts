@@ -33,6 +33,7 @@ import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
 import {logError} from './errors';
 import {systemEmojis, getCustomEmojiByName, getCustomEmojisByName} from './emojis';
 import {selectChannel} from './channels';
+
 // receivedPost should be dispatched after a single post from the server. This typically happens when an existing post
 // is updated.
 export function receivedPost(post: Post) {

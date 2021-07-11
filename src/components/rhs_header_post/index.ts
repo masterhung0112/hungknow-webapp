@@ -4,15 +4,6 @@
 import {ComponentProps} from 'react';
 import {connect} from 'react-redux';
 
-import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-
-import {getCurrentTeamId, getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import {setThreadFollow} from 'hkclient-redux/actions/threads';
-import {getThreadOrSynthetic} from 'hkclient-redux/selectors/entities/threads';
-import {getPost} from 'hkclient-redux/selectors/entities/posts';
-
 import {GlobalState} from 'types/store';
 
 import {
@@ -25,7 +16,17 @@ import {
     closeRightHandSide,
     toggleRhsExpanded,
 } from 'actions/views/rhs';
+
 import {getIsRhsExpanded} from 'selectors/rhs';
+
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+
+import {getCurrentTeamId, getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+
+import {setThreadFollow} from 'hkclient-redux/actions/threads';
+import {getThreadOrSynthetic} from 'hkclient-redux/selectors/entities/threads';
+import {getPost} from 'hkclient-redux/selectors/entities/posts';
 
 import RhsHeaderPost from './rhs_header_post';
 

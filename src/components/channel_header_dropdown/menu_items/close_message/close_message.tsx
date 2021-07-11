@@ -3,15 +3,18 @@
 
 import React from 'react';
 
+import {localizeMessage} from 'utils/utils';
+
+import {Constants} from 'utils/constants';
+
+import {browserHistory} from 'utils/browser_history';
+
+import Menu from 'components/widgets/menu/menu';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Team} from 'hkclient-redux/types/teams';
 import {Channel} from 'hkclient-redux/types/channels';
 import {PreferenceType} from 'hkclient-redux/types/preferences';
-
-import {localizeMessage} from 'utils/utils';
-import {Constants} from 'utils/constants';
-import {browserHistory} from 'utils/browser_history';
-import Menu from 'components/widgets/menu/menu';
 
 type Props = {
 

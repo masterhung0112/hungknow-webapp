@@ -13,9 +13,6 @@ import {
     IntlShape,
 } from 'react-intl';
 
-import {UserProfile} from 'hkclient-redux/types/users';
-import {StatusOK} from 'hkclient-redux/types/client4';
-
 import store from 'stores/redux_store.jsx';
 
 import CollapsedReplyThreadsModal from 'components/collapsed_reply_threads_modal';
@@ -23,6 +20,9 @@ import CollapsedReplyThreadsModal from 'components/collapsed_reply_threads_modal
 import Constants, {ModalIdentifiers} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';
 import {t} from 'utils/i18n';
+
+import {StatusOK} from 'hkclient-redux/types/client4';
+import {UserProfile} from 'hkclient-redux/types/users';
 import ConfirmModal from '../../confirm_modal';
 
 const UserSettings = React.lazy(() => import(/* webpackPrefetch: true */ 'components/user_settings'));

@@ -5,11 +5,6 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import iNoBounce from 'inobounce';
 
-import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
-import {Team, TeamMembership} from 'hkclient-redux/types/teams';
-import {Group} from 'hkclient-redux/types/groups';
-import {UserStatus} from 'hkclient-redux/types/users';
-
 import {startPeriodicStatusUpdates, stopPeriodicStatusUpdates} from 'actions/status_actions.jsx';
 import {startPeriodicSync, stopPeriodicSync, reconnect} from 'actions/websocket_actions.jsx';
 import * as GlobalActions from 'actions/global_actions';
@@ -24,6 +19,11 @@ import ChannelController from 'components/channel_layout/channel_controller';
 import Pluggable from 'plugins/pluggable';
 
 import LocalStorageStore from 'stores/local_storage_store';
+
+import {UserStatus} from 'hkclient-redux/types/users';
+import {Group} from 'hkclient-redux/types/groups';
+import {Team, TeamMembership} from 'hkclient-redux/types/teams';
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
 
 const BackstageController = makeAsyncComponent(LazyBackstageController);
 

@@ -6,12 +6,12 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {setNavigationBlocked} from 'actions/admin_actions.jsx';
+
 import {
     updateConfig,
 } from 'hkclient-redux/actions/admin';
 import {GenericAction, ActionFunc} from 'hkclient-redux/types/actions';
-
-import {setNavigationBlocked} from 'actions/admin_actions.jsx';
 
 import {AdminConfig} from 'hkclient-redux/types/config';
 import {ServerError} from 'hkclient-redux/types/errors';

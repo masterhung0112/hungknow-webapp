@@ -5,6 +5,18 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import {cloneDeep} from 'lodash';
 
+import ConfirmModal from 'components/confirm_modal';
+
+import BlockableLink from 'components/admin_console/blockable_link';
+
+import FormError from 'components/form_error';
+
+import Constants from 'utils/constants';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
 import {Groups, Permissions} from 'hkclient-redux/constants';
 import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
 import {Dictionary} from 'hkclient-redux/types/utilities';
@@ -16,13 +28,6 @@ import {Channel, ChannelModeration as ChannelPermissions, ChannelModerationPatch
 import {Team} from 'hkclient-redux/types/teams';
 
 import {ServerError} from 'hkclient-redux/types/errors';
-
-import ConfirmModal from 'components/confirm_modal';
-import BlockableLink from 'components/admin_console/blockable_link';
-import FormError from 'components/form_error';
-import Constants from 'utils/constants';
-import {browserHistory} from 'utils/browser_history';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
 
 import {NeedGroupsError, UsersWillBeRemovedError} from '../../errors';
 import ConvertConfirmModal from '../../convert_confirm_modal';

@@ -1,6 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
+
 import {FileTypes} from 'hkclient-redux/action_types';
 import {RequestStatus} from 'hkclient-redux/constants';
 

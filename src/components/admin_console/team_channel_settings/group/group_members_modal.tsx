@@ -5,9 +5,9 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {Group} from 'hkclient-redux/types/groups';
-
 import MemberListGroup from 'components/admin_console/member_list_group';
+
+import {Group} from 'hkclient-redux/types/groups';
 
 type Props = {
     group: Group;

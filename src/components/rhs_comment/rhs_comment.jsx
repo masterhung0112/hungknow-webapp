@@ -7,13 +7,6 @@ import React from 'react';
 import {FormattedMessage, injectIntl} from 'react-intl';
 import {Tooltip} from 'react-bootstrap';
 
-import {Posts} from 'hkclient-redux/constants/index';
-import {
-    isPostEphemeral,
-    isPostPendingOrFailed,
-    isMeMessage as checkIsMeMessage,
-} from 'hkclient-redux/utils/post_utils';
-
 import Constants, {Locations, A11yCustomEventTypes} from 'utils/constants';
 import * as PostUtils from 'utils/post_utils.jsx';
 import {intlShape} from 'utils/react_intl';
@@ -34,6 +27,13 @@ import InfoSmallIcon from 'components/widgets/icons/info_small_icon';
 import PostPreHeader from 'components/post_view/post_pre_header';
 import UserProfile from 'components/user_profile';
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
+
+import {
+    isPostEphemeral,
+    isPostPendingOrFailed,
+    isMeMessage as checkIsMeMessage,
+} from 'hkclient-redux/utils/post_utils';
+import {Posts} from 'hkclient-redux/constants/index';
 
 class RhsComment extends React.PureComponent {
     static propTypes = {

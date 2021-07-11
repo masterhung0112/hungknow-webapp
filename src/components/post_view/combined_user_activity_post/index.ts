@@ -3,11 +3,11 @@
 
 import {connect} from 'react-redux';
 
+import Post from 'components/post_view/post';
+
 import {makeGenerateCombinedPost} from 'hkclient-redux/utils/post_list';
 
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import Post from 'components/post_view/post';
 
 type Props = {
     combinedId: string;

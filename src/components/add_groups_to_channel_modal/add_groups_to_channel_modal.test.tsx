@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Groups} from 'hkclient-redux/constants';
-
 import AddGroupsToChannelModal, {Props} from 'components/add_groups_to_channel_modal/add_groups_to_channel_modal';
+
+import {Groups} from 'hkclient-redux/constants';
 
 describe('components/AddGroupsToChannelModal', () => {
     const baseProps: Props = {

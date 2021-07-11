@@ -5,8 +5,6 @@ import React from 'react';
 import {FormattedMessage} from 'react-intl';
 import classNames from 'classnames';
 
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
 import {trackEvent} from 'actions/telemetry_actions';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import {StepType} from 'components/next_steps_view/steps';
@@ -14,6 +12,8 @@ import {getAnalyticsCategory} from 'components/next_steps_view/step_helpers';
 import ProgressBar from 'components/progress_bar';
 import {ModalIdentifiers, RecommendedNextSteps, Preferences} from 'utils/constants';
 import {localizeMessage} from 'utils/utils';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
 
 import './sidebar_next_steps.scss';
 

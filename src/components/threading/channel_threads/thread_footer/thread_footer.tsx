@@ -9,25 +9,31 @@ import './thread_footer.scss';
 
 import {GlobalState} from 'types/store';
 
+import {selectPost} from 'actions/views/rhs';
+
+import Avatars from 'components/widgets/users/avatars';
+
+import Timestamp from 'components/timestamp';
+
+import SimpleTooltip from 'components/widgets/simple_tooltip';
+
+import Button from 'components/threading/common/button';
+
+import FollowButton from 'components/threading/common/follow_button';
+
+import {THREADING_TIME} from 'components/threading/common/options';
+
 import {$ID} from 'hkclient-redux/types/utilities';
 import {Post} from 'hkclient-redux/types/posts';
 import {threadIsSynthetic, UserThread} from 'hkclient-redux/types/threads';
 
 import {setThreadFollow, getThread as fetchThread} from 'hkclient-redux/actions/threads';
-import {selectPost} from 'actions/views/rhs';
 
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getThreadOrSynthetic} from 'hkclient-redux/selectors/entities/threads';
 import {getPost} from 'hkclient-redux/selectors/entities/posts';
 
-import Avatars from 'components/widgets/users/avatars';
-import Timestamp from 'components/timestamp';
-import SimpleTooltip from 'components/widgets/simple_tooltip';
-import Button from 'components/threading/common/button';
-import FollowButton from 'components/threading/common/follow_button';
-
-import {THREADING_TIME} from 'components/threading/common/options';
 type Props = {
     threadId: $ID<UserThread>;
 };

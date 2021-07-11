@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {makeGetUsersTypingByChannelAndPost} from 'hkclient-redux/selectors/entities/typing';
-
 import {GlobalState} from 'types/store';
+
+import {makeGetUsersTypingByChannelAndPost} from 'hkclient-redux/selectors/entities/typing';
 
 import MsgTyping from './msg_typing';
 

@@ -4,15 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {switchToChannel} from 'actions/views/channel';
+
+import {closeModal} from 'actions/views/modals';
+
 import Permissions from 'hkclient-redux/constants/permissions';
 import {haveICurrentChannelPermission} from 'hkclient-redux/selectors/entities/roles';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {createChannel} from 'hkclient-redux/actions/channels';
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {switchToChannel} from 'actions/views/channel';
-import {closeModal} from 'actions/views/modals';
 
 import NewChannelFlow, {Props} from './new_channel_flow';
 

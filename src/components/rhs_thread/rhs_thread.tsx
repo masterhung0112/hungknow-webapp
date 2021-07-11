@@ -4,13 +4,13 @@
 import React, {memo} from 'react';
 /* eslint-disable react/no-string-refs */
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {Post} from 'hkclient-redux/types/posts';
-
 import {FakePost} from 'types/store/rhs';
 
 import RhsHeaderPost from 'components/rhs_header_post';
 import ThreadViewer from 'components/threading/thread_viewer';
+
+import {Post} from 'hkclient-redux/types/posts';
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
     posts: Post[];

@@ -4,15 +4,16 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis';
+
+import {emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
+
+import {GlobalState} from 'types/store';
+
 import {GenericAction} from 'hkclient-redux/types/actions';
 
 import {Channel} from 'hkclient-redux/types/channels';
 import {Post} from 'hkclient-redux/types/posts';
-
-import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis';
-import {emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
-
-import {GlobalState} from 'types/store';
 
 import PostListRow from './post_list_row';
 

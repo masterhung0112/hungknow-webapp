@@ -4,9 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {AdminConfig, ClientLicense} from 'hkclient-redux/types/config';
-import {TermsOfService} from 'hkclient-redux/types/terms_of_service';
-
 import AdminSettings, {BaseProps, BaseState} from 'components/admin_console/admin_settings';
 import SettingsGroup from 'components/admin_console/settings_group.jsx';
 import BooleanSetting from 'components/admin_console/boolean_setting';
@@ -15,6 +12,9 @@ import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx'
 import LoadingScreen from 'components/loading_screen';
 
 import {Constants} from 'utils/constants';
+
+import {TermsOfService} from 'hkclient-redux/types/terms_of_service';
+import {AdminConfig, ClientLicense} from 'hkclient-redux/types/config';
 
 type Props = BaseProps & {
     actions: {

@@ -1,15 +1,15 @@
-import { createIntl, createIntlCache } from 'react-intl'
+import {createIntl, createIntlCache} from 'react-intl';
 
-import enTranslationData from '../../../src/i18n/en.json'
+import enTranslationData from '../../../src/i18n/en.json';
 
-const cache = createIntlCache()
+const cache = createIntlCache();
 
 export const defaultTestIntl = createIntl(
-  {
-    locale: 'en',
-    messages: enTranslationData,
-  },
-  cache
-)
+    {
+        locale: 'en',
+        messages: enTranslationData,
+    },
+    cache,
+);
 
-export const translationData = enTranslationData
+export const translationData = enTranslationData;

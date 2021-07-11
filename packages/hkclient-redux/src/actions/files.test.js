@@ -2,11 +2,13 @@
 // See LICENSE.txt for license information.
 
 import fs from 'fs';
+
 import assert from 'assert';
 import nock from 'nock';
 
+import * as Actions from 'hkclient-redux/actions/files';
+
 import {FileTypes} from 'hkclient-redux/action_types';
-import * as Actions from 'actions/files';
 import {Client4} from 'hkclient-redux/client';
 import {RequestStatus} from '../constants';
 import TestHelper from 'hkclient-redux/test/test_helper';
@@ -14,7 +16,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 
 const FormData = require('form-data');
 
-describe('Actions.Files', () => {
+describe('hkclient-redux/actions.Files', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

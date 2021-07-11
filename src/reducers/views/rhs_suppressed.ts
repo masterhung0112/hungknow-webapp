@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-
 import {ViewsState} from 'types/store/views';
 import {ActionTypes} from 'utils/constants';
+
+import {GenericAction} from 'hkclient-redux/types/actions';
 
 export default function rhsSuppressed(state: ViewsState['rhsSuppressed'] = false, action: GenericAction): boolean {
     switch (action.type) {

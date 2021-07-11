@@ -4,13 +4,13 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
+import {setModalSearchTerm} from 'actions/views/search';
+
 import {getAllChannels as loadChannels, searchAllChannels} from 'hkclient-redux/actions/channels';
 
 import {ChannelWithTeamData, ChannelSearchOpts} from 'hkclient-redux/types/channels';
 
 import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
-
-import {setModalSearchTerm} from 'actions/views/search';
 
 import {GlobalState} from '../../types/store';
 

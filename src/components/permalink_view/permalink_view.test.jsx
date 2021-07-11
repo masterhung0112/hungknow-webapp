@@ -7,16 +7,18 @@ import nock from 'nock';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 
+import {ErrorPageTypes} from 'utils/constants';
+
+import {browserHistory} from 'utils/browser_history';
+
+import {focusPost} from 'components/permalink_view/actions';
+
+import PermalinkView from 'components/permalink_view/permalink_view.jsx';
+
 import {Client4} from 'hkclient-redux/client';
 import {getPostThread} from 'hkclient-redux/actions/posts';
 import {Preferences} from 'hkclient-redux/constants';
 import TestHelper from 'hkclient-redux/test/test_helper';
-
-import {ErrorPageTypes} from 'utils/constants';
-import {browserHistory} from 'utils/browser_history';
-
-import {focusPost} from 'components/permalink_view/actions';
-import PermalinkView from 'components/permalink_view/permalink_view.jsx';
 
 const mockStore = configureStore([thunk]);
 

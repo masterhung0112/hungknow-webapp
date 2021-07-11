@@ -5,11 +5,12 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import AlertBanner from 'components/alert_banner';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message';
+
 import {Client4} from 'hkclient-redux/client';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import AlertBanner from 'components/alert_banner';
-import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
 import './commercial_support_modal.scss';
 

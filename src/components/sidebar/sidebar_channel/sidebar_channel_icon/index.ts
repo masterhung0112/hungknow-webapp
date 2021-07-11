@@ -4,13 +4,15 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {getPostDraft} from 'selectors/rhs';
+
+import {StoragePrefixes} from 'utils/constants';
+
+import {GlobalState} from 'types/store';
+
 import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {getPostDraft} from 'selectors/rhs';
-import {StoragePrefixes} from 'utils/constants';
-import {GlobalState} from 'types/store';
 
 import SidebarChannelIcon from './sidebar_channel_icon';
 

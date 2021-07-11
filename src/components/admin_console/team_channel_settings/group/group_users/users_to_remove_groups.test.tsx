@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {TestHelper} from 'utils/test_helper';
+
 import {UserProfile} from 'hkclient-redux/types/users';
 import {Group} from 'hkclient-redux/types/groups';
-
-import {TestHelper} from 'utils/test_helper';
 
 import UsersToRemoveGroups from './users_to_remove_groups';
 

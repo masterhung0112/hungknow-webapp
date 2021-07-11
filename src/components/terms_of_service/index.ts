@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {getEmojiMap} from 'selectors/emojis';
+
 import {getTermsOfService, updateMyTermsOfServiceStatus} from 'hkclient-redux/actions/users';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
 import {GlobalState} from 'hkclient-redux/types/store';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {TermsOfService as ReduxTermsOfService} from 'hkclient-redux/types/terms_of_service';
-
-import {getEmojiMap} from 'selectors/emojis';
 
 import TermsOfService, {UpdateMyTermsOfServiceStatusResponse} from './terms_of_service';
 

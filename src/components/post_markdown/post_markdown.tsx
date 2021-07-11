@@ -4,12 +4,12 @@
 import React from 'react';
 import memoize from 'memoize-one';
 
-import {Post} from 'hkclient-redux/types/posts';
-import {Channel} from 'hkclient-redux/types/channels';
-
 import Markdown from 'components/markdown';
 
 import {MentionKey, TextFormattingOptions} from 'utils/text_formatting';
+
+import {Post} from 'hkclient-redux/types/posts';
+import {Channel} from 'hkclient-redux/types/channels';
 
 import {renderSystemMessage} from './system_message_helpers';
 

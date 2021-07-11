@@ -2,13 +2,15 @@
 // See LICENSE.txt for license information.
 
 import fs from 'fs';
+
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'actions/posts';
-import {getChannelStats} from 'actions/channels';
-import {login} from 'actions/users';
-import {setSystemEmojis, createCustomEmoji} from 'actions/emojis';
+import * as Actions from 'hkclient-redux/actions/posts';
+import {getChannelStats} from 'hkclient-redux/actions/channels';
+import {login} from 'hkclient-redux/actions/users';
+import {setSystemEmojis, createCustomEmoji} from 'hkclient-redux/actions/emojis';
+
 import {Client4} from 'hkclient-redux/client';
 import {Preferences, Posts, RequestStatus} from '../constants';
 import {PostTypes} from 'hkclient-redux/action_types';
@@ -18,7 +20,7 @@ import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('Actions.Posts', () => {
+describe('hkclient-redux/actions.Posts', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);

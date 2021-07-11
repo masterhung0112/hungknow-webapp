@@ -5,14 +5,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {saveSearchScrollPosition, saveSearchBarText, searchTextUpdate} from 'hkclient-redux/actions/gifs';
-import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
-import {changeOpacity, makeStyleFromTheme} from 'hkclient-redux/utils/theme_utils';
-
 import GifSearchIcon from 'components/widgets/icons/gif_search_icon';
 import GifSearchClearIcon from 'components/widgets/icons/gif_search_clear_icon';
 import LocalizedInput from 'components/localized_input/localized_input';
 import {t} from 'utils/i18n.jsx';
+
+import {changeOpacity, makeStyleFromTheme} from 'hkclient-redux/utils/theme_utils';
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {saveSearchScrollPosition, saveSearchBarText, searchTextUpdate} from 'hkclient-redux/actions/gifs';
 
 import './SearchBar.scss';
 

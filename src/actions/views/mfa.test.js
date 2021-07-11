@@ -3,14 +3,14 @@
 
 jest.mock('hkclient-redux/actions/users');
 
-import * as UserActions from 'hkclient-redux/actions/users';
-
 import {
     activateMfa,
     deactivateMfa,
     generateMfaSecret,
 } from 'actions/views/mfa';
 import configureStore from 'tests/test_store';
+
+import * as UserActions from 'hkclient-redux/actions/users';
 
 describe('actions/views/mfa', () => {
     describe('activateMfa', () => {

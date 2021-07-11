@@ -4,13 +4,13 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {getEmailInterval} from 'hkclient-redux/utils/notify_props';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
 import {Preferences} from 'utils/constants';
 import {localizeMessage} from 'utils/utils.jsx';
 import SettingItemMax from 'components/setting_item_max.jsx';
 import SettingItemMin from 'components/setting_item_min';
+
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {getEmailInterval} from 'hkclient-redux/utils/notify_props';
 
 const SECONDS_PER_MINUTE = 60;
 

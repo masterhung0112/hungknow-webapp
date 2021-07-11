@@ -6,18 +6,21 @@ import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
+import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
+
+import BotBadge from 'components/widgets/badges/bot_badge';
+
+import Avatar from 'components/widgets/users/avatar';
+
+import {isSuccess} from 'types/actions';
+
 import {Client4} from 'hkclient-redux/client';
 import {General} from 'hkclient-redux/constants';
 import {ActionResult} from 'hkclient-redux/types/actions';
 import {UserProfile} from 'hkclient-redux/types/users';
 import * as UserUtils from 'hkclient-redux/utils/user_utils';
-
-import {trackEvent} from 'actions/telemetry_actions.jsx';
-
-import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
-import BotBadge from 'components/widgets/badges/bot_badge';
-import Avatar from 'components/widgets/users/avatar';
-import {isSuccess} from 'types/actions';
 
 export type Props = {
     show: boolean;

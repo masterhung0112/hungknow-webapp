@@ -5,13 +5,6 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import {
-    removeReaction,
-    addMessageIntoHistory,
-    moveHistoryIndexBack,
-} from 'hkclient-redux/actions/posts';
-import {Posts} from 'hkclient-redux/constants';
-
-import {
     clearCommentDraftUploads,
     updateCommentDraft,
     makeOnMoveHistoryIndex,
@@ -26,6 +19,13 @@ import * as PostActions from 'actions/post_actions.jsx';
 import {executeCommand} from 'actions/command';
 import * as HookActions from 'actions/hooks';
 import {StoragePrefixes} from 'utils/constants';
+
+import {Posts} from 'hkclient-redux/constants';
+import {
+    removeReaction,
+    addMessageIntoHistory,
+    moveHistoryIndexBack,
+} from 'hkclient-redux/actions/posts';
 
 /* eslint-disable global-require */
 

@@ -16,6 +16,7 @@ import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult, batchActions, Acti
 import {Team, TeamMembership, TeamMemberWithError, GetTeamMembersOpts, TeamsWithCount, TeamSearchOpts} from 'hkclient-redux/types/teams';
 
 import {UserProfile} from 'hkclient-redux/types/users';
+
 import {selectChannel} from './channels';
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';

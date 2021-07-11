@@ -4,13 +4,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import {Constants, NotificationLevels} from 'utils/constants';
 
 import Menu from 'components/widgets/menu/menu';
 import MenuItemAction from 'components/widgets/menu/menu_items/menu_item_action';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Channel} from 'hkclient-redux/types/channels';
 
 import MenuItemToggleMuteChannel from './toggle_mute_channel';
 

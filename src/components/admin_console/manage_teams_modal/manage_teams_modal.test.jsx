@@ -4,9 +4,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {General} from 'hkclient-redux/constants';
-
 import ManageTeamsModal from 'components/admin_console/manage_teams_modal/manage_teams_modal.jsx';
+
+import {General} from 'hkclient-redux/constants';
 
 describe('ManageTeamsModal', () => {
     const baseProps = {

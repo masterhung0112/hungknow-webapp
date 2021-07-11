@@ -4,14 +4,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import {getChannel, getDirectTeammate} from 'hkclient-redux/selectors/entities/channels';
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import {getUser} from 'hkclient-redux/selectors/entities/users';
-import {makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
-import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
-import {isPostFlagged} from 'hkclient-redux/utils/post_utils';
-
 import {
     closeRightHandSide,
     selectPostFromRightHandSideSearch,
@@ -20,7 +12,16 @@ import {
 } from 'actions/views/rhs';
 
 import {makeCreateAriaLabelForPost} from 'utils/post_utils.jsx';
+
 import {getDisplayNameByUser} from 'utils/utils.jsx';
+
+import {getChannel, getDirectTeammate} from 'hkclient-redux/selectors/entities/channels';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getUser} from 'hkclient-redux/selectors/entities/users';
+import {makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
+import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {isPostFlagged} from 'hkclient-redux/utils/post_utils';
 
 import SearchResultsItem from './search_results_item.jsx';
 

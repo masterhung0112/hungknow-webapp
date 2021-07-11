@@ -4,17 +4,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useStore, useSelector} from 'react-redux';
 
-import {getStandardAnalytics} from 'hkclient-redux/actions/admin';
-import {getCloudSubscription, getCloudProducts, getCloudCustomer} from 'hkclient-redux/actions/cloud';
-import {savePreferences} from 'hkclient-redux/actions/preferences';
-import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-import {DispatchFunc} from 'hkclient-redux/types/actions';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-
-import {Product} from 'hkclient-redux/types/cloud';
-
 import {pageVisited, trackEvent} from 'actions/telemetry_actions';
 import {openModal} from 'actions/views/modals';
 
@@ -34,6 +23,16 @@ import {
 import {isCustomerCardExpired} from 'utils/cloud_utils';
 import {getRemainingDaysFromFutureTimestamp} from 'utils/utils.jsx';
 import {useQuery} from 'utils/http_utils';
+
+import {Product} from 'hkclient-redux/types/cloud';
+import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {DispatchFunc} from 'hkclient-redux/types/actions';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
+import {savePreferences} from 'hkclient-redux/actions/preferences';
+import {getCloudSubscription, getCloudProducts, getCloudCustomer} from 'hkclient-redux/actions/cloud';
+import {getStandardAnalytics} from 'hkclient-redux/actions/admin';
 
 import BillingSummary from '../billing_summary';
 import PlanDetails from '../plan_details';

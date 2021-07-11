@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
-
 import {GlobalState} from 'types/store';
+
+import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
 
 import SystemPermissionGate from './system_permission_gate';
 

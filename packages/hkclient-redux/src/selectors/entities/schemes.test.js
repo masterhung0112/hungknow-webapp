@@ -1,12 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {ScopeTypes} from 'hkclient-redux/constants/schemes';
+
 import assert from 'assert';
 
 import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
 import TestHelper from 'hkclient-redux/test/test_helper';
 import * as Selectors from 'hkclient-redux/selectors/entities/schemes';
-import {ScopeTypes} from 'constants/schemes';
 
 describe('Selectors.Schemes', () => {
     const scheme1 = TestHelper.mockSchemeWithId();

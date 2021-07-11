@@ -4,9 +4,9 @@
 import React from 'react';
 import {FormattedDate, FormattedMessage, FormattedTime} from 'react-intl';
 
-import {Session} from 'hkclient-redux/types/sessions';
-
 import {getMonthLong} from 'utils/i18n';
+
+import {Session} from 'hkclient-redux/types/sessions';
 
 type Props = {
     locale: string;

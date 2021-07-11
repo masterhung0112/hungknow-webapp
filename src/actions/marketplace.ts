@@ -1,6 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {GlobalState} from 'types/store';
+
+import {getApp, getFilter, getPlugin} from 'selectors/views/marketplace';
+
+import {ActionTypes} from 'utils/constants';
+
+import {isError} from 'types/actions';
+
 import {Client4} from 'hkclient-redux/client';
 
 import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
@@ -10,13 +18,6 @@ import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
 import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
 import type {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
 import type {CommandArgs} from 'hkclient-redux/types/integrations';
-
-import {GlobalState} from 'types/store';
-
-import {getApp, getFilter, getPlugin} from 'selectors/views/marketplace';
-import {ActionTypes} from 'utils/constants';
-
-import {isError} from 'types/actions';
 
 import {executeCommand} from './command';
 

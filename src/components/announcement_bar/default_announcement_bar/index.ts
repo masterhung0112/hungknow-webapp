@@ -4,11 +4,12 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {incrementAnnouncementBarCount, decrementAnnouncementBarCount} from 'actions/views/announcement_bar';
+
+import {getAnnouncementBarCount} from 'selectors/views/announcement_bar';
+
 import {GlobalState} from 'hkclient-redux/types/store';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {incrementAnnouncementBarCount, decrementAnnouncementBarCount} from 'actions/views/announcement_bar';
-import {getAnnouncementBarCount} from 'selectors/views/announcement_bar';
 
 import AnnouncementBar from './announcement_bar';
 

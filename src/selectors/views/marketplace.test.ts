@@ -1,9 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {AppType} from 'hkclient-redux/types/apps';
-import {AuthorType, MarketplaceApp, MarketplacePlugin, ReleaseStage} from 'hkclient-redux/types/marketplace';
-
 import {
     getPlugins,
     getListing,
@@ -16,6 +13,9 @@ import {
 } from 'selectors/views/marketplace';
 
 import {GlobalState} from 'types/store';
+
+import {AppType} from 'hkclient-redux/types/apps';
+import {AuthorType, MarketplaceApp, MarketplacePlugin, ReleaseStage} from 'hkclient-redux/types/marketplace';
 
 describe('marketplace', () => {
     const samplePlugin: MarketplacePlugin = {

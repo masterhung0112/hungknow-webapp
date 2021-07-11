@@ -3,10 +3,10 @@
 
 import React from 'react';
 
+import ProfilePicture from 'components/profile_picture';
+
 import {Client4} from 'hkclient-redux/client';
 import {UserProfile} from 'hkclient-redux/types/users';
-
-import ProfilePicture from 'components/profile_picture';
 
 type Props = {
     user: UserProfile;

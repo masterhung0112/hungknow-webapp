@@ -3,14 +3,14 @@
 
 import React from 'react';
 
-import {Team} from 'hkclient-redux/types/teams';
-import {IncomingWebhook} from 'hkclient-redux/types/integrations';
-import {ActionResult} from 'hkclient-redux/types/actions';
-
 import {browserHistory} from 'utils/browser_history';
 import {t} from 'utils/i18n';
 import AbstractIncomingWebhook from 'components/integrations/abstract_incoming_webhook';
 import LoadingScreen from 'components/loading_screen';
+
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {IncomingWebhook} from 'hkclient-redux/types/integrations';
+import {Team} from 'hkclient-redux/types/teams';
 
 const HEADER = {id: t('integrations.edit'), defaultMessage: 'Edit'};
 const FOOTER = {id: t('update_incoming_webhook.update'), defaultMessage: 'Update'};

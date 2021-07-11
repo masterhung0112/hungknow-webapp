@@ -1,19 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getTheme } from 'hkclient-redux/selectors/entities/preferences'
-import { getMyCurrentChannelMembership } from 'hkclient-redux/selectors/entities/channels'
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {getMyCurrentChannelMembership} from 'hkclient-redux/selectors/entities/channels';
 
-import MobileChannelHeaderPlug from './mobile_channel_header_plug'
+import MobileChannelHeaderPlug from './mobile_channel_header_plug';
 
 function mapStateToProps(state) {
-  return {
-    channelMember: getMyCurrentChannelMembership(state),
-    components: state.plugins.components.MobileChannelHeaderButton,
-    theme: getTheme(state),
-  }
+    return {
+        channelMember: getMyCurrentChannelMembership(state),
+        components: state.plugins.components.MobileChannelHeaderButton,
+        theme: getTheme(state),
+    };
 }
 
-export default connect(mapStateToProps)(MobileChannelHeaderPlug)
+export default connect(mapStateToProps)(MobileChannelHeaderPlug);

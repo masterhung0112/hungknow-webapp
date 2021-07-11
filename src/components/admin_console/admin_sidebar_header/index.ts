@@ -3,9 +3,9 @@
 
 import {connect} from 'react-redux';
 
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-
 import {GlobalState} from 'types/store';
+
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 
 import AdminSidebarHeader from './admin_sidebar_header';
 

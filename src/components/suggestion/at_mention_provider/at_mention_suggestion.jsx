@@ -12,8 +12,9 @@ import GuestBadge from 'components/widgets/badges/guest_badge';
 import SharedUserIndicator from 'components/shared_user_indicator';
 import Avatar from 'components/widgets/users/avatar';
 
-import Suggestion from '../suggestion.jsx';
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
+
+import Suggestion from '../suggestion.jsx';
 
 export default class AtMentionSuggestion extends Suggestion {
     render() {

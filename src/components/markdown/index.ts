@@ -3,6 +3,12 @@
 
 import {connect} from 'react-redux';
 
+import {getEmojiMap} from 'selectors/emojis';
+
+import {getSiteURL} from 'utils/url';
+
+import {ChannelNamesMap, MentionKey} from 'utils/text_formatting';
+
 import {createSelector} from 'reselect';
 
 import {Preferences} from 'hkclient-redux/constants';
@@ -13,10 +19,6 @@ import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {getAllUserMentionKeys} from 'hkclient-redux/selectors/entities/search';
 
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {getEmojiMap} from 'selectors/emojis';
-import {getSiteURL} from 'utils/url';
-import {ChannelNamesMap, MentionKey} from 'utils/text_formatting';
 
 import {getPost} from 'hkclient-redux/selectors/entities/posts';
 

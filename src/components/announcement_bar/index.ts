@@ -4,6 +4,10 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {dismissNotice} from 'actions/views/notice';
+
+import {GlobalState} from 'types/store';
+
 import {Permissions} from 'hkclient-redux/constants';
 import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles';
 import {getConfig, getLicense, warnMetricsStatus as getWarnMetricsStatus} from 'hkclient-redux/selectors/entities/general';
@@ -11,9 +15,6 @@ import {getDisplayableErrors} from 'hkclient-redux/selectors/errors';
 import {dismissError} from 'hkclient-redux/actions/errors';
 import {getStandardAnalytics} from 'hkclient-redux/actions/admin';
 import {GenericAction} from 'hkclient-redux/types/actions';
-
-import {dismissNotice} from 'actions/views/notice';
-import {GlobalState} from 'types/store';
 
 import AnnouncementBarController from './announcement_bar_controller';
 

@@ -3,10 +3,10 @@
 
 import {connect} from 'react-redux';
 
+import {getDisplayNameByUser} from 'utils/utils';
+
 import {getUser} from 'hkclient-redux/selectors/entities/users';
 import {GlobalState} from 'hkclient-redux/types/store';
-
-import {getDisplayNameByUser} from 'utils/utils';
 
 import InstalledOAuthApp, {InstalledOAuthAppProps} from './installed_oauth_app';
 

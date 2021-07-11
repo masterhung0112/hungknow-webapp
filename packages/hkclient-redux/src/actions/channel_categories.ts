@@ -1,16 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+
+import {unfavoriteChannel, favoriteChannel} from 'hkclient-redux/actions/channels';
+
+import {logError} from 'hkclient-redux/actions/errors';
+
+import {forceLogoutIfNecessary} from 'hkclient-redux/actions/helpers';
+
 import {ChannelCategoryTypes, ChannelTypes} from 'hkclient-redux/action_types';
 
 import {Client4} from 'hkclient-redux/client';
-
-import {unfavoriteChannel, favoriteChannel} from 'actions/channels';
-import {logError} from 'actions/errors';
-import {forceLogoutIfNecessary} from 'actions/helpers';
-
-import {General} from '../constants';
-import {CategoryTypes} from 'constants/channel_categories';
 
 import {
     getAllCategoriesByIds,
@@ -32,6 +33,8 @@ import {Channel} from 'hkclient-redux/types/channels';
 import {$ID} from 'hkclient-redux/types/utilities';
 
 import {insertMultipleWithoutDuplicates, insertWithoutDuplicates, removeItem} from 'hkclient-redux/utils/array_utils';
+
+import {General} from '../constants';
 
 export function expandCategory(categoryId: string) {
     return setCategoryCollapsed(categoryId, false);
@@ -173,7 +176,7 @@ export function fetchMyCategories(teamId: string) {
 // Unless setOnServer is true, this only affects the categories on this client. If it is set to true, this updates
 // categories on the server too.
 export function addChannelToInitialCategory(channel: Channel, setOnServer = false): ActionFunc {
-    return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
         const state = getState();
         const categories = Object.values(getAllCategoriesByIds(state));
 

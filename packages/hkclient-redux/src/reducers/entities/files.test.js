@@ -3,15 +3,16 @@
 
 import assert from 'assert';
 
-import {PostTypes} from 'hkclient-redux/action_types';
 import {
     files as filesReducer,
     filesFromSearch as filesFromSearchReducer,
     fileIdsByPostId as fileIdsByPostIdReducer,
-} from 'reducers/entities/files';
+} from 'hkclient-redux/reducers/entities/files';
+
+import {PostTypes} from 'hkclient-redux/action_types';
 import deepFreeze from 'hkclient-redux/utils/deep_freeze';
 
-describe('reducers/entities/files', () => {
+describe('hkclient-redux/reducers/entities/files', () => {
     describe('files', () => {
         const testForSinglePost = (actionType) => () => {
             it('no post metadata attribute', () => {

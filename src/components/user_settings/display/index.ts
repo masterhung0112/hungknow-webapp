@@ -5,6 +5,10 @@ import {connect} from 'react-redux';
 
 import {bindActionCreators, Dispatch} from 'redux';
 
+import {Preferences} from 'utils/constants';
+
+import {GlobalState} from 'types/store';
+
 import {GenericAction} from 'hkclient-redux/types/actions';
 
 import {savePreferences} from 'hkclient-redux/actions/preferences';
@@ -15,10 +19,6 @@ import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {get, isCollapsedThreadsAllowed, getCollapsedThreadsPreference} from 'hkclient-redux/selectors/entities/preferences';
 import {getUserTimezone} from 'hkclient-redux/selectors/entities/timezone';
 import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';
-
-import {Preferences} from 'utils/constants';
-
-import {GlobalState} from 'types/store';
 
 import UserSettingsDisplay from './user_settings_display';
 

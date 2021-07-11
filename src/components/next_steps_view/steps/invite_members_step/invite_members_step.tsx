@@ -8,12 +8,6 @@ import classNames from 'classnames';
 
 import {isNull} from 'lodash';
 
-import {ServerError} from 'hkclient-redux/types/errors';
-import {TeamInviteWithError, Team} from 'hkclient-redux/types/teams';
-import {isEmail} from 'hkclient-redux/utils/helpers';
-
-import {SubscriptionStats} from 'hkclient-redux/types/cloud';
-
 import {pageVisited, trackEvent} from 'actions/telemetry_actions';
 import {getAnalyticsCategory} from 'components/next_steps_view/step_helpers';
 import MultiInput from 'components/multi_input';
@@ -27,6 +21,11 @@ import {StepComponentProps} from '../../steps';
 
 import './invite_members_step.scss';
 import NotifyLink from 'components/widgets/links/notify_link';
+
+import {SubscriptionStats} from 'hkclient-redux/types/cloud';
+import {isEmail} from 'hkclient-redux/utils/helpers';
+import {TeamInviteWithError, Team} from 'hkclient-redux/types/teams';
+import {ServerError} from 'hkclient-redux/types/errors';
 
 type Props = StepComponentProps & {
     team: Team;

@@ -4,6 +4,28 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
+import {connectionErrorCount} from 'selectors/views/system';
+
+import {Constants, StoragePrefixes} from 'utils/constants';
+
+import {getCurrentLocale} from 'selectors/i18n';
+
+import {
+    clearCommentDraftUploads,
+    updateCommentDraft,
+    makeOnMoveHistoryIndex,
+    makeOnSubmit,
+    makeOnEditLatestPost,
+} from 'actions/views/create_comment';
+
+import {emitShortcutReactToLastPostFrom} from 'actions/post_actions';
+
+import {getPostDraft, getIsRhsExpanded, getSelectedPostFocussedAt} from 'selectors/rhs';
+
+import {showPreviewOnCreateComment} from 'selectors/views/textbox';
+
+import {setShowPreviewOnCreateComment} from 'actions/views/textbox';
+
 import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 import {isCurrentUserSystemAdmin} from 'hkclient-redux/selectors/entities/users';
 import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
@@ -14,23 +36,6 @@ import {resetCreatePostRequest, resetHistoryIndex} from 'hkclient-redux/actions/
 import {getChannelTimezones, getChannelMemberCountsByGroup} from 'hkclient-redux/actions/channels';
 import {Permissions, Preferences, Posts} from 'hkclient-redux/constants';
 import {getAssociatedGroupsForReferenceByMention} from 'hkclient-redux/selectors/entities/groups';
-
-import {connectionErrorCount} from 'selectors/views/system';
-
-import {Constants, StoragePrefixes} from 'utils/constants';
-import {getCurrentLocale} from 'selectors/i18n';
-
-import {
-    clearCommentDraftUploads,
-    updateCommentDraft,
-    makeOnMoveHistoryIndex,
-    makeOnSubmit,
-    makeOnEditLatestPost,
-} from 'actions/views/create_comment';
-import {emitShortcutReactToLastPostFrom} from 'actions/post_actions';
-import {getPostDraft, getIsRhsExpanded, getSelectedPostFocussedAt} from 'selectors/rhs';
-import {showPreviewOnCreateComment} from 'selectors/views/textbox';
-import {setShowPreviewOnCreateComment} from 'actions/views/textbox';
 
 import CreateComment from './create_comment.jsx';
 

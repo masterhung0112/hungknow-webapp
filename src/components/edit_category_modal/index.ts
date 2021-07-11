@@ -4,13 +4,14 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
+import {createCategory} from 'actions/views/channel_sidebar';
+
+import {GlobalState} from 'types/store';
+
 import {renameCategory} from 'hkclient-redux/actions/channel_categories';
 import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
 import {ActionFunc} from 'hkclient-redux/types/actions';
 import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
-
-import {createCategory} from 'actions/views/channel_sidebar';
-import {GlobalState} from 'types/store';
 
 import EditCategoryModal from './edit_category_modal';
 

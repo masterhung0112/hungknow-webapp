@@ -3,11 +3,12 @@
 
 import assert from 'assert';
 
+import {customEmoji as customEmojiReducer} from 'hkclient-redux/reducers/entities/emojis';
+
 import {PostTypes} from 'hkclient-redux/action_types';
-import {customEmoji as customEmojiReducer} from 'reducers/entities/emojis';
 import deepFreeze from 'hkclient-redux/utils/deep_freeze';
 
-describe('reducers/entities/emojis', () => {
+describe('hkclient-redux/reducers/entities/emojis', () => {
     describe('customEmoji', () => {
         const testForSinglePost = (actionType) => () => {
             it('no post metadata', () => {

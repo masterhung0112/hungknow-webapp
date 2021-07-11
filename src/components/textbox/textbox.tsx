@@ -5,10 +5,6 @@
 import React, {ChangeEvent, ElementType, FocusEvent, KeyboardEvent, MouseEvent} from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {ActionResult} from 'hkclient-redux/types/actions';
-import {UserProfile} from 'hkclient-redux/types/users';
-
 import AutosizeTextarea from 'components/autosize_textarea';
 import PostMarkdown from 'components/post_markdown';
 import Provider from 'components/suggestion/provider';
@@ -21,6 +17,10 @@ import SuggestionList from 'components/suggestion/suggestion_list.jsx';
 
 import * as Utils from 'utils/utils.jsx';
 import AppCommandProvider from 'components/suggestion/command_provider/app_provider';
+
+import {UserProfile} from 'hkclient-redux/types/users';
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
     id: string;

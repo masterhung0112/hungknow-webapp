@@ -4,10 +4,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
+import {trackEvent} from 'actions/telemetry_actions.jsx';
+
 import {AuthorType, MarketplacePlugin, ReleaseStage} from 'hkclient-redux/types/marketplace';
 import type {PluginStatusRedux} from 'hkclient-redux/types/plugins';
-
-import {trackEvent} from 'actions/telemetry_actions.jsx';
 
 import {AllListing, InstalledListing, MarketplaceModal, MarketplaceModalProps} from './marketplace_modal';
 

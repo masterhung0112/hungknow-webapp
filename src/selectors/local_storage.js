@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import localStorageStore from 'stores/local_storage_store';
+
 import {getCurrentTeamId, getTeamByName} from 'hkclient-redux/selectors/entities/teams';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-
-import localStorageStore from 'stores/local_storage_store';
 
 // getLastViewedChannelName combines data from the Redux store and localStorage to return the
 // previously selected channel name, returning the default channel if none exists.

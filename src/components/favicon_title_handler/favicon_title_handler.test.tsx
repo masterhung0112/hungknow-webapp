@@ -4,9 +4,6 @@
 import React, {ComponentProps} from 'react';
 import {ShallowWrapper} from 'enzyme';
 
-import {ChannelType} from 'hkclient-redux/types/channels';
-import {TeamType} from 'hkclient-redux/types/teams';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 
 import {Constants} from 'utils/constants';
@@ -14,6 +11,9 @@ import {TestHelper} from 'utils/test_helper';
 import {isChrome, isFirefox} from 'utils/user_agent';
 
 import FaviconTitleHandler, {FaviconTitleHandlerClass} from 'components/favicon_title_handler/favicon_title_handler';
+
+import {TeamType} from 'hkclient-redux/types/teams';
+import {ChannelType} from 'hkclient-redux/types/channels';
 
 type Props = ComponentProps<typeof FaviconTitleHandlerClass>;
 

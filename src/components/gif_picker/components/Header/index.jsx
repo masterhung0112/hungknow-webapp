@@ -5,14 +5,14 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {saveSearchBarText, searchTextUpdate} from 'hkclient-redux/actions/gifs';
-import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
-import {changeOpacity, makeStyleFromTheme} from 'hkclient-redux/utils/theme_utils';
-
 import constants from 'components/gif_picker/utils/constants';
 import SearchBar from 'components/gif_picker/components/SearchBar';
 import GifTrendingIcon from 'components/widgets/icons/gif_trending_icon';
 import GifReactionsIcon from 'components/widgets/icons/gif_reactions_icon';
+
+import {changeOpacity, makeStyleFromTheme} from 'hkclient-redux/utils/theme_utils';
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {saveSearchBarText, searchTextUpdate} from 'hkclient-redux/actions/gifs';
 import './Header.scss';
 
 function mapStateToProps(state) {

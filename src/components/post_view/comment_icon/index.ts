@@ -3,12 +3,12 @@
 
 import {connect} from 'react-redux';
 
-import {getPost, makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
-import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-
 import {GlobalState} from 'types/store';
 
 import CommentIcon from 'components/common/comment_icon';
+
+import {getPost, makeGetCommentCountForPost} from 'hkclient-redux/selectors/entities/posts';
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
 type OwnProps = {
     postId: string;

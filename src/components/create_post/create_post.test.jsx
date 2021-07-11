@@ -3,8 +3,6 @@
 
 import React from 'react';
 
-import {Posts} from 'hkclient-redux/constants';
-
 import {shallowWithIntl} from 'tests/helpers/intl-test-helper';
 import {testComponentForLineBreak} from 'tests/helpers/line_break_helpers';
 import {testComponentForMarkdownHotkeys, makeSelectionEvent} from 'tests/helpers/markdown_hotkey_helpers.js';
@@ -17,6 +15,8 @@ import * as Utils from 'utils/utils.jsx';
 import CreatePost from 'components/create_post/create_post.jsx';
 import FileUpload from 'components/file_upload';
 import Textbox from 'components/textbox';
+
+import {Posts} from 'hkclient-redux/constants';
 
 jest.mock('actions/global_actions', () => ({
     emitLocalUserTypingEvent: jest.fn(),

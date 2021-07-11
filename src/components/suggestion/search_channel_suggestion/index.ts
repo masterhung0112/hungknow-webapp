@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 import {connect} from 'react-redux';
 
+import {GlobalState} from 'types/store';
+
 import {getDirectTeammate} from 'hkclient-redux/selectors/entities/channels';
 import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {Channel} from 'hkclient-redux/types/channels';
-
-import {GlobalState} from 'types/store';
 
 import SearchChannelSuggestion from './search_channel_suggestion';
 

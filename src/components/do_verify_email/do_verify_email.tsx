@@ -4,10 +4,6 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {ServerError} from 'hkclient-redux/types/errors';
-
-import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
-
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 import {browserHistory} from 'utils/browser_history';
 import {AnnouncementBarTypes, AnnouncementBarMessages, VerifyEmailErrors} from 'utils/constants';
@@ -16,6 +12,9 @@ import BackButton from 'components/common/back_button';
 import LoadingScreen from 'components/loading_screen';
 
 import * as GlobalActions from 'actions/global_actions';
+
+import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
+import {ServerError} from 'hkclient-redux/types/errors';
 
 type Props = {
     location: {

@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedMessage, injectIntl} from 'react-intl';
 
-import {Groups} from 'hkclient-redux/constants';
-
 import ConfirmModal from 'components/confirm_modal';
 
 import AddGroupsToTeamModal from 'components/add_groups_to_team_modal';
@@ -23,6 +21,8 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
 
 import * as Utils from 'utils/utils.jsx';
+
+import {Groups} from 'hkclient-redux/constants';
 
 class TeamGroupsManageModal extends React.PureComponent {
     static propTypes = {

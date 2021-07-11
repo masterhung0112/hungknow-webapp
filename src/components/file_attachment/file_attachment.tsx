@@ -7,8 +7,6 @@ import classNames from 'classnames';
 
 import * as GlobalActions from 'actions/global_actions';
 
-import {getFileThumbnailUrl, getFileUrl} from 'hkclient-redux/utils/file_utils';
-import {FileInfo} from 'hkclient-redux/types/files';
 import {FileDropdownPluginComponent} from 'types/store/plugins';
 
 import OverlayTrigger from 'components/overlay_trigger';
@@ -23,6 +21,9 @@ import {
     loadImage,
     localizeMessage,
 } from 'utils/utils.jsx';
+
+import {FileInfo} from 'hkclient-redux/types/files';
+import {getFileThumbnailUrl, getFileUrl} from 'hkclient-redux/utils/file_utils';
 
 import FilenameOverlay from './filename_overlay';
 import FileThumbnail from './file_thumbnail';

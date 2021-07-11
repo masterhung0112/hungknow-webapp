@@ -3,12 +3,13 @@
 
 import React from 'react';
 
+import {filterAndSortTeamsByDisplayName} from 'utils/team_utils.jsx';
+
+import {t} from 'utils/i18n';
+
 import {ActionFunc} from 'hkclient-redux/types/actions';
 
 import {TeamMembership} from 'hkclient-redux/types/teams';
-
-import {filterAndSortTeamsByDisplayName} from 'utils/team_utils.jsx';
-import {t} from 'utils/i18n';
 
 import AbstractList from './abstract_list';
 import TeamRow from './team_row';

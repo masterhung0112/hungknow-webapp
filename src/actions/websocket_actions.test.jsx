@@ -1,22 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {
-    getProfilesAndStatusesForPosts,
-    getThreadsForPosts,
-    receivedNewPost,
-} from 'hkclient-redux/actions/posts';
-import {ChannelTypes, UserTypes} from 'hkclient-redux/action_types';
-import {
-    getMissingProfilesByIds,
-    getStatusesByIds,
-    getUser,
-} from 'hkclient-redux/actions/users';
-import {
-    getChannelStats,
-} from 'hkclient-redux/actions/channels';
-import {General, WebsocketEvents} from 'hkclient-redux/constants';
-
 import {handleNewPost} from 'actions/post_actions';
 import {closeRightHandSide} from 'actions/views/rhs';
 import {syncPostsInChannel} from 'actions/views/channel';
@@ -27,6 +11,22 @@ import configureStore from 'tests/test_store';
 
 import {browserHistory} from 'utils/browser_history';
 import Constants, {SocketEvents, UserStatuses, ActionTypes} from 'utils/constants';
+
+import {General, WebsocketEvents} from 'hkclient-redux/constants';
+import {
+    getChannelStats,
+} from 'hkclient-redux/actions/channels';
+import {
+    getMissingProfilesByIds,
+    getStatusesByIds,
+    getUser,
+} from 'hkclient-redux/actions/users';
+import {ChannelTypes, UserTypes} from 'hkclient-redux/action_types';
+import {
+    getProfilesAndStatusesForPosts,
+    getThreadsForPosts,
+    receivedNewPost,
+} from 'hkclient-redux/actions/posts';
 
 import {
     handleChannelUpdatedEvent,

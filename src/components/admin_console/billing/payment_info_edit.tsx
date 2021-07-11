@@ -9,9 +9,6 @@ import {Stripe} from '@stripe/stripe-js';
 import {loadStripe} from '@stripe/stripe-js/pure'; // https://github.com/stripe/stripe-js#importing-loadstripe-without-side-effects
 import {Elements} from '@stripe/react-stripe-js';
 
-import {getCloudCustomer} from 'hkclient-redux/actions/cloud';
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-
 import {completeStripeAddPaymentMethod} from 'actions/cloud';
 import BlockableLink from 'components/admin_console/blockable_link';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
@@ -25,6 +22,9 @@ import {browserHistory} from 'utils/browser_history';
 
 import './payment_info_edit.scss';
 import AlertBanner from 'components/alert_banner';
+
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getCloudCustomer} from 'hkclient-redux/actions/cloud';
 
 let stripePromise: Promise<Stripe | null>;
 

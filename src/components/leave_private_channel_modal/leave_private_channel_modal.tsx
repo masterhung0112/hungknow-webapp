@@ -4,11 +4,11 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {Channel} from 'hkclient-redux/types/channels';
-
 import ModalStore from 'stores/modal_store.jsx';
 import Constants from 'utils/constants';
 import ConfirmModal from 'components/confirm_modal';
+
+import {Channel} from 'hkclient-redux/types/channels';
 
 type State = {
     show: boolean;

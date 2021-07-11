@@ -6,8 +6,6 @@ import React from 'react';
 import {FormattedMessage, injectIntl} from 'react-intl';
 import {Link} from 'react-router-dom';
 
-import {Client4} from 'hkclient-redux/client';
-
 import * as GlobalActions from 'actions/global_actions';
 import LocalStorageStore from 'stores/local_storage_store';
 
@@ -31,6 +29,8 @@ import SuccessIcon from 'components/widgets/icons/fa_success_icon';
 import WarningIcon from 'components/widgets/icons/fa_warning_icon';
 import LocalizedInput from 'components/localized_input/localized_input';
 import Markdown from 'components/markdown';
+
+import {Client4} from 'hkclient-redux/client';
 
 import LoginMfa from '../login_mfa.jsx';
 
