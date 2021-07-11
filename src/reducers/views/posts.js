@@ -1,57 +1,57 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
-import { UserTypes } from 'hkclient-ts/lib/action-types'
+import {UserTypes} from 'hkclient-redux/action_types';
 
-import { ActionTypes } from 'utils/constants'
+import {ActionTypes} from 'utils/constants';
 
 const defaultState = {
-  show: false,
-}
+    show: false,
+};
 
 function editingPost(state = defaultState, action) {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.SHOW_EDIT_POST_MODAL:
-      return {
-        ...action.data,
-        show: true,
-      }
+        return {
+            ...action.data,
+            show: true,
+        };
     case ActionTypes.HIDE_EDIT_POST_MODAL:
-      return {
-        show: false,
-      }
+        return {
+            show: false,
+        };
 
     case UserTypes.LOGOUT_SUCCESS:
-      return ''
+        return '';
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 function menuActions(state = {}, action) {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.SELECT_ATTACHMENT_MENU_ACTION: {
-      const nextState = { ...state }
-      if (nextState[action.postId]) {
-        nextState[action.postId] = {
-          ...nextState[action.postId],
-          ...action.data,
+        const nextState = {...state};
+        if (nextState[action.postId]) {
+            nextState[action.postId] = {
+                ...nextState[action.postId],
+                ...action.data,
+            };
+        } else {
+            nextState[action.postId] = action.data;
         }
-      } else {
-        nextState[action.postId] = action.data
-      }
-      return nextState
+        return nextState;
     }
     case UserTypes.LOGOUT_SUCCESS:
-      return {}
+        return {};
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export default combineReducers({
-  editingPost,
-  menuActions,
-})
+    editingPost,
+    menuActions,
+});

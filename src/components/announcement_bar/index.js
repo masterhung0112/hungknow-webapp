@@ -4,17 +4,17 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { Permissions } from 'hkclient-ts/lib/constants'
-import { getCurrentUser } from 'hkclient-ts/lib/selectors/entities/users'
-import { haveISystemPermission } from 'hkclient-ts/lib/selectors/entities/roles'
+import { Permissions } from 'hkclient-redux/constants'
+import { getCurrentUser } from 'hkclient-redux/selectors/entities/users'
+import { haveISystemPermission } from 'hkclient-redux/selectors/entities/roles'
 import {
   getConfig,
   getLicense,
   warnMetricsStatus as getWarnMetricsStatus,
-} from 'hkclient-ts/lib/selectors/entities/general'
-import { getDisplayableErrors } from 'hkclient-ts/lib/selectors/errors'
-import { dismissError } from 'hkclient-ts/lib/actions/errors'
-import { getStandardAnalytics } from 'hkclient-ts/lib/actions/admin'
+} from 'hkclient-redux/selectors/entities/general'
+import { getDisplayableErrors } from 'hkclient-redux/selectors/errors'
+import { dismissError } from 'hkclient-redux/actions/errors'
+import { getStandardAnalytics } from 'hkclient-redux/actions/admin'
 
 import { dismissNotice } from 'actions/views/notice'
 

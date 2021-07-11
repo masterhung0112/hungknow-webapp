@@ -3,9 +3,9 @@
 
 import { connect } from 'react-redux'
 
-import { getTeammateNameDisplaySetting } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { getCurrentUserId, getUsersByUsername } from 'hkclient-ts/lib/selectors/entities/users'
-import { getAllGroupsForReferenceByName } from 'hkclient-ts/lib/selectors/entities/groups'
+import { getTeammateNameDisplaySetting } from 'hkclient-redux/selectors/entities/preferences'
+import { getCurrentUserId, getUsersByUsername } from 'hkclient-redux/selectors/entities/users'
+import { getAllGroupsForReferenceByName } from 'hkclient-redux/selectors/entities/groups'
 
 import AtMention from './at_mention.jsx'
 

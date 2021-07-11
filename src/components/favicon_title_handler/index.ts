@@ -1,36 +1,42 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {ComponentProps} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
+import {withRouter, RouteChildrenProps, matchPath} from 'react-router-dom';
 
-import { getCurrentChannel, getUnreads } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { getCurrentTeam } from 'hkclient-ts/lib/selectors/entities/teams'
-import { GlobalState } from 'hkclient-ts/lib/types/store'
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {getCurrentChannel, getUnreadStatus} from 'hkclient-redux/selectors/entities/channels';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {GlobalState} from 'hkclient-redux/types/store';
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import FaviconTitleHandler from './favicon_title_handler'
+import FaviconTitleHandler from './favicon_title_handler';
 
-function mapStateToProps(state: GlobalState) {
-  const config = getConfig(state)
-  const currentChannel = getCurrentChannel(state)
-  const currentTeammate = currentChannel && currentChannel.teammate_id ? currentChannel : null
-  const currentTeam = getCurrentTeam(state)
+type Props = RouteChildrenProps;
 
-  return {
-    currentChannel,
-    currentTeam,
-    currentTeammate,
-    siteName: config.SiteName,
-    unreads: getUnreads(state),
-  }
+function mapStateToProps(state: GlobalState, {location: {pathname}}: Props): ComponentProps<typeof FaviconTitleHandler> {
+    const config = getConfig(state);
+    const currentChannel = getCurrentChannel(state);
+    const currentTeammate = (currentChannel && currentChannel.teammate_id) ? currentChannel : null;
+    const currentTeam = getCurrentTeam(state);
+
+    return {
+        currentChannel,
+        currentTeam,
+        currentTeammate,
+        siteName: config.SiteName,
+        unreadStatus: getUnreadStatus(state),
+        inGlobalThreads: matchPath(pathname, {path: '/:team/threads/:threadIdentifier?'}) != null,
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators({}, dispatch),
-  }
+    return {
+        actions: bindActionCreators({
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FaviconTitleHandler)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FaviconTitleHandler));

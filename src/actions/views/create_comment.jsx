@@ -1,238 +1,241 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { createSelector } from 'reselect'
+import {createSelector} from 'reselect';
 
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
 import {
-  makeGetMessageInHistoryItem,
-  makeGetCommentCountForPost,
-  getPost,
-  getPostIdsInChannel,
-} from 'hkclient-ts/lib/selectors/entities/posts'
-import { getCustomEmojisByName } from 'hkclient-ts/lib/selectors/entities/emojis'
+    makeGetMessageInHistoryItem,
+    getPost,
+    makeGetPostIdsForThread,
+} from 'hkclient-redux/selectors/entities/posts';
+import {getCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
 import {
-  removeReaction,
-  addMessageIntoHistory,
-  moveHistoryIndexBack,
-  moveHistoryIndexForward,
-} from 'hkclient-ts/lib/actions/posts'
-import { Posts } from 'hkclient-ts/lib/constants'
-import { isPostPendingOrFailed } from 'hkclient-ts/lib/utils/post_utils'
+    removeReaction,
+    addMessageIntoHistory,
+    moveHistoryIndexBack,
+    moveHistoryIndexForward,
+} from 'hkclient-redux/actions/posts';
+import {Posts} from 'hkclient-redux/constants';
+import {isPostPendingOrFailed} from 'hkclient-redux/utils/post_utils';
 
-import * as PostActions from 'actions/post_actions.jsx'
-import { executeCommand } from 'actions/command'
-import { runMessageWillBePostedHooks, runSlashCommandWillBePostedHooks } from 'actions/hooks'
-import { setGlobalItem, actionOnGlobalItemsWithPrefix } from 'actions/storage'
-import EmojiMap from 'utils/emoji_map'
-import { getPostDraft } from 'selectors/rhs'
+import * as PostActions from 'actions/post_actions.jsx';
+import {executeCommand} from 'actions/command';
+import {runMessageWillBePostedHooks, runSlashCommandWillBePostedHooks} from 'actions/hooks';
+import {setGlobalItem, actionOnGlobalItemsWithPrefix} from 'actions/storage';
+import EmojiMap from 'utils/emoji_map';
+import {getPostDraft} from 'selectors/rhs';
 
-import * as Utils from 'utils/utils.jsx'
-import { Constants, StoragePrefixes } from 'utils/constants'
+import * as Utils from 'utils/utils.jsx';
+import {Constants, StoragePrefixes} from 'utils/constants';
 
 export function clearCommentDraftUploads() {
-  return actionOnGlobalItemsWithPrefix(StoragePrefixes.COMMENT_DRAFT, (key, value) => {
-    if (value) {
-      return { ...value, uploadsInProgress: [] }
-    }
-    return value
-  })
+    return actionOnGlobalItemsWithPrefix(StoragePrefixes.COMMENT_DRAFT, (_key, value) => {
+        if (value) {
+            return {...value, uploadsInProgress: []};
+        }
+        return value;
+    });
 }
 
 export function updateCommentDraft(rootId, draft) {
-  return setGlobalItem(`${StoragePrefixes.COMMENT_DRAFT}${rootId}`, draft)
+    return setGlobalItem(`${StoragePrefixes.COMMENT_DRAFT}${rootId}`, draft);
 }
 
 export function makeOnMoveHistoryIndex(rootId, direction) {
-  const getMessageInHistory = makeGetMessageInHistoryItem(Posts.MESSAGE_TYPES.COMMENT)
+    const getMessageInHistory = makeGetMessageInHistoryItem(Posts.MESSAGE_TYPES.COMMENT);
 
-  return () => (dispatch, getState) => {
-    const draft = getPostDraft(getState(), StoragePrefixes.COMMENT_DRAFT, rootId)
-    if (draft.message !== '' && draft.message !== getMessageInHistory(getState())) {
-      return
-    }
+    return () => (dispatch, getState) => {
+        const draft = getPostDraft(getState(), StoragePrefixes.COMMENT_DRAFT, rootId);
+        if (draft.message !== '' && draft.message !== getMessageInHistory(getState())) {
+            return;
+        }
 
-    if (direction === -1) {
-      dispatch(moveHistoryIndexBack(Posts.MESSAGE_TYPES.COMMENT))
-    } else if (direction === 1) {
-      dispatch(moveHistoryIndexForward(Posts.MESSAGE_TYPES.COMMENT))
-    }
+        if (direction === -1) {
+            dispatch(moveHistoryIndexBack(Posts.MESSAGE_TYPES.COMMENT));
+        } else if (direction === 1) {
+            dispatch(moveHistoryIndexForward(Posts.MESSAGE_TYPES.COMMENT));
+        }
 
-    const nextMessageInHistory = getMessageInHistory(getState())
+        const nextMessageInHistory = getMessageInHistory(getState());
 
-    dispatch(updateCommentDraft(rootId, { ...draft, message: nextMessageInHistory }))
-  }
+        dispatch(updateCommentDraft(rootId, {...draft, message: nextMessageInHistory}));
+    };
 }
 
 export function submitPost(channelId, rootId, draft) {
-  return async (dispatch, getState) => {
-    const state = getState()
+    return async (dispatch, getState) => {
+        const state = getState();
 
-    const userId = getCurrentUserId(state)
+        const userId = getCurrentUserId(state);
 
-    const time = Utils.getTimestamp()
+        const time = Utils.getTimestamp();
 
-    let post = {
-      file_ids: [],
-      message: draft.message,
-      channel_id: channelId,
-      root_id: rootId,
-      parent_id: rootId,
-      pending_post_id: `${userId}:${time}`,
-      user_id: userId,
-      create_at: time,
-      metadata: {},
-      props: { ...draft.props },
-    }
+        let post = {
+            file_ids: [],
+            message: draft.message,
+            channel_id: channelId,
+            root_id: rootId,
+            parent_id: rootId,
+            pending_post_id: `${userId}:${time}`,
+            user_id: userId,
+            create_at: time,
+            metadata: {},
+            props: {...draft.props},
+        };
 
-    const hookResult = await dispatch(runMessageWillBePostedHooks(post))
-    if (hookResult.error) {
-      return { error: hookResult.error }
-    }
+        const hookResult = await dispatch(runMessageWillBePostedHooks(post));
+        if (hookResult.error) {
+            return {error: hookResult.error};
+        }
 
-    post = hookResult.data
+        post = hookResult.data;
 
-    return dispatch(PostActions.createPost(post, draft.fileInfos))
-  }
+        return dispatch(PostActions.createPost(post, draft.fileInfos));
+    };
 }
 
 export function submitReaction(postId, action, emojiName) {
-  return (dispatch) => {
-    if (action === '+') {
-      dispatch(PostActions.addReaction(postId, emojiName))
-    } else if (action === '-') {
-      dispatch(removeReaction(postId, emojiName))
-    }
-  }
+    return (dispatch) => {
+        if (action === '+') {
+            dispatch(PostActions.addReaction(postId, emojiName));
+        } else if (action === '-') {
+            dispatch(removeReaction(postId, emojiName));
+        }
+    };
 }
 
 export function submitCommand(channelId, rootId, draft) {
-  return async (dispatch, getState) => {
-    const state = getState()
+    return async (dispatch, getState) => {
+        const state = getState();
 
-    const teamId = getCurrentTeamId(state)
+        const teamId = getCurrentTeamId(state);
 
-    let args = {
-      channel_id: channelId,
-      team_id: teamId,
-      root_id: rootId,
-      parent_id: rootId,
-    }
+        let args = {
+            channel_id: channelId,
+            team_id: teamId,
+            root_id: rootId,
+            parent_id: rootId,
+        };
 
-    let { message } = draft
+        let {message} = draft;
 
-    const hookResult = await dispatch(runSlashCommandWillBePostedHooks(message, args))
-    if (hookResult.error) {
-      return { error: hookResult.error }
-    } else if (!hookResult.data.message && !hookResult.data.args) {
-      // do nothing with an empty return from a hook
-      return {}
-    }
+        const hookResult = await dispatch(runSlashCommandWillBePostedHooks(message, args));
+        if (hookResult.error) {
+            return {error: hookResult.error};
+        } else if (!hookResult.data.message && !hookResult.data.args) {
+            // do nothing with an empty return from a hook
+            return {};
+        }
 
-    message = hookResult.data.message
-    args = hookResult.data.args
+        message = hookResult.data.message;
+        args = hookResult.data.args;
 
-    const { error } = await dispatch(executeCommand(message, args))
+        const {error} = await dispatch(executeCommand(message, args));
 
-    if (error) {
-      if (error.sendMessage) {
-        return dispatch(submitPost(channelId, rootId, draft))
-      }
-      throw error
-    }
+        if (error) {
+            if (error.sendMessage) {
+                return dispatch(submitPost(channelId, rootId, draft));
+            }
+            throw (error);
+        }
 
-    return {}
-  }
+        return {};
+    };
 }
 
 export function makeOnSubmit(channelId, rootId, latestPostId) {
-  return (options = {}) => async (dispatch, getState) => {
-    const draft = getPostDraft(getState(), StoragePrefixes.COMMENT_DRAFT, rootId)
-    const { message } = draft
+    return (options = {}) => async (dispatch, getState) => {
+        const draft = getPostDraft(getState(), StoragePrefixes.COMMENT_DRAFT, rootId);
+        const {message} = draft;
 
-    dispatch(addMessageIntoHistory(message))
+        dispatch(addMessageIntoHistory(message));
 
-    dispatch(updateCommentDraft(rootId, null))
+        dispatch(updateCommentDraft(rootId, null));
 
-    const isReaction = Utils.REACTION_PATTERN.exec(message)
+        const isReaction = Utils.REACTION_PATTERN.exec(message);
 
-    const emojis = getCustomEmojisByName(getState())
-    const emojiMap = new EmojiMap(emojis)
+        const emojis = getCustomEmojisByName(getState());
+        const emojiMap = new EmojiMap(emojis);
 
-    if (isReaction && emojiMap.has(isReaction[2])) {
-      dispatch(submitReaction(latestPostId, isReaction[1], isReaction[2]))
-    } else if (message.indexOf('/') === 0 && !options.ignoreSlash) {
-      await dispatch(submitCommand(channelId, rootId, draft))
-    } else {
-      dispatch(submitPost(channelId, rootId, draft))
-    }
-  }
-}
-
-function makeGetCurrentUsersLatestPost(channelId, rootId) {
-  return createSelector(
-    getCurrentUserId,
-    (state) => getPostIdsInChannel(state, channelId),
-    (state) => (id) => getPost(state, id),
-    (userId, postIds, getPostById) => {
-      let lastPost = null
-
-      if (!postIds) {
-        return lastPost
-      }
-
-      for (const id of postIds) {
-        const post = getPostById(id) || {}
-
-        // don't edit webhook posts, deleted posts, or system messages
-        if (
-          post.user_id !== userId ||
-          (post.props && post.props.from_webhook) ||
-          post.state === Constants.POST_DELETED ||
-          (post.type && post.type.startsWith(Constants.SYSTEM_MESSAGE_PREFIX)) ||
-          isPostPendingOrFailed(post)
-        ) {
-          continue
-        }
-
-        if (rootId) {
-          if (post.root_id === rootId || post.id === rootId) {
-            lastPost = post
-            break
-          }
+        if (isReaction && emojiMap.has(isReaction[2])) {
+            dispatch(submitReaction(latestPostId, isReaction[1], isReaction[2]));
+        } else if (message.indexOf('/') === 0 && !options.ignoreSlash) {
+            try {
+                await dispatch(submitCommand(channelId, rootId, draft));
+            } catch (err) {
+                dispatch(updateCommentDraft(rootId, draft));
+                throw err;
+            }
         } else {
-          lastPost = post
-          break
+            dispatch(submitPost(channelId, rootId, draft));
         }
-      }
-
-      return lastPost
-    }
-  )
+    };
 }
 
-export function makeOnEditLatestPost(channelId, rootId) {
-  const getCurrentUsersLatestPost = makeGetCurrentUsersLatestPost(channelId, rootId)
-  const getCommentCount = makeGetCommentCountForPost()
+function makeGetCurrentUsersLatestReply() {
+    const getPostIdsInThread = makeGetPostIdsForThread();
+    return createSelector(
+        'makeGetCurrentUsersLatestReply',
+        getCurrentUserId,
+        getPostIdsInThread,
+        (state) => (id) => getPost(state, id),
+        (_state, rootId) => rootId,
+        (userId, postIds, getPostById, rootId) => {
+            let lastPost = null;
 
-  return () => (dispatch, getState) => {
-    const state = getState()
+            if (!postIds) {
+                return lastPost;
+            }
 
-    const lastPost = getCurrentUsersLatestPost(state)
+            for (const id of postIds) {
+                const post = getPostById(id) || {};
 
-    if (!lastPost) {
-      return { data: false }
-    }
+                // don't edit webhook posts, deleted posts, or system messages
+                if (
+                    post.user_id !== userId ||
+                    (post.props && post.props.from_webhook) ||
+                    post.state === Constants.POST_DELETED ||
+                    (post.type && post.type.startsWith(Constants.SYSTEM_MESSAGE_PREFIX)) ||
+                    isPostPendingOrFailed(post)
+                ) {
+                    continue;
+                }
 
-    return dispatch(
-      PostActions.setEditingPost(
-        lastPost.id,
-        getCommentCount(state, { post: lastPost }),
-        'reply_textbox',
-        Utils.localizeMessage('create_comment.commentTitle', 'Comment'),
-        true
-      )
-    )
-  }
+                if (rootId) {
+                    if (post.root_id === rootId || post.id === rootId) {
+                        lastPost = post;
+                        break;
+                    }
+                } else {
+                    lastPost = post;
+                    break;
+                }
+            }
+
+            return lastPost;
+        },
+    );
+}
+
+export function makeOnEditLatestPost(rootId) {
+    const getCurrentUsersLatestPost = makeGetCurrentUsersLatestReply();
+
+    return () => (dispatch, getState) => {
+        const state = getState();
+
+        const lastPost = getCurrentUsersLatestPost(state, rootId);
+
+        if (!lastPost) {
+            return {data: false};
+        }
+
+        return dispatch(PostActions.setEditingPost(
+            lastPost.id,
+            'reply_textbox',
+            Utils.localizeMessage('create_comment.commentTitle', 'Comment'),
+            true,
+        ));
+    };
 }

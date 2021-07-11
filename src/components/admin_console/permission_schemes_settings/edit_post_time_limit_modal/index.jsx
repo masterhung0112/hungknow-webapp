@@ -1,30 +1,27 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { getConfig, updateConfig } from 'hkclient-ts/lib/actions/admin'
-import * as Selectors from 'hkclient-ts/lib/selectors/entities/admin'
+import {getConfig, updateConfig} from 'hkclient-redux/actions/admin';
+import * as Selectors from 'hkclient-redux/selectors/entities/admin';
 
-import EditPostTimeLimitModal from './edit_post_time_limit_modal'
+import EditPostTimeLimitModal from './edit_post_time_limit_modal';
 
 function mapStateToProps(state) {
-  return {
-    config: Selectors.getConfig(state),
-  }
+    return {
+        config: Selectors.getConfig(state),
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        updateConfig,
-        getConfig,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            updateConfig,
+            getConfig,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditPostTimeLimitModal)
+export default connect(mapStateToProps, mapDispatchToProps)(EditPostTimeLimitModal);

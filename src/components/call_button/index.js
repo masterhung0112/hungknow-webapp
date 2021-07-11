@@ -3,7 +3,7 @@
 
 import { connect } from 'react-redux'
 
-import { getCurrentChannel, getMyCurrentChannelMembership } from 'hkclient-ts/lib/selectors/entities/channels'
+import { getCurrentChannel, getMyCurrentChannelMembership } from 'hkclient-redux/selectors/entities/channels'
 
 import { getCurrentLocale } from 'selectors/i18n'
 

@@ -1,37 +1,33 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { getCurrentTeam } from 'hkclient-ts/lib/selectors/entities/teams'
-import { loadRolesIfNeeded } from 'hkclient-ts/lib/actions/roles'
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {loadRolesIfNeeded} from 'hkclient-redux/actions/roles';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import EmojiPage from 'components/emoji/emoji_page'
-import { Team } from 'hkclient-ts/lib/types/teams'
+import EmojiPage from 'components/emoji/emoji_page';
 
 function mapStateToProps(state: GlobalState) {
-  const team = getCurrentTeam(state) || ({} as Team)
+    const team = getCurrentTeam(state) || {};
 
-  return {
-    teamId: team.id,
-    teamName: team.name,
-    teamDisplayName: team.display_name,
-    siteName: state.entities.general.config.SiteName,
-  }
+    return {
+        teamId: team.id,
+        teamName: team.name,
+        teamDisplayName: team.display_name,
+        siteName: state.entities.general.config.SiteName,
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        loadRolesIfNeeded,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            loadRolesIfNeeded,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmojiPage)
+export default connect(mapStateToProps, mapDispatchToProps)(EmojiPage);

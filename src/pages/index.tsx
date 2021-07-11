@@ -3,7 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 // import { NextPageContext } from "next";
-import { GlobalState } from 'hkclient-ts/lib/types/store'
+import { GlobalState } from 'hkclient-redux/types/store'
 
 class Index extends React.Component {
   // note that since _app is wrapped no need to wrap page

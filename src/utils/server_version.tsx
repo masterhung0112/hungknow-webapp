@@ -13,18 +13,18 @@
  *     4.7.1.dev.d131dd02c5e6eec4693d9a0698aff95c.true
  */
 export function equalServerVersions(a: string, b: string): boolean {
-  if (a === b) {
-    return true
-  }
+    if (a === b) {
+        return true;
+    }
 
-  const ignoredComponents = 2
-  const aIgnoringComponents = (a || '').split('.').slice(0, -ignoredComponents).join('.')
-  const bIgnoringComponents = (b || '').split('.').slice(0, -ignoredComponents).join('.')
-  if (aIgnoringComponents === bIgnoringComponents) {
-    return true
-  }
+    const ignoredComponents = 2;
+    const aIgnoringComponents = (a || '').split('.').slice(0, -ignoredComponents).join('.');
+    const bIgnoringComponents = (b || '').split('.').slice(0, -ignoredComponents).join('.');
+    if (aIgnoringComponents === bIgnoringComponents) {
+        return true;
+    }
 
-  return false
+    return false;
 }
 
 /**
@@ -37,24 +37,24 @@ export function equalServerVersions(a: string, b: string): boolean {
  *      currentVersion = 4.16.1, compareVersion = 4.16.1 returns true
  */
 export function isServerVersionGreaterThanOrEqualTo(currentVersion: string, compareVersion: string): boolean {
-  if (currentVersion === compareVersion) {
-    return true
-  }
-
-  // We only care about the numbers
-  const currentVersionNumber = (currentVersion || '').split('.').filter((x) => /^[0-9]+$/.exec(x) !== null)
-  const compareVersionNumber = (compareVersion || '').split('.').filter((x) => /^[0-9]+$/.exec(x) !== null)
-
-  for (let i = 0; i < Math.max(currentVersionNumber.length, compareVersionNumber.length); i++) {
-    if ((currentVersionNumber[i] || 0) > (compareVersionNumber[i] || 0)) {
-      return true
+    if (currentVersion === compareVersion) {
+        return true;
     }
 
-    if ((currentVersionNumber[i] || 0) < (compareVersionNumber[i] || 0)) {
-      return false
-    }
-  }
+    // We only care about the numbers
+    const currentVersionNumber = (currentVersion || '').split('.').filter((x) => (/^[0-9]+$/).exec(x) !== null);
+    const compareVersionNumber = (compareVersion || '').split('.').filter((x) => (/^[0-9]+$/).exec(x) !== null);
 
-  // If all components are equal, then return true
-  return true
+    for (let i = 0; i < Math.max(currentVersionNumber.length, compareVersionNumber.length); i++) {
+        if ((currentVersionNumber[i] || 0) > (compareVersionNumber[i] || 0)) {
+            return true;
+        }
+
+        if ((currentVersionNumber[i] || 0) < (compareVersionNumber[i] || 0)) {
+            return false;
+        }
+    }
+
+    // If all components are equal, then return true
+    return true;
 }

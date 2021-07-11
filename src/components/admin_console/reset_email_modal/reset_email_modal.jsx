@@ -6,7 +6,7 @@ import React from 'react'
 import { Modal } from 'react-bootstrap'
 import { FormattedMessage } from 'react-intl'
 
-import { isEmail } from 'hkclient-ts/lib/utils/helpers'
+import { isEmail } from 'hkclient-redux/utils/helpers'
 
 import { adminResetEmail } from 'actions/admin_actions.jsx'
 

@@ -1,19 +1,45 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
+import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import { getTheme } from 'hkclient-ts/lib/selectors/entities/preferences'
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {appsEnabled, makeAppBindingsSelector} from 'hkclient-redux/selectors/entities/apps';
+import {AppBindingLocations} from 'hkclient-redux/constants/apps';
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 
-import { GlobalState } from 'types/store'
+import {DoAppCall, PostEphemeralCallResponseForChannel} from 'types/apps';
 
-import ChannelHeaderPlug from './channel_header_plug'
+import {doAppCall, postEphemeralCallResponseForChannel} from 'actions/apps';
+import {GlobalState} from 'types/store';
+
+import ChannelHeaderPlug from './channel_header_plug';
+
+const getChannelHeaderBindings = makeAppBindingsSelector(AppBindingLocations.CHANNEL_HEADER_ICON);
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    components: state.plugins.components.ChannelHeaderButton || [],
-    theme: getTheme(state),
-  }
+    const apps = appsEnabled(state);
+    return {
+        components: state.plugins.components.ChannelHeaderButton,
+        appBindings: getChannelHeaderBindings(state),
+        appsEnabled: apps,
+        theme: getTheme(state),
+    };
 }
 
-export default connect(mapStateToProps)(ChannelHeaderPlug)
+type Actions = {
+    doAppCall: DoAppCall;
+    postEphemeralCallResponseForChannel: PostEphemeralCallResponseForChannel;
+}
+
+function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Actions>({
+            doAppCall,
+            postEphemeralCallResponseForChannel,
+        }, dispatch),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelHeaderPlug);

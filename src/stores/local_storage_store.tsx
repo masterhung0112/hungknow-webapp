@@ -1,4 +1,4 @@
-import { getRedirectChannelNameForTeam } from 'hkclient-ts/lib/selectors/entities/channels'
+import { getRedirectChannelNameForTeam } from 'hkclient-redux/selectors/entities/channels'
 
 import store from 'stores/redux_store'
 import { getBasePath } from 'selectors/general'

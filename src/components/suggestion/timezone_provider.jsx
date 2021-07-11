@@ -3,7 +3,7 @@
 
 import React from 'react'
 
-import { getTimezoneRegion } from 'hkclient-ts/lib/utils/timezone_utils'
+import { getTimezoneRegion } from 'hkclient-redux/utils/timezone_utils'
 
 import { getSupportedTimezones } from 'utils/timezone'
 

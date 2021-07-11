@@ -1,16 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import AutocompleteSelector from './autocomplete_selector'
+import AutocompleteSelector from './autocomplete_selector';
 
 describe('components/widgets/settings/AutocompleteSelector', () => {
-  test('render component with required props', () => {
-    const wrapper = shallow(
-      <AutocompleteSelector id="string.id" label="some label" value="some value" providers={[]} />
-    )
-    expect(wrapper).toMatchInlineSnapshot(`
+    test('render component with required props', () => {
+        const wrapper = shallow(
+            <AutocompleteSelector
+                id='string.id'
+                label='some label'
+                value='some value'
+                providers={[]}
+            />,
+        );
+        expect(wrapper).toMatchInlineSnapshot(`
             <div
               className="form-group"
               data-testid="autoCompleteSelector"
@@ -47,15 +52,21 @@ describe('components/widgets/settings/AutocompleteSelector', () => {
                 />
               </div>
             </div>
-        `)
-  })
+        `);
+    });
 
-  test('check snapshot with value prop and changing focus', () => {
-    const wrapper = shallow(<AutocompleteSelector providers={[]} label="some label" value="value from prop" />)
+    test('check snapshot with value prop and changing focus', () => {
+        const wrapper = shallow(
+            <AutocompleteSelector
+                providers={[]}
+                label='some label'
+                value='value from prop'
+            />,
+        );
 
-    wrapper.instance().onBlur()
+        wrapper.instance().onBlur();
 
-    expect(wrapper).toMatchInlineSnapshot(`
+        expect(wrapper).toMatchInlineSnapshot(`
             <div
               className="form-group"
               data-testid="autoCompleteSelector"
@@ -92,12 +103,12 @@ describe('components/widgets/settings/AutocompleteSelector', () => {
                 />
               </div>
             </div>
-        `)
+        `);
 
-    wrapper.instance().onChange({ target: { value: 'value from input' } })
-    wrapper.instance().onFocus()
+        wrapper.instance().onChange({target: {value: 'value from input'}});
+        wrapper.instance().onFocus();
 
-    expect(wrapper).toMatchInlineSnapshot(`
+        expect(wrapper).toMatchInlineSnapshot(`
             <div
               className="form-group"
               data-testid="autoCompleteSelector"
@@ -134,19 +145,24 @@ describe('components/widgets/settings/AutocompleteSelector', () => {
                 />
               </div>
             </div>
-        `)
-  })
+        `);
+    });
 
-  test('onSelected', () => {
-    const onSelected = jest.fn()
-    const wrapper = shallow(
-      <AutocompleteSelector label="some label" value="some value" providers={[]} onSelected={onSelected} />
-    )
+    test('onSelected', () => {
+        const onSelected = jest.fn();
+        const wrapper = shallow(
+            <AutocompleteSelector
+                label='some label'
+                value='some value'
+                providers={[]}
+                onSelected={onSelected}
+            />,
+        );
 
-    const selected = { text: 'sometext', value: 'somevalue' }
-    wrapper.instance().handleSelected(selected)
+        const selected = {text: 'sometext', value: 'somevalue'};
+        wrapper.instance().handleSelected(selected);
 
-    expect(onSelected).toHaveBeenCalledTimes(1)
-    expect(onSelected).toHaveBeenCalledWith(selected)
-  })
-})
+        expect(onSelected).toHaveBeenCalledTimes(1);
+        expect(onSelected).toHaveBeenCalledWith(selected);
+    });
+});

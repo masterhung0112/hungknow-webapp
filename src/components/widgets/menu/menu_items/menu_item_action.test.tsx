@@ -1,16 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import { MenuItemActionImpl } from './menu_item_action'
+import {MenuItemActionImpl} from './menu_item_action';
 
 describe('components/MenuItemAction', () => {
-  test('should match snapshot', () => {
-    const wrapper = shallow(<MenuItemActionImpl onClick={jest.fn()} text="Whatever" />)
+    test('should match snapshot', () => {
+        const wrapper = shallow(
+            <MenuItemActionImpl
+                onClick={jest.fn()}
+                text='Whatever'
+            />,
+        );
 
-    expect(wrapper).toMatchInlineSnapshot(`
+        expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="style--none"
         onClick={[MockFunction]}
@@ -21,12 +26,18 @@ describe('components/MenuItemAction', () => {
           Whatever
         </span>
       </button>
-    `)
-  })
-  test('should match snapshot with extra text', () => {
-    const wrapper = shallow(<MenuItemActionImpl onClick={jest.fn()} text="Whatever" extraText="Extra Text" />)
+    `);
+    });
+    test('should match snapshot with extra text', () => {
+        const wrapper = shallow(
+            <MenuItemActionImpl
+                onClick={jest.fn()}
+                text='Whatever'
+                extraText='Extra Text'
+            />,
+        );
 
-    expect(wrapper).toMatchInlineSnapshot(`
+        expect(wrapper).toMatchInlineSnapshot(`
       <button
         className="style--none MenuItem__with-help"
         onClick={[MockFunction]}
@@ -42,6 +53,6 @@ describe('components/MenuItemAction', () => {
           Extra Text
         </span>
       </button>
-    `)
-  })
-})
+    `);
+    });
+});

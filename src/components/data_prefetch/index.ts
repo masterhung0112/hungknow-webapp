@@ -1,113 +1,107 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { ActionCreatorsMapObject, bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import { getCurrentChannelId, getUnreadChannels } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { memoizeResult } from 'hkclient-ts/lib/utils/helpers'
-import { isChannelMuted } from 'hkclient-ts/lib/utils/channel_utils'
-import { getMyChannelMemberships } from 'hkclient-ts/lib/selectors/entities/common'
+import {getCurrentChannelId, getUnreadChannels} from 'hkclient-redux/selectors/entities/channels';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
+import {getMsgCountInChannel, isChannelMuted} from 'hkclient-redux/utils/channel_utils';
+import {getMyChannelMemberships} from 'hkclient-redux/selectors/entities/common';
 
-import { Channel, ChannelMembership } from 'hkclient-ts/lib/types/channels'
-import { PostList } from 'hkclient-ts/lib/types/posts'
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
+import {PostList} from 'hkclient-redux/types/posts';
 
-import { ActionFunc, GenericAction } from 'hkclient-ts/lib/types/actions'
-import { RelationOneToOne } from 'hkclient-ts/lib/types/utilities'
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
+import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 
-import { prefetchChannelPosts } from 'actions/views/channel'
-import { trackDMGMOpenChannels } from 'actions/user_actions'
+import {prefetchChannelPosts} from 'actions/views/channel';
+import {trackDMGMOpenChannels} from 'actions/user_actions';
 
-import { getCategoriesForCurrentTeam } from 'selectors/views/channel_sidebar'
+import {getCategoriesForCurrentTeam} from 'selectors/views/channel_sidebar';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import DataPrefetch from './data_prefetch'
+import {isCollapsedThreadsEnabled} from '../../packages/hkclient-redux/src/selectors/entities/preferences';
+
+import DataPrefetch from './data_prefetch';
 
 type Actions = {
-  prefetchChannelPosts: (channelId: string, delay?: number) => Promise<{ data: PostList }>
-  trackDMGMOpenChannels: () => Promise<void>
-}
+    prefetchChannelPosts: (channelId: string, delay?: number) => Promise<{data: PostList}>;
+    trackDMGMOpenChannels: () => Promise<void>;
+};
 
 enum Priority {
-  high = 1,
-  medium,
-  low,
+    high = 1,
+    medium,
+    low
 }
 
 // function to return a queue obj with priotiy as key and array of channelIds as values.
 // high priority has channels with mentions
 // medium priority has channels with unreads
-const prefetchQueue = memoizeResult(
-  (channels: Channel[], memberships: RelationOneToOne<Channel, ChannelMembership>) => {
-    return channels.reduce(
-      (acc: Record<string, string[]>, channel: Channel) => {
-        const channelId = channel.id
-        const membership = memberships[channelId]
+const prefetchQueue = memoizeResult((channels: Channel[], memberships: RelationOneToOne<Channel, ChannelMembership>, collapsedThreads: boolean) => {
+    return channels.reduce((acc: Record<string, string[]>, channel: Channel) => {
+        const channelId = channel.id;
+        const membership = memberships[channelId];
         if (membership && !isChannelMuted(membership)) {
-          if (membership.mention_count > 0) {
-            return {
-              ...acc,
-              [Priority.high]: [...acc[Priority.high], channelId],
+            if (collapsedThreads ? membership.mention_count_root : membership.mention_count) {
+                return {
+                    ...acc,
+                    [Priority.high]: [...acc[Priority.high], channelId],
+                };
+            } else if (
+                membership.notify_props &&
+                membership.notify_props.mark_unread !== 'mention' &&
+                Boolean(getMsgCountInChannel(collapsedThreads, channel, membership))
+            ) {
+                return {
+                    ...acc,
+                    [Priority.medium]: [...acc[Priority.medium], channelId],
+                };
             }
-          } else if (
-            membership.notify_props &&
-            membership.notify_props.mark_unread !== 'mention' &&
-            channel.total_msg_count - membership.msg_count
-          ) {
-            return {
-              ...acc,
-              [Priority.medium]: [...acc[Priority.medium], channelId],
-            }
-          }
         }
-        return acc
-      },
-      {
+        return acc;
+    }, {
         [Priority.high]: [], // 1 being high priority requests
         [Priority.medium]: [],
         [Priority.low]: [], //TODO: add chanenls such as fav.
-      }
-    )
-  }
-)
+    });
+});
 
 function isSidebarLoaded(state: GlobalState) {
-  if (getConfig(state).EnableLegacySidebar === 'true') {
-    // With the old sidebar, we don't need to wait for anything to load before fetching profiles
-    return true
-  }
+    if (getConfig(state).EnableLegacySidebar === 'true') {
+        // With the old sidebar, we don't need to wait for anything to load before fetching profiles
+        return true;
+    }
 
-  return getCategoriesForCurrentTeam(state).length > 0
+    return getCategoriesForCurrentTeam(state).length > 0;
 }
 
 function mapStateToProps(state: GlobalState) {
-  const lastUnreadChannel = state.views.channel.lastUnreadChannel
-  const memberships = getMyChannelMemberships(state)
-  const unreadChannels = getUnreadChannels(state, lastUnreadChannel)
-  const prefetchQueueObj = prefetchQueue(unreadChannels, memberships)
-  const prefetchRequestStatus = state.views.channel.channelPrefetchStatus
+    const lastUnreadChannel = state.views.channel.lastUnreadChannel;
+    const memberships = getMyChannelMemberships(state);
+    const unreadChannels = getUnreadChannels(state, lastUnreadChannel);
+    const prefetchQueueObj = prefetchQueue(unreadChannels, memberships, isCollapsedThreadsEnabled(state));
+    const prefetchRequestStatus = state.views.channel.channelPrefetchStatus;
 
-  return {
-    currentChannelId: getCurrentChannelId(state),
-    prefetchQueueObj,
-    prefetchRequestStatus,
-    sidebarLoaded: isSidebarLoaded(state),
-    unreadChannels,
-  }
+    return {
+        currentChannelId: getCurrentChannelId(state),
+        prefetchQueueObj,
+        prefetchRequestStatus,
+        sidebarLoaded: isSidebarLoaded(state),
+        unreadChannels,
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Actions>(
-      {
-        prefetchChannelPosts,
-        trackDMGMOpenChannels,
-      } as any,
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Actions>({
+            prefetchChannelPosts,
+            trackDMGMOpenChannels,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DataPrefetch)
+export default connect(mapStateToProps, mapDispatchToProps)(DataPrefetch);

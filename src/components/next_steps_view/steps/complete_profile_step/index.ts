@@ -1,35 +1,36 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { updateMe, setDefaultProfileImage, uploadProfileImage } from 'hkclient-ts/lib/actions/users'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import {
+    updateMe,
+    setDefaultProfileImage,
+    uploadProfileImage,
+} from 'hkclient-redux/actions/users';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import CompleteProfileStep from './complete_profile_step'
+import CompleteProfileStep from './complete_profile_step';
 
 function mapStateToProps(state: GlobalState) {
-  const config = getConfig(state)
+    const config = getConfig(state);
 
-  return {
-    maxFileSize: parseInt(config.MaxFileSize!, 10),
-  }
+    return {
+        maxFileSize: parseInt(config.MaxFileSize!, 10),
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        updateMe,
-        setDefaultProfileImage,
-        uploadProfileImage,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            updateMe,
+            setDefaultProfileImage,
+            uploadProfileImage,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompleteProfileStep)
+export default connect(mapStateToProps, mapDispatchToProps)(CompleteProfileStep);

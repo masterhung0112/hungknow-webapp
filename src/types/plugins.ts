@@ -1,6 +1,6 @@
-import { ClientPluginManifest, MarketplacePlugin } from 'hkclient-ts/lib/types/plugins'
-import { PostEmbed } from 'hkclient-ts/lib/types/posts'
-import { IDMappedObjects } from 'hkclient-ts/lib/types/utilities'
+import { ClientPluginManifest, MarketplacePlugin } from 'hkclient-redux/types/plugins'
+import { PostEmbed } from 'hkclient-redux/types/posts'
+import { IDMappedObjects } from 'hkclient-redux/types/utilities'
 
 import PluginsConstants from '../constants/plugins'
 

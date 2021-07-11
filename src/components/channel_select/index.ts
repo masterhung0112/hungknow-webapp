@@ -1,25 +1,31 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { createSelector } from 'reselect'
+import {connect} from 'react-redux';
 
-import { getMyChannels } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getCurrentUserLocale } from 'hkclient-ts/lib/selectors/entities/i18n'
-import { sortChannelsByTypeAndDisplayName } from 'hkclient-ts/lib/utils/channel_utils'
+import {createSelector} from 'reselect';
 
-import { GlobalState } from 'hkclient-ts/lib/types/store'
+import {getMyChannels} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentUserLocale} from 'hkclient-redux/selectors/entities/i18n';
+import {sortChannelsByTypeAndDisplayName} from 'hkclient-redux/utils/channel_utils';
 
-import ChannelSelect from './channel_select'
+import {GlobalState} from 'hkclient-redux/types/store';
 
-const getMyChannelsSorted = createSelector(getMyChannels, getCurrentUserLocale, (channels, locale) => {
-  return [...channels].sort(sortChannelsByTypeAndDisplayName.bind(null, locale))
-})
+import ChannelSelect from './channel_select';
+
+const getMyChannelsSorted = createSelector(
+    'getMyChannelsSorted',
+    getMyChannels,
+    getCurrentUserLocale,
+    (channels, locale) => {
+        return [...channels].sort(sortChannelsByTypeAndDisplayName.bind(null, locale));
+    },
+);
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    channels: getMyChannelsSorted(state),
-  }
+    return {
+        channels: getMyChannelsSorted(state),
+    };
 }
 
-export default connect(mapStateToProps)(ChannelSelect)
+export default connect(mapStateToProps)(ChannelSelect);

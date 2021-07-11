@@ -1,143 +1,152 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { createSelector } from 'reselect'
+import {createSelector} from 'reselect';
 
-import { makeGetChannel } from 'hkclient-ts/lib/selectors/entities/channels'
-import { Post, PostType } from 'hkclient-ts/lib/types/posts'
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { Channel } from 'hkclient-ts/lib/types/channels'
-import { $ID } from 'hkclient-ts/lib/types/utilities'
+import {makeGetChannel} from 'hkclient-redux/selectors/entities/channels';
+import {Post, PostType} from 'hkclient-redux/types/posts';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {Channel} from 'hkclient-redux/types/channels';
+import {$ID} from 'hkclient-redux/types/utilities';
 
-import { makeGetGlobalItem } from 'selectors/storage'
-import { PostTypes } from 'utils/constants'
-import { localizeMessage } from 'utils/utils.jsx'
-import { GlobalState } from 'types/store'
-import { RhsState, FakePost, PostDraft } from 'types/store/rhs'
+import {makeGetGlobalItem} from 'selectors/storage';
+import {PostTypes} from 'utils/constants';
+import {localizeMessage} from 'utils/utils.jsx';
+import {GlobalState} from 'types/store';
+import {RhsState, FakePost, PostDraft, SearchType} from 'types/store/rhs';
 
 export function getSelectedPostId(state: GlobalState): $ID<Post> {
-  return state.views.rhs.selectedPostId
+    return state.views.rhs.selectedPostId;
 }
 
 export function getSelectedPostFocussedAt(state: GlobalState): number {
-  return state.views.rhs.selectedPostFocussedAt
+    return state.views.rhs.selectedPostFocussedAt;
 }
 
 export function getSelectedPostCardId(state: GlobalState): $ID<Post> {
-  return state.views.rhs.selectedPostCardId
+    return state.views.rhs.selectedPostCardId;
+}
+
+export function getHighlightedPostId(state: GlobalState): $ID<Post> {
+    return state.views.rhs.highlightedPostId;
+}
+
+export function getFilesSearchExtFilter(state: GlobalState): string[] {
+    return state.views.rhs.filesSearchExtFilter;
 }
 
 export function getSelectedPostCard(state: GlobalState) {
-  return state.entities.posts.posts[getSelectedPostCardId(state)]
+    return state.entities.posts.posts[getSelectedPostCardId(state)];
 }
 
 export function getSelectedChannelId(state: GlobalState) {
-  return state.views.rhs.selectedChannelId
+    return state.views.rhs.selectedChannelId;
 }
 
 export const getSelectedChannel = (() => {
-  const getChannel = makeGetChannel()
+    const getChannel = makeGetChannel();
 
-  return (state: GlobalState) => {
-    const channelId = getSelectedChannelId(state)
+    return (state: GlobalState) => {
+        const channelId = getSelectedChannelId(state);
 
-    return getChannel(state, { id: channelId })
-  }
-})()
+        return getChannel(state, {id: channelId});
+    };
+})();
 
 export function getPluggableId(state: GlobalState) {
-  return state.views.rhs.pluggableId
+    return state.views.rhs.pluggableId;
 }
 
 function getRealSelectedPost(state: GlobalState) {
-  return state.entities.posts.posts[getSelectedPostId(state)]
+    return state.entities.posts.posts[getSelectedPostId(state)];
 }
 
 export const getSelectedPost = createSelector(
-  getSelectedPostId,
-  getRealSelectedPost,
-  getSelectedChannelId,
-  getCurrentUserId,
-  (
-    selectedPostId: $ID<Post>,
-    selectedPost: Post,
-    selectedPostChannelId: $ID<Channel>,
-    currentUserId
-  ): Post | FakePost => {
-    if (selectedPost) {
-      return selectedPost
-    }
+    'getSelectedPost',
+    getSelectedPostId,
+    getRealSelectedPost,
+    getSelectedChannelId,
+    getCurrentUserId,
+    (selectedPostId: $ID<Post>, selectedPost: Post, selectedPostChannelId: $ID<Channel>, currentUserId): Post|FakePost => {
+        if (selectedPost) {
+            return selectedPost;
+        }
 
-    // If there is no root post found, assume it has been deleted by data retention policy, and create a fake one.
-    return {
-      id: selectedPostId,
-      exists: false,
-      type: PostTypes.FAKE_PARENT_DELETED as PostType,
-      message: localizeMessage(
-        'rhs_thread.rootPostDeletedMessage.body',
-        'Part of this thread has been deleted due to a data retention policy. You can no longer reply to this thread.'
-      ),
-      channel_id: selectedPostChannelId,
-      user_id: currentUserId,
-    }
-  }
-)
+        // If there is no root post found, assume it has been deleted by data retention policy, and create a fake one.
+        return {
+            id: selectedPostId,
+            exists: false,
+            type: PostTypes.FAKE_PARENT_DELETED as PostType,
+            message: localizeMessage('rhs_thread.rootPostDeletedMessage.body', 'Part of this thread has been deleted due to a data retention policy. You can no longer reply to this thread.'),
+            channel_id: selectedPostChannelId,
+            user_id: currentUserId,
+        };
+    },
+);
 
 export function getRhsState(state: GlobalState): RhsState {
-  return state.views.rhs.rhsState
+    return state.views.rhs.rhsState;
 }
 
 export function getPreviousRhsState(state: GlobalState): RhsState {
-  return state.views.rhs.previousRhsState
+    return state.views.rhs.previousRhsState;
 }
 
 export function getSearchTerms(state: GlobalState): string {
-  return state.views.rhs.searchTerms
+    return state.views.rhs.searchTerms;
+}
+
+export function getSearchType(state: GlobalState): SearchType {
+    return state.views.rhs.searchType;
 }
 
 export function getSearchResultsTerms(state: GlobalState): string {
-  return state.views.rhs.searchResultsTerms
+    return state.views.rhs.searchResultsTerms;
 }
 
 export function getIsSearchingTerm(state: GlobalState): boolean {
-  return state.entities.search.isSearchingTerm
+    return state.entities.search.isSearchingTerm;
 }
 
 export function getIsSearchingFlaggedPost(state: GlobalState): boolean {
-  return state.views.rhs.isSearchingFlaggedPost
+    return state.views.rhs.isSearchingFlaggedPost;
 }
 
 export function getIsSearchingPinnedPost(state: GlobalState): boolean {
-  return state.views.rhs.isSearchingPinnedPost
+    return state.views.rhs.isSearchingPinnedPost;
 }
 
 export function getIsSearchGettingMore(state: GlobalState): boolean {
-  return state.entities.search.isSearchGettingMore
+    return state.entities.search.isSearchGettingMore;
 }
 
 export function getPostDraft(state: GlobalState, prefixId: string, suffixId: string): PostDraft {
-  const defaultDraft: any = { message: '', fileInfos: [], uploadsInProgress: [] }
-  const draft = makeGetGlobalItem(prefixId + suffixId, defaultDraft)(state)
+    const defaultDraft = {message: '', fileInfos: [], uploadsInProgress: []};
+    const draft = makeGetGlobalItem(prefixId + suffixId, defaultDraft)(state);
 
-  if (
-    typeof draft.message !== 'undefined' &&
-    typeof draft.uploadsInProgress !== 'undefined' &&
-    typeof draft.fileInfos !== 'undefined'
-  ) {
-    return draft
-  }
+    if (
+        typeof draft.message !== 'undefined' &&
+        typeof draft.uploadsInProgress !== 'undefined' &&
+        typeof draft.fileInfos !== 'undefined'
+    ) {
+        return draft;
+    }
 
-  return defaultDraft
+    return defaultDraft;
+}
+
+export function getIsRhsSuppressed(state: GlobalState): boolean {
+    return state.views.rhsSuppressed;
 }
 
 export function getIsRhsOpen(state: GlobalState): boolean {
-  return state.views.rhs.isSidebarOpen
+    return state.views.rhs.isSidebarOpen && !state.views.rhsSuppressed;
 }
 
 export function getIsRhsMenuOpen(state: GlobalState): boolean {
-  return state.views.rhs.isMenuOpen
+    return state.views.rhs.isMenuOpen;
 }
 
 export function getIsRhsExpanded(state: GlobalState): boolean {
-  return state.views.rhs.isSidebarExpanded
+    return state.views.rhs.isSidebarExpanded;
 }

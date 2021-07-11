@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 import { connect } from 'react-redux'
 
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
+import { getCurrentUserId } from 'hkclient-redux/selectors/entities/users'
 
 import { getDirectTeammate } from 'utils/utils'
 

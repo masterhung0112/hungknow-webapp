@@ -1,47 +1,44 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { getPlugins } from 'hkclient-ts/lib/actions/admin'
-import { getConfig, getLicense } from 'hkclient-ts/lib/selectors/entities/general'
+import {getPlugins} from 'hkclient-redux/actions/admin';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 
-import { getNavigationBlocked } from 'selectors/views/admin'
-import { getAdminDefinition, getConsoleAccess } from 'selectors/admin_console'
+import {getNavigationBlocked} from 'selectors/views/admin';
+import {getAdminDefinition, getConsoleAccess} from 'selectors/admin_console';
 
-import AdminSidebar from './admin_sidebar.jsx'
+import AdminSidebar from './admin_sidebar.jsx';
 
 function mapStateToProps(state) {
-  const license = getLicense(state)
-  const config = getConfig(state)
-  const buildEnterpriseReady = config.BuildEnterpriseReady === 'true'
-  const siteName = config.SiteName
-  const adminDefinition = getAdminDefinition(state)
-  const consoleAccess = getConsoleAccess(state)
+    const license = getLicense(state);
+    const config = getConfig(state);
+    const buildEnterpriseReady = config.BuildEnterpriseReady === 'true';
+    const siteName = config.SiteName;
+    const adminDefinition = getAdminDefinition(state);
+    const consoleAccess = getConsoleAccess(state);
 
-  return {
-    license,
-    config: state.entities.admin.config,
-    plugins: state.entities.admin.plugins,
-    navigationBlocked: getNavigationBlocked(state),
-    buildEnterpriseReady,
-    siteName,
-    adminDefinition,
-    consoleAccess,
-    cloud: state.entities.cloud,
-  }
+    return {
+        license,
+        config: state.entities.admin.config,
+        plugins: state.entities.admin.plugins,
+        navigationBlocked: getNavigationBlocked(state),
+        buildEnterpriseReady,
+        siteName,
+        adminDefinition,
+        consoleAccess,
+        cloud: state.entities.cloud,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        getPlugins,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            getPlugins,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { pure: false })(AdminSidebar)
+export default connect(mapStateToProps, mapDispatchToProps, null, {pure: false})(AdminSidebar);

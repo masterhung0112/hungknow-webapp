@@ -6,7 +6,7 @@ import React from 'react'
 import { Tooltip } from 'react-bootstrap'
 import { FormattedMessage, injectIntl } from 'react-intl'
 
-import EventEmitter from 'hkclient-ts/lib/utils/event_emitter'
+import EventEmitter from 'hkclient-redux/utils/event_emitter'
 
 import Timestamp from 'components/timestamp'
 import OverlayTrigger from 'components/overlay_trigger'

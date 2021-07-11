@@ -5,7 +5,7 @@ import React from 'react'
 
 import { FormattedMessage } from 'react-intl'
 
-import * as Selectors from 'hkclient-ts/lib/selectors/entities/teams'
+import * as Selectors from 'hkclient-redux/selectors/entities/teams'
 
 import { getCurrentLocale } from 'selectors/i18n'
 import store from 'stores/redux_store'

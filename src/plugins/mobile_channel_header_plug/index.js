@@ -3,8 +3,8 @@
 
 import { connect } from 'react-redux'
 
-import { getTheme } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { getMyCurrentChannelMembership } from 'hkclient-ts/lib/selectors/entities/channels'
+import { getTheme } from 'hkclient-redux/selectors/entities/preferences'
+import { getMyCurrentChannelMembership } from 'hkclient-redux/selectors/entities/channels'
 
 import MobileChannelHeaderPlug from './mobile_channel_header_plug'
 

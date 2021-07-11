@@ -1,8 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 
-import { UserProfile } from 'hkclient-ts/lib/types/users'
-import { ActionResultType } from 'hkclient-ts/lib/types/actions'
+import { UserProfile } from 'hkclient-redux/types/users'
+import { ActionResultType } from 'hkclient-redux/types/actions'
 
 import SignupEmail, { SignupEmailProps } from './signupEmail'
 

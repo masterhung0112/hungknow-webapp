@@ -3,8 +3,8 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { getBool } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { patchChannel } from 'hkclient-ts/lib/actions/channels'
+import { getBool } from 'hkclient-redux/selectors/entities/preferences'
+import { patchChannel } from 'hkclient-redux/actions/channels'
 
 import Constants from 'utils/constants'
 

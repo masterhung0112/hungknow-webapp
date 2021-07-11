@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 import React from 'react'
 
-import { getUserIdFromChannelName } from 'hkclient-ts/lib/utils/channel_utils'
+import { getUserIdFromChannelName } from 'hkclient-redux/utils/channel_utils'
 
 import { imageURLForUser } from 'utils/utils.jsx'
 import Constants from 'utils/constants'

@@ -4,9 +4,9 @@
 import { connect } from 'react-redux'
 import { ActionCreatorsMapObject, bindActionCreators, Dispatch } from 'redux'
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { GlobalState } from 'hkclient-ts/lib/types/store'
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import { getConfig } from 'hkclient-redux/selectors/entities/general'
+import { GlobalState } from 'hkclient-redux/types/store'
+import { GenericAction } from 'hkclient-redux/types/actions'
 
 import { installPlugin } from 'actions/marketplace'
 import { closeModal } from 'actions/views/modals'

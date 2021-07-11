@@ -1,21 +1,23 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import TeamButton from './team_button'
+import TeamButton from './team_button';
 
 function mapStateToProps() {
-  return {}
+    return {
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators({}, dispatch),
-  }
+    return {
+        actions: bindActionCreators({
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamButton)
+export default connect(mapStateToProps, mapDispatchToProps)(TeamButton);

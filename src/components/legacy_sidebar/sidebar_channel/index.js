@@ -1,174 +1,163 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { Client4 } from 'hkclient-ts/lib/client'
-import { savePreferences } from 'hkclient-ts/lib/actions/preferences'
+import {Client4} from 'hkclient-redux/client';
+import {savePreferences} from 'hkclient-redux/actions/preferences';
 
 import {
-  getCurrentChannelId,
-  getChannelsNameMapInCurrentTeam,
-  getRedirectChannelNameForTeam,
-  isFavoriteChannel,
-  makeGetChannel,
-  shouldHideDefaultChannel,
-} from 'hkclient-ts/lib/selectors/entities/channels'
-import { getMyChannelMemberships } from 'hkclient-ts/lib/selectors/entities/common'
-import { getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
-import { getUserIdsInChannels, getUser } from 'hkclient-ts/lib/selectors/entities/users'
-import { getInt, getTeammateNameDisplaySetting } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { isChannelMuted } from 'hkclient-ts/lib/utils/channel_utils'
+    getCurrentChannelId,
+    getChannelsNameMapInCurrentTeam,
+    getRedirectChannelNameForTeam,
+    isFavoriteChannel,
+    makeGetChannel,
+    shouldHideDefaultChannel,
+} from 'hkclient-redux/selectors/entities/channels';
+import {getMyChannelMemberships} from 'hkclient-redux/selectors/entities/common';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getUserIdsInChannels, getUser} from 'hkclient-redux/selectors/entities/users';
+import {getInt, getTeammateNameDisplaySetting, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {isChannelMuted} from 'hkclient-redux/utils/channel_utils';
 
-import { displayUsername } from 'hkclient-ts/lib/utils/user_utils'
+import {displayUsername} from 'hkclient-redux/utils/user_utils';
 
-import { Constants, NotificationLevels, StoragePrefixes } from 'utils/constants'
+import {Constants, NotificationLevels, StoragePrefixes} from 'utils/constants';
 
-import { leaveChannel, leaveDirectChannel } from 'actions/views/channel'
-import { open as openLhs } from 'actions/views/lhs.js'
-import { getPostDraft } from 'selectors/rhs'
+import {leaveChannel, leaveDirectChannel} from 'actions/views/channel';
+import {open as openLhs} from 'actions/views/lhs.js';
+import {getPostDraft} from 'selectors/rhs';
 
-import SidebarChannel from './sidebar_channel.jsx'
+import SidebarChannel from './sidebar_channel.jsx';
 
 function makeMapStateToProps() {
-  const getChannel = makeGetChannel()
+    const getChannel = makeGetChannel();
 
-  return (state, ownProps) => {
-    const channelId = ownProps.channelId
+    return (state, ownProps) => {
+        const channelId = ownProps.channelId;
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
 
-    const config = getConfig(state)
-    const currentChannelId = getCurrentChannelId(state)
-    const channel = getChannel(state, { id: channelId }) || {}
-    const draft = channel.id ? getPostDraft(state, StoragePrefixes.DRAFT, channel.id) : false
+        const config = getConfig(state);
+        const currentChannelId = getCurrentChannelId(state);
+        const channel = getChannel(state, {id: channelId}) || {};
+        const draft = channel.id ? getPostDraft(state, StoragePrefixes.DRAFT, channel.id) : false;
 
-    const enableTutorial = config.EnableTutorial === 'true'
-    const tutorialStep = getInt(
-      state,
-      Constants.Preferences.TUTORIAL_STEP,
-      ownProps.currentUserId,
-      Constants.TutorialSteps.FINISHED
-    )
-    const channelsByName = getChannelsNameMapInCurrentTeam(state)
-    const memberIds = getUserIdsInChannels(state)
+        const enableTutorial = config.EnableTutorial === 'true';
+        const tutorialStep = getInt(state, Constants.Preferences.TUTORIAL_STEP, ownProps.currentUserId, Constants.TutorialSteps.FINISHED);
+        const channelsByName = getChannelsNameMapInCurrentTeam(state);
+        const memberIds = getUserIdsInChannels(state);
 
-    let membersCount = 0
-    if (memberIds && memberIds[channel.id]) {
-      membersCount = memberIds[channel.id].size
-      if (memberIds[channel.id].has(ownProps.currentUserId)) {
-        membersCount--
-      }
-    }
-
-    const member = getMyChannelMemberships(state)[channelId]
-
-    let unreadMentions = 0
-    let unreadMsgs = 0
-    let showUnreadForMsgs = true
-    if (member) {
-      unreadMentions = member.mention_count
-
-      if (channel) {
-        unreadMsgs = Math.max(channel.total_msg_count - member.msg_count, 0)
-      }
-
-      if (member.notify_props) {
-        showUnreadForMsgs = member.notify_props.mark_unread !== NotificationLevels.MENTION
-      }
-    }
-
-    const teammateNameDisplay = getTeammateNameDisplaySetting(state)
-    let teammate = null
-    let channelTeammateId = ''
-    let channelTeammateDeletedAt = 0
-    let channelTeammateUsername = ''
-    let channelTeammateIsBot = false
-    let botLastIconUpdate = 0
-    let channelDisplayName = channel.display_name
-    let botIconUrl = null
-    if (channel.type === Constants.DM_CHANNEL) {
-      teammate = getUser(state, channel.teammate_id)
-      if (teammate) {
-        channelTeammateId = teammate.id
-        channelTeammateDeletedAt = teammate.delete_at
-        channelTeammateUsername = teammate.username
-        channelTeammateIsBot = teammate.is_bot
-        botLastIconUpdate = teammate.bot_last_icon_update
-        botLastIconUpdate = typeof botLastIconUpdate === 'undefined' ? 0 : botLastIconUpdate
-      }
-      if (channelTeammateIsBot) {
-        if (botLastIconUpdate !== 0) {
-          botIconUrl = botIconImageUrl(teammate)
+        let membersCount = 0;
+        if (memberIds && memberIds[channel.id]) {
+            membersCount = memberIds[channel.id].size;
+            if (memberIds[channel.id].has(ownProps.currentUserId)) {
+                membersCount--;
+            }
         }
-      }
-      channelDisplayName = displayUsername(teammate, teammateNameDisplay, false)
-    }
 
-    let shouldHideChannel = false
-    if (
-      channel.name === Constants.DEFAULT_CHANNEL &&
-      !ownProps.active &&
-      shouldHideDefaultChannel(state, channel) &&
-      !isFavoriteChannel(state, channel.id)
-    ) {
-      shouldHideChannel = true
-    }
+        const member = getMyChannelMemberships(state)[channelId];
 
-    return {
-      config,
-      channelId,
-      channelName: channel.name,
-      channelDisplayName,
-      botIconUrl,
-      channelType: channel.type,
-      channelStatus: channel.status,
-      channelFake: channel.fake,
-      channelMuted: isChannelMuted(member),
-      channelStringified: channel.fake && JSON.stringify(channel),
-      channelTeammateId,
-      channelTeammateUsername,
-      channelTeammateDeletedAt,
-      channelTeammateIsBot,
-      hasDraft:
-        draft &&
-        Boolean(draft.message.trim() || draft.fileInfos.length || draft.uploadsInProgress.length) &&
-        currentChannelId !== channel.id,
-      showTutorialTip: enableTutorial && tutorialStep === Constants.TutorialSteps.CHANNEL_POPOVER,
-      townSquareDisplayName:
-        channelsByName[Constants.DEFAULT_CHANNEL] && channelsByName[Constants.DEFAULT_CHANNEL].display_name,
-      offTopicDisplayName:
-        channelsByName[Constants.OFFTOPIC_CHANNEL] && channelsByName[Constants.OFFTOPIC_CHANNEL].display_name,
-      showUnreadForMsgs,
-      unreadMsgs,
-      unreadMentions,
-      membersCount,
-      shouldHideChannel,
-      channelIsArchived: channel.delete_at !== 0,
-      redirectChannel: getRedirectChannelNameForTeam(state, getCurrentTeamId(state)),
-    }
-  }
+        let unreadMentions = 0;
+        let unreadMsgs = 0;
+        let showUnreadForMsgs = true;
+        if (member) {
+            unreadMentions = collapsedThreadsEnabled ? member.mention_count_root : member.mention_count;
+
+            if (channel) {
+                unreadMsgs = collapsedThreadsEnabled ? Math.max(channel.total_msg_count_root - member.msg_count_root, 0) : Math.max(channel.total_msg_count - member.msg_count, 0);
+            }
+
+            if (member.notify_props) {
+                showUnreadForMsgs = member.notify_props.mark_unread !== NotificationLevels.MENTION;
+            }
+        }
+
+        const teammateNameDisplay = getTeammateNameDisplaySetting(state);
+        let teammate = null;
+        let channelTeammateId = '';
+        let channelTeammateDeletedAt = 0;
+        let channelTeammateUsername = '';
+        let channelTeammateIsBot = false;
+        let botLastIconUpdate = 0;
+        let channelDisplayName = channel.display_name;
+        let botIconUrl = null;
+        if (channel.type === Constants.DM_CHANNEL) {
+            teammate = getUser(state, channel.teammate_id);
+            if (teammate) {
+                channelTeammateId = teammate.id;
+                channelTeammateDeletedAt = teammate.delete_at;
+                channelTeammateUsername = teammate.username;
+                channelTeammateIsBot = teammate.is_bot;
+                botLastIconUpdate = teammate.bot_last_icon_update;
+                botLastIconUpdate = (typeof botLastIconUpdate === 'undefined') ? 0 : botLastIconUpdate;
+            }
+            if (channelTeammateIsBot) {
+                if (botLastIconUpdate !== 0) {
+                    botIconUrl = botIconImageUrl(teammate);
+                }
+            }
+            channelDisplayName = displayUsername(teammate, teammateNameDisplay, false);
+        }
+
+        let shouldHideChannel = false;
+        if (
+            channel.name === Constants.DEFAULT_CHANNEL &&
+            !ownProps.active &&
+            shouldHideDefaultChannel(state, channel) &&
+            !isFavoriteChannel(state, channel.id)
+        ) {
+            shouldHideChannel = true;
+        }
+
+        return {
+            config,
+            channelId,
+            channelName: channel.name,
+            channelDisplayName,
+            botIconUrl,
+            channelType: channel.type,
+            channelStatus: channel.status,
+            channelFake: channel.fake,
+            channelMuted: isChannelMuted(member),
+            channelStringified: channel.fake && JSON.stringify(channel),
+            channelTeammateId,
+            channelTeammateUsername,
+            channelTeammateDeletedAt,
+            channelTeammateIsBot,
+            hasDraft: draft && Boolean(draft.message.trim() || draft.fileInfos.length || draft.uploadsInProgress.length) && currentChannelId !== channel.id,
+            showTutorialTip: enableTutorial && tutorialStep === Constants.TutorialSteps.CHANNEL_POPOVER,
+            townSquareDisplayName: channelsByName[Constants.DEFAULT_CHANNEL] && channelsByName[Constants.DEFAULT_CHANNEL].display_name,
+            offTopicDisplayName: channelsByName[Constants.OFFTOPIC_CHANNEL] && channelsByName[Constants.OFFTOPIC_CHANNEL].display_name,
+            showUnreadForMsgs,
+            unreadMsgs,
+            unreadMentions,
+            membersCount,
+            shouldHideChannel,
+            channelIsArchived: channel.delete_at !== 0,
+            channelIsShared: Boolean(channel.shared),
+            redirectChannel: getRedirectChannelNameForTeam(state, getCurrentTeamId(state)),
+        };
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        savePreferences,
-        leaveChannel,
-        leaveDirectChannel,
-        openLhs,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            savePreferences,
+            leaveChannel,
+            leaveDirectChannel,
+            openLhs,
+        }, dispatch),
+    };
 }
 
 /**
  * Gets the LHS bot icon url for a given botUser.
  */
 function botIconImageUrl(botUser) {
-  return `${Client4.getBotRoute(botUser.id)}/icon?_=${botUser.bot_last_icon_update || 0}`
+    return `${Client4.getBotRoute(botUser.id)}/icon?_=${(botUser.bot_last_icon_update || 0)}`;
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps, null, { forwardRef: true })(SidebarChannel)
+export default connect(makeMapStateToProps, mapDispatchToProps, null, {forwardRef: true})(SidebarChannel);

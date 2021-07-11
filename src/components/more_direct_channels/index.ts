@@ -1,181 +1,170 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { ComponentProps } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators, ActionCreatorsMapObject, Dispatch } from 'redux'
+import {ComponentProps} from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators, ActionCreatorsMapObject, Dispatch} from 'redux';
 
-import { intersectionBy } from 'lodash'
+import {intersectionBy} from 'lodash';
 
 import {
-  getProfiles,
-  getProfilesInTeam,
-  getStatusesByIds,
-  getTotalUsersStats,
-  searchProfiles,
-} from 'hkclient-ts/lib/actions/users'
-import { searchGroupChannels } from 'hkclient-ts/lib/actions/channels'
+    getProfiles,
+    getProfilesInTeam,
+    getTotalUsersStats,
+    searchProfiles,
+} from 'hkclient-redux/actions/users';
+import {searchGroupChannels} from 'hkclient-redux/actions/channels';
 import {
-  getCurrentUserId,
-  getProfiles as selectProfiles,
-  getProfilesInCurrentChannel,
-  getProfilesInCurrentTeam,
-  makeSearchProfilesStartingWithTerm,
-  searchProfilesInCurrentTeam,
-  getTotalUsersStats as getTotalUsersStatsSelector,
-  getUser,
-} from 'hkclient-ts/lib/selectors/entities/users'
+    getCurrentUserId,
+    getProfiles as selectProfiles,
+    getProfilesInCurrentChannel,
+    getProfilesInCurrentTeam,
+    makeSearchProfilesStartingWithTerm,
+    searchProfilesInCurrentTeam,
+    getTotalUsersStats as getTotalUsersStatsSelector,
+    getUser,
+} from 'hkclient-redux/selectors/entities/users';
 
-import { getChannelsWithUserProfiles, getAllChannels } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getUserIdFromChannelName } from 'hkclient-ts/lib/utils/channel_utils'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { getCurrentTeam } from 'hkclient-ts/lib/selectors/entities/teams'
-import { ActionFunc, GenericAction } from 'hkclient-ts/lib/types/actions'
-import { Channel } from 'hkclient-ts/lib/types/channels'
-import { UserProfile } from 'hkclient-ts/lib/types/users'
-import { sortByUsername, filterProfilesStartingWithTerm } from 'hkclient-ts/lib/utils/user_utils'
-import { memoizeResult } from 'hkclient-ts/lib/utils/helpers'
+import {getChannelsWithUserProfiles, getAllChannels} from 'hkclient-redux/selectors/entities/channels';
+import {getUserIdFromChannelName} from 'hkclient-redux/utils/channel_utils';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
+import {Channel} from 'hkclient-redux/types/channels';
+import {UserProfile} from 'hkclient-redux/types/users';
+import {sortByUsername, filterProfilesStartingWithTerm} from 'hkclient-redux/utils/user_utils';
+import {memoizeResult} from 'hkclient-redux/utils/helpers';
 
-import { Constants } from 'utils/constants'
-import { openDirectChannelToUserId, openGroupChannelToUserIds } from 'actions/channel_actions'
-import { loadStatusesForProfilesList } from 'actions/status_actions.jsx'
-import { loadProfilesForGroupChannels } from 'actions/user_actions.jsx'
-import { setModalSearchTerm } from 'actions/views/search'
+import {Constants} from 'utils/constants';
+import {openDirectChannelToUserId, openGroupChannelToUserIds} from 'actions/channel_actions';
+import {loadStatusesForProfilesList, loadStatusesByIds} from 'actions/status_actions.jsx';
+import {loadProfilesForGroupChannels} from 'actions/user_actions.jsx';
+import {setModalSearchTerm} from 'actions/views/search';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import MoreDirectChannels, { GroupChannel } from './more_direct_channels'
+import MoreDirectChannels, {GroupChannel} from './more_direct_channels';
 
 type OwnProps = {
-  isExistingChannel: boolean
+    isExistingChannel: boolean;
 }
 
-type Props = ComponentProps<typeof MoreDirectChannels>
+type Props = ComponentProps<typeof MoreDirectChannels>;
 
 const makeMapStateToProps = () => {
-  const searchProfilesStartingWithTerm = makeSearchProfilesStartingWithTerm()
+    const searchProfilesStartingWithTerm = makeSearchProfilesStartingWithTerm();
 
-  return (state: GlobalState, ownProps: OwnProps) => {
-    const currentUserId = getCurrentUserId(state)
-    let currentChannelMembers: UserProfile[] = []
-    if (ownProps.isExistingChannel) {
-      currentChannelMembers = getProfilesInCurrentChannel(state)
-    }
+    return (state: GlobalState, ownProps: OwnProps) => {
+        const currentUserId = getCurrentUserId(state);
+        let currentChannelMembers: UserProfile[] = [];
+        if (ownProps.isExistingChannel) {
+            currentChannelMembers = getProfilesInCurrentChannel(state);
+        }
 
-    const config = getConfig(state)
-    const restrictDirectMessage = config.RestrictDirectMessage
+        const config = getConfig(state);
+        const restrictDirectMessage = config.RestrictDirectMessage;
 
-    const searchTerm = state.views.search.modalSearch
+        const searchTerm = state.views.search.modalSearch;
 
-    let users: UserProfile[]
-    if (searchTerm) {
-      if (restrictDirectMessage === 'any') {
-        users = searchProfilesStartingWithTerm(state, searchTerm, false)
-      } else {
-        users = searchProfilesInCurrentTeam(state, searchTerm, false)
-      }
-    } else if (restrictDirectMessage === 'any') {
-      users = selectProfiles(state, {})
-    } else {
-      users = getProfilesInCurrentTeam(state)
-    }
+        let users: UserProfile[];
+        if (searchTerm) {
+            if (restrictDirectMessage === 'any') {
+                users = searchProfilesStartingWithTerm(state, searchTerm, false);
+            } else {
+                users = searchProfilesInCurrentTeam(state, searchTerm, false);
+            }
+        } else if (restrictDirectMessage === 'any') {
+            users = selectProfiles(state, {});
+        } else {
+            users = getProfilesInCurrentTeam(state);
+        }
 
-    const filteredGroupChannels = filterGroupChannels(getChannelsWithUserProfiles(state), searchTerm)
-    const myDirectChannels = filterDirectChannels(getAllChannels(state), currentUserId)
+        const filteredGroupChannels = filterGroupChannels(getChannelsWithUserProfiles(state), searchTerm);
+        const myDirectChannels = filterDirectChannels(getAllChannels(state), currentUserId);
 
-    let recentDMUsers = myDirectChannels.reduce((results, channel) => {
-      if (!channel.last_post_at) {
-        return results
-      }
+        let recentDMUsers = myDirectChannels.reduce((results, channel) => {
+            if (!channel.last_post_at) {
+                return results;
+            }
 
-      const user = getUser(state, getUserIdFromChannelName(currentUserId, channel.name))
+            const user = getUser(state, getUserIdFromChannelName(currentUserId, channel.name));
 
-      if (user) {
-        results!.push({ ...user, last_post_at: channel.last_post_at })
-      }
+            if (user) {
+                results!.push({...user, last_post_at: channel.last_post_at});
+            }
 
-      return results
-    }, [] as Props['recentDMUsers'])
+            return results;
+        }, [] as Props['recentDMUsers']);
 
-    if (searchTerm) {
-      recentDMUsers = intersectionBy(recentDMUsers, users, 'id')
-    }
-    const team = getCurrentTeam(state)
-    const stats = getTotalUsersStatsSelector(state) || { total_users_count: 0 }
+        if (searchTerm) {
+            recentDMUsers = intersectionBy(recentDMUsers, users, 'id');
+        }
+        const team = getCurrentTeam(state);
+        const stats = getTotalUsersStatsSelector(state) || {total_users_count: 0};
 
-    return {
-      currentTeamId: team.id,
-      currentTeamName: team.name,
-      searchTerm,
-      users: users.sort(sortByUsername),
-      myDirectChannels,
-      groupChannels: filteredGroupChannels,
-      recentDMUsers,
-      statuses: state.entities.users.statuses,
-      currentChannelMembers,
-      currentUserId,
-      restrictDirectMessage,
-      totalCount: stats.total_users_count,
-    }
-  }
-}
+        return {
+            currentTeamId: team.id,
+            currentTeamName: team.name,
+            searchTerm,
+            users: users.sort(sortByUsername),
+            myDirectChannels,
+            groupChannels: filteredGroupChannels,
+            recentDMUsers,
+            statuses: state.entities.users.statuses,
+            currentChannelMembers,
+            currentUserId,
+            restrictDirectMessage,
+            totalCount: stats.total_users_count,
+        };
+    };
+};
 
 const filterGroupChannels = memoizeResult((channels: GroupChannel[], term: string) => {
-  return channels.filter((channel) => {
-    const matches = filterProfilesStartingWithTerm(channel.profiles, term)
-    return matches.length > 0
-  })
-})
+    return channels.filter((channel) => {
+        const matches = filterProfilesStartingWithTerm(channel.profiles, term);
+        return matches.length > 0;
+    });
+});
 
 const filterDirectChannels = memoizeResult((channels: Record<string, Channel>, userId: string) => {
-  return Object.values(channels).filter(
-    (channel) => channel.type === Constants.DM_CHANNEL && channel.name.includes(userId)
-  )
-})
+    return Object.values(channels).filter((channel) => (
+        channel.type === Constants.DM_CHANNEL &&
+        channel.name.includes(userId)
+    ));
+});
 
 type Actions = {
-  getProfiles: (page?: number | undefined, perPage?: number | undefined, options?: any) => Promise<any>
-  getProfilesInTeam: (
-    teamId: string,
-    page: number,
-    perPage?: number | undefined,
-    sort?: string | undefined,
-    options?: any
-  ) => Promise<any>
-  getStatusesByIds: (userIds: string[]) => ActionFunc
-  getTotalUsersStats: () => ActionFunc
-  loadStatusesForProfilesList: (
-    users: any
-  ) => {
-    data: boolean
-  }
-  loadProfilesForGroupChannels: (groupChannels: any) => Promise<any>
-  openDirectChannelToUserId: (userId: any) => Promise<any>
-  openGroupChannelToUserIds: (userIds: any) => Promise<any>
-  searchProfiles: (term: string, options?: any) => Promise<any>
-  searchGroupChannels: (term: string) => Promise<any>
-  setModalSearchTerm: (term: any) => GenericAction
+    getProfiles: (page?: number | undefined, perPage?: number | undefined, options?: any) => Promise<any>;
+    getProfilesInTeam: (teamId: string, page: number, perPage?: number | undefined, sort?: string | undefined, options?: any) => Promise<any>;
+    loadStatusesByIds: (userIds: string[]) => ActionFunc;
+    getTotalUsersStats: () => ActionFunc;
+    loadStatusesForProfilesList: (users: any) => {
+        data: boolean;
+    };
+    loadProfilesForGroupChannels: (groupChannels: any) => Promise<any>;
+    openDirectChannelToUserId: (userId: any) => Promise<any>;
+    openGroupChannelToUserIds: (userIds: any) => Promise<any>;
+    searchProfiles: (term: string, options?: any) => Promise<any>;
+    searchGroupChannels: (term: string) => Promise<any>;
+    setModalSearchTerm: (term: any) => GenericAction;
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc | GenericAction>, Actions>(
-      {
-        getProfiles,
-        getProfilesInTeam,
-        getStatusesByIds,
-        getTotalUsersStats,
-        loadStatusesForProfilesList,
-        loadProfilesForGroupChannels,
-        openDirectChannelToUserId,
-        openGroupChannelToUserIds,
-        searchProfiles,
-        searchGroupChannels,
-        setModalSearchTerm,
-      } as any,
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc | GenericAction>, Actions>({
+            getProfiles,
+            getProfilesInTeam,
+            loadStatusesByIds,
+            getTotalUsersStats,
+            loadStatusesForProfilesList,
+            loadProfilesForGroupChannels,
+            openDirectChannelToUserId,
+            openGroupChannelToUserIds,
+            searchProfiles,
+            searchGroupChannels,
+            setModalSearchTerm,
+        }, dispatch),
+    };
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(MoreDirectChannels)
+export default connect(makeMapStateToProps, mapDispatchToProps)(MoreDirectChannels);

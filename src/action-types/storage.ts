@@ -1,4 +1,4 @@
-import keyMirror from 'hkclient-ts/lib/utils/key_mirror'
+import keyMirror from 'hkclient-redux/utils/key_mirror'
 
 export default keyMirror({
   SET_ITEM: null,

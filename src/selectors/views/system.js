@@ -2,5 +2,5 @@
 // See LICENSE.txt for license information.
 
 export function connectionErrorCount(state) {
-  return state.views.system.websocketConnectionErrorCount
+    return state.views.system.websocketConnectionErrorCount;
 }

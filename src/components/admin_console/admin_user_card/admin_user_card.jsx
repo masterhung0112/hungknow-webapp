@@ -4,7 +4,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Client4 } from 'hkclient-ts/lib/client'
+import { Client4 } from 'hkclient-redux/client'
 
 import ProfilePicture from 'components/profile_picture'
 import * as Utils from 'utils/utils.jsx'

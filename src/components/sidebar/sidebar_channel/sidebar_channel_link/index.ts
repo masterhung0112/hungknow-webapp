@@ -1,64 +1,64 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { getMyChannelMemberships } from 'hkclient-ts/lib/selectors/entities/common'
-import { Channel } from 'hkclient-ts/lib/types/channels'
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
-import { isChannelMuted } from 'hkclient-ts/lib/utils/channel_utils'
+import {getMyChannelMemberships} from 'hkclient-redux/selectors/entities/common';
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
-import { clearChannelSelection, multiSelectChannelAdd, multiSelectChannelTo } from 'actions/views/channel_sidebar'
-import { isChannelSelected } from 'selectors/views/channel_sidebar'
-import { GlobalState } from 'types/store'
-import { NotificationLevels } from 'utils/constants'
+import {Channel} from 'hkclient-redux/types/channels';
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {getMsgCountInChannel, isChannelMuted} from 'hkclient-redux/utils/channel_utils';
 
-import SidebarChannelLink from './sidebar_channel_link'
+import {clearChannelSelection, multiSelectChannelAdd, multiSelectChannelTo} from 'actions/views/channel_sidebar';
+import {isChannelSelected} from 'selectors/views/channel_sidebar';
+import {GlobalState} from 'types/store';
+import {NotificationLevels} from 'utils/constants';
+
+import SidebarChannelLink from './sidebar_channel_link';
 
 type OwnProps = {
-  channel: Channel
+    channel: Channel;
 }
 
 function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
-  const member = getMyChannelMemberships(state)[ownProps.channel.id]
+    const member = getMyChannelMemberships(state)[ownProps.channel.id];
 
-  // Unread counts
-  let unreadMentions = 0
-  let unreadMsgs = 0
-  let showUnreadForMsgs = true
-  if (member) {
-    unreadMentions = member.mention_count
+    // Unread counts
+    let unreadMentions = 0;
+    let unreadMsgs = 0;
+    let showUnreadForMsgs = true;
+    const collapsed = isCollapsedThreadsEnabled(state);
+    if (member) {
+        unreadMentions = collapsed ? member.mention_count_root : member.mention_count;
 
-    if (ownProps.channel) {
-      unreadMsgs = Math.max(ownProps.channel.total_msg_count - member.msg_count, 0)
+        if (ownProps.channel) {
+            unreadMsgs = getMsgCountInChannel(collapsed, ownProps.channel, member);
+        }
+
+        if (member.notify_props) {
+            showUnreadForMsgs = member.notify_props.mark_unread !== NotificationLevels.MENTION;
+        }
     }
 
-    if (member.notify_props) {
-      showUnreadForMsgs = member.notify_props.mark_unread !== NotificationLevels.MENTION
-    }
-  }
-
-  return {
-    unreadMentions,
-    unreadMsgs,
-    showUnreadForMsgs,
-    isMuted: isChannelMuted(member),
-    isChannelSelected: isChannelSelected(state, ownProps.channel.id),
-  }
+    return {
+        unreadMentions,
+        unreadMsgs,
+        showUnreadForMsgs,
+        isMuted: isChannelMuted(member),
+        isChannelSelected: isChannelSelected(state, ownProps.channel.id),
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        clearChannelSelection,
-        multiSelectChannelTo,
-        multiSelectChannelAdd,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            clearChannelSelection,
+            multiSelectChannelTo,
+            multiSelectChannelAdd,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarChannelLink)
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarChannelLink);

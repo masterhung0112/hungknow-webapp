@@ -1,48 +1,54 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
+import React from 'react';
 
-import amex from 'images/cloud/cards/amex.png'
+import amex from 'images/cloud/cards/amex.png';
 
-import dinersclub from 'images/cloud/cards/dinersclub.png'
-import discover from 'images/cloud/cards/discover.jpg'
-import jcb from 'images/cloud/cards/jcb.png'
-import mastercard from 'images/cloud/cards/mastercard.png'
-import visa from 'images/cloud/cards/visa.jpg'
+import dinersclub from 'images/cloud/cards/dinersclub.png';
+import discover from 'images/cloud/cards/discover.jpg';
+import jcb from 'images/cloud/cards/jcb.png';
+import mastercard from 'images/cloud/cards/mastercard.png';
+import visa from 'images/cloud/cards/visa.jpg';
 
-import './card_image.css'
+import './card_image.css';
 
 type Props = {
-  brand: string
+    brand: string;
 }
 
 export default function CardImage(props: Props) {
-  const { brand } = props
+    const {brand} = props;
 
-  const cardImageSrc = getCardImage(brand)
-  if (cardImageSrc) {
-    return <img className="CardImage" src={cardImageSrc} alt={brand} />
-  }
+    const cardImageSrc = getCardImage(brand);
+    if (cardImageSrc) {
+        return (
+            <img
+                className='CardImage'
+                src={cardImageSrc}
+                alt={brand}
+            />
+        );
+    }
 
-  return null
+    return null;
 }
 
 function getCardImage(brand: string): string {
-  switch (brand) {
+    switch (brand) {
     case 'amex':
-      return amex
+        return amex;
     case 'diners':
-      return dinersclub
+        return dinersclub;
     case 'discover':
-      return discover
+        return discover;
     case 'jcb':
-      return jcb
+        return jcb;
     case 'mastercard':
-      return mastercard
+        return mastercard;
     case 'visa':
-      return visa
-  }
+        return visa;
+    }
 
-  return ''
+    return '';
 }

@@ -8,9 +8,9 @@ import localForage from 'localforage'
 import { extendPrototype } from 'localforage-observable'
 import { createTransform, persistStore } from 'redux-persist'
 
-import { General, RequestStatus } from 'hkclient-ts/lib/constants'
-import configureServiceStore from 'hkclient-ts/lib/store'
-import reduxInitialState from 'hkclient-ts/lib/store/initial_state'
+import { General, RequestStatus } from 'hkclient-redux/constants'
+import configureServiceStore from 'hkclient-redux/store'
+import reduxInitialState from 'hkclient-redux/store/initial_state'
 
 import { storageRehydrate } from 'actions/storage'
 import { clearUserCookie } from 'actions/views/cookie'

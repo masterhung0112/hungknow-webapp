@@ -1,40 +1,38 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { shallow } from 'enzyme'
-import React from 'react'
-import { MemoryRouter } from 'react-router'
+import {shallow} from 'enzyme';
+import React from 'react';
+import {MemoryRouter} from 'react-router';
 
-import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
+import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 
-import PasswordResetSendLink from './password_reset_send_link'
+import PasswordResetSendLink from './password_reset_send_link';
 
 describe('components/PasswordResetSendLink', () => {
-  const baseProps: any = {
-    actions: {
-      sendPasswordResetEmail: jest.fn().mockResolvedValue({ data: true }),
-    },
-  }
+    const baseProps = {
+        actions: {
+            sendPasswordResetEmail: jest.fn().mockResolvedValue({data: true}),
+        },
+    };
 
-  it('should match snapshot', () => {
-    const wrapper = shallow(<PasswordResetSendLink {...baseProps} />)
-    expect(wrapper).toMatchSnapshot()
-  })
+    it('should match snapshot', () => {
+        const wrapper = shallow(<PasswordResetSendLink {...baseProps}/>);
+        expect(wrapper).toMatchSnapshot();
+    });
 
-  it('should calls sendPasswordResetEmail() action on submit', () => {
-    const props = { ...baseProps }
+    it('should calls sendPasswordResetEmail() action on submit', () => {
+        const props = {...baseProps};
 
-    const wrapper = mountWithIntl(
-      <MemoryRouter>
-        <PasswordResetSendLink {...props} />
-      </MemoryRouter>
-    )
-      .children()
-      .children()
+        const wrapper = mountWithIntl(
+            <MemoryRouter>
+                <PasswordResetSendLink {...props}/>
+            </MemoryRouter>,
+        ).children().children();
 
-    ;(wrapper.instance() as PasswordResetSendLink).emailInput.current!.value = 'test@example.com'
-    wrapper.find('form').simulate('submit', { preventDefault: () => {} })
+        (wrapper.instance() as PasswordResetSendLink).emailInput.current!.value = 'test@example.com';
+        wrapper.find('form').simulate('submit', {preventDefault: () => {}});
 
-    expect(props.actions.sendPasswordResetEmail).toHaveBeenCalledWith('test@example.com')
-  })
-})
+        expect(props.actions.sendPasswordResetEmail).toHaveBeenCalledWith('test@example.com');
+    });
+});

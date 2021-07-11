@@ -1,105 +1,92 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { Posts } from 'hkclient-ts/lib/constants'
-import { isChannelReadOnlyById } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
-import { makeGetReactionsForPost, getPost } from 'hkclient-ts/lib/selectors/entities/posts'
-import { getUser, makeGetDisplayName } from 'hkclient-ts/lib/selectors/entities/users'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { get } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { isSystemMessage } from 'hkclient-ts/lib/utils/post_utils'
+import {Posts} from 'hkclient-redux/constants';
+import {isChannelReadOnlyById} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {makeGetReactionsForPost, getPost} from 'hkclient-redux/selectors/entities/posts';
+import {getUser, makeGetDisplayName} from 'hkclient-redux/selectors/entities/users';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {get, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+import {isSystemMessage} from 'hkclient-redux/utils/post_utils';
 
-import { markPostAsUnread, emitShortcutReactToLastPostFrom } from 'actions/post_actions.jsx'
-import { isEmbedVisible } from 'selectors/posts'
-import { getEmojiMap } from 'selectors/emojis'
+import {markPostAsUnread, emitShortcutReactToLastPostFrom} from 'actions/post_actions.jsx';
+import {isEmbedVisible} from 'selectors/posts';
+import {getEmojiMap} from 'selectors/emojis';
 
-import { isArchivedChannel } from 'utils/channel_utils'
-import { Preferences } from 'utils/constants'
+import {isArchivedChannel} from 'utils/channel_utils';
+import {Preferences} from 'utils/constants';
 
-import { getShortcutReactToLastPostEmittedFrom } from 'selectors/emojis.js'
+import {getShortcutReactToLastPostEmittedFrom} from 'selectors/emojis.js';
 
-import RhsComment from './rhs_comment.jsx'
+import RhsComment from './rhs_comment.jsx';
 
 function isConsecutivePost(state, ownProps) {
-  const post = ownProps.post
-  const previousPost = ownProps.previousPostId && getPost(state, ownProps.previousPostId)
+    const post = ownProps.post;
+    const previousPost = ownProps.previousPostId && getPost(state, ownProps.previousPostId);
 
-  let consecutivePost = false
+    let consecutivePost = false;
 
-  if (previousPost) {
-    const postFromWebhook = Boolean(post.props && post.props.from_webhook)
-    const prevPostFromWebhook = Boolean(previousPost.props && previousPost.props.from_webhook)
-    if (
-      previousPost &&
-      previousPost.user_id === post.user_id &&
-      post.create_at - previousPost.create_at <= Posts.POST_COLLAPSE_TIMEOUT &&
-      !postFromWebhook &&
-      !prevPostFromWebhook &&
-      !isSystemMessage(post) &&
-      !isSystemMessage(previousPost) &&
-      (previousPost.root_id === post.root_id || previousPost.id === post.root_id)
-    ) {
-      // The last post and this post were made by the same user within some time
-      consecutivePost = true
+    if (previousPost) {
+        const postFromWebhook = Boolean(post.props && post.props.from_webhook);
+        const prevPostFromWebhook = Boolean(previousPost.props && previousPost.props.from_webhook);
+        if (previousPost && previousPost.user_id === post.user_id &&
+            post.create_at - previousPost.create_at <= Posts.POST_COLLAPSE_TIMEOUT &&
+            !postFromWebhook && !prevPostFromWebhook &&
+            !isSystemMessage(post) && !isSystemMessage(previousPost) &&
+            (previousPost.root_id === post.root_id || previousPost.id === post.root_id)) {
+            // The last post and this post were made by the same user within some time
+            consecutivePost = true;
+        }
     }
-  }
-  return consecutivePost
+    return consecutivePost;
 }
 
 function mapStateToProps(state, ownProps) {
-  const getReactionsForPost = makeGetReactionsForPost()
-  const getDisplayName = makeGetDisplayName()
-  const emojiMap = getEmojiMap(state)
+    const getReactionsForPost = makeGetReactionsForPost();
+    const getDisplayName = makeGetDisplayName();
+    const emojiMap = getEmojiMap(state);
 
-  const config = getConfig(state)
-  const enableEmojiPicker = config.EnableEmojiPicker === 'true'
-  const enablePostUsernameOverride = config.EnablePostUsernameOverride === 'true'
-  const teamId = ownProps.teamId || getCurrentTeamId(state)
-  const channel = state.entities.channels.channels[ownProps.post.channel_id]
-  const shortcutReactToLastPostEmittedFrom = getShortcutReactToLastPostEmittedFrom(state)
+    const config = getConfig(state);
+    const enableEmojiPicker = config.EnableEmojiPicker === 'true';
+    const enablePostUsernameOverride = config.EnablePostUsernameOverride === 'true';
+    const teamId = ownProps.teamId || getCurrentTeamId(state);
+    const channel = state.entities.channels.channels[ownProps.post.channel_id];
+    const shortcutReactToLastPostEmittedFrom = getShortcutReactToLastPostEmittedFrom(state);
 
-  const user = getUser(state, ownProps.post.user_id)
-  const isBot = Boolean(user && user.is_bot)
+    const user = getUser(state, ownProps.post.user_id);
+    const isBot = Boolean(user && user.is_bot);
 
-  return {
-    author: getDisplayName(state, ownProps.post.user_id),
-    reactions: getReactionsForPost(state, ownProps.post.id),
-    enableEmojiPicker,
-    enablePostUsernameOverride,
-    isEmbedVisible: isEmbedVisible(state, ownProps.post.id),
-    isReadOnly: isChannelReadOnlyById(state, ownProps.post.channel_id),
-    teamId,
-    pluginPostTypes: state.plugins.postTypes,
-    channelIsArchived: isArchivedChannel(channel),
-    isConsecutivePost: isConsecutivePost(state, ownProps),
-    isFlagged: get(state, Preferences.CATEGORY_FLAGGED_POST, ownProps.post.id, null) != null,
-    compactDisplay:
-      get(
-        state,
-        Preferences.CATEGORY_DISPLAY_SETTINGS,
-        Preferences.MESSAGE_DISPLAY,
-        Preferences.MESSAGE_DISPLAY_DEFAULT
-      ) === Preferences.MESSAGE_DISPLAY_COMPACT,
-    shortcutReactToLastPostEmittedFrom,
-    emojiMap,
-    isBot,
-  }
+    return {
+        author: getDisplayName(state, ownProps.post.user_id),
+        reactions: getReactionsForPost(state, ownProps.post.id),
+        enableEmojiPicker,
+        enablePostUsernameOverride,
+        isEmbedVisible: isEmbedVisible(state, ownProps.post.id),
+        isReadOnly: isChannelReadOnlyById(state, ownProps.post.channel_id),
+        teamId,
+        pluginPostTypes: state.plugins.postTypes,
+        channelIsArchived: isArchivedChannel(channel),
+        isConsecutivePost: isConsecutivePost(state, ownProps),
+        isFlagged: get(state, Preferences.CATEGORY_FLAGGED_POST, ownProps.post.id, null) != null,
+        compactDisplay: get(state, Preferences.CATEGORY_DISPLAY_SETTINGS, Preferences.MESSAGE_DISPLAY, Preferences.MESSAGE_DISPLAY_DEFAULT) === Preferences.MESSAGE_DISPLAY_COMPACT,
+        shortcutReactToLastPostEmittedFrom,
+        emojiMap,
+        isBot,
+        collapsedThreadsEnabled: isCollapsedThreadsEnabled(state),
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        markPostAsUnread,
-        emitShortcutReactToLastPostFrom,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            markPostAsUnread,
+            emitShortcutReactToLastPostFrom,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(RhsComment)
+export default connect(mapStateToProps, mapDispatchToProps)(RhsComment);

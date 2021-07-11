@@ -2,5 +2,5 @@
 // See LICENSE.txt for license information.
 
 export function getAnnouncementBarCount(state) {
-  return state.views.announcementBar.announcementBarState.announcementBarCount
+    return state.views.announcementBar.announcementBarState.announcementBarCount;
 }

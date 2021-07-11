@@ -1,131 +1,132 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { Modal } from 'react-bootstrap'
-import { FormattedMessage } from 'react-intl'
+import React from 'react';
+import {Modal} from 'react-bootstrap';
+import {FormattedMessage} from 'react-intl';
 
-import { Client4 } from 'hkclient-ts/lib/client'
-import { UserProfile } from 'hkclient-ts/lib/types/users'
+import {Client4} from 'hkclient-redux/client';
+import {UserProfile} from 'hkclient-redux/types/users';
 
-import AlertBanner from 'components/alert_banner'
-import FormattedMarkdownMessage from 'components/formatted_markdown_message'
+import AlertBanner from 'components/alert_banner';
+import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
-import './commercial_support_modal.scss'
+import './commercial_support_modal.scss';
 
 type Props = {
-  /**
-   * Function that is called when the modal is dismissed
-   */
-  onHide: () => void
 
-  show?: boolean
+    /**
+     * Function that is called when the modal is dismissed
+     */
+    onHide: () => void;
 
-  showBannerWarning: boolean
+    show?: boolean;
 
-  isCloud: boolean
+    showBannerWarning: boolean;
 
-  currentUser: UserProfile
-}
+    isCloud: boolean;
+
+    currentUser: UserProfile;
+};
 
 type State = {
-  show: boolean
-  showBannerWarning: boolean
-}
+    show: boolean;
+    showBannerWarning: boolean;
+};
 
 export default class CommercialSupportModal extends React.PureComponent<Props, State> {
-  static defaultProps = {
-    show: false,
-  }
+    static defaultProps = {
+        show: false,
+    };
 
-  constructor(props: Props) {
-    super(props)
+    constructor(props: Props) {
+        super(props);
 
-    this.state = {
-      show: true,
-      showBannerWarning: props.showBannerWarning,
+        this.state = {
+            show: true,
+            showBannerWarning: props.showBannerWarning,
+        };
     }
-  }
 
-  componentDidUpdate = (prevProps: Props) => {
-    if (this.props.showBannerWarning !== prevProps.showBannerWarning) {
-      this.updateBannerWarning(this.props.showBannerWarning)
+    componentDidUpdate = (prevProps: Props) => {
+        if (this.props.showBannerWarning !== prevProps.showBannerWarning) {
+            this.updateBannerWarning(this.props.showBannerWarning);
+        }
     }
-  }
 
-  doHide = () => {
-    this.setState({ show: false })
-  }
+    doHide = () => {
+        this.setState({show: false});
+    }
 
-  handleExit = () => {
-    this.props.onHide()
-  }
+    handleExit = () => {
+        this.props.onHide();
+    }
 
-  updateBannerWarning = (showBannerWarning: boolean) => {
-    this.setState({ showBannerWarning })
-  }
+    updateBannerWarning = (showBannerWarning: boolean) => {
+        this.setState({showBannerWarning});
+    }
 
-  hideBannerWarning = () => {
-    this.updateBannerWarning(false)
-  }
+    hideBannerWarning = () => {
+        this.updateBannerWarning(false);
+    }
 
-  render() {
-    const { showBannerWarning } = this.state
-    const { isCloud, currentUser } = this.props
+    render() {
+        const {showBannerWarning} = this.state;
+        const {isCloud, currentUser} = this.props;
 
-    const supportLink = isCloud
-      ? `https://customers.mattermost.com/cloud/contact-us?name=${currentUser.first_name} ${currentUser.last_name}&email=${currentUser.email}&inquiry=technical`
-      : 'https://support.mattermost.com/hc/en-us/requests/new'
-    return (
-      <Modal
-        id="commercialSupportModal"
-        dialogClassName="a11y__modal more-modal more-direct-channels"
-        show={this.state.show}
-        onHide={this.doHide}
-        onExited={this.handleExit}
-      >
-        <Modal.Header closeButton={true}>
-          <Modal.Title>
-            <FormattedMessage id="commercial_support.title" defaultMessage="Commercial Support" />
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="CommercialSupportModal">
-            <FormattedMarkdownMessage
-              id="commercial_support.description"
-              defaultMessage={
-                "If you're experiencing issues, [submit a support ticket.](!{supportLink})\n \n**Download Support Packet**\n \nWe recommend that you download additional environment details about your Mattermost environment to help with troubleshooting. Once downloaded, attach the packet to your support ticket to share with our Customer Support team."
-              }
-              values={{
-                supportLink,
-              }}
-            />
-            <a
-              className="btn btn-primary DownloadSupportPacket"
-              href={`${Client4.getBaseRoute()}/system/support_packet`}
-              target="_blank"
-              rel="noopener noreferrer"
+        const supportLink = isCloud ? `https://customers.mattermost.com/cloud/contact-us?name=${currentUser.first_name} ${currentUser.last_name}&email=${currentUser.email}&inquiry=technical` :
+            'https://support.mattermost.com/hc/en-us/requests/new';
+        return (
+            <Modal
+                id='commercialSupportModal'
+                dialogClassName='a11y__modal more-modal more-direct-channels'
+                show={this.state.show}
+                onHide={this.doHide}
+                onExited={this.handleExit}
             >
-              <FormattedMessage
-                id="commercial_support.download_support_packet"
-                defaultMessage="Download Support Packet"
-              />
-            </a>
-            {showBannerWarning && (
-              <AlertBanner
-                mode="info"
-                message={
-                  <FormattedMarkdownMessage
-                    id="commercial_support.warning.banner"
-                    defaultMessage="Before downloading the support packet, set **Output Logs to File** to **true** and set **File Log Level** to **DEBUG** [here](!/admin_console/environment/logging)."
-                  />
-                }
-                onDismiss={this.hideBannerWarning}
-              />
-            )}
-          </div>
-        </Modal.Body>
-      </Modal>
-    )
-  }
+                <Modal.Header closeButton={true}>
+                    <Modal.Title>
+                        <FormattedMessage
+                            id='commercial_support.title'
+                            defaultMessage='Commercial Support'
+                        />
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className='CommercialSupportModal'>
+                        <FormattedMarkdownMessage
+                            id='commercial_support.description'
+                            defaultMessage={'If you\'re experiencing issues, [submit a support ticket.](!{supportLink})\n \n**Download Support Packet**\n \nWe recommend that you download additional environment details about your Mattermost environment to help with troubleshooting. Once downloaded, attach the packet to your support ticket to share with our Customer Support team.'}
+                            values={{
+                                supportLink,
+                            }}
+                        />
+                        <a
+                            className='btn btn-primary DownloadSupportPacket'
+                            href={`${Client4.getBaseRoute()}/system/support_packet`}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            <FormattedMessage
+                                id='commercial_support.download_support_packet'
+                                defaultMessage='Download Support Packet'
+                            />
+                        </a>
+                        {showBannerWarning &&
+                            <AlertBanner
+                                mode='info'
+                                message={
+                                    <FormattedMarkdownMessage
+                                        id='commercial_support.warning.banner'
+                                        defaultMessage='Before downloading the support packet, set **Output Logs to File** to **true** and set **File Log Level** to **DEBUG** [here](!/admin_console/environment/logging).'
+                                    />
+                                }
+                                onDismiss={this.hideBannerWarning}
+                            />
+                        }
+                    </div>
+                </Modal.Body>
+            </Modal>
+        );
+    }
 }

@@ -1,22 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { bindActionCreators, Dispatch } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators, Dispatch} from 'redux';
+import {connect} from 'react-redux';
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import { openRHSSearch } from 'actions/views/rhs'
+import {openRHSSearch} from 'actions/views/rhs';
 
-import ShowSearchButton from './show_search_button'
+import ShowSearchButton from './show_search_button';
 
 const mapDispatchToProps = (dispatch: Dispatch<GenericAction>) => ({
-  actions: bindActionCreators(
-    {
-      openRHSSearch,
-    },
-    dispatch
-  ),
-})
+    actions: bindActionCreators({
+        openRHSSearch,
+    }, dispatch),
+});
 
-export default connect(null, mapDispatchToProps)(ShowSearchButton)
+export default connect(null, mapDispatchToProps)(ShowSearchButton);

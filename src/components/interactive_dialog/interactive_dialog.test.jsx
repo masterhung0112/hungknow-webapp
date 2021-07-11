@@ -1,138 +1,143 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { shallow } from 'enzyme'
-import { Modal } from 'react-bootstrap'
-import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+import React from 'react';
+import {shallow} from 'enzyme';
+import {Modal} from 'react-bootstrap';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 
-import EmojiMap from 'utils/emoji_map'
+import EmojiMap from 'utils/emoji_map';
 
-import { mountWithIntl } from 'testlib/helpers/intl-test-helper'
+import {mountWithIntl} from 'tests/helpers/intl-test-helper';
 
-import InteractiveDialog from './interactive_dialog.jsx'
+import InteractiveDialog from './interactive_dialog.jsx';
 
 describe('components/interactive_dialog/InteractiveDialog', () => {
-  const baseProps = {
-    url: 'http://example.com',
-    callbackId: 'abc',
-    elements: [],
-    title: 'test title',
-    iconUrl: 'http://example.com/icon.png',
-    submitLabel: 'Yes',
-    notifyOnCancel: true,
-    state: 'some state',
-    onHide: () => {},
-    actions: {
-      submitInteractiveDialog: () => ({}),
-    },
-    emojiMap: new EmojiMap(new Map()),
-  }
-
-  describe('generic error message', () => {
-    test('should appear when submit returns an error', async () => {
-      const props = {
-        ...baseProps,
+    const baseProps = {
+        url: 'http://example.com',
+        callbackId: 'abc',
+        elements: [],
+        title: 'test title',
+        iconUrl: 'http://example.com/icon.png',
+        submitLabel: 'Yes',
+        notifyOnCancel: true,
+        state: 'some state',
+        onHide: () => {},
         actions: {
-          submitInteractiveDialog: () => ({
-            data: { error: 'This is an error.' },
-          }),
+            submitInteractiveDialog: () => ({}),
         },
-      }
-      const wrapper = shallow(<InteractiveDialog {...props} />)
+        emojiMap: new EmojiMap(new Map()),
+    };
 
-      await wrapper.instance().handleSubmit({ preventDefault: jest.fn() })
+    describe('generic error message', () => {
+        test('should appear when submit returns an error', async () => {
+            const props = {
+                ...baseProps,
+                actions: {
+                    submitInteractiveDialog: () => ({
+                        data: {error: 'This is an error.'},
+                    }),
+                },
+            };
+            const wrapper = shallow(<InteractiveDialog {...props}/>);
 
-      const expected = <div className="error-text">{'This is an error.'}</div>
-      expect(wrapper.find(Modal.Footer).containsMatchingElement(expected)).toBe(true)
-    })
+            await wrapper.instance().handleSubmit({preventDefault: jest.fn()});
 
-    test('should not appear when submit does not return an error', async () => {
-      const wrapper = shallow(<InteractiveDialog {...baseProps} />)
-      await wrapper.instance().handleSubmit({ preventDefault: jest.fn() })
+            const expected = (
+                <div className='error-text'>
+                    {'This is an error.'}
+                </div>
+            );
+            expect(wrapper.find(Modal.Footer).containsMatchingElement(expected)).toBe(true);
+        });
 
-      expect(wrapper.find(Modal.Footer).exists('.error-text')).toBe(false)
-    })
-  })
+        test('should not appear when submit does not return an error', async () => {
+            const wrapper = shallow(<InteractiveDialog {...baseProps}/>);
+            await wrapper.instance().handleSubmit({preventDefault: jest.fn()});
 
-  describe('default select element in Interactive Dialog', () => {
-    const mockStore = configureStore()
+            expect(wrapper.find(Modal.Footer).exists('.error-text')).toBe(false);
+        });
+    });
 
-    test('should be enabled by default', () => {
-      const selectElement = {
-        data_source: '',
-        default: 'opt3',
-        display_name: 'Option Selector',
-        name: 'someoptionselector',
-        optional: false,
-        options: [
-          { text: 'Option1', value: 'opt1' },
-          { text: 'Option2', value: 'opt2' },
-          { text: 'Option3', value: 'opt3' },
-        ],
-        type: 'select',
-      }
+    describe('default select element in Interactive Dialog', () => {
+        const mockStore = configureStore();
 
-      const { elements, ...rest } = baseProps
-      elements.push(selectElement)
-      const props = {
-        ...rest,
-        elements,
-      }
+        test('should be enabled by default', () => {
+            const selectElement = {
+                data_source: '',
+                default: 'opt3',
+                display_name: 'Option Selector',
+                name: 'someoptionselector',
+                optional: false,
+                options: [
+                    {text: 'Option1', value: 'opt1'},
+                    {text: 'Option2', value: 'opt2'},
+                    {text: 'Option3', value: 'opt3'},
+                ],
+                type: 'select',
+            };
 
-      const store = mockStore({})
-      const wrapper = mountWithIntl(
-        <Provider store={store}>
-          <InteractiveDialog {...props} />
-        </Provider>
-      )
-      expect(wrapper.find(Modal.Body).find('input').find({ defaultValue: 'Option3' }).exists()).toBe(true)
-    })
-  })
+            const {elements, ...rest} = baseProps;
+            elements.push(selectElement);
+            const props = {
+                ...rest,
+                elements,
+            };
 
-  describe('bool element in Interactive Dialog', () => {
-    const mockStore = configureStore()
-    const element = {
-      data_source: '',
-      display_name: 'Boolean Selector',
-      name: 'somebool',
-      optional: false,
-      type: 'bool',
-      placeholder: 'Subscribe?',
-    }
-    const { elements, ...rest } = baseProps
-    const props = {
-      ...rest,
-      elements: [...elements, element],
-    }
+            const store = mockStore({});
+            const wrapper = mountWithIntl(
+                <Provider store={store}>
+                    <InteractiveDialog {...props}/>
+                </Provider>,
+            );
+            expect(wrapper.find(Modal.Body).find('input').find({defaultValue: 'Option3'}).exists()).toBe(true);
+        });
+    });
 
-    const testCases = [
-      { description: 'no default', expectedChecked: false },
-      { description: 'unknown default', default: 'unknown', expectedChecked: false },
-      { description: 'default of "false"', default: 'false', expectedChecked: false },
-      { description: 'default of true', default: true, expectedChecked: true },
-      { description: 'default of "true"', default: 'True', expectedChecked: true },
-      { description: 'default of "True"', default: 'True', expectedChecked: true },
-      { description: 'default of "TRUE"', default: 'TRUE', expectedChecked: true },
-    ]
+    describe('bool element in Interactive Dialog', () => {
+        const mockStore = configureStore();
+        const element = {
+            data_source: '',
+            display_name: 'Boolean Selector',
+            name: 'somebool',
+            optional: false,
+            type: 'bool',
+            placeholder: 'Subscribe?',
+        };
+        const {elements, ...rest} = baseProps;
+        const props = {
+            ...rest,
+            elements: [
+                ...elements,
+                element,
+            ],
+        };
 
-    testCases.forEach((testCase) =>
-      test(`should interpret ${testCase.description}`, () => {
-        if (testCase.default === undefined) {
-          delete element.default
-        } else {
-          element.default = testCase.default
-        }
+        const testCases = [
+            {description: 'no default', expectedChecked: false},
+            {description: 'unknown default', default: 'unknown', expectedChecked: false},
+            {description: 'default of "false"', default: 'false', expectedChecked: false},
+            {description: 'default of true', default: true, expectedChecked: true},
+            {description: 'default of "true"', default: 'True', expectedChecked: true},
+            {description: 'default of "True"', default: 'True', expectedChecked: true},
+            {description: 'default of "TRUE"', default: 'TRUE', expectedChecked: true},
+        ];
 
-        const store = mockStore({})
-        const wrapper = mountWithIntl(
-          <Provider store={store}>
-            <InteractiveDialog {...props} />
-          </Provider>
-        )
-        expect(wrapper.find(Modal.Body).find('input').find({ checked: testCase.expectedChecked }).exists()).toBe(true)
-      })
-    )
-  })
-})
+        testCases.forEach((testCase) => test(`should interpret ${testCase.description}`, () => {
+            if (testCase.default === undefined) {
+                delete element.default;
+            } else {
+                element.default = testCase.default;
+            }
+
+            const store = mockStore({});
+            const wrapper = mountWithIntl(
+                <Provider store={store}>
+                    <InteractiveDialog {...props}/>
+                </Provider>,
+            );
+            expect(wrapper.find(Modal.Body).find('input').find({checked: testCase.expectedChecked}).exists()).toBe(true);
+        }));
+    });
+});

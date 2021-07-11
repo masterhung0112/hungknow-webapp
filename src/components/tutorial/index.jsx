@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 import { connect } from 'react-redux'
 
-import { Permissions } from 'hkclient-ts/lib/constants'
-import { getChannelsNameMapInCurrentTeam } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getLicense, getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { haveITeamPermission } from 'hkclient-ts/lib/selectors/entities/roles'
-import { getCurrentTeam } from 'hkclient-ts/lib/selectors/entities/teams'
+import { Permissions } from 'hkclient-redux/constants'
+import { getChannelsNameMapInCurrentTeam } from 'hkclient-redux/selectors/entities/channels'
+import { getLicense, getConfig } from 'hkclient-redux/selectors/entities/general'
+import { haveITeamPermission } from 'hkclient-redux/selectors/entities/roles'
+import { getCurrentTeam } from 'hkclient-redux/selectors/entities/teams'
 
 import Constants from 'utils/constants'
 

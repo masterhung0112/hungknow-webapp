@@ -4,12 +4,12 @@ import Router from 'next/router'
 import { UserAgent, Utils } from 'utils'
 import * as GlobalActions from 'actions/global_actions'
 import { connect } from 'react-redux'
-import { GlobalState } from 'hkclient-ts/lib/types/store'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import { GlobalState } from 'hkclient-redux/types/store'
+import { getConfig } from 'hkclient-redux/selectors/entities/general'
 import { loadMeAndConfig } from 'actions/views/root'
 import { getSiteURL } from 'utils/url'
-import { setUrl } from 'hkclient-ts/lib/actions/general'
-import { ActionResult, ActionResultType } from 'hkclient-ts/lib/types/actions'
+import { setUrl } from 'hkclient-redux/actions/general'
+import { ActionResult, ActionResultType } from 'hkclient-redux/types/actions'
 
 type TalkingProps = {
   noAccounts: boolean

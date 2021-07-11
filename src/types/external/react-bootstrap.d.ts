@@ -7,15 +7,16 @@
 // additional types, this soon will be not needed when we upgrade React-Bootstrap version to latest
 // Until that happens this is the fix
 
-import * as React from 'react'
-import { OverlayTriggerProps } from 'react-bootstrap'
+import * as React from 'react';
+import {OverlayTriggerProps} from 'react-bootstrap';
 
 export interface AdditionalOverlayTriggerProps extends React.ComponentPropsWithRef<typeof OverlayTriggerProps> {
-  className?: string
+
+    className?: string;
 }
 
 declare class OverlayTrigger extends React.Component<AdditionalOverlayTriggerProps> {}
 
 declare module 'react-bootstrap' {
-  export { OverlayTrigger }
+    export {OverlayTrigger};
 }

@@ -3,20 +3,21 @@
 
 /* eslint no-console: 0 */
 
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import AdminHeader from './admin_header'
+import AdminHeader from './admin_header';
 
 describe('components/widgets/admin_console/AdminHeader', () => {
-  test('render component with child', () => {
-    const wrapper = shallow(<AdminHeader>{'Test'}</AdminHeader>)
-    expect(wrapper).toMatchInlineSnapshot(`
+    test('render component with child', () => {
+        const wrapper = shallow(<AdminHeader>{'Test'}</AdminHeader>);
+        expect(wrapper).toMatchInlineSnapshot(`
 <div
   className="admin-console__header"
 >
   Test
 </div>
-`)
-  })
-})
+`,
+        );
+    });
+});

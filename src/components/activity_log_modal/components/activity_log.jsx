@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { FormattedDate, FormattedMessage, FormattedTime } from 'react-intl'
 
-import { General } from 'hkclient-ts/lib/constants'
+import { General } from 'hkclient-redux/constants'
 
 import { localizeMessage } from 'utils/utils.jsx'
 import { getMonthLong, t } from 'utils/i18n'

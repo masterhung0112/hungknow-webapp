@@ -1,45 +1,41 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
-import { PostAction } from 'hkclient-ts/lib/types/integration_actions'
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {PostAction} from 'hkclient-redux/types/integration_actions';
 
-import { GlobalState } from 'types/store'
-import { autocompleteChannels } from 'actions/channel_actions'
-import { autocompleteUsers } from 'actions/user_actions'
-import { selectAttachmentMenuAction } from 'actions/views/posts'
+import {GlobalState} from 'types/store';
+import {autocompleteChannels} from 'actions/channel_actions';
+import {autocompleteUsers} from 'actions/user_actions';
+import {selectAttachmentMenuAction} from 'actions/views/posts';
 
-import ActionMenu from './action_menu'
+import ActionMenu from './action_menu';
 
 type OwnProps = {
-  postId: string
-  action: PostAction
+    postId: string;
+    action: PostAction;
 }
 
 function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
-  const actions = state.views.posts.menuActions[ownProps.postId]
-  const selected =
-    ownProps.action && ownProps.action.id ? actions && actions[ownProps.action && ownProps.action.id] : undefined
+    const actions = state.views.posts.menuActions[ownProps.postId];
+    const selected = (ownProps.action && ownProps.action.id) ? actions && actions[ownProps.action && ownProps.action.id] : undefined;
 
-  return {
-    selected,
-  }
+    return {
+        selected,
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        selectAttachmentMenuAction,
-        autocompleteChannels,
-        autocompleteUsers,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            selectAttachmentMenuAction,
+            autocompleteChannels,
+            autocompleteUsers,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ActionMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(ActionMenu);

@@ -1,44 +1,48 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { shallow } from 'enzyme'
-import React from 'react'
+import {shallow} from 'enzyme';
+import React from 'react';
 
-import { Preferences } from 'hkclient-ts/lib/constants'
+import {Preferences} from 'hkclient-redux/constants';
 
-import CustomThemeChooser from 'components/user_settings/display/user_settings_theme/custom_theme_chooser.jsx'
+import CustomThemeChooser from 'components/user_settings/display/user_settings_theme/custom_theme_chooser.jsx';
 
 describe('components/user_settings/display/CustomThemeChooser', () => {
-  const baseProps = {
-    theme: Preferences.THEMES.default,
-    updateTheme: jest.fn(),
-  }
+    const baseProps = {
+        theme: Preferences.THEMES.default,
+        updateTheme: jest.fn(),
+    };
 
-  it('should match, init', () => {
-    const elementMock = { addEventListener: jest.fn() }
-    jest.spyOn(document, 'querySelector').mockImplementation(() => elementMock)
-    const wrapper = shallow(<CustomThemeChooser {...baseProps} />)
+    it('should match, init', () => {
+        const elementMock = {addEventListener: jest.fn()};
+        jest.spyOn(document, 'querySelector').mockImplementation(() => elementMock);
+        const wrapper = shallow(
+            <CustomThemeChooser {...baseProps}/>,
+        );
 
-    expect(wrapper).toMatchSnapshot()
-  })
+        expect(wrapper).toMatchSnapshot();
+    });
 
-  it('should create a custom theme when the code theme changes', () => {
-    const elementMock = { addEventListener: jest.fn() }
-    jest.spyOn(document, 'querySelector').mockImplementation(() => elementMock)
-    const wrapper = shallow(<CustomThemeChooser {...baseProps} />)
+    it('should create a custom theme when the code theme changes', () => {
+        const elementMock = {addEventListener: jest.fn()};
+        jest.spyOn(document, 'querySelector').mockImplementation(() => elementMock);
+        const wrapper = shallow(
+            <CustomThemeChooser {...baseProps}/>,
+        );
 
-    const event = {
-      target: {
-        value: 'monokai',
-      },
-    }
+        const event = {
+            target: {
+                value: 'monokai',
+            },
+        };
 
-    wrapper.instance().onCodeThemeChange(event)
-    expect(baseProps.updateTheme).toHaveBeenCalledTimes(1)
-    expect(baseProps.updateTheme).toHaveBeenCalledWith({
-      ...baseProps.theme,
-      type: 'custom',
-      codeTheme: 'monokai',
-    })
-  })
-})
+        wrapper.instance().onCodeThemeChange(event);
+        expect(baseProps.updateTheme).toHaveBeenCalledTimes(1);
+        expect(baseProps.updateTheme).toHaveBeenCalledWith({
+            ...baseProps.theme,
+            type: 'custom',
+            codeTheme: 'monokai',
+        });
+    });
+});

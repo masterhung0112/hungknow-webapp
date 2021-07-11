@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getTheme } from 'hkclient-ts/lib/selectors/entities/preferences'
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
 
-import Pluggable from './pluggable.jsx'
+import Pluggable from './pluggable.jsx';
 
 function mapStateToProps(state) {
-  return {
-    components: state.plugins.components,
-    theme: getTheme(state),
-  }
+    return {
+        components: state.plugins.components,
+        theme: getTheme(state),
+    };
 }
 
-export default connect(mapStateToProps)(Pluggable)
+export default connect(mapStateToProps)(Pluggable);

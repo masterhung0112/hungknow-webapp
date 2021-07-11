@@ -3,7 +3,7 @@
 
 import { connect } from 'react-redux'
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import { getConfig } from 'hkclient-redux/selectors/entities/general'
 
 import LatexBlock from './latex_block.jsx'
 

@@ -3,9 +3,9 @@
 
 import { connect } from 'react-redux'
 
-import { getCurrentChannelId } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { getOpenGraphMetadataForUrl } from 'hkclient-ts/lib/selectors/entities/posts'
+import { getCurrentChannelId } from 'hkclient-redux/selectors/entities/channels'
+import { getConfig } from 'hkclient-redux/selectors/entities/general'
+import { getOpenGraphMetadataForUrl } from 'hkclient-redux/selectors/entities/posts'
 
 import YoutubeVideo from './youtube_video'
 

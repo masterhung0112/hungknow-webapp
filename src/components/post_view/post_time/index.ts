@@ -1,18 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getCurrentRelativeTeamUrl } from 'hkclient-ts/lib/selectors/entities/teams'
+import {getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import PostTime from './post_time'
+import PostTime from './post_time';
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    teamUrl: getCurrentRelativeTeamUrl(state),
-  }
+    return {
+        teamUrl: getCurrentRelativeTeamUrl(state),
+    };
 }
 
-export default connect(mapStateToProps)(PostTime)
+export default connect(mapStateToProps)(PostTime);

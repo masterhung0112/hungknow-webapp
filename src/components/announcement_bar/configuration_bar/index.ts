@@ -1,47 +1,37 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import { AnnouncementBarMessages } from 'utils/constants'
-import { dismissNotice } from 'actions/views/notice'
-import { getSiteURL } from 'utils/url'
+import {AnnouncementBarMessages} from 'utils/constants';
+import {dismissNotice} from 'actions/views/notice';
+import {getSiteURL} from 'utils/url';
 
-import ConfigurationBar from './configuration_bar'
+import ConfigurationBar from './configuration_bar';
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    siteURL: getSiteURL(),
-    dismissedExpiringLicense: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.LICENSE_EXPIRING]),
-    dismissedNumberOfActiveUsersWarnMetricStatus: Boolean(
-      state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_USERS]
-    ),
-    dismissedNumberOfActiveUsersWarnMetricStatusAck: Boolean(
-      state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_USERS_ACK]
-    ),
-    dismissedNumberOfPostsWarnMetricStatus: Boolean(
-      state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_POSTS]
-    ),
-    dismissedNumberOfPostsWarnMetricStatusAck: Boolean(
-      state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_POSTS_ACK]
-    ),
-  }
+    return {
+        siteURL: getSiteURL(),
+        dismissedExpiringTrialLicense: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.TRIAL_LICENSE_EXPIRING]),
+        dismissedExpiringLicense: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.LICENSE_EXPIRING]),
+        dismissedNumberOfActiveUsersWarnMetricStatus: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_USERS]),
+        dismissedNumberOfActiveUsersWarnMetricStatusAck: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_USERS_ACK]),
+        dismissedNumberOfPostsWarnMetricStatus: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_POSTS]),
+        dismissedNumberOfPostsWarnMetricStatusAck: Boolean(state.views.notice.hasBeenDismissed[AnnouncementBarMessages.WARN_METRIC_STATUS_NUMBER_OF_POSTS_ACK]),
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        dismissNotice,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            dismissNotice,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConfigurationBar)
+export default connect(mapStateToProps, mapDispatchToProps)(ConfigurationBar);

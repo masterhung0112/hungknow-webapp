@@ -1,21 +1,25 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-import { Team } from 'hkclient-ts/lib/types/teams'
+import {Team} from 'hkclient-redux/types/teams';
 
 type Props = {
-  team: Team
-}
+    team: Team;
+};
 
-type State = {}
+type State = {
+
+};
 
 export default class TeamButton extends React.PureComponent<Props, State> {
-  render() {
-    const { team } = this.props
+    render() {
+        const {team} = this.props;
 
-    return <Link to={`/${team.name}`}>{team.display_name}</Link>
-  }
+        return (
+            <Link to={`/${team.name}`}>{team.display_name}</Link>
+        );
+    }
 }

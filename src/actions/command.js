@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { Client4 } from 'hkclient-ts/lib/client'
-import { unfavoriteChannel } from 'hkclient-ts/lib/actions/channels'
-import { savePreferences } from 'hkclient-ts/lib/actions/preferences'
+import { Client4 } from 'hkclient-redux/client'
+import { unfavoriteChannel } from 'hkclient-redux/actions/channels'
+import { savePreferences } from 'hkclient-redux/actions/preferences'
 import {
   getCurrentChannel,
   getRedirectChannelNameForTeam,
   isFavoriteChannel,
-} from 'hkclient-ts/lib/selectors/entities/channels'
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getCurrentRelativeTeamUrl, getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
-import { IntegrationTypes } from 'hkclient-ts/lib/action-types'
+} from 'hkclient-redux/selectors/entities/channels'
+import { getCurrentUserId } from 'hkclient-redux/selectors/entities/users'
+import { getCurrentRelativeTeamUrl, getCurrentTeamId } from 'hkclient-redux/selectors/entities/teams'
+import { IntegrationTypes } from 'hkclient-redux/action-types'
 
 import { openModal } from 'actions/views/modals'
 import * as GlobalActions from 'actions/global_actions'

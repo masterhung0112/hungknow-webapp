@@ -1,18 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import EditPostTimeLimitButton from './edit_post_time_limit_button'
+import EditPostTimeLimitButton from './edit_post_time_limit_button';
 
 function mapStateToProps(state) {
-  const { PostEditTimeLimit } = getConfig(state)
+    const {PostEditTimeLimit} = getConfig(state);
 
-  return {
-    timeLimit: parseInt(PostEditTimeLimit, 10),
-  }
+    return {
+        timeLimit: parseInt(PostEditTimeLimit, 10),
+    };
 }
 
-export default connect(mapStateToProps)(EditPostTimeLimitButton)
+export default connect(mapStateToProps)(EditPostTimeLimitButton);

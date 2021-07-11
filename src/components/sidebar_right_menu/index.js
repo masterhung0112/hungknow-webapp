@@ -1,47 +1,44 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getCurrentTeam } from 'hkclient-ts/lib/selectors/entities/teams'
-import { getInt } from 'hkclient-ts/lib/selectors/entities/preferences'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentTeam} from 'hkclient-redux/selectors/entities/teams';
+import {getInt} from 'hkclient-redux/selectors/entities/preferences';
 
-import { openMenu as openRhsMenu } from 'actions/views/rhs'
-import { getIsRhsMenuOpen } from 'selectors/rhs'
-import { Preferences, TutorialSteps } from 'utils/constants'
-import { isMobile } from 'utils/utils.jsx'
+import {openMenu as openRhsMenu} from 'actions/views/rhs';
+import {getIsRhsMenuOpen} from 'selectors/rhs';
+import {Preferences, TutorialSteps} from 'utils/constants';
+import {isMobile} from 'utils/utils.jsx';
 
-import SidebarRightMenu from './sidebar_right_menu'
+import SidebarRightMenu from './sidebar_right_menu';
 
 function mapStateToProps(state) {
-  const config = getConfig(state)
-  const currentTeam = getCurrentTeam(state)
+    const config = getConfig(state);
+    const currentTeam = getCurrentTeam(state);
 
-  const enableTutorial = config.EnableTutorial === 'true'
-  const tutorialStep = getInt(state, Preferences.TUTORIAL_STEP, getCurrentUserId(state), TutorialSteps.FINISHED)
+    const enableTutorial = config.EnableTutorial === 'true';
+    const tutorialStep = getInt(state, Preferences.TUTORIAL_STEP, getCurrentUserId(state), TutorialSteps.FINISHED);
 
-  const siteName = config.SiteName
+    const siteName = config.SiteName;
 
-  return {
-    teamDisplayName: currentTeam && currentTeam.display_name,
-    isOpen: getIsRhsMenuOpen(state),
-    showTutorialTip: enableTutorial && isMobile() && tutorialStep === TutorialSteps.MENU_POPOVER,
-    siteName,
-  }
+    return {
+        teamDisplayName: currentTeam && currentTeam.display_name,
+        isOpen: getIsRhsMenuOpen(state),
+        showTutorialTip: enableTutorial && isMobile() && tutorialStep === TutorialSteps.MENU_POPOVER,
+        siteName,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        openRhsMenu,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            openRhsMenu,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SidebarRightMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(SidebarRightMenu);

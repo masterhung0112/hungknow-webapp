@@ -1,44 +1,60 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { Action } from 'redux'
+import React from 'react';
+import {Action} from 'redux';
 
-import { ActionFunc, DispatchFunc } from 'hkclient-ts/lib/types/actions'
+import {ActionFunc, DispatchFunc} from 'hkclient-redux/types/actions';
+import {Channel} from 'hkclient-redux/types/channels';
+
+import {SearchType} from 'types/store/rhs';
+
+export type SearchFilterType = 'all' | 'documents' | 'spreadsheets' | 'presentations' | 'code' | 'images' | 'audio' | 'video';
 
 export type OwnProps = {
-  isSideBarRight?: boolean
-  isSideBarRightOpen?: boolean
-  isFocus: boolean
-  channelDisplayName?: string
-  getFocus?: (searchBarFocus: () => void) => void
-  children?: React.ReactNode
+    isSideBarRight?: boolean;
+    isSideBarRightOpen?: boolean;
+    isFocus: boolean;
+    hideSearchBar?: boolean;
+    enableFindShortcut?: boolean;
+    channelDisplayName?: string;
+    getFocus?: (searchBarFocus: () => void) => void;
+    children?: React.ReactNode;
 }
 
 export type StateProps = {
-  isRhsExpanded: boolean
-  isRhsOpen: boolean
-  isSearchingTerm: boolean
-  searchTerms: string
-  searchVisible: boolean
-  isMentionSearch: boolean
-  isFlaggedPosts: boolean
-  isPinnedPosts: boolean
+    isRhsExpanded: boolean;
+    isRhsOpen: boolean;
+    isSearchingTerm: boolean;
+    searchTerms: string;
+    searchType: SearchType;
+    searchVisible: boolean;
+    isMentionSearch: boolean;
+    isFlaggedPosts: boolean;
+    isPinnedPosts: boolean;
+    isChannelFiles: boolean;
+    currentChannel?: Channel;
 }
 
 export type DispatchProps = {
-  actions: {
-    updateSearchTerms: (term: string) => Action
-    showSearchResults: (isMentionSearch: boolean) => Record<string, any>
-    showMentions: () => void
-    showFlaggedPosts: () => void
-    setRhsExpanded: (expanded: boolean) => Action
-    closeRightHandSide: () => void
-    autocompleteChannelsForSearch: (term: string, success?: () => void, error?: () => void) => void
-    autocompleteUsersInTeam: (username: string) => DispatchFunc
-    updateRhsState: (rhsState: string) => void
-    getMorePostsForSearch: () => ActionFunc
-  }
+    actions: {
+        updateSearchTerms: (term: string) => Action;
+        updateSearchTermsForShortcut: () => void;
+        updateSearchType: (searchType: string) => Action;
+        showSearchResults: (isMentionSearch: boolean) => Record<string, any>;
+        showChannelFiles: (channelId: string) => void;
+        showMentions: () => void;
+        showFlaggedPosts: () => void;
+        setRhsExpanded: (expanded: boolean) => Action;
+        closeRightHandSide: () => void;
+        autocompleteChannelsForSearch: (term: string, success?: () => void, error?: () => void) => void;
+        autocompleteUsersInTeam: (username: string) => DispatchFunc;
+        updateRhsState: (rhsState: string) => void;
+        getMorePostsForSearch: () => ActionFunc;
+        openRHSSearch: () => void;
+        getMoreFilesForSearch: () => ActionFunc;
+        filterFilesSearchByExt: (extensions: string[]) => void;
+    };
 }
 
-export type Props = StateProps & DispatchProps & OwnProps
+export type Props = StateProps & DispatchProps & OwnProps;

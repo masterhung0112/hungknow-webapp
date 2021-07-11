@@ -1,56 +1,54 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import assert from 'assert'
+import assert from 'assert';
 
-import * as Selectors from 'selectors/rhs'
+import * as Selectors from 'selectors/rhs';
 
 describe('Selectors.Rhs', () => {
-  describe('should return the last time a post was selected', () => {
-    ;[0, 1000000, 2000000].forEach((expected) => {
-      it(`when open is ${expected}`, () => {
-        const state = {
-          views: {
-            rhs: {
-              selectedPostFocussedAt: expected,
-            },
-          },
-        }
+    describe('should return the last time a post was selected', () => {
+        [0, 1000000, 2000000].forEach((expected) => {
+            it(`when open is ${expected}`, () => {
+                const state = {views: {rhs: {
+                    selectedPostFocussedAt: expected,
+                }}};
 
-        assert.deepEqual(expected, Selectors.getSelectedPostFocussedAt(state))
-      })
-    })
-  })
+                assert.deepEqual(expected, Selectors.getSelectedPostFocussedAt(state));
+            });
+        });
+    });
 
-  describe('should return the open state of the sidebar', () => {
-    ;[true, false].forEach((expected) => {
-      it(`when open is ${expected}`, () => {
-        const state = {
-          views: {
-            rhs: {
-              isSidebarOpen: expected,
-            },
-          },
-        }
+    describe('should return the open state of the sidebar', () => {
+        [true, false].forEach((expected) => {
+            it(`when open is ${expected}`, () => {
+                const state = {views: {rhs: {
+                    isSidebarOpen: expected,
+                }}};
 
-        assert.deepEqual(expected, Selectors.getIsRhsOpen(state))
-      })
-    })
-  })
+                assert.deepEqual(expected, Selectors.getIsRhsOpen(state));
+            });
+        });
+    });
 
-  describe('should return the open state of the sidebar menu', () => {
-    ;[true, false].forEach((expected) => {
-      it(`when open is ${expected}`, () => {
-        const state = {
-          views: {
-            rhs: {
-              isMenuOpen: expected,
-            },
-          },
-        }
+    describe('should return the open state of the sidebar menu', () => {
+        [true, false].forEach((expected) => {
+            it(`when open is ${expected}`, () => {
+                const state = {views: {rhs: {
+                    isMenuOpen: expected,
+                }}};
 
-        assert.deepEqual(expected, Selectors.getIsRhsMenuOpen(state))
-      })
-    })
-  })
-})
+                assert.deepEqual(expected, Selectors.getIsRhsMenuOpen(state));
+            });
+        });
+    });
+
+    describe('should return the highlighted reply\'s id', () => {
+        test.each(['42', ''])('when id is %s', (expected) => {
+            const state = {views: {rhs: {
+                highlightedPostId: expected,
+            }}};
+
+            assert.deepEqual(expected, Selectors.getHighlightedPostId(state));
+        });
+    });
+});

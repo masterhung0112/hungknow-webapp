@@ -3,9 +3,9 @@
 
 import { connect } from 'react-redux'
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { getUser, getStatusForUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { Client4 } from 'hkclient-ts/lib/client'
+import { getConfig } from 'hkclient-redux/selectors/entities/general'
+import { getUser, getStatusForUserId } from 'hkclient-redux/selectors/entities/users'
+import { Client4 } from 'hkclient-redux/client'
 
 import PostProfilePicture from './post_profile_picture'
 

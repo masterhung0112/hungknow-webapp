@@ -1,24 +1,31 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
+import React from 'react';
 
-import { Channel } from 'hkclient-ts/lib/types/channels'
+import {Channel} from 'hkclient-redux/types/channels';
 
 type Props = {
-  icon: JSX.Element | null
-  channel: Channel
-  hasDraft: boolean
-}
+    icon: JSX.Element | null;
+    channel: Channel;
+    hasDraft: boolean;
+};
 
 export default class SidebarChannelIcon extends React.PureComponent<Props> {
-  render() {
-    if (this.props.channel.delete_at !== 0) {
-      return <i className="icon icon-archive-outline" />
-    } else if (this.props.hasDraft) {
-      return <i data-testid="draftIcon" className="icon icon-pencil-outline" />
-    }
+    render() {
+        if (this.props.channel.delete_at !== 0) {
+            return (
+                <i className='icon icon-archive-outline'/>
+            );
+        } else if (this.props.hasDraft) {
+            return (
+                <i
+                    data-testid='draftIcon'
+                    className='icon icon-pencil-outline'
+                />
+            );
+        }
 
-    return this.props.icon
-  }
+        return this.props.icon;
+    }
 }

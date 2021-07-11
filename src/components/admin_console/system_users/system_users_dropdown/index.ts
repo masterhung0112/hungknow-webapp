@@ -1,56 +1,45 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch, ActionCreatorsMapObject } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import { ActionFunc } from 'hkclient-ts/lib/types/actions'
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
-import {
-  updateUserActive,
-  revokeAllSessionsForUser,
-  promoteGuestToUser,
-  demoteUserToGuest,
-} from 'hkclient-ts/lib/actions/users'
-import { getCurrentUser } from 'hkclient-ts/lib/selectors/entities/users'
-import { getExternalBotAccounts } from 'hkclient-ts/lib/selectors/entities/bots'
-import { loadBots } from 'hkclient-ts/lib/actions/bots'
+import {updateUserActive, revokeAllSessionsForUser, promoteGuestToUser, demoteUserToGuest} from 'hkclient-redux/actions/users';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {getExternalBotAccounts} from 'hkclient-redux/selectors/entities/bots';
+import {loadBots} from 'hkclient-redux/actions/bots';
 
-import { getLicense } from 'hkclient-ts/lib/selectors/entities/general'
+import {getLicense} from 'hkclient-redux/selectors/entities/general';
 
-import * as Selectors from 'hkclient-ts/lib/selectors/entities/admin'
+import * as Selectors from 'hkclient-redux/selectors/entities/admin';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import { adminResetMfa } from 'actions/admin_actions.jsx'
-
-import SystemUsersDropdown, { Props } from './system_users_dropdown'
+import SystemUsersDropdown, {Props} from './system_users_dropdown';
 
 function mapStateToProps(state: GlobalState) {
-  const bots = getExternalBotAccounts(state)
-  const license = getLicense(state)
-  return {
-    isLicensed: license && license.IsLicensed === 'true',
-    config: Selectors.getConfig(state),
-    currentUser: getCurrentUser(state),
-    bots,
-  }
+    const bots = getExternalBotAccounts(state);
+    const license = getLicense(state);
+    return {
+        isLicensed: license && license.IsLicensed === 'true',
+        config: Selectors.getConfig(state),
+        currentUser: getCurrentUser(state),
+        bots,
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Props['actions']>(
-      {
-        updateUserActive,
-        revokeAllSessionsForUser,
-        promoteGuestToUser,
-        demoteUserToGuest,
-        loadBots,
-        adminResetMfa,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Props['actions']>({
+            updateUserActive,
+            revokeAllSessionsForUser,
+            promoteGuestToUser,
+            demoteUserToGuest,
+            loadBots,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SystemUsersDropdown)
+export default connect(mapStateToProps, mapDispatchToProps)(SystemUsersDropdown);

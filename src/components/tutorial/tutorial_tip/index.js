@@ -3,9 +3,9 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getInt } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { savePreferences } from 'hkclient-ts/lib/actions/preferences'
+import { getCurrentUserId } from 'hkclient-redux/selectors/entities/users'
+import { getInt } from 'hkclient-redux/selectors/entities/preferences'
+import { savePreferences } from 'hkclient-redux/actions/preferences'
 
 import { closeMenu as closeRhsMenu } from 'actions/views/rhs'
 import { Preferences } from 'utils/constants'

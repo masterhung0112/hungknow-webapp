@@ -1,34 +1,31 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { createIncomingHook } from 'hkclient-ts/lib/actions/integrations'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import {createIncomingHook} from 'hkclient-redux/actions/integrations';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import AddIncomingWebhook from './add_incoming_webhook.jsx'
+import AddIncomingWebhook from './add_incoming_webhook.jsx';
 
 function mapStateToProps(state) {
-  const config = getConfig(state)
-  const enablePostUsernameOverride = config.EnablePostUsernameOverride === 'true'
-  const enablePostIconOverride = config.EnablePostIconOverride === 'true'
+    const config = getConfig(state);
+    const enablePostUsernameOverride = config.EnablePostUsernameOverride === 'true';
+    const enablePostIconOverride = config.EnablePostIconOverride === 'true';
 
-  return {
-    enablePostUsernameOverride,
-    enablePostIconOverride,
-  }
+    return {
+        enablePostUsernameOverride,
+        enablePostIconOverride,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        createIncomingHook,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            createIncomingHook,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddIncomingWebhook)
+export default connect(mapStateToProps, mapDispatchToProps)(AddIncomingWebhook);

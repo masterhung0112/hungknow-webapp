@@ -1,72 +1,82 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import Sidebar from 'components/sidebar/sidebar'
+import Sidebar from 'components/sidebar/sidebar';
 
 describe('components/sidebar', () => {
-  const baseProps: any = {
-    canCreatePublicChannel: true,
-    canCreatePrivateChannel: true,
-    canJoinPublicChannel: true,
-    isOpen: false,
-    teamId: 'fake_team_id',
-    hasSeenModal: true,
-    isCloud: false,
-    unreadFilterEnabled: false,
-    actions: {
-      createCategory: jest.fn(),
-      fetchMyCategories: jest.fn(),
-      openModal: jest.fn(),
-      clearChannelSelection: jest.fn(),
-    },
-  }
+    const baseProps = {
+        canCreatePublicChannel: true,
+        canCreatePrivateChannel: true,
+        canJoinPublicChannel: true,
+        isOpen: false,
+        teamId: 'fake_team_id',
+        hasSeenModal: true,
+        isCloud: false,
+        unreadFilterEnabled: false,
+        actions: {
+            createCategory: jest.fn(),
+            fetchMyCategories: jest.fn(),
+            openModal: jest.fn(),
+            clearChannelSelection: jest.fn(),
+        },
+    };
 
-  test('should match snapshot', () => {
-    const wrapper = shallow(<Sidebar {...baseProps} />)
+    test('should match snapshot', () => {
+        const wrapper = shallow(
+            <Sidebar {...baseProps}/>,
+        );
 
-    expect(wrapper).toMatchSnapshot()
-  })
+        expect(wrapper).toMatchSnapshot();
+    });
 
-  test('should match snapshot when direct channels modal is open', () => {
-    const wrapper = shallow(<Sidebar {...baseProps} />)
+    test('should match snapshot when direct channels modal is open', () => {
+        const wrapper = shallow(
+            <Sidebar {...baseProps}/>,
+        );
 
-    wrapper.instance().setState({ showDirectChannelsModal: true })
-    expect(wrapper).toMatchSnapshot()
-  })
+        wrapper.instance().setState({showDirectChannelsModal: true});
+        expect(wrapper).toMatchSnapshot();
+    });
 
-  test('should match snapshot when more channels modal is open', () => {
-    const wrapper = shallow(<Sidebar {...baseProps} />)
+    test('should match snapshot when more channels modal is open', () => {
+        const wrapper = shallow(
+            <Sidebar {...baseProps}/>,
+        );
 
-    wrapper.instance().setState({ showMoreChannelsModal: true })
-    expect(wrapper).toMatchSnapshot()
-  })
+        wrapper.instance().setState({showMoreChannelsModal: true});
+        expect(wrapper).toMatchSnapshot();
+    });
 
-  test('should toggle direct messages modal correctly', () => {
-    const wrapper = shallow<Sidebar>(<Sidebar {...baseProps} />)
-    const instance = wrapper.instance()
-    const mockEvent: Partial<Event> = { preventDefault: jest.fn() }
+    test('should toggle direct messages modal correctly', () => {
+        const wrapper = shallow<Sidebar>(
+            <Sidebar {...baseProps}/>,
+        );
+        const instance = wrapper.instance();
+        const mockEvent: Partial<Event> = {preventDefault: jest.fn()};
 
-    instance.hideMoreDirectChannelsModal = jest.fn()
-    instance.showMoreDirectChannelsModal = jest.fn()
+        instance.hideMoreDirectChannelsModal = jest.fn();
+        instance.showMoreDirectChannelsModal = jest.fn();
 
-    instance.handleOpenMoreDirectChannelsModal(mockEvent as any)
-    expect(instance.showMoreDirectChannelsModal).toHaveBeenCalled()
+        instance.handleOpenMoreDirectChannelsModal(mockEvent as any);
+        expect(instance.showMoreDirectChannelsModal).toHaveBeenCalled();
 
-    instance.setState({ showDirectChannelsModal: true })
-    instance.handleOpenMoreDirectChannelsModal(mockEvent as any)
-    expect(instance.hideMoreDirectChannelsModal).toHaveBeenCalled()
-  })
+        instance.setState({showDirectChannelsModal: true});
+        instance.handleOpenMoreDirectChannelsModal(mockEvent as any);
+        expect(instance.hideMoreDirectChannelsModal).toHaveBeenCalled();
+    });
 
-  test('should match empty div snapshot when teamId is missing', () => {
-    const props = {
-      ...baseProps,
-      teamId: '',
-    }
-    const wrapper = shallow(<Sidebar {...props} />)
+    test('should match empty div snapshot when teamId is missing', () => {
+        const props = {
+            ...baseProps,
+            teamId: '',
+        };
+        const wrapper = shallow(
+            <Sidebar {...props}/>,
+        );
 
-    expect(wrapper).toMatchSnapshot()
-  })
-})
+        expect(wrapper).toMatchSnapshot();
+    });
+});

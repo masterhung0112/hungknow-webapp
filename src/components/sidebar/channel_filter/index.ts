@@ -1,36 +1,33 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { getMyTeams } from 'hkclient-ts/lib/selectors/entities/teams'
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {getMyTeams} from 'hkclient-redux/selectors/entities/teams';
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import { setUnreadFilterEnabled } from 'actions/views/channel_sidebar'
-import { isUnreadFilterEnabled } from 'selectors/views/channel_sidebar'
-import { GlobalState } from 'types/store'
+import {setUnreadFilterEnabled} from 'actions/views/channel_sidebar';
+import {isUnreadFilterEnabled} from 'selectors/views/channel_sidebar';
+import {GlobalState} from 'types/store';
 
-import ChannelFilter from './channel_filter'
+import ChannelFilter from './channel_filter';
 
 function mapStateToProps(state: GlobalState) {
-  const teams = getMyTeams(state)
+    const teams = getMyTeams(state);
 
-  return {
-    hasMultipleTeams: teams && teams.length > 1,
-    unreadFilterEnabled: isUnreadFilterEnabled(state),
-  }
+    return {
+        hasMultipleTeams: teams && teams.length > 1,
+        unreadFilterEnabled: isUnreadFilterEnabled(state),
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        setUnreadFilterEnabled,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            setUnreadFilterEnabled,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelFilter)
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelFilter);

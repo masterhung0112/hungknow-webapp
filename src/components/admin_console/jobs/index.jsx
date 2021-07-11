@@ -1,33 +1,30 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { getJobsByType, createJob, cancelJob } from 'hkclient-ts/lib/actions/jobs'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/admin'
-import * as Selectors from 'hkclient-ts/lib/selectors/entities/jobs'
+import {getJobsByType, createJob, cancelJob} from 'hkclient-redux/actions/jobs';
+import {getConfig} from 'hkclient-redux/selectors/entities/admin';
+import * as Selectors from 'hkclient-redux/selectors/entities/jobs';
 
-import Table from './table.jsx'
+import Table from './table.jsx';
 
 function mapStateToProps(state, ownProps) {
-  return {
-    jobs: Selectors.makeGetJobsByType(ownProps.jobType)(state),
-    downloadExportResults: getConfig(state).MessageExportSettings.DownloadExportResults,
-  }
+    return {
+        jobs: Selectors.makeGetJobsByType(ownProps.jobType)(state),
+        downloadExportResults: getConfig(state).MessageExportSettings.DownloadExportResults,
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        getJobsByType,
-        createJob,
-        cancelJob,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            getJobsByType,
+            createJob,
+            cancelJob,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

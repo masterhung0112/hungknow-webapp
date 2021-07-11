@@ -2,18 +2,18 @@
 // See LICENSE.txt for license information.
 /* eslint-disable @typescript-eslint/naming-convention */
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getRoles } from 'hkclient-ts/lib/selectors/entities/roles_helpers'
+import {getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import SystemRoles from './system_roles'
+import SystemRoles from './system_roles';
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    roles: getRoles(state),
-  }
+    return {
+        roles: getRoles(state),
+    };
 }
 
-export default connect(mapStateToProps)(SystemRoles)
+export default connect(mapStateToProps)(SystemRoles);

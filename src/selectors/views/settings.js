@@ -2,5 +2,5 @@
 // See LICENSE.txt for license information.
 
 export function getPreviousActiveSection(state) {
-  return state.views.settings.previousActiveSection
+    return state.views.settings.previousActiveSection;
 }

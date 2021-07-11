@@ -1,102 +1,91 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { ActionCreatorsMapObject, bindActionCreators, Dispatch } from 'redux'
-import { connect } from 'react-redux'
-import { createSelector } from 'reselect'
+import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
-import { withRouter } from 'react-router-dom'
+import {getInt} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentChannel, getDirectTeammate} from 'hkclient-redux/selectors/entities/channels';
+import {getMyChannelRoles} from 'hkclient-redux/selectors/entities/roles';
+import {getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 
-import { getInt } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { getCurrentChannel } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getMyChannelRoles } from 'hkclient-ts/lib/selectors/entities/roles'
-import { getRoles } from 'hkclient-ts/lib/selectors/entities/roles_helpers'
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getConfig, getLicense } from 'hkclient-ts/lib/selectors/entities/general'
+import {getProfiles} from 'hkclient-redux/actions/users';
 
-import { getProfiles } from 'hkclient-ts/lib/actions/users'
+import {Action, ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 
-import { Action, ActionFunc, GenericAction } from 'hkclient-ts/lib/types/actions'
+import {TutorialSteps, Preferences} from 'utils/constants';
 
-import { getDirectTeammate } from 'utils/utils.jsx'
+import {goToLastViewedChannel} from 'actions/views/channel';
 
-import { TutorialSteps, Preferences } from 'utils/constants'
+import {setShowNextStepsView} from 'actions/views/next_steps';
 
-import { goToLastViewedChannel } from 'actions/views/channel'
+import {isOnboardingHidden, showNextSteps, showNextStepsTips} from 'components/next_steps_view/steps';
+import {GlobalState} from 'types/store';
 
-import { setShowNextStepsView } from 'actions/views/next_steps'
-
-import { isOnboardingHidden, showNextSteps, showNextStepsTips } from 'components/next_steps_view/steps'
-import { GlobalState } from 'types/store'
-
-import ChannelView from './channel_view'
+import ChannelView from './channel_view';
 
 type Actions = {
-  goToLastViewedChannel: () => Promise<{ data: boolean }>
-  setShowNextStepsView: (show: boolean) => Action
-  getProfiles: (page?: number, perPage?: number, options?: Record<string, string | boolean>) => ActionFunc
+    goToLastViewedChannel: () => Promise<{data: boolean}>;
+    setShowNextStepsView: (show: boolean) => Action;
+    getProfiles: (page?: number, perPage?: number, options?: Record<string, string | boolean>) => ActionFunc;
 }
 
-// Temporary selector until getDirectTeammate is converted to be redux-friendly
-const getDeactivatedChannel = createSelector(
-  (state: GlobalState, channelId: string) => {
-    return getDirectTeammate(state, channelId)
-  },
-  (teammate: Record<string, any>) => {
-    return Boolean(teammate && teammate.delete_at)
-  }
-)
+function isDeactivatedChannel(state: GlobalState, channelId: string) {
+    const teammate = getDirectTeammate(state, channelId);
+
+    return Boolean(teammate && teammate.delete_at);
+}
 
 function mapStateToProps(state: GlobalState) {
-  const channel = getCurrentChannel(state)
+    const channel = getCurrentChannel(state);
 
-  const config = getConfig(state)
-  const enableTutorial = config.EnableTutorial === 'true'
-  const tutorialStep = getInt(state, Preferences.TUTORIAL_STEP, getCurrentUserId(state), TutorialSteps.FINISHED)
-  const viewArchivedChannels = config.ExperimentalViewArchivedChannels === 'true'
+    const config = getConfig(state);
+    const enableTutorial = config.EnableTutorial === 'true';
+    const tutorialStep = getInt(state, Preferences.TUTORIAL_STEP, getCurrentUserId(state), TutorialSteps.FINISHED);
+    const viewArchivedChannels = config.ExperimentalViewArchivedChannels === 'true';
 
-  let channelRolesLoading = true
-  if (channel && channel.id) {
-    const roles = getRoles(state)
-    const myChannelRoles = getMyChannelRoles(state)
-    if (myChannelRoles[channel.id]) {
-      const channelRoles = myChannelRoles[channel.id].values()
-      for (const roleName of channelRoles) {
-        if (roles[roleName]) {
-          channelRolesLoading = false
+    let channelRolesLoading = true;
+    if (channel && channel.id) {
+        const roles = getRoles(state);
+        const myChannelRoles = getMyChannelRoles(state);
+        if (myChannelRoles[channel.id]) {
+            const channelRoles = myChannelRoles[channel.id].values();
+            for (const roleName of channelRoles) {
+                if (roles[roleName]) {
+                    channelRolesLoading = false;
+                }
+                break;
+            }
         }
-        break
-      }
     }
-  }
 
-  return {
-    channelId: channel ? channel.id : '',
-    channelRolesLoading,
-    deactivatedChannel: channel ? getDeactivatedChannel(state, channel.id) : false,
-    focusedPostId: state.views.channel.focusedPostId,
-    showTutorial: enableTutorial && tutorialStep <= TutorialSteps.INTRO_SCREENS,
-    showNextSteps: showNextSteps(state),
-    showNextStepsTips: showNextStepsTips(state),
-    isOnboardingHidden: isOnboardingHidden(state),
-    showNextStepsEphemeral: state.views.nextSteps.show,
-    channelIsArchived: channel ? channel.delete_at !== 0 : false,
-    viewArchivedChannels,
-    isCloud: getLicense(state).Cloud === 'true',
-  }
+    return {
+        channelId: channel ? channel.id : '',
+        channelRolesLoading,
+        deactivatedChannel: channel ? isDeactivatedChannel(state, channel.id) : false,
+        focusedPostId: state.views.channel.focusedPostId,
+        showTutorial: enableTutorial && tutorialStep <= TutorialSteps.INTRO_SCREENS,
+        showNextSteps: showNextSteps(state),
+        showNextStepsTips: showNextStepsTips(state),
+        isOnboardingHidden: isOnboardingHidden(state),
+        showNextStepsEphemeral: state.views.nextSteps.show,
+        channelIsArchived: channel ? channel.delete_at !== 0 : false,
+        viewArchivedChannels,
+        isCloud: getLicense(state).Cloud === 'true',
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc | GenericAction>, Actions>(
-      {
-        setShowNextStepsView,
-        goToLastViewedChannel,
-        getProfiles,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc|GenericAction>, Actions>({
+            setShowNextStepsView,
+            goToLastViewedChannel,
+            getProfiles,
+        }, dispatch),
+    };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChannelView))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChannelView));

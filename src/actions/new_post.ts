@@ -1,121 +1,156 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { batchActions } from 'redux-batched-actions'
+import * as Redux from 'redux';
+import {batchActions} from 'redux-batched-actions';
 
-import { markChannelAsRead, markChannelAsUnread, markChannelAsViewed } from 'hkclient-ts/lib/actions/channels'
-import * as PostActions from 'hkclient-ts/lib/actions/posts'
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
-import { WebsocketEvents } from 'hkclient-ts/lib/constants'
+import {
+    actionsToMarkChannelAsRead,
+    actionsToMarkChannelAsUnread,
+    actionsToMarkChannelAsViewed,
+    markChannelAsReadOnServer,
+} from 'hkclient-redux/actions/channels';
+import * as PostActions from 'hkclient-redux/actions/posts';
 
-import { getCurrentChannelId, isManuallyUnread } from 'hkclient-ts/lib/selectors/entities/channels'
-import * as PostSelectors from 'hkclient-ts/lib/selectors/entities/posts'
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
+import {WebsocketEvents} from 'hkclient-redux/constants';
 
-import { ActionFunc, DispatchFunc, GetStateFunc } from 'hkclient-ts/lib/types/actions'
-import { Post } from 'hkclient-ts/lib/types/posts'
+import {getCurrentChannelId, isManuallyUnread} from 'hkclient-redux/selectors/entities/channels';
+import * as PostSelectors from 'hkclient-redux/selectors/entities/posts';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getThread} from 'hkclient-redux/selectors/entities/threads';
 
-import { isFromWebhook, isSystemMessage, shouldIgnorePost } from 'hkclient-ts/lib/utils/post_utils'
+import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+import {Post} from 'hkclient-redux/types/posts';
 
-import { sendDesktopNotification } from 'actions/notification_actions.jsx'
+import {
+    isFromWebhook,
+    isSystemMessage,
+    shouldIgnorePost,
+} from 'hkclient-redux/utils/post_utils';
 
-import { ActionTypes } from 'utils/constants'
+import {GlobalState} from 'types/store';
+
+import {updateThreadLastOpened} from 'actions/views/threads';
+import {sendDesktopNotification} from 'actions/notification_actions.jsx';
+
+import {ActionTypes} from 'utils/constants';
+import {isThreadOpen, makeGetThreadLastViewedAt} from 'selectors/views/threads';
 
 type NewPostMessageProps = {
-  mentions: string[]
-  team_id: string
+    mentions: string[];
+    team_id: string;
 }
 
-export function completePostReceive(
-  post: Post,
-  websocketMessageProps: NewPostMessageProps,
-  fetchedChannelMember: boolean
-): ActionFunc {
-  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
-    const rootPost = PostSelectors.getPost(getState(), post.root_id)
-    if (post.root_id && !rootPost) {
-      const result = await dispatch(PostActions.getPostThread(post.root_id))
+export function completePostReceive(post: Post, websocketMessageProps: NewPostMessageProps, fetchedChannelMember: boolean): ActionFunc {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        const state = getState();
+        const rootPost = PostSelectors.getPost(state, post.root_id);
+        if (post.root_id && !rootPost) {
+            const result = await dispatch(PostActions.getPostThread(post.root_id));
 
-      if ('error' in result) {
-        return result
-      }
-    }
+            if ('error' in result) {
+                return result;
+            }
+        }
+        const actions: Redux.AnyAction[] = [];
 
-    if (post.channel_id === getCurrentChannelId(getState())) {
-      dispatch({
-        type: ActionTypes.INCREASE_POST_VISIBILITY,
-        data: post.channel_id,
-        amount: 1,
-      })
-    }
+        if (post.channel_id === getCurrentChannelId(getState())) {
+            actions.push({
+                type: ActionTypes.INCREASE_POST_VISIBILITY,
+                data: post.channel_id,
+                amount: 1,
+            });
+        }
 
-    // Need manual dispatch to remove pending post
+        const collapsedThreadsEnabled = isCollapsedThreadsEnabled(state);
 
-    const actions = [
-      PostActions.receivedNewPost(post),
-      {
-        type: WebsocketEvents.STOP_TYPING,
-        data: {
-          id: post.channel_id + post.root_id,
-          userId: post.user_id,
-          now: Date.now(),
-        },
-      },
-    ]
+        actions.push(
+            PostActions.receivedNewPost(post, collapsedThreadsEnabled),
+            {
+                type: WebsocketEvents.STOP_TYPING,
+                data: {
+                    id: post.channel_id + post.root_id,
+                    userId: post.user_id,
+                    now: Date.now(),
+                },
+            },
+            ...setChannelReadAndViewed(dispatch, getState, post, websocketMessageProps, fetchedChannelMember),
+        );
 
-    dispatch(batchActions(actions))
+        dispatch(batchActions(actions));
 
-    // Still needed to update unreads
+        if (collapsedThreadsEnabled && post.root_id) {
+            dispatch(setThreadRead(post));
+        }
 
-    dispatch(setChannelReadAndViewed(post, websocketMessageProps, fetchedChannelMember))
-
-    return dispatch((sendDesktopNotification(post, websocketMessageProps) as unknown) as ActionFunc)
-  }
+        return dispatch(sendDesktopNotification(post, websocketMessageProps) as unknown as ActionFunc);
+    };
 }
 
-export function setChannelReadAndViewed(
-  post: Post,
-  websocketMessageProps: NewPostMessageProps,
-  fetchedChannelMember: boolean
-): ActionFunc {
-  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
-    const state = getState()
-    const currentUserId = getCurrentUserId(state)
+// setChannelReadAndViewed returns an array of actions to mark the channel read and viewed, and it dispatches an action
+// to asynchronously mark the channel as read on the server if necessary.
+export function setChannelReadAndViewed(dispatch: DispatchFunc, getState: GetStateFunc, post: Post, websocketMessageProps: NewPostMessageProps, fetchedChannelMember: boolean): Redux.AnyAction[] {
+    const state = getState();
+    const currentUserId = getCurrentUserId(state);
 
     // ignore system message posts, except when added to a team
     if (shouldIgnorePost(post, currentUserId)) {
-      return { data: false }
+        return [];
     }
 
-    let markAsRead = false
-    let markAsReadOnServer = false
+    let markAsRead = false;
+    let markAsReadOnServer = false;
 
     // Skip marking a channel as read (when the user is viewing a channel)
     // if they have manually marked it as unread.
     if (!isManuallyUnread(getState(), post.channel_id)) {
-      if (post.user_id === getCurrentUserId(state) && !isSystemMessage(post) && !isFromWebhook(post)) {
-        markAsRead = true
-        markAsReadOnServer = false
-      } else if (post.channel_id === getCurrentChannelId(state) && window.isActive) {
-        markAsRead = true
-        markAsReadOnServer = true
-      }
+        if (
+            post.user_id === getCurrentUserId(state) &&
+            !isSystemMessage(post) &&
+            !isFromWebhook(post)
+        ) {
+            markAsRead = true;
+            markAsReadOnServer = false;
+        } else if (
+            post.channel_id === getCurrentChannelId(state) &&
+            window.isActive
+        ) {
+            markAsRead = true;
+            markAsReadOnServer = true;
+        }
     }
 
     if (markAsRead) {
-      dispatch(markChannelAsRead(post.channel_id, undefined, markAsReadOnServer))
-      dispatch(markChannelAsViewed(post.channel_id))
-    } else {
-      dispatch(
-        markChannelAsUnread(
-          websocketMessageProps.team_id,
-          post.channel_id,
-          websocketMessageProps.mentions,
-          fetchedChannelMember
-        )
-      )
+        if (markAsReadOnServer) {
+            dispatch(markChannelAsReadOnServer(post.channel_id));
+        }
+
+        return [
+            ...actionsToMarkChannelAsRead(getState, post.channel_id),
+            ...actionsToMarkChannelAsViewed(getState, post.channel_id),
+        ];
     }
 
-    return { data: true }
-  }
+    return actionsToMarkChannelAsUnread(getState, websocketMessageProps.team_id, post.channel_id, websocketMessageProps.mentions, fetchedChannelMember, post.root_id === '');
+}
+
+export function setThreadRead(post: Post) {
+    const getThreadLastViewedAt = makeGetThreadLastViewedAt();
+    return (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        const state = getState() as GlobalState;
+
+        const thread = getThread(state, post.root_id);
+
+        // mark a thread as read (when the user is viewing the thread)
+        if (thread && isThreadOpen(state, thread.id)) {
+            // update the new messages line (when there are no previous unreads)
+            if (thread.last_reply_at < getThreadLastViewedAt(state, thread.id)) {
+                dispatch(updateThreadLastOpened(thread.id, post.create_at));
+            }
+        }
+
+        return {data: true};
+    };
 }

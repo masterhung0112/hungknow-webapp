@@ -1,78 +1,80 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import searchReducer from 'reducers/views/search'
-import { SearchTypes } from 'utils/constants'
+import searchReducer from 'reducers/views/search';
+import {SearchTypes} from 'utils/constants';
 
 describe('Reducers.Search', () => {
-  const initialState = {
-    modalSearch: '',
-    modalFilters: {},
-    systemUsersSearch: {},
-    userGridSearch: {},
-  }
-
-  test('Initial state', () => {
-    const nextState = searchReducer(
-      {
+    const initialState = {
         modalSearch: '',
+        modalFilters: {},
         systemUsersSearch: {},
-      },
-      {}
-    )
+        userGridSearch: {},
+        teamListSearch: '',
+        channelListSearch: {},
+    };
 
-    expect(nextState).toEqual(initialState)
-  })
+    test('Initial state', () => {
+        const nextState = searchReducer(
+            {
+                modalSearch: '',
+                systemUsersSearch: {},
+            },
+            {},
+        );
 
-  test(`should trim the search term for ${SearchTypes.SET_MODAL_SEARCH}`, () => {
-    const nextState = searchReducer(
-      {
-        modalSearch: '',
-      },
-      {
-        type: SearchTypes.SET_MODAL_SEARCH,
-        data: ' something ',
-      }
-    )
+        expect(nextState).toEqual(initialState);
+    });
 
-    expect(nextState).toEqual({
-      ...initialState,
-      modalSearch: 'something',
-    })
-  })
+    test(`should trim the search term for ${SearchTypes.SET_MODAL_SEARCH}`, () => {
+        const nextState = searchReducer(
+            {
+                modalSearch: '',
+            },
+            {
+                type: SearchTypes.SET_MODAL_SEARCH,
+                data: ' something ',
+            },
+        );
 
-  test('should set user grid search', () => {
-    const filters = { team_id: '123456789' }
-    const nextState = searchReducer(
-      {
-        userGridSearch: { filters },
-      },
-      {
-        type: SearchTypes.SET_USER_GRID_SEARCH,
-        data: 'something',
-      }
-    )
+        expect(nextState).toEqual({
+            ...initialState,
+            modalSearch: 'something',
+        });
+    });
 
-    expect(nextState).toEqual({
-      ...initialState,
-      userGridSearch: { term: 'something', filters },
-    })
-  })
+    test('should set user grid search', () => {
+        const filters = {team_id: '123456789'};
+        const nextState = searchReducer(
+            {
+                userGridSearch: {filters},
+            },
+            {
+                type: SearchTypes.SET_USER_GRID_SEARCH,
+                data: 'something',
+            },
+        );
 
-  test('should set user grid filters', () => {
-    const nextState = searchReducer(
-      {
-        userGridSearch: { term: 'something', filters: { team_id: '123456789' } },
-      },
-      {
-        type: SearchTypes.SET_USER_GRID_FILTERS,
-        data: { team_id: '1', channel_roles: ['channel_admin'] },
-      }
-    )
+        expect(nextState).toEqual({
+            ...initialState,
+            userGridSearch: {term: 'something', filters},
+        });
+    });
 
-    expect(nextState).toEqual({
-      ...initialState,
-      userGridSearch: { term: 'something', filters: { team_id: '1', channel_roles: ['channel_admin'] } },
-    })
-  })
-})
+    test('should set user grid filters', () => {
+        const nextState = searchReducer(
+            {
+                userGridSearch: {term: 'something', filters: {team_id: '123456789'}},
+            },
+            {
+                type: SearchTypes.SET_USER_GRID_FILTERS,
+                data: {team_id: '1', channel_roles: ['channel_admin']},
+            },
+        );
+
+        expect(nextState).toEqual({
+            ...initialState,
+            userGridSearch: {term: 'something', filters: {team_id: '1', channel_roles: ['channel_admin']}},
+        });
+    });
+});

@@ -1,44 +1,48 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { createSelector } from 'reselect'
+import {createSelector} from 'reselect';
 
-import { getPost } from 'hkclient-ts/lib/selectors/entities/posts'
-import { getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getBool as getBoolPreference } from 'hkclient-ts/lib/selectors/entities/preferences'
+import {getPost} from 'hkclient-redux/selectors/entities/posts';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getBool as getBoolPreference} from 'hkclient-redux/selectors/entities/preferences';
 
-import { getGlobalItem } from 'selectors/storage'
-import { Preferences, StoragePrefixes } from 'utils/constants'
+import {getGlobalItem} from 'selectors/storage';
+import {arePreviewsCollapsed} from 'selectors/preferences';
+import {Preferences, StoragePrefixes} from 'utils/constants';
 
 export const getEditingPost = createSelector(
-  (state) => {
-    if (state.views.posts.editingPost && state.views.posts.editingPost.postId) {
-      return getPost(state, state.views.posts.editingPost.postId)
-    }
+    'getEditingPost',
+    (state) => {
+        if (state.views.posts.editingPost && state.views.posts.editingPost.postId) {
+            return getPost(state, state.views.posts.editingPost.postId);
+        }
 
-    return null
-  },
-  (state) => state.views.posts.editingPost,
-  (post, editingPost) => {
-    return {
-      ...editingPost,
-      post,
-    }
-  }
-)
+        return null;
+    },
+    (state) => state.views.posts.editingPost,
+    (post, editingPost) => {
+        return {
+            ...editingPost,
+            post,
+        };
+    },
+);
 
 export function isEmbedVisible(state, postId) {
-  const currentUserId = getCurrentUserId(state)
-  const previewCollapsed = getBoolPreference(
-    state,
-    Preferences.CATEGORY_DISPLAY_SETTINGS,
-    Preferences.COLLAPSE_DISPLAY,
-    Preferences.COLLAPSE_DISPLAY_DEFAULT !== 'false'
-  )
+    const currentUserId = getCurrentUserId(state);
+    const previewCollapsed = arePreviewsCollapsed(state);
 
-  return getGlobalItem(state, StoragePrefixes.EMBED_VISIBLE + currentUserId + '_' + postId, !previewCollapsed)
+    return getGlobalItem(state, StoragePrefixes.EMBED_VISIBLE + currentUserId + '_' + postId, !previewCollapsed);
+}
+
+export function isInlineImageVisible(state, postId, imageKey) {
+    const currentUserId = getCurrentUserId(state);
+    const imageCollapsed = arePreviewsCollapsed(state);
+
+    return getGlobalItem(state, StoragePrefixes.INLINE_IMAGE_VISIBLE + currentUserId + '_' + postId + '_' + imageKey, !imageCollapsed);
 }
 
 export function shouldShowJoinLeaveMessages(state) {
-  return getBoolPreference(state, Preferences.CATEGORY_ADVANCED_SETTINGS, Preferences.ADVANCED_FILTER_JOIN_LEAVE, true)
+    return getBoolPreference(state, Preferences.CATEGORY_ADVANCED_SETTINGS, Preferences.ADVANCED_FILTER_JOIN_LEAVE, true);
 }

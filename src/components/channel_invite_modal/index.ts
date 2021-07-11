@@ -1,70 +1,68 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import { getTeamStats } from 'hkclient-ts/lib/actions/teams'
-import { getProfilesNotInChannel, searchProfiles } from 'hkclient-ts/lib/actions/users'
-import {
-  getProfilesNotInCurrentChannel,
-  getProfilesNotInCurrentTeam,
-  getProfilesNotInTeam,
-  makeGetProfilesNotInChannel,
-} from 'hkclient-ts/lib/selectors/entities/users'
-import { UserProfile } from 'hkclient-ts/lib/types/users'
+import {getTeamStats} from 'hkclient-redux/actions/teams';
+import {getProfilesNotInChannel, searchProfiles} from 'hkclient-redux/actions/users';
+import {getProfilesNotInCurrentChannel, getProfilesNotInCurrentTeam, getProfilesNotInTeam, getUserStatuses, makeGetProfilesNotInChannel} from 'hkclient-redux/selectors/entities/users';
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
+import {UserProfile} from 'hkclient-redux/types/users';
 
-import { Value } from 'components/multiselect/multiselect'
+import {Value} from 'components/multiselect/multiselect';
 
-import { addUsersToChannel } from 'actions/channel_actions'
-import { GlobalState } from 'types/store'
+import {addUsersToChannel} from 'actions/channel_actions';
+import {loadStatusesForProfilesList} from 'actions/status_actions.jsx';
+import {GlobalState} from 'types/store';
 
-import ChannelInviteModal from './channel_invite_modal'
+import ChannelInviteModal, {Props} from './channel_invite_modal';
 
-type UserProfileValue = Value & UserProfile
+type UserProfileValue = Value & UserProfile;
 
-type Props = {
-  channelId: string
-  teamId: string
+type InitialProps = {
+    channelId: string;
+    teamId: string;
 }
 
-function makeMapStateToProps(initialState: GlobalState, initialProps: Props) {
-  let doGetProfilesNotInChannel: (state: GlobalState, channelId: string, filters?: any) => UserProfile[]
-  if (initialProps.channelId && initialProps.teamId) {
-    doGetProfilesNotInChannel = makeGetProfilesNotInChannel()
-  }
-
-  return (state: GlobalState, props: Props) => {
-    let profilesNotInCurrentChannel: UserProfileValue[]
-    let profilesNotInCurrentTeam: UserProfileValue[]
-
-    if (doGetProfilesNotInChannel) {
-      profilesNotInCurrentChannel = doGetProfilesNotInChannel(state, props.channelId) as UserProfileValue[]
-      profilesNotInCurrentTeam = getProfilesNotInTeam(state, props.teamId) as UserProfileValue[]
-    } else {
-      profilesNotInCurrentChannel = getProfilesNotInCurrentChannel(state) as UserProfileValue[]
-      profilesNotInCurrentTeam = getProfilesNotInCurrentTeam(state) as UserProfileValue[]
+function makeMapStateToProps(initialState: GlobalState, initialProps: InitialProps) {
+    let doGetProfilesNotInChannel: (state: GlobalState, channelId: string, filters?: any) => UserProfile[];
+    if (initialProps.channelId && initialProps.teamId) {
+        doGetProfilesNotInChannel = makeGetProfilesNotInChannel();
     }
 
-    return {
-      profilesNotInCurrentChannel,
-      profilesNotInCurrentTeam,
-    }
-  }
+    return (state: GlobalState, props: InitialProps) => {
+        let profilesNotInCurrentChannel: UserProfileValue[];
+        let profilesNotInCurrentTeam: UserProfileValue[];
+
+        if (doGetProfilesNotInChannel) {
+            profilesNotInCurrentChannel = doGetProfilesNotInChannel(state, props.channelId) as UserProfileValue[];
+            profilesNotInCurrentTeam = getProfilesNotInTeam(state, props.teamId) as UserProfileValue[];
+        } else {
+            profilesNotInCurrentChannel = getProfilesNotInCurrentChannel(state) as UserProfileValue[];
+            profilesNotInCurrentTeam = getProfilesNotInCurrentTeam(state) as UserProfileValue[];
+        }
+
+        const userStatuses = getUserStatuses(state);
+
+        return {
+            profilesNotInCurrentChannel,
+            profilesNotInCurrentTeam,
+            userStatuses,
+        };
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        addUsersToChannel,
-        getProfilesNotInChannel,
-        getTeamStats,
-        searchProfiles,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc | GenericAction>, Props['actions']>({
+            addUsersToChannel,
+            getProfilesNotInChannel,
+            getTeamStats,
+            loadStatusesForProfilesList,
+            searchProfiles,
+        }, dispatch),
+    };
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(ChannelInviteModal)
+export default connect(makeMapStateToProps, mapDispatchToProps)(ChannelInviteModal);

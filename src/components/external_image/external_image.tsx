@@ -1,43 +1,43 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
+import React from 'react';
 
-import { PostImage } from 'hkclient-ts/lib/types/posts'
+import {PostImage} from 'hkclient-redux/types/posts';
 
-import { getImageSrc } from 'utils/post_utils.jsx'
+import {getImageSrc} from 'utils/post_utils.jsx';
 
 interface Props {
-  children: (src: string) => React.ReactNode
-  enableSVGs: boolean
-  hasImageProxy: boolean
-  imageMetadata?: PostImage
-  src: string
+    children: (src: string) => React.ReactNode;
+    enableSVGs: boolean;
+    hasImageProxy: boolean;
+    imageMetadata?: PostImage;
+    src: string;
 }
 
 export default class ExternalImage extends React.PureComponent<Props> {
-  isSVGImage = () => {
-    if (!this.props.imageMetadata) {
-      // Just check if the string contains an svg extension instead of if it ends with one because it avoids
-      // having to deal with query strings and proxied image URLs
-      return this.props.src.indexOf('.svg') !== -1
+    isSVGImage = () => {
+        if (!this.props.imageMetadata) {
+            // Just check if the string contains an svg extension instead of if it ends with one because it avoids
+            // having to deal with query strings and proxied image URLs
+            return this.props.src.indexOf('.svg') !== -1;
+        }
+
+        return this.props.imageMetadata.format === 'svg';
     }
 
-    return this.props.imageMetadata.format === 'svg'
-  }
-
-  shouldRenderImage = () => {
-    // Return true unless the image is an SVG and we have SVG rendering disabled
-    return this.props.enableSVGs || !this.isSVGImage()
-  }
-
-  render() {
-    let src = getImageSrc(this.props.src, this.props.hasImageProxy)
-
-    if (!this.shouldRenderImage()) {
-      src = ''
+    shouldRenderImage = () => {
+        // Return true unless the image is an SVG and we have SVG rendering disabled
+        return this.props.enableSVGs || !this.isSVGImage();
     }
 
-    return this.props.children(src)
-  }
+    render() {
+        let src = getImageSrc(this.props.src, this.props.hasImageProxy);
+
+        if (!this.shouldRenderImage()) {
+            src = '';
+        }
+
+        return this.props.children(src);
+    }
 }

@@ -1,21 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
-import { ChannelTypes, UserTypes } from 'hkclient-ts/lib/action-types'
+import {ChannelTypes, UserTypes} from 'hkclient-redux/action_types';
 
 function channels(state = [], action) {
-  switch (action.type) {
+    switch (action.type) {
     case ChannelTypes.RECEIVED_ALL_CHANNELS:
-      return action.data.map((v) => v.id)
+        return action.data.map((v) => v.id);
     case UserTypes.LOGOUT_SUCCESS:
-      return []
+        return [];
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export default combineReducers({
-  channels,
-})
+    channels,
+});

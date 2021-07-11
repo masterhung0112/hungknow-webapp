@@ -1,30 +1,30 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import PQueue from 'p-queue'
+import React from 'react';
+import PQueue from 'p-queue';
 
-import { Channel } from 'hkclient-ts/lib/types/channels'
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import {Channel} from 'hkclient-redux/types/channels';
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
-import { Constants } from 'utils/constants'
-import { loadProfilesForSidebar } from 'actions/user_actions.jsx'
+import {Constants} from 'utils/constants';
+import {loadProfilesForSidebar} from 'actions/user_actions.jsx';
 
-const queue = new PQueue({ concurrency: 2 })
+const queue = new PQueue({concurrency: 2});
 
 type Props = {
-  currentChannelId: string
-  prefetchQueueObj: Record<string, string[]>
-  prefetchRequestStatus: Dictionary<string>
+    currentChannelId: string;
+    prefetchQueueObj: Record<string, string[]>;
+    prefetchRequestStatus: Dictionary<string>;
 
-  // Whether or not the categories in the sidebar have been loaded for the current team
-  sidebarLoaded: boolean
+    // Whether or not the categories in the sidebar have been loaded for the current team
+    sidebarLoaded: boolean;
 
-  unreadChannels: Channel[]
-  actions: {
-    prefetchChannelPosts: (channelId: string, delay?: number) => Promise<any>
-    trackDMGMOpenChannels: () => Promise<void>
-  }
+    unreadChannels: Channel[];
+    actions: {
+        prefetchChannelPosts: (channelId: string, delay?: number) => Promise<any>;
+        trackDMGMOpenChannels: () => Promise<void>;
+    };
 }
 
 /*
@@ -49,51 +49,51 @@ type Props = {
         Add a jitter(0-1sec) for delaying post requests in case of a new message in open/private channels. This is to prevent a case when all clients request messages when new post is made in a channel with thousands of users.
 */
 export default class DataPrefetch extends React.PureComponent<Props> {
-  private prefetchTimeout?: number
+    private prefetchTimeout?: number;
 
-  async componentDidUpdate(prevProps: Props) {
-    const { currentChannelId, prefetchQueueObj, sidebarLoaded } = this.props
-    if (currentChannelId && sidebarLoaded && (!prevProps.currentChannelId || !prevProps.sidebarLoaded)) {
-      queue.add(async () => this.prefetchPosts(currentChannelId))
-      await loadProfilesForSidebar()
-      this.prefetchData()
-      this.props.actions.trackDMGMOpenChannels()
-    } else if (prevProps.prefetchQueueObj !== prefetchQueueObj) {
-      clearTimeout(this.prefetchTimeout)
-      await queue.clear()
-      this.prefetchData()
-    }
-  }
-
-  public prefetchPosts = (channelId: string) => {
-    let delay
-    const channel = this.props.unreadChannels.find((unreadChannel) => channelId === unreadChannel.id)
-    if (channel && (channel.type === Constants.PRIVATE_CHANNEL || channel.type === Constants.OPEN_CHANNEL)) {
-      const isLatestPostInLastMin = Date.now() - channel.last_post_at <= 1000
-      if (isLatestPostInLastMin) {
-        delay = Math.random() * 1000 // 1ms - 1000ms random wait to not choke server
-      }
-    }
-    return this.props.actions.prefetchChannelPosts(channelId, delay)
-  }
-
-  private prefetchData = () => {
-    const { prefetchRequestStatus, prefetchQueueObj } = this.props
-    for (const priority in prefetchQueueObj) {
-      if (!prefetchQueueObj.hasOwnProperty(priority)) {
-        continue
-      }
-
-      const priorityQueue = prefetchQueueObj[priority]
-      for (const channelId of priorityQueue) {
-        if (!prefetchRequestStatus.hasOwnProperty(channelId)) {
-          queue.add(async () => this.prefetchPosts(channelId))
+    async componentDidUpdate(prevProps: Props) {
+        const {currentChannelId, prefetchQueueObj, sidebarLoaded} = this.props;
+        if (currentChannelId && sidebarLoaded && (!prevProps.currentChannelId || !prevProps.sidebarLoaded)) {
+            queue.add(async () => this.prefetchPosts(currentChannelId));
+            await loadProfilesForSidebar();
+            this.prefetchData();
+            this.props.actions.trackDMGMOpenChannels();
+        } else if (prevProps.prefetchQueueObj !== prefetchQueueObj) {
+            clearTimeout(this.prefetchTimeout);
+            await queue.clear();
+            this.prefetchData();
         }
-      }
     }
-  }
 
-  render() {
-    return <></>
-  }
+    public prefetchPosts = (channelId: string) => {
+        let delay;
+        const channel = this.props.unreadChannels.find((unreadChannel) => channelId === unreadChannel.id);
+        if (channel && (channel.type === Constants.PRIVATE_CHANNEL || channel.type === Constants.OPEN_CHANNEL)) {
+            const isLatestPostInLastMin = (Date.now() - channel.last_post_at) <= 1000;
+            if (isLatestPostInLastMin) {
+                delay = Math.random() * 1000; // 1ms - 1000ms random wait to not choke server
+            }
+        }
+        return this.props.actions.prefetchChannelPosts(channelId, delay);
+    }
+
+    private prefetchData = () => {
+        const {prefetchRequestStatus, prefetchQueueObj} = this.props;
+        for (const priority in prefetchQueueObj) {
+            if (!prefetchQueueObj.hasOwnProperty(priority)) {
+                continue;
+            }
+
+            const priorityQueue = prefetchQueueObj[priority];
+            for (const channelId of priorityQueue) {
+                if (!prefetchRequestStatus.hasOwnProperty(channelId)) {
+                    queue.add(async () => this.prefetchPosts(channelId));
+                }
+            }
+        }
+    }
+
+    render() {
+        return null;
+    }
 }

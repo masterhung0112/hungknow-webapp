@@ -4,12 +4,12 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getCurrentUserId, getStatusForUserId, getUser } from 'hkclient-ts/lib/selectors/entities/users'
-import { getCurrentTeam, getCurrentRelativeTeamUrl, getTeamMember } from 'hkclient-ts/lib/selectors/entities/teams'
+import { getCurrentUserId, getStatusForUserId, getUser } from 'hkclient-redux/selectors/entities/users'
+import { getCurrentTeam, getCurrentRelativeTeamUrl, getTeamMember } from 'hkclient-redux/selectors/entities/teams'
 import {
   getChannelMembersInChannels,
   canManageAnyChannelMembersInCurrentTeam,
-} from 'hkclient-ts/lib/selectors/entities/channels'
+} from 'hkclient-redux/selectors/entities/channels'
 
 import { openDirectChannelToUserId } from 'actions/channel_actions.jsx'
 import { getMembershipForCurrentEntities } from 'actions/views/profile_popover'

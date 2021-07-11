@@ -1,51 +1,58 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { Tooltip } from 'react-bootstrap'
-import { FormattedMessage } from 'react-intl'
+import React from 'react';
+import {Tooltip} from 'react-bootstrap';
+import {FormattedMessage} from 'react-intl';
 
-import { UserProfile } from 'hkclient-ts/lib/types/users'
-import { Group } from 'hkclient-ts/lib/types/groups'
+import {UserProfile} from 'hkclient-redux/types/users';
+import {Group} from 'hkclient-redux/types/groups';
 
-import OverlayTrigger from 'components/overlay_trigger'
+import OverlayTrigger from 'components/overlay_trigger';
 
-type ProfileWithGroups = Partial<
-  UserProfile & {
-    groups: Array<Partial<Group>>
-  }
->
+type ProfileWithGroups = Partial<UserProfile & {
+    groups: Array<Partial<Group>>;
+}>;
 
 interface UsersToRemoveGroupsProps {
-  user: ProfileWithGroups
+    user: ProfileWithGroups;
 }
 
 export default function UsersToRemoveGroups(props: UsersToRemoveGroupsProps): JSX.Element {
-  const { user } = props
-  const groups = user.groups || []
-  let column: JSX.Element | string
+    const {user} = props;
+    const groups = user.groups || [];
+    let column: JSX.Element | string;
 
-  const message = (
-    <FormattedMessage
-      id={'team_channel_settings.group.group_user_row.numberOfGroups'}
-      defaultMessage={'{amount, number} {amount, plural, one {Group} other {Groups}}'}
-      values={{ amount: groups.length }}
-    />
-  )
+    const message = (
+        <FormattedMessage
+            id={'team_channel_settings.group.group_user_row.numberOfGroups'}
+            defaultMessage={'{amount, number} {amount, plural, one {Group} other {Groups}}'}
+            values={{amount: groups.length}}
+        />
+    );
 
-  if (groups.length === 1) {
-    column = String(groups[0].display_name)
-  } else if (groups.length === 0) {
-    column = message
-  } else {
-    const tooltip = <Tooltip id="groupsTooltip">{groups.map((g) => g.display_name).join(', ')}</Tooltip>
+    if ((groups).length === 1) {
+        column = String(groups[0].display_name);
+    } else if (groups.length === 0) {
+        column = message;
+    } else {
+        const tooltip = <Tooltip id='groupsTooltip'>{groups.map((g) => g.display_name).join(', ')}</Tooltip>;
 
-    column = (
-      <OverlayTrigger placement="bottom" overlay={tooltip}>
-        <a href="#">{message}</a>
-      </OverlayTrigger>
-    )
-  }
+        column = (
+            <OverlayTrigger
+                placement='bottom'
+                overlay={tooltip}
+            >
+                <a href='#'>
+                    {message}
+                </a>
+            </OverlayTrigger>
+        );
+    }
 
-  return <div className="UsersToRemoveGroups">{column}</div>
+    return (
+        <div className='UsersToRemoveGroups'>
+            {column}
+        </div>
+    );
 }

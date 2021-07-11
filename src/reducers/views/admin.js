@@ -1,44 +1,44 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
-import { ActionTypes } from 'utils/constants'
+import {ActionTypes} from 'utils/constants';
 
 const initialState = {
-  blocked: false,
-  onNavigationConfirmed: null,
-  showNavigationPrompt: false,
-}
+    blocked: false,
+    onNavigationConfirmed: null,
+    showNavigationPrompt: false,
+};
 
 function navigationBlock(state = initialState, action) {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.SET_NAVIGATION_BLOCKED:
-      return { ...state, blocked: action.blocked }
+        return {...state, blocked: action.blocked};
     case ActionTypes.DEFER_NAVIGATION:
-      return {
-        ...state,
-        onNavigationConfirmed: action.onNavigationConfirmed,
-        showNavigationPrompt: true,
-      }
+        return {
+            ...state,
+            onNavigationConfirmed: action.onNavigationConfirmed,
+            showNavigationPrompt: true,
+        };
     case ActionTypes.CANCEL_NAVIGATION:
-      return {
-        ...state,
-        onNavigationConfirmed: null,
-        showNavigationPrompt: false,
-      }
+        return {
+            ...state,
+            onNavigationConfirmed: null,
+            showNavigationPrompt: false,
+        };
     case ActionTypes.CONFIRM_NAVIGATION:
-      return {
-        ...state,
-        blocked: false,
-        onNavigationConfirmed: null,
-        showNavigationPrompt: false,
-      }
+        return {
+            ...state,
+            blocked: false,
+            onNavigationConfirmed: null,
+            showNavigationPrompt: false,
+        };
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export default combineReducers({
-  navigationBlock,
-})
+    navigationBlock,
+});

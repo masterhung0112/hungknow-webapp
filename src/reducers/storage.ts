@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import { General } from 'hkclient-ts/lib/constants'
+import { General } from 'hkclient-redux/constants'
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import { GenericAction } from 'hkclient-redux/types/actions'
+import { Dictionary } from 'hkclient-redux/types/utilities'
 
 import StorageTypes from '../action-types/storage'
 

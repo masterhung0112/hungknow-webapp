@@ -1,23 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { revokeUserAccessToken } from 'hkclient-ts/lib/actions/users'
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {revokeUserAccessToken} from 'hkclient-redux/actions/users';
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import RevokeTokenButton from './revoke_token_button'
+import RevokeTokenButton from './revoke_token_button';
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        revokeUserAccessToken,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            revokeUserAccessToken,
+        }, dispatch),
+    };
 }
 
-export default connect(null, mapDispatchToProps)(RevokeTokenButton)
+export default connect(null, mapDispatchToProps)(RevokeTokenButton);

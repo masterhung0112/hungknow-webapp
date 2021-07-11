@@ -1,48 +1,57 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {ComponentProps} from 'react';
+import {connect} from 'react-redux';
 
-import { getCurrentRelativeTeamUrl } from 'hkclient-ts/lib/selectors/entities/teams'
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
-import { GlobalState } from 'types/store'
+import {getCurrentTeamId, getCurrentRelativeTeamUrl} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+
+import {setThreadFollow} from 'hkclient-redux/actions/threads';
+import {getThreadOrSynthetic} from 'hkclient-redux/selectors/entities/threads';
+import {getPost} from 'hkclient-redux/selectors/entities/posts';
+
+import {GlobalState} from 'types/store';
 
 import {
-  setRhsExpanded,
-  showMentions,
-  showSearchResults,
-  showFlaggedPosts,
-  showPinnedPosts,
-  closeRightHandSide,
-  toggleRhsExpanded,
-} from 'actions/views/rhs'
-import { getIsRhsExpanded } from 'selectors/rhs'
+    setRhsExpanded,
+    showMentions,
+    showSearchResults,
+    showFlaggedPosts,
+    showPinnedPosts,
+    showChannelFiles,
+    closeRightHandSide,
+    toggleRhsExpanded,
+} from 'actions/views/rhs';
+import {getIsRhsExpanded} from 'selectors/rhs';
 
-import RhsHeaderPost from './rhs_header_post'
+import RhsHeaderPost from './rhs_header_post';
 
-function mapStateToProps(state: GlobalState) {
-  return {
-    isExpanded: getIsRhsExpanded(state),
-    relativeTeamUrl: getCurrentRelativeTeamUrl(state),
-  }
+type OwnProps = Pick<ComponentProps<typeof RhsHeaderPost>, 'rootPostId'>
+
+function mapStateToProps(state: GlobalState, {rootPostId}: OwnProps) {
+    return {
+        isExpanded: getIsRhsExpanded(state),
+        relativeTeamUrl: getCurrentRelativeTeamUrl(state),
+        currentTeamId: getCurrentTeamId(state),
+        currentUserId: getCurrentUserId(state),
+        isCollapsedThreadsEnabled: isCollapsedThreadsEnabled(state),
+        isFollowingThread: isCollapsedThreadsEnabled(state) && getThreadOrSynthetic(state, getPost(state, rootPostId)).is_following,
+    };
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        setRhsExpanded,
-        showSearchResults,
-        showMentions,
-        showFlaggedPosts,
-        showPinnedPosts,
-        closeRightHandSide,
-        toggleRhsExpanded,
-      },
-      dispatch
-    ),
-  }
-}
+const actions = {
+    setRhsExpanded,
+    showSearchResults,
+    showMentions,
+    showFlaggedPosts,
+    showPinnedPosts,
+    showChannelFiles,
+    closeRightHandSide,
+    toggleRhsExpanded,
+    setThreadFollow,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(RhsHeaderPost)
+export default connect(mapStateToProps, actions)(RhsHeaderPost);

@@ -7,7 +7,7 @@
     "declarationMap": true, /* Generates a sourcemap for each corresponding '.d.ts' file. */
     "sourceMap": true, /* Generates corresponding '.map' file. */// "outFile": "./",                       /* Concatenate and emit output to single file. */
     "outDir": "./", /* Redirect output structure to the directory. */
-    "rootDir": "./src", /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */// "composite": true,                     /* Enable project compilation */
+    "rootDir": "./", /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */// "composite": true,                     /* Enable project compilation */
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
     "removeComments": true, /* Do not emit comments to output. */// "noEmit": true,                        /* Do not emit outputs. */
     "importHelpers": true, /* Import emit helpers from 'tslib'. */
@@ -27,7 +27,7 @@
     "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
     "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. *//* Module Resolution Options */
     "moduleResolution": "node", /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "baseUrl": "src", /* Base directory to resolve non-absolute module names. */// "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    "baseUrl": ".", /* Base directory to resolve non-absolute module names. */// "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
     // "types": [],                           /* Type declaration files to be included in compilation. */
@@ -54,80 +54,90 @@
     "resolveJsonModule": true,
     "paths": {
       "components/*": [
-        "components/*"
+        "src/components/*"
       ],
       "images/*": [
-        "images/*"
+        "src/images/*"
       ],
       "common": [
-        "common"
+        "src/common"
       ],
       "common/*": [
-        "common/*"
+        "src/common/*"
       ],
       "utils/*": [
-        "utils/*"
+        "src/utils/*"
       ],
       "i18n/*": [
-        "i18n/*"
+        "src/i18n/*"
       ],
       "styles/*": [
-        "styles/*"
+        "src/styles/*"
       ],
       "actions-types": [
-        "actions-types"
+        "src/actions-types"
       ],
       "actions-types/*": [
-        "actions-types/*"
+        "src/actions-types/*"
       ],
       "actions": [
-        "actions"
+        "src/actions"
       ],
       "actions/*": [
-        "actions/*"
+        "src/actions/*"
+      ],
+      "selectors/*": [
+        "src/selectors/*"
       ],
       "mocks": [
-        "mocks"
+        "src/mocks"
       ],
       "mocks/*": [
-        "mocks/*"
+        "src/mocks/*"
       ],
       "showroom": [
-        "core/showroom"
+        "src/core/showroom"
       ],
       "showroom/*": [
-        "core/showroom/*"
+        "src/core/showroom/*"
       ],
       "testlib": [
-        "testlib"
+        "src/testlib"
       ],
       "testlib/*": [
-        "testlib/*"
+        "src/testlib/*"
       ],
       "types/*": [
-        "types/*"
+        "src/types/*"
       ],
       "store": [
-        "store"
+        "src/store"
       ],
       "store/*": [
-        "store/*"
+        "src/store/*"
       ],
       "stores/*": [
-        "stores/*"
+        "src/stores/*"
       ],
       "constants": [
-        "constants"
+        "src/constants"
       ],
       "constants/*": [
-        "constants/*"
+        "src/constants/*"
       ],
       "storybook/*": [
-        "storybook/*"
+        "src/storybook/*"
       ],
       "client/*": [
-        "client/*"
-      ]
+        "src/client/*"
+      ],
+      "hkclient-redux/*": [
+        "packages/hkclient-redux/src/*"
+      ],
+      "modules/*": [
+        "src/modules/*"
+      ],
+      "reselect": ["packages/reselect/src"]
     }
   },
   "include": [

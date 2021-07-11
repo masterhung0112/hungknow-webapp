@@ -1,78 +1,79 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { Modal } from 'react-bootstrap'
+import React from 'react';
+import {Modal} from 'react-bootstrap';
 
-import * as Utils from 'utils/utils.jsx'
+import MenuWrapper from '../../menu_wrapper';
+import Menu from '../../menu';
+import SubMenuItem from '../../menu_items/submenu_item';
 
-import MenuWrapper from '../../menu_wrapper'
-import Menu from '../../menu'
-import SubMenuItem from '../../menu_items/submenu_item'
+import * as Utils from 'utils/utils.jsx';
 
-import './submenu_modal.scss'
+import './submenu_modal.scss';
 
 type Props = {
-  elements?: Array<React.ComponentProps<typeof SubMenuItem>>
-  onHide: () => void
+    elements?: Array<React.ComponentProps<typeof SubMenuItem>>;
+    onHide: () => void;
 }
 
 type State = {
-  show: boolean
+    show: boolean;
 }
 
 export default class SubMenuModal extends React.PureComponent<Props, State> {
-  public constructor(props: Props) {
-    super(props)
-    this.state = {
-      show: true,
+    public constructor(props: Props) {
+        super(props);
+        this.state = {
+            show: true,
+        };
     }
-  }
 
-  public onHide = () => {
-    //public because it is used on tests
-    this.setState({ show: false })
-  }
+    public onHide = () => { //public because it is used on tests
+        this.setState({show: false});
+    }
 
-  public render() {
-    let SubMenuItems
-    if (this.props.elements) {
-      SubMenuItems = this.props.elements.map((element) => {
+    public render() {
+        let SubMenuItems;
+        if (this.props.elements) {
+            SubMenuItems = this.props.elements.map((element) => {
+                return (
+                    <Menu.ItemSubMenu
+                        key={element.id}
+                        id={element.id}
+                        text={element.text}
+                        subMenu={element.subMenu}
+                        action={element.action}
+                        filter={element.filter}
+                        root={false}
+                    />
+                );
+            });
+        }
         return (
-          <Menu.ItemSubMenu
-            key={element.id}
-            id={element.id}
-            text={element.text}
-            subMenu={element.subMenu}
-            action={element.action}
-            filter={element.filter}
-            root={false}
-          />
-        )
-      })
-    }
-    return (
-      <Modal
-        dialogClassName={'SubMenuModal a11y__modal mobile-sub-menu'}
-        show={this.state.show}
-        onHide={this.onHide}
-        onExited={this.props.onHide}
-        enforceFocus={false}
-        id="submenuModal"
-        role="dialog"
-      >
-        <Modal.Body onClick={this.onHide}>
-          <MenuWrapper>
-            <Menu
-              openLeft={true}
-              ariaLabel={Utils.localizeMessage('post_info.submenu.mobile', 'mobile submenu').toLowerCase()}
+            <Modal
+                dialogClassName={'SubMenuModal a11y__modal mobile-sub-menu'}
+                show={this.state.show}
+                onHide={this.onHide}
+                onExited={this.props.onHide}
+                enforceFocus={false}
+                id='submenuModal'
+                role='dialog'
             >
-              {SubMenuItems}
-            </Menu>
-            <div />
-          </MenuWrapper>
-        </Modal.Body>
-      </Modal>
-    )
-  }
+                <Modal.Body
+                    onClick={this.onHide}
+                >
+                    <MenuWrapper>
+                        <Menu
+                            openLeft={true}
+                            ariaLabel={Utils.localizeMessage('post_info.submenu.mobile', 'mobile submenu').toLowerCase()}
+                        >
+                            {SubMenuItems}
+                        </Menu>
+                        <div/>
+                    </MenuWrapper>
+                </Modal.Body>
+            </Modal>
+        );
+    }
 }

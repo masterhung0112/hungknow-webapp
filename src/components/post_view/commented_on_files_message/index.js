@@ -1,25 +1,25 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { makeGetFilesForPost } from 'hkclient-ts/lib/selectors/entities/files'
+import {makeGetFilesForPost} from 'hkclient-redux/selectors/entities/files';
 
-import CommentedOnFilesMessage from './commented_on_files_message.jsx'
+import CommentedOnFilesMessage from './commented_on_files_message.jsx';
 
 function makeMapStateToProps() {
-  const selectFileInfosForPost = makeGetFilesForPost()
+    const selectFileInfosForPost = makeGetFilesForPost();
 
-  return function mapStateToProps(state, ownProps) {
-    let fileInfos
-    if (ownProps.parentPostId) {
-      fileInfos = selectFileInfosForPost(state, ownProps.parentPostId)
-    }
+    return function mapStateToProps(state, ownProps) {
+        let fileInfos;
+        if (ownProps.parentPostId) {
+            fileInfos = selectFileInfosForPost(state, ownProps.parentPostId);
+        }
 
-    return {
-      fileInfos,
-    }
-  }
+        return {
+            fileInfos,
+        };
+    };
 }
 
-export default connect(makeMapStateToProps)(CommentedOnFilesMessage)
+export default connect(makeMapStateToProps)(CommentedOnFilesMessage);

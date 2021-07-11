@@ -1,4 +1,4 @@
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import { Dictionary } from 'hkclient-redux/types/utilities'
 
 import StorageConstants from '../constants/storage'
 

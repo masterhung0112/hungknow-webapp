@@ -1,16 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import { MenuItemLinkImpl } from './menu_item_link'
+import {MenuItemLinkImpl} from './menu_item_link';
 
 describe('components/MenuItemLink', () => {
-  test('should match snapshot', () => {
-    const wrapper = shallow(<MenuItemLinkImpl to="/wherever" text="Whatever" />)
+    test('should match snapshot', () => {
+        const wrapper = shallow(
+            <MenuItemLinkImpl
+                to='/wherever'
+                text='Whatever'
+            />,
+        );
 
-    expect(wrapper).toMatchInlineSnapshot(`
+        expect(wrapper).toMatchInlineSnapshot(`
 <Link
   to="/wherever"
 >
@@ -20,6 +25,6 @@ describe('components/MenuItemLink', () => {
     Whatever
   </span>
 </Link>
-`)
-  })
-})
+`);
+    });
+});

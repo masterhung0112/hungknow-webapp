@@ -1,21 +1,26 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
+import React from 'react';
 
-import menuItem from './menu_item'
+import menuItem from './menu_item';
 
 type Props = {
-  url: string
-  text: React.ReactNode
-  onClick?: (event: React.MouseEvent<HTMLElement>) => void
+    url: string;
+    text: React.ReactNode;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 }
-export const MenuItemExternalLinkImpl: React.FC<Props> = ({ url, text, onClick }: Props) => (
-  <a target="_blank" rel="noopener noreferrer" href={url} onClick={onClick}>
-    {text}
-  </a>
-)
+export const MenuItemExternalLinkImpl: React.FC<Props> = ({url, text, onClick}: Props) => (
+    <a
+        target='_blank'
+        rel='noopener noreferrer'
+        href={url}
+        onClick={onClick}
+    >
+        {text}
+    </a>
+);
 
-const MenuItemExternalLink = menuItem(MenuItemExternalLinkImpl)
-MenuItemExternalLink.displayName = 'MenuItemExternalLink'
-export default MenuItemExternalLink
+const MenuItemExternalLink = menuItem(MenuItemExternalLinkImpl);
+MenuItemExternalLink.displayName = 'MenuItemExternalLink';
+export default MenuItemExternalLink;

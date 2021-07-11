@@ -1,60 +1,64 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react'
+import React from 'react';
 
-import { MessageAttachment as MessageAttachmentType } from 'hkclient-ts/lib/types/message_attachments'
-import { PostImage } from 'hkclient-ts/lib/types/posts'
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import {MessageAttachment as MessageAttachmentType} from 'hkclient-redux/types/message_attachments';
+import {PostImage} from 'hkclient-redux/types/posts';
+import {Dictionary} from 'hkclient-redux/types/utilities';
 
-import { TextFormattingOptions } from 'utils/text_formatting'
+import {TextFormattingOptions} from 'utils/text_formatting';
 
-import MessageAttachment from './message_attachment'
+import MessageAttachment from './message_attachment';
 
 type Props = {
-  /**
-   * The post id
-   */
-  postId: string
 
-  /**
-   * Array of attachments to render
-   */
-  attachments: MessageAttachmentType[]
+    /**
+     * The post id
+     */
+    postId: string;
 
-  /**
-   * Options specific to text formatting
-   */
-  options?: Partial<TextFormattingOptions>
+    /**
+     * Array of attachments to render
+     */
+    attachments: MessageAttachmentType[];
 
-  /**
-   * Images object used for creating placeholders to prevent scroll popup
-   */
-  imagesMetadata?: Dictionary<PostImage>
+    /**
+     * Options specific to text formatting
+     */
+    options?: Partial<TextFormattingOptions>;
+
+    /**
+     * Images object used for creating placeholders to prevent scroll popup
+     */
+    imagesMetadata?: Dictionary<PostImage>;
 }
 
 export default class MessageAttachmentList extends React.PureComponent<Props> {
-  static defaultProps = {
-    imagesMetadata: {},
-  }
+    static defaultProps = {
+        imagesMetadata: {},
+    }
 
-  render() {
-    const content = [] as JSX.Element[]
-    this.props.attachments.forEach((attachment, i) => {
-      content.push(
-        <MessageAttachment
-          attachment={attachment}
-          postId={this.props.postId}
-          key={'att_' + i}
-          options={this.props.options}
-          imagesMetadata={this.props.imagesMetadata}
-        />
-      )
-    })
+    render() {
+        const content = [] as JSX.Element[];
+        this.props.attachments.forEach((attachment, i) => {
+            content.push(
+                <MessageAttachment
+                    attachment={attachment}
+                    postId={this.props.postId}
+                    key={'att_' + i}
+                    options={this.props.options}
+                    imagesMetadata={this.props.imagesMetadata}
+                />,
+            );
+        });
 
-    return (
-      <div id={`messageAttachmentList_${this.props.postId}`} className="attachment__list">
-        {content}
-      </div>
-    )
-  }
+        return (
+            <div
+                id={`messageAttachmentList_${this.props.postId}`}
+                className='attachment__list'
+            >
+                {content}
+            </div>
+        );
+    }
 }

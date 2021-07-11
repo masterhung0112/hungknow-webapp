@@ -1,30 +1,30 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getConfig, getLicense } from 'hkclient-ts/lib/selectors/entities/general'
+import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
 
-import Permissions from 'hkclient-ts/lib/constants/permissions'
+import Permissions from 'hkclient-redux/constants/permissions';
 
-import PermissionsTree from './permissions_tree.jsx'
+import PermissionsTree from './permissions_tree.jsx';
 
 export const EXCLUDED_PERMISSIONS = [
-  Permissions.VIEW_MEMBERS,
-  Permissions.JOIN_PUBLIC_TEAMS,
-  Permissions.LIST_PUBLIC_TEAMS,
-  Permissions.JOIN_PRIVATE_TEAMS,
-  Permissions.LIST_PRIVATE_TEAMS,
-]
+    Permissions.VIEW_MEMBERS,
+    Permissions.JOIN_PUBLIC_TEAMS,
+    Permissions.LIST_PUBLIC_TEAMS,
+    Permissions.JOIN_PRIVATE_TEAMS,
+    Permissions.LIST_PRIVATE_TEAMS,
+];
 
 function mapStateToProps(state) {
-  const config = getConfig(state)
-  const license = getLicense(state)
+    const config = getConfig(state);
+    const license = getLicense(state);
 
-  return {
-    config,
-    license,
-  }
+    return {
+        config,
+        license,
+    };
 }
 
-export default connect(mapStateToProps)(PermissionsTree)
+export default connect(mapStateToProps)(PermissionsTree);

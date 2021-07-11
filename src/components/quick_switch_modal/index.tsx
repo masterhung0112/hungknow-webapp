@@ -1,31 +1,22 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { ActionCreatorsMapObject, bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import { ActionFunc } from 'hkclient-ts/lib/types/actions'
+import {ActionFunc} from 'hkclient-redux/types/actions';
 
-import { joinChannelById, switchToChannel } from 'actions/views/channel'
+import {joinChannelById, switchToChannel} from 'actions/views/channel';
 
-import QuickSwitchModal, { Props } from './quick_switch_modal'
-
-function mapStateToProps() {
-  return {
-    showTeamSwitcher: false,
-  }
-}
+import QuickSwitchModal, {Props} from './quick_switch_modal';
 
 function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Props['actions']>(
-      {
-        joinChannelById,
-        switchToChannel,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Props['actions']>({
+            joinChannelById,
+            switchToChannel,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuickSwitchModal)
+export default connect(null, mapDispatchToProps)(QuickSwitchModal);

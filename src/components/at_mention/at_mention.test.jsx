@@ -4,7 +4,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
-import { General } from 'hkclient-ts/lib/constants'
+import { General } from 'hkclient-redux/constants'
 
 import AtMention from 'components/at_mention/at_mention.jsx'
 

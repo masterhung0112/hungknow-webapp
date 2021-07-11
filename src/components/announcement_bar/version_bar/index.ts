@@ -1,16 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { GlobalState } from 'hkclient-ts/lib/types/store'
+import {GlobalState} from 'hkclient-redux/types/store';
 
-import VersionBar from './version_bar'
+import VersionBar from './version_bar';
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    serverVersion: state.entities.general.serverVersion,
-  }
+    return {
+        serverVersion: state.entities.general.serverVersion,
+    };
 }
 
-export default connect(mapStateToProps)(VersionBar)
+export default connect(mapStateToProps)(VersionBar);

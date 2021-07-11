@@ -4,9 +4,9 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { savePreferences } from 'hkclient-ts/lib/actions/preferences'
-import { getCurrentTeam, getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
-import { getRedirectChannelNameForTeam } from 'hkclient-ts/lib/selectors/entities/channels'
+import { savePreferences } from 'hkclient-redux/actions/preferences'
+import { getCurrentTeam, getCurrentTeamId } from 'hkclient-redux/selectors/entities/teams'
+import { getRedirectChannelNameForTeam } from 'hkclient-redux/selectors/entities/channels'
 
 import { leaveDirectChannel } from 'actions/views/channel'
 

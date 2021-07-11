@@ -1,4 +1,4 @@
-import { AdminConfig } from 'hkclient-ts/lib/types/config'
+import { AdminConfig } from 'hkclient-redux/types/config'
 
 import { translationData } from '../../support/intlProvider'
 

@@ -1,136 +1,139 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
-import { ChannelCategoryTypes, UserTypes } from 'hkclient-ts/lib/action-types'
+import {ChannelCategoryTypes, UserTypes} from 'hkclient-redux/action_types';
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
-import { ChannelCategory } from 'hkclient-ts/lib/types/channel_categories'
+import {GenericAction} from 'hkclient-redux/types/actions';
+import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
 
-import { removeItem } from 'hkclient-ts/lib/utils/array_utils'
+import {removeItem} from 'hkclient-redux/utils/array_utils';
 
-import { DraggingState } from 'types/store'
+import {DraggingState} from 'types/store';
 
-import { ActionTypes } from 'utils/constants'
+import {ActionTypes} from 'utils/constants';
 
 export function unreadFilterEnabled(state = false, action: GenericAction) {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.SET_UNREAD_FILTER_ENABLED:
-      return action.enabled
+        return action.enabled;
 
     case UserTypes.LOGOUT_SUCCESS:
-      return false
+        return false;
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export function draggingState(state: DraggingState = {}, action: GenericAction): DraggingState {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.SIDEBAR_DRAGGING_SET_STATE:
-      return {
-        state: action.data.state || state?.state,
-        type: action.data.type || state?.type,
-        id: action.data.id || state?.id,
-      }
+        return {
+            state: action.data.state || state?.state,
+            type: action.data.type || state?.type,
+            id: action.data.id || state?.id,
+        };
 
     case ActionTypes.SIDEBAR_DRAGGING_STOP:
     case UserTypes.LOGOUT_SUCCESS:
-      return {}
+        return {};
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export function newCategoryIds(state: string[] = [], action: GenericAction): string[] {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.ADD_NEW_CATEGORY_ID:
-      return [...state, action.data]
+        return [...state, action.data];
     case ChannelCategoryTypes.RECEIVED_CATEGORY: {
-      const category: ChannelCategory = action.data
+        const category: ChannelCategory = action.data;
 
-      if (category.channel_ids.length > 0) {
-        return removeItem(state, category.id)
-      }
-
-      return state
-    }
-    case ChannelCategoryTypes.RECEIVED_CATEGORIES: {
-      const categories = action.data
-
-      return categories.reduce((nextState: string[], category: ChannelCategory) => {
         if (category.channel_ids.length > 0) {
-          return removeItem(nextState, category.id)
+            return removeItem(state, category.id);
         }
 
-        return nextState
-      }, state)
+        return state;
+    }
+    case ChannelCategoryTypes.RECEIVED_CATEGORIES: {
+        const categories = action.data;
+
+        return categories.reduce((nextState: string[], category: ChannelCategory) => {
+            if (category.channel_ids.length > 0) {
+                return removeItem(nextState, category.id);
+            }
+
+            return nextState;
+        }, state);
     }
 
     case UserTypes.LOGOUT_SUCCESS:
-      return []
+        return [];
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export function multiSelectedChannelIds(state: string[] = [], action: GenericAction): string[] {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.MULTISELECT_CHANNEL:
-      // Channel was not previously selected
-      // now will be the only selected item
-      if (!state.includes(action.data)) {
-        return [action.data]
-      }
+        // Channel was not previously selected
+        // now will be the only selected item
+        if (!state.includes(action.data)) {
+            return [action.data];
+        }
 
-      // Channel was part of a selected group
-      // will now become the only selected item
-      if (state.length > 1) {
-        return [action.data]
-      }
+        // Channel was part of a selected group
+        // will now become the only selected item
+        if (state.length > 1) {
+            return [action.data];
+        }
 
-      // Channel was previously selected but not in a group
-      // we will now clear the selection
-      return []
+        // Channel was previously selected but not in a group
+        // we will now clear the selection
+        return [];
     case ActionTypes.MULTISELECT_CHANNEL_ADD:
-      // if not selected - add it to the selected items
-      if (state.indexOf(action.data) === -1) {
-        return [...state, action.data]
-      }
+        // if not selected - add it to the selected items
+        if (state.indexOf(action.data) === -1) {
+            return [
+                ...state,
+                action.data,
+            ];
+        }
 
-      // it was previously selected and now needs to be removed from the group
-      return removeItem(state, action.data)
+        // it was previously selected and now needs to be removed from the group
+        return removeItem(state, action.data);
     case ActionTypes.MULTISELECT_CHANNEL_TO:
-      return action.data
+        return action.data;
 
     case ActionTypes.MULTISELECT_CHANNEL_CLEAR:
-      return state.length > 0 ? [] : state
+        return state.length > 0 ? [] : state;
 
     case UserTypes.LOGOUT_SUCCESS:
-      return []
+        return [];
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export function lastSelectedChannel(state = '', action: GenericAction): string {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.MULTISELECT_CHANNEL:
     case ActionTypes.MULTISELECT_CHANNEL_ADD:
-      return action.data
+        return action.data;
     case ActionTypes.MULTISELECT_CHANNEL_CLEAR:
     case UserTypes.LOGOUT_SUCCESS:
-      return ''
+        return '';
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export default combineReducers({
-  unreadFilterEnabled,
-  draggingState,
-  newCategoryIds,
-  multiSelectedChannelIds,
-  lastSelectedChannel,
-})
+    unreadFilterEnabled,
+    draggingState,
+    newCategoryIds,
+    multiSelectedChannelIds,
+    lastSelectedChannel,
+});

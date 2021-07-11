@@ -4,7 +4,7 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { unarchiveChannel } from 'hkclient-ts/lib/actions/channels'
+import { unarchiveChannel } from 'hkclient-redux/actions/channels'
 
 import UnarchiveChannelModal from './unarchive_channel_modal.jsx'
 

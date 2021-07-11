@@ -1,8 +1,8 @@
 import React from 'react'
 import { IntlProvider as BaseIntlProvider } from 'react-intl'
 
-// import {Client4} from 'hkclient-ts/lib/client';
-// import { setLocalizeFunction } from 'hkclient-ts/lib/utils/i18n_utils';
+// import {Client4} from 'hkclient-redux/client';
+// import { setLocalizeFunction } from 'hkclient-redux/utils/i18n_utils';
 
 // import * as I18n from 'i18n/i18n';
 

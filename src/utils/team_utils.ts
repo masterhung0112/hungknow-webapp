@@ -1,4 +1,4 @@
-import { Team } from 'hkclient-ts/lib/types/teams'
+import { Team } from 'hkclient-redux/types/teams'
 
 // Use when sorting multiple teams by their `display_name` field
 function compareTeamsByDisplayName(locale: string, a: Team, b: Team) {

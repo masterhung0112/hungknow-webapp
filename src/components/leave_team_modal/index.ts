@@ -1,52 +1,49 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { getCurrentUserId, getCurrentUser } from 'hkclient-ts/lib/selectors/entities/users'
-import { getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
-import { getPrivateChannels, getPublicChannels } from 'hkclient-ts/lib/selectors/entities/channels'
-import { removeUserFromTeam as leaveTeam } from 'hkclient-ts/lib/actions/teams'
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {getCurrentUserId, getCurrentUser} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getPrivateChannels, getPublicChannels} from 'hkclient-redux/selectors/entities/channels';
+import {removeUserFromTeam as leaveTeam} from 'hkclient-redux/actions/teams';
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import { toggleSideBarRightMenuAction } from 'actions/global_actions'
-import { ModalIdentifiers } from 'utils/constants'
+import {toggleSideBarRightMenuAction} from 'actions/global_actions';
+import {ModalIdentifiers} from 'utils/constants';
 
-import { isModalOpen } from 'selectors/views/modals'
+import {isModalOpen} from 'selectors/views/modals';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import LeaveTeamModal from './leave_team_modal'
+import LeaveTeamModal from './leave_team_modal';
 
 function mapStateToProps(state: GlobalState) {
-  const modalId = ModalIdentifiers.LEAVE_TEAM
-  const currentUserId = getCurrentUserId(state)
-  const currentTeamId = getCurrentTeamId(state)
-  const privateChannels = getPrivateChannels(state)
-  const publicChannels = getPublicChannels(state)
-  const show = isModalOpen(state, modalId)
-  const currentUser = getCurrentUser(state)
-  return {
-    currentUserId,
-    currentTeamId,
-    show,
-    currentUser,
-    privateChannels,
-    publicChannels,
-  }
+    const modalId = ModalIdentifiers.LEAVE_TEAM;
+    const currentUserId = getCurrentUserId(state);
+    const currentTeamId = getCurrentTeamId(state);
+    const privateChannels = getPrivateChannels(state);
+    const publicChannels = getPublicChannels(state);
+    const show = isModalOpen(state, modalId);
+    const currentUser = getCurrentUser(state);
+    return {
+        currentUserId,
+        currentTeamId,
+        show,
+        currentUser,
+        privateChannels,
+        publicChannels,
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        leaveTeam,
-        toggleSideBarRightMenu: toggleSideBarRightMenuAction,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            leaveTeam,
+            toggleSideBarRightMenu: toggleSideBarRightMenuAction,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LeaveTeamModal)
+export default connect(mapStateToProps, mapDispatchToProps)(LeaveTeamModal);

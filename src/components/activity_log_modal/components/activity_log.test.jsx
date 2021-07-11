@@ -5,7 +5,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { FormattedMessage } from 'react-intl'
 
-import { General } from 'hkclient-ts/lib/constants'
+import { General } from 'hkclient-redux/constants'
 
 import { localizeMessage } from 'utils/utils.jsx'
 import ActivityLog from 'components/activity_log_modal/components/activity_log.jsx'

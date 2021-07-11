@@ -1,5 +1,5 @@
-// import { GenericAction } from 'hkclient-ts/lib/types/actions'
-// import { GlobalState } from 'hkclient-ts/lib/types/store'
+// import { GenericAction } from 'hkclient-redux/types/actions'
+// import { GlobalState } from 'hkclient-redux/types/store'
 // import { HYDRATE } from 'next-redux-wrapper'
 
 // const reducer = (state: GlobalState, action: GenericAction) => {

@@ -1,30 +1,32 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { updateMe } from 'hkclient-ts/lib/actions/users'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import {updateMe} from 'hkclient-redux/actions/users';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
-import UserSettingsNotifications from './user_settings_notifications.jsx'
+import UserSettingsNotifications from './user_settings_notifications.jsx';
 
 function mapStateToProps(state) {
-  const config = getConfig(state)
+    const config = getConfig(state);
 
-  const sendPushNotifications = config.SendPushNotifications === 'true'
-  const enableAutoResponder = config.ExperimentalEnableAutomaticReplies === 'true'
+    const sendPushNotifications = config.SendPushNotifications === 'true';
+    const enableAutoResponder = config.ExperimentalEnableAutomaticReplies === 'true';
 
-  return {
-    sendPushNotifications,
-    enableAutoResponder,
-  }
+    return {
+        sendPushNotifications,
+        enableAutoResponder,
+        isCollapsedThreadsEnabled: isCollapsedThreadsEnabled(state),
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators({ updateMe }, dispatch),
-  }
+    return {
+        actions: bindActionCreators({updateMe}, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserSettingsNotifications)
+export default connect(mapStateToProps, mapDispatchToProps)(UserSettingsNotifications);

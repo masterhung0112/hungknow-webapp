@@ -4,11 +4,11 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { setStatus, unsetCustomStatus } from 'hkclient-ts/lib/actions/users'
-import { Client4 } from 'hkclient-ts/lib/client'
-import { getCurrentUser, getStatusForUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { Preferences } from 'hkclient-ts/lib/constants'
-import { get } from 'hkclient-ts/lib/selectors/entities/preferences'
+import { setStatus, unsetCustomStatus } from 'hkclient-redux/actions/users'
+import { Client4 } from 'hkclient-redux/client'
+import { getCurrentUser, getStatusForUserId } from 'hkclient-redux/selectors/entities/users'
+import { Preferences } from 'hkclient-redux/constants'
+import { get } from 'hkclient-redux/selectors/entities/preferences'
 
 import { openModal } from 'actions/views/modals'
 import { setStatusDropdown } from 'actions/views/status_dropdown'

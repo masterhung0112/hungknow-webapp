@@ -1,31 +1,31 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { haveIChannelPermission } from 'hkclient-ts/lib/selectors/entities/roles'
-import { GlobalState } from 'hkclient-ts/lib/types/store'
+import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
+import {GlobalState} from 'hkclient-redux/types/store';
 
-import ChannelPermissionGate from './channel_permission_gate'
+import ChannelPermissionGate from './channel_permission_gate';
 
 type Props = {
-  channelId?: string
-  teamId?: string
-  permissions: string[]
+    channelId?: string;
+    teamId?: string;
+    permissions: string[];
 }
 
 function mapStateToProps(state: GlobalState, ownProps: Props) {
-  if (!ownProps.channelId || ownProps.teamId === null || typeof ownProps.teamId === 'undefined') {
-    return { hasPermission: false }
-  }
-
-  for (const permission of ownProps.permissions) {
-    if (haveIChannelPermission(state, { channel: ownProps.channelId, team: ownProps.teamId, permission })) {
-      return { hasPermission: true }
+    if (!ownProps.channelId || ownProps.teamId === null || typeof ownProps.teamId === 'undefined') {
+        return {hasPermission: false};
     }
-  }
 
-  return { hasPermission: false }
+    for (const permission of ownProps.permissions) {
+        if (haveIChannelPermission(state, ownProps.teamId, ownProps.channelId, permission)) {
+            return {hasPermission: true};
+        }
+    }
+
+    return {hasPermission: false};
 }
 
-export default connect(mapStateToProps)(ChannelPermissionGate)
+export default connect(mapStateToProps)(ChannelPermissionGate);

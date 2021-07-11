@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 
 export type I18nState = {
-  translations: {
-    [locale: string]: Translations
-  }
-}
+    translations: {
+        [locale: string]: Translations;
+    };
+};
 
 export type Translations = {
-  [key: string]: string
-}
+    [key: string]: string;
+};

@@ -1,32 +1,32 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { shallow } from 'enzyme'
-import React from 'react'
+import {shallow} from 'enzyme';
+import React from 'react';
 
 //
-import UsersEmailsInput from './users_emails_input.jsx'
+import UsersEmailsInput from './users_emails_input.jsx';
 
 describe('components/widgets/inputs/UsersEmailsInput', () => {
-  test('should match snapshot', () => {
-    const wrapper = shallow(
-      <UsersEmailsInput
-        placeholder="test"
-        ariaLabel="test"
-        usersLoader={jest.fn()}
-        onChange={jest.fn()}
-        value={[
-          'test@email.com',
-          {
-            id: 'test-user-id',
-            username: 'test-username',
-            first_name: 'test',
-            last_name: 'user',
-          },
-        ]}
-      />
-    )
-    expect(wrapper).toMatchInlineSnapshot(`
+    test('should match snapshot', () => {
+        const wrapper = shallow(
+            <UsersEmailsInput
+                placeholder='test'
+                ariaLabel='test'
+                usersLoader={jest.fn()}
+                onChange={jest.fn()}
+                value={[
+                    'test@email.com',
+                    {
+                        id: 'test-user-id',
+                        username: 'test-username',
+                        first_name: 'test',
+                        last_name: 'user',
+                    },
+                ]}
+            />,
+        );
+        expect(wrapper).toMatchInlineSnapshot(`
             <Fragment>
               <Async
                 aria-label="test"
@@ -74,6 +74,6 @@ describe('components/widgets/inputs/UsersEmailsInput', () => {
                 }
               />
             </Fragment>
-        `)
-  })
-})
+        `);
+    });
+});

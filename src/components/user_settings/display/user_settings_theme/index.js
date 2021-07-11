@@ -1,41 +1,38 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-import { getTheme, makeGetCategory } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { getCurrentTeamId, getMyTeamsCount } from 'hkclient-ts/lib/selectors/entities/teams'
+import {getTheme, makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentTeamId, getMyTeamsCount} from 'hkclient-redux/selectors/entities/teams';
 
-import { saveTheme, deleteTeamSpecificThemes } from 'hkclient-ts/lib/actions/preferences'
+import {saveTheme, deleteTeamSpecificThemes} from 'hkclient-redux/actions/preferences';
 
-import { Preferences } from 'utils/constants'
+import {Preferences} from 'utils/constants';
 
-import UserSettingsTheme from './user_settings_theme.jsx'
+import UserSettingsTheme from './user_settings_theme.jsx';
 
 function makeMapStateToProps() {
-  const getThemeCategory = makeGetCategory()
+    const getThemeCategory = makeGetCategory();
 
-  return (state) => {
-    return {
-      currentTeamId: getCurrentTeamId(state),
-      theme: getTheme(state),
-      applyToAllTeams: getThemeCategory(state, Preferences.CATEGORY_THEME).length <= 1,
-      showAllTeamsCheckbox: getMyTeamsCount(state) > 1,
-    }
-  }
+    return (state) => {
+        return {
+            currentTeamId: getCurrentTeamId(state),
+            theme: getTheme(state),
+            applyToAllTeams: getThemeCategory(state, Preferences.CATEGORY_THEME).length <= 1,
+            showAllTeamsCheckbox: getMyTeamsCount(state) > 1,
+        };
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(
-      {
-        saveTheme,
-        deleteTeamSpecificThemes,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators({
+            saveTheme,
+            deleteTeamSpecificThemes,
+        }, dispatch),
+    };
 }
 
-export default connect(makeMapStateToProps, mapDispatchToProps)(UserSettingsTheme)
+export default connect(makeMapStateToProps, mapDispatchToProps)(UserSettingsTheme);

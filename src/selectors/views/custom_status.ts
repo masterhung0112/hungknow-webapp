@@ -1,53 +1,70 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import { createSelector } from 'reselect'
 
-import { getCurrentUser, getUser } from 'hkclient-ts/lib/selectors/entities/users'
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import moment from 'moment-timezone';
 
-import { get } from 'hkclient-ts/lib/selectors/entities/preferences'
-import { Preferences } from 'hkclient-ts/lib/constants'
-import { UserCustomStatus } from 'hkclient-ts/lib/types/users'
+import {createSelector} from 'reselect';
 
-import { GlobalState } from 'types/store'
+import {getCurrentUser, getUser} from 'hkclient-redux/selectors/entities/users';
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+
+import {get} from 'hkclient-redux/selectors/entities/preferences';
+import {Preferences} from 'hkclient-redux/constants';
+import {CustomStatusDuration, UserCustomStatus} from 'hkclient-redux/types/users';
+
+import {GlobalState} from 'types/store';
+import {getCurrentUserTimezone} from 'selectors/general';
+import {getCurrentMomentForTimezone} from 'utils/timezone';
 
 export function makeGetCustomStatus(): (state: GlobalState, userID?: string) => UserCustomStatus {
-  return createSelector(
-    (state: GlobalState, userID?: string) => (userID ? getUser(state, userID) : getCurrentUser(state)),
-    (user) => {
-      const userProps = user?.props || {}
-      return userProps.customStatus ? JSON.parse(userProps.customStatus) : undefined
+    return createSelector(
+        'makeGetCustomStatus',
+        (state: GlobalState, userID?: string) => (userID ? getUser(state, userID) : getCurrentUser(state)),
+        (user) => {
+            const userProps = user?.props || {};
+            return userProps.customStatus ? JSON.parse(userProps.customStatus) : undefined;
+        },
+    );
+}
+
+export function isCustomStatusExpired(state: GlobalState, customStatus?: UserCustomStatus) {
+    if (!customStatus) {
+        return true;
     }
-  )
+
+    if (customStatus.duration === CustomStatusDuration.DONT_CLEAR) {
+        return false;
+    }
+
+    const expiryTime = moment(customStatus.expires_at);
+    const timezone = getCurrentUserTimezone(state);
+    const currentTime = getCurrentMomentForTimezone(timezone);
+    return currentTime.isSameOrAfter(expiryTime);
 }
 
 export const getRecentCustomStatuses = createSelector(
-  (state: GlobalState) => get(state, Preferences.CATEGORY_CUSTOM_STATUS, Preferences.NAME_RECENT_CUSTOM_STATUSES),
-  (value) => {
-    return value ? JSON.parse(value) : []
-  }
-)
+    'getRecentCustomStatuses',
+    (state: GlobalState) => get(state, Preferences.CATEGORY_CUSTOM_STATUS, Preferences.NAME_RECENT_CUSTOM_STATUSES),
+    (value) => {
+        return value ? JSON.parse(value) : [];
+    },
+);
 
 export function isCustomStatusEnabled(state: GlobalState) {
-  const config = getConfig(state)
-  return config && config.EnableCustomUserStatuses === 'true'
+    const config = getConfig(state);
+    return config && config.EnableCustomUserStatuses === 'true';
 }
 
 function showCustomStatusPulsatingDotAndPostHeader(state: GlobalState) {
-  const customStatusTutorialState = get(
-    state,
-    Preferences.CATEGORY_CUSTOM_STATUS,
-    Preferences.NAME_CUSTOM_STATUS_TUTORIAL_STATE
-  )
-  const modalAlreadyViewed =
-    customStatusTutorialState && JSON.parse(customStatusTutorialState)[Preferences.CUSTOM_STATUS_MODAL_VIEWED]
-  return !modalAlreadyViewed
+    const customStatusTutorialState = get(state, Preferences.CATEGORY_CUSTOM_STATUS, Preferences.NAME_CUSTOM_STATUS_TUTORIAL_STATE);
+    const modalAlreadyViewed = customStatusTutorialState && JSON.parse(customStatusTutorialState)[Preferences.CUSTOM_STATUS_MODAL_VIEWED];
+    return !modalAlreadyViewed;
 }
 
 export function showStatusDropdownPulsatingDot(state: GlobalState) {
-  return showCustomStatusPulsatingDotAndPostHeader(state)
+    return showCustomStatusPulsatingDotAndPostHeader(state);
 }
 
 export function showPostHeaderUpdateStatusButton(state: GlobalState) {
-  return showCustomStatusPulsatingDotAndPostHeader(state)
+    return showCustomStatusPulsatingDotAndPostHeader(state);
 }

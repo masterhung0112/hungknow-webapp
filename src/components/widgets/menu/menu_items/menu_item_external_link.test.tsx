@@ -1,16 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import { MenuItemExternalLinkImpl } from './menu_item_external_link'
+import {MenuItemExternalLinkImpl} from './menu_item_external_link';
 
 describe('components/MenuItemExternalLink', () => {
-  test('should match snapshot', () => {
-    const wrapper = shallow(<MenuItemExternalLinkImpl url="http://test.com" text="Whatever" />)
+    test('should match snapshot', () => {
+        const wrapper = shallow(
+            <MenuItemExternalLinkImpl
+                url='http://test.com'
+                text='Whatever'
+            />,
+        );
 
-    expect(wrapper).toMatchInlineSnapshot(`
+        expect(wrapper).toMatchInlineSnapshot(`
 <a
   href="http://test.com"
   rel="noopener noreferrer"
@@ -18,6 +23,6 @@ describe('components/MenuItemExternalLink', () => {
 >
   Whatever
 </a>
-`)
-  })
-})
+`);
+    });
+});

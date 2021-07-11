@@ -1,57 +1,50 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch, ActionCreatorsMapObject } from 'redux'
-import { createSelector } from 'reselect'
+import {connect} from 'react-redux';
+import {bindActionCreators, Dispatch, ActionCreatorsMapObject} from 'redux';
 
-import { getAllChannelsWithCount as getData, searchAllChannels } from 'hkclient-ts/lib/actions/channels'
-import { getAllChannels } from 'hkclient-ts/lib/selectors/entities/channels'
-import { GenericAction, ActionFunc, ActionResult } from 'hkclient-ts/lib/types/actions'
-import { ChannelWithTeamData, ChannelSearchOpts } from 'hkclient-ts/lib/types/channels'
+import {createSelector} from 'reselect';
 
-import { GlobalState } from 'types/store'
-import { Constants } from 'utils/constants'
+import {getAllChannelsWithCount as getData, searchAllChannels} from 'hkclient-redux/actions/channels';
+import {getAllChannels} from 'hkclient-redux/selectors/entities/channels';
+import {GenericAction, ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
+import {ChannelWithTeamData, ChannelSearchOpts} from 'hkclient-redux/types/channels';
 
-import List from './channel_list'
+import {GlobalState} from 'types/store';
+import {Constants} from 'utils/constants';
 
-const compareByDisplayName = (a: { display_name: string }, b: { display_name: string }) =>
-  a.display_name.localeCompare(b.display_name)
+import List from './channel_list';
 
-const getSortedListOfChannels = createSelector(getAllChannels, (teams) =>
-  Object.values(teams)
-    .filter((c) => c.type === Constants.OPEN_CHANNEL || c.type === Constants.PRIVATE_CHANNEL)
-    .sort(compareByDisplayName)
-)
+const compareByDisplayName = (a: {display_name: string}, b: {display_name: string}) => a.display_name.localeCompare(b.display_name);
+
+const getSortedListOfChannels = createSelector(
+    'getSortedListOfChannels',
+    getAllChannels,
+    (teams) => Object.values(teams).
+        filter((c) => (c.type === Constants.OPEN_CHANNEL || c.type === Constants.PRIVATE_CHANNEL)).
+        sort(compareByDisplayName),
+);
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    data: getSortedListOfChannels(state) as ChannelWithTeamData[],
-    total: state.entities.channels.totalCount,
-  }
+    return {
+        data: getSortedListOfChannels(state) as ChannelWithTeamData[],
+        total: state.entities.channels.totalCount,
+    };
 }
 
 type Actions = {
-  searchAllChannels: (term: string, opts: ChannelSearchOpts) => Promise<{ data: any }>
-  getData: (
-    page: number,
-    perPage: number,
-    notAssociatedToGroup?: string,
-    excludeDefaultChannels?: boolean,
-    includeDeleted?: boolean
-  ) => ActionFunc | ActionResult | Promise<ChannelWithTeamData[]>
+    searchAllChannels: (term: string, opts: ChannelSearchOpts) => Promise<{ data: any }>;
+    getData: (page: number, perPage: number, notAssociatedToGroup?: string, excludeDefaultChannels?: boolean, includeDeleted?: boolean) => ActionFunc | ActionResult | Promise<ChannelWithTeamData[]>;
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Actions>(
-      {
-        getData,
-        searchAllChannels,
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators<ActionCreatorsMapObject<ActionFunc>, Actions>({
+            getData,
+            searchAllChannels,
+        }, dispatch),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(List)
+export default connect(mapStateToProps, mapDispatchToProps)(List);

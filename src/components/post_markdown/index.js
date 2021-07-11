@@ -3,9 +3,9 @@
 import { createSelector } from 'reselect'
 import { connect } from 'react-redux'
 
-import { getChannel } from 'hkclient-ts/lib/selectors/entities/channels'
-import { getMyGroupMentionKeysForChannel, getMyGroupMentionKeys } from 'hkclient-ts/lib/selectors/entities/groups'
-import { getCurrentUserMentionKeys } from 'hkclient-ts/lib/selectors/entities/users'
+import { getChannel } from 'hkclient-redux/selectors/entities/channels'
+import { getMyGroupMentionKeysForChannel, getMyGroupMentionKeys } from 'hkclient-redux/selectors/entities/groups'
+import { getCurrentUserMentionKeys } from 'hkclient-redux/selectors/entities/users'
 
 import { canManageMembers } from 'utils/channel_utils.jsx'
 

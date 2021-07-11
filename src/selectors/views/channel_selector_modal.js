@@ -1,17 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { createSelector } from 'reselect'
+import {createSelector} from 'reselect';
 
-import { getAllChannels } from 'hkclient-ts/lib/selectors/entities/channels'
+import {getAllChannels} from 'hkclient-redux/selectors/entities/channels';
 
 export const getChannelsForChannelSelector = createSelector(
-  (state) => state.views.channelSelectorModal.channels,
-  getAllChannels,
-  (channelIds, channels) => {
-    if (channelIds) {
-      return channelIds.map((id) => channels[id])
-    }
-    return []
-  }
-)
+    'getChannelsForChannelSelector',
+    (state) => state.views.channelSelectorModal.channels,
+    getAllChannels,
+    (channelIds, channels) => {
+        if (channelIds) {
+            return channelIds.map((id) => channels[id]);
+        }
+        return [];
+    },
+);

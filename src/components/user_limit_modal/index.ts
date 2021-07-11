@@ -1,43 +1,46 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { bindActionCreators, Dispatch } from 'redux'
+import {bindActionCreators, Dispatch} from 'redux';
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
-import { getCurrentUser } from 'hkclient-ts/lib/selectors/entities/users'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 
-import { GenericAction } from 'hkclient-ts/lib/types/actions'
+import {GenericAction} from 'hkclient-redux/types/actions';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import { isAdmin } from 'utils/utils.jsx'
-import { isModalOpen } from 'selectors/views/modals'
-import { ModalIdentifiers } from 'utils/constants'
+import {isAdmin} from 'utils/utils.jsx';
+import {isModalOpen} from 'selectors/views/modals';
+import {ModalIdentifiers} from 'utils/constants';
 
-import { closeModal, openModal } from 'actions/views/modals'
+import {closeModal, openModal} from 'actions/views/modals';
 
-import UserLimitModal from './user_limit_modal'
+import UserLimitModal from './user_limit_modal';
 
 function mapStateToProps(state: GlobalState) {
-  const config = getConfig(state)
-  return {
-    userIsAdmin: isAdmin(getCurrentUser(state).roles),
-    show: isModalOpen(state, ModalIdentifiers.UPGRADE_CLOUD_ACCOUNT),
-    cloudUserLimit: config.ExperimentalCloudUserLimit || '10',
-  }
+    const config = getConfig(state);
+    return {
+        userIsAdmin: isAdmin(getCurrentUser(state).roles),
+        show: isModalOpen(state, ModalIdentifiers.UPGRADE_CLOUD_ACCOUNT),
+        cloudUserLimit: config.ExperimentalCloudUserLimit || '10',
+    };
 }
 
 function mapDispatchToProps(dispatch: Dispatch<GenericAction>) {
-  return {
-    actions: bindActionCreators(
-      {
-        closeModal: (identifier) => closeModal(identifier),
-        openModal: (modalData) => openModal(modalData),
-      },
-      dispatch
-    ),
-  }
+    return {
+        actions: bindActionCreators(
+            {
+                closeModal: (identifier) => closeModal(identifier),
+                openModal: (modalData) => openModal(modalData),
+            },
+            dispatch,
+        ),
+    };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserLimitModal)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(UserLimitModal);

@@ -1,71 +1,78 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
+import React from 'react';
 
-import { FormattedMessage } from 'react-intl'
+import {FormattedMessage} from 'react-intl';
 
-import { equalServerVersions } from 'utils/server_version'
-import { AnnouncementBarTypes } from 'utils/constants'
+import {equalServerVersions} from 'utils/server_version';
+import {AnnouncementBarTypes} from 'utils/constants';
 
-import AnnouncementBar from '../default_announcement_bar'
+import AnnouncementBar from '../default_announcement_bar';
 
 interface Props {
-  serverVersion: string
+    serverVersion: string;
 }
 
 interface State {
-  serverVersionOnAppLoad: string
+    serverVersionOnAppLoad: string;
 }
 
-export default class VersionBar extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
-    super(props)
+export default class VersionBar extends React.PureComponent <Props, State> {
+    constructor(props: Props) {
+        super(props);
 
-    this.state = {
-      serverVersionOnAppLoad: props.serverVersion,
-    }
-  }
-
-  static getDerivedStateFromProps(props: Props, state: State) {
-    if (!state.serverVersionOnAppLoad && props.serverVersion) {
-      return {
-        serverVersionOnAppLoad: props.serverVersion,
-      }
+        this.state = {
+            serverVersionOnAppLoad: props.serverVersion,
+        };
     }
 
-    return null
-  }
+    static getDerivedStateFromProps(props: Props, state: State) {
+        if (!state.serverVersionOnAppLoad && props.serverVersion) {
+            return {
+                serverVersionOnAppLoad: props.serverVersion,
+            };
+        }
 
-  reloadPage = () => {
-    window.location.reload()
-  }
-
-  render() {
-    const { serverVersionOnAppLoad } = this.state
-    const { serverVersion } = this.props
-
-    if (!serverVersionOnAppLoad) {
-      return null
+        return null;
     }
 
-    if (!equalServerVersions(serverVersionOnAppLoad, serverVersion)) {
-      return (
-        <AnnouncementBar
-          type={AnnouncementBarTypes.ANNOUNCEMENT}
-          message={
-            <React.Fragment>
-              <FormattedMessage id="version_bar.new" defaultMessage="A new version of Mattermost is available." />{' '}
-              <a onClick={this.reloadPage}>
-                <FormattedMessage id="version_bar.refresh" defaultMessage="Refresh the app now" />
-              </a>
-              {'.'}
-            </React.Fragment>
-          }
-        />
-      )
+    reloadPage = () => {
+        window.location.reload();
     }
 
-    return null
-  }
+    render() {
+        const {serverVersionOnAppLoad} = this.state;
+        const {serverVersion} = this.props;
+
+        if (!serverVersionOnAppLoad) {
+            return null;
+        }
+
+        if (!equalServerVersions(serverVersionOnAppLoad, serverVersion)) {
+            return (
+                <AnnouncementBar
+                    type={AnnouncementBarTypes.ANNOUNCEMENT}
+                    message={
+                        <React.Fragment>
+                            <FormattedMessage
+                                id='version_bar.new'
+                                defaultMessage='A new version of Mattermost is available.'
+                            />
+                            {' '}
+                            <a onClick={this.reloadPage}>
+                                <FormattedMessage
+                                    id='version_bar.refresh'
+                                    defaultMessage='Refresh the app now'
+                                />
+                            </a>
+                            {'.'}
+                        </React.Fragment>
+                    }
+                />
+            );
+        }
+
+        return null;
+    }
 }

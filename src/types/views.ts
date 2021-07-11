@@ -1,6 +1,6 @@
-import { Channel } from 'hkclient-ts/lib/types/channels'
-import { MarketplacePlugin } from 'hkclient-ts/lib/types/plugins'
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import { Channel } from 'hkclient-redux/types/channels'
+import { MarketplacePlugin } from 'hkclient-redux/types/plugins'
+import { Dictionary } from 'hkclient-redux/types/utilities'
 import { DraggingState } from 'react-beautiful-dnd'
 
 import ViewsConstants from '../constants/views'

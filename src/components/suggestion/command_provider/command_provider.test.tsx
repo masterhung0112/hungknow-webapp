@@ -1,74 +1,119 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react'
-import { shallow } from 'enzyme'
+import React from 'react';
+import {shallow} from 'enzyme';
 
-import { Client4 } from 'hkclient-ts/lib/client'
+import {Client4} from 'hkclient-redux/client';
 
-import CommandProvider, { CommandSuggestion, Results } from './command_provider'
+import {AutocompleteSuggestion} from 'hkclient-redux/types/integrations';
+
+import CommandProvider, {CommandSuggestion, Results} from './command_provider';
 
 describe('CommandSuggestion', () => {
-  const baseProps: any = {
-    item: {
-      suggestion: '/invite',
-      hint: '@[username] ~[channel]',
-      description: 'Invite a user to a channel',
-      iconData: '',
-    },
-    isSelection: true,
-    term: '/',
-    matchedPretext: '',
-  }
+    const suggestion: AutocompleteSuggestion = {
+        Suggestion: '/invite',
+        Complete: '/invite',
+        Hint: '@[username] ~[channel]',
+        Description: 'Invite a user to a channel',
+        IconData: '',
+    };
 
-  test('should match snapshot', () => {
-    const wrapper = shallow(<CommandSuggestion {...baseProps} />)
+    const baseProps = {
+        item: suggestion,
+        isSelection: true,
+        term: '/',
+        matchedPretext: '',
+    };
 
-    expect(wrapper).toMatchSnapshot()
-    expect(wrapper.find('.slash-command__title').first().text()).toEqual('invite @[username] ~[channel]')
-    expect(wrapper.find('.slash-command__desc').first().text()).toEqual('Invite a user to a channel')
-  })
-})
+    test('should match snapshot', () => {
+        const wrapper = shallow(
+            <CommandSuggestion {...baseProps}/>,
+        );
+
+        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.find('.slash-command__title').first().text()).toEqual('invite @[username] ~[channel]');
+    });
+});
 
 describe('CommandProvider', () => {
-  describe('handlePretextChanged', () => {
-    test('should fetch results from the server', async () => {
-      const f = Client4.getCommandAutocompleteSuggestionsList
+    describe('handlePretextChanged', () => {
+        test('should fetch command autocomplete results from the server', async () => {
+            const f = Client4.getCommandAutocompleteSuggestionsList;
 
-      const mockFunc = jest.fn().mockResolvedValue([
-        {
-          Suggestion: 'issue',
-          Complete: 'jira issue',
-          Hint: 'hint',
-          IconData: 'icon_data',
-          Description: 'description',
-        },
-      ])
-      Client4.getCommandAutocompleteSuggestionsList = mockFunc
+            const mockFunc = jest.fn().mockResolvedValue([{
+                Suggestion: 'issue',
+                Complete: 'jira issue',
+                Hint: 'hint',
+                IconData: 'icon_data',
+                Description: 'description',
+            }]);
+            Client4.getCommandAutocompleteSuggestionsList = mockFunc;
 
-      const provider = new CommandProvider({ isInRHS: false })
+            const provider = new CommandProvider({
+                teamId: 'current_team',
+                channelId: 'current_channel',
+                rootId: 'current_root',
+            });
 
-      const callback = jest.fn()
-      provider.handlePretextChanged('/jira issue', callback)
-      await mockFunc()
+            const callback = jest.fn();
+            provider.handlePretextChanged('/jira issue', callback);
+            await mockFunc();
 
-      const expected: Results = {
-        matchedPretext: '/jira issue',
-        terms: ['/jira issue'],
-        items: [
-          {
-            complete: '/jira issue',
-            suggestion: '/issue',
-            hint: 'hint',
-            iconData: 'icon_data',
-            description: 'description',
-          },
-        ],
-        component: CommandSuggestion,
-      }
-      expect(callback).toHaveBeenCalledWith(expected)
+            const expected: Results = {
+                matchedPretext: '/jira issue',
+                terms: ['/jira issue'],
+                items: [{
+                    Complete: '/jira issue',
+                    Suggestion: '/issue',
+                    Hint: 'hint',
+                    IconData: 'icon_data',
+                    Description: 'description',
+                }],
+                component: CommandSuggestion,
+            };
+            expect(callback).toHaveBeenCalledWith(expected);
 
-      Client4.getCommandAutocompleteSuggestionsList = f
-    })
-  })
-})
+            Client4.getCommandAutocompleteSuggestionsList = f;
+        });
+
+        test('should use the app command parser', async () => {
+            const f = Client4.getCommandAutocompleteSuggestionsList;
+
+            const mockFunc = jest.fn().mockResolvedValue([{
+                Suggestion: 'issue',
+                Complete: 'jira issue',
+                Hint: 'hint',
+                IconData: 'icon_data',
+                Description: 'description',
+            }]);
+            Client4.getCommandAutocompleteSuggestionsList = mockFunc;
+
+            const provider = new CommandProvider({
+                teamId: 'current_team',
+                channelId: 'current_channel',
+                rootId: 'current_root',
+            });
+
+            const callback = jest.fn();
+            provider.handlePretextChanged('/jira issue', callback);
+            await mockFunc();
+
+            const expected: Results = {
+                matchedPretext: '/jira issue',
+                terms: ['/jira issue'],
+                items: [{
+                    Complete: '/jira issue',
+                    Suggestion: '/issue',
+                    Hint: 'hint',
+                    IconData: 'icon_data',
+                    Description: 'description',
+                }],
+                component: CommandSuggestion,
+            };
+            expect(callback).toHaveBeenCalledWith(expected);
+
+            Client4.getCommandAutocompleteSuggestionsList = f;
+        });
+    });
+});

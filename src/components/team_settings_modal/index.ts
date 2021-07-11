@@ -1,23 +1,23 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getLicense } from 'hkclient-ts/lib/selectors/entities/general'
+import {getLicense} from 'hkclient-redux/selectors/entities/general';
 
-import { ModalIdentifiers } from 'utils/constants'
-import { isModalOpen } from 'selectors/views/modals'
+import {ModalIdentifiers} from 'utils/constants';
+import {isModalOpen} from 'selectors/views/modals';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import TeamSettingsModal from './team_settings_modal'
+import TeamSettingsModal from './team_settings_modal';
 
 function mapStateToProps(state: GlobalState) {
-  const modalId = ModalIdentifiers.TEAM_SETTINGS
-  return {
-    show: isModalOpen(state, modalId),
-    isCloud: getLicense(state).Cloud === 'true',
-  }
+    const modalId = ModalIdentifiers.TEAM_SETTINGS;
+    return {
+        show: isModalOpen(state, modalId),
+        isCloud: getLicense(state).Cloud === 'true',
+    };
 }
 
-export default connect(mapStateToProps)(TeamSettingsModal)
+export default connect(mapStateToProps)(TeamSettingsModal);

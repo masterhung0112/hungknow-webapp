@@ -1,24 +1,24 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getStatusForUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { UserProfile } from 'hkclient-ts/lib/types/users'
+import {getStatusForUserId} from 'hkclient-redux/selectors/entities/users';
+import {UserProfile} from 'hkclient-redux/types/users';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import UserListRow from './user_list_row_with_error'
+import UserListRow from './user_list_row_with_error';
 
 type OwnProps = {
-  user: UserProfile
-}
+    user: UserProfile;
+};
 
 function mapStateToProps(state: GlobalState, ownProps: OwnProps) {
-  const user = ownProps.user
-  return {
-    status: getStatusForUserId(state, user.id),
-  }
+    const user = ownProps.user;
+    return {
+        status: getStatusForUserId(state, user.id),
+    };
 }
 
-export default connect(mapStateToProps)(UserListRow)
+export default connect(mapStateToProps)(UserListRow);

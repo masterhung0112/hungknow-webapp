@@ -5,7 +5,7 @@ import { render, fireEvent, waitFor, BoundFunction, GetByText } from '@testing-l
 import { defaultTestIntl, wrapIntlProvider, translationData } from 'testlib/intlProvider'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
-import { UserProfile } from 'hkclient-ts/lib/types/users'
+import { UserProfile } from 'hkclient-redux/types/users'
 import Router from 'next/router'
 import Constants from 'utils/constants'
 

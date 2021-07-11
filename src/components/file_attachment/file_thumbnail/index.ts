@@ -1,18 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import { GlobalState } from 'types/store'
+import {GlobalState} from 'types/store';
 
-import FileThumbnail from './file_thumbnail'
+import FileThumbnail from './file_thumbnail';
 
 function mapStateToProps(state: GlobalState) {
-  return {
-    enableSVGs: getConfig(state).EnableSVGs === 'true',
-  }
+    return {
+        enableSVGs: getConfig(state).EnableSVGs === 'true',
+    };
 }
 
-export default connect(mapStateToProps)(FileThumbnail)
+export default connect(mapStateToProps)(FileThumbnail);

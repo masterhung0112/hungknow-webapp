@@ -1,83 +1,98 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
-import { createSelector } from 'reselect'
+import {connect} from 'react-redux';
 
-import { getUser, getCurrentUser, getUserStatuses, getCurrentUserId } from 'hkclient-ts/lib/selectors/entities/users'
-import { getCurrentTeamId } from 'hkclient-ts/lib/selectors/entities/teams'
+import {createSelector} from 'reselect';
+
 import {
-  getCurrentChannel,
-  isCurrentChannelDefault,
-  isCurrentChannelFavorite,
-  isCurrentChannelMuted,
-  isCurrentChannelArchived,
-  isCurrentChannelReadOnly,
-  getRedirectChannelNameForTeam,
-} from 'hkclient-ts/lib/selectors/entities/channels'
+    getUser,
+    getCurrentUser,
+    getUserStatuses,
+    getCurrentUserId,
+} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {
+    getCurrentChannel,
+    isCurrentChannelDefault,
+    isCurrentChannelFavorite,
+    isCurrentChannelMuted,
+    isCurrentChannelArchived,
+    isCurrentChannelReadOnly,
+    getRedirectChannelNameForTeam,
+} from 'hkclient-redux/selectors/entities/channels';
 
-import { getPenultimateViewedChannelName } from 'selectors/local_storage'
+import {getPenultimateViewedChannelName} from 'selectors/local_storage';
 
-import { Constants } from 'utils/constants'
-import * as Utils from 'utils/utils'
+import {Constants} from 'utils/constants';
+import * as Utils from 'utils/utils';
 
-import Desktop from './channel_header_dropdown'
-import Items from './channel_header_dropdown_items'
-import Mobile from './mobile_channel_header_dropdown'
+import Desktop from './channel_header_dropdown';
+import Items from './channel_header_dropdown_items';
+import Mobile from './mobile_channel_header_dropdown';
 
-const getTeammateId = createSelector(getCurrentChannel, getCurrentUserId, (channel, currentUserId) => {
-  if (channel.type !== Constants.DM_CHANNEL) {
-    return null
-  }
+const getTeammateId = createSelector(
+    'getTeammateId',
+    getCurrentChannel,
+    getCurrentUserId,
+    (channel, currentUserId) => {
+        if (channel.type !== Constants.DM_CHANNEL) {
+            return null;
+        }
 
-  return Utils.getUserIdFromChannelId(channel.name, currentUserId)
-})
+        return Utils.getUserIdFromChannelId(channel.name, currentUserId);
+    },
+);
 
-const getTeammateStatus = createSelector(getUserStatuses, getTeammateId, (userStatuses, teammateId) => {
-  if (!teammateId) {
-    return null
-  }
+const getTeammateStatus = createSelector(
+    'getTeammateStatus',
+    getUserStatuses,
+    getTeammateId,
+    (userStatuses, teammateId) => {
+        if (!teammateId) {
+            return null;
+        }
 
-  return userStatuses[teammateId]
-})
+        return userStatuses[teammateId];
+    },
+);
 
 const mapStateToProps = (state) => ({
-  user: getCurrentUser(state),
-  channel: getCurrentChannel(state),
-  isDefault: isCurrentChannelDefault(state),
-  isFavorite: isCurrentChannelFavorite(state),
-  isMuted: isCurrentChannelMuted(state),
-  isReadonly: isCurrentChannelReadOnly(state),
-  isArchived: isCurrentChannelArchived(state),
-  penultimateViewedChannelName:
-    getPenultimateViewedChannelName(state) || getRedirectChannelNameForTeam(state, getCurrentTeamId(state)),
-  pluginMenuItems: state.plugins.components.ChannelHeader || [],
-  isLicensedForLDAPGroups: state.entities.general.license.LDAPGroups === 'true',
-})
+    user: getCurrentUser(state),
+    channel: getCurrentChannel(state),
+    isDefault: isCurrentChannelDefault(state),
+    isFavorite: isCurrentChannelFavorite(state),
+    isMuted: isCurrentChannelMuted(state),
+    isReadonly: isCurrentChannelReadOnly(state),
+    isArchived: isCurrentChannelArchived(state),
+    penultimateViewedChannelName: getPenultimateViewedChannelName(state) || getRedirectChannelNameForTeam(state, getCurrentTeamId(state)),
+    pluginMenuItems: state.plugins.components.ChannelHeader || [],
+    isLicensedForLDAPGroups: state.entities.general.license.LDAPGroups === 'true',
+});
 
 const mobileMapStateToProps = (state) => {
-  const user = getCurrentUser(state)
-  const channel = getCurrentChannel(state)
-  const teammateId = getTeammateId(state)
+    const user = getCurrentUser(state);
+    const channel = getCurrentChannel(state);
+    const teammateId = getTeammateId(state);
 
-  let teammateIsBot = false
-  let displayName = ''
-  if (teammateId) {
-    const teammate = getUser(state, teammateId)
-    teammateIsBot = teammate && teammate.is_bot
-    displayName = Utils.getDisplayNameByUser(state, teammate)
-  }
+    let teammateIsBot = false;
+    let displayName = '';
+    if (teammateId) {
+        const teammate = getUser(state, teammateId);
+        teammateIsBot = teammate && teammate.is_bot;
+        displayName = Utils.getDisplayNameByUser(state, teammate);
+    }
 
-  return {
-    user,
-    channel,
-    teammateId,
-    teammateIsBot,
-    teammateStatus: getTeammateStatus(state),
-    displayName,
-  }
-}
+    return {
+        user,
+        channel,
+        teammateId,
+        teammateIsBot,
+        teammateStatus: getTeammateStatus(state),
+        displayName,
+    };
+};
 
-export const ChannelHeaderDropdown = Desktop
-export const ChannelHeaderDropdownItems = connect(mapStateToProps)(Items)
-export const MobileChannelHeaderDropdown = connect(mobileMapStateToProps)(Mobile)
+export const ChannelHeaderDropdown = Desktop;
+export const ChannelHeaderDropdownItems = connect(mapStateToProps)(Items);
+export const MobileChannelHeaderDropdown = connect(mobileMapStateToProps)(Mobile);

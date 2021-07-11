@@ -5,7 +5,7 @@ import React, { ComponentType } from 'react'
 
 import { isEmpty } from 'lodash'
 
-import { Subscription, SubscriptionStats } from 'hkclient-ts/lib/types/cloud'
+import { Subscription, SubscriptionStats } from 'hkclient-redux/types/cloud'
 
 interface Actions {
   getCloudSubscription?: () => void

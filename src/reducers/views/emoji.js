@@ -1,41 +1,41 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { combineReducers } from 'redux'
+import {combineReducers} from 'redux';
 
-import { UserTypes } from 'hkclient-ts/lib/action-types'
+import {UserTypes} from 'hkclient-redux/action_types';
 
-import { ActionTypes, Locations } from 'utils/constants'
+import {ActionTypes, Locations} from 'utils/constants';
 
 function emojiPickerCustomPage(state = 0, action) {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.INCREMENT_EMOJI_PICKER_PAGE:
-      return state + 1
+        return state + 1;
     case UserTypes.LOGOUT_SUCCESS:
-      return 0
+        return 0;
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 function shortcutReactToLastPostEmittedFrom(state = '', action) {
-  switch (action.type) {
+    switch (action.type) {
     case ActionTypes.EMITTED_SHORTCUT_REACT_TO_LAST_POST:
-      if (action.payload === Locations.CENTER) {
-        return Locations.CENTER
-      } else if (action.payload === Locations.RHS_ROOT) {
-        return Locations.RHS_ROOT
-      } else if (action.payload === Locations.NO_WHERE) {
-        return ''
-      }
-      return state
+        if (action.payload === Locations.CENTER) {
+            return Locations.CENTER;
+        } else if (action.payload === Locations.RHS_ROOT) {
+            return Locations.RHS_ROOT;
+        } else if (action.payload === Locations.NO_WHERE) {
+            return '';
+        }
+        return state;
 
     default:
-      return state
-  }
+        return state;
+    }
 }
 
 export default combineReducers({
-  emojiPickerCustomPage,
-  shortcutReactToLastPostEmittedFrom,
-})
+    emojiPickerCustomPage,
+    shortcutReactToLastPostEmittedFrom,
+});

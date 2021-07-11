@@ -1,87 +1,167 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { Client4 } from 'hkclient-ts/lib/client'
+import {Client4} from 'hkclient-redux/client';
 
-import { ActionFunc, DispatchFunc, GetStateFunc } from 'hkclient-ts/lib/types/actions'
+import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
+import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
 
-import { getFilter, getPlugin } from 'selectors/views/marketplace'
-import { ActionTypes } from 'utils/constants'
+import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+import type {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
+import type {CommandArgs} from 'hkclient-redux/types/integrations';
 
-// fetchPlugins fetches the latest marketplace plugins, subject to any existing search filter.
-export function fetchPlugins(localOnly = false): ActionFunc {
-  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
-    const state = getState()
-    const filter = getFilter(state)
+import {GlobalState} from 'types/store';
 
-    try {
-      const plugins = await Client4.getMarketplacePlugins(filter, localOnly)
+import {getApp, getFilter, getPlugin} from 'selectors/views/marketplace';
+import {ActionTypes} from 'utils/constants';
 
-      dispatch({
-        type: ActionTypes.RECEIVED_MARKETPLACE_PLUGINS,
-        plugins,
-      })
+import {isError} from 'types/actions';
 
-      return { data: plugins }
-    } catch (error) {
-      // If the marketplace server is unreachable, try to get the local plugins only.
-      if (error.server_error_id === 'app.plugin.marketplace_client.failed_to_fetch' && !localOnly) {
-        await dispatch(fetchPlugins(true))
-      }
-      return { error }
-    }
-  }
+import {executeCommand} from './command';
+
+// fetchPlugins fetches the latest marketplace plugins and apps, subject to any existing search filter.
+export function fetchListing(localOnly = false): ActionFunc {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
+        const state = getState() as GlobalState;
+        const filter = getFilter(state);
+
+        let plugins: MarketplacePlugin[];
+        let apps: MarketplaceApp[] = [];
+
+        try {
+            plugins = await Client4.getMarketplacePlugins(filter, localOnly);
+        } catch (error) {
+            // If the marketplace server is unreachable, try to get the local plugins only.
+            if (error.server_error_id === 'app.plugin.marketplace_client.failed_to_fetch' && !localOnly) {
+                await dispatch(fetchListing(true));
+            }
+            return {error};
+        }
+
+        dispatch({
+            type: ActionTypes.RECEIVED_MARKETPLACE_PLUGINS,
+            plugins,
+        });
+
+        if (appsEnabled(state)) {
+            try {
+                apps = await Client4.getMarketplaceApps(filter);
+            } catch (error) {
+                return {data: plugins};
+            }
+
+            dispatch({
+                type: ActionTypes.RECEIVED_MARKETPLACE_APPS,
+                apps,
+            });
+        }
+
+        if (plugins) {
+            return {data: (plugins as Array<MarketplacePlugin | MarketplaceApp>).concat(apps)};
+        }
+
+        return {data: apps};
+    };
+}
+
+// filterListing sets a search filter for marketplace listing, fetching the latest data.
+export function filterListing(filter: string): ActionFunc {
+    return async (dispatch: DispatchFunc) => {
+        dispatch({
+            type: ActionTypes.FILTER_MARKETPLACE_LISTING,
+            filter,
+        });
+
+        return dispatch(fetchListing());
+    };
 }
 
 // installPlugin installs the latest version of the given plugin from the marketplace.
 //
 // On success, it also requests the current state of the plugins to reflect the newly installed plugin.
 export function installPlugin(id: string, version: string) {
-  return async (dispatch: DispatchFunc, getState: GetStateFunc) => {
-    dispatch({
-      type: ActionTypes.INSTALLING_MARKETPLACE_PLUGIN,
-      id,
-    })
+    return async (dispatch: DispatchFunc, getState: GetStateFunc): Promise<void> => {
+        dispatch({
+            type: ActionTypes.INSTALLING_MARKETPLACE_ITEM,
+            id,
+        });
 
-    const state = getState()
+        const state = getState() as GlobalState;
 
-    const marketplacePlugin = getPlugin(state, id)
-    if (!marketplacePlugin) {
-      dispatch({
-        type: ActionTypes.INSTALLING_MARKETPLACE_PLUGIN_FAILED,
-        id,
-        error: 'Unknown plugin: ' + id,
-      })
-      return
-    }
+        const marketplacePlugin = getPlugin(state, id);
+        if (!marketplacePlugin) {
+            dispatch({
+                type: ActionTypes.INSTALLING_MARKETPLACE_ITEM_FAILED,
+                id,
+                error: 'Unknown plugin: ' + id,
+            });
+            return;
+        }
 
-    try {
-      await Client4.installMarketplacePlugin(id, version)
-    } catch (error) {
-      dispatch({
-        type: ActionTypes.INSTALLING_MARKETPLACE_PLUGIN_FAILED,
-        id,
-        error: error.message,
-      })
-      return
-    }
+        try {
+            await Client4.installMarketplacePlugin(id, version);
+        } catch (error) {
+            dispatch({
+                type: ActionTypes.INSTALLING_MARKETPLACE_ITEM_FAILED,
+                id,
+                error: error.message,
+            });
+            return;
+        }
 
-    await dispatch(fetchPlugins())
-    dispatch({
-      type: ActionTypes.INSTALLING_MARKETPLACE_PLUGIN_SUCCEEDED,
-      id,
-    })
-  }
+        await dispatch(fetchListing());
+        dispatch({
+            type: ActionTypes.INSTALLING_MARKETPLACE_ITEM_SUCCEEDED,
+            id,
+        });
+    };
 }
 
-// filterPlugins sets a search filter for marketplace plugins, fetching the latest data.
-export function filterPlugins(filter: string): ActionFunc {
-  return async (dispatch: DispatchFunc) => {
-    dispatch({
-      type: ActionTypes.FILTER_MARKETPLACE_PLUGINS,
-      filter,
-    })
+// installApp installed an App using a given URL via the /apps install slash command.
+//
+// On success, it also requests the current state of the plugins to reflect the newly installed plugin.
+export function installApp(id: string) {
+    return async (dispatch: DispatchFunc, getState: GetStateFunc): Promise<boolean> => {
+        dispatch({
+            type: ActionTypes.INSTALLING_MARKETPLACE_ITEM,
+            id,
+        });
 
-    return dispatch(fetchPlugins())
-  }
+        const state = getState() as GlobalState;
+
+        const channelID = getCurrentChannelId(state);
+        const teamID = getCurrentTeamId(state);
+
+        const app = getApp(state, id);
+        if (!app) {
+            dispatch({
+                type: ActionTypes.INSTALLING_MARKETPLACE_ITEM_FAILED,
+                id,
+                error: 'Unknown app: ' + id,
+            });
+            return false;
+        }
+
+        const args: CommandArgs = {
+            channel_id: channelID,
+            team_id: teamID,
+        };
+
+        const result = await dispatch(executeCommand('/apps install marketplace ' + id, args));
+        if (isError(result)) {
+            dispatch({
+                type: ActionTypes.INSTALLING_MARKETPLACE_ITEM_FAILED,
+                id,
+                error: result.error.message,
+            });
+            return false;
+        }
+
+        dispatch({
+            type: ActionTypes.INSTALLING_MARKETPLACE_ITEM_SUCCEEDED,
+            id,
+        });
+        return true;
+    };
 }

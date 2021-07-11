@@ -1,144 +1,163 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { Channel } from 'hkclient-ts/lib/types/channels'
-import { MarketplacePlugin } from 'hkclient-ts/lib/types/plugins'
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+import {Channel} from 'hkclient-redux/types/channels';
+import {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
+import {Dictionary, RelationOneToOne, $ID} from 'hkclient-redux/types/utilities';
+import {Team} from 'hkclient-redux/types/teams';
+import {UserThread} from 'hkclient-redux/types/threads';
 
-import { I18nState } from './i18n'
-import { RhsViewState } from './rhs'
+import {I18nState} from './i18n';
+import {RhsViewState} from './rhs';
 
-import { DraggingState } from '.'
+import {DraggingState} from '.';
 
 export type ViewsState = {
-  admin: {
-    navigationBlock: {
-      blocked: boolean
-      onNavigationConfirmed: () => void
-      showNavigationPrompt: boolean
-    }
-  }
+    admin: {
+        navigationBlock: {
+            blocked: boolean;
+            onNavigationConfirmed: () => void;
+            showNavigationPrompt: boolean;
+        };
+    };
 
-  browser: {
-    focused: boolean
-  }
+    browser: {
+        focused: boolean;
+    };
 
-  channel: {
-    postVisibility: {
-      [channelId: string]: number
-    }
-    lastChannelViewTime: {
-      [channelId: string]: number
-    }
-    loadingPost: {
-      [channelId: string]: boolean
-    }
-    focusedPostId: string
-    mobileView: boolean
-    lastUnreadChannel: (Channel & { hadMentions: boolean }) | null // Actually only an object with {id: string, hadMentions: boolean}
-    lastGetPosts: {
-      [channelId: string]: number
-    }
-    channelPrefetchStatus: {
-      [channelId: string]: string
-    }
-  }
+    channel: {
+        postVisibility: {
+            [channelId: string]: number;
+        };
+        lastChannelViewTime: {
+            [channelId: string]: number;
+        };
+        loadingPost: {
+            [channelId: string]: boolean;
+        };
+        focusedPostId: string;
+        mobileView: boolean;
+        lastUnreadChannel: (Channel & {hadMentions: boolean}) | null; // Actually only an object with {id: string, hadMentions: boolean}
+        lastGetPosts: {
+            [channelId: string]: number;
+        };
+        channelPrefetchStatus: {
+            [channelId: string]: string;
+        };
+    };
 
-  rhs: RhsViewState
+    rhs: RhsViewState;
 
-  posts: {
-    editingPost: {
-      show: boolean
-    }
-    menuActions: {
-      [postId: string]: {
-        [actionId: string]: {
-          text: string
-          value: string
-        }
-      }
-    }
-  }
+    rhsSuppressed: boolean;
 
-  modals: {
-    [modalId: string]: {
-      open: boolean
-      dialogProps: Dictionary<any>
-      dialogType: React.Component
-    }
-  }
+    posts: {
+        editingPost: {
+            show: boolean;
+        };
+        menuActions: {
+            [postId: string]: {
+                [actionId: string]: {
+                    text: string;
+                    value: string;
+                };
+            };
+        };
+    };
 
-  emoji: {
-    emojiPickerCustomPage: 0
-  }
+    modals: {
+        [modalId: string]: {
+            open: boolean;
+            dialogProps: Dictionary<any>;
+            dialogType: React.Component;
+        };
+    };
 
-  i18n: I18nState
+    emoji: {
+        emojiPickerCustomPage: 0;
+    };
 
-  lhs: {
-    isOpen: boolean
-  }
+    i18n: I18nState;
 
-  search: {
-    modalSearch: string
-    modalFilters: {
-      roles?: string[]
-      channel_roles?: string[]
-      team_roles?: string[]
-    }
-    systemUsersSearch: {
-      term: string
-      team: string
-      filter: string
-    }
-    userGridSearch: {
-      term: string
-      filters: {
-        roles?: string[]
-        channel_roles?: string[]
-        team_roles?: string[]
-      }
-    }
-  }
+    lhs: {
+        isOpen: boolean;
+    };
 
-  notice: {
-    hasBeenDismissed: {
-      [message: string]: boolean
-    }
-  }
+    search: {
+        modalSearch: string;
+        modalFilters: {
+            roles?: string[];
+            channel_roles?: string[];
+            team_roles?: string[];
+        };
+        systemUsersSearch: {
+            term: string;
+            team: string;
+            filter: string;
+        };
+        userGridSearch: {
+            term: string;
+            filters: {
+                roles?: string[];
+                channel_roles?: string[];
+                team_roles?: string[];
+            };
+        };
+        teamListSearch: string;
+        channelListSearch: {
+            term: string;
+            filters: {
+                public?: boolean;
+                private?: boolean;
+                deleted?: boolean;
+                team_ids?: string[];
+            };
+        };
+    };
 
-  system: {
-    websocketConnectErrorCount: number
-  }
+    notice: {
+        hasBeenDismissed: {
+            [message: string]: boolean;
+        };
+    };
 
-  channelSelectorModal: {
-    channels: Channel[]
-  }
+    system: {
+        websocketConnectErrorCount: number;
+    };
 
-  settings: {
-    activeSection: string
-    previousActiveSection: string
-  }
+    channelSelectorModal: {
+        channels: Channel[];
+    };
 
-  marketplace: {
-    plugins: MarketplacePlugin[]
-    installing: { [pluginId: string]: boolean }
-    errors: { [pluginId: string]: string }
-    filter: string
-  }
+    settings: {
+        activeSection: string;
+        previousActiveSection: string;
+    };
 
-  channelSidebar: {
-    unreadFilterEnabled: boolean
-    draggingState: DraggingState
-    newCategoryIds: string[]
-    multiSelectedChannelIds: string[]
-    lastSelectedChannel: string
-  }
+    marketplace: {
+        plugins: MarketplacePlugin[];
+        apps: MarketplaceApp[];
+        installing: {[id: string]: boolean};
+        errors: {[id: string]: string};
+        filter: string;
+    };
 
-  nextSteps: {
-    show: boolean
-  }
+    channelSidebar: {
+        unreadFilterEnabled: boolean;
+        draggingState: DraggingState;
+        newCategoryIds: string[];
+        multiSelectedChannelIds: string[];
+        lastSelectedChannel: string;
+    };
 
-  statusDropdown: {
-    isOpen: boolean
-  }
-}
+    nextSteps: {
+        show: boolean;
+    };
+    statusDropdown: {
+        isOpen: boolean;
+    };
+    threads: {
+        selectedThreadIdInTeam: RelationOneToOne<Team, $ID<UserThread> | null>;
+        lastViewedAt: {[id: string]: number};
+        manuallyUnread: {[id: string]: boolean};
+    };
+};

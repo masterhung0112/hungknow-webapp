@@ -4,7 +4,7 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
 
-import { General, Posts } from 'hkclient-ts/lib/constants'
+import { General, Posts } from 'hkclient-redux/constants'
 
 import * as Utils from 'utils/utils.jsx'
 

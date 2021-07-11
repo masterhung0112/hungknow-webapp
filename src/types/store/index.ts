@@ -1,22 +1,24 @@
-import { GlobalState as BaseGlobalState } from 'hkclient-ts/lib/types/store'
-import { Dictionary } from 'hkclient-ts/lib/types/utilities'
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
 
-import { PluginsState } from './plugins'
-import { ViewsState } from './views'
+import {GlobalState as BaseGlobalState} from 'hkclient-redux/types/store';
+import {Dictionary} from 'hkclient-redux/types/utilities';
+
+import {PluginsState} from './plugins';
+import {ViewsState} from './views';
 
 export type DraggingState = {
-  state?: string
-  type?: string
-  id?: string
+    state?: string;
+    type?: string;
+    id?: string;
 }
 
-export interface GlobalState extends BaseGlobalState {
-  plugins: PluginsState
-  storage: {
-    storage: Dictionary<any>
-    initialized: boolean
-  }
-  views: ViewsState
-}
+export type GlobalState = BaseGlobalState & {
+    plugins: PluginsState;
+    storage: {
+        storage: Dictionary<any>;
+        initialized: boolean;
+    };
 
-export type GetStateFunc = () => GlobalState
+    views: ViewsState;
+};

@@ -1,20 +1,20 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import { connect } from 'react-redux'
+import {connect} from 'react-redux';
 
-import { getConfig } from 'hkclient-ts/lib/selectors/entities/general'
+import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import PremadeThemeChooser from './premade_theme_chooser.jsx'
+import PremadeThemeChooser from './premade_theme_chooser.jsx';
 
 function mapStateToProps(state) {
-  const config = getConfig(state)
+    const config = getConfig(state);
 
-  const allowedThemes = (config.AllowedThemes && config.AllowedThemes.split(',')) || []
+    const allowedThemes = (config.AllowedThemes && config.AllowedThemes.split(',')) || [];
 
-  return {
-    allowedThemes,
-  }
+    return {
+        allowedThemes,
+    };
 }
 
-export default connect(mapStateToProps)(PremadeThemeChooser)
+export default connect(mapStateToProps)(PremadeThemeChooser);
