@@ -130,7 +130,7 @@ if (DEV) {
 }
 
 var config = {
-    entry: ['./root.jsx', 'root.html'],
+    entry: ['./root.jsx', './root.html'],
     output: {
         publicPath,
         filename: '[name].[contenthash].js',
@@ -174,7 +174,7 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: ['node_modules/compass-mixins/lib', 'sass'],
+                                includePaths: ['node_modules/compass-mixins/lib', 'src/sass'],
                             },
                         },
                     },
@@ -231,6 +231,7 @@ var config = {
     resolve: {
         modules: [
             'node_modules',
+            path.resolve(__dirname, 'src'),
             path.resolve(__dirname),
         ],
         alias: {

@@ -5,7 +5,7 @@ import React from 'react';
 
 import {getEmojiMap, getRecentEmojis} from 'selectors/emojis';
 
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 
 import * as Emoticons from 'utils/emoticons';
 import {compareEmojis} from 'utils/emoji_utils';

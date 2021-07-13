@@ -24,7 +24,7 @@ import zhCN from './zh-CN.json';
 
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
 
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 
 // should match the values in model/config.go
 const languages = {

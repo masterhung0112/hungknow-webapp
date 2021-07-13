@@ -64,6 +64,11 @@ export function batchActions(actions: Action[], type = BATCH) {
     return {type, meta: {batch: true}, payload: actions};
 }
 
+export type Reducer<S = any, A extends Action = Action> = (
+    state: S | undefined,
+    action: A
+) => S
+
 export interface ExtActionCreator<A = ActionFunc> {
     (...args: any[]): A;
 }

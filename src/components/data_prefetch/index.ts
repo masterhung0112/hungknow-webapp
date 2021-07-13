@@ -24,7 +24,7 @@ import {PostList} from 'hkclient-redux/types/posts';
 import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 import {RelationOneToOne} from 'hkclient-redux/types/utilities';
 
-import {isCollapsedThreadsEnabled} from '../../packages/hkclient-redux/src/selectors/entities/preferences';
+import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
 
 import DataPrefetch from './data_prefetch';
 

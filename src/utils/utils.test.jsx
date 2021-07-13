@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 
 import Constants, {ValidationErrors} from 'utils/constants';
 import * as Utils from 'utils/utils.jsx';

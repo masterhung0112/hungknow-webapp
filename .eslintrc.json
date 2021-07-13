@@ -66,7 +66,8 @@
     "react/style-prop-object": [2, {
       "allow": ["Timestamp"]
     }],
-    "header/header": "off"
+    "header/header": "off",
+    "linebreak-style": "off"
   },
   "overrides": [
     {

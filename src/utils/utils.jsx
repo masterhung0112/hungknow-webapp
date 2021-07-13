@@ -31,7 +31,7 @@ import hello from 'sounds/hello.mp3';
 import ripple from 'sounds/ripple.mp3';
 import upstairs from 'sounds/upstairs.mp3';
 import {t} from 'utils/i18n';
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 
 import {getCurrentLocale, getTranslations} from 'selectors/i18n';
 
