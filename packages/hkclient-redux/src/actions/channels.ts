@@ -9,8 +9,8 @@ import {ChannelTypes, PreferenceTypes, UserTypes} from 'hkclient-redux/action_ty
 import {Client4} from 'hkclient-redux/client';
 
 import {General, Preferences} from '../constants';
-import {CategoryTypes} from 'mattermost-redux/constants/channel_categories';
-import {MarkUnread} from 'mattermost-redux/constants/channels';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {MarkUnread} from 'hkclient-redux/constants/channels';
 import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {
     getChannel as getChannelSelector,

@@ -8,6 +8,19 @@
 
 The web that make use of next.js and full of my knowledge related to web technology.
 
+# Start
+
+On hk_server code base, run the following commands.
+```
+yarn task start_docker
+yarn task start_server
+```
+
+On webapp, run the following commands
+```
+yarn dev-server
+```
+
 # CI
 
 CI was tested on the following platform:

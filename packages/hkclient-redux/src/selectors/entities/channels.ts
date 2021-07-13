@@ -6,7 +6,7 @@
 import {createSelector} from 'reselect';
 
 import {General, Permissions, Preferences} from 'hkclient-redux/constants';
-import {CategoryTypes} from 'mattermost-redux/constants/channel_categories';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
 import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {

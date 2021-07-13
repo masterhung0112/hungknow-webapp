@@ -7,7 +7,7 @@ import {uniq} from 'lodash';
 import {ThreadTypes, PostTypes, UserTypes} from 'hkclient-redux/action_types';
 import {Client4} from 'hkclient-redux/client';
 
-import ThreadConstants from 'mattermost-redux/constants/threads';
+import ThreadConstants from 'hkclient-redux/constants/threads';
 import {DispatchFunc, GetStateFunc, batchActions} from 'hkclient-redux/types/actions';
 
 import type {UserThread, UserThreadList} from 'hkclient-redux/types/threads';

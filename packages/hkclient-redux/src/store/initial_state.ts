@@ -40,7 +40,6 @@ const state: Partial<GlobalState> = {
             stats: {},
             groupsAssociatedToTeam: {},
             totalCount: 0,
-            teamsInPolicy: {},
         },
         channels: {
             currentChannelId: '',
@@ -49,12 +48,12 @@ const state: Partial<GlobalState> = {
             myMembers: {},
             membersInChannel: {},
             stats: {},
+            roles: {},
             groupsAssociatedToChannel: {},
             totalCount: 0,
             manuallyUnread: {},
             channelModerations: {},
             channelMemberCountsByGroup: {},
-            channelsInPolicy: {},
         },
         posts: {
             expandedURLs: {},
@@ -99,6 +98,7 @@ const state: Partial<GlobalState> = {
             analytics: {},
             dataRetentionCustomPolicies: {},
             dataRetentionCustomPoliciesCount: 0,
+            prevTrialLicense: {},
         },
         jobs: {
             jobs: {},
@@ -110,6 +110,8 @@ const state: Partial<GlobalState> = {
             oauthApps: {},
             systemCommands: {},
             commands: {},
+            appsBotIDs: [],
+            appsOAuthAppIDs: [],
         },
         files: {
             files: {},
