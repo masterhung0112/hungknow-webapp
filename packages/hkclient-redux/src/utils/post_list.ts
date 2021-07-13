@@ -2,9 +2,8 @@
 // See LICENSE.txt for license information.
 import moment from 'moment-timezone';
 
-import * as types from 'hkclient-redux/types';
-
 import * as reselect from 'reselect';
+
 import {Posts, Preferences} from '../constants';
 import {makeGetPostsForIds} from 'hkclient-redux/selectors/entities/posts';
 import {getBool} from 'hkclient-redux/selectors/entities/preferences';
@@ -13,6 +12,7 @@ import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
 import {createIdsSelector, memoizeResult} from 'hkclient-redux/utils/helpers';
 import {isUserActivityPost, shouldFilterJoinLeavePost, isFromWebhook} from 'hkclient-redux/utils/post_utils';
 import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';
+import * as types from 'hkclient-redux/types';
 export const COMBINED_USER_ACTIVITY = 'user-activity-';
 export const DATE_LINE = 'date-';
 export const START_OF_NEW_MESSAGES = 'start-of-new-messages';

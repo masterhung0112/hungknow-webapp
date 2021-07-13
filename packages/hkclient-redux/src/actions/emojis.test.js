@@ -16,7 +16,7 @@ import configureStore from 'hkclient-redux/test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 
-describe('hkclient-redux/actions.Emojis', () => {
+describe('Actions.Emojis', () => {
     let store;
     beforeAll(() => {
         TestHelper.initBasic(Client4);
