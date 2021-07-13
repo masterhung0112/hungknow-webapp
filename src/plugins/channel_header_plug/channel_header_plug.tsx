@@ -8,10 +8,10 @@ import {Dropdown, Tooltip} from 'react-bootstrap';
 import {RootCloseWrapper} from 'react-overlays';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
-import {Channel, ChannelMembership} from 'mattermost-redux/types/channels';
-import {Theme} from 'mattermost-redux/types/preferences';
-import {AppBinding} from 'mattermost-redux/types/apps';
-import {AppCallResponseTypes, AppCallTypes} from 'mattermost-redux/constants/apps';
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
+import {Theme} from 'hkclient-redux/types/preferences';
+import {AppBinding} from 'hkclient-redux/types/apps';
+import {AppCallResponseTypes, AppCallTypes} from 'hkclient-redux/constants/apps';
 
 import {DoAppCall, PostEphemeralCallResponseForChannel} from 'types/apps';
 

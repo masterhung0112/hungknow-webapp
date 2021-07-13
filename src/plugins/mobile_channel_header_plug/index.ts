@@ -4,14 +4,14 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
-import {getMyCurrentChannelMembership} from 'mattermost-redux/selectors/entities/channels';
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {getMyCurrentChannelMembership} from 'hkclient-redux/selectors/entities/channels';
 
-import {appsEnabled, makeAppBindingsSelector} from 'mattermost-redux/selectors/entities/apps';
-import {AppBindingLocations} from 'mattermost-redux/constants/apps';
+import {appsEnabled, makeAppBindingsSelector} from 'hkclient-redux/selectors/entities/apps';
+import {AppBindingLocations} from 'hkclient-redux/constants/apps';
 import {GlobalState} from 'types/store';
-import {AppCallRequest, AppCallType} from 'mattermost-redux/types/apps';
-import {ActionFunc, ActionResult, GenericAction} from 'mattermost-redux/types/actions';
+import {AppCallRequest, AppCallType} from 'hkclient-redux/types/apps';
+import {ActionFunc, ActionResult, GenericAction} from 'hkclient-redux/types/actions';
 import {doAppCall} from 'actions/apps';
 
 import MobileChannelHeaderPlug from './mobile_channel_header_plug';

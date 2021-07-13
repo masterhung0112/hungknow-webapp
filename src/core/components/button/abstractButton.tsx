@@ -85,7 +85,7 @@ IButtonState
 
     protected abstract buttonRef: HTMLElement | IRefObject<HTMLElement> | null
 
-    private currentKeyDown: number = null
+    private currentKeyDown: number | null = null
 
     protected getCommonButtonProps() {
         const {alignText, fill, large, loading, outlined, minimal, small, tabIndex} = this.props;
@@ -103,7 +103,7 @@ IButtonState
                 [CssClasses.OUTLINED]: outlined,
                 [CssClasses.SMALL]: small,
             },
-            CssClasses.alignmentClass(alignText),
+            alignText && CssClasses.alignmentClass(alignText),
             CssClasses.intentClass(this.props.intent),
             this.props.className,
         );
@@ -138,7 +138,7 @@ IButtonState
     // HACKHACK: https://github.com/palantir/blueprint/issues/4165
         if (Keys.isKeyboardClick(e.which)) {
             this.setState({isActive: false});
-            getRef(this.buttonRef).click();
+            getRef(this.buttonRef)?.click();
         }
         this.currentKeyDown = null;
         this.props.onKeyUp?.(e);
@@ -147,11 +147,12 @@ IButtonState
     protected renderChildren(): React.ReactNode {
         const {children, icon, loading, rightIcon, text} = this.props;
         return [
-            loading && <Spinner
-                key='loading'
-                className={CssClasses.BUTTON_SPINNER}
-                size={Icon.SIZE_LARGE}
-            />,
+            loading &&
+                <Spinner
+                    key='loading'
+                    className={CssClasses.BUTTON_SPINNER}
+                    size={Icon.SIZE_LARGE}
+                />,
             <Icon
                 key='leftIcon'
                 icon={icon}

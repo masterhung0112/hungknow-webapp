@@ -6,11 +6,11 @@ import React from 'react';
 import {injectIntl, IntlShape} from 'react-intl';
 
 import {sendEphemeralPost} from 'actions/global_actions';
-import {AppCallResponseTypes, AppCallTypes} from 'mattermost-redux/constants/apps';
-import {ActionResult} from 'mattermost-redux/types/actions';
-import {AppBinding, AppCallRequest, AppCallResponse, AppCallType} from 'mattermost-redux/types/apps';
-import {Channel, ChannelMembership} from 'mattermost-redux/types/channels';
-import {Theme} from 'mattermost-redux/types/preferences';
+import {AppCallResponseTypes, AppCallTypes} from 'hkclient-redux/constants/apps';
+import {ActionResult} from 'hkclient-redux/types/actions';
+import {AppBinding, AppCallRequest, AppCallResponse, AppCallType} from 'hkclient-redux/types/apps';
+import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
+import {Theme} from 'hkclient-redux/types/preferences';
 
 import {PluginComponent} from 'types/store/plugins';
 import {createCallContext, createCallRequest} from 'utils/apps';

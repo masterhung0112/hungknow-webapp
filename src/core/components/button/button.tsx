@@ -5,7 +5,7 @@ import {removeNonHTMLProps, IRefObject, isRefObject, IRefCallback} from 'common'
 import {AbstractButton} from './abstractButton';
 
 export class Button extends AbstractButton<React.ButtonHTMLAttributes<HTMLButtonElement>> {
-    protected buttonRef: HTMLButtonElement | IRefObject<HTMLButtonElement> | null
+    protected buttonRef: HTMLButtonElement | IRefObject<HTMLButtonElement> | null = null
     protected handleRef = isRefObject<HTMLButtonElement>(this.props.elementRef) ?
         (this.buttonRef = this.props.elementRef) :
         (ref: HTMLButtonElement | null) => {
@@ -14,7 +14,7 @@ export class Button extends AbstractButton<React.ButtonHTMLAttributes<HTMLButton
         }
 
     public render() {
-        const commonProps = this.getCommonButtonProps();
+        // const commonProps = this.getCommonButtonProps();
 
         return (
             <button

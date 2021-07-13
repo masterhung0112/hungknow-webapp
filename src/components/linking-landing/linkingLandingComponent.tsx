@@ -56,16 +56,18 @@ LinkingLandingComponentState
         const isMobile = UserAgent.isMobile();
 
         if (isMobile) {
-            return (<FormattedMessage
-                id='get_app.systemDialogMessageMobile'
-                defaultMessage='View in App'
-            />);
+            return (
+                <FormattedMessage
+                    id='get_app.systemDialogMessageMobile'
+                    defaultMessage='View in App'
+                />);
         }
 
-        return (<FormattedMessage
-            id='get_app.systemDialogMessage'
-            defaultMessage='View in Desktop App'
-        />);
+        return (
+            <FormattedMessage
+                id='get_app.systemDialogMessage'
+                defaultMessage='View in Desktop App'
+            />);
     }
 
     renderGoNativeAppMessage = () => {
@@ -120,9 +122,9 @@ LinkingLandingComponentState
     render() {
         const isMobile = UserAgent.isMobile();
 
-        const graphicClassName = classNames(styles['hk-graphic'], {
-            [styles['hk-mobile']]: isMobile,
-        });
+        // const graphicClassName = classNames(styles['hk-graphic'], {
+        //     [styles['hk-mobile']]: isMobile,
+        // });
 
         return (
             <div className={styles['hk-linking-landing']}>

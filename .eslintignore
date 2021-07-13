@@ -20,3 +20,6 @@ node_modules/
 
 # design
 /design/
+
+TradingChart/
+src/core/

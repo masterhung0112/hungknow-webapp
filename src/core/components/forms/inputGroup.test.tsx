@@ -81,7 +81,7 @@ describe('<InputGroup>', () => {
             leftIcon='star'
             data-testid='input-test'/>);
         expect(renderResult.container.querySelector('[data-icon="star"]')).toBeInTheDocument();
-        expect(renderResult.container.querySelector('input').classList.contains(CssClasses.INPUT)).toEqual(true);
+        expect(renderResult.container.querySelector('input')!!.classList.contains(CssClasses.INPUT)).toEqual(true);
     });
 
     it(`renders right element inside .${CssClasses.INPUT_ACTION} after input`, () => {
@@ -89,8 +89,9 @@ describe('<InputGroup>', () => {
             rightElement={<address/>}
             data-testid='input-test'/>);
         const action = renderResult.container.querySelector('span');
+        expect(action).not.toBeNull()
         expect(action).toBeInTheDocument();
-        expect(action.classList.contains(CssClasses.INPUT_ACTION)).toEqual(true);
-        expect(action.querySelectorAll('address')).toHaveLength(1);
+        expect(action!!.classList.contains(CssClasses.INPUT_ACTION)).toEqual(true);
+        expect(action!!.querySelectorAll('address')).toHaveLength(1);
     });
 });

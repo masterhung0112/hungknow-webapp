@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 /* eslint-disable react/no-string-refs */
@@ -863,8 +864,8 @@ export default class UserSettingsDisplay extends React.PureComponent<Props, Stat
                     <ThemeSetting
                         selected={this.props.activeSection === 'theme'}
                         updateSection={this.updateSection}
-                        setRequireConfirm={this.props.setRequireConfirm}
-                        setEnforceFocus={this.props.setEnforceFocus}
+                        setRequireConfirm={this.props.setRequireConfirm || (() => {})}
+                        setEnforceFocus={this.props.setEnforceFocus || (() => {})}
                         allowCustomThemes={this.props.allowCustomThemes}
                     />
                     <div className='divider-dark'/>

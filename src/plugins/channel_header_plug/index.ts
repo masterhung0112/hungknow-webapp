@@ -4,10 +4,10 @@
 import {connect} from 'react-redux';
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 
-import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
-import {appsEnabled, makeAppBindingsSelector} from 'mattermost-redux/selectors/entities/apps';
-import {AppBindingLocations} from 'mattermost-redux/constants/apps';
-import {ActionFunc, GenericAction} from 'mattermost-redux/types/actions';
+import {getTheme} from 'hkclient-redux/selectors/entities/preferences';
+import {appsEnabled, makeAppBindingsSelector} from 'hkclient-redux/selectors/entities/apps';
+import {AppBindingLocations} from 'hkclient-redux/constants/apps';
+import {ActionFunc, GenericAction} from 'hkclient-redux/types/actions';
 
 import {DoAppCall, PostEphemeralCallResponseForChannel} from 'types/apps';
 

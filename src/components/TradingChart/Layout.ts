@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 // Calculates all necessary items to build the chart
 // Heights, widths, transforms, ... = everything
 // Why such a mess you ask? Well, that's because
@@ -12,10 +13,11 @@ import log_scale from './logScale';
 
 // Generate all the necessary grids from the layout params
 export class generateLayout {
-    grids: Layout[]
-    botbar: any
+    grids: Layout[] = []
+    botbar: any = {}
 
     constructor(params: LayoutParams) {
+        // eslint-disable-next-line prefer-const
         let {chart, sub, offsub, interval, range, ctx, layers_meta, ti_map, $props: $p, y_transforms: y_ts} = params;
 
         const mgrid = chart.grid || {};

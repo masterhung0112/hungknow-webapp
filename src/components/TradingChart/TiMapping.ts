@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 // Time-index mapping (for non-linear t-axis)
 
 import Utils from './utils';
@@ -19,9 +20,9 @@ const MAX_ARR = Math.pow(2, 32);
 
 export default class TI {
     ib: boolean
-    ti_map: any[]
-    it_map: any[]
-    sub_i: any[]
+    ti_map: any[] = []
+    it_map: any[] = []
+    sub_i: any[] = []
     sub: any
     ss: any
     tf: any
@@ -31,7 +32,7 @@ export default class TI {
     }
 
     init(params: any, res: any) {
-        const {sub, interval, meta, $props: $p, interval_ms, sub_start, ib} = params;
+        const {interval_ms, sub_start, ib} = params;
 
         this.ti_map = [];
         this.it_map = [];

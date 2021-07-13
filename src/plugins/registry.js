@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import reducerRegistry from 'mattermost-redux/store/reducer_registry';
+import reducerRegistry from 'hkclient-redux/store/reducer_registry';
 
 import {
     registerPluginWebSocketEvent,

@@ -2250,3 +2250,5 @@ export function deleteKeysFromObject(value, keys) {
     }
     return value;
 }
+
+export const isServer = () => window !== undefined;
