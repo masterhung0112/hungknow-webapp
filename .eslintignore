@@ -17,9 +17,11 @@ node_modules/
 # misc
 /.git
 *.scss.d.ts
+dist/
 
 # design
 /design/
 
-TradingChart/
+src/comonents/TradingChart/
 src/core/
+src/pages/
