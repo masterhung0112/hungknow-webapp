@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import PluginState from 'hkclient-redux/constants/plugins';
+import PluginState from 'constants/plugins';
 
 import assert from 'assert';
 
-import reducer, {convertAnalyticsRowsToStats} from 'hkclient-redux/reducers/entities/admin';
+import reducer, {convertAnalyticsRowsToStats} from 'reducers/entities/admin';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import {AdminTypes, UserTypes} from 'hkclient-redux/action_types';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
+import {AdminTypes, UserTypes} from 'action_types';
 
 describe('hkclient-redux/reducers.entities.admin', () => {
     describe('pluginStatuses', () => {

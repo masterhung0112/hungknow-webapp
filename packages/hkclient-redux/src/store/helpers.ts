@@ -1,6 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Action} from 'hkclient-redux/types/actions';
+import {Action} from 'types/actions';
 
 export const offlineConfig = {
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

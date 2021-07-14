@@ -1,15 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {SystemSetting} from 'hkclient-redux/types/general';
+import {SystemSetting} from 'types/general';
 import {General} from '../constants';
 
-import {ClusterInfo, AnalyticsRow} from 'hkclient-redux/types/admin';
-import type {AppCallRequest, AppCallResponse, AppCallType} from 'hkclient-redux/types/apps';
-import {Audit} from 'hkclient-redux/types/audits';
-import {UserAutocomplete, AutocompleteSuggestion} from 'hkclient-redux/types/autocomplete';
-import {Bot, BotPatch} from 'hkclient-redux/types/bots';
-import {Product, Subscription, CloudCustomer, Address, CloudCustomerPatch, Invoice, SubscriptionStats} from 'hkclient-redux/types/cloud';
-import {ChannelCategory, OrderedChannelCategories} from 'hkclient-redux/types/channel_categories';
+import {ClusterInfo, AnalyticsRow} from 'types/admin';
+import type {AppCallRequest, AppCallResponse, AppCallType} from 'types/apps';
+import {Audit} from 'types/audits';
+import {UserAutocomplete, AutocompleteSuggestion} from 'types/autocomplete';
+import {Bot, BotPatch} from 'types/bots';
+import {Product, Subscription, CloudCustomer, Address, CloudCustomerPatch, Invoice, SubscriptionStats} from 'types/cloud';
+import {ChannelCategory, OrderedChannelCategories} from 'types/channel_categories';
 import {
     Channel,
     ChannelMemberCountsByGroup,
@@ -22,9 +22,9 @@ import {
     ChannelViewResponse,
     ChannelWithTeamData,
     ChannelSearchOpts,
-} from 'hkclient-redux/types/channels';
-import {Options, StatusOK, ClientResponse} from 'hkclient-redux/types/client4';
-import {Compliance} from 'hkclient-redux/types/compliance';
+} from 'types/channels';
+import {Options, StatusOK, ClientResponse} from 'types/client4';
+import {Compliance} from 'types/compliance';
 import {
     ClientConfig,
     ClientLicense,
@@ -32,10 +32,10 @@ import {
     License,
     AdminConfig,
     EnvironmentConfig,
-} from 'hkclient-redux/types/config';
-import {CustomEmoji} from 'hkclient-redux/types/emojis';
-import {ServerError} from 'hkclient-redux/types/errors';
-import {FileInfo, FileUploadResponse, FileSearchResults} from 'hkclient-redux/types/files';
+} from 'types/config';
+import {CustomEmoji} from 'types/emojis';
+import {ServerError} from 'types/errors';
+import {FileInfo, FileUploadResponse, FileSearchResults} from 'types/files';
 import {
     Group,
     GroupPatch,
@@ -44,8 +44,8 @@ import {
     SyncablePatch,
     UsersWithGroupsAndCount,
     GroupsWithCount,
-} from 'hkclient-redux/types/groups';
-import {PostActionResponse} from 'hkclient-redux/types/integration_actions';
+} from 'types/groups';
+import {PostActionResponse} from 'types/integration_actions';
 import {
     Command,
     CommandArgs,
@@ -55,26 +55,26 @@ import {
     OAuthApp,
     OutgoingWebhook,
     SubmitDialogResponse,
-} from 'hkclient-redux/types/integrations';
-import {Job} from 'hkclient-redux/types/jobs';
-import {MfaSecret} from 'hkclient-redux/types/mfa';
+} from 'types/integrations';
+import {Job} from 'types/jobs';
+import {MfaSecret} from 'types/mfa';
 import {
     ClientPluginManifest,
     PluginManifest,
     PluginsResponse,
     PluginStatus,
-} from 'hkclient-redux/types/plugins';
+} from 'types/plugins';
 import type {
     MarketplaceApp,
     MarketplacePlugin,
-} from 'hkclient-redux/types/marketplace';
-import {Post, PostList, PostSearchResults, OpenGraphMetadata} from 'hkclient-redux/types/posts';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {Reaction} from 'hkclient-redux/types/reactions';
-import {Role} from 'hkclient-redux/types/roles';
-import {SamlCertificateStatus, SamlMetadataResponse} from 'hkclient-redux/types/saml';
-import {Scheme} from 'hkclient-redux/types/schemes';
-import {Session} from 'hkclient-redux/types/sessions';
+} from 'types/marketplace';
+import {Post, PostList, PostSearchResults, OpenGraphMetadata} from 'types/posts';
+import {PreferenceType} from 'types/preferences';
+import {Reaction} from 'types/reactions';
+import {Role} from 'types/roles';
+import {SamlCertificateStatus, SamlMetadataResponse} from 'types/saml';
+import {Scheme} from 'types/schemes';
+import {Session} from 'types/sessions';
 import {
     GetTeamMembersOpts,
     Team,
@@ -85,8 +85,8 @@ import {
     TeamsWithCount,
     TeamUnread,
     TeamSearchOpts,
-} from 'hkclient-redux/types/teams';
-import {TermsOfService} from 'hkclient-redux/types/terms_of_service';
+} from 'types/teams';
+import {TermsOfService} from 'types/terms_of_service';
 import {
     AuthChangeResponse,
     UserAccessToken,
@@ -95,20 +95,20 @@ import {
     UserStatus,
     GetFilteredUsersStatsOpts,
     UserCustomStatus,
-} from 'hkclient-redux/types/users';
-import {$ID, RelationOneToOne} from 'hkclient-redux/types/utilities';
-import {ProductNotices} from 'hkclient-redux/types/product_notices';
+} from 'types/users';
+import {$ID, RelationOneToOne} from 'types/utilities';
+import {ProductNotices} from 'types/product_notices';
 import {
     DataRetentionCustomPolicies,
     CreateDataRetentionCustomPolicy,
     PatchDataRetentionCustomPolicy,
     GetDataRetentionCustomPoliciesRequest,
-} from 'hkclient-redux/types/data_retention';
+} from 'types/data_retention';
 
-import {buildQueryString, isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
-import {cleanUrlForLogging} from 'hkclient-redux/utils/sentry';
-import {isSystemAdmin} from 'hkclient-redux/utils/user_utils';
-import {UserThreadList, UserThread, UserThreadWithPost} from 'hkclient-redux/types/threads';
+import {buildQueryString, isMinimumServerVersion} from 'utils/helpers';
+import {cleanUrlForLogging} from 'utils/sentry';
+import {isSystemAdmin} from 'utils/user_utils';
+import {UserThreadList, UserThread, UserThreadWithPost} from 'types/threads';
 
 import fetch from './fetch_etag';
 import {TelemetryHandler} from './telemetry';

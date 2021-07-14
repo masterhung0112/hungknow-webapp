@@ -12,9 +12,9 @@ import {
     getUsers,
     getMembersInTeam,
     getMembersInChannel,
-} from 'hkclient-redux/selectors/entities/common';
-import {getConfig, getLicense} from 'hkclient-redux/selectors/entities/general';
-import {getDirectShowPreferences, getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
+} from 'selectors/entities/common';
+import {getConfig, getLicense} from 'selectors/entities/general';
+import {getDirectShowPreferences, getTeammateNameDisplaySetting} from 'selectors/entities/preferences';
 
 import {
     displayUsername,
@@ -25,14 +25,14 @@ import {
     profileListToMap,
     sortByUsername,
     applyRolesFilters,
-} from 'hkclient-redux/utils/user_utils';
+} from 'utils/user_utils';
 
-import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
-import {Reaction} from 'hkclient-redux/types/reactions';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Team, TeamMembership} from 'hkclient-redux/types/teams';
-import {Group} from 'hkclient-redux/types/groups';
-import {UserProfile} from 'hkclient-redux/types/users';
+import {Channel, ChannelMembership} from 'types/channels';
+import {Reaction} from 'types/reactions';
+import {GlobalState} from 'types/store';
+import {Team, TeamMembership} from 'types/teams';
+import {Group} from 'types/groups';
+import {UserProfile} from 'types/users';
 import {
     $Email,
     $ID,
@@ -43,7 +43,7 @@ import {
     RelationOneToMany,
     RelationOneToOne,
     UsernameMappedObjects,
-} from 'hkclient-redux/types/utilities';
+} from 'types/utilities';
 
 export {getCurrentUser, getCurrentUserId, getUsers};
 

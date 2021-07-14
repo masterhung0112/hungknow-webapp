@@ -3,14 +3,14 @@
 
 import {combineReducers} from 'redux';
 
-import {ChannelCategoryTypes, TeamTypes, UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
+import {ChannelCategoryTypes, TeamTypes, UserTypes, ChannelTypes} from 'action_types';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {ChannelCategory} from 'hkclient-redux/types/channel_categories';
-import {Team} from 'hkclient-redux/types/teams';
-import {$ID, IDMappedObjects, RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {GenericAction} from 'types/actions';
+import {ChannelCategory} from 'types/channel_categories';
+import {Team} from 'types/teams';
+import {$ID, IDMappedObjects, RelationOneToOne} from 'types/utilities';
 
-import {removeItem} from 'hkclient-redux/utils/array_utils';
+import {removeItem} from 'utils/array_utils';
 
 export function byId(state: IDMappedObjects<ChannelCategory> = {}, action: GenericAction) {
     switch (action.type) {

@@ -3,10 +3,10 @@
 
 import assert from 'assert';
 
-import {customEmoji as customEmojiReducer} from 'hkclient-redux/reducers/entities/emojis';
+import {customEmoji as customEmojiReducer} from 'reducers/entities/emojis';
 
-import {PostTypes} from 'hkclient-redux/action_types';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+import {PostTypes} from 'action_types';
+import deepFreeze from 'utils/deep_freeze';
 
 describe('hkclient-redux/reducers/entities/emojis', () => {
     describe('customEmoji', () => {

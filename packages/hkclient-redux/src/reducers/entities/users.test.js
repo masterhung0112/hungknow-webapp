@@ -3,9 +3,9 @@
 
 import assert from 'assert';
 
-import reducer from 'hkclient-redux/reducers/entities/users';
+import reducer from 'reducers/entities/users';
 
-import {UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
+import {UserTypes, ChannelTypes} from 'action_types';
 
 describe('hkclient-redux/reducers.users', () => {
     describe('profilesInChannel', () => {

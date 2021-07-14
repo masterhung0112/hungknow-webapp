@@ -6,17 +6,17 @@ import fs from 'fs';
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'hkclient-redux/actions/posts';
-import {getChannelStats} from 'hkclient-redux/actions/channels';
-import {login} from 'hkclient-redux/actions/users';
-import {setSystemEmojis, createCustomEmoji} from 'hkclient-redux/actions/emojis';
+import * as Actions from 'actions/posts';
+import {getChannelStats} from 'actions/channels';
+import {login} from 'actions/users';
+import {setSystemEmojis, createCustomEmoji} from 'actions/emojis';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 import {Preferences, Posts, RequestStatus} from '../constants';
-import {PostTypes} from 'hkclient-redux/action_types';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+import {PostTypes} from 'action_types';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
+import {getPreferenceKey} from 'utils/preference_utils';
 
 const OK_RESPONSE = {status: 'OK'};
 

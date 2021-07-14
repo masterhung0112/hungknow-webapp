@@ -3,10 +3,10 @@
 
 import assert from 'assert';
 
-import teamsReducer from 'hkclient-redux/reducers/entities/teams';
+import teamsReducer from 'reducers/entities/teams';
 
-import {TeamTypes, AdminTypes} from 'hkclient-redux/action_types';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+import {TeamTypes, AdminTypes} from 'action_types';
+import deepFreeze from 'utils/deep_freeze';
 
 describe('hkclient-redux/reducers.teams.myMembers', () => {
     it('initial state', async () => {

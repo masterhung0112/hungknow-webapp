@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {TeamTypes, ThreadTypes, PostTypes} from 'hkclient-redux/action_types';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+import {TeamTypes, ThreadTypes, PostTypes} from 'action_types';
+import deepFreeze from 'utils/deep_freeze';
 
 import threadsReducer from './threads';
 

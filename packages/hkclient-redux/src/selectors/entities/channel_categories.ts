@@ -5,28 +5,28 @@ import shallowEquals from 'shallow-equals';
 
 import {createSelector} from 'reselect';
 
-import {General, Preferences} from 'hkclient-redux/constants';
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {General, Preferences} from '../../constants';
+import {CategoryTypes} from 'constants/channel_categories';
 
-import {getCurrentChannelId, getMyChannelMemberships, makeGetChannelsForIds} from 'hkclient-redux/selectors/entities/channels';
-import {getCurrentUserLocale} from 'hkclient-redux/selectors/entities/i18n';
-import {getLastPostPerChannel} from 'hkclient-redux/selectors/entities/posts';
-import {getMyPreferences, getTeammateNameDisplaySetting, shouldAutocloseDMs, getInt, isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentChannelId, getMyChannelMemberships, makeGetChannelsForIds} from 'selectors/entities/channels';
+import {getCurrentUserLocale} from 'selectors/entities/i18n';
+import {getLastPostPerChannel} from 'selectors/entities/posts';
+import {getMyPreferences, getTeammateNameDisplaySetting, shouldAutocloseDMs, getInt, isCollapsedThreadsEnabled} from 'selectors/entities/preferences';
+import {getCurrentUserId} from 'selectors/entities/users';
 
-import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
-import {ChannelCategory, ChannelCategoryType, CategorySorting} from 'hkclient-redux/types/channel_categories';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {IDMappedObjects, RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {Channel, ChannelMembership} from 'types/channels';
+import {ChannelCategory, ChannelCategoryType, CategorySorting} from 'types/channel_categories';
+import {GlobalState} from 'types/store';
+import {UserProfile} from 'types/users';
+import {IDMappedObjects, RelationOneToOne} from 'types/utilities';
 
 import {
     getUserIdFromChannelName,
     isChannelMuted,
     isUnreadChannel,
-} from 'hkclient-redux/utils/channel_utils';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
-import {displayUsername} from 'hkclient-redux/utils/user_utils';
+} from 'utils/channel_utils';
+import {getPreferenceKey} from 'utils/preference_utils';
+import {displayUsername} from 'utils/user_utils';
 
 export function getAllCategoriesByIds(state: GlobalState) {
     return state.entities.channelCategories.byId;

@@ -1,13 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Client4} from 'hkclient-redux/client';
-import {SchemeTypes} from 'hkclient-redux/action_types';
+import {Client4} from 'client';
+import {SchemeTypes} from 'action_types';
 import {General} from '../constants';
 
-import {Scheme, SchemeScope, SchemePatch} from 'hkclient-redux/types/schemes';
+import {Scheme, SchemeScope, SchemePatch} from 'types/schemes';
 
-import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+import {ActionFunc, DispatchFunc, GetStateFunc} from 'types/actions';
 
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
 import {logError} from './errors';

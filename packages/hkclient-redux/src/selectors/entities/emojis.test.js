@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import mergeObjects from 'hkclient-redux/test/merge_objects';
-import TestHelper from 'hkclient-redux/test/test_helper';
+import mergeObjects from 'test/merge_objects';
+import TestHelper from 'test/test_helper';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
 
 import * as Selectors from './emojis';
 

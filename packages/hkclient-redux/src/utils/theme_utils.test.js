@@ -3,7 +3,7 @@
 
 import assert from 'assert';
 
-import * as ThemeUtils from 'hkclient-redux/utils/theme_utils';
+import * as ThemeUtils from 'utils/theme_utils';
 import {Preferences} from '../constants';
 
 describe('ThemeUtils', () => {

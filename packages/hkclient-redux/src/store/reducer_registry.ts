@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Reducer} from 'hkclient-redux/types/actions';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Reducer} from 'types/actions';
+import {Dictionary} from 'types/utilities';
 
 // Based on http://nicolasgallagher.com/redux-modules-and-code-splitting/
 export class ReducerRegistry {

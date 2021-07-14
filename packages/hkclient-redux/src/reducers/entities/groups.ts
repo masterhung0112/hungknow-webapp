@@ -3,10 +3,10 @@
 
 import {combineReducers} from 'redux';
 
-import {GroupTypes} from 'hkclient-redux/action_types';
-import {GroupChannel, GroupSyncablesState, GroupTeam, Group} from 'hkclient-redux/types/groups';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {GroupTypes} from 'action_types';
+import {GroupChannel, GroupSyncablesState, GroupTeam, Group} from 'types/groups';
+import {GenericAction} from 'types/actions';
+import {Dictionary} from 'types/utilities';
 
 function syncables(state: Dictionary<GroupSyncablesState> = {}, action: GenericAction) {
     switch (action.type) {

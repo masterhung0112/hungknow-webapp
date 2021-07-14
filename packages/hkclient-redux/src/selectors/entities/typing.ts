@@ -3,15 +3,15 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentChannelId, getUsers} from 'hkclient-redux/selectors/entities/common';
-import {getTeammateNameDisplaySetting} from 'hkclient-redux/selectors/entities/preferences';
+import {getCurrentChannelId, getUsers} from 'selectors/entities/common';
+import {getTeammateNameDisplaySetting} from 'selectors/entities/preferences';
 
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Typing} from 'hkclient-redux/types/typing';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {GlobalState} from 'types/store';
+import {Typing} from 'types/typing';
+import {UserProfile} from 'types/users';
+import {IDMappedObjects} from 'types/utilities';
 
-import {displayUsername} from 'hkclient-redux/utils/user_utils';
+import {displayUsername} from 'utils/user_utils';
 
 const getUsersTypingImpl = (profiles: IDMappedObjects<UserProfile>, teammateNameDisplay: string, channelId: string, parentPostId: string, typing: Typing): string[] => {
     const id = channelId + parentPostId;

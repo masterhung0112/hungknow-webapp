@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {ActionFunc} from 'hkclient-redux/types/actions';
+import {ActionFunc} from 'types/actions';
 
-export * from './'hkclient-redux/action_types/';
+export * from './action_types';
 export * from './actions';
 export * from './constants';
 export * from './client';

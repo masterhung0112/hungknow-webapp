@@ -1,6 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {GlobalState} from 'hkclient-redux/types/store';
+import {GlobalState} from 'types/store';
 
 const state: Partial<GlobalState> = {
     entities: {
@@ -14,7 +14,7 @@ const state: Partial<GlobalState> = {
             serverVersion: '',
             timezones: [],
             warnMetricsStatus: {},
-
+            firstAdminVisitMarketplaceStatus: false,
         },
         users: {
             currentUserId: '',

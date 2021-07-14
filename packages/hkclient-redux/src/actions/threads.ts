@@ -4,22 +4,22 @@
 
 import {uniq} from 'lodash';
 
-import {ThreadTypes, PostTypes, UserTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
+import {ThreadTypes, PostTypes, UserTypes} from 'action_types';
+import {Client4} from 'client';
 
-import ThreadConstants from 'hkclient-redux/constants/threads';
-import {DispatchFunc, GetStateFunc, batchActions} from 'hkclient-redux/types/actions';
+import ThreadConstants from 'constants/threads';
+import {DispatchFunc, GetStateFunc, batchActions} from 'types/actions';
 
-import type {UserThread, UserThreadList} from 'hkclient-redux/types/threads';
-import {getMissingProfilesByIds} from 'hkclient-redux/actions/users';
+import type {UserThread, UserThreadList} from 'types/threads';
+import {getMissingProfilesByIds} from 'actions/users';
 
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentUserId} from 'selectors/entities/users';
 
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentTeamId} from 'selectors/entities/teams';
 
-import {getThreadsInChannel} from 'hkclient-redux/selectors/entities/threads';
+import {getThreadsInChannel} from 'selectors/entities/threads';
 
-import {getChannel} from 'hkclient-redux/selectors/entities/channels';
+import {getChannel} from 'selectors/entities/channels';
 
 import {logError} from './errors';
 import {forceLogoutIfNecessary} from './helpers';

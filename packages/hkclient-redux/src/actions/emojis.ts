@@ -1,16 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
-import {EmojiTypes} from 'hkclient-redux/action_types';
+import {Client4} from 'client';
+import {EmojiTypes} from 'action_types';
 import {General, Emoji} from '../constants';
-import {getCustomEmojisByName as selectCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
-import {parseNeededCustomEmojisFromText} from 'hkclient-redux/utils/emoji_utils';
+import {getCustomEmojisByName as selectCustomEmojisByName} from 'selectors/entities/emojis';
+import {parseNeededCustomEmojisFromText} from 'utils/emoji_utils';
 
-import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult} from 'hkclient-redux/types/actions';
+import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult} from 'types/actions';
 
-import {SystemEmoji, CustomEmoji} from 'hkclient-redux/types/emojis';
+import {SystemEmoji, CustomEmoji} from 'types/emojis';
 
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Dictionary} from 'types/utilities';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';

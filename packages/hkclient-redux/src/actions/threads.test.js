@@ -6,17 +6,17 @@ import nock from 'nock';
 import {
     getThread as fetchThread,
     getThreads as fetchThreads,
-} from 'hkclient-redux/actions/threads';
+} from 'actions/threads';
 
 import {
     getThread,
     getThreadsInCurrentTeam,
-} from 'hkclient-redux/selectors/entities/threads';
+} from 'selectors/entities/threads';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
 
 const ID_PAD = 'a0b1c2z9n7';
 

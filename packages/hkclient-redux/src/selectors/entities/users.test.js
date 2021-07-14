@@ -3,11 +3,11 @@
 
 import assert from 'assert';
 
-import {General, Preferences} from 'hkclient-redux/constants';
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import {sortByUsername} from 'hkclient-redux/utils/user_utils';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import * as Selectors from 'hkclient-redux/selectors/entities/users';
+import {General, Preferences} from '../../constants';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
+import {sortByUsername} from 'utils/user_utils';
+import TestHelper from 'test/test_helper';
+import * as Selectors from 'selectors/entities/users';
 const searchProfilesMatchingWithTerm = Selectors.makeSearchProfilesMatchingWithTerm();
 const searchProfilesStartingWithTerm = Selectors.makeSearchProfilesStartingWithTerm();
 

@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Team} from 'hkclient-redux/types/teams';
-import {IDMappedObjects, Dictionary} from 'hkclient-redux/types/utilities';
+import {Team} from 'types/teams';
+import {IDMappedObjects, Dictionary} from 'types/utilities';
 import {General} from '../constants';
 
 export function teamListToMap(teamList: Team[]): IDMappedObjects<Team> {

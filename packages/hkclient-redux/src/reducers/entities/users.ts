@@ -2,14 +2,14 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
-import {profileListToMap} from 'hkclient-redux/utils/user_utils';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {UserAccessToken, UserProfile, UserStatus} from 'hkclient-redux/types/users';
-import {RelationOneToMany, IDMappedObjects, RelationOneToOne, Dictionary} from 'hkclient-redux/types/utilities';
-import {Team} from 'hkclient-redux/types/teams';
-import {Channel} from 'hkclient-redux/types/channels';
-import {Group} from 'hkclient-redux/types/groups';
+import {UserTypes, ChannelTypes} from 'action_types';
+import {profileListToMap} from 'utils/user_utils';
+import {GenericAction} from 'types/actions';
+import {UserAccessToken, UserProfile, UserStatus} from 'types/users';
+import {RelationOneToMany, IDMappedObjects, RelationOneToOne, Dictionary} from 'types/utilities';
+import {Team} from 'types/teams';
+import {Channel} from 'types/channels';
+import {Group} from 'types/groups';
 
 function profilesToSet(state: RelationOneToMany<Team, UserProfile>, action: GenericAction) {
     const id = action.id;

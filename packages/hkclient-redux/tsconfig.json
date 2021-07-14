@@ -1,0 +1,150 @@
+{
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "lib",
+  ],
+  "typeAcquisition": {
+    "enable": true
+  },
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "esnext"
+    ],
+    "allowJs": false,
+    "importHelpers": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": false,
+    "noEmit": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": false,
+    "alwaysStrict": true,
+    "noUnusedLocals": false,
+    "downlevelIteration": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "types": [
+        "src/types"
+      ],
+      "types/*": [
+        "src/types/*"
+      ],
+      "store": [
+        "src/store"
+      ],
+      "store/*": [
+        "src/store/*"
+      ],
+      "utils": [
+        "src/utils"
+      ],
+      "utils/*": [
+        "src/utils/*"
+      ],
+      "client": [
+        "src/client"
+      ],
+      "client/*": [
+        "src/client/*"
+      ],
+      "test": [
+        "src/test"
+      ],
+      "test/*": [
+        "src/test/*"
+      ],
+      "testlib": [
+        "src/testlib"
+      ],
+      "testlib/*": [
+        "src/testlib/*"
+      ],
+      "action_types": [
+        "src/action_types"
+      ],
+      "action_types/*": [
+        "src/action_types/*"
+      ],
+      "actions": [
+        "src/actions"
+      ],
+      "actions/*": [
+        "src/actions/*"
+      ],
+      "reducers": [
+        "src/reducers"
+      ],
+      "reducers/*": [
+        "src/reducers/*"
+      ],
+      "constants": [
+        "src/constants"
+      ],
+      "constants/*": [
+        "src/constants/*"
+      ],
+      "selectors": [
+        "src/selectors"
+      ],
+      "selectors/*": [
+        "src/selectors/*"
+      ],
+      "hkredux": [
+        "src/hkredux"
+      ],
+      "hkredux/*": [
+        "src/hkredux/*"
+      ],
+      "saga-modular": [
+        "src/hkredux/saga-modular"
+      ],
+      "saga-modular/*": [
+        "src/hkredux/saga-modular/*"
+      ],
+      "sagas": [
+        "src/sagas"
+      ],
+      "sagas/*": [
+        "src/sagas/*"
+      ],
+      "modules": [
+        "src/modules"
+      ],
+      "modules/*": [
+        "src/modules/*"
+      ],
+      "*": [
+        "src/*",
+        "node_modules/*"
+      ]
+    },
+    "plugins": [
+        {
+          "transform": "@zerollup/ts-transform-paths",
+          "exclude": [
+            "*"
+          ]
+        }
+      ],
+    "jsx": "react",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+  }
+}

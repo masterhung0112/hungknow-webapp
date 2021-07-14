@@ -3,23 +3,23 @@
 
 import nock from 'nock';
 
-import configureStore from 'hkclient-redux/test/test_store';
+import configureStore from 'test/test_store';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
 import {General} from '../constants';
 import {CategoryTypes} from '../constants/channel_categories';
 import {MarkUnread} from '../constants/channels';
 
-import {getAllCategoriesByIds, getCategory} from 'hkclient-redux/selectors/entities/channel_categories';
-import {isFavoriteChannel} from 'hkclient-redux/selectors/entities/channels';
-import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
+import {getAllCategoriesByIds, getCategory} from 'selectors/entities/channel_categories';
+import {isFavoriteChannel} from 'selectors/entities/channels';
+import {getMyPreferences} from 'selectors/entities/preferences';
 
-import TestHelper, {DEFAULT_SERVER} from 'hkclient-redux/test/test_helper';
+import TestHelper, {DEFAULT_SERVER} from 'test/test_helper';
 
-import {CategorySorting} from 'hkclient-redux/types/channel_categories';
+import {CategorySorting} from 'types/channel_categories';
 
-import {isFavoriteChannelOld} from 'hkclient-redux/utils/channel_utils';
+import {isFavoriteChannelOld} from 'utils/channel_utils';
 
 import * as Actions from './channel_categories';
 

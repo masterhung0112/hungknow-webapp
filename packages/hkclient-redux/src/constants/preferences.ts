@@ -1,6 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Theme} from 'hkclient-redux/types/preferences';
+import {Theme} from 'types/preferences';
 
 const Preferences = {
     CATEGORY_CHANNEL_OPEN_TIME: 'channel_open_time',

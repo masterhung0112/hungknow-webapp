@@ -2,13 +2,13 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {PostTypes, PreferenceTypes, SearchTypes, UserTypes} from 'hkclient-redux/action_types';
-import {Preferences} from 'hkclient-redux/constants';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Post} from 'hkclient-redux/types/posts';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {Search} from 'hkclient-redux/types/search';
+import {PostTypes, PreferenceTypes, SearchTypes, UserTypes} from 'action_types';
+import {Preferences} from '../../constants';
+import {PreferenceType} from 'types/preferences';
+import {GenericAction} from 'types/actions';
+import {Post} from 'types/posts';
+import {Dictionary} from 'types/utilities';
+import {Search} from 'types/search';
 
 function results(state: string[] = [], action: GenericAction) {
     switch (action.type) {

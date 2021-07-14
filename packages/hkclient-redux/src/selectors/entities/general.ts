@@ -3,12 +3,12 @@
 
 import {createSelector} from 'reselect';
 
-import {General} from 'hkclient-redux/constants';
+import {General} from '../../constants';
 
-import {GlobalState} from 'hkclient-redux/types/store';
-import {ClientConfig, FeatureFlags} from 'hkclient-redux/types/config';
+import {GlobalState} from 'types/store';
+import {ClientConfig, FeatureFlags} from 'types/config';
 
-import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
+import {isMinimumServerVersion} from 'utils/helpers';
 
 export function getConfig(state: GlobalState): Partial<ClientConfig> {
     return state.entities.general.config;

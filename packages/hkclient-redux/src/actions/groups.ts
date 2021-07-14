@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {GroupTypes} from 'hkclient-redux/action_types';
+import {GroupTypes} from 'action_types';
 import {General, Groups} from '../constants';
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {GroupPatch, SyncableType, SyncablePatch} from 'hkclient-redux/types/groups';
+import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'types/actions';
+import {GroupPatch, SyncableType, SyncablePatch} from 'types/groups';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';

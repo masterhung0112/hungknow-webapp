@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {ChannelTypes, UserTypes, PostTypes, AdminTypes} from 'hkclient-redux/action_types';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
-import {General, Permissions} from 'hkclient-redux/constants';
+import {ChannelTypes, UserTypes, PostTypes, AdminTypes} from 'action_types';
+import deepFreeze from 'utils/deep_freeze';
+import {General, Permissions} from '../../constants';
 
 import channelsReducer, * as Reducers from './channels';
 

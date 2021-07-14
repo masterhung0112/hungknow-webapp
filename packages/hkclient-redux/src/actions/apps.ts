@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {AppsTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
+import {AppsTypes} from 'action_types';
+import {Client4} from 'client';
 
-import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {getChannel} from 'hkclient-redux/selectors/entities/channels';
+import {ActionFunc, DispatchFunc, GetStateFunc} from 'types/actions';
+import {getChannel} from 'selectors/entities/channels';
 
 import {bindClientFunc} from './helpers';
 

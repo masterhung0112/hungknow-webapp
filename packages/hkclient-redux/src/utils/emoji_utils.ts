@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Client4} from 'hkclient-redux/client';
-import {Emoji, SystemEmoji, CustomEmoji} from 'hkclient-redux/types/emojis';
+import {Client4} from 'client';
+import {Emoji, SystemEmoji, CustomEmoji} from 'types/emojis';
 
 export function isSystemEmoji(emoji: Emoji): emoji is SystemEmoji {
     return 'batch' in emoji;

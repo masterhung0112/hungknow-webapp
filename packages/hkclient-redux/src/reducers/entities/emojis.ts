@@ -2,11 +2,11 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {EmojiTypes, PostTypes, UserTypes} from 'hkclient-redux/action_types';
-import {EmojisState, CustomEmoji} from 'hkclient-redux/types/emojis';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Post} from 'hkclient-redux/types/posts';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {EmojiTypes, PostTypes, UserTypes} from 'action_types';
+import {EmojisState, CustomEmoji} from 'types/emojis';
+import {GenericAction} from 'types/actions';
+import {Post} from 'types/posts';
+import {IDMappedObjects} from 'types/utilities';
 
 export function customEmoji(state: IDMappedObjects<CustomEmoji> = {}, action: GenericAction): IDMappedObjects<CustomEmoji> {
     switch (action.type) {

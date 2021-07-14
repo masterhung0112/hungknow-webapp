@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {AppsTypes} from 'hkclient-redux/action_types';
-import {AppBinding, AppsState} from 'hkclient-redux/types/apps';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {validateBindings} from 'hkclient-redux/utils/apps';
+import {AppsTypes} from 'action_types';
+import {AppBinding, AppsState} from 'types/apps';
+import {GenericAction} from 'types/actions';
+import {validateBindings} from 'utils/apps';
 
 // This file's contents belong to the Apps Framework feature.
 // Apps Framework feature is experimental, and the contents of this file are

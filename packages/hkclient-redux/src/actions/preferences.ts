@@ -1,19 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {PreferenceTypes} from 'hkclient-redux/action_types';
+import {PreferenceTypes} from 'action_types';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
 import {Preferences} from '../constants';
 
-import {getMyPreferences as getMyPreferencesSelector, makeGetCategory} from 'hkclient-redux/selectors/entities/preferences';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getMyPreferences as getMyPreferencesSelector, makeGetCategory} from 'selectors/entities/preferences';
+import {getCurrentUserId} from 'selectors/entities/users';
 
-import {GetStateFunc, DispatchFunc, ActionFunc} from 'hkclient-redux/types/actions';
-import {PreferenceType, Theme} from 'hkclient-redux/types/preferences';
+import {GetStateFunc, DispatchFunc, ActionFunc} from 'types/actions';
+import {PreferenceType, Theme} from 'types/preferences';
 
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+import {getPreferenceKey} from 'utils/preference_utils';
 
 import {getChannelAndMyMember, getMyChannelMember} from './channels';
 import {bindClientFunc} from './helpers';

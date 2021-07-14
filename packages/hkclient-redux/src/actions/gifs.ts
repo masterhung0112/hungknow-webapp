@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {GifTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
-import gfycatSdk from 'hkclient-redux/utils/gfycat_sdk';
-import {DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {GlobalState} from 'hkclient-redux/types/store';
+import {GifTypes} from 'action_types';
+import {Client4} from 'client';
+import gfycatSdk from 'utils/gfycat_sdk';
+import {DispatchFunc, GetStateFunc} from 'types/actions';
+import {GlobalState} from 'types/store';
 
 // APP PROPS
 

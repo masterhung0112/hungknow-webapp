@@ -3,11 +3,11 @@
 
 import {combineReducers} from 'redux';
 
-import {FileTypes, PostTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Post} from 'hkclient-redux/types/posts';
-import {FileInfo, FileSearchResultItem} from 'hkclient-redux/types/files';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {FileTypes, PostTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {Post} from 'types/posts';
+import {FileInfo, FileSearchResultItem} from 'types/files';
+import {Dictionary} from 'types/utilities';
 
 export function files(state: Dictionary<FileInfo> = {}, action: GenericAction) {
     switch (action.type) {

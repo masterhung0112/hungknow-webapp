@@ -236,8 +236,7 @@ var config = {
         ],
         alias: {
             'hkclient-redux/test': 'packages/hkclient-redux/test',
-            'hkclient-redux': 'packages/hkclient-redux/src',
-            reselect: 'packages/reselect/src',
+            'hkclient-redux': 'node_modules/hkclient-redux/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'node_modules/superagent/lib/client',
         },

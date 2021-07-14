@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {PostTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {PostsRequestsStatuses, RequestStatusType} from 'hkclient-redux/types/requests';
+import {PostTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {PostsRequestsStatuses, RequestStatusType} from 'types/requests';
 
 import {handleRequest, initialRequestState} from './helpers';
 

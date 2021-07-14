@@ -3,7 +3,7 @@
 import {AsyncNodeStorage} from 'redux-persist-node-storage';
 import {createTransform, persistStore} from 'redux-persist';
 
-import configureStore from 'hkclient-redux/store';
+import configureStore from 'store';
 
 export default function testConfigureStore(preloadedState) {
     const storageTransform = createTransform(

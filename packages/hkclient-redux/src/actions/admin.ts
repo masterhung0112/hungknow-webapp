@@ -1,21 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {AdminTypes} from 'hkclient-redux/action_types';
+import {AdminTypes} from 'action_types';
 import {General} from '../constants';
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {Compliance} from 'hkclient-redux/types/compliance';
-import {GroupSearchOpts} from 'hkclient-redux/types/groups';
+import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'types/actions';
+import {Compliance} from 'types/compliance';
+import {GroupSearchOpts} from 'types/groups';
 import {
     CreateDataRetentionCustomPolicy,
-} from 'hkclient-redux/types/data_retention';
+} from 'types/data_retention';
 import {
     TeamSearchOpts,
-} from 'hkclient-redux/types/teams';
+} from 'types/teams';
 import {
     ChannelSearchOpts,
-} from 'hkclient-redux/types/channels';
+} from 'types/channels';
 
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';
 import {logError} from './errors';

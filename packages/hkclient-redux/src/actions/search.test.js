@@ -4,12 +4,12 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'hkclient-redux/actions/search';
+import * as Actions from 'actions/search';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
 
 describe('hkclient-redux/actions.Search', () => {
     let store;

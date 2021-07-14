@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {RequestStatus} from 'hkclient-redux/constants';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {RequestStatusType} from 'hkclient-redux/types/requests';
+import {RequestStatus} from '../../constants';
+import {GenericAction} from 'types/actions';
+import {RequestStatusType} from 'types/requests';
 export function initialRequestState(): RequestStatusType {
     return {
         status: RequestStatus.NOT_STARTED,

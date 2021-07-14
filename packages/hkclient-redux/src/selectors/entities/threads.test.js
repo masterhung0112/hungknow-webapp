@@ -3,8 +3,8 @@
 
 import assert from 'assert';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
+import TestHelper from 'test/test_helper';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
 
 import * as Selectors from './threads';
 

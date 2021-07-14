@@ -2,32 +2,32 @@
 // See LICENSE.txt for license information.
 
 /* eslint-disable max-lines */
-import {MarkUnread} from 'hkclient-redux/constants/channels';
+import {MarkUnread} from 'constants/channels';
 
 import {combineReducers} from 'redux';
 import shallowEquals from 'shallow-equals';
 
-import {AdminTypes, ChannelTypes, UserTypes, SchemeTypes, GroupTypes, PostTypes} from 'hkclient-redux/action_types';
+import {AdminTypes, ChannelTypes, UserTypes, SchemeTypes, GroupTypes, PostTypes} from 'action_types';
 
-import {General} from 'hkclient-redux/constants';
+import {General} from '../../constants';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
+import {GenericAction} from 'types/actions';
 import {
     Channel,
     ChannelMembership,
     ChannelStats,
     ChannelMemberCountByGroup,
     ChannelMemberCountsByGroup,
-} from 'hkclient-redux/types/channels';
+} from 'types/channels';
 import {
     RelationOneToMany,
     RelationOneToOne,
     IDMappedObjects,
     UserIDMappedObjects,
-} from 'hkclient-redux/types/utilities';
+} from 'types/utilities';
 
-import {Team} from 'hkclient-redux/types/teams';
-import {channelListToMap, splitRoles} from 'hkclient-redux/utils/channel_utils';
+import {Team} from 'types/teams';
+import {channelListToMap, splitRoles} from 'utils/channel_utils';
 
 function removeMemberFromChannels(state: RelationOneToOne<Channel, UserIDMappedObjects<ChannelMembership>>, action: GenericAction) {
     const nextState = {...state};

@@ -1,28 +1,28 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Client4, DEFAULT_LIMIT_AFTER, DEFAULT_LIMIT_BEFORE} from 'hkclient-redux/client';
+import {Client4, DEFAULT_LIMIT_AFTER, DEFAULT_LIMIT_BEFORE} from 'client';
 import {General, Preferences, Posts} from '../constants';
-import {PostTypes, ChannelTypes, FileTypes, IntegrationTypes} from 'hkclient-redux/action_types';
+import {PostTypes, ChannelTypes, FileTypes, IntegrationTypes} from 'action_types';
 
-import {getCurrentChannelId, getMyChannelMember as getMyChannelMemberSelector} from 'hkclient-redux/selectors/entities/channels';
-import {getCustomEmojisByName as selectCustomEmojisByName} from 'hkclient-redux/selectors/entities/emojis';
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
-import * as Selectors from 'hkclient-redux/selectors/entities/posts';
-import {getCurrentUserId, getUsersByUsername} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentChannelId, getMyChannelMember as getMyChannelMemberSelector} from 'selectors/entities/channels';
+import {getCustomEmojisByName as selectCustomEmojisByName} from 'selectors/entities/emojis';
+import {getConfig} from 'selectors/entities/general';
+import * as Selectors from 'selectors/entities/posts';
+import {getCurrentUserId, getUsersByUsername} from 'selectors/entities/users';
 
-import {parseNeededCustomEmojisFromText} from 'hkclient-redux/utils/emoji_utils';
-import {isCombinedUserActivityPost} from 'hkclient-redux/utils/post_list';
+import {parseNeededCustomEmojisFromText} from 'utils/emoji_utils';
+import {isCombinedUserActivityPost} from 'utils/post_list';
 
-import {Action, ActionResult, batchActions, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {ChannelUnread} from 'hkclient-redux/types/channels';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Post, PostList} from 'hkclient-redux/types/posts';
-import {Reaction} from 'hkclient-redux/types/reactions';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {CustomEmoji} from 'hkclient-redux/types/emojis';
-import {isCollapsedThreadsEnabled} from 'hkclient-redux/selectors/entities/preferences';
+import {Action, ActionResult, batchActions, DispatchFunc, GetStateFunc} from 'types/actions';
+import {ChannelUnread} from 'types/channels';
+import {GlobalState} from 'types/store';
+import {Post, PostList} from 'types/posts';
+import {Reaction} from 'types/reactions';
+import {UserProfile} from 'types/users';
+import {Dictionary} from 'types/utilities';
+import {CustomEmoji} from 'types/emojis';
+import {isCollapsedThreadsEnabled} from 'selectors/entities/preferences';
 
 import {getProfilesByIds, getProfilesByUsernames, getStatusesByIds} from './users';
 import {

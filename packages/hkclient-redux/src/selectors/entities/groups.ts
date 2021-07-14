@@ -2,15 +2,15 @@
 // See LICENSE.txt for license information.
 import {createSelector} from 'reselect';
 
-import {Group} from 'hkclient-redux/types/groups';
-import {filterGroupsMatchingTerm} from 'hkclient-redux/utils/group_utils';
-import {getChannel} from 'hkclient-redux/selectors/entities/channels';
-import {getTeam} from 'hkclient-redux/selectors/entities/teams';
-import {UserMentionKey} from 'hkclient-redux/selectors/entities/users';
+import {Group} from 'types/groups';
+import {filterGroupsMatchingTerm} from 'utils/group_utils';
+import {getChannel} from 'selectors/entities/channels';
+import {getTeam} from 'selectors/entities/teams';
+import {UserMentionKey} from 'selectors/entities/users';
 
-import {GlobalState} from 'hkclient-redux/types/store';
+import {GlobalState} from 'types/store';
 
-import {Dictionary, NameMappedObjects} from 'hkclient-redux/types/utilities';
+import {Dictionary, NameMappedObjects} from 'types/utilities';
 
 const emptyList: any[] = [];
 const emptySyncables = {

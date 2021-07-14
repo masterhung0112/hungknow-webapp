@@ -5,19 +5,19 @@
 
 import {createSelector} from 'reselect';
 
-import {General, Permissions, Preferences} from 'hkclient-redux/constants';
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {General, Permissions, Preferences} from '../../constants';
+import {CategoryTypes} from 'constants/channel_categories';
 
-import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
+import {getCategoryInTeamByType} from 'selectors/entities/channel_categories';
 import {
     getCurrentChannelId,
     getCurrentUser,
     getUsers,
     getMyChannelMemberships,
     getMyCurrentChannelMembership,
-} from 'hkclient-redux/selectors/entities/common';
-import {getConfig, getLicense, hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
-import {getLastPostPerChannel} from 'hkclient-redux/selectors/entities/posts';
+} from 'selectors/entities/common';
+import {getConfig, getLicense, hasNewPermissions} from 'selectors/entities/general';
+import {getLastPostPerChannel} from 'selectors/entities/posts';
 import {
     getFavoritesPreferences,
     getMyPreferences,
@@ -25,29 +25,29 @@ import {
     getVisibleTeammate,
     getVisibleGroupIds,
     isCollapsedThreadsEnabled,
-} from 'hkclient-redux/selectors/entities/preferences';
-import {haveICurrentChannelPermission, haveIChannelPermission, haveITeamPermission} from 'hkclient-redux/selectors/entities/roles';
+} from 'selectors/entities/preferences';
+import {haveICurrentChannelPermission, haveIChannelPermission, haveITeamPermission} from 'selectors/entities/roles';
 import {
     getCurrentTeamId,
     getCurrentTeamMembership,
     getMyTeams,
     getTeamMemberships,
-} from 'hkclient-redux/selectors/entities/teams';
+} from 'selectors/entities/teams';
 import {
     getCurrentUserId,
     getStatusForUserId,
     getUser,
     getUserIdsInChannels,
     isCurrentUserSystemAdmin,
-} from 'hkclient-redux/selectors/entities/users';
+} from 'selectors/entities/users';
 
-import {Channel, ChannelStats, ChannelMembership, ChannelModeration, ChannelMemberCountsByGroup, ChannelSearchOpts} from 'hkclient-redux/types/channels';
-import {ClientConfig} from 'hkclient-redux/types/config';
-import {Post} from 'hkclient-redux/types/posts';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {TeamMembership, Team} from 'hkclient-redux/types/teams';
-import {UsersState, UserProfile} from 'hkclient-redux/types/users';
+import {Channel, ChannelStats, ChannelMembership, ChannelModeration, ChannelMemberCountsByGroup, ChannelSearchOpts} from 'types/channels';
+import {ClientConfig} from 'types/config';
+import {Post} from 'types/posts';
+import {PreferenceType} from 'types/preferences';
+import {GlobalState} from 'types/store';
+import {TeamMembership, Team} from 'types/teams';
+import {UsersState, UserProfile} from 'types/users';
 import {
     $ID,
     IDMappedObjects,
@@ -55,7 +55,7 @@ import {
     RelationOneToMany,
     RelationOneToOne,
     UserIDMappedObjects,
-} from 'hkclient-redux/types/utilities';
+} from 'types/utilities';
 
 import {
     canManageMembersOldPermissions,
@@ -77,11 +77,10 @@ import {
     isDirectChannel,
     filterChannelsMatchingTerm,
     getMsgCountInChannel,
-} from 'hkclient-redux/utils/channel_utils';
-import {createIdsSelector} from 'hkclient-redux/utils/helpers';
+} from 'utils/channel_utils';
+import {createIdsSelector} from 'utils/helpers';
 
-import {Constants} from 'utils/constants';
-import {getDataRetentionCustomPolicy} from 'hkclient-redux/selectors/entities/admin';
+import {getDataRetentionCustomPolicy} from 'selectors/entities/admin';
 
 import {getThreadCounts} from './threads';
 
@@ -299,13 +298,13 @@ export const getCurrentChannelNameForSearchShortcut: (state: GlobalState) => str
         const channel = allChannels[currentChannelId];
 
         // Only get the extra info from users if we need it
-        if (channel?.type === Constants.DM_CHANNEL) {
+        if (channel?.type === General.DM_CHANNEL) {
             const dmChannelWithInfo = completeDirectChannelInfo(users, Preferences.DISPLAY_PREFER_USERNAME, channel);
             return `@${dmChannelWithInfo.display_name}`;
         }
 
         // Replace spaces in GM channel names
-        if (channel?.type === Constants.GM_CHANNEL) {
+        if (channel?.type === General.GM_CHANNEL) {
             const gmChannelWithInfo = completeDirectGroupInfo(users, Preferences.DISPLAY_PREFER_USERNAME, channel, false);
             return `@${gmChannelWithInfo.display_name.replace(/\s/g, '')}`;
         }
@@ -1538,13 +1537,13 @@ export function filterChannelList(channelList: Channel[], filters: ChannelSearch
     const channelType: string[] = [];
     const channels = channelList;
     if (filters.public) {
-        channelType.push(Constants.OPEN_CHANNEL);
+        channelType.push(General.OPEN_CHANNEL);
     }
     if (filters.private) {
-        channelType.push(Constants.PRIVATE_CHANNEL);
+        channelType.push(General.PRIVATE_CHANNEL);
     }
     if (filters.deleted) {
-        channelType.push(Constants.ARCHIVED_CHANNEL);
+        channelType.push(General.ARCHIVED_CHANNEL);
     }
     channelType.forEach((type) => {
         result = result.concat(channels.filter((channel) => channel.type === type));

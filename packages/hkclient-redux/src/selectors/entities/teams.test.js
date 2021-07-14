@@ -3,10 +3,10 @@
 
 import assert from 'assert';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import * as Selectors from 'hkclient-redux/selectors/entities/teams';
-import {General} from 'hkclient-redux/constants';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
+import TestHelper from 'test/test_helper';
+import * as Selectors from 'selectors/entities/teams';
+import {General} from '../../constants';
 
 describe('Selectors.Teams', () => {
     TestHelper.initMockEntities();

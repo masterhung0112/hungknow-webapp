@@ -3,13 +3,13 @@
 
 import assert from 'assert';
 
-import reducer from 'hkclient-redux/reducers/entities/search';
+import reducer from 'reducers/entities/search';
 
 import {
     PostTypes,
     SearchTypes,
     UserTypes,
-} from 'hkclient-redux/action_types';
+} from 'action_types';
 
 describe('hkclient-redux/reducers.entities.search', () => {
     describe('results', () => {

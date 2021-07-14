@@ -3,10 +3,10 @@
 
 import {combineReducers} from 'redux';
 
-import {PreferenceTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {PreferenceTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {PreferenceType} from 'types/preferences';
+import {Dictionary} from 'types/utilities';
 
 function getKey(preference: PreferenceType) {
     return `${preference.category}--${preference.name}`;

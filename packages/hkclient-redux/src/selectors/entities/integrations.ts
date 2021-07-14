@@ -3,11 +3,11 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentTeamId} from 'selectors/entities/teams';
 
-import {OutgoingWebhook, Command} from 'hkclient-redux/types/integrations';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {OutgoingWebhook, Command} from 'types/integrations';
+import {GlobalState} from 'types/store';
+import {IDMappedObjects} from 'types/utilities';
 
 import {appsEnabled} from './apps';
 export function getIncomingHooks(state: GlobalState) {

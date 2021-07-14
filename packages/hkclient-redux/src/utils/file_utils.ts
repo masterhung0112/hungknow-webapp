@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {Files, General} from '../constants';
-import {Client4} from 'hkclient-redux/client';
-import {FileInfo} from 'hkclient-redux/types/files';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Client4} from 'client';
+import {FileInfo} from 'types/files';
+import {Dictionary} from 'types/utilities';
 
 const mimeDB = require('mime-db');
 

@@ -1,16 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {General, Posts, Preferences, Permissions} from '../constants';
-import {hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
-import {haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
+import {hasNewPermissions} from 'selectors/entities/general';
+import {haveIChannelPermission} from 'selectors/entities/roles';
 
-import {GlobalState} from 'hkclient-redux/types/store';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {Post, PostType, PostMetadata, PostEmbed} from 'hkclient-redux/types/posts';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Team} from 'hkclient-redux/types/teams';
-import {Channel} from 'hkclient-redux/types/channels';
-import {$ID} from 'hkclient-redux/types/utilities';
+import {GlobalState} from 'types/store';
+import {PreferenceType} from 'types/preferences';
+import {Post, PostType, PostMetadata, PostEmbed} from 'types/posts';
+import {UserProfile} from 'types/users';
+import {Team} from 'types/teams';
+import {Channel} from 'types/channels';
+import {$ID} from 'types/utilities';
 
 import {getPreferenceKey} from './preference_utils';
 

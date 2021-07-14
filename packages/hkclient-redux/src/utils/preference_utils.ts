@@ -3,7 +3,7 @@
 
 import {Preferences} from '../constants';
 
-import {PreferencesType} from 'hkclient-redux/types/preferences';
+import {PreferencesType} from 'types/preferences';
 
 export function getPreferenceKey(category: string, name: string): string {
     return `${category}--${name}`;

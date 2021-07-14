@@ -3,9 +3,9 @@
 
 import assert from 'assert';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import * as FileUtils from 'hkclient-redux/utils/file_utils';
+import * as FileUtils from 'utils/file_utils';
 
 describe('FileUtils', () => {
     const serverUrl = Client4.getUrl();

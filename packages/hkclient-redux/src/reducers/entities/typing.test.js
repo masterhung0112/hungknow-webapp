@@ -3,11 +3,11 @@
 
 import assert from 'assert';
 
-import typingReducer from 'hkclient-redux/reducers/entities/typing';
+import typingReducer from 'reducers/entities/typing';
 
-import {WebsocketEvents} from 'hkclient-redux/constants';
+import {WebsocketEvents} from '../../constants';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
+import TestHelper from 'test/test_helper';
 
 describe('hkclient-redux/reducers.Typing', () => {
     it('initial state', async () => {

@@ -2,12 +2,12 @@
 // See LICENSE.txt for license information.
 
 import {createSelector} from 'reselect';
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Team} from 'hkclient-redux/types/teams';
-import {UserThread, ThreadsState, UserThreadType, UserThreadSynthetic} from 'hkclient-redux/types/threads';
-import {Post} from 'hkclient-redux/types/posts';
-import {$ID, IDMappedObjects, RelationOneToMany} from 'hkclient-redux/types/utilities';
+import {getCurrentTeamId} from 'selectors/entities/teams';
+import {GlobalState} from 'types/store';
+import {Team} from 'types/teams';
+import {UserThread, ThreadsState, UserThreadType, UserThreadSynthetic} from 'types/threads';
+import {Post} from 'types/posts';
+import {$ID, IDMappedObjects, RelationOneToMany} from 'types/utilities';
 
 export function getThreadsInTeam(state: GlobalState): RelationOneToMany<Team, UserThread> {
     return state.entities.threads.threadsInTeam;

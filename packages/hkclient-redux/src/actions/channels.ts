@@ -4,33 +4,33 @@
 
 import * as Redux from 'redux';
 
-import {ChannelTypes, PreferenceTypes, UserTypes} from 'hkclient-redux/action_types';
+import {ChannelTypes, PreferenceTypes, UserTypes} from 'action_types';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
 import {General, Preferences} from '../constants';
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-import {MarkUnread} from 'hkclient-redux/constants/channels';
-import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
+import {CategoryTypes} from 'constants/channel_categories';
+import {MarkUnread} from 'constants/channels';
+import {getCategoryInTeamByType} from 'selectors/entities/channel_categories';
 import {
     getChannel as getChannelSelector,
     getChannelsNameMapInTeam,
     getMyChannelMember as getMyChannelMemberSelector,
     getRedirectChannelNameForTeam,
     isManuallyUnread,
-} from 'hkclient-redux/selectors/entities/channels';
-import {getConfig, getServerVersion} from 'hkclient-redux/selectors/entities/general';
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+} from 'selectors/entities/channels';
+import {getConfig, getServerVersion} from 'selectors/entities/general';
+import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentUserId} from 'selectors/entities/users';
 
-import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+import {Action, ActionFunc, batchActions, DispatchFunc, GetStateFunc} from 'types/actions';
 
-import {Channel, ChannelNotifyProps, ChannelMembership, ChannelModerationPatch, ChannelsWithTotalCount, ChannelSearchOpts} from 'hkclient-redux/types/channels';
+import {Channel, ChannelNotifyProps, ChannelMembership, ChannelModerationPatch, ChannelsWithTotalCount, ChannelSearchOpts} from 'types/channels';
 
-import {PreferenceType} from 'hkclient-redux/types/preferences';
+import {PreferenceType} from 'types/preferences';
 
-import {getChannelsIdForTeam, getChannelByName} from 'hkclient-redux/utils/channel_utils';
-import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
+import {getChannelsIdForTeam, getChannelByName} from 'utils/channel_utils';
+import {isMinimumServerVersion} from 'utils/helpers';
 
 
 import {addChannelToInitialCategory, addChannelToCategory} from './channel_categories';

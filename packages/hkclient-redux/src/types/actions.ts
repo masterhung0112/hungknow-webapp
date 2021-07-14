@@ -1,6 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Reducer} from 'redux';
+import {Reducer as BaseReducer} from 'redux';
 
 import {GlobalState} from './store';
 
@@ -49,7 +49,7 @@ export type ActionCreatorClient<T extends (...args: any[]) => any> = (
     ...args: Parameters<T>
 ) => ReturnType<ReturnType<T>>
 
-export function enableBatching<S>(reduce: Reducer<S>): Reducer<S> {
+export function enableBatching<S>(reduce: BaseReducer<S>): BaseReducer<S> {
     return function batchingReducer(state, action) {
         if (action && 'meta' in action && action.meta.batch) {
             return action.payload.reduce(batchingReducer, state);

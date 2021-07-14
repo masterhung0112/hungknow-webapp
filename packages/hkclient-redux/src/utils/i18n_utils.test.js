@@ -3,7 +3,7 @@
 
 import assert from 'assert';
 
-import {setLocalizeFunction, localizeMessage} from 'hkclient-redux/utils/i18n_utils';
+import {setLocalizeFunction, localizeMessage} from 'utils/i18n_utils';
 
 describe('i18n utils', () => {
     afterEach(() => {

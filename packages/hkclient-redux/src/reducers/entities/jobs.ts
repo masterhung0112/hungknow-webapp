@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {JobTypes} from 'hkclient-redux/action_types';
-import {JobsState, JobType, Job, JobsByType} from 'hkclient-redux/types/jobs';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {JobTypes} from 'action_types';
+import {JobsState, JobType, Job, JobsByType} from 'types/jobs';
+import {GenericAction} from 'types/actions';
+import {IDMappedObjects} from 'types/utilities';
 
 function jobs(state: IDMappedObjects<Job> = {}, action: GenericAction): IDMappedObjects<Job> {
     switch (action.type) {

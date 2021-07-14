@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {RoleTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {Role} from 'hkclient-redux/types/roles';
+import {RoleTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {Dictionary} from 'types/utilities';
+import {Role} from 'types/roles';
 function pending(state: Set<string> = new Set(), action: GenericAction) {
     switch (action.type) {
     case RoleTypes.SET_PENDING_ROLES:

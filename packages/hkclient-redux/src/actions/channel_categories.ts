@@ -1,18 +1,18 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {ChannelCategoryTypes, ChannelTypes} from 'hkclient-redux/action_types';
+import {ChannelCategoryTypes, ChannelTypes} from 'action_types';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import {unfavoriteChannel, favoriteChannel} from 'hkclient-redux/actions/channels';
+import {unfavoriteChannel, favoriteChannel} from 'actions/channels';
 
-import {logError} from 'hkclient-redux/actions/errors';
+import {logError} from 'actions/errors';
 
-import {forceLogoutIfNecessary} from 'hkclient-redux/actions/helpers';
+import {forceLogoutIfNecessary} from 'actions/helpers';
 
 import {General} from '../constants';
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {CategoryTypes} from 'constants/channel_categories';
 
 import {
     getAllCategoriesByIds,
@@ -20,20 +20,20 @@ import {
     getCategoryIdsForTeam,
     getCategoryInTeamByType,
     getCategoryInTeamWithChannel,
-} from 'hkclient-redux/selectors/entities/channel_categories';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+} from 'selectors/entities/channel_categories';
+import {getCurrentUserId} from 'selectors/entities/users';
 
 import {
     ActionFunc,
     batchActions,
     DispatchFunc,
     GetStateFunc,
-} from 'hkclient-redux/types/actions';
-import {CategorySorting, OrderedChannelCategories, ChannelCategory} from 'hkclient-redux/types/channel_categories';
-import {Channel} from 'hkclient-redux/types/channels';
-import {$ID} from 'hkclient-redux/types/utilities';
+} from 'types/actions';
+import {CategorySorting, OrderedChannelCategories, ChannelCategory} from 'types/channel_categories';
+import {Channel} from 'types/channels';
+import {$ID} from 'types/utilities';
 
-import {insertMultipleWithoutDuplicates, insertWithoutDuplicates, removeItem} from 'hkclient-redux/utils/array_utils';
+import {insertMultipleWithoutDuplicates, insertWithoutDuplicates, removeItem} from 'utils/array_utils';
 
 
 export function expandCategory(categoryId: string) {

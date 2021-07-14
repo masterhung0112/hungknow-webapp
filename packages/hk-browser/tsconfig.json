@@ -1,0 +1,137 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "noEmit": true,
+      "experimentalDecorators": true,
+      "jsx": "preserve",
+      "rootDir": "./src",
+      "baseUrl": ".",
+      "paths": {
+        "components/*": [
+          "src/components/*"
+        ],
+        "images/*": [
+          "src/images/*"
+        ],
+        "common": [
+          "src/common"
+        ],
+        "common/*": [
+          "src/common/*"
+        ],
+        "utils": [
+          "src/utils"
+        ],
+        "utils/*": [
+          "src/utils/*"
+        ],
+        "i18n/*": [
+          "src/i18n/*"
+        ],
+        "styles/*": [
+          "src/styles/*"
+        ],
+        "actions-types": [
+          "src/actions-types"
+        ],
+        "actions-types/*": [
+          "src/actions-types/*"
+        ],
+        "actions": [
+          "src/actions"
+        ],
+        "actions/*": [
+          "src/actions/*"
+        ],
+        "selectors/*": [
+          "src/selectors/*"
+        ],
+        "reducers/*": [
+          "src/reducers/*"
+        ],
+        "mocks": [
+          "src/mocks"
+        ],
+        "mocks/*": [
+          "src/mocks/*"
+        ],
+        "showroom": [
+          "src/core/showroom"
+        ],
+        "showroom/*": [
+          "src/core/showroom/*"
+        ],
+        "tests": [
+          "src/tests"
+        ],
+        "tests/*": [
+          "src/tests/*"
+        ],
+        "types/*": [
+          "src/types/*"
+        ],
+        "store": [
+          "src/store"
+        ],
+        "store/*": [
+          "src/store/*"
+        ],
+        "stores/*": [
+          "src/stores/*"
+        ],
+        "constants": [
+          "src/constants"
+        ],
+        "constants/*": [
+          "src/constants/*"
+        ],
+        "storybook/*": [
+          "src/storybook/*"
+        ],
+        "client/*": [
+          "src/client/*"
+        ],
+        "hkclient-redux/*": [
+          "./node_modules/hkclient-redux/dist/*"
+        ],
+        "modules/*": [
+          "src/modules/*"
+        ],
+        "plugins/*": [
+          "src/plugins/*"
+        ],
+        "core": [
+          "src/core"
+        ],
+        "core/*": [
+          "src/core/*"
+        ]
+      },
+      "isolatedModules": true
+    },
+    "include": [
+      "./src/**/*"
+    ],
+    "exclude": [
+      "dist",
+      "e2e",
+      "!node_modules/@types",
+      "storybook-static",
+      "coverage"
+    ]
+  }

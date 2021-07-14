@@ -1,21 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Action, ActionFunc, ActionResult, batchActions, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {UserProfile, UserStatus, GetFilteredUsersStatsOpts, UsersStats, UserCustomStatus} from 'hkclient-redux/types/users';
-import {TeamMembership} from 'hkclient-redux/types/teams';
-import {Client4} from 'hkclient-redux/client';
+import {Action, ActionFunc, ActionResult, batchActions, DispatchFunc, GetStateFunc} from 'types/actions';
+import {UserProfile, UserStatus, GetFilteredUsersStatsOpts, UsersStats, UserCustomStatus} from 'types/users';
+import {TeamMembership} from 'types/teams';
+import {Client4} from 'client';
 import {General} from '../constants';
-import {UserTypes, TeamTypes, AdminTypes} from 'hkclient-redux/action_types';
-import {getUserIdFromChannelName, isDirectChannel, isDirectChannelVisible, isGroupChannel, isGroupChannelVisible} from 'hkclient-redux/utils/channel_utils';
-import {removeUserFromList} from 'hkclient-redux/utils/user_utils';
-import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
+import {UserTypes, TeamTypes, AdminTypes} from 'action_types';
+import {getUserIdFromChannelName, isDirectChannel, isDirectChannelVisible, isGroupChannel, isGroupChannelVisible} from 'utils/channel_utils';
+import {removeUserFromList} from 'utils/user_utils';
+import {isMinimumServerVersion} from 'utils/helpers';
 
-import {getConfig, getServerVersion} from 'hkclient-redux/selectors/entities/general';
+import {getConfig, getServerVersion} from 'selectors/entities/general';
 
-import {getCurrentUserId, getUsers} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentUserId, getUsers} from 'selectors/entities/users';
 
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Dictionary} from 'types/utilities';
 
 import {getAllCustomEmojis} from './emojis';
 import {getClientConfig, setServerVersion} from './general';

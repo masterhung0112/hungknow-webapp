@@ -3,11 +3,11 @@
 
 import {createSelector} from 'reselect';
 
-import {ChannelMembership, Channel} from 'hkclient-redux/types/channels';
-import {TeamMembership} from 'hkclient-redux/types/teams';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {RelationOneToOne, IDMappedObjects, UserIDMappedObjects} from 'hkclient-redux/types/utilities';
+import {ChannelMembership, Channel} from 'types/channels';
+import {TeamMembership} from 'types/teams';
+import {GlobalState} from 'types/store';
+import {UserProfile} from 'types/users';
+import {RelationOneToOne, IDMappedObjects, UserIDMappedObjects} from 'types/utilities';
 
 // Channels
 

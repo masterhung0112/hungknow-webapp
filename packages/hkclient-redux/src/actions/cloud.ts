@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {CloudTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
+import {CloudTypes} from 'action_types';
+import {Client4} from 'client';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {Address, CloudCustomerPatch} from 'hkclient-redux/types/cloud';
+import {ActionFunc} from 'types/actions';
+import {Address, CloudCustomerPatch} from 'types/cloud';
 
 import {bindClientFunc} from './helpers';
 

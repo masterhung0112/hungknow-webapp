@@ -6,13 +6,13 @@ import fs from 'fs';
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'hkclient-redux/actions/files';
+import * as Actions from 'actions/files';
 
-import {FileTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
+import {FileTypes} from 'action_types';
+import {Client4} from 'client';
 import {RequestStatus} from '../constants';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
 
 const FormData = require('form-data');
 

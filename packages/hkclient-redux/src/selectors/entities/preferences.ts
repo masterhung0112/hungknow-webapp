@@ -3,18 +3,18 @@
 
 import {createSelector} from 'reselect';
 
-import {General, Preferences} from 'hkclient-redux/constants';
+import {General, Preferences} from '../../constants';
 
-import {getConfig, getFeatureFlagValue, getLicense} from 'hkclient-redux/selectors/entities/general';
+import {getConfig, getFeatureFlagValue, getLicense} from 'selectors/entities/general';
 
-import {PreferenceType, Theme} from 'hkclient-redux/types/preferences';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {$ID} from 'hkclient-redux/types/utilities';
+import {PreferenceType, Theme} from 'types/preferences';
+import {UserProfile} from 'types/users';
+import {GlobalState} from 'types/store';
+import {$ID} from 'types/utilities';
 
-import {createShallowSelector} from 'hkclient-redux/utils/helpers';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
-import {setThemeDefaults} from 'hkclient-redux/utils/theme_utils';
+import {createShallowSelector} from 'utils/helpers';
+import {getPreferenceKey} from 'utils/preference_utils';
+import {setThemeDefaults} from 'utils/theme_utils';
 
 export function getMyPreferences(state: GlobalState): { [x: string]: PreferenceType } {
     return state.entities.preferences.myPreferences;

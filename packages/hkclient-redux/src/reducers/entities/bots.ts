@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {BotTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {Bot} from 'hkclient-redux/types/bots';
+import {BotTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {Dictionary} from 'types/utilities';
+import {Bot} from 'types/bots';
 
 function accounts(state: Dictionary<Bot> = {}, action: GenericAction) {
     switch (action.type) {

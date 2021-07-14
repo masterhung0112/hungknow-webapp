@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+
+# Storybook
+.storybook
+/storybook-static
+
+# next
+/.next
+/out
+/public
+
+# CI
+/.github
+/.circleci
+
+# misc
+/.git
+*.scss.d.ts
+dist/
+
+# design
+/design/
+
+src/comonents/TradingChart/
+src/core/
+src/pages/

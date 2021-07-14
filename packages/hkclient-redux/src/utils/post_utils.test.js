@@ -4,7 +4,7 @@
 
 import assert from 'assert';
 
-import {PostTypes} from 'hkclient-redux/constants/posts';
+import {PostTypes} from 'constants/posts';
 import {Permissions} from '../constants';
 
 import {
@@ -17,7 +17,7 @@ import {
     isPostCommentMention,
     getEmbedFromMetadata,
     shouldUpdatePost,
-} from 'hkclient-redux/utils/post_utils';
+} from 'utils/post_utils';
 
 describe('PostUtils', () => {
     describe('shouldFilterJoinLeavePost', () => {

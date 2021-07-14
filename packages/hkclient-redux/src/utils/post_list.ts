@@ -5,20 +5,20 @@ import moment from 'moment-timezone';
 import * as reselect from 'reselect';
 
 import {Posts, Preferences} from '../constants';
-import {makeGetPostsForIds} from 'hkclient-redux/selectors/entities/posts';
-import {getBool} from 'hkclient-redux/selectors/entities/preferences';
-import {isTimezoneEnabled} from 'hkclient-redux/selectors/entities/timezone';
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/users';
-import {createIdsSelector, memoizeResult} from 'hkclient-redux/utils/helpers';
-import {isUserActivityPost, shouldFilterJoinLeavePost, isFromWebhook} from 'hkclient-redux/utils/post_utils';
-import {getUserCurrentTimezone} from 'hkclient-redux/utils/timezone_utils';
-import * as types from 'hkclient-redux/types';
+import {makeGetPostsForIds} from 'selectors/entities/posts';
+import {getBool} from 'selectors/entities/preferences';
+import {isTimezoneEnabled} from 'selectors/entities/timezone';
+import {getCurrentUser} from 'selectors/entities/users';
+import {createIdsSelector, memoizeResult} from 'utils/helpers';
+import {isUserActivityPost, shouldFilterJoinLeavePost, isFromWebhook} from 'utils/post_utils';
+import {getUserCurrentTimezone} from 'utils/timezone_utils';
+import * as types from 'types';
 export const COMBINED_USER_ACTIVITY = 'user-activity-';
 export const DATE_LINE = 'date-';
 export const START_OF_NEW_MESSAGES = 'start-of-new-messages';
 export const MAX_COMBINED_SYSTEM_POSTS = 100;
 
-import {GlobalState} from 'hkclient-redux/types/store';
+import {GlobalState} from 'types/store';
 
 function shouldShowJoinLeaveMessages(state: GlobalState) {
     // This setting is true or not set if join/leave messages are to be displayed

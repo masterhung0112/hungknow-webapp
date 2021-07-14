@@ -2,8 +2,8 @@
 // See LICENSE.txt for license information.
 import assert from 'assert';
 
-import TestHelper from 'hkclient-redux/test/test_helper.js';
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
+import TestHelper from 'test/test_helper.js';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
 
 import {makeAddLastViewAtToProfiles} from './utils';
 

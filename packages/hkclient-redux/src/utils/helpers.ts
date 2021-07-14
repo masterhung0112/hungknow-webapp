@@ -4,7 +4,7 @@
 import shallowEqual from 'shallow-equals';
 
 import * as reselect from 'reselect';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Dictionary} from 'types/utilities';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function memoizeResult<F extends Function>(func: F, measure: Function | undefined = undefined): F {

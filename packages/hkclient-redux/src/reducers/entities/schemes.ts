@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {SchemeTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {SchemesState, Scheme} from 'hkclient-redux/types/schemes';
+import {SchemeTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {SchemesState, Scheme} from 'types/schemes';
 
 function schemes(state: {
     [x: string]: Scheme;

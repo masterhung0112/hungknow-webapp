@@ -4,8 +4,8 @@
 import assert from 'assert';
 
 import {Posts, Preferences} from '../constants';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+import deepFreeze from 'utils/deep_freeze';
+import {getPreferenceKey} from 'utils/preference_utils';
 
 import {
     COMBINED_USER_ACTIVITY,

@@ -3,16 +3,16 @@
 
 import {createSelector} from 'reselect';
 
-import {getMyChannelMemberships, getAllChannels} from 'hkclient-redux/selectors/entities/channels';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getMyChannelMemberships, getAllChannels} from 'selectors/entities/channels';
+import {getCurrentUserId} from 'selectors/entities/users';
 
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Channel} from 'hkclient-redux/types/channels';
-import {UserProfile, UserProfileWithLastViewAt} from 'hkclient-redux/types/users';
-import {getDirectChannelName} from 'hkclient-redux/utils/channel_utils';
-import {General} from 'hkclient-redux/constants';
+import {GlobalState} from 'types/store';
+import {Channel} from 'types/channels';
+import {UserProfile, UserProfileWithLastViewAt} from 'types/users';
+import {getDirectChannelName} from 'utils/channel_utils';
+import {General} from '../../constants';
 
-import {NameMappedObjects} from 'hkclient-redux/types/utilities';
+import {NameMappedObjects} from 'types/utilities';
 
 export function makeAddLastViewAtToProfiles(): (state: GlobalState, profiles: UserProfile[]) => UserProfileWithLastViewAt[] {
     return createSelector(

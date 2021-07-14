@@ -4,32 +4,32 @@
 /* eslint-disable max-lines */
 import {createSelector} from 'reselect';
 
-import {Posts, Preferences} from 'hkclient-redux/constants';
+import {Posts, Preferences} from '../../constants';
 
-import {getCurrentUser} from 'hkclient-redux/selectors/entities/common';
-import {getMyPreferences} from 'hkclient-redux/selectors/entities/preferences';
-import {getUsers, getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentUser} from 'selectors/entities/common';
+import {getMyPreferences} from 'selectors/entities/preferences';
+import {getUsers, getCurrentUserId} from 'selectors/entities/users';
 
-import {Channel} from 'hkclient-redux/types/channels';
+import {Channel} from 'types/channels';
 import {
     MessageHistory,
     OpenGraphMetadata,
     Post,
     PostOrderBlock,
     PostWithFormatData,
-} from 'hkclient-redux/types/posts';
-import {Reaction} from 'hkclient-redux/types/reactions';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {UserProfile} from 'hkclient-redux/types/users';
+} from 'types/posts';
+import {Reaction} from 'types/reactions';
+import {GlobalState} from 'types/store';
+import {UserProfile} from 'types/users';
 import {
     $ID,
     IDMappedObjects,
     RelationOneToOne,
     RelationOneToMany,
     Dictionary,
-} from 'hkclient-redux/types/utilities';
+} from 'types/utilities';
 
-import {createIdsSelector} from 'hkclient-redux/utils/helpers';
+import {createIdsSelector} from 'utils/helpers';
 import {
     isPostEphemeral,
     isSystemMessage,
@@ -37,8 +37,8 @@ import {
     comparePosts,
     isPostPendingOrFailed,
     isPostCommentMention,
-} from 'hkclient-redux/utils/post_utils';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+} from 'utils/post_utils';
+import {getPreferenceKey} from 'utils/preference_utils';
 
 export function getAllPosts(state: GlobalState) {
     return state.entities.posts.posts;

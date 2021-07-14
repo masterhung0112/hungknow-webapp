@@ -3,7 +3,7 @@
 
 // As per rudder-sdk-js documentation, import this only once and use like a singleton.
 // See https://github.com/rudderlabs/rudder-sdk-js#step-1-install-rudderstack-using-the-code-snippet
-import * as rudderAnalytics from 'rudder-sdk-js';
+const rudderAnalytics = require('rudder-sdk-js');
 export {rudderAnalytics};
 
 import {TelemetryHandler} from './telemetry';

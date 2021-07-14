@@ -12,9 +12,9 @@ import {
     getSuggestionsSplitByMultiple,
     includesAnAdminRole,
     applyRolesFilters,
-} from 'hkclient-redux/utils/user_utils';
+} from 'utils/user_utils';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
+import TestHelper from 'test/test_helper';
 
 describe('user utils', () => {
     describe('displayUsername', () => {

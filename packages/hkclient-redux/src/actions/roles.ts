@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
-import {RoleTypes} from 'hkclient-redux/action_types';
-import {getRoles} from 'hkclient-redux/selectors/entities/roles_helpers';
-import {hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
+import {Client4} from 'client';
+import {RoleTypes} from 'action_types';
+import {getRoles} from 'selectors/entities/roles_helpers';
+import {hasNewPermissions} from 'selectors/entities/general';
 
-import {DispatchFunc, GetStateFunc, ActionFunc} from 'hkclient-redux/types/actions';
-import {Role} from 'hkclient-redux/types/roles';
+import {DispatchFunc, GetStateFunc, ActionFunc} from 'types/actions';
+import {Role} from 'types/roles';
 
 import {bindClientFunc} from './helpers';
 export function getRolesByNames(rolesNames: string[]) {
