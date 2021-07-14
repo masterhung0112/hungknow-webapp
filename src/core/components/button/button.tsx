@@ -32,7 +32,7 @@ export class Button extends AbstractButton<React.ButtonHTMLAttributes<HTMLButton
 export class AnchorButton extends AbstractButton<React.AnchorHTMLAttributes<HTMLAnchorElement>> {
     // public static displayName = `${DISPLAYNAME_PREFIX}.AnchorButton`;
 
-    protected buttonRef: HTMLAnchorElement | IRefObject<HTMLAnchorElement> | null
+    protected buttonRef: HTMLAnchorElement | IRefObject<HTMLAnchorElement> | null = null
     protected handleRef = isRefObject<HTMLAnchorElement>(this.props.elementRef) ?
         (this.buttonRef = this.props.elementRef) :
         (ref: HTMLAnchorElement | null) => {

@@ -82,8 +82,8 @@ export interface IInputGroupState {
 export default class InputGroup extends AbstractPureComponent<IInputGroupProps & HTMLInputProps, IInputGroupState> {
     public state: IInputGroupState = {}
 
-    private leftElement: HTMLElement
-    private rightElement: HTMLElement
+    private leftElement: HTMLElement | null = null
+    private rightElement: HTMLElement | null  = null
 
     private refHandlers = {
         leftElement: (ref: HTMLSpanElement) => (this.leftElement = ref),

@@ -51,6 +51,11 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
         //     enableDevModeFeatures();
         // }
 
+        if (!router) {
+            console.error('router is null')
+            return
+        }
+
         if (pathname === '/talking' && this.props.noAccounts) {
             router.push('/signup_user_complete');
         }
@@ -83,6 +88,11 @@ export class Talking extends React.Component<TalkingProps, TalkingStates> {
 
     componentDidUpdate(prevProps: TalkingProps) {
         const {pathname, router} = Router;
+
+        if (!router) {
+            console.error('router is null')
+            return
+        }
 
         if (pathname === '/talking') {
             if (this.props.noAccounts) {
