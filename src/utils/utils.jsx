@@ -1956,8 +1956,8 @@ export function setCSRFFromCookie() {
         const cookies = document.cookie.split(';');
         for (let i = 0; i < cookies.length; i++) {
             const cookie = cookies[i].trim();
-            if (cookie.startsWith('MMCSRF=')) {
-                Client4.setCSRF(cookie.replace('MMCSRF=', ''));
+            if (cookie.startsWith('HKCSRF=')) {
+                Client4.setCSRF(cookie.replace('HKCSRF=', ''));
                 break;
             }
         }

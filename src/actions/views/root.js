@@ -22,7 +22,7 @@ export function loadMeAndConfig() {
 
         // need to await for clientConfig first as it is required for loadMe
         const resolvedPromises = await Promise.all(promises);
-        if (document.cookie.indexOf('MMUSERID=') > -1) {
+        if (document.cookie.indexOf('HKUSERID=') > -1) {
             resolvedPromises.push(await dispatch(UserActions.loadMe()));
         }
 
