@@ -2,13 +2,11 @@
 // See LICENSE.txt for license information.
 
 /* eslint-disable max-lines */
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-
-import {Constants} from 'utils/constants';
 
 import {createSelector} from 'reselect';
 
 import {General, Permissions, Preferences} from 'hkclient-redux/constants';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
 
 import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {
@@ -82,6 +80,7 @@ import {
 } from 'hkclient-redux/utils/channel_utils';
 import {createIdsSelector} from 'hkclient-redux/utils/helpers';
 
+import {Constants} from 'utils/constants';
 import {getDataRetentionCustomPolicy} from 'hkclient-redux/selectors/entities/admin';
 
 import {getThreadCounts} from './threads';

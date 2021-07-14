@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 
 import {Constants} from 'utils/constants';
 

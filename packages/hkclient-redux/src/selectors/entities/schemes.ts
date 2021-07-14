@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {createSelector} from 'reselect';
 import {ScopeTypes} from 'hkclient-redux/constants/schemes';
 
-import {createSelector} from 'reselect';
 
 import {getAllChannels} from 'hkclient-redux/selectors/entities/channels';
 import {getTeams} from 'hkclient-redux/selectors/entities/teams';

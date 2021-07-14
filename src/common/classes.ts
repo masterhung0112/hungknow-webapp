@@ -44,14 +44,14 @@ export function alignmentClass(alignment: Alignment) {
     case Alignment.RIGHT:
         return ALIGN_RIGHT;
     default:
-        return undefined;
+        return '';
     }
 }
 
 /** Return CSS class for intent. */
 export function intentClass(intent?: Intent) {
     if (intent == null || intent === Intent.NONE) {
-        return undefined;
+        return '';
     }
     return `${NS}-intent-${intent.toLowerCase()}`;
 }
@@ -59,7 +59,7 @@ export function intentClass(intent?: Intent) {
 /** Returns CSS class for icon name. */
 export function iconClass(iconName?: string) {
     if (iconName == null) {
-        return undefined;
+        return '';
     }
     return iconName.indexOf(`${NS}-icon-`) === 0 ? iconName : `${NS}-icon-${iconName}`;
 }

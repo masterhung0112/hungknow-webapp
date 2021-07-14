@@ -11,7 +11,7 @@ import {Client4} from 'hkclient-redux/client';
 import TestHelper from 'hkclient-redux/test/test_helper';
 import configureStore from 'hkclient-redux/test/test_store';
 
-describe('hkclient-redux/actions.Schemes', () => {
+describe('Actions.Schemes', () => {
     let store;
 
     beforeAll(() => {

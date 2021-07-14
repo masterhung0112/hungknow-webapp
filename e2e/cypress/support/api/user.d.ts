@@ -5,7 +5,7 @@ declare namespace Cypress {
         /**
      * Logout a user's active session from server via API.
      * See https://api.mattermost.com/#tag/users/paths/~1users~1logout/post
-     * Clears all cookies espececially `MMAUTHTOKEN`, `HKUSERID` and `MMCSRF`.
+     * Clears all cookies espececially `MMAUTHTOKEN`, `HKUSERID` and `HKCSRF`.
      *
      * @example
      *   cy.apiLogout();

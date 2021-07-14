@@ -7,7 +7,7 @@ import {emitUserLoggedOutEvent} from 'actions/global_actions';
 
 import {getOnNavigationConfirmed} from 'selectors/views/admin';
 
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 
 import {ActionTypes} from 'utils/constants';
 

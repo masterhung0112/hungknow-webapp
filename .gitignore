@@ -44,3 +44,4 @@ storybook-static
 *.scss.d.ts
 
 yarn.lock
+dist/

@@ -1,9 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
-
-import {MarkUnread} from 'hkclient-redux/constants/channels';
 
 import * as Redux from 'redux';
 
@@ -11,6 +8,9 @@ import {ChannelTypes, PreferenceTypes, UserTypes} from 'hkclient-redux/action_ty
 
 import {Client4} from 'hkclient-redux/client';
 
+import {General, Preferences} from '../constants';
+import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {MarkUnread} from 'hkclient-redux/constants/channels';
 import {getCategoryInTeamByType} from 'hkclient-redux/selectors/entities/channel_categories';
 import {
     getChannel as getChannelSelector,
@@ -32,7 +32,6 @@ import {PreferenceType} from 'hkclient-redux/types/preferences';
 import {getChannelsIdForTeam, getChannelByName} from 'hkclient-redux/utils/channel_utils';
 import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
 
-import {General, Preferences} from '../constants';
 
 import {addChannelToInitialCategory, addChannelToCategory} from './channel_categories';
 import {logError} from './errors';

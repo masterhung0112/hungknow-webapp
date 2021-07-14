@@ -130,7 +130,7 @@ if (DEV) {
 }
 
 var config = {
-    entry: ['./root.jsx', 'root.html'],
+    entry: ['root.jsx', 'root.html'],
     output: {
         publicPath,
         filename: '[name].[contenthash].js',
@@ -174,7 +174,7 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: ['node_modules/compass-mixins/lib', 'sass'],
+                                includePaths: ['node_modules/compass-mixins/lib', 'src/sass'],
                             },
                         },
                     },
@@ -231,6 +231,7 @@ var config = {
     resolve: {
         modules: [
             'node_modules',
+            path.resolve(__dirname, 'src'),
             path.resolve(__dirname),
         ],
         alias: {
@@ -267,7 +268,7 @@ var config = {
         new HtmlWebpackPlugin({
             filename: 'root.html',
             inject: 'head',
-            template: 'root.html',
+            template: 'src/root.html',
             meta: {
                 csp: {
                     'http-equiv': 'Content-Security-Policy',
@@ -304,10 +305,10 @@ var config = {
         // Generate manifest.json, honouring any configured publicPath. This also handles injecting
         // <link rel="apple-touch-icon" ... /> and <meta name="apple-*" ... /> tags into root.html.
         new WebpackPwaManifest({
-            name: 'Mattermost',
-            short_name: 'Mattermost',
+            name: 'Hungknow',
+            short_name: 'Hungknow',
             start_url: '..',
-            description: 'Mattermost is an open source, self-hosted Slack-alternative',
+            description: 'Hungknow is an open source, self-hosted Slack-alternative',
             background_color: '#ffffff',
             inject: true,
             ios: true,

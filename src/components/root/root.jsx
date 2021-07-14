@@ -42,7 +42,7 @@ const LazyAuthorize = React.lazy(() => import('components/authorize'));
 const LazyCreateTeam = React.lazy(() => import('components/create_team'));
 const LazyMfa = React.lazy(() => import('components/mfa/mfa_controller'));
 
-import store from 'stores/redux_store.jsx';
+import store from 'stores/redux_store.tsx';
 import {getSiteURL} from 'utils/url';
 import {enableDevModeFeatures, isDevMode} from 'utils/utils';
 

@@ -19,7 +19,7 @@ import {Constants, ActionTypes, EventTypes, PostRequestTypes} from 'utils/consta
 
 import {isMobile} from 'utils/utils.jsx';
 
-import LocalStorageStore from 'stores/local_storage_store.jsx';
+import LocalStorageStore from 'stores/local_storage_store.tsx';
 
 import {isArchivedChannel} from 'utils/channel_utils';
 import {
