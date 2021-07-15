@@ -24,7 +24,7 @@ const targetIsDevServer = NPM_TARGET === 'dev-server';
 const DEV = targetIsRun || targetIsStats || targetIsDevServer;
 
 const STANDARD_EXCLUDE = [
-    path.join(__dirname, 'node_modules'),
+    /node_modules/,
 ];
 
 // react-hot-loader and development source maps require eval
@@ -130,7 +130,7 @@ if (DEV) {
 }
 
 var config = {
-    entry: ['root.jsx', 'root.html'],
+    entry: ['./src/root.jsx', './src/root.html'],
     output: {
         publicPath,
         filename: '[name].[contenthash].js',
@@ -140,7 +140,10 @@ var config = {
         rules: [
             {
                 test: /\.(js|jsx|ts|tsx)?$/,
-                exclude: STANDARD_EXCLUDE,
+                include: [
+                    path.resolve(__dirname, 'src'),
+                ],
+                // exclude: STANDARD_EXCLUDE,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -174,7 +177,7 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: ['node_modules/compass-mixins/lib', 'src/sass'],
+                                includePaths: ['./node_modules/compass-mixins/lib', './src/sass'],
                             },
                         },
                     },
@@ -229,16 +232,37 @@ var config = {
         ],
     },
     resolve: {
-        modules: [
-            'node_modules',
-            path.resolve(__dirname, 'src'),
-            path.resolve(__dirname),
-        ],
         alias: {
-            'hkclient-redux/test': 'packages/hkclient-redux/test',
-            'hkclient-redux': 'node_modules/hkclient-redux/dist',
+            sass: path.resolve(__dirname, 'src/sass'),
+            images: path.resolve(__dirname, 'images'),
+            sounds: path.resolve(__dirname, 'sounds'),
+            fonts: path.resolve(__dirname, 'fonts'),
+            components: path.resolve(__dirname, 'src/components'),
+            dispatcher: path.resolve(__dirname, 'src/dispatcher'),
+            common: path.resolve(__dirname, 'src/common'),
+            utils: path.resolve(__dirname, 'src/utils'),
+            i18n: path.resolve(__dirname, 'src/i18n'),
+            styles: path.resolve(__dirname, 'src/styles'),
+            'actions-types': path.resolve(__dirname, 'src/actions-types'),
+            types: path.resolve(__dirname, 'src/types'),
+            actions: path.resolve(__dirname, 'src/actions'),
+            selectors: path.resolve(__dirname, 'src/selectors'),
+            reducers: path.resolve(__dirname, 'src/reducers'),
+            mocks: path.resolve(__dirname, 'src/mocks'),
+            showroom: path.resolve(__dirname, 'src/showroom'),
+            tests: path.resolve(__dirname, 'src/tests'),
+            store: path.resolve(__dirname, 'src/store'),
+            stores: path.resolve(__dirname, 'src/stores'),
+            constants: path.resolve(__dirname, 'src/constants'),
+            storybook: path.resolve(__dirname, 'src/storybook'),
+            client: path.resolve(__dirname, 'src/client'),
+            modules: path.resolve(__dirname, 'src/modules'),
+            plugins: path.resolve(__dirname, 'src/plugins'),
+            core: path.resolve(__dirname, 'src/core'),
+            'hkclient-redux/test': 'hkclient-redux/test',
+            'hkclient-redux': 'hkclient-redux/dist',
             jquery: 'jquery/src/jquery',
-            superagent: 'node_modules/superagent/lib/client',
+            superagent: 'superagent/lib/client',
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fallback: {
