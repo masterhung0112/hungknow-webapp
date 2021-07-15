@@ -3,14 +3,14 @@
 
 import assert from 'assert';
 
-import {Posts, Preferences} from 'hkclient-redux/constants';
+import {Posts, Preferences} from '../../constants';
 
-import * as Selectors from 'hkclient-redux/selectors/entities/posts';
-import {makeGetProfilesForReactions} from 'hkclient-redux/selectors/entities/users';
+import * as Selectors from 'selectors/entities/posts';
+import {makeGetProfilesForReactions} from 'selectors/entities/users';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
+import TestHelper from 'test/test_helper';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
 
 describe('Selectors.Posts', () => {
     const user1 = TestHelper.fakeUserWithId();

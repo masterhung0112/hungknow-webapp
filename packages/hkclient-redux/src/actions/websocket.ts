@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {UserTypes} from 'hkclient-redux/action_types';
+import {UserTypes} from 'action_types';
 
-import {getCurrentUserId, getUsers} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentUserId, getUsers} from 'selectors/entities/users';
 
-import {ActionFunc, DispatchFunc, GetStateFunc, batchActions} from 'hkclient-redux/types/actions';
+import {ActionFunc, DispatchFunc, GetStateFunc, batchActions} from 'types/actions';
 
 import {getKnownUsers} from './users';
 

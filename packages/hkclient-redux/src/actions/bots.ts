@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {Client4} from 'hkclient-redux/client';
-import {BotTypes} from 'hkclient-redux/action_types';
+import {Client4} from 'client';
+import {BotTypes} from 'action_types';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {Bot, BotPatch} from 'hkclient-redux/types/bots';
+import {ActionFunc} from 'types/actions';
+import {Bot, BotPatch} from 'types/bots';
 
 import {bindClientFunc} from './helpers';
 

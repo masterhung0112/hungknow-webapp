@@ -2,16 +2,16 @@
 // See LICENSE.txt for license information.
 
 import {createSelector} from 'reselect';
-import {ScopeTypes} from 'hkclient-redux/constants/schemes';
+import {ScopeTypes} from 'constants/schemes';
 
 
-import {getAllChannels} from 'hkclient-redux/selectors/entities/channels';
-import {getTeams} from 'hkclient-redux/selectors/entities/teams';
+import {getAllChannels} from 'selectors/entities/channels';
+import {getTeams} from 'selectors/entities/teams';
 
-import {Channel} from 'hkclient-redux/types/channels';
-import {Scheme} from 'hkclient-redux/types/schemes';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Team} from 'hkclient-redux/types/teams';
+import {Channel} from 'types/channels';
+import {Scheme} from 'types/schemes';
+import {GlobalState} from 'types/store';
+import {Team} from 'types/teams';
 
 export function getSchemes(state: GlobalState): {
     [x: string]: Scheme;

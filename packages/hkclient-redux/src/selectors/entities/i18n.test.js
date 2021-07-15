@@ -3,8 +3,8 @@
 
 import assert from 'assert';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
-import * as Selectors from 'hkclient-redux/selectors/entities/i18n';
+import TestHelper from 'test/test_helper';
+import * as Selectors from 'selectors/entities/i18n';
 
 describe('Selectors.I18n', () => {
     describe('getCurrentUserLocale', () => {

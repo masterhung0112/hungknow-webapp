@@ -1,9 +1,9 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {CategoryTypes} from 'constants/channel_categories';
 
-import {ChannelTypes, TeamTypes} from 'hkclient-redux/action_types';
+import {ChannelTypes, TeamTypes} from 'action_types';
 
 import * as Reducers from './channel_categories';
 

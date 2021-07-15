@@ -2,9 +2,9 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {GeneralTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {ClientLicense, ClientConfig} from 'hkclient-redux/types/config';
+import {GeneralTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {ClientLicense, ClientConfig} from 'types/config';
 
 function config(state: Partial<ClientConfig> = {}, action: GenericAction) {
     switch (action.type) {

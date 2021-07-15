@@ -7,10 +7,10 @@ import {
     files as filesReducer,
     filesFromSearch as filesFromSearchReducer,
     fileIdsByPostId as fileIdsByPostIdReducer,
-} from 'hkclient-redux/reducers/entities/files';
+} from 'reducers/entities/files';
 
-import {PostTypes} from 'hkclient-redux/action_types';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+import {PostTypes} from 'action_types';
+import deepFreeze from 'utils/deep_freeze';
 
 describe('hkclient-redux/reducers/entities/files', () => {
     describe('files', () => {

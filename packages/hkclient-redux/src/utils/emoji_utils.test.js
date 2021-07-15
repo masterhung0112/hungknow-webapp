@@ -3,7 +3,7 @@
 
 import assert from 'assert';
 
-import * as EmojiUtils from 'hkclient-redux/utils/emoji_utils';
+import * as EmojiUtils from 'utils/emoji_utils';
 
 describe('EmojiUtils', () => {
     describe('parseNeededCustomEmojisFromText', () => {

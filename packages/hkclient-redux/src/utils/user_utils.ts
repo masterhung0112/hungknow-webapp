@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {General, Preferences} from '../constants';
-import {localizeMessage} from 'hkclient-redux/utils/i18n_utils';
-import {ChannelMembership} from 'hkclient-redux/types/channels';
-import {TeamMembership} from 'hkclient-redux/types/teams';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {IDMappedObjects, $ID, Dictionary} from 'hkclient-redux/types/utilities';
+import {localizeMessage} from 'utils/i18n_utils';
+import {ChannelMembership} from 'types/channels';
+import {TeamMembership} from 'types/teams';
+import {UserProfile} from 'types/users';
+import {IDMappedObjects, $ID, Dictionary} from 'types/utilities';
 export function getFullName(user: UserProfile): string {
     if (user.first_name && user.last_name) {
         return user.first_name + ' ' + user.last_name;

@@ -1,15 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {IntegrationTypes} from 'hkclient-redux/action_types';
+import {IntegrationTypes} from 'action_types';
 import {General} from '../constants';
-import {Client4} from 'hkclient-redux/client';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/channels';
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {Client4} from 'client';
+import {getCurrentUserId} from 'selectors/entities/users';
+import {getCurrentChannelId} from 'selectors/entities/channels';
+import {getCurrentTeamId} from 'selectors/entities/teams';
 
-import {batchActions, DispatchFunc, GetStateFunc, ActionFunc} from 'hkclient-redux/types/actions';
+import {batchActions, DispatchFunc, GetStateFunc, ActionFunc} from 'types/actions';
 
-import {Command, CommandArgs, DialogSubmission, IncomingWebhook, OAuthApp, OutgoingWebhook} from 'hkclient-redux/types/integrations';
+import {Command, CommandArgs, DialogSubmission, IncomingWebhook, OAuthApp, OutgoingWebhook} from 'types/integrations';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';

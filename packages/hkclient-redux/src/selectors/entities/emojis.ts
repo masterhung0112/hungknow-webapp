@@ -3,13 +3,13 @@
 
 import {createSelector} from 'reselect';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getConfig} from 'selectors/entities/general';
 
-import {CustomEmoji} from 'hkclient-redux/types/emojis';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {CustomEmoji} from 'types/emojis';
+import {GlobalState} from 'types/store';
+import {IDMappedObjects} from 'types/utilities';
 
-import {createIdsSelector} from 'hkclient-redux/utils/helpers';
+import {createIdsSelector} from 'utils/helpers';
 
 export const getCustomEmojis: (state: GlobalState) => IDMappedObjects<CustomEmoji> = createSelector(
     'getCustomEmojis',

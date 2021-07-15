@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
-import {GeneralTypes} from 'hkclient-redux/action_types';
+import {GeneralTypes} from 'action_types';
 
-import {getServerVersion} from 'hkclient-redux/selectors/entities/general';
-import {isMinimumServerVersion} from 'hkclient-redux/utils/helpers';
-import {GeneralState} from 'hkclient-redux/types/general';
-import {LogLevel} from 'hkclient-redux/types/client4';
-import {GetStateFunc, DispatchFunc, ActionFunc, batchActions} from 'hkclient-redux/types/actions';
+import {getServerVersion} from 'selectors/entities/general';
+import {isMinimumServerVersion} from 'utils/helpers';
+import {GeneralState} from 'types/general';
+import {LogLevel} from 'types/client4';
+import {GetStateFunc, DispatchFunc, ActionFunc, batchActions} from 'types/actions';
 
 import {logError} from './errors';
 import {loadRolesIfNeeded} from './roles';

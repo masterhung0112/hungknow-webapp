@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import General from 'hkclient-redux/constants/general';
+import General from 'constants/general';
 
-import generalReducer from 'hkclient-redux/reducers/entities/general';
+import generalReducer from 'reducers/entities/general';
 
 import {IModule} from 'redux-dynamic-modules-core';
 
-import {GeneralAwareState} from 'hkclient-redux/types/general';
+import {GeneralAwareState} from 'types/general';
 
 export const GeneralModule: IModule<GeneralAwareState> = {
     id: General.GENERAL_MODULE_NAME,

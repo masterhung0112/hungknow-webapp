@@ -1,29 +1,29 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {ChannelTypes, GeneralTypes, PostTypes, UserTypes, ThreadTypes} from 'hkclient-redux/action_types';
+import {ChannelTypes, GeneralTypes, PostTypes, UserTypes, ThreadTypes} from 'action_types';
 
-import {Posts} from 'hkclient-redux/constants';
+import {Posts} from '../../constants';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
+import {GenericAction} from 'types/actions';
 import {
     OpenGraphMetadata,
     Post,
     PostsState,
     PostOrderBlock,
     MessageHistory,
-} from 'hkclient-redux/types/posts';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {Reaction} from 'hkclient-redux/types/reactions';
+} from 'types/posts';
+import {UserProfile} from 'types/users';
+import {Reaction} from 'types/reactions';
 import {
     $ID,
     RelationOneToOne,
     Dictionary,
     IDMappedObjects,
     RelationOneToMany,
-} from 'hkclient-redux/types/utilities';
+} from 'types/utilities';
 
-import {comparePosts, shouldUpdatePost} from 'hkclient-redux/utils/post_utils';
+import {comparePosts, shouldUpdatePost} from 'utils/post_utils';
 
 export function removeUnneededMetadata(post: Post) {
     if (!post.metadata) {

@@ -3,11 +3,11 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUserMentionKeys} from 'hkclient-redux/selectors/entities/users';
-import {getMyGroupMentionKeys} from 'hkclient-redux/selectors/entities/groups';
+import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentUserMentionKeys} from 'selectors/entities/users';
+import {getMyGroupMentionKeys} from 'selectors/entities/groups';
 
-import {GlobalState} from 'hkclient-redux/types/store';
+import {GlobalState} from 'types/store';
 
 import {UserMentionKey} from './users';
 export const getCurrentSearchForCurrentTeam: (state: GlobalState) => string = createSelector(

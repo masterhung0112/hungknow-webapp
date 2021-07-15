@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
-import {FileTypes} from 'hkclient-redux/action_types';
+import {Client4} from 'client';
+import {FileTypes} from 'action_types';
 
-import {batchActions, DispatchFunc, GetStateFunc, ActionFunc, Action} from 'hkclient-redux/types/actions';
+import {batchActions, DispatchFunc, GetStateFunc, ActionFunc, Action} from 'types/actions';
 
-import {FileUploadResponse, FileSearchResultItem} from 'hkclient-redux/types/files';
+import {FileUploadResponse, FileSearchResultItem} from 'types/files';
 
 import {logError} from './errors';
 import {bindClientFunc, forceLogoutIfNecessary} from './helpers';

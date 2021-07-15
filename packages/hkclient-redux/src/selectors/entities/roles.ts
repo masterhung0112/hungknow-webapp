@@ -3,18 +3,18 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentChannelId} from 'hkclient-redux/selectors/entities/common';
+import {getCurrentChannelId} from 'selectors/entities/common';
 import {
     getMySystemPermissions,
     getMySystemRoles,
     getRoles,
     PermissionsOptions,
-} from 'hkclient-redux/selectors/entities/roles_helpers';
-import {getTeamMemberships, getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+} from 'selectors/entities/roles_helpers';
+import {getTeamMemberships, getCurrentTeamId} from 'selectors/entities/teams';
 
-import {Role} from 'hkclient-redux/types/roles';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {Role} from 'types/roles';
+import {GlobalState} from 'types/store';
+import {Dictionary} from 'types/utilities';
 
 export {getMySystemPermissions, getMySystemRoles, getRoles};
 

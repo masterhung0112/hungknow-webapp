@@ -6,13 +6,13 @@ import fs from 'fs';
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'hkclient-redux/actions/users';
+import * as Actions from 'actions/users';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 import {RequestStatus} from '../constants';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
+import deepFreeze from 'utils/deep_freeze';
 
 const OK_RESPONSE = {status: 'OK'};
 

@@ -6,14 +6,14 @@ import fs from 'fs';
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'hkclient-redux/actions/teams';
-import {login} from 'hkclient-redux/actions/users';
+import * as Actions from 'actions/teams';
+import {login} from 'actions/users';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 import {General, RequestStatus} from '../constants';
-import {GeneralTypes} from 'hkclient-redux/action_types';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
+import {GeneralTypes} from 'action_types';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
 
 const OK_RESPONSE = {status: 'OK'};
 

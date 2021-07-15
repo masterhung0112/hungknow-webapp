@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {JobTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
+import {JobTypes} from 'action_types';
+import {Client4} from 'client';
 import {General} from '../constants';
 
-import {ActionFunc} from 'hkclient-redux/types/actions';
-import {JobType, Job} from 'hkclient-redux/types/jobs';
+import {ActionFunc} from 'types/actions';
+import {JobType, Job} from 'types/jobs';
 
 import {bindClientFunc} from './helpers';
 export function createJob(job: Job): ActionFunc {

@@ -4,21 +4,21 @@
 import assert from 'assert';
 import nock from 'nock';
 
-import * as Actions from 'hkclient-redux/actions/channels';
-import {addUserToTeam} from 'hkclient-redux/actions/teams';
-import {getProfilesByIds, login} from 'hkclient-redux/actions/users';
-import {createIncomingHook, createOutgoingHook} from 'hkclient-redux/actions/integrations';
+import * as Actions from 'actions/channels';
+import {addUserToTeam} from 'actions/teams';
+import {getProfilesByIds, login} from 'actions/users';
+import {createIncomingHook, createOutgoingHook} from 'actions/integrations';
 
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 
 import {General, RequestStatus, Preferences, Permissions} from '../constants';
 import {CategoryTypes} from '../constants/channel_categories';
 import {MarkUnread} from '../constants/channels';
 
-import TestHelper from 'hkclient-redux/test/test_helper';
-import configureStore from 'hkclient-redux/test/test_store';
+import TestHelper from 'test/test_helper';
+import configureStore from 'test/test_store';
 
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+import {getPreferenceKey} from 'utils/preference_utils';
 
 const OK_RESPONSE = {status: 'OK'};
 

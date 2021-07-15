@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
-import {SearchTypes} from 'hkclient-redux/action_types';
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUserId, getCurrentUserMentionKeys} from 'hkclient-redux/selectors/entities/users';
+import {Client4} from 'client';
+import {SearchTypes} from 'action_types';
+import {getCurrentTeamId} from 'selectors/entities/teams';
+import {getCurrentUserId, getCurrentUserMentionKeys} from 'selectors/entities/users';
 
-import {ActionResult, batchActions, DispatchFunc, GetStateFunc, ActionFunc} from 'hkclient-redux/types/actions';
+import {ActionResult, batchActions, DispatchFunc, GetStateFunc, ActionFunc} from 'types/actions';
 
-import {Post} from 'hkclient-redux/types/posts';
+import {Post} from 'types/posts';
 
-import {FileSearchResults, FileSearchResultItem} from 'hkclient-redux/types/files';
+import {FileSearchResults, FileSearchResultItem} from 'types/files';
 
-import {SearchParameter} from 'hkclient-redux/types/search';
+import {SearchParameter} from 'types/search';
 
 import {getChannelAndMyMember, getChannelMembers} from './channels';
 import {forceLogoutIfNecessary} from './helpers';

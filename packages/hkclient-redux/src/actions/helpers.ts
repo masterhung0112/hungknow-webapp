@@ -1,10 +1,10 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
-import {UserTypes} from 'hkclient-redux/action_types';
+import {Client4} from 'client';
+import {UserTypes} from 'action_types';
 
-import {Client4Error} from 'hkclient-redux/types/client4';
-import {batchActions, Action, ActionFunc, GenericAction, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+import {Client4Error} from 'types/client4';
+import {batchActions, Action, ActionFunc, GenericAction, DispatchFunc, GetStateFunc} from 'types/actions';
 
 import {logError} from './errors';
 type ActionType = string;

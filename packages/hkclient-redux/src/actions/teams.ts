@@ -1,21 +1,21 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {Client4} from 'hkclient-redux/client';
+import {Client4} from 'client';
 import {General} from '../constants';
-import {ChannelTypes, TeamTypes, UserTypes} from 'hkclient-redux/action_types';
-import EventEmitter from 'hkclient-redux/utils/event_emitter';
+import {ChannelTypes, TeamTypes, UserTypes} from 'action_types';
+import EventEmitter from 'utils/event_emitter';
 
-import {isCompatibleWithJoinViewTeamPermissions} from 'hkclient-redux/selectors/entities/general';
+import {isCompatibleWithJoinViewTeamPermissions} from 'selectors/entities/general';
 
-import {getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {getCurrentTeamId} from 'selectors/entities/teams';
 
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentUserId} from 'selectors/entities/users';
 
-import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult, batchActions, Action} from 'hkclient-redux/types/actions';
+import {GetStateFunc, DispatchFunc, ActionFunc, ActionResult, batchActions, Action} from 'types/actions';
 
-import {Team, TeamMembership, TeamMemberWithError, GetTeamMembersOpts, TeamsWithCount, TeamSearchOpts} from 'hkclient-redux/types/teams';
+import {Team, TeamMembership, TeamMemberWithError, GetTeamMembersOpts, TeamsWithCount, TeamSearchOpts} from 'types/teams';
 
-import {UserProfile} from 'hkclient-redux/types/users';
+import {UserProfile} from 'types/users';
 
 import {selectChannel} from './channels';
 import {logError} from './errors';

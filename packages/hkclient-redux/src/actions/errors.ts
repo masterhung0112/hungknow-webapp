@@ -3,11 +3,11 @@
 
 import {serializeError, ErrorObject} from 'serialize-error';
 
-import {ErrorTypes} from 'hkclient-redux/action_types';
-import {Client4} from 'hkclient-redux/client';
-import EventEmitter from 'hkclient-redux/utils/event_emitter';
-import {DispatchFunc, ActionFunc} from 'hkclient-redux/types/actions';
-import {ServerError} from 'hkclient-redux/types/errors';
+import {ErrorTypes} from 'action_types';
+import {Client4} from 'client';
+import EventEmitter from 'utils/event_emitter';
+import {DispatchFunc, ActionFunc} from 'types/actions';
+import {ServerError} from 'types/errors';
 
 export function dismissErrorObject(index: number) {
     return {

@@ -3,9 +3,9 @@
 
 import assert from 'assert';
 
-import Client4 from 'hkclient-redux/client/client4';
+import Client4 from 'client/client4';
 
-import {cleanUrlForLogging} from 'hkclient-redux/utils/sentry';
+import {cleanUrlForLogging} from 'utils/sentry';
 
 describe('hkclient-redux/utils/sentry', () => {
     describe('cleanUrlForLogging', () => {

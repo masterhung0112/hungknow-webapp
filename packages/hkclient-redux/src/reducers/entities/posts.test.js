@@ -4,16 +4,16 @@
 import assert from 'assert';
 import expect from 'expect';
 
-import * as reducers from 'hkclient-redux/reducers/entities/posts';
+import * as reducers from 'reducers/entities/posts';
 
 import {
     ChannelTypes,
     GeneralTypes,
     PostTypes,
     ThreadTypes,
-} from 'hkclient-redux/action_types';
-import {Posts} from 'hkclient-redux/constants';
-import deepFreeze from 'hkclient-redux/utils/deep_freeze';
+} from 'action_types';
+import {Posts} from '../../constants';
+import deepFreeze from 'utils/deep_freeze';
 
 describe('posts', () => {
     for (const actionType of [

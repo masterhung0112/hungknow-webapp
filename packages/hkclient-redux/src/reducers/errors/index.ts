@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {ErrorTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
+import {ErrorTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
 export default ((state: Array<{error: any;displayable?: boolean;date: string}> = [], action: GenericAction) => {
     switch (action.type) {
     case ErrorTypes.DISMISS_ERROR: {

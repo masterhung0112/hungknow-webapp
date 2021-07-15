@@ -2,12 +2,12 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {AdminTypes, ChannelTypes, TeamTypes, UserTypes, SchemeTypes, GroupTypes} from 'hkclient-redux/action_types';
-import {teamListToMap} from 'hkclient-redux/utils/team_utils';
-import {Team, TeamMembership, TeamUnread} from 'hkclient-redux/types/teams';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {RelationOneToOne, IDMappedObjects} from 'hkclient-redux/types/utilities';
-import {GenericAction} from 'hkclient-redux/types/actions';
+import {AdminTypes, ChannelTypes, TeamTypes, UserTypes, SchemeTypes, GroupTypes} from 'action_types';
+import {teamListToMap} from 'utils/team_utils';
+import {Team, TeamMembership, TeamUnread} from 'types/teams';
+import {UserProfile} from 'types/users';
+import {RelationOneToOne, IDMappedObjects} from 'types/utilities';
+import {GenericAction} from 'types/actions';
 
 function currentTeamId(state = '', action: GenericAction) {
     switch (action.type) {

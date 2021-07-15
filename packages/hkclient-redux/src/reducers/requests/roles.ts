@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 import {combineReducers} from 'redux';
 
-import {RoleTypes} from 'hkclient-redux/action_types';
+import {RoleTypes} from 'action_types';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {RolesRequestsStatuses, RequestStatusType} from 'hkclient-redux/types/requests';
+import {GenericAction} from 'types/actions';
+import {RolesRequestsStatuses, RequestStatusType} from 'types/requests';
 
 import {handleRequest, initialRequestState} from './helpers';
 

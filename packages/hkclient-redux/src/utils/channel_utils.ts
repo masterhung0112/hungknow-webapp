@@ -1,19 +1,19 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {MarkUnread} from 'hkclient-redux/constants/channels';
+import {MarkUnread} from 'constants/channels';
 
 import {General, Preferences, Permissions, Users} from '../constants';
 
-import {hasNewPermissions} from 'hkclient-redux/selectors/entities/general';
-import {haveITeamPermission, haveIChannelPermission} from 'hkclient-redux/selectors/entities/roles';
-import {Channel, ChannelMembership, ChannelType, ChannelNotifyProps} from 'hkclient-redux/types/channels';
-import {Post} from 'hkclient-redux/types/posts';
-import {UsersState, UserProfile, UserNotifyProps} from 'hkclient-redux/types/users';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {TeamMembership} from 'hkclient-redux/types/teams';
-import {PreferenceType} from 'hkclient-redux/types/preferences';
-import {Dictionary, IDMappedObjects, RelationOneToMany, RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {hasNewPermissions} from 'selectors/entities/general';
+import {haveITeamPermission, haveIChannelPermission} from 'selectors/entities/roles';
+import {Channel, ChannelMembership, ChannelType, ChannelNotifyProps} from 'types/channels';
+import {Post} from 'types/posts';
+import {UsersState, UserProfile, UserNotifyProps} from 'types/users';
+import {GlobalState} from 'types/store';
+import {TeamMembership} from 'types/teams';
+import {PreferenceType} from 'types/preferences';
+import {Dictionary, IDMappedObjects, RelationOneToMany, RelationOneToOne} from 'types/utilities';
 
 import {getPreferenceKey} from './preference_utils';
 import {displayUsername} from './user_utils';

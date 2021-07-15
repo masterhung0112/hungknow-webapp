@@ -1,14 +1,14 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {DEFAULT_LOCALE} from 'hkclient-redux/constants/general';
+import {DEFAULT_LOCALE} from 'constants/general';
 
 import assert from 'assert';
 import nock from 'nock';
 
-import Client4 from 'hkclient-redux/client/client4';
+import Client4 from 'client/client4';
 
-import {generateId} from 'hkclient-redux/utils/helpers';
+import {generateId} from 'utils/helpers';
 
 export const DEFAULT_SERVER = 'http://localhost:8065';
 const PASSWORD = 'password1';

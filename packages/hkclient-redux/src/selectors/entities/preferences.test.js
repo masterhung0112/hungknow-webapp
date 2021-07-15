@@ -3,16 +3,16 @@
 
 import assert from 'assert';
 
-import {General, Preferences} from 'hkclient-redux/constants';
+import {General, Preferences} from '../../constants';
 
-import * as Selectors from 'hkclient-redux/selectors/entities/preferences';
+import * as Selectors from 'selectors/entities/preferences';
 
-import mergeObjects from 'hkclient-redux/test/merge_objects';
+import mergeObjects from 'test/merge_objects';
 
-import * as ThemeUtils from 'hkclient-redux/utils/theme_utils';
+import * as ThemeUtils from 'utils/theme_utils';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
+import {getPreferenceKey} from 'utils/preference_utils';
 
 describe('Selectors.Preferences', () => {
     const category1 = 'testcategory1';

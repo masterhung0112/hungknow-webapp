@@ -3,10 +3,10 @@
 
 import {combineReducers} from 'redux';
 
-import {IntegrationTypes, UserTypes, ChannelTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Command, IncomingWebhook, OutgoingWebhook, OAuthApp} from 'hkclient-redux/types/integrations';
-import {Dictionary, IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {IntegrationTypes, UserTypes, ChannelTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {Command, IncomingWebhook, OutgoingWebhook, OAuthApp} from 'types/integrations';
+import {Dictionary, IDMappedObjects} from 'types/utilities';
 
 function incomingHooks(state: IDMappedObjects<IncomingWebhook> = {}, action: GenericAction) {
     switch (action.type) {

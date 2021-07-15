@@ -4,7 +4,7 @@
 import assert from 'assert';
 
 import {General, Users} from '../constants';
-import TestHelper from 'hkclient-redux/test/test_helper';
+import TestHelper from 'test/test_helper';
 
 import {
     areChannelMentionsIgnored,
@@ -14,7 +14,7 @@ import {
     sortChannelsByRecency,
     sortChannelsByDisplayName,
     sortChannelsByTypeListAndDisplayName,
-} from 'hkclient-redux/utils/channel_utils';
+} from 'utils/channel_utils';
 
 describe('ChannelUtils', () => {
     it('canManageMembersOldPermissions', () => {

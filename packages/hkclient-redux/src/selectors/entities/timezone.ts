@@ -1,8 +1,8 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {GlobalState} from 'hkclient-redux/types/store';
-import {UserProfile} from 'hkclient-redux/types/users';
+import {GlobalState} from 'types/store';
+import {UserProfile} from 'types/users';
 
 export function getUserTimezone(state: GlobalState, id: string) {
     const profile = state.entities.users.profiles[id];

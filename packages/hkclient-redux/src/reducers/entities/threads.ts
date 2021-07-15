@@ -3,13 +3,13 @@
 
 import {combineReducers} from 'redux';
 
-import {PostTypes, TeamTypes, ThreadTypes, UserTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Team} from 'hkclient-redux/types/teams';
-import {Post} from 'hkclient-redux/types/posts';
-import {ThreadsState, UserThread} from 'hkclient-redux/types/threads';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {PostTypes, TeamTypes, ThreadTypes, UserTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
+import {Team} from 'types/teams';
+import {Post} from 'types/posts';
+import {ThreadsState, UserThread} from 'types/threads';
+import {UserProfile} from 'types/users';
+import {IDMappedObjects} from 'types/utilities';
 
 export const threadsReducer = (state: ThreadsState['threads'] = {}, action: GenericAction) => {
     switch (action.type) {

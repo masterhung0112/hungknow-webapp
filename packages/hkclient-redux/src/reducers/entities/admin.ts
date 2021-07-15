@@ -3,22 +3,22 @@
 
 import {combineReducers} from 'redux';
 
-import {AdminTypes, UserTypes} from 'hkclient-redux/action_types';
-import {Stats} from 'hkclient-redux/constants';
-import PluginState from 'hkclient-redux/constants/plugins';
+import {AdminTypes, UserTypes} from 'action_types';
+import {Stats} from '../../constants';
+import PluginState from 'constants/plugins';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {ClusterInfo, AnalyticsRow} from 'hkclient-redux/types/admin';
-import {Audit} from 'hkclient-redux/types/audits';
-import {Compliance} from 'hkclient-redux/types/compliance';
-import {AdminConfig, EnvironmentConfig} from 'hkclient-redux/types/config';
-import {MixedUnlinkedGroupRedux} from 'hkclient-redux/types/groups';
-import {PluginRedux, PluginStatusRedux} from 'hkclient-redux/types/plugins';
-import {SamlCertificateStatus, SamlMetadataResponse} from 'hkclient-redux/types/saml';
-import {Team} from 'hkclient-redux/types/teams';
-import {UserAccessToken, UserProfile} from 'hkclient-redux/types/users';
-import {Dictionary, RelationOneToOne, IDMappedObjects} from 'hkclient-redux/types/utilities';
-import {DataRetentionCustomPolicy} from 'hkclient-redux/types/data_retention';
+import {GenericAction} from 'types/actions';
+import {ClusterInfo, AnalyticsRow} from 'types/admin';
+import {Audit} from 'types/audits';
+import {Compliance} from 'types/compliance';
+import {AdminConfig, EnvironmentConfig} from 'types/config';
+import {MixedUnlinkedGroupRedux} from 'types/groups';
+import {PluginRedux, PluginStatusRedux} from 'types/plugins';
+import {SamlCertificateStatus, SamlMetadataResponse} from 'types/saml';
+import {Team} from 'types/teams';
+import {UserAccessToken, UserProfile} from 'types/users';
+import {Dictionary, RelationOneToOne, IDMappedObjects} from 'types/utilities';
+import {DataRetentionCustomPolicy} from 'types/data_retention';
 
 function logs(state: string[] = [], action: GenericAction) {
     switch (action.type) {

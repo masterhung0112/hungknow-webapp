@@ -3,20 +3,20 @@
 
 import {createSelector} from 'reselect';
 
-import {Permissions} from 'hkclient-redux/constants';
+import {Permissions} from '../../constants';
 
-import {getConfig, getCurrentUrl, isCompatibleWithJoinViewTeamPermissions} from 'hkclient-redux/selectors/entities/general';
-import {haveISystemPermission} from 'hkclient-redux/selectors/entities/roles_helpers';
+import {getConfig, getCurrentUrl, isCompatibleWithJoinViewTeamPermissions} from 'selectors/entities/general';
+import {haveISystemPermission} from 'selectors/entities/roles_helpers';
 
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Team, TeamMembership, TeamStats} from 'hkclient-redux/types/teams';
-import {UserProfile} from 'hkclient-redux/types/users';
-import {$ID, IDMappedObjects, RelationOneToOne} from 'hkclient-redux/types/utilities';
+import {GlobalState} from 'types/store';
+import {Team, TeamMembership, TeamStats} from 'types/teams';
+import {UserProfile} from 'types/users';
+import {$ID, IDMappedObjects, RelationOneToOne} from 'types/utilities';
 
-import {createIdsSelector} from 'hkclient-redux/utils/helpers';
-import {isTeamAdmin} from 'hkclient-redux/utils/user_utils';
-import {sortTeamsWithLocale, filterTeamsStartingWithTerm} from 'hkclient-redux/utils/team_utils';
-import {getDataRetentionCustomPolicy} from 'hkclient-redux/selectors/entities/admin';
+import {createIdsSelector} from 'utils/helpers';
+import {isTeamAdmin} from 'utils/user_utils';
+import {sortTeamsWithLocale, filterTeamsStartingWithTerm} from 'utils/team_utils';
+import {getDataRetentionCustomPolicy} from 'selectors/entities/admin';
 
 import {isCollapsedThreadsEnabled} from './preferences';
 

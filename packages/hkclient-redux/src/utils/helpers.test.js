@@ -3,7 +3,7 @@
 
 import assert from 'assert';
 
-import {buildQueryString, isMinimumServerVersion, isEmail} from 'hkclient-redux/utils/helpers';
+import {buildQueryString, isMinimumServerVersion, isEmail} from 'utils/helpers';
 
 describe('Helpers', () => {
     it('isMinimumServerVersion', () => {

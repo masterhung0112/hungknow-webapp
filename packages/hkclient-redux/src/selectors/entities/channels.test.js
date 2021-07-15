@@ -1,17 +1,17 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
+import {CategoryTypes} from 'constants/channel_categories';
 
 import assert from 'assert';
 
-import {General, Preferences, Permissions} from 'hkclient-redux/constants';
+import {General, Preferences, Permissions} from '../../constants';
 
-import mergeObjects from 'hkclient-redux/test/merge_objects';
-import TestHelper from 'hkclient-redux/test/test_helper';
+import mergeObjects from 'test/merge_objects';
+import TestHelper from 'test/test_helper';
 
-import {sortChannelsByDisplayName, getDirectChannelName} from 'hkclient-redux/utils/channel_utils';
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
+import {sortChannelsByDisplayName, getDirectChannelName} from 'utils/channel_utils';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
 
 import * as Selectors from './channels';
 

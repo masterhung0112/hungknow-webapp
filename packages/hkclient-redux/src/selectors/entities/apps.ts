@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 import {createSelector} from 'reselect';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {AppBinding} from 'hkclient-redux/types/apps';
-import {ClientConfig} from 'hkclient-redux/types/config';
+import {GlobalState} from 'types/store';
+import {AppBinding} from 'types/apps';
+import {ClientConfig} from 'types/config';
 
-import {getConfig} from 'hkclient-redux/selectors/entities/general';
+import {getConfig} from 'selectors/entities/general';
 
 // This file's contents belong to the Apps Framework feature.
 // Apps Framework feature is experimental, and the contents of this file are

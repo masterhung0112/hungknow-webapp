@@ -3,7 +3,7 @@
 
 import assert from 'assert';
 
-import {checkDialogElementForError, checkIfErrorsMatchElements} from 'hkclient-redux/utils/integration_utils';
+import {checkDialogElementForError, checkIfErrorsMatchElements} from 'utils/integration_utils';
 
 describe('integration utils', () => {
     describe('checkDialogElementForError', () => {

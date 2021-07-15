@@ -3,11 +3,11 @@
 
 import {combineReducers} from 'redux';
 
-import {CloudTypes} from 'hkclient-redux/action_types';
+import {CloudTypes} from 'action_types';
 
-import {GenericAction} from 'hkclient-redux/types/actions';
-import {Product, Subscription, CloudCustomer, Invoice, SubscriptionStats} from 'hkclient-redux/types/cloud';
-import {Dictionary} from 'hkclient-redux/types/utilities';
+import {GenericAction} from 'types/actions';
+import {Product, Subscription, CloudCustomer, Invoice, SubscriptionStats} from 'types/cloud';
+import {Dictionary} from 'types/utilities';
 
 function subscription(state: Subscription | null = null, action: GenericAction) {
     switch (action.type) {

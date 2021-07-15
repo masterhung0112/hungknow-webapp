@@ -3,8 +3,8 @@
 
 import {combineReducers} from 'redux';
 
-import {GifTypes} from 'hkclient-redux/action_types';
-import {GenericAction} from 'hkclient-redux/types/actions';
+import {GifTypes} from 'action_types';
+import {GenericAction} from 'types/actions';
 
 type ReducerMap = {[actionType: string]: (state: any, action: GenericAction) => any};
 

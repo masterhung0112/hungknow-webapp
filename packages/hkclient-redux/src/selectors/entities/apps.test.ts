@@ -1,11 +1,11 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {GlobalState} from 'hkclient-redux/types/store';
+import {GlobalState} from 'types/store';
 
-import * as Selectors from 'hkclient-redux/selectors/entities/apps';
-import {AppBinding} from 'hkclient-redux/types/apps';
-import {AppBindingLocations} from 'hkclient-redux/constants/apps';
+import * as Selectors from 'selectors/entities/apps';
+import {AppBinding} from 'types/apps';
+import {AppBindingLocations} from 'constants/apps';
 
 const makeNewState = (flag?: string, bindings?: AppBinding[]) => ({
     entities: {

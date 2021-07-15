@@ -3,8 +3,8 @@
 
 import assert from 'assert';
 
-import {GroupTypes} from 'hkclient-redux/action_types';
-import reducer from 'hkclient-redux/reducers/entities/groups';
+import {GroupTypes} from 'action_types';
+import reducer from 'reducers/entities/groups';
 
 describe('hkclient-redux/reducers/entities/groups', () => {
     describe('syncables', () => {

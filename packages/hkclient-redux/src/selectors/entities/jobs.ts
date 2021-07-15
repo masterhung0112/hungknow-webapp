@@ -3,9 +3,9 @@
 
 import {createSelector} from 'reselect';
 
-import {JobType, Job, JobsByType} from 'hkclient-redux/types/jobs';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {IDMappedObjects} from 'hkclient-redux/types/utilities';
+import {JobType, Job, JobsByType} from 'types/jobs';
+import {GlobalState} from 'types/store';
+import {IDMappedObjects} from 'types/utilities';
 
 export function getAllJobs(state: GlobalState): IDMappedObjects<Job> {
     return state.entities.jobs.jobs;

@@ -9,13 +9,13 @@ import {Reducer, Action} from 'redux';
 import {offline} from '@redux-offline/redux-offline';
 import defaultOfflineConfig from '@redux-offline/redux-offline/lib/defaults';
 
-import {getSagaExtension, SagaExtensionContext} from 'hkclient-redux/hkredux/saga-modular';
-import {getThunkExtension} from 'hkclient-redux/hkredux/thunkMiddleware';
-import {EntitiesModule} from 'hkclient-redux/modules/reducerModule';
+import {getSagaExtension, SagaExtensionContext} from 'hkredux/saga-modular';
+import {getThunkExtension} from 'hkredux/thunkMiddleware';
+import {EntitiesModule} from 'modules/reducerModule';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import {GlobalState, SagaStore} from 'hkclient-redux/types/store';
-import {enableBatching} from 'hkclient-redux/types/actions';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
+import {GlobalState, SagaStore} from 'types/store';
+import {enableBatching} from 'types/actions';
 
 import {createMiddleware} from './middleware';
 

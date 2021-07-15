@@ -2,10 +2,10 @@
 // See LICENSE.txt for license information.
 
 import {createSelector} from 'reselect';
-import {Bot} from 'hkclient-redux/types/bots';
-import {GlobalState} from 'hkclient-redux/types/store';
-import {Dictionary} from 'hkclient-redux/types/utilities';
-import {getUsers} from 'hkclient-redux/selectors/entities/common';
+import {Bot} from 'types/bots';
+import {GlobalState} from 'types/store';
+import {Dictionary} from 'types/utilities';
+import {getUsers} from 'selectors/entities/common';
 
 export const ExternalBotAccountNames: string[] = ['mattermost-advisor'];
 

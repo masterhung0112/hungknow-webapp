@@ -3,9 +3,9 @@
 
 import assert from 'assert';
 
-import deepFreezeAndThrowOnMutation from 'hkclient-redux/utils/deep_freeze';
-import TestHelper from 'hkclient-redux/test/test_helper';
-import * as Selectors from 'hkclient-redux/selectors/entities/search';
+import deepFreezeAndThrowOnMutation from 'utils/deep_freeze';
+import TestHelper from 'test/test_helper';
+import * as Selectors from 'selectors/entities/search';
 
 describe('Selectors.Search', () => {
     const team1 = TestHelper.fakeTeamWithId();

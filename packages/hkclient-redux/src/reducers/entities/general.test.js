@@ -3,8 +3,8 @@
 
 import assert from 'assert';
 
-import reducer from 'hkclient-redux/reducers/entities/general';
-import {GeneralTypes} from 'hkclient-redux/action_types';
+import reducer from 'reducers/entities/general';
+import {GeneralTypes} from 'action_types';
 
 describe('hkclient-redux/reducers.entities.general', () => {
     describe('firstAdminVisitMarketplaceStatus', () => {

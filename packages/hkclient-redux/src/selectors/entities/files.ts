@@ -3,12 +3,12 @@
 
 import {createSelector} from 'reselect';
 
-import {getCurrentUserLocale} from 'hkclient-redux/selectors/entities/i18n';
+import {getCurrentUserLocale} from 'selectors/entities/i18n';
 
-import {FileInfo, FileSearchResultItem} from 'hkclient-redux/types/files';
-import {GlobalState} from 'hkclient-redux/types/store';
+import {FileInfo, FileSearchResultItem} from 'types/files';
+import {GlobalState} from 'types/store';
 
-import {sortFileInfos} from 'hkclient-redux/utils/file_utils';
+import {sortFileInfos} from 'utils/file_utils';
 
 function getAllFiles(state: GlobalState) {
     return state.entities.files.files;
