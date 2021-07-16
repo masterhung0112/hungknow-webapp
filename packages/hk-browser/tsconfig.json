@@ -25,9 +25,6 @@
         "components/*": [
           "src/components/*"
         ],
-        // "images/*": [
-        //   "src/images/*"
-        // ],
         "common": [
           "src/common"
         ],
@@ -108,6 +105,9 @@
         ],
         "hkclient-redux/*": [
           "./node_modules/hkclient-redux/dist/*"
+        ],
+        "hk-chat/*": [
+          "./node_modules/hk-chat/dist/*"
         ],
         "modules/*": [
           "src/modules/*"

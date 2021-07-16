@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {createSelector} from 'reselect';
+import {createSelector} from 'hkreselect';
 
 import {getCurrentChannelId, getUsers} from 'selectors/entities/common';
 import {getTeammateNameDisplaySetting} from 'selectors/entities/preferences';

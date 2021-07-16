@@ -3,7 +3,7 @@
 
 import shallowEqual from 'shallow-equals';
 
-import * as reselect from 'reselect';
+import * as reselect from 'hkreselect';
 import {Dictionary} from 'types/utilities';
 
 // eslint-disable-next-line @typescript-eslint/ban-types

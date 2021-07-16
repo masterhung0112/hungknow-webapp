@@ -3,7 +3,7 @@
 
 import shallowEquals from 'shallow-equals';
 
-import {createSelector} from 'reselect';
+import {createSelector} from 'hkreselect';
 
 import {General, Preferences} from '../../constants';
 import {CategoryTypes} from 'constants/channel_categories';

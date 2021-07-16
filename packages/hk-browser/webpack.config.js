@@ -23,10 +23,6 @@ const targetIsDevServer = NPM_TARGET === 'dev-server';
 
 const DEV = targetIsRun || targetIsStats || targetIsDevServer;
 
-const STANDARD_EXCLUDE = [
-    /node_modules/,
-];
-
 // react-hot-loader and development source maps require eval
 const CSP_UNSAFE_EVAL_IF_DEV = DEV ? ' \'unsafe-eval\'' : '';
 
@@ -143,7 +139,6 @@ var config = {
                 include: [
                     path.resolve(__dirname, 'src'),
                 ],
-                // exclude: STANDARD_EXCLUDE,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -261,6 +256,7 @@ var config = {
             core: path.resolve(__dirname, 'src/core'),
             'hkclient-redux/test': 'hkclient-redux/test',
             'hkclient-redux': 'hkclient-redux/dist',
+            'hk-chat': 'hk-chat/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'superagent/lib/client',
         },

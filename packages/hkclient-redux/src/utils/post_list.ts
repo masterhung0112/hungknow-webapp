@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 import moment from 'moment-timezone';
 
-import * as reselect from 'reselect';
+import * as reselect from 'hkreselect';
 
 import {Posts, Preferences} from '../constants';
 import {makeGetPostsForIds} from 'selectors/entities/posts';

@@ -1,6 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import {createSelector} from 'reselect';
+import {createSelector} from 'hkreselect';
 
 import {Group} from 'types/groups';
 import {filterGroupsMatchingTerm} from 'utils/group_utils';

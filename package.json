@@ -12,6 +12,7 @@
     "next:start": "next start",
     "build:browser": "lerna run build:dev --scope hk-browser --include-filtered-dependencies --stream",
     "build:redux": "lerna run build:dev --scope hkclient-redux --include-filtered-dependencies --stream",
+    "build:chat": "lerna run build:dev --scope hk-chat --include-filtered-dependencies --stream",
     "build": "cross-env NODE_ENV=production webpack",
     "run": "webpack --progress --watch",
     "browser:dev-server": "lerna run dev-server --scope hk-browser --include-filtered-dependencies --stream",
@@ -36,6 +37,8 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "7.14.5",
+    "@babel/core": "7.14.6",
     "cross-env": "7.0.3",
     "lerna": "^4.0.0",
     "webpack": "5.32.0",

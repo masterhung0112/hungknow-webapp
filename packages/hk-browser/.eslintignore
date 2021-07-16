@@ -22,6 +22,5 @@ dist/
 # design
 /design/
 
-src/comonents/TradingChart/
 src/core/
 src/pages/

@@ -3,7 +3,7 @@
 
 /* eslint-disable max-lines */
 
-import {createSelector} from 'reselect';
+import {createSelector} from 'hkreselect';
 
 import {General, Permissions, Preferences} from '../../constants';
 import {CategoryTypes} from 'constants/channel_categories';

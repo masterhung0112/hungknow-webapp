@@ -14,9 +14,9 @@ import {logError} from 'hkclient-redux/actions/errors';
 import 'sass/styles.scss';
 import 'katex/dist/katex.min.css';
 
-import {isDevMode, setCSRFFromCookie} from 'utils/utils';
-import store from 'stores/redux_store.tsx';
-import App from 'components/app';
+import {isDevMode, setCSRFFromCookie} from 'hk-chat/utils/utils';
+import store from 'hk-chat/stores/redux_store';
+import App from 'hk-chat/components/app';
 
 PDFJS.disableWorker = true;
 

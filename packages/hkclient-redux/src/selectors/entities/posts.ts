@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 /* eslint-disable max-lines */
-import {createSelector} from 'reselect';
+import {createSelector} from 'hkreselect';
 
 import {Posts, Preferences} from '../../constants';
 
