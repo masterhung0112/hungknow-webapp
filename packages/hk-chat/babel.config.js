@@ -59,11 +59,16 @@ const config = {
                 'client': './src/client',
                 'modules': './src/modules',
                 'plugins': './src/plugins',
+
+                // Asset-related Paths
+                'images': './images',
+                'sounds': './sounds',
+                'fonts': './fonts',
             },
         }],
         ['replace-import-extension', { 'extMapping': { '.jsx': '' }}]
     ],
-    'ignore': [
+    ignore: [
         "**/__snapshots__", // ignore the whole __snapshots__ directory
         '**/*.test.js',
         '**/*.test.jsx',

@@ -1,12 +1,16 @@
 {
   "name": "hk-chat",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src/ -d dist/ --source-maps --extensions \".ts,.tsx\"",
-    "build:dev": "cross-env NODE_ENV=development babel src/ -d dist/ --source-maps --extensions \".ts,.tsx\""
+    "build": "cross-env NODE_ENV=production babel src/ -d dist/ --source-maps --extensions \".ts,.tsx,.jsx,.js\" --copy-files --no-copy-ignored",
+    "build:dev": "cross-env NODE_ENV=development babel src/ -d dist/ --source-maps --extensions \".ts,.tsx,.jsx,.js\" --copy-files --no-copy-ignored"
   },
+  "files": [
+    "images/",
+    "fonts/"
+  ],
   "dependencies": {
     "@formatjs/intl-pluralrules": "4.0.6",
     "@formatjs/intl-relativetimeformat": "6.2.3",

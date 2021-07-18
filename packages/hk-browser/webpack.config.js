@@ -153,6 +153,7 @@ var config = {
                 test: /\.json$/,
                 include: [
                     path.resolve(__dirname, 'i18n'),
+
                 ],
                 exclude: [/en\.json$/],
                 use: [
