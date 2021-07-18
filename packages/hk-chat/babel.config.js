@@ -60,8 +60,8 @@ const config = {
                 'modules': './src/modules',
                 'plugins': './src/plugins',
             },
-            'stripExtensions': ['.js', '.jsx']
-        }]
+        }],
+        ['replace-import-extension', { 'extMapping': { '.jsx': '' }}]
     ],
     'ignore': [
         "**/__snapshots__", // ignore the whole __snapshots__ directory

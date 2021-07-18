@@ -27,7 +27,7 @@ function transformExtension(filepath, extMapping) {
   return filepath;
 }
 const astTransformExtension = parseSync(
-  `(${transformExtension.toString()})`
+  `(${transformExtension.toString()})`, { filename: '' }
 ).program.body[0].expression;
 
 
