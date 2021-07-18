@@ -7,7 +7,7 @@ import {Provider} from 'react-redux';
 import {Router, Route} from 'react-router-dom';
 
 import {browserHistory} from 'utils/browser_history';
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import {makeAsyncComponent} from 'components/async_load';
 

@@ -10,7 +10,7 @@ import {installPlugin} from 'actions/marketplace';
 import {closeModal} from 'actions/views/modals';
 import {ModalIdentifiers} from 'utils/constants';
 import {getInstalling, getError} from 'selectors/views/marketplace';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {GenericAction} from 'hkclient-redux/types/actions';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';

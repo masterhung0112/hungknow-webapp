@@ -4,7 +4,7 @@
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import {Constants, Preferences, ModalIdentifiers} from 'utils/constants.jsx';
 import {useSafeUrl} from 'utils/url';
 import AppIcons from 'images/appIcons.png';

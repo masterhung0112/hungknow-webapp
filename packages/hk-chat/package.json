@@ -4,8 +4,8 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "build": "cross-env NODE_ENV=production babel src/ -d dist/ --source-maps",
-    "build:dev": "cross-env NODE_ENV=development babel src/ -d dist/ --source-maps"
+    "build": "cross-env NODE_ENV=production babel src/ -d dist/ --source-maps --extensions \".ts,.tsx\"",
+    "build:dev": "cross-env NODE_ENV=development babel src/ -d dist/ --source-maps --extensions \".ts,.tsx\""
   },
   "dependencies": {
     "@formatjs/intl-pluralrules": "4.0.6",
@@ -201,6 +201,7 @@
     "webpack-livereload-plugin": "3.0.1",
     "webpack-node-externals": "2.5.2",
     "webpack-pwa-manifest": "4.3.0",
-    "babel-plugin-module-resolver": "4.1.0"
+    "babel-plugin-module-resolver": "4.1.0",
+    "babel-plugin-replace-import-extension": "^1.1.1"
   }
 }

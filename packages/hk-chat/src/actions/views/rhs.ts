@@ -4,7 +4,7 @@
 import debounce from 'lodash/debounce';
 import {batchActions} from 'redux-batched-actions';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {getSearchTerms, getRhsState, getPluggableId, getFilesSearchExtFilter} from 'selectors/rhs';
 

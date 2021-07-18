@@ -5,7 +5,7 @@
 import React from 'react';
 import {defineMessages, FormattedDate, FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import * as Utils from 'utils/utils.jsx';
 import {t} from 'utils/i18n';
 

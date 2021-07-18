@@ -16,7 +16,7 @@ import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
 
 import {getPostDraft} from 'selectors/rhs';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import {Constants, StoragePrefixes} from 'utils/constants';
 

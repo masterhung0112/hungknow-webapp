@@ -10,7 +10,7 @@ import {rudderAnalytics, RudderTelemetryHandler} from 'hkclient-redux/client/rud
 
 import * as UserAgent from 'utils/user_agent';
 import {EmojiIndicesByAlias} from 'utils/emoji.jsx';
-import {trackLoadTime} from 'actions/telemetry_actions.jsx';
+import {trackLoadTime} from 'actions/telemetry_actions';
 import * as GlobalActions from 'actions/global_actions';
 import BrowserStore from 'stores/browser_store';
 import {loadRecentlyUsedCustomEmojis} from 'actions/emoji_actions';
@@ -42,7 +42,7 @@ const LazyAuthorize = React.lazy(() => import('components/authorize'));
 const LazyCreateTeam = React.lazy(() => import('components/create_team'));
 const LazyMfa = React.lazy(() => import('components/mfa/mfa_controller'));
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 import {getSiteURL} from 'utils/url';
 import {enableDevModeFeatures, isDevMode} from 'utils/utils';
 

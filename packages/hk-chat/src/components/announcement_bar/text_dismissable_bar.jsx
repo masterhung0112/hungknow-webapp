@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import Markdown from 'components/markdown';
 
 import alertIcon from 'images/icons/round-white-info-icon.svg';

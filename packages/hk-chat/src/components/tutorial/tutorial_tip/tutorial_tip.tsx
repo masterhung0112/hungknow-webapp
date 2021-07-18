@@ -5,7 +5,7 @@ import React from 'react';
 import {Overlay} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import Constants from 'utils/constants';
 import tutorialGif from 'images/tutorialTip.gif';
 import tutorialGifWhite from 'images/tutorialTipWhite.gif';

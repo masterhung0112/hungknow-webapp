@@ -15,7 +15,7 @@ import Constants from 'utils/constants';
 
 import {browserHistory} from 'utils/browser_history';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {Groups, Permissions} from 'hkclient-redux/constants';
 import {ActionFunc, ActionResult} from 'hkclient-redux/types/actions';

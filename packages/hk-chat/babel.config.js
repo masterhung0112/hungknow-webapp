@@ -28,7 +28,7 @@ const config = {
                 allExtensions: true,
                 isTSX: true,
             },
-        ],
+        ]
     ],
     plugins: [
         'lodash',
@@ -37,9 +37,39 @@ const config = {
         'react-hot-loader/babel',
         'babel-plugin-typescript-to-proptypes',
         ['module-resolver', {
-            'root': './src'
+            'extensions': ['.js', '.jsx', '.ts', '.tsx'],
+            'alias': {
+                'components': './src/components',
+                'common': './src/common',
+                'utils': './src/utils',
+                'i18n': './src/i18n',
+                'styles': './src/styles',
+                'actions-types': './src/actions-types',
+                'actions': './src/actions',
+                'selectors': './src/selectors',
+                'reducers': './src/reducers',
+                'mocks': './src/mocks',
+                'showroom': './src/core/showroom',
+                'tests': './src/tests',
+                'types': './src/types',
+                'store': './src/store',
+                'stores': './src/stores',
+                'constants': './src/constants',
+                'storybook': './src/storybook',
+                'client': './src/client',
+                'modules': './src/modules',
+                'plugins': './src/plugins',
+            },
+            'stripExtensions': ['.js', '.jsx']
         }]
     ],
+    'ignore': [
+        "**/__snapshots__", // ignore the whole __snapshots__ directory
+        '**/*.test.js',
+        '**/*.test.jsx',
+        '**/*.test.ts',
+        '**/*.test.tsx'
+    ]
 };
 
 // Jest needs module transformation

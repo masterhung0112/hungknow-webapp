@@ -13,7 +13,7 @@ import {
     IntlShape,
 } from 'react-intl';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import CollapsedReplyThreadsModal from 'components/collapsed_reply_threads_modal';
 

@@ -9,7 +9,7 @@ import TutorialIntroScreens from 'components/tutorial/tutorial_intro_screens/tut
 import {Constants, Preferences} from 'utils/constants';
 
 describe('components/tutorial/tutorial_intro_screens/TutorialIntroScreens', () => {
-    jest.mock('actions/telemetry_actions.jsx');
+    jest.mock('actions/telemetry_actions');
 
     jest.mock('actions/global_actions');
 

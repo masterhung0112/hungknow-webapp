@@ -5,7 +5,7 @@ import React from 'react';
 import {FormattedMessage, injectIntl, IntlShape} from 'react-intl';
 
 import * as GlobalActions from 'actions/global_actions';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {filterAndSortTeamsByDisplayName} from 'utils/team_utils.jsx';
 import {ModalIdentifiers} from 'utils/constants';

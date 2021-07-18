@@ -5,7 +5,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import * as PostUtils from 'utils/post_utils.jsx';
 
 import InfiniteScroll from 'components/gif_picker/components/InfiniteScroll';

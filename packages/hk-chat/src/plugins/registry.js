@@ -24,7 +24,7 @@ import {
     registerAdminConsoleCustomSetting,
 } from 'actions/admin_actions';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 import {ActionTypes} from 'utils/constants';
 import {generateId} from 'utils/utils.jsx';
 

@@ -21,7 +21,7 @@ import TeamAnalytics from 'components/analytics/team_analytics';
 import PluginManagement from 'components/admin_console/plugin_management';
 import CustomPluginSettings from 'components/admin_console/custom_plugin_settings';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {RESOURCE_KEYS} from 'hkclient-redux/constants/permissions_sysconsole';
 
