@@ -21,6 +21,13 @@ On webapp, run the following commands
 yarn dev-server
 ```
 
+# Typescript/Javascript compilers
+
+hk-browser: webpack
+hk-chat: babel
+hkclient-redux: tsc
+hkreselect: babel
+
 # CI
 
 CI was tested on the following platform:

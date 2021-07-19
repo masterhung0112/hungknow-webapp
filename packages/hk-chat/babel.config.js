@@ -28,7 +28,7 @@ const config = {
                 allExtensions: true,
                 isTSX: true,
             },
-        ]
+        ],
     ],
     plugins: [
         'lodash',
@@ -37,44 +37,47 @@ const config = {
         'react-hot-loader/babel',
         'babel-plugin-typescript-to-proptypes',
         ['module-resolver', {
-            'extensions': ['.js', '.jsx', '.ts', '.tsx'],
-            'alias': {
-                'components': './src/components',
-                'common': './src/common',
-                'utils': './src/utils',
-                'i18n': './src/i18n',
-                'styles': './src/styles',
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            alias: {
                 'actions-types': './src/actions-types',
-                'actions': './src/actions',
-                'selectors': './src/selectors',
-                'reducers': './src/reducers',
-                'mocks': './src/mocks',
-                'showroom': './src/core/showroom',
-                'tests': './src/tests',
-                'types': './src/types',
-                'store': './src/store',
-                'stores': './src/stores',
-                'constants': './src/constants',
-                'storybook': './src/storybook',
-                'client': './src/client',
-                'modules': './src/modules',
-                'plugins': './src/plugins',
+                actions: './src/actions',
+                client: './src/client',
+                common: './src/common',
+                components: './src/components',
+                constants: './src/constants',
+                dispatcher: './src/dispatcher',
+                i18n: './src/i18n',
+                modules: './src/modules',
+                plugins: './src/plugins',
+                selectors: './src/selectors',
+                store: './src/store',
+                stores: './src/stores',
+                reducers: './src/reducers',
+                mocks: './src/mocks',
+                showroom: './src/core/showroom',
+                styles: './src/styles',
+                tests: './src/tests',
+                types: './src/types',
+                storybook: './src/storybook',
+                utils: './src/utils',
 
                 // Asset-related Paths
-                'images': './images',
-                'sounds': './sounds',
-                'fonts': './fonts',
+                images: './images',
+                sounds: './sounds',
+                fonts: './fonts',
+
+                // 'react-dom': '@hot-loader/react-dom',
             },
         }],
-        ['replace-import-extension', { 'extMapping': { '.jsx': '' }}]
+        ['edit-import-extension', {extMapping: {'.jsx': '', '.ts': '', '.tsx': ''}}],
     ],
     ignore: [
-        "**/__snapshots__", // ignore the whole __snapshots__ directory
+        '**/__snapshots__', // ignore the whole __snapshots__ directory
         '**/*.test.js',
         '**/*.test.jsx',
         '**/*.test.ts',
-        '**/*.test.tsx'
-    ]
+        '**/*.test.tsx',
+    ],
 };
 
 // Jest needs module transformation
