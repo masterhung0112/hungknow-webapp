@@ -8,7 +8,7 @@ import {GlobalState} from 'types/store';
 
 import {installApp} from 'actions/marketplace';
 import {closeModal} from 'actions/views/modals';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import {getInstalling, getError} from 'selectors/views/marketplace';
 import {ModalIdentifiers} from 'utils/constants';
 

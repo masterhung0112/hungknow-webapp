@@ -5,7 +5,7 @@ import {handleNewPost} from 'actions/post_actions';
 import {closeRightHandSide} from 'actions/views/rhs';
 import {syncPostsInChannel} from 'actions/views/channel';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import configureStore from 'tests/test_store';
 

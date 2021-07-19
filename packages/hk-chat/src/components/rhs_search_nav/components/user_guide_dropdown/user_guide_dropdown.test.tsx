@@ -3,7 +3,7 @@
 
 import React from 'react';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import * as GlobalActions from 'actions/global_actions';
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Menu from 'components/widgets/menu/menu';
@@ -15,8 +15,8 @@ jest.mock('actions/global_actions', () => ({
     toggleShortcutsModal: jest.fn(),
 }));
 
-jest.mock('actions/telemetry_actions.jsx', () => {
-    const original = jest.requireActual('actions/telemetry_actions.jsx');
+jest.mock('actions/telemetry_actions', () => {
+    const original = jest.requireActual('actions/telemetry_actions');
 
     return {
         ...original,

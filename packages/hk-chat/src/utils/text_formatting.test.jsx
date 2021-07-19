@@ -4,7 +4,7 @@
 import emojiRegex from 'emoji-regex';
 
 import {getEmojiMap} from 'selectors/emojis';
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import {formatText, autolinkAtMentions, highlightSearchTerms, handleUnicodeEmoji, parseSearchTerms} from 'utils/text_formatting';
 import LinkOnlyRenderer from 'utils/markdown/link_only_renderer';

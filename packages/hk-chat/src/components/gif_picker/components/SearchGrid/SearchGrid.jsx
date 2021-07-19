@@ -5,7 +5,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import NoResultsIndicator from 'components/no_results_indicator/no_results_indicator.tsx';
 import {NoResultsVariant} from 'components/no_results_indicator/types';

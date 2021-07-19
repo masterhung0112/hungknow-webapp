@@ -4,15 +4,15 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {AuthorType, MarketplacePlugin, ReleaseStage} from 'hkclient-redux/types/marketplace';
 import type {PluginStatusRedux} from 'hkclient-redux/types/plugins';
 
 import {AllListing, InstalledListing, MarketplaceModal, MarketplaceModalProps} from './marketplace_modal';
 
-jest.mock('actions/telemetry_actions.jsx', () => {
-    const original = jest.requireActual('actions/telemetry_actions.jsx');
+jest.mock('actions/telemetry_actions', () => {
+    const original = jest.requireActual('actions/telemetry_actions');
     return {
         ...original,
         trackEvent: jest.fn(),

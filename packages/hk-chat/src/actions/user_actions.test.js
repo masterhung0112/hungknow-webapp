@@ -7,7 +7,7 @@ import configureStore from 'redux-mock-store';
 import * as UserActions from 'actions/user_actions';
 import {getState} from 'stores/redux_store';
 import TestHelper from 'tests/helpers/client-test-helper';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {getPreferenceKey} from 'hkclient-redux/utils/preference_utils';
 import {CategoryTypes} from 'hkclient-redux/constants/channel_categories';
@@ -70,8 +70,8 @@ jest.mock('stores/redux_store', () => {
     };
 });
 
-jest.mock('actions/telemetry_actions.jsx', () => {
-    const original = jest.requireActual('actions/telemetry_actions.jsx');
+jest.mock('actions/telemetry_actions', () => {
+    const original = jest.requireActual('actions/telemetry_actions');
     return {
         ...original,
         trackEvent: jest.fn(),

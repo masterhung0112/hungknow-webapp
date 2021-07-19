@@ -7,11 +7,11 @@ import {loadCustomEmojisForCustomStatusesByUserIds} from 'actions/emoji_actions'
 
 import {loadStatusesForProfilesList, loadStatusesForProfilesMap} from 'actions/status_actions.jsx';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {getDisplayedChannels} from 'selectors/views/channel_sidebar';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import * as Utils from 'utils/utils.jsx';
 

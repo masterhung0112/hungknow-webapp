@@ -3,7 +3,7 @@
 
 import moment from 'moment-timezone';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import {getSupportedTimezones as getTimezones} from 'hkclient-redux/selectors/entities/general';
 

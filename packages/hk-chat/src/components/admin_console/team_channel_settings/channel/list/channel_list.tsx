@@ -6,7 +6,7 @@ import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
 import {browserHistory} from 'utils/browser_history';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {Constants} from 'utils/constants';
 import {isArchivedChannel} from 'utils/channel_utils';

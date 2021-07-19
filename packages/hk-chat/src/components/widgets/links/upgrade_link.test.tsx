@@ -11,8 +11,8 @@ import UpgradeLink from './upgrade_link';
 
 let trackEventCall = 0;
 
-jest.mock('actions/telemetry_actions.jsx', () => {
-    const original = jest.requireActual('actions/telemetry_actions.jsx');
+jest.mock('actions/telemetry_actions', () => {
+    const original = jest.requireActual('actions/telemetry_actions');
     return {
         ...original,
         trackEvent: () => {

@@ -126,6 +126,7 @@ if (DEV) {
 }
 
 var config = {
+    //'react-hot-loader/patch', 
     entry: ['./src/root.jsx', './src/root.html'],
     output: {
         publicPath,
@@ -153,6 +154,7 @@ var config = {
                 test: /\.json$/,
                 include: [
                     path.resolve(__dirname, 'i18n'),
+
                 ],
                 exclude: [/en\.json$/],
                 use: [
@@ -172,7 +174,7 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: ['./node_modules/compass-mixins/lib', './src/sass'],
+                                includePaths: ['../../node_modules/compass-mixins/lib', '../../node_modules/hk-chat/src', '../../node_modules/hk-chat/src/sass'],
                             },
                         },
                     },
@@ -259,6 +261,7 @@ var config = {
             'hk-chat': 'hk-chat/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'superagent/lib/client',
+            // 'react-dom': '@hot-loader/react-dom',
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fallback: {

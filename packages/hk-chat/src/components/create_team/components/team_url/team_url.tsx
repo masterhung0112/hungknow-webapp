@@ -6,7 +6,7 @@ import React from 'react';
 import {Button, Tooltip} from 'react-bootstrap';
 import {FormattedMessage} from 'react-intl';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import Constants from 'utils/constants.jsx';
 import * as URL from 'utils/url';

@@ -28,7 +28,7 @@ import {
     unsuppressRHS,
 } from 'actions/views/rhs';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import {ActionTypes, RHSStates, Constants} from 'utils/constants';
 
@@ -78,7 +78,7 @@ jest.mock('hkclient-redux/actions/search', () => ({
     getPinnedPosts: jest.fn(),
 }));
 
-jest.mock('actions/telemetry_actions.jsx', () => ({
+jest.mock('actions/telemetry_actions', () => ({
     trackEvent: jest.fn(),
 }));
 

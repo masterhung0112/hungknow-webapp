@@ -3,7 +3,7 @@
 
 import {loadCustomEmojisForCustomStatusesByUserIds} from 'actions/emoji_actions';
 
-import store from 'stores/redux_store.tsx';
+import store from 'stores/redux_store';
 
 import {Constants} from 'utils/constants';
 

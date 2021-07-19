@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
 
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 import Constants from 'utils/constants.jsx';
 import {cleanUpUrlable} from 'utils/url';
 import logoImage from 'images/logo.png';

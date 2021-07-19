@@ -6,7 +6,7 @@ import {FormattedMessage} from 'react-intl';
 import {Link} from 'react-router-dom';
 
 import {emitUserLoggedOutEvent} from 'actions/global_actions';
-import {trackEvent} from 'actions/telemetry_actions.jsx';
+import {trackEvent} from 'actions/telemetry_actions';
 
 import * as UserAgent from 'utils/user_agent';
 import Constants from 'utils/constants';

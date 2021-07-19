@@ -12,7 +12,7 @@ import FileUploadOverlay from 'components/file_upload_overlay';
 import NextStepsView from 'components/next_steps_view';
 import PostView from 'components/post_view';
 import TutorialView from 'components/tutorial';
-import {clearMarks, mark, measure, trackEvent} from 'actions/telemetry_actions.jsx';
+import {clearMarks, mark, measure, trackEvent} from 'actions/telemetry_actions';
 import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 
 import {Action, ActionFunc} from 'hkclient-redux/types/actions';

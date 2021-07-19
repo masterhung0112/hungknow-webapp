@@ -8,7 +8,7 @@ import TutorialTip from 'components/tutorial/tutorial_tip/tutorial_tip';
 import {Constants, Preferences} from 'utils/constants';
 
 describe('components/tutorial/tutorial_tip/tutorial_tip', () => {
-    jest.mock('actions/telemetry_actions.jsx');
+    jest.mock('actions/telemetry_actions');
 
     const currentUserId = 'currentUserId';
     const requiredProps = {

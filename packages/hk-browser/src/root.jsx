@@ -11,7 +11,7 @@ import PDFJS from 'pdfjs-dist';
 import {logError} from 'hkclient-redux/actions/errors';
 
 // Import our styles
-import 'sass/styles.scss';
+import 'hk-chat/sass/styles.scss';
 import 'katex/dist/katex.min.css';
 
 import {isDevMode, setCSRFFromCookie} from 'hk-chat/utils/utils';
