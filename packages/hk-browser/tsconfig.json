@@ -104,10 +104,10 @@
           "src/client/*"
         ],
         "hkclient-redux/*": [
-          "./node_modules/hkclient-redux/dist/*"
+          "../../node_modules/hkclient-redux/src/*"
         ],
         "hk-chat/*": [
-          "./node_modules/hk-chat/dist/*"
+          "../../node_modules/hk-chat/src/*"
         ],
         "modules/*": [
           "src/modules/*"

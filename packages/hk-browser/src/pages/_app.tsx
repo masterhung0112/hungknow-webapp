@@ -1,13 +1,12 @@
 import React, {useEffect} from 'react';
 import '../styles/styles.scss';
-import {wrapper} from 'stores/redux_store';
+import {wrapper} from 'hk-chat/stores/redux_store';
 import {IntlProvider} from 'react-intl';
 
-import {getSiteURL} from 'utils/url';
+import {getSiteURL} from 'hk-chat/utils/url';
 import {AppProps} from 'next/app';
 import {useDispatch} from 'react-redux';
-import {loadMeAndConfig} from 'actions/views/root';
-import useAsyncEffect from 'use-async-effect';
+import {loadMeAndConfig} from 'hk-chat/actions/views/root';
 
 import {setUrl} from 'hkclient-redux/actions/general';
 
@@ -23,9 +22,12 @@ const MyApp: React.FC<AppProps> = ({Component, pageProps}) => {
     // Set default URL for HkClient
     setUrl(getSiteURL());
 
-    useAsyncEffect(async () => {
-    // Try to load me and config
-        await dispatch(loadMeAndConfig());
+    useEffect(
+        const f = async () => {
+            // Try to load me and config
+            await dispatch(loadMeAndConfig());
+        }
+        f()
     }, []);
 
     return (
