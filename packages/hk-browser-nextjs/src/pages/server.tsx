@@ -13,6 +13,7 @@ const ServerPage = () => {
   return (
     <Layout>
       <h1>Server Side Rendering</h1>
+      <h1>Hello {session?.user?.name}</h1>
       <p>
         This page uses the universal <strong>getSession()</strong> method in <strong>getServerSideProps()</strong>.
       </p>
