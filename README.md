@@ -23,10 +23,10 @@ yarn dev-server
 
 # Typescript/Javascript compilers
 
-hk-browser: webpack
-hk-chat: babel
-hkclient-redux: tsc
-hkreselect: babel
+- hk-browser: webpack
+- hk-chat: babel
+- hkclient-redux: tsc
+- hkreselect: babel
 
 # CI
 
