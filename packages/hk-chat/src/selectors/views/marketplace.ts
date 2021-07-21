@@ -1,12 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {GlobalState} from 'types/store';
-
-import {createSelector} from 'hkreselect';
+import {createSelector} from 'reselect';
 
 import {isPlugin} from 'hkclient-redux/utils/marketplace';
 import type {MarketplaceApp, MarketplacePlugin} from 'hkclient-redux/types/marketplace';
+
+import {GlobalState} from 'types/store';
 
 export const getPlugins = (state: GlobalState): MarketplacePlugin[] => state.views.marketplace.plugins;
 

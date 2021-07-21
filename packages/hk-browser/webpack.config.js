@@ -261,7 +261,6 @@ var config = {
             'hk-chat': 'hk-chat/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'superagent/lib/client',
-            // 'react-dom': '@hot-loader/react-dom',
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fallback: {
