@@ -1,6 +1,16 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
+import {Client4} from 'hkclient-redux/client';
+import {unfavoriteChannel} from 'hkclient-redux/actions/channels';
+import {savePreferences} from 'hkclient-redux/actions/preferences';
+import {getCurrentChannel, getRedirectChannelNameForTeam, isFavoriteChannel} from 'hkclient-redux/selectors/entities/channels';
+import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
+import {getCurrentRelativeTeamUrl, getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
+import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
+import {IntegrationTypes} from 'hkclient-redux/action_types';
+import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
+import type {CommandArgs} from 'hkclient-redux/types/integrations';
 
 import {AppCallResponseTypes, AppCallTypes} from 'hkclient-redux/constants/apps';
 
@@ -23,16 +33,6 @@ import {intlShim} from 'components/suggestion/command_provider/app_command_parse
 import {GlobalState} from 'types/store';
 
 import {t} from 'utils/i18n';
-import type {CommandArgs} from 'hkclient-redux/types/integrations';
-import {ActionFunc, DispatchFunc, GetStateFunc} from 'hkclient-redux/types/actions';
-import {IntegrationTypes} from 'hkclient-redux/action_types';
-import {appsEnabled} from 'hkclient-redux/selectors/entities/apps';
-import {getCurrentRelativeTeamUrl, getCurrentTeamId} from 'hkclient-redux/selectors/entities/teams';
-import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
-import {getCurrentChannel, getRedirectChannelNameForTeam, isFavoriteChannel} from 'hkclient-redux/selectors/entities/channels';
-import {savePreferences} from 'hkclient-redux/actions/preferences';
-import {unfavoriteChannel} from 'hkclient-redux/actions/channels';
-import {Client4} from 'hkclient-redux/client';
 
 import {doAppCall, postEphemeralCallResponseForCommandArgs} from './apps';
 

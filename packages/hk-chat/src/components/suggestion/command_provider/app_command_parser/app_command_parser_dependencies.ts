@@ -30,7 +30,7 @@ export type {
     Channel,
 } from 'hkclient-redux/types/channels';
 
-export {
+export type {
     GlobalState,
 } from 'types/store';
 
