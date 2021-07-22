@@ -7,6 +7,7 @@ import url from '@rollup/plugin-url';
 import commonjs from '@rollup/plugin-commonjs';
 // import multi from '@rollup/plugin-multi-entry';
 import json from '@rollup/plugin-json';
+import path from 'path';
 
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 
@@ -23,8 +24,8 @@ module.exports = {
         format: 'es',
         sourcemap: true,
         exports: 'named',
-        preserveModules: true,
-        preserveModulesRoot: 'src',
+        // preserveModules: true,
+        // preserveModulesRoot: 'src',
         globals: {react: 'React'},
     },
     plugins: [
@@ -33,7 +34,14 @@ module.exports = {
             mainFields: ['module', 'main', 'jsnext:main', 'browser'],
             extensions,
         }),
-        scss(),
+        scss({
+            includePaths: [
+                path.join(__dirname, '../../node_modules/compass-mixins/lib'),
+                path.join(__dirname, './src/sass'),
+                path.join(__dirname, './src'),
+            ],
+            output: 'dist/hkchat-styles.css',
+        }),
         url({
             include: ['**/*.svg', '**/*.(a)?png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp', '**/*.mp3', '**/*.json'],
             fileName: '[name][extname]',
@@ -45,7 +53,7 @@ module.exports = {
             ],
         }),
         commonjs({
-            include: [/node_modules/, /hkreselect/],
+            exclude: ['src/**'],
         }),
         babel({
             exclude: /node_modules/,
@@ -53,5 +61,5 @@ module.exports = {
             sourceMaps: true,
         }),
     ],
-    external: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'hkselect', 'hkclient-redux', 'redux'],
+    external: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'hkselect', 'hkclient-redux', 'redux', 'semver'],
 };

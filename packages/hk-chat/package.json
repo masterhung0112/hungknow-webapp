@@ -2,6 +2,7 @@
   "name": "hk-chat",
   "version": "1.0.0",
   "main": "dist/index.js",
+  "style": "dist/hkchat-styles.css",
   "license": "MIT",
   "files": [
     "images/",
