@@ -1,12 +1,10 @@
 import {babel} from '@rollup/plugin-babel';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
-import styles from "rollup-plugin-styles";
+import styles from 'rollup-plugin-styles';
 
-// import image from '@rollup/plugin-image';
 import url from '@rollup/plugin-url';
 import commonjs from '@rollup/plugin-commonjs';
 
-// import multi from '@rollup/plugin-multi-entry';
 import json from '@rollup/plugin-json';
 import path from 'path';
 
@@ -20,10 +18,6 @@ module.exports = {
         sourcemap: true,
         assetFileNames: '[name][extname]',
         // exports: 'named',
-
-        // preserveModules: true,
-        // preserveModulesRoot: 'src',
-        // globals: {react: 'React'},
     },
     plugins: [
 
@@ -76,26 +70,9 @@ module.exports = {
             },
         }),
 
-        // postcss({
-        //     plugins: [
-        //         postcssUrl({
-        //             url: 'inline', // enable inline assets using base64 encoding
-        //             maxSize: 10, // maximum file size to inline (in kilobytes)
-        //             fallback: 'copy', // fallback method to use if max size is exceeded
-        //             assetsPath: 'dist/assets',
-        //         }),
-        //     ],
-        // }),
-        // url({
-        //     include: ['**/*.svg', '**/*.(a)?png', '**/*.jp(e)?g', '**/*.gif', '**/*.webp', '**/*.mp3', '**/*.json', '**/*.woff2', '**/*.woff'],
-        //     fileName: '[name][extname]',
-        //     destDir: 'dist/assets',
-        // }),
         babel({
             exclude: /node_modules/,
             extensions,
-
-            // sourceMaps: true,
             configFile: path.resolve(__dirname, 'babel.config.js'),
         }),
         commonjs(),
@@ -104,7 +81,6 @@ module.exports = {
                 'src/**',
             ],
         }),
-
     ],
     external: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'hkreselect', 'hkclient-redux', 'redux', 'marked', 'fastclick'],
 };
