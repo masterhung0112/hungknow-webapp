@@ -159,8 +159,7 @@ var config = {
                 type: 'javascript/auto',
                 test: /\.json$/,
                 include: [
-                    path.resolve(__dirname, 'i18n'),
-
+                    /hk-chat/,
                 ],
                 exclude: [/en\.json$/],
                 use: [
