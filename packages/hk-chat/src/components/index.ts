@@ -1,3 +1,4 @@
+export * from './signup';
 export {default as AboutBuildModal} from './about_build_modal';
 export {default as AccessHistoryModal} from './access_history_modal';
 export {default as ActivityLogModal} from './activity_log_modal';

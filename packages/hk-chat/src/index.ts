@@ -10,4 +10,4 @@ export * from './reducers';
 export * from './selectors';
 export * from './store';
 export * from './stores';
-export * from './utils';
+export {Utils, UserAgent} from './utils';

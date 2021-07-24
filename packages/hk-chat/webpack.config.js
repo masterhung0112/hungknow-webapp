@@ -8,16 +8,18 @@ const url = require('url');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+
+// const WebpackPwaManifest = require('webpack-pwa-manifest');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
 
 const NPM_TARGET = process.env.npm_lifecycle_event; //eslint-disable-line no-process-env
 
 const targetIsRun = NPM_TARGET === 'run';
-const targetIsTest = NPM_TARGET === 'test';
+
+// const targetIsTest = NPM_TARGET === 'test';
 const targetIsStats = NPM_TARGET === 'stats';
 const targetIsDevServer = NPM_TARGET === 'dev-server';
 
@@ -126,13 +128,21 @@ if (DEV) {
 }
 
 var config = {
-
-    //'react-hot-loader/patch',
-    entry: ['./src/root.jsx', './src/root.html'],
+    entry: ['./src/index.ts'],
     output: {
         publicPath,
-        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+        clean: false,
         chunkFilename: '[name].[contenthash].js',
+        chunkLoading: 'import',
+        chunkFormat: 'module',
+        library: {
+            type: 'module',
+        },
+        environment: {
+            module: true, // force module environment
+        },
     },
     module: {
         rules: [
@@ -221,17 +231,6 @@ var config = {
                     },
                 ],
             },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: {
-                            sources: false,
-                        },
-                    },
-                ],
-            },
         ],
     },
     resolve: {
@@ -264,8 +263,7 @@ var config = {
             core: path.resolve(__dirname, 'src/core'),
             'hkclient-redux/test': 'hkclient-redux/test',
             'hkclient-redux': 'hkclient-redux/dist',
-
-            // 'hk-chat': 'hk-chat/dist',
+            'hk-chat': 'hk-chat/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'superagent/lib/client',
         },
@@ -278,7 +276,6 @@ var config = {
     performance: {
         hints: 'warning',
     },
-    target: 'web',
     plugins: [
         new webpack.ProvidePlugin({
             'window.jQuery': 'jquery',
@@ -290,19 +287,8 @@ var config = {
             COMMIT_HASH: JSON.stringify(childProcess.execSync('git rev-parse HEAD || echo dev').toString()),
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
+            filename: 'hkchat-styles.css',
             chunkFilename: '[name].[contenthash].css',
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'root.html',
-            inject: 'head',
-            template: 'src/root.html',
-            meta: {
-                csp: {
-                    'http-equiv': 'Content-Security-Policy',
-                    content: 'script-src \'self\' cdn.rudderlabs.com/ js.stripe.com/v3 ' + CSP_UNSAFE_EVAL_IF_DEV,
-                },
-            },
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -332,70 +318,70 @@ var config = {
 
         // Generate manifest.json, honouring any configured publicPath. This also handles injecting
         // <link rel="apple-touch-icon" ... /> and <meta name="apple-*" ... /> tags into root.html.
-        new WebpackPwaManifest({
-            name: 'Hungknow',
-            short_name: 'Hungknow',
-            start_url: '..',
-            description: 'Hungknow is an open source, self-hosted Slack-alternative',
-            background_color: '#ffffff',
-            inject: true,
-            ios: true,
-            fingerprints: false,
-            orientation: 'any',
-            filename: 'manifest.json',
-            icons: [{
-                src: path.resolve('images/favicon/android-chrome-192x192.png'),
-                type: 'image/png',
-                sizes: '192x192',
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-120x120.png'),
-                type: 'image/png',
-                sizes: '120x120',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-144x144.png'),
-                type: 'image/png',
-                sizes: '144x144',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-152x152.png'),
-                type: 'image/png',
-                sizes: '152x152',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-57x57.png'),
-                type: 'image/png',
-                sizes: '57x57',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-60x60.png'),
-                type: 'image/png',
-                sizes: '60x60',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-72x72.png'),
-                type: 'image/png',
-                sizes: '72x72',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-76x76.png'),
-                type: 'image/png',
-                sizes: '76x76',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/favicon-16x16.png'),
-                type: 'image/png',
-                sizes: '16x16',
-            }, {
-                src: path.resolve('images/favicon/favicon-32x32.png'),
-                type: 'image/png',
-                sizes: '32x32',
-            }, {
-                src: path.resolve('images/favicon/favicon-96x96.png'),
-                type: 'image/png',
-                sizes: '96x96',
-            }],
-        }),
+        // new WebpackPwaManifest({
+        //     name: 'Hungknow',
+        //     short_name: 'Hungknow',
+        //     start_url: '..',
+        //     description: 'Hungknow is an open source, self-hosted Slack-alternative',
+        //     background_color: '#ffffff',
+        //     inject: true,
+        //     ios: true,
+        //     fingerprints: false,
+        //     orientation: 'any',
+        //     filename: 'manifest.json',
+        //     icons: [{
+        //         src: path.resolve('images/favicon/android-chrome-192x192.png'),
+        //         type: 'image/png',
+        //         sizes: '192x192',
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-120x120.png'),
+        //         type: 'image/png',
+        //         sizes: '120x120',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-144x144.png'),
+        //         type: 'image/png',
+        //         sizes: '144x144',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-152x152.png'),
+        //         type: 'image/png',
+        //         sizes: '152x152',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-57x57.png'),
+        //         type: 'image/png',
+        //         sizes: '57x57',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-60x60.png'),
+        //         type: 'image/png',
+        //         sizes: '60x60',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-72x72.png'),
+        //         type: 'image/png',
+        //         sizes: '72x72',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-76x76.png'),
+        //         type: 'image/png',
+        //         sizes: '76x76',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/favicon-16x16.png'),
+        //         type: 'image/png',
+        //         sizes: '16x16',
+        //     }, {
+        //         src: path.resolve('images/favicon/favicon-32x32.png'),
+        //         type: 'image/png',
+        //         sizes: '32x32',
+        //     }, {
+        //         src: path.resolve('images/favicon/favicon-96x96.png'),
+        //         type: 'image/png',
+        //         sizes: '96x96',
+        //     }],
+        // }),
     ],
 };
 
@@ -432,60 +418,60 @@ config.plugins.push(new webpack.DefinePlugin({
 }));
 
 // Test mode configuration
-if (targetIsTest) {
-    config.entry = ['./root.jsx'];
-    config.target = 'node';
-    config.externals = [nodeExternals()];
-}
+// if (targetIsTest) {
+//     config.entry = ['./root.jsx'];
+//     config.target = 'node';
+//     config.externals = [nodeExternals()];
+// }
 
-if (targetIsDevServer) {
-    config = {
-        ...config,
-        devtool: 'eval-cheap-module-source-map',
-        devServer: {
-            hot: true,
-            injectHot: true,
-            liveReload: false,
-            overlay: true,
-            proxy: [{
-                context: () => true,
-                bypass(req) {
-                    if (req.url.indexOf('/api') === 0 ||
-                        req.url.indexOf('/plugins') === 0 ||
-                        req.url.indexOf('/static/plugins/') === 0 ||
-                        req.url.indexOf('/sockjs-node/') !== -1) {
-                        return null; // send through proxy to the server
-                    }
-                    if (req.url.indexOf('/static/') === 0) {
-                        return path; // return the webpacked asset
-                    }
+// if (targetIsDevServer) {
+//     config = {
+//         ...config,
+//         devtool: 'eval-cheap-module-source-map',
+//         devServer: {
+//             hot: true,
+//             injectHot: true,
+//             liveReload: false,
+//             overlay: true,
+//             proxy: [{
+//                 context: () => true,
+//                 bypass(req) {
+//                     if (req.url.indexOf('/api') === 0 ||
+//                         req.url.indexOf('/plugins') === 0 ||
+//                         req.url.indexOf('/static/plugins/') === 0 ||
+//                         req.url.indexOf('/sockjs-node/') !== -1) {
+//                         return null; // send through proxy to the server
+//                     }
+//                     if (req.url.indexOf('/static/') === 0) {
+//                         return path; // return the webpacked asset
+//                     }
 
-                    // redirect (root, team routes, etc)
-                    return '/static/root.html';
-                },
-                logLevel: 'silent',
-                target: 'http://localhost:8065',
-                xfwd: true,
-                ws: true,
-            }],
-            port: 9005,
-            watchContentBase: true,
-            writeToDisk: false,
-        },
-        performance: false,
-        optimization: {
-            ...config.optimization,
-            splitChunks: false,
-        },
-        resolve: {
-            ...config.resolve,
-            alias: {
-                ...config.resolve.alias,
-                'react-dom': '@hot-loader/react-dom',
-            },
-        },
-    };
-}
+//                     // redirect (root, team routes, etc)
+//                     return '/static/root.html';
+//                 },
+//                 logLevel: 'silent',
+//                 target: 'http://localhost:8065',
+//                 xfwd: true,
+//                 ws: true,
+//             }],
+//             port: 9005,
+//             watchContentBase: true,
+//             writeToDisk: false,
+//         },
+//         performance: false,
+//         optimization: {
+//             ...config.optimization,
+//             splitChunks: false,
+//         },
+//         resolve: {
+//             ...config.resolve,
+//             alias: {
+//                 ...config.resolve.alias,
+//                 'react-dom': '@hot-loader/react-dom',
+//             },
+//         },
+//     };
+// }
 
 // Export PRODUCTION_PERF_DEBUG=1 when running webpack to enable support for the react profiler
 // even while generating production code. (Performance testing development code is typically
