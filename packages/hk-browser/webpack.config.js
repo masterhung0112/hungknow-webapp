@@ -13,6 +13,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 
 const NPM_TARGET = process.env.npm_lifecycle_event; //eslint-disable-line no-process-env
 
@@ -126,8 +127,6 @@ if (DEV) {
 }
 
 var config = {
-
-    //'react-hot-loader/patch',
     entry: ['./src/root.jsx', './src/root.html'],
     output: {
         publicPath,
@@ -151,7 +150,7 @@ var config = {
                     options: {
                         cacheDirectory: true,
 
-                        // Babel configuration is in .babelrc because jest requires it to be there.
+                        // Babel configuration is in babel.config.js because jest requires it to be there.
                     },
                 },
             },
@@ -169,7 +168,7 @@ var config = {
                 ],
             },
             {
-                test: /\.scss$/,
+                test: /\.(s)?css$/,
                 use: [
                     DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
@@ -179,18 +178,9 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: ['../../node_modules/compass-mixins/lib', '../../node_modules/hk-chat/src', '../../node_modules/hk-chat/src/sass'],
+                                includePaths: [],
                             },
                         },
-                    },
-                ],
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
                     },
                 ],
             },
@@ -235,36 +225,10 @@ var config = {
     },
     resolve: {
         alias: {
-            sass: path.resolve(__dirname, 'src/sass'),
-            images: path.resolve(__dirname, 'images'),
-            sounds: path.resolve(__dirname, 'sounds'),
-            fonts: path.resolve(__dirname, 'fonts'),
-            components: path.resolve(__dirname, 'src/components'),
-            dispatcher: path.resolve(__dirname, 'src/dispatcher'),
-            common: path.resolve(__dirname, 'src/common'),
-            utils: path.resolve(__dirname, 'src/utils'),
-            i18n: path.resolve(__dirname, 'src/i18n'),
-            styles: path.resolve(__dirname, 'src/styles'),
-            'actions-types': path.resolve(__dirname, 'src/actions-types'),
-            types: path.resolve(__dirname, 'src/types'),
-            actions: path.resolve(__dirname, 'src/actions'),
-            selectors: path.resolve(__dirname, 'src/selectors'),
-            reducers: path.resolve(__dirname, 'src/reducers'),
-            mocks: path.resolve(__dirname, 'src/mocks'),
-            showroom: path.resolve(__dirname, 'src/showroom'),
-            tests: path.resolve(__dirname, 'src/tests'),
-            store: path.resolve(__dirname, 'src/store'),
-            stores: path.resolve(__dirname, 'src/stores'),
-            constants: path.resolve(__dirname, 'src/constants'),
-            storybook: path.resolve(__dirname, 'src/storybook'),
-            client: path.resolve(__dirname, 'src/client'),
-            modules: path.resolve(__dirname, 'src/modules'),
-            plugins: path.resolve(__dirname, 'src/plugins'),
-            core: path.resolve(__dirname, 'src/core'),
+            // storybook: path.resolve(__dirname, 'src/storybook'),
+            // core: path.resolve(__dirname, 'src/core'),
             'hkclient-redux/test': 'hkclient-redux/test',
             'hkclient-redux': 'hkclient-redux/dist',
-
-            // 'hk-chat': 'hk-chat/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'superagent/lib/client',
         },
@@ -305,27 +269,26 @@ var config = {
         }),
         new CopyWebpackPlugin({
             patterns: [
-                {from: 'images/emoji', to: 'emoji'},
-                {from: 'images/img_trans.gif', to: 'images'},
-                {from: 'images/logo-email.png', to: 'images'},
-                {from: 'images/circles.png', to: 'images'},
-                {from: 'images/favicon', to: 'images/favicon'},
-                {from: 'images/appIcons.png', to: 'images'},
-                {from: 'images/warning.png', to: 'images'},
-                {from: 'images/logo-email.png', to: 'images'},
-                {from: 'images/browser-icons', to: 'images/browser-icons'},
-                {from: 'images/cloud', to: 'images'},
-                {from: 'images/welcome_illustration.png', to: 'images'},
-                {from: 'images/logo_email_blue.png', to: 'images'},
-                {from: 'images/logo_email_gray.png', to: 'images'},
-                {from: 'images/forgot_password_illustration.png', to: 'images'},
-                {from: 'images/invite_illustration.png', to: 'images'},
-                {from: 'images/channel_icon.png', to: 'images'},
-                {from: 'images/add_payment_method.png', to: 'images'},
-                {from: 'images/add_subscription.png', to: 'images'},
-                {from: 'images/c_avatar.png', to: 'images'},
-                {from: 'images/c_download.png', to: 'images'},
-                {from: 'images/c_socket.png', to: 'images'},
+                {from: path.resolve(__dirname, '../hk-chat/dist/assets'), to: 'assets'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/img_trans.gif'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/logo-email.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/circles.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/favicon'), to: 'images/favicon'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/appIcons.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/warning.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/browser-icons'), to: 'images/browser-icons'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/cloud'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/welcome_illustration.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/logo_email_blue.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/logo_email_gray.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/forgot_password_illustration.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/invite_illustration.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/channel_icon.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/add_payment_method.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/add_subscription.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/c_avatar.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/c_download.png'), to: 'images'},
+                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/c_socket.png'), to: 'images'},
             ],
         }),
 

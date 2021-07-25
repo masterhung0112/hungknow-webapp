@@ -9,8 +9,8 @@
     "dev": "cross-env NODE_ENV='development' node server.js",
     "next:build": "next build",
     "next:start": "next start",
-    "build": "cross-env NODE_ENV=production webpack",
-    "build:dev": "cross-env NODE_ENV=development webpack",
+    "build": "shx rm -rf dist && cross-env NODE_ENV=production webpack",
+    "build:dev": "shx rm -rf dist && cross-env NODE_ENV=development webpack",
     "run": "webpack --progress --watch",
     "dev-server": "webpack serve --mode development",
     "check-types": "tsc",
@@ -122,6 +122,7 @@
     "webpack-node-externals": "2.5.2",
     "webpack-pwa-manifest": "4.3.0",
     "babel-plugin-module-resolver": "4.1.0",
-    "compass-mixins": "0.12.10"
+    "compass-mixins": "0.12.10",
+    "shx": "^0.3.3"
   }
 }

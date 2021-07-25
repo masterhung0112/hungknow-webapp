@@ -1,6 +1,7 @@
 import {babel} from '@rollup/plugin-babel';
 import {nodeResolve} from '@rollup/plugin-node-resolve';
 import styles from 'rollup-plugin-styles';
+import copy from 'rollup-plugin-copy';
 
 import url from '@rollup/plugin-url';
 import commonjs from '@rollup/plugin-commonjs';
@@ -39,11 +40,8 @@ module.exports = {
         format: 'esm',
         sourcemap: true,
         assetFileNames: '[name][extname]',
-        // exports: 'named',
     },
     plugins: [
-
-        // multi(),
         nodeResolve({
             mainFields: ['module', 'main', 'jsnext:main', 'browser'],
             extensions,
@@ -53,28 +51,6 @@ module.exports = {
             fileName: '[name][extname]',
             destDir: 'dist/assets',
         }),
-
-        // scss({
-        //     options: {
-        //         sourceMap: true,
-        //     },
-        //     includePaths: [
-        //         path.join(__dirname, '../../node_modules/compass-mixins/lib'),
-        //         path.join(__dirname, './src/sass'),
-        //         path.join(__dirname, './src'),
-        //     ],
-        //     output: 'dist/hkchat-styles.css',
-        //     processor: (css) => postcss([
-        //         postcssUrl({
-        //             url: 'copy', // enable inline assets using base64 encoding
-        //             // maxSize: 10, // maximum file size to inline (in kilobytes)
-        //             // fallback: 'copy', // fallback method to use if max size is exceeded
-        //             assetsPath: 'dist/assets',
-        //         }),
-        //     ]).
-        //         process(css).
-        //         then((result) => result.css),
-        // }),
 
         styles({
             mode: ['extract', 'hkchat-styles.css'],
@@ -105,6 +81,23 @@ module.exports = {
         json({
             exclude: [
                 'src/**',
+            ],
+        }),
+        copy({
+            targets: [
+                {src: 'images/emoji', dest: 'dist/assets'},
+                {src: [
+                    'images/img_trans.gif', 'images/logo-email.png',
+                    'images/circles.png', 'images/appIcons.png',
+                    'images/warning.png', 'images/welcome_illustration.png',
+                    'images/logo_email_blue.png', 'images/logo_email_gray.png',
+                    'images/forgot_password_illustration.png', 'images/invite_illustration.png',
+                    'images/channel_icon.png', 'images/add_payment_method.png',
+                    'images/add_subscription.png', 'images/c_avatar.png',
+                    'images/c_download.png', 'images/c_socket.png',
+                    'images/cloud', 'images/browser-icons', 'images/browser-icons',
+                ],
+                dest: 'dist/assets'},
             ],
         }),
     ],

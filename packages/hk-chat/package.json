@@ -4,10 +4,8 @@
   "main": "dist/index.js",
   "style": "dist/hkchat-styles.css",
   "license": "MIT",
-  "sideEffects": false,
   "files": [
-    "images/",
-    "fonts/"
+    "dist"
   ],
   "scripts": {
     "build": "shx rm -rf dist && cross-env NODE_ENV=production rollup -c",
@@ -220,6 +218,7 @@
     "@rollup/plugin-typescript": "^8.2.3",
     "@rollup/plugin-multi-entry": "^4.0.0",
     "rollup-plugin-styles": "^3.14.1",
-    "shx": "^0.3.3"
+    "shx": "^0.3.3",
+    "rollup-plugin-copy": "^3.4.0"
   }
 }

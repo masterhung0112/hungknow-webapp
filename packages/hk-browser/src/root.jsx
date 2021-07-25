@@ -14,8 +14,6 @@ import 'hk-chat/dist/hkchat-styles.css';
 import 'katex/dist/katex.min.css';
 
 import {Utils, App, ReduxStore} from 'hk-chat';
-// import store from 'hk-chat/stores/redux_store';
-// import App from 'hk-chat/components/app';
 
 PDFJS.disableWorker = true;
 
