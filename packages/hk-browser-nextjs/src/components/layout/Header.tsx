@@ -58,7 +58,7 @@ export default function Header() {
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href="/">
+            <Link href="/nextauth">
               <a>Home</a>
             </Link>
           </li>

@@ -9,7 +9,7 @@
     "dev": "cross-env NODE_ENV='development' node server.js",
     "build": "cross-env NODE_ENV=production next build",
     "build:dev": "cross-env NODE_ENV=development next build",
-    "serve": "next",
+    "serve": "next dev -p 9005",
     "dev-server": "next start",
     "ci": "npm run check-types && npm run eslint:check && npm run test-ci",
     "task": "node ./tasksfile.js"
@@ -17,14 +17,15 @@
   "dependencies": {
     "eslint-config-next": "^11.0.1",
     "eslint-plugin-prettier": "^3.4.0",
-    "hk-chat": "1.0.0",
-    "hkclient-redux": "1.0.1",
+    "hk-chat": "^1.0.0",
+    "hkclient-redux": "^1.0.1",
     "next": "^11.0.1",
     "next-auth": "^3.27.3",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "reselect": "1.0.0",
-    "sqlite3": "^5.0.2"
+    "sqlite3": "^5.0.2",
+    "@next-tools/dynamic": "^0.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
