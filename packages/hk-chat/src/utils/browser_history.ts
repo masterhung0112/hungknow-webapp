@@ -3,4 +3,5 @@
 
 import {createBrowserHistory} from 'history';
 
-export const browserHistory = createBrowserHistory({basename: (window as any).basename} as any);
+// eslint-disable-next-line no-negated-condition
+export const browserHistory = typeof window != 'undefined' ? createBrowserHistory({basename: (window as any).basename} as any) : {};

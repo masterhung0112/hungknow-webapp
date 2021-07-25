@@ -1,3 +1,4 @@
+/* eslint-disable no-negated-condition */
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
@@ -5,14 +6,14 @@ import {isDevMode} from 'utils/utils';
 
 import {Client4} from 'hkclient-redux/client';
 
-const SUPPORTS_CLEAR_MARKS = isSupported([performance.clearMarks]);
-const SUPPORTS_MARK = isSupported([performance.mark]);
-const SUPPORTS_MEASURE_METHODS = isSupported([
+const SUPPORTS_CLEAR_MARKS = typeof performance != 'undefined' ? isSupported([performance.clearMarks]) : false;
+const SUPPORTS_MARK = typeof performance != 'undefined' ? isSupported([performance.mark]) : false;
+const SUPPORTS_MEASURE_METHODS = typeof performance != 'undefined' ? isSupported([
     performance.measure,
     performance.getEntries,
     performance.getEntriesByName,
     performance.clearMeasures,
-]);
+]) : false;
 
 export function trackEvent(category, event, props) {
     Client4.trackEvent(category, event, props);

@@ -3,7 +3,6 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import FastClick from 'fastclick';
 import {Route, Switch, Redirect} from 'react-router-dom';
 
 import {rudderAnalytics, RudderTelemetryHandler} from 'hkclient-redux/client/rudder';
@@ -53,6 +52,8 @@ import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {setSystemEmojis} from 'hkclient-redux/actions/emojis';
 import {setUrl} from 'hkclient-redux/actions/general';
 import {Client4} from 'hkclient-redux/client';
+
+const FastClick = require('fastclick');
 
 const CreateTeam = makeAsyncComponent(LazyCreateTeam);
 const ErrorPage = makeAsyncComponent(LazyErrorPage);
