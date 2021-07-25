@@ -8,17 +8,18 @@ const url = require('url');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// const nodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+
+// const WebpackPwaManifest = require('webpack-pwa-manifest');
 const LiveReloadPlugin = require('webpack-livereload-plugin');
-// const TerserPlugin = require('terser-webpack-plugin');
 
 const NPM_TARGET = process.env.npm_lifecycle_event; //eslint-disable-line no-process-env
 
 const targetIsRun = NPM_TARGET === 'run';
-const targetIsTest = NPM_TARGET === 'test';
+
+// const targetIsTest = NPM_TARGET === 'test';
 const targetIsStats = NPM_TARGET === 'stats';
 const targetIsDevServer = NPM_TARGET === 'dev-server';
 
@@ -127,11 +128,21 @@ if (DEV) {
 }
 
 var config = {
-    entry: ['./src/root.jsx', './src/root.html'],
+    entry: ['./src/index.ts'],
     output: {
         publicPath,
-        filename: '[name].[contenthash].js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'index.js',
+        clean: false,
         chunkFilename: '[name].[contenthash].js',
+        chunkLoading: 'import',
+        chunkFormat: 'module',
+        library: {
+            type: 'module',
+        },
+        environment: {
+            module: true, // force module environment
+        },
     },
     module: {
         rules: [
@@ -150,7 +161,7 @@ var config = {
                     options: {
                         cacheDirectory: true,
 
-                        // Babel configuration is in babel.config.js because jest requires it to be there.
+                        // Babel configuration is in .babelrc because jest requires it to be there.
                     },
                 },
             },
@@ -158,7 +169,8 @@ var config = {
                 type: 'javascript/auto',
                 test: /\.json$/,
                 include: [
-                    /hk-chat/,
+                    path.resolve(__dirname, 'i18n'),
+
                 ],
                 exclude: [/en\.json$/],
                 use: [
@@ -168,7 +180,7 @@ var config = {
                 ],
             },
             {
-                test: /\.(s)?css$/,
+                test: /\.scss$/,
                 use: [
                     DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
@@ -178,9 +190,18 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: [],
+                                includePaths: ['../../node_modules/compass-mixins/lib', '../../node_modules/hk-chat/src', '../../node_modules/hk-chat/src/sass'],
                             },
                         },
+                    },
+                ],
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
                     },
                 ],
             },
@@ -210,25 +231,39 @@ var config = {
                     },
                 ],
             },
-            {
-                test: /\.html$/,
-                use: [
-                    {
-                        loader: 'html-loader',
-                        options: {
-                            sources: false,
-                        },
-                    },
-                ],
-            },
         ],
     },
     resolve: {
         alias: {
-            // storybook: path.resolve(__dirname, 'src/storybook'),
-            // core: path.resolve(__dirname, 'src/core'),
+            sass: path.resolve(__dirname, 'src/sass'),
+            images: path.resolve(__dirname, 'images'),
+            sounds: path.resolve(__dirname, 'sounds'),
+            fonts: path.resolve(__dirname, 'fonts'),
+            components: path.resolve(__dirname, 'src/components'),
+            dispatcher: path.resolve(__dirname, 'src/dispatcher'),
+            common: path.resolve(__dirname, 'src/common'),
+            utils: path.resolve(__dirname, 'src/utils'),
+            i18n: path.resolve(__dirname, 'src/i18n'),
+            styles: path.resolve(__dirname, 'src/styles'),
+            'actions-types': path.resolve(__dirname, 'src/actions-types'),
+            types: path.resolve(__dirname, 'src/types'),
+            actions: path.resolve(__dirname, 'src/actions'),
+            selectors: path.resolve(__dirname, 'src/selectors'),
+            reducers: path.resolve(__dirname, 'src/reducers'),
+            mocks: path.resolve(__dirname, 'src/mocks'),
+            showroom: path.resolve(__dirname, 'src/showroom'),
+            tests: path.resolve(__dirname, 'src/tests'),
+            store: path.resolve(__dirname, 'src/store'),
+            stores: path.resolve(__dirname, 'src/stores'),
+            constants: path.resolve(__dirname, 'src/constants'),
+            storybook: path.resolve(__dirname, 'src/storybook'),
+            client: path.resolve(__dirname, 'src/client'),
+            modules: path.resolve(__dirname, 'src/modules'),
+            plugins: path.resolve(__dirname, 'src/plugins'),
+            core: path.resolve(__dirname, 'src/core'),
             'hkclient-redux/test': 'hkclient-redux/test',
             'hkclient-redux': 'hkclient-redux/dist',
+            'hk-chat': 'hk-chat/dist',
             jquery: 'jquery/src/jquery',
             superagent: 'superagent/lib/client',
         },
@@ -241,7 +276,6 @@ var config = {
     performance: {
         hints: 'warning',
     },
-    target: 'web',
     plugins: [
         new webpack.ProvidePlugin({
             'window.jQuery': 'jquery',
@@ -253,111 +287,101 @@ var config = {
             COMMIT_HASH: JSON.stringify(childProcess.execSync('git rev-parse HEAD || echo dev').toString()),
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css',
+            filename: 'hkchat-styles.css',
             chunkFilename: '[name].[contenthash].css',
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'root.html',
-            inject: 'head',
-            template: 'src/root.html',
-            meta: {
-                csp: {
-                    'http-equiv': 'Content-Security-Policy',
-                    content: 'script-src \'self\' cdn.rudderlabs.com/ js.stripe.com/v3 ' + CSP_UNSAFE_EVAL_IF_DEV,
-                },
-            },
         }),
         new CopyWebpackPlugin({
             patterns: [
-                {from: path.resolve(__dirname, '../hk-chat/dist/assets'), to: 'assets'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/img_trans.gif'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/logo-email.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/circles.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/favicon'), to: 'images/favicon'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/appIcons.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/warning.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/browser-icons'), to: 'images/browser-icons'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/cloud'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/welcome_illustration.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/logo_email_blue.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/logo_email_gray.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/forgot_password_illustration.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/invite_illustration.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/channel_icon.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/add_payment_method.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/add_subscription.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/c_avatar.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/c_download.png'), to: 'images'},
-                // {from: path.resolve(__dirname, '../hk-chat/dist/assets/c_socket.png'), to: 'images'},
+                {from: 'images/emoji', to: 'emoji'},
+                {from: 'images/img_trans.gif', to: 'images'},
+                {from: 'images/logo-email.png', to: 'images'},
+                {from: 'images/circles.png', to: 'images'},
+                {from: 'images/favicon', to: 'images/favicon'},
+                {from: 'images/appIcons.png', to: 'images'},
+                {from: 'images/warning.png', to: 'images'},
+                {from: 'images/logo-email.png', to: 'images'},
+                {from: 'images/browser-icons', to: 'images/browser-icons'},
+                {from: 'images/cloud', to: 'images'},
+                {from: 'images/welcome_illustration.png', to: 'images'},
+                {from: 'images/logo_email_blue.png', to: 'images'},
+                {from: 'images/logo_email_gray.png', to: 'images'},
+                {from: 'images/forgot_password_illustration.png', to: 'images'},
+                {from: 'images/invite_illustration.png', to: 'images'},
+                {from: 'images/channel_icon.png', to: 'images'},
+                {from: 'images/add_payment_method.png', to: 'images'},
+                {from: 'images/add_subscription.png', to: 'images'},
+                {from: 'images/c_avatar.png', to: 'images'},
+                {from: 'images/c_download.png', to: 'images'},
+                {from: 'images/c_socket.png', to: 'images'},
             ],
         }),
 
         // Generate manifest.json, honouring any configured publicPath. This also handles injecting
         // <link rel="apple-touch-icon" ... /> and <meta name="apple-*" ... /> tags into root.html.
-        new WebpackPwaManifest({
-            name: 'Hungknow',
-            short_name: 'Hungknow',
-            start_url: '..',
-            description: 'Hungknow is an open source, self-hosted Slack-alternative',
-            background_color: '#ffffff',
-            inject: true,
-            ios: true,
-            fingerprints: false,
-            orientation: 'any',
-            filename: 'manifest.json',
-            icons: [{
-                src: path.resolve('images/favicon/android-chrome-192x192.png'),
-                type: 'image/png',
-                sizes: '192x192',
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-120x120.png'),
-                type: 'image/png',
-                sizes: '120x120',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-144x144.png'),
-                type: 'image/png',
-                sizes: '144x144',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-152x152.png'),
-                type: 'image/png',
-                sizes: '152x152',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-57x57.png'),
-                type: 'image/png',
-                sizes: '57x57',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-60x60.png'),
-                type: 'image/png',
-                sizes: '60x60',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-72x72.png'),
-                type: 'image/png',
-                sizes: '72x72',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/apple-touch-icon-76x76.png'),
-                type: 'image/png',
-                sizes: '76x76',
-                ios: true,
-            }, {
-                src: path.resolve('images/favicon/favicon-16x16.png'),
-                type: 'image/png',
-                sizes: '16x16',
-            }, {
-                src: path.resolve('images/favicon/favicon-32x32.png'),
-                type: 'image/png',
-                sizes: '32x32',
-            }, {
-                src: path.resolve('images/favicon/favicon-96x96.png'),
-                type: 'image/png',
-                sizes: '96x96',
-            }],
-        }),
+        // new WebpackPwaManifest({
+        //     name: 'Hungknow',
+        //     short_name: 'Hungknow',
+        //     start_url: '..',
+        //     description: 'Hungknow is an open source, self-hosted Slack-alternative',
+        //     background_color: '#ffffff',
+        //     inject: true,
+        //     ios: true,
+        //     fingerprints: false,
+        //     orientation: 'any',
+        //     filename: 'manifest.json',
+        //     icons: [{
+        //         src: path.resolve('images/favicon/android-chrome-192x192.png'),
+        //         type: 'image/png',
+        //         sizes: '192x192',
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-120x120.png'),
+        //         type: 'image/png',
+        //         sizes: '120x120',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-144x144.png'),
+        //         type: 'image/png',
+        //         sizes: '144x144',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-152x152.png'),
+        //         type: 'image/png',
+        //         sizes: '152x152',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-57x57.png'),
+        //         type: 'image/png',
+        //         sizes: '57x57',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-60x60.png'),
+        //         type: 'image/png',
+        //         sizes: '60x60',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-72x72.png'),
+        //         type: 'image/png',
+        //         sizes: '72x72',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/apple-touch-icon-76x76.png'),
+        //         type: 'image/png',
+        //         sizes: '76x76',
+        //         ios: true,
+        //     }, {
+        //         src: path.resolve('images/favicon/favicon-16x16.png'),
+        //         type: 'image/png',
+        //         sizes: '16x16',
+        //     }, {
+        //         src: path.resolve('images/favicon/favicon-32x32.png'),
+        //         type: 'image/png',
+        //         sizes: '32x32',
+        //     }, {
+        //         src: path.resolve('images/favicon/favicon-96x96.png'),
+        //         type: 'image/png',
+        //         sizes: '96x96',
+        //     }],
+        // }),
     ],
 };
 
@@ -394,60 +418,60 @@ config.plugins.push(new webpack.DefinePlugin({
 }));
 
 // Test mode configuration
-if (targetIsTest) {
-    config.entry = ['./root.jsx'];
-    config.target = 'node';
-    config.externals = [nodeExternals()];
-}
+// if (targetIsTest) {
+//     config.entry = ['./root.jsx'];
+//     config.target = 'node';
+//     config.externals = [nodeExternals()];
+// }
 
-if (targetIsDevServer) {
-    config = {
-        ...config,
-        devtool: 'eval-cheap-module-source-map',
-        devServer: {
-            hot: true,
-            injectHot: true,
-            liveReload: false,
-            overlay: true,
-            proxy: [{
-                context: () => true,
-                bypass(req) {
-                    if (req.url.indexOf('/api') === 0 ||
-                        req.url.indexOf('/plugins') === 0 ||
-                        req.url.indexOf('/static/plugins/') === 0 ||
-                        req.url.indexOf('/sockjs-node/') !== -1) {
-                        return null; // send through proxy to the server
-                    }
-                    if (req.url.indexOf('/static/') === 0) {
-                        return path; // return the webpacked asset
-                    }
+// if (targetIsDevServer) {
+//     config = {
+//         ...config,
+//         devtool: 'eval-cheap-module-source-map',
+//         devServer: {
+//             hot: true,
+//             injectHot: true,
+//             liveReload: false,
+//             overlay: true,
+//             proxy: [{
+//                 context: () => true,
+//                 bypass(req) {
+//                     if (req.url.indexOf('/api') === 0 ||
+//                         req.url.indexOf('/plugins') === 0 ||
+//                         req.url.indexOf('/static/plugins/') === 0 ||
+//                         req.url.indexOf('/sockjs-node/') !== -1) {
+//                         return null; // send through proxy to the server
+//                     }
+//                     if (req.url.indexOf('/static/') === 0) {
+//                         return path; // return the webpacked asset
+//                     }
 
-                    // redirect (root, team routes, etc)
-                    return '/static/root.html';
-                },
-                logLevel: 'silent',
-                target: 'http://localhost:8065',
-                xfwd: true,
-                ws: true,
-            }],
-            port: 9005,
-            watchContentBase: true,
-            writeToDisk: false,
-        },
-        performance: false,
-        optimization: {
-            ...config.optimization,
-            splitChunks: false,
-        },
-        resolve: {
-            ...config.resolve,
-            alias: {
-                ...config.resolve.alias,
-                'react-dom': '@hot-loader/react-dom',
-            },
-        },
-    };
-}
+//                     // redirect (root, team routes, etc)
+//                     return '/static/root.html';
+//                 },
+//                 logLevel: 'silent',
+//                 target: 'http://localhost:8065',
+//                 xfwd: true,
+//                 ws: true,
+//             }],
+//             port: 9005,
+//             watchContentBase: true,
+//             writeToDisk: false,
+//         },
+//         performance: false,
+//         optimization: {
+//             ...config.optimization,
+//             splitChunks: false,
+//         },
+//         resolve: {
+//             ...config.resolve,
+//             alias: {
+//                 ...config.resolve.alias,
+//                 'react-dom': '@hot-loader/react-dom',
+//             },
+//         },
+//     };
+// }
 
 // Export PRODUCTION_PERF_DEBUG=1 when running webpack to enable support for the react profiler
 // even while generating production code. (Performance testing development code is typically

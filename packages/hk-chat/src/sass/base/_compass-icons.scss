@@ -4,13 +4,13 @@
     font-family: 'compass-icons';
     font-style: normal;
     font-weight: normal;
-    src: url('../../fonts/compass-icons/compass-icons.eot?45182295');
+    src: url('../../../fonts/compass-icons/compass-icons.eot?45182295');
     src:
-        url('../../fonts/compass-icons/compass-icons.eot?45182295#iefix') format('embedded-opentype'),
-        url('../../fonts/compass-icons/compass-icons.woff2?45182295') format('woff2'),
-        url('../../fonts/compass-icons/compass-icons.woff?45182295') format('woff'),
-        url('../../fonts/compass-icons/compass-icons.ttf?45182295') format('truetype'),
-        url('../../fonts/compass-icons/compass-icons.svg?45182295#compass-icons') format('svg');
+        url('../../../fonts/compass-icons/compass-icons.eot?45182295#iefix') format('embedded-opentype'),
+        url('../../../fonts/compass-icons/compass-icons.woff2?45182295') format('woff2'),
+        url('../../../fonts/compass-icons/compass-icons.woff?45182295') format('woff'),
+        url('../../../fonts/compass-icons/compass-icons.ttf?45182295') format('truetype'),
+        url('../../../fonts/compass-icons/compass-icons.svg?45182295#compass-icons') format('svg');
 }
 
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
@@ -21,7 +21,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'compass-icons';
-    src: url('../../fonts/compass-icons/compass-icons.svg?45182295#compass-icons') format('svg');
+    src: url('../../../fonts/compass-icons/compass-icons.svg?45182295#compass-icons') format('svg');
   }
 }
 */

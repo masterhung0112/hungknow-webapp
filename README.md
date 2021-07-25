@@ -24,7 +24,8 @@ yarn dev-server
 # Typescript/Javascript compilers
 
 - hk-browser: webpack
-- hk-chat: babel
+- hk-chat: rollup
+- hk-browser-nextjs: nextjs
 - hkclient-redux: tsc
 - hkreselect: babel
 

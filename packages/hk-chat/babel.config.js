@@ -3,17 +3,12 @@ const config = {
         [
             '@babel/preset-env',
             {
-                targets: {
-                    chrome: 66,
-                    firefox: 60,
-                    edge: 42,
-                    safari: 12,
-                },
                 modules: false,
                 corejs: 3,
                 debug: false,
                 useBuiltIns: 'usage',
                 shippedProposals: true,
+                exclude: ['proposal-dynamic-import'],
             },
         ],
         [
@@ -69,7 +64,7 @@ const config = {
                 // 'react-dom': '@hot-loader/react-dom',
             },
         }],
-        ['edit-import-extension', {extMapping: {'.jsx': '', '.ts': '', '.tsx': ''}}],
+        // ['edit-import-extension', {extMapping: {'.jsx': '', '.ts': '', '.tsx': ''}}],
     ],
     ignore: [
         '**/__snapshots__', // ignore the whole __snapshots__ directory

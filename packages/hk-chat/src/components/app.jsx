@@ -16,6 +16,8 @@ const LazyRoot = React.lazy(() => import('components/root'));
 
 const Root = makeAsyncComponent(LazyRoot);
 
+import '../sass/styles.scss';
+
 class App extends React.PureComponent {
     render() {
         return (

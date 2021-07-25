@@ -1,6 +1,5 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-
 import './entry.js';
 
 import React from 'react';
@@ -11,12 +10,10 @@ import PDFJS from 'pdfjs-dist';
 import {logError} from 'hkclient-redux/actions/errors';
 
 // Import our styles
-import 'hk-chat/sass/styles.scss';
+import 'hk-chat/dist/hkchat-styles.css';
 import 'katex/dist/katex.min.css';
 
-import {isDevMode, setCSRFFromCookie} from 'hk-chat/utils/utils';
-import store from 'hk-chat/stores/redux_store';
-import App from 'hk-chat/components/app';
+import {Utils, App, ReduxStore} from 'hk-chat';
 
 PDFJS.disableWorker = true;
 
@@ -36,11 +33,11 @@ function preRenderSetup(callwhendone) {
         req.setRequestHeader('Content-Type', 'application/json');
         req.send(JSON.stringify(l));
 
-        if (isDevMode()) {
-            store.dispatch(logError({type: 'developer', message: 'DEVELOPER MODE: A JavaScript error has occurred.  Please use the JavaScript console to capture and report the error (row: ' + line + ' col: ' + column + ').'}, true));
+        if (Utils.isDevMode()) {
+            ReduxStore.defaultStore.dispatch(logError({type: 'developer', message: 'DEVELOPER MODE: A JavaScript error has occurred.  Please use the JavaScript console to capture and report the error (row: ' + line + ' col: ' + column + ').'}, true));
         }
     };
-    setCSRFFromCookie();
+    Utils.setCSRFFromCookie();
     callwhendone();
 }
 
