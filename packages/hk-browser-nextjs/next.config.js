@@ -74,41 +74,6 @@ module.exports = (phase, { defaultConfig }) => {
             process: 'process/browser',
           })
         )
-        config.devtool = 'eval-cheap-module-source-map'
-        config.devServer = {
-          hot: true,
-          injectHot: true,
-          liveReload: false,
-          overlay: true,
-          proxy: [
-            {
-              context: () => true,
-              bypass(req) {
-                if (
-                  req.url.indexOf('/api') === 0 ||
-                  req.url.indexOf('/plugins') === 0 ||
-                  req.url.indexOf('/static/plugins/') === 0 ||
-                  req.url.indexOf('/sockjs-node/') !== -1
-                ) {
-                  return null // send through proxy to the server
-                }
-                if (req.url.indexOf('/static/') === 0) {
-                  return path // return the webpacked asset
-                }
-
-                // redirect (root, team routes, etc)
-                return '/static/root.html'
-              },
-              logLevel: 'silent',
-              target: 'http://localhost:8065',
-              xfwd: true,
-              ws: true,
-            },
-          ],
-          port: 9005,
-          watchContentBase: true,
-          writeToDisk: false,
-        }
 
         // Important: return the modified config
         return config
@@ -118,6 +83,22 @@ module.exports = (phase, { defaultConfig }) => {
       },
       async rewrites() {
         return [
+          // {
+          //   source: '/api/:path*',
+          //   destination: 'http://localhost:8065/:path*',
+          // },
+          // {
+          //   source: '/plugins/:path*',
+          //   destination: 'http://localhost:8065/plugins/:path*',
+          // },
+          // {
+          //   source: '/static/plugins/:path*',
+          //   destination: 'http://localhost:8065/static/plugins/:path*',
+          // },
+          // {
+          //   source: '/sockjs-node/:path*',
+          //   destination: 'http://localhost:8065/sockjs-node/:path*',
+          // },
           {
             source: '/:any*',
             destination: '/',

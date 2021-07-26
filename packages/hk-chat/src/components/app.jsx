@@ -20,6 +20,9 @@ import '../sass/styles.scss';
 
 class App extends React.PureComponent {
     render() {
+        if (typeof window === 'undefined') {
+            return null;
+        }
         return (
             <Provider store={store}>
                 <CRTPostsChannelResetWatcher/>

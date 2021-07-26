@@ -122,7 +122,7 @@
         "src/client/*"
       ],
       "hkclient-redux/*": [
-        "../../node_modules/hkclient-redux/src/*"
+        "../../node_modules/hkclient-redux/dist/*"
       ],
       "modules/*": [
         "src/modules/*"
