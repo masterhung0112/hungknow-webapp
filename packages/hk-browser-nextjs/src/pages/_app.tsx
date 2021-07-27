@@ -29,7 +29,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     //   }}
     //   session={pageProps.session}
     // >
-    <Component {...pageProps} />
+    <div id="root">
+      <Component {...pageProps} />
+      <div id="root-partial"></div>
+    </div>
     // </Provider>
   )
 }
