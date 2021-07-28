@@ -21,6 +21,7 @@
     "run": "webpack --progress --watch",
     "browser:dev-server": "lerna run dev-server --scope hk-browser --stream",
     "nextbrowser:serve": "lerna run serve --scope hk-browser-nextjs --stream",
+    "nextbrowser:dev": "lerna run dev --scope hk-browser-nextjs --stream",
     "check-types": "tsc",
     "sdk-build": "cd ./node_modules/hkclient-ts && npm ci && npm run prepare",
     "storybook": "start-storybook -p 6006",

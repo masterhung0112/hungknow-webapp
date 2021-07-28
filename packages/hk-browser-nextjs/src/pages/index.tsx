@@ -7,5 +7,15 @@ const LazyChatApp = dynamic(() => import('hk-chat/dist/app.js'), {
 })
 
 export default function BasicExample() {
-  return <LazyChatApp />
+  return (
+    <div id="chat_container">
+      <style jsx global>{`
+        #chat_container,
+        #__next {
+          height: 100%;
+        }
+      `}</style>
+      <LazyChatApp />
+    </div>
+  )
 }
