@@ -30,6 +30,7 @@ module.exports = (phase, { defaultConfig }) => {
         // config.devtool = 'source-map'
         // config.module.rules.push({
         //   test: /\.js$/,
+        //   include: /hk-chat/,
         //   use: ['source-map-loader'],
         //   enforce: 'pre',
         // })
@@ -83,22 +84,6 @@ module.exports = (phase, { defaultConfig }) => {
       },
       async rewrites() {
         return [
-          // {
-          //   source: '/api/:path*',
-          //   destination: 'http://localhost:8065/:path*',
-          // },
-          // {
-          //   source: '/plugins/:path*',
-          //   destination: 'http://localhost:8065/plugins/:path*',
-          // },
-          // {
-          //   source: '/static/plugins/:path*',
-          //   destination: 'http://localhost:8065/static/plugins/:path*',
-          // },
-          // {
-          //   source: '/sockjs-node/:path*',
-          //   destination: 'http://localhost:8065/sockjs-node/:path*',
-          // },
           {
             source: '/:any*',
             destination: '/',

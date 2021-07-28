@@ -19,46 +19,6 @@ const options = {
   },
 }
 
-const apiPaths = {
-  '/api/v4/websocket': {
-    target: 'http://localhost:8065',
-    pathRewrite: {
-      '^/api/v4/websocket': '/api/v4/websocket',
-    },
-    changeOrigin: true,
-    ws: true,
-  },
-  '/api': {
-    target: 'http://localhost:8065',
-    pathRewrite: {
-      '^/api': '/api',
-    },
-    changeOrigin: true,
-  },
-  '/plugins': {
-    target: 'http://localhost:8065',
-    pathRewrite: {
-      '^/plugins': '/plugins',
-    },
-    changeOrigin: true,
-  },
-  '/static/plugins/': {
-    target: 'http://localhost:8065',
-    pathRewrite: {
-      '^/static/plugins/': '/static/plugins/',
-    },
-    changeOrigin: true,
-  },
-  '/sockjs-node/': {
-    target: 'http://localhost:8065',
-    pathRewrite: {
-      '^/sockjs-node/': '/sockjs-node/',
-    },
-    changeOrigin: true,
-    // ws: true,
-  },
-}
-
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const wsProxy = createProxyMiddleware(options)

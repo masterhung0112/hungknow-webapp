@@ -23,7 +23,7 @@ yarn dev-server
 
 For hk-browser-nextjs, run the following commands
 ```
-yarn nextbrowser:serve
+yarn nextbrowser:dev
 ```
 
 # Typescript/Javascript compilers
