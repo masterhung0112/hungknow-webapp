@@ -69,7 +69,7 @@ app
     const server = express()
 
     if (isDevelopment) {
-      server.use(['/api', '/plugins', '/static/plugins/', '/sockjs-node/'], wsProxy)
+      server.use(['/api', '/plugins', '/static/plugins/', '*/sockjs-node/'], wsProxy)
     }
 
     server.all('*', (req, res) => {
