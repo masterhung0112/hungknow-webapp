@@ -16,9 +16,14 @@ yarn task start_docker
 yarn task start_server
 ```
 
-On webapp, run the following commands
+For hk-browser, run the following commands
 ```
 yarn dev-server
+```
+
+For hk-browser-nextjs, run the following commands
+```
+yarn nextbrowser:dev
 ```
 
 # Typescript/Javascript compilers

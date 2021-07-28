@@ -50,7 +50,9 @@ const whitelist = {
     },
 };
 
-window.Observable = Observable;
+if (typeof window != 'undefined') {
+    window.Observable = Observable;
+}
 
 export default function configureStore(initialState) {
     const setTransformer = createTransform(

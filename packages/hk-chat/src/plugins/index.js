@@ -15,12 +15,14 @@ import {unregisterAdminConsolePlugin} from 'actions/admin_actions';
 
 import {removeWebappPlugin} from './actions';
 
+if (typeof window !== 'undefined') {
 // Plugins may have been compiled with the regenerator runtime. Ensure this remains available
 // as a global export even though the webapp does not depend on same.
-window.regeneratorRuntime = regeneratorRuntime;
+    window.regeneratorRuntime = regeneratorRuntime;
 
-// plugins records all active web app plugins by id.
-window.plugins = {};
+    // plugins records all active web app plugins by id.
+    window.plugins = {};
+}
 
 // registerPlugin, on the global window object, should be invoked by a plugin's web app bundle as
 // it is loaded.
@@ -30,7 +32,9 @@ window.plugins = {};
 function registerPlugin(id, plugin) {
     window.plugins[id] = plugin;
 }
-window.registerPlugin = registerPlugin;
+if (typeof window !== 'undefined') {
+    window.registerPlugin = registerPlugin;
+}
 
 // initializePlugins queries the server for all enabled plugins and loads each in turn.
 export async function initializePlugins() {

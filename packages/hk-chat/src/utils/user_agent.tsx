@@ -46,7 +46,7 @@ iOS App:
     Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13F69
 */
 
-const userAgent = () => window.navigator.userAgent;
+const userAgent = () => (typeof window != 'undefined' && window.navigator ? window.navigator.userAgent : 'server');
 
 export function isChrome(): boolean {
     return userAgent().indexOf('Chrome') > -1 && userAgent().indexOf('Edge') === -1;

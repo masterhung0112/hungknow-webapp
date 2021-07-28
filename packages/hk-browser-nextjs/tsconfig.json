@@ -1,45 +1,45 @@
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "lib": [
-        "dom",
-        "dom.iterable",
-        "esnext"
-      ],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true,
-      "strictNullChecks": true,
-      "forceConsistentCasingInFileNames": true,
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "noEmit": true,
-      "experimentalDecorators": true,
-      "jsx": "preserve",
-      "rootDir": ".",
-      "baseUrl": ".",
-      "paths": {
-        "hkclient-redux/*": [
-          "../../node_modules/hkclient-redux/src/*"
-        ],
-        "hk-chat/*": [
-          "../../node_modules/hk-chat/src/*"
-        ],
-      },
-      "isolatedModules": true
-    },
-    "include": [
-      "./src/**/*",
-      "./additional.d.ts",
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "exclude": [
-      "dist",
-      "e2e",
-      "!node_modules/@types",
-      "storybook-static",
-      "coverage"
-    ]
-  }
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "jsx": "preserve",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "hkclient-redux/*": [
+        "../hkclient-redux/dist/*"
+      ],
+      "hk-chat/*": [
+        "../hk-chat/dist/*"
+      ]
+    },
+    "isolatedModules": true
+  },
+  "include": [
+    "./src/**/*",
+    "./additional.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "e2e",
+    "!node_modules/@types",
+    "storybook-static",
+    "coverage"
+  ]
+}

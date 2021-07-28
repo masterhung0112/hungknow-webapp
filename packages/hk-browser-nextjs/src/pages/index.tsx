@@ -1,17 +1,21 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 
-import Layout from '../components/layout/Layout'
+const LazyChatApp = dynamic(() => import('hk-chat/dist/app'), {
+  loading: () => <h1>loading</h1>,
+  ssr: false,
+})
 
-const Page: React.FC<{}> = ({}) => {
+export default function ChatPage() {
   return (
-    <Layout>
-      <h1>NextAuth.js Example</h1>
-      <p>
-        This is an example site to demonstrate how to use <a href={`https://next-auth.js.org`}>NextAuth.js</a> for
-        authentication.
-      </p>
-    </Layout>
+    <div id="chat_container">
+      <style jsx global>{`
+        #chat_container,
+        #__next {
+          height: 100%;
+        }
+      `}</style>
+      <LazyChatApp />
+    </div>
   )
 }
-
-export default Page
