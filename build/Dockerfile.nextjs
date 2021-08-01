@@ -3,9 +3,6 @@ WORKDIR /app
 
 RUN apk add --no-cache autoconf automake libc6-compat mesa-dev mesa libxi build-base gcc libtool nasm
 
-# install and cache app dependencies
-COPY package.json yarn.lock lerna.json ./
-
 # The order of packages should be in their dependencies
 COPY ./packages/babel-plugin-edit-import-extension/package.json ./packages/babel-plugin-edit-import-extension/
 COPY ./packages/hkreselect/package.json ./packages/hkreselect/
@@ -14,25 +11,14 @@ COPY ./packages/hk-chat/package.json ./packages/hk-chat/
 COPY ./packages/hk-browser/package.json ./packages/hk-browser/
 COPY ./packages/hk-browser-nextjs/package.json ./packages/hk-browser-nextjs/
 
+# install and cache app dependencies
+COPY package.json yarn.lock lerna.json ./
+
 RUN yarn
 
-# Rebuild the source code only when needed
-# FROM node:alpine AS builder
-# WORKDIR /app
-# COPY --from=deps /app/packages/babel-plugin-edit-import-extension/node_modules ./packages/babel-plugin-edit-import-extension/node_modules
-# COPY --from=deps /app/packages/hkclient-redux/node_modules ./packages/hkclient-redux/node_modules
-# COPY --from=deps /app/packages/hkreselect/node_modules ./packages/hkreselect/node_modules
-# COPY --from=deps /app/packages/hk-chat/node_modules ./packages/hk-chat/node_modules
-# COPY --from=deps /app/packages/hk-browser/node_modules ./packages/hk-browser/node_modules
-# COPY --from=deps /app/packages/hk-browser-nextjs/node_modules ./packages/hk-browser-nextjs/node_modules
-# COPY --from=deps /app/node_modules ./node_modules
-# COPY ./packages /app/packages
-# COPY package.json yarn.lock lerna.json ./
 COPY ./ ./
-# RUN yarn add mozjpeg -W
-# NODE_OPTIONS=--max_old_space_size=8192 
+
 RUN yarn build:nextbrowser-deps
-# && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
