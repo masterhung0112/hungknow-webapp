@@ -96,34 +96,41 @@ module.exports = (phase, { defaultConfig }) => {
   return {
     /* config options for all phases except development here */
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-      // Note: we provide webpack above so you should not `require` it
-      // Perform customizations to webpack config
-      // config.module.rules.push({
-      //     test: /\.(png|svg|jpg|gif)$/,
-      //     use: [
-      //         {
-      //             loader: 'file-loader',
-      //             options: {
-      //                 name: '[hash].[ext]',
-      //                 publicPath: '/_next/static/images/',
-      //                 outputPath: 'static/images/',
-      //             },
-      //         },
-      //         {
-      //             loader: 'image-webpack-loader',
-      //             options: {},
-      //         },
-      //     ],
-      // });
+      config.module.rules.push({
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[hash].[ext]',
+              publicPath: '/_next/static/images/',
+              outputPath: 'static/images/',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {},
+          },
+        ],
+      })
 
-      // config.module.rules.push({
-      //     test: /\.scss$/,
-      //     use: scssLoaders,
-      // });
       config.resolve.alias['hkclient-redux'] = 'hkclient-redux/dist'
+      config.resolve.alias['jquery'] = 'jquery/dist/jquery'
+      config.resolve.alias['superagent'] = 'superagent/lib/client'
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          'window.jQuery': 'jquery',
+          $: 'jquery',
+          jQuery: 'jquery',
+          process: 'process/browser',
+        })
+      )
 
       // Important: return the modified config
       return config
+    },
+    typescript: {
+      // ignoreBuildErrors: true,
     },
   }
 }

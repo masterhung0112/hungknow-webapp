@@ -26,7 +26,15 @@ function e2e_setup_db() {
     }
 }
 
+function build_docker_image(_, tag) {
+    if (!tag) {
+        tag = 'latest'
+    }
+    sh(`docker build -m 8g -f build/Dockerfile.nextjs -t hungknow-webapp:${tag} .`, {nopipe: true})
+}
+
 cli({
     hello,
     e2e_setup_db,
+    build_docker_image,
 });

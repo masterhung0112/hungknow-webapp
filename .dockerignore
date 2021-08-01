@@ -1,14 +1,21 @@
 # Prevent the following files and folders to be send to docker build context
 
 # dependencies
-node_modules/
+**node_modules
 
-.git/
-.next/
+.circleci
+.github
+.vscode
+.git
 .gitignore
 .dockerignore
-out/
-.storybook/
+out
+.storybook
+
+# Compiled output
+**.next
+**dist
+**lib
 
 # design file
 /design/
