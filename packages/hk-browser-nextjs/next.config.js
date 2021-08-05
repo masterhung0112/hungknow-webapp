@@ -132,5 +132,13 @@ module.exports = (phase, { defaultConfig }) => {
     typescript: {
       // ignoreBuildErrors: true,
     },
+    async rewrites() {
+      return [
+        {
+          source: '/:any*',
+          destination: '/',
+        },
+      ]
+    },
   }
 }

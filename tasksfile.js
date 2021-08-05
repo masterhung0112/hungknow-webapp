@@ -1,4 +1,8 @@
-const {sh, cli} = require('tasksfile');
+const { sh, cli  } = require('tasksfile')
+var shell = require('shelljs');
+shell.config.silent = false
+
+require('dotenv').config()
 
 function hello(options, name = 'Mysterious') {
     console.log(`Hello ${name}!`);
@@ -28,13 +32,26 @@ function e2e_setup_db() {
 
 function build_docker_image(_, tag) {
     if (!tag) {
-        tag = 'latest'
+        console.error('tag argument is required')
+        return
     }
-    sh(`docker build -m 8g -f build/Dockerfile.nextjs -t hungknow-webapp:${tag} .`, {nopipe: true})
+    sh(`docker build -m 8g -f build/Dockerfile.nextjs -t hungknow/webapp:${tag} .`, {nopipe: true})
 }
+
+function push_docker_image(_, tag) {
+    if (process.env.DOCKER_PASSWORD == '' || process.env.DOCKER_USERNAME == '') {
+      console.error('DOCKER_USERNAME and DOCKER_PASSWORD are required in env file')
+      return
+    }
+    const loginResult = shell.exec(`docker login --username ${process.env.DOCKER_USERNAME} --password ${process.env.DOCKER_PASSWORD}`)
+    if (loginResult.code === 0) {
+      shell.exec(`docker push hungknow/webapp:${tag}`)
+    }
+  }
 
 cli({
     hello,
     e2e_setup_db,
     build_docker_image,
+    push_docker_image,
 });

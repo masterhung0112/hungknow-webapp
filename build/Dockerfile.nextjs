@@ -14,11 +14,14 @@ COPY ./packages/hk-browser-nextjs/package.json ./packages/hk-browser-nextjs/
 # install and cache app dependencies
 COPY package.json yarn.lock lerna.json ./
 
-RUN yarn
+RUN yarn install --frozen-lockfile
 
 COPY ./ ./
 
 RUN yarn build:nextbrowser-deps
+
+# Remove big files
+RUN rm -rf /app/packages/hk-browser-nextjs/.next/cache
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
@@ -29,6 +32,12 @@ ENV NODE_ENV production
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
+# Add Tini
+# ENV TINI_VERSION v0.19.0
+# ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+# RUN chmod +x /tini
+# ENTRYPOINT ["/tini", "--"]
+
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /app/next.config.js ./
 
@@ -38,6 +47,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/packages/hk-browser-nextjs/.next 
 #COPY --from=builder /app/package.json ./package.json
 
 COPY build/package-nextjs.json ./package.json
+
 RUN yarn && yarn cache clean
 
 USER nextjs
