@@ -8,13 +8,14 @@
     "eslint:check": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --cache",
     "eslint:fix": "eslint --ext .js,.jsx,.tsx,.ts . --quiet --fix --cache",
     "dev": "cross-env NODE_ENV='development' node server.js",
-    "next:build": "next build",
-    "next:start": "next start",
+    "start:nextbrowser": "lerna run start --scope hk-browser-nextjs --stream",
     "build:browser": "lerna run build:dev --scope hk-browser --stream",
     "build:nextbrowser": "lerna run build:dev --scope hk-browser-nextjs --stream",
+    "build:nextbrowser-deps": "lerna run build --scope hk-browser-nextjs --include-filtered-dependencies --stream",
     "build:browser-deps": "lerna run build --scope hk-browser --include-filtered-dependencies --stream",
     "build:redux": "lerna run build:dev --scope hkclient-redux --include-filtered-dependencies --stream",
-    "build:chat": "lerna run build:dev --scope hk-chat --stream",
+    "build:chat": "lerna run build --scope hk-chat --include-filtered-dependencies --stream",
+    "build:chat:dev": "lerna run build:dev --scope hk-chat --stream",
     "build:chat:watch": "lerna run build:watch --scope hk-chat --stream",
     "build:babel-plugin-edit-import-extension": "lerna run build --scope babel-plugin-edit-import-extension --stream",
     "build": "cross-env NODE_ENV=production webpack",
@@ -48,7 +49,10 @@
     "lerna": "^3.22.1",
     "webpack": "5.32.0",
     "webpack-cli": "4.7.2",
-    "webpack-dev-server": "3.11.2"
+    "webpack-dev-server": "3.11.2",
+    "tasksfile": "^5.1.1",
+    "shelljs": "^0.8.4",
+    "dotenv": "^10.0.0"
   },
   "workspaces": {
     "packages": ["packages/*"]

@@ -9,10 +9,8 @@
     "dev": "cross-env NODE_ENV='development' node server.js",
     "build": "cross-env NODE_ENV=production next build",
     "build:dev": "cross-env NODE_ENV=development next build",
-    "serve": "next dev",
-    "dev-server": "next start",
-    "ci": "npm run check-types && npm run eslint:check && npm run test-ci",
-    "task": "node ./tasksfile.js"
+    "start": "next start",
+    "ci": "npm run check-types && npm run eslint:check && npm run test-ci"
   },
   "dependencies": {
     "eslint-config-next": "^11.0.1",
