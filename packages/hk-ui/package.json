@@ -9,9 +9,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "shx rm -rf dist && cross-env NODE_ENV=production rollup -c",
-    "build:dev": "shx rm -rf dist && cross-env NODE_ENV=development rollup -c",
-    "rollup": "shx rm -rf dist && rollup -c",
+    "build": "shx rm -rf dist && cross-env NODE_ENV=production webpack",
+    "build:dev": "shx rm -rf dist && cross-env NODE_ENV=development webpack",
+    "build:css": "sass-compile src/**/*.scss",
+    "css-def:component": "tsm \"src/components/**/*.scss\" --nameFormat none --exportType default",
+    "css-def:style-2nd": "tsm \"src/scss/*/*/*.scss\" --nameFormat none --aliases.~@blueprintjs/icons/src/icons \"./node_modules/@blueprintjs/icons/src/icons\" --exportType default",
     "webpack": "webpack --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
@@ -44,6 +46,12 @@
     "@types/history": "4.7.8",
     "@types/jest": "^26.0.13",
     "@types/node": "14.14.35",
-    "@types/react": "^16.14.0"
+    "@types/react": "^16.14.0",
+    "typed-scss-modules": "^4.1.1",
+    "eslint-plugin-tree-shaking": "^1.9.2"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || 16 || 17",
+    "react-dom": "^15.3.0 || 16 || 17"
   }
 }
