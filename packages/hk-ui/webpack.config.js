@@ -48,7 +48,6 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                includePaths: ['../../node_modules/compass-mixins/lib', '../../node_modules/hk-chat/src', '../../node_modules/hk-chat/src/sass'],
                             },
                         },
                     },

@@ -1,6 +1,11 @@
-.hk-g {
+.hk-row {
     display: flex;
-    flex-flow: row wrap;
 
-    align-content: flex-start;
+    & .hk-column {
+        display: block;
+
+        &.hk-column-50 {
+            flex: 0 0 50%;
+        }
+    }
 }
