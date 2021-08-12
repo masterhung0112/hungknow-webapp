@@ -9,32 +9,71 @@ import './grid.stories.scss';
 storiesOf('Core/Components/Icon/React', module).
     add('default', () => {
         return (
-            <div className='hk-container'>
+            <div>
                 <div className='hk-row'>
-                    <div className='hk-col hk-col-50'>
-                        <div className='content'>1/2</div>
+                    <div className='hk-col-sm-6'>
+                        <div className='content'>hk-col-sm-6</div>
                     </div>
-                    <div className='hk-col hk-col-50'>
-                        <div className='content'>1/2</div>
+                    <div className='hk-col-sm-6'>
+                        <div className='content'>hk-col-sm-6</div>
                     </div>
                 </div>
                 <div className='hk-row'>
-                    <div className='hk-col hk-col-25'>
-                        <div className='content'>1/4</div>
+                    <div className='hk-col-sm-3 hk-col-md-6'>
+                        <div className='content'>hk-col-sm-3 hk-col-md-6</div>
                     </div>
-                    <div className='hk-col hk-col-25'>
-                        <div className='content'>1/4</div>
+                    <div className='hk-col-sm-3 hk-col-md-6'>
+                        <div className='content'>hk-col-sm-3 hk-col-md-6</div>
                     </div>
-                    <div className='hk-col hk-col-25'>
-                        <div className='content'>1/4</div>
+                    <div className='hk-col-sm-3 hk-col-md-6'>
+                        <div className='content'>hk-col-sm-3 hk-col-md-6</div>
                     </div>
-                    <div className='hk-col hk-col-25'>
-                        <div className='content'>1/4</div>
+                    <div className='hk-col-sm-3 hk-col-md-6'>
+                        <div className='content'>hk-col-sm-3 hk-col-md-6</div>
                     </div>
                 </div>
                 <div className='hk-row'>
-                    <div className='hk-col'><div className='content'>.col</div></div>
-                    <div className='hk-col hk-col-50 hk-col-offset-25'><div className='content'>.col col-50 col-offset-25</div></div>
+                    <div className='hk-col-sm-3'><div className='content'>hk-col-sm-3</div></div>
+                    <div className='hk-col-sm-6 hk-col-sm-offset-3'><div className='content'>hk-col-sm-6 hk-col-sm-offset-3</div></div>
+                </div>
+                <div className='hk-row'>
+                    <div className='hk-col-sm'><div className='content'>hk-col-sm</div></div>
+                    <div className='hk-col-sm'><div className='content'>hk-col-sm</div></div>
+                </div>
+
+                <div className='hk-row'>
+                    <div className='hk-col-sm-6'>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm' style={{textAlign: 'center'}}>Small screen layout</div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12'><div className='content'>hk-col-sm-12</div></div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12'><div className='content'>sm-12 md-8</div></div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12'><div className='content'>sm-12 md-4</div></div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12'><div className='content'>hk-col-sm-12</div></div>
+                        </div>
+                    </div>
+                    <div className='hk-col-sm-6'>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm' style={{textAlign: 'center'}}>Medium/Large screen layout</div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12'><div className='content'>hk-col-sm-12</div></div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12 hk-col-md-8'><div className='content' style={{height: '8rem'}}>sm-12 md-8</div></div>
+                            <div className='hk-col-sm-12 hk-col-md-4'><div className='content' style={{height: '8rem'}}>sm-12 md-4</div></div>
+                        </div>
+                        <div className='hk-row'>
+                            <div className='hk-col-sm-12'><div className='content'>hk-col-sm-12</div></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );

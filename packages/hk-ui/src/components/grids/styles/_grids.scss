@@ -1,47 +1,50 @@
-.hk-container{
-    // position: relative;
-    // width: 100%;
+$grid-row-name: 'hk-row' !default; // Class name prefix for the grid's columns.
+$grid-column-prefix: 'hk-col' !default; // Class name prefix for the grid's columns.
+$grid-column-offset-suffix: 'offset' !default; // Class name suffix for the grid's offsets.
 
-    .hk-row {
+$grid-small-prefix: 'sm' !default; // Small screen class prefix for grid.
+$grid-medium-prefix: 'md' !default; // Medium screen class prefix for grid.
+$grid-large-prefix: 'lg' !default; // Large screen class prefix for grid.
+$grid-column-count: 12 !default; // Number of columns in the grid (integer value only).
+
+@mixin generate-grid-size($size-prefix) {
+    .#{$grid-column-prefix}-#{$size-prefix},
+    [class^='#{$grid-column-prefix}-#{$size-prefix}-'],
+    [class^='#{$grid-column-prefix}-#{$size-prefix}-#{$grid-column-offset-suffix}-'] {
+        box-sizing: border-box;
         display: flex;
-        flex-direction: column;
+        flex-flow: column wrap;
+    }
 
-        & .hk-col {
-            // display: block;
-            flex: 1 1 auto;
-            padding: 0;
+    .#{$grid-column-prefix}-#{$size-prefix} {
+        flex: 1 0 auto;
+    }
 
-            &.hk-col-offset-10 {
-                margin-left: 10%;
-            }
+    @for $i from 1 through $grid-column-count {
+        .#{$grid-column-prefix}-#{$size-prefix}-#{$i} {
+            max-width: #{($i * 100% / $grid-column-count)};
+            flex-basis: #{($i * 100% / $grid-column-count)};
+        }
 
-            &.hk-col-offset-25 {
-                margin-left: 25%;
-            }
-
-            &.hk-col-25 {
-                flex: 0 0 25%;
-                // max-width: 25%;
-            }
-            &.hk-col-50 {
-                flex: 0 0 50%;
-                // max-width: 50%;
-            }
+        .#{$grid-column-prefix}-#{$size-prefix}-offset-#{$i} {
+            margin-left: #{($i * 100% / $grid-column-count)};
         }
     }
 }
 
-// Larger than mobile screen
-@media screen and (min-width: 40.0rem) {
-    .hk-container{
-        .hk-row {
-            flex-direction: row;
-            // margin-left: -1.0rem;
-            // width: calc(100% + 2.0rem);
+.#{$grid-row-name} {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-flow: row wrap;
+}
 
-            // .hk-col {
-            //     // padding: 0 1.0rem;
-            // }
-        }
-    }
+@include generate-grid-size($grid-small-prefix); 
+
+@media screen and (min-width: 40rem) {
+    @include generate-grid-size($grid-medium-prefix); 
+}
+
+@media screen and (min-width: 64rem) {
+    @include generate-grid-size($grid-large-prefix); 
 }
