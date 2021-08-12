@@ -10,7 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const DEV = process.env === 'development';
 
 var config = {
-    entry: ['./src/hkui.scss'],
+    entry: ['./src/index.ts'],
     output: {
 
         // publicPath,
@@ -38,6 +38,25 @@ var config = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
+            {
+                test: /\.(js|jsx|ts|tsx)?$/,
+                include: [
+                    path.resolve(__dirname, 'src'),
+                ],
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        cacheDirectory: true,
+
+                        // Babel configuration is in babel.config.js because jest requires it to be there.
+                    },
+                },
+            },
+            {
                 test: /\.scss$/,
                 use: [
                     DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -63,6 +82,9 @@ var config = {
                 ],
             },
         ],
+    },
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
 };
 
