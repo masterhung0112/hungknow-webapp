@@ -41,6 +41,10 @@ $card-border-color-var: '--card-border-color' !default;
         box-sizing: border-box;
         width: 100%;
         padding: var(#{$universal-padding-var});
+
+        &.double-padded {
+            padding: calc(2 * var(--universal-padding));
+        }
     }
 
     &.#{$card-divider-name} > * {
