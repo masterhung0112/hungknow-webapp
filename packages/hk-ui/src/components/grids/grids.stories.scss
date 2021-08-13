@@ -1,5 +1,5 @@
-[class^='hk-col'] {
-    & .content {
+[class*='hk-col'] {
+    .content {
         background: #d1d1d1;
         border-radius: .4rem;
         line-height: 3rem;

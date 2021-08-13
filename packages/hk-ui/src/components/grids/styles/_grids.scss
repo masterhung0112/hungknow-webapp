@@ -1,5 +1,6 @@
 $grid-row-name: 'hk-row' !default; // Class name prefix for the grid's columns.
 $grid-column-prefix: 'hk-col' !default; // Class name prefix for the grid's columns.
+$grid-row-parent-layout-prefix: 'hk-cols' !default;
 $grid-column-offset-suffix: 'offset' !default; // Class name suffix for the grid's offsets.
 
 $grid-small-prefix: 'sm' !default; // Small screen class prefix for grid.
@@ -10,7 +11,8 @@ $grid-column-count: 12 !default; // Number of columns in the grid (integer value
 @mixin generate-grid-size($size-prefix) {
     .#{$grid-column-prefix}-#{$size-prefix},
     [class^='#{$grid-column-prefix}-#{$size-prefix}-'],
-    [class^='#{$grid-column-prefix}-#{$size-prefix}-#{$grid-column-offset-suffix}-'] {
+    [class^='#{$grid-column-prefix}-#{$size-prefix}-#{$grid-column-offset-suffix}-'],
+    .#{$grid-row-name}[class*='#{$grid-row-parent-layout-prefix}-#{$size-prefix}-'] > * {
         box-sizing: border-box;
         display: flex;
         flex-flow: column wrap;
@@ -21,7 +23,8 @@ $grid-column-count: 12 !default; // Number of columns in the grid (integer value
     }
 
     @for $i from 1 through $grid-column-count {
-        .#{$grid-column-prefix}-#{$size-prefix}-#{$i} {
+        .#{$grid-column-prefix}-#{$size-prefix}-#{$i},
+        .#{$grid-row-name}.#{$grid-row-parent-layout-prefix}-#{$size-prefix}-#{$i} > * {
             max-width: #{($i * 100% / $grid-column-count)};
             flex-basis: #{($i * 100% / $grid-column-count)};
         }
