@@ -1,7 +1,5 @@
-// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// Copyright (c) 2021-present HungKnow, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-
-/* eslint-disable tree-shaking/no-side-effects-in-initialization */
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,7 +12,6 @@ var config = {
     output: {
 
         // publicPath,
-        // eslint-disable-next-line tree-shaking/no-side-effects-in-initialization
         path: path.resolve(__dirname, 'dist'),
 
         // filename: 'index.js',
@@ -43,7 +40,7 @@ var config = {
                 use: ['source-map-loader'],
             },
             {
-                test: /\.(js|jsx|ts|tsx)?$/,
+                test: /\.(jsx?)?$/,
                 include: [
                     path.resolve(__dirname, 'src'),
                 ],
@@ -51,10 +48,33 @@ var config = {
                     loader: 'babel-loader',
                     options: {
                         cacheDirectory: true,
+                        sideEffects: false,
 
                         // Babel configuration is in babel.config.js because jest requires it to be there.
                     },
                 },
+            },
+            {test: /\.tsx?$/, loader: 'ts-loader'},
+            {
+                test: /\.module.(s?css)$/,
+                use: [
+                    DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sassOptions: {
+                                modules: {
+                                    localIdentName: '[name]__[local]__[hash:base64:5]',
+                                },
+                                sourceMap: true,
+                            },
+                        },
+                    },
+                ],
+                exclude: /\.module\.(css|scss)$/,
             },
             {
                 test: /\.scss$/,
@@ -67,10 +87,15 @@ var config = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
+                                modules: {
+                                    localIdentName: '[local]',
+                                },
+                                sourceMap: true,
                             },
                         },
                     },
                 ],
+                exclude: /\.module\.(css|scss)$/,
             },
             {
                 test: /\.css$/,

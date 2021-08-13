@@ -16,43 +16,52 @@ const STANDARD_EXCLUDE = [
 module.exports = async ({config, mode}) => {
     config.module.rules[0].exclude = STANDARD_EXCLUDE;
     config.module.rules[0].test = /\.(js|jsx|ts|tsx)?$/;
-    config.resolve.extensions.push('.ts', '.tsx', '.scss');
-
-    // config.module.rules.push({
-    //   test: /\.(css|scss)$/,
-    //   use: [
-    //       'style-loader',
-    //       {
-    //           loader: 'css-loader',
-    //           options: {
-    //             modules: {
-    //                 localIdentName: "[local]__[hash:base64:5]",
-    //             },
-    //             sourceMap: true,
-    //           },
-    //       },
-    //       {
-    //           loader: 'sass-loader',
-    //           options: {
-    //               sassOptions: {
-    //                   includePaths: ['scss'],
-    //               },
-    //               sourceMap: true,
-    //           },
-    //       },
-    //   ],
-    //   include: /\.module\.(css|scss)$/,
-    // });
+    config.resolve.extensions.push('.ts', '.tsx');
 
     config.module.rules.push({
-        test: /\.(css|scss)$/,
+      test: /\.module.(s?css)$/,
+      use: [
+          'style-loader',
+          {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                    localIdentName: "[name]__[local]__[hash:base64:5]",
+                },
+                sourceMap: true,
+              },
+          },
+          {
+              loader: 'sass-loader',
+              options: {
+                  sourceMap: true,
+              },
+          },
+      ],
+    });
+
+    config.module.rules.push({
+        test: /\.(s?css)$/,
         sideEffects: true,
         use: [
             'style-loader',
-            'css-loader',
-            'sass-loader'
+            {
+                loader: 'css-loader',
+                options: {
+                  modules: {
+                      localIdentName: "[local]",
+                  },
+                  sourceMap: true,
+                },
+            },
+            {
+                loader: 'sass-loader',
+                options: {
+                    sourceMap: true,
+                },
+            },
         ],
-        // exclude: /\.module\.(css|scss)$/,
+        exclude: /\.module\.(css|scss)$/,
       });
 
     return config;

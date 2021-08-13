@@ -6,8 +6,7 @@
     "parser": "@typescript-eslint/parser",
     "plugins": [
         "mattermost",
-        "@typescript-eslint",
-        "tree-shaking"
+        "@typescript-eslint"
     ],
     "env": {
         "jest": true
@@ -43,7 +42,7 @@
         "@typescript-eslint/explicit-function-return-type": 0,
         "linebreak-style": "off",
         "max-lines": "off",
-        "tree-shaking/no-side-effects-in-initialization": 2
+        "header/header": "off"
     },
     "overrides": [
         {

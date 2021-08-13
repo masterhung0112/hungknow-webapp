@@ -8,18 +8,28 @@ $grid-medium-prefix: 'md' !default; // Medium screen class prefix for grid.
 $grid-large-prefix: 'lg' !default; // Large screen class prefix for grid.
 $grid-column-count: 12 !default; // Number of columns in the grid (integer value only).
 
+.#{$grid-row-name} {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 1 auto;
+    flex-flow: row wrap;
+}
+
 @mixin generate-grid-size($size-prefix) {
     .#{$grid-column-prefix}-#{$size-prefix},
     [class^='#{$grid-column-prefix}-#{$size-prefix}-'],
     [class^='#{$grid-column-prefix}-#{$size-prefix}-#{$grid-column-offset-suffix}-'],
     .#{$grid-row-name}[class*='#{$grid-row-parent-layout-prefix}-#{$size-prefix}-'] > * {
         box-sizing: border-box;
-        display: flex;
-        flex-flow: column wrap;
+        flex: 0 0 auto;
     }
 
-    .#{$grid-column-prefix}-#{$size-prefix} {
-        flex: 1 0 auto;
+    // Grid column specific definition for flexible column.
+    .#{$grid-column-prefix}-#{$size-prefix},
+    .#{$grid-row-name}.#{$grid-row-parent-layout-prefix}-#{$size-prefix} > * {
+        max-width: 100%;
+        flex-grow: 1;
+        flex-basis: 0;
     }
 
     @for $i from 1 through $grid-column-count {
@@ -30,16 +40,13 @@ $grid-column-count: 12 !default; // Number of columns in the grid (integer value
         }
 
         .#{$grid-column-prefix}-#{$size-prefix}-offset-#{$i} {
-            margin-left: #{($i * 100% / $grid-column-count)};
+            @if ($i - 1) == 0 {
+                margin-left: 0;
+            } @else {
+                margin-left: #{($i * 100% / $grid-column-count)};    
+            }
         }
     }
-}
-
-.#{$grid-row-name} {
-    box-sizing: border-box;
-    display: flex;
-    flex: 0 1 auto;
-    flex-flow: row wrap;
 }
 
 @include generate-grid-size($grid-small-prefix); 
