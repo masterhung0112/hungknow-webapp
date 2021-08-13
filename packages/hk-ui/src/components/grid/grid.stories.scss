@@ -1,4 +1,4 @@
-.hk-row > * {
+.grid-stories .hk-row > * {
     background-color: #bbeffd;
     border: 1px solid #61dafb;
     border-radius: .4rem;
@@ -12,6 +12,6 @@
     padding: 0 0.5rem 0 0.5rem;
 }
 
-.hk-row+.hk-row {
+.grid-stories .hk-row+.hk-row {
     margin-top: 1rem;
 }

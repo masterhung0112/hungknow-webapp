@@ -6,10 +6,10 @@ import {storiesOf} from '@storybook/react';
 import GridsStyles from './styles/_grid.scss';
 import './grid.stories.scss';
 
-storiesOf('Core/Components/Grids', module).
+storiesOf('Core/Components/Grid', module).
     add('Css', () => {
         return (
-            <div>
+            <div className={'grid-stories'}>
                 <div className={GridsStyles['hk-row']}>
                     <div className={GridsStyles['hk-col-sm-6']}>
                         hk-col-sm-6

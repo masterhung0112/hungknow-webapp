@@ -1,0 +1,54 @@
+@import '../../scss/abstracts/variables';
+
+$card-name: 'card' !default; // Class name for the cards.
+$card-section-name: 'section' !default; // Class name for the cards' sections.
+$card-section-media-name: 'media' !default; // Class name for the cards' sections (media cotent).
+$card-divider-name: 'divider' !default; // Class name for the cards' sections.
+$card-title-name: 'title' !default;
+
+$card-fore-color: #666 !default; // Text color for the cards.
+$card-back-color: #fff !default; // Background color for the cards.
+$card-border-color: #ddd !default; // Border color for the cards.
+
+$card-fore-color-var: '--card-fore-color' !default;
+$card-back-color-var: '--card-back-color' !default;
+$card-border-color-var: '--card-border-color' !default;
+
+/* Card component CSS variable definitions */
+:root {
+    #{$card-back-color-var}: $card-back-color;
+    #{$card-fore-color-var}: $card-fore-color;
+    #{$card-border-color-var}: $card-border-color;
+}
+
+.#{$card-name} {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; // Hide overflow from section borders
+    width: 100%;
+    // border: 1px solid var(#{$card-border-color-var});
+    // border-radius: var(#{$universal-border-radius-var});
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+
+    &.card-row {
+        flex-direction: row;
+    }
+
+    &.#{$card-section-name},
+    & .#{$card-section-name} {
+        background: var(#{$card-back-color-var});
+        color: var(#{$card-fore-color-var});
+        box-sizing: border-box;
+        width: 100%;
+        padding: var(#{$universal-padding-var});
+    }
+
+    &.#{$card-divider-name} > * {
+        border-bottom: $__1px solid var(#{$card-border-color-var});
+    }
+
+    .#{$card-title-name} {
+        font-size: 24px;
+        line-height: 1.4;
+    }
+}
