@@ -1,7 +1,7 @@
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import React from 'react'
+import {storiesOf} from '@storybook/react'
 
-import CardStyles from './_card.scss';
+import CardStyles from './_card.scss'
 
 storiesOf('Core/Components/Card', module).
     add('Css', () => {
@@ -48,5 +48,5 @@ storiesOf('Core/Components/Card', module).
                     </div>
                 </div>
             </div>
-        );
-    });
+        )
+    })

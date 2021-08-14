@@ -10,6 +10,19 @@ $universal-margin-var:          '--universal-margin' !default;
 $universal-padding-var:         '--universal-padding' !default;
 $universal-border-radius-var:   '--universal-border-radius' !default;
 
+// Media breakpoints
+$fs: 0;
+$xs: 360px;
+$sm: 576px;
+$ld: 640px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1452px;
+
+$mediaBreakpointListMobile: sm, md, lg;
+$mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
+
 :root {
     #{$universal-border-radius-var}: $universal-border-radius;
     #{$universal-margin-var}: $universal-margin;

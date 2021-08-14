@@ -1,8 +1,8 @@
-import React from 'react';
-import {storiesOf} from '@storybook/react';
+import React from 'react'
+import {storiesOf} from '@storybook/react'
 
-import DividerStyles from './_divider.scss';
-import './divider.stories.scss';
+import DividerStyles from './_divider.scss'
+import './divider.stories.scss'
 
 storiesOf('Core/Components/Divider', module).
     add('Css', () => {
@@ -18,5 +18,5 @@ storiesOf('Core/Components/Divider', module).
                     Markup
                 </div>
             </div>
-        );
-    });
+        )
+    })
