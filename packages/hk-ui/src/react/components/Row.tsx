@@ -3,6 +3,7 @@ import GridStyles from '../../components/grid/styles/_grid.scss'
 import {getElementType} from '../utils/getElementType'
 import cx from 'clsx'
 import {column} from '../constants/grid'
+import {isGridColSpecificSize} from '../utils/grid_utils'
 
 export type RowProps = {
     as?: React.ComponentType | keyof React.ReactHTML;
@@ -30,9 +31,9 @@ export const Row: React.FC<RowProps> = (props) => {
         sm === 'auto' && 'hk-cols-sm',
         md === 'auto' && 'hk-cols-md',
         lg === 'auto' && 'hk-cols-lg',
-        (typeof sm == 'number' || typeof sm == 'string') && `hk-cols-sm-${String(sm)}`,
-        (typeof md == 'number' || typeof md == 'string') && `hk-cols-md-${String(md)}`,
-        (typeof lg == 'number' || typeof lg == 'string') && `hk-cols-lg-${String(lg)}`,
+        (isGridColSpecificSize(sm)) && `hk-cols-sm-${String(sm)}`,
+        (isGridColSpecificSize(md)) && `hk-cols-md-${String(md)}`,
+        (isGridColSpecificSize(lg)) && `hk-cols-lg-${String(lg)}`,
         GridStyles['hk-row'],
         className,
     )

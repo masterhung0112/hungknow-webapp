@@ -1,13 +1,18 @@
 import React, {HTMLAttributes} from 'react'
 import cx from 'clsx'
-import {column} from '../constants/grid'
+import {column, GridOffSetType} from '../constants/grid'
 import {getElementType} from '../utils/getElementType'
+import {isGridColSpecificSize} from '../utils/grid_utils'
 
 export type ColProps = {
     as?: React.ComponentType | keyof React.ReactHTML;
     sm?: column;
     md?: column;
     lg?: column;
+
+    smOffset?: GridOffSetType;
+    mdOffset?: GridOffSetType;
+    lgOffset?: GridOffSetType;
     className?: string;
 } & HTMLAttributes<HTMLElement>
 
@@ -19,20 +24,26 @@ export const Col: React.FC<ColProps> = (props) => {
             sm,
             md,
             lg,
+            smOffset,
+            mdOffset,
+            lgOffset,
             className,
             children,
             ...rest
         } = props
 
-    const classes = cx([
+    const classes = cx(
         sm === 'auto' && 'hk-col-sm',
         md === 'auto' && 'hk-col-md',
         lg === 'auto' && 'hk-col-lg',
-        (typeof sm == 'number' || typeof sm == 'string') && `hk-col-sm-${String(sm)}`,
-        (typeof md == 'number' || typeof md == 'string') && `hk-col-md-${String(md)}`,
-        (typeof lg == 'number' || typeof lg == 'string') && `hk-col-lg-${String(lg)}`,
+        (isGridColSpecificSize(sm)) && `hk-col-sm-${String(sm)}`,
+        (isGridColSpecificSize(md)) && `hk-col-md-${String(md)}`,
+        (isGridColSpecificSize(lg)) && `hk-col-lg-${String(lg)}`,
+        (isGridColSpecificSize(smOffset)) && `hk-col-sm-offset-${String(smOffset)}`,
+        (isGridColSpecificSize(mdOffset)) && `hk-col-md-offset-${String(mdOffset)}`,
+        (isGridColSpecificSize(lgOffset)) && `hk-col-lg-offset-${String(lgOffset)}`,
         className,
-    ])
+    )
 
     const ElementType = getElementType(Col, props)
 

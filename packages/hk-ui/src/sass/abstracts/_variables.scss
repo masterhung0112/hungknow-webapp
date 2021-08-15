@@ -10,6 +10,14 @@ $universal-margin-var:          '--universal-margin' !default;
 $universal-padding-var:         '--universal-padding' !default;
 $universal-border-radius-var:   '--universal-border-radius' !default;
 
+$xs-prefix: 'xs' !default;
+$sm-prefix: 'sm' !default;
+$ld-prefix: 'ld' !default;
+$md-prefix: 'md' !default;
+$lg-prefix: 'lg' !default;
+$xl-prefix: 'xl' !default;
+$xxl-prefix: 'xxl' !default;
+
 // Media breakpoints
 $fs: 0;
 $xs: 360px;
@@ -20,7 +28,7 @@ $lg: 992px;
 $xl: 1200px;
 $xxl: 1452px;
 
-$mediaBreakpointListMobile: sm, md, lg;
+$mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
 $mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
 
 :root {

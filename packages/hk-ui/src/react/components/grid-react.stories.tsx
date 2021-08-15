@@ -33,7 +33,7 @@ storiesOf('Core/Components/Grid', module).
                 </Row>
                 <Row>
                     <Col sm={3}>hk-col-sm-3</Col>
-                    <Col sm={6} className={'hk-col-sm-offset-3'}>hk-col-sm-6 hk-col-sm-offset-3</Col>
+                    <Col sm={6} smOffset={3}>hk-col-sm-6 hk-col-sm-offset-3</Col>
                 </Row>
 
                 <h2>Auto-layout columns</h2>

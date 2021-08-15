@@ -1,3 +1,41 @@
+# Theme
+
+My purpose is that you have a default theme.
+Then you can create multiple theme css files.
+
++ sass
+    |- site/
+       |- core
+          |- components
+             |- ***
+          |- ***
+    |- hkui.scss
+    |- theme.config
+    |- theme.scss
+    |- themes
+       |- core
+          |- components
+              |- card
+                  |- _card.scss
+    |- core
+       |- components
+          |- card
+             |- _card.scss
+       
+
+## Config Files
+filename | usage | Initial Name
+--- | --- | ---
+**theme.config** | config file that stores each element's current theme for SASS | theme.config.example
+**site/** | folder storing all your site's variables and css overrides for each UI component | _site/
+
+## Inheritance
+
+There are three levels of inheritance in Semantic
+* Default theme - UI's neutral default theme
+* Packaged theme - A specified packaged theme, like "amazon", or "material"
+* Site theme - A theme specific to your site
+
 # Grid
 
 ## Grid classes vs. unit classes
