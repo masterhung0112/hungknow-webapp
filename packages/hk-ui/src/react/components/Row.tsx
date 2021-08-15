@@ -1,5 +1,4 @@
 import React, {HTMLAttributes} from 'react'
-import GridStyles from '../../components/grid/styles/_grid.scss'
 import {getElementType} from '../utils/getElementType'
 import cx from 'clsx'
 import {column} from '../constants/grid'
@@ -28,13 +27,14 @@ export const Row: React.FC<RowProps> = (props) => {
         } = props
 
     const classes = cx(
-        sm === 'auto' && 'hk-cols-sm',
-        md === 'auto' && 'hk-cols-md',
-        lg === 'auto' && 'hk-cols-lg',
-        (isGridColSpecificSize(sm)) && `hk-cols-sm-${String(sm)}`,
-        (isGridColSpecificSize(md)) && `hk-cols-md-${String(md)}`,
-        (isGridColSpecificSize(lg)) && `hk-cols-lg-${String(lg)}`,
-        GridStyles['hk-row'],
+        sm === 'auto' && 'cols-sm',
+        md === 'auto' && 'cols-md',
+        lg === 'auto' && 'cols-lg',
+        (isGridColSpecificSize(sm)) && `cols-sm-${String(sm)}`,
+        (isGridColSpecificSize(md)) && `cols-md-${String(md)}`,
+        (isGridColSpecificSize(lg)) && `cols-lg-${String(lg)}`,
+        'row',
+        'hk',
         className,
     )
 

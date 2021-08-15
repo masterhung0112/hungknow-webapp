@@ -3,25 +3,26 @@
 My purpose is that you have a default theme.
 Then you can create multiple theme css files.
 
-+ sass
-    |- site/
-       |- core
-          |- components
-             |- ***
-          |- ***
-    |- hkui.scss
-    |- theme.config
-    |- theme.scss
-    |- themes
-       |- core
-          |- components
-              |- card
-                  |- _card.scss
-    |- core
-       |- components
+```
+sass
+|- site/
+   |- core
+      |- components
+         |- ***
+      |- ***
+|- hkui.scss
+|- theme.config
+|- theme.scss
+|- themes
+   |- core
+      |- components
           |- card
-             |- _card.scss
-       
+              |- _card.scss
+|- core
+   |- components
+      |- card
+         |- _card.scss
+```
 
 ## Config Files
 filename | usage | Initial Name

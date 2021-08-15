@@ -1,6 +1,6 @@
-import {HkUiElement} from '../../hkui/HkUiElement'
+import {HkUiElement} from '../../../hkui/HkUiElement'
 
-const defaultClassName = 'hk-col'
+const defaultClassName = 'col'
 
 export class Col extends HkUiElement {
     // constructor() {
@@ -9,7 +9,7 @@ export class Col extends HkUiElement {
     // }
 
     get _defaultClassName() {
-        return 'hkcol'
+        return 'col'
     }
 
     get type() {

@@ -33,15 +33,15 @@ export const Col: React.FC<ColProps> = (props) => {
         } = props
 
     const classes = cx(
-        sm === 'auto' && 'hk-col-sm',
-        md === 'auto' && 'hk-col-md',
-        lg === 'auto' && 'hk-col-lg',
-        (isGridColSpecificSize(sm)) && `hk-col-sm-${String(sm)}`,
-        (isGridColSpecificSize(md)) && `hk-col-md-${String(md)}`,
-        (isGridColSpecificSize(lg)) && `hk-col-lg-${String(lg)}`,
-        (isGridColSpecificSize(smOffset)) && `hk-col-sm-offset-${String(smOffset)}`,
-        (isGridColSpecificSize(mdOffset)) && `hk-col-md-offset-${String(mdOffset)}`,
-        (isGridColSpecificSize(lgOffset)) && `hk-col-lg-offset-${String(lgOffset)}`,
+        sm === 'auto' && 'col-sm',
+        md === 'auto' && 'col-md',
+        lg === 'auto' && 'col-lg',
+        (isGridColSpecificSize(sm)) && `col-sm-${String(sm)}`,
+        (isGridColSpecificSize(md)) && `col-md-${String(md)}`,
+        (isGridColSpecificSize(lg)) && `col-lg-${String(lg)}`,
+        (isGridColSpecificSize(smOffset)) && `col-sm-offset-${String(smOffset)}`,
+        (isGridColSpecificSize(mdOffset)) && `col-md-offset-${String(mdOffset)}`,
+        (isGridColSpecificSize(lgOffset)) && `col-lg-offset-${String(lgOffset)}`,
         className,
     )
 
