@@ -1,0 +1,17 @@
+.grid-stories .row > * {
+    background-color: #bbeffd;
+    border: 1px solid #61dafb;
+    border-radius: .4rem;
+    line-height: 3rem;
+
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+
+    // padding: 0 0.5rem 0 0.5rem;
+}
+
+.grid-stories .row+.row {
+    margin-top: 1rem;
+}

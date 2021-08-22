@@ -1,0 +1,8 @@
+.divider-stories{
+    display: flex;
+    flex-direction: row;
+
+    & .section {
+        max-width: 64px;
+    }
+}

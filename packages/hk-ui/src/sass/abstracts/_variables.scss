@@ -1,0 +1,40 @@
+@function rempx ($size) { @return 1px/$size;}   // Keep this, the generator breaks otherwise
+$base-root-font-size:     16px !default;        // Root font sizing for all elements (`px` only)
+$__1px: rempx($base-root-font-size) * 1rem !default;  // [Calculated] Calculated rem value of `1px`
+
+$universal-border-radius: 0.125rem !default;    // Universal border-radius for most elements
+$universal-margin:        0.5rem !default;      // Universal margin for the most elements
+$universal-padding:       0.5rem !default;      // Universal padding for the most elements
+
+$universal-margin-var:          '--universal-margin' !default;
+$universal-padding-var:         '--universal-padding' !default;
+$universal-border-radius-var:   '--universal-border-radius' !default;
+
+$ns: 'hk' !default;
+
+$xs-prefix: 'xs' !default;
+$sm-prefix: 'sm' !default;
+$ld-prefix: 'ld' !default;
+$md-prefix: 'md' !default;
+$lg-prefix: 'lg' !default;
+$xl-prefix: 'xl' !default;
+$xxl-prefix: 'xxl' !default;
+
+// Media breakpoints
+$fs: 0;
+$xs: 360px;
+$sm: 576px;
+$ld: 640px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1452px;
+
+$mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
+$mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
+
+:root {
+    #{$universal-border-radius-var}: $universal-border-radius;
+    #{$universal-margin-var}: $universal-margin;
+    #{$universal-padding-var}: $universal-padding;
+}
