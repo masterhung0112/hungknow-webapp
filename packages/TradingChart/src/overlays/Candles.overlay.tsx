@@ -1,5 +1,5 @@
 import React from 'react';
-import {CandleData, OverlayMeta} from 'types/TradingChart';
+import {CandleData, OverlayMeta} from '../Models';
 
 import {layout_cnv} from '../layoutCnv';
 import {OverlayProps, useOverlay} from '../Overlay';

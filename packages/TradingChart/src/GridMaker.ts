@@ -1,4 +1,4 @@
-import {GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout, TimeRange} from 'types/TradingChart';
+import {GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout, TimeRange} from './Models';
 
 import {TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY} from './constants';
 import Utils from './utils';
