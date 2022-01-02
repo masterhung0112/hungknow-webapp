@@ -32,7 +32,7 @@ export function screen2$(layout: Layout, y: number): number {
     return (y - layout.B) / layout.A;
 }
 
-// Time-axis nearest step
+// time -> nearest candle x
 export function t_magnet(layout: Layout, t: number): number | undefined {
     const {ti_map} = layout;
 

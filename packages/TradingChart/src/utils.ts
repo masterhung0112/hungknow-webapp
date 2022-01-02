@@ -2,7 +2,7 @@ import IndexedArray from 'arrayslicer';
 import {TimeRange} from 'types/TradingChart';
 
 import {DAY, MAP_UNIT, MONTH} from './constants';
-import { Ohlcv } from './types';
+import { ChartItem, Ohlcv } from './types';
 
 export default {
     clamp(num: number, min: number, max: number) {
@@ -320,7 +320,7 @@ export default {
 
     // Format names such 'RSI, $length', where
     // length - is one of the settings
-    format_name(ov: any) {
+    format_name(ov: ChartItem) {
         if (!ov.name) {
             return undefined;
         }

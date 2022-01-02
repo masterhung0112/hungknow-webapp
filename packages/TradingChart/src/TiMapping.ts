@@ -75,7 +75,7 @@ export default class TI {
 
     // Map overlay data
     // TODO: parse() called 3 times instead of 2 for 'spx_sample.json'
-    parse(data: any, mode: any) {
+    parse(data: number[][], mode: string) {
         if (!this.ib || !this.sub[0] || mode === 'data') {
             return data;
         }
@@ -183,7 +183,7 @@ export default class TI {
     }
 
     // Map or bypass depending on the mode
-    i2t_mode(i: any, mode: any) {
+    i2t_mode(i: any, mode?: string) {
         return mode === 'data' ? i : this.i2t(i);
     }
 

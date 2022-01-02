@@ -1,7 +1,6 @@
-import {withEventEmitter, withEventEmitterProvider} from 'components/Emitter/EventEmitterHook';
-import {EventEmitterValue} from 'components/Emitter/EventEmitterProvider';
+import {withEventEmitter, withEventEmitterProvider} from './Emitter/EventEmitterHook'
 import React from 'react';
-import {CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange} from 'types/TradingChart';
+import {CursorData, LayersMeta, LayoutComponentProps, MainLayout, OverlayData, TimeRange} from './types';
 
 import {IB_TF_WARN, SECOND} from './constants';
 import Context from './Context';
@@ -9,37 +8,11 @@ import {CursorUpdater} from './CursorUpdater';
 import {GridSection} from './GridSection.component';
 import {generateLayout} from './Layout';
 import TI from './TiMapping';
-import { OffChartItem, OnChartItem } from './types';
+import { ChartItem, ChartProps, ChartState } from './types';
 import {DataTrackHookProps, withDataTrackHOC} from './useDataTrack';
 import {ShaderHookProps, withShaderHOC} from './useShader';
 import Utils from './utils';
 
-export interface ChartNoShaderProps {
-    title_txt: string;
-    data: {
-        onchart?: OnChartItem[]
-        offchart?: OffChartItem[]
-    };
-    width: number;
-    height: number;
-    font: any;
-    colors: any;
-    overlays: OverlayData[];
-    tv_id: any;
-    config: any;
-    buttons: any;
-    toolbar: any;
-    ib: any;
-    skin: any;
-    timezone: any;
-}
-
-export interface ChartProps extends ChartNoShaderProps, ShaderHookProps, DataTrackHookProps, EventEmitterValue {}
-
-export type ChartState = {
-
-    // _layout: MainLayout
-}
 
 export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // ohlcv: number[][] = []
@@ -54,7 +27,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     // offchart: any[]
 
     /** Current data slice */
-    sub: any[]
+    sub: number[][]
 
     /** Time range */
     range: TimeRange
@@ -134,7 +107,10 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
 
         // Meta data
         this.last_candle = [];
-        this.last_values = {};
+        this.last_values = {
+            onchart: [],
+            offchart: [],
+        };
         this.sub_start = undefined;
         this.activated = false;
 
@@ -324,7 +300,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
             skin: this.props.skin,
         };
     }
-    overlay_subset(source: any[], side: string) {
+    overlay_subset(source: ChartItem[], side: string) {
         return source.map((d, i) => {
             const res = Utils.fast_filter(
                 d.data,
@@ -340,7 +316,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
                 tf: Utils.parse_tf(d.tf),
                 i0: res[1],
                 loading: d.loading,
-                last: ((this.last_values as any)[side] || [])[i],
+                last: ((this.last_values as any)[side] || [])[i] as number[],
             };
         });
     }
@@ -494,7 +470,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     get onchart() {
         return this.props.data.onchart || [];
     }
-    get offchart(): any[] {
+    get offchart() {
         return this.props.data.offchart || [];
     }
     get filter() {
