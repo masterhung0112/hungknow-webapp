@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import Adapter from 'enzyme-adapter-react-16'
+// import Adapter from 'enzyme-adapter-react-16'
 // import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import {configure} from 'enzyme';
 import $ from 'jquery';
@@ -12,7 +12,7 @@ global.jQuery = $;
 global.performance = {};
 require('isomorphic-fetch');
 
-configure({adapter: new Adapter()});
+// configure({adapter: new Adapter()});
 
 global.window = Object.create(window);
 Object.defineProperty(window, 'location', {
