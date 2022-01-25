@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "newLine": "LF",
+        "module": "esnext",
+        "target": "es5",
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "declaration": true,
+        "lib": [
+            "dom",
+            "esnext"
+        ],
+        "jsx": "react",
+        "experimentalDecorators": true,
+        "baseUrl": "packages",
+        "outDir": "dist"
+    },
+    "exclude": [
+        "dist",
+        "node_modules"
+    ]
+}
