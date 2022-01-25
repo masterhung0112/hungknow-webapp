@@ -6,10 +6,8 @@
     "node_modules",
     "build",
     "lib",
+    "dist"
   ],
-  "typeAcquisition": {
-    "enable": true
-  },
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
@@ -24,7 +22,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": false,
-    "noEmit": false,
+    "noEmit": true,
     "noImplicitAny": false,
     "strictNullChecks": false,
     "strictFunctionTypes": false,
