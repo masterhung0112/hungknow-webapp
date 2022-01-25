@@ -3,7 +3,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Switch, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 
 import Messaging from './components/messaging';
 import Composing from './components/composing';
@@ -32,32 +32,32 @@ export default class HelpController extends React.PureComponent<Props> {
         return (
             <div className='help-page'>
                 <div className='container col-sm-10 col-sm-offset-1'>
-                    <Switch>
+                    <Routes>
                         <Route
                             path={`${this.props.match.url}/messaging`}
-                            component={Messaging}
+                            element={Messaging}
                         />
                         <Route
                             path={`${this.props.match.url}/composing`}
-                            component={Composing}
+                            element={Composing}
                         />
                         <Route
                             path={`${this.props.match.url}/mentioning`}
-                            component={Mentioning}
+                            element={Mentioning}
                         />
                         <Route
                             path={`${this.props.match.url}/formatting`}
-                            component={Formatting}
+                            element={Formatting}
                         />
                         <Route
                             path={`${this.props.match.url}/attaching`}
-                            component={Attaching}
+                            element={Attaching}
                         />
                         <Route
                             path={`${this.props.match.url}/commands`}
-                            component={Commands}
+                            element={Commands}
                         />
-                    </Switch>
+                    </Routes>
                 </div>
             </div>
         );

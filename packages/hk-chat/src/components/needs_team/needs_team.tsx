@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import iNoBounce from 'inobounce';
 
 import {startPeriodicStatusUpdates, stopPeriodicStatusUpdates} from 'actions/status_actions.jsx';
@@ -301,26 +301,25 @@ export default class NeedsTeam extends React.PureComponent<Props, State> {
         }
 
         return (
-            <Switch>
+            <Routes>
                 <Route
                     path={'/:team/integrations'}
-                    component={BackstageController}
+                    element={BackstageController}
                 />
                 <Route
                     path={'/:team/emoji'}
-                    component={BackstageController}
+                    element={BackstageController}
                 />
                 {this.props.plugins?.map((plugin: any) => (
                     <Route
                         key={plugin.id}
                         path={'/:team/' + plugin.route}
-                        render={() => (
-                            <Pluggable
-                                pluggableName={'NeedsTeamComponent'}
-                                pluggableId={plugin.id}
-                            />
-                        )}
-                    />
+                    >
+                        <Pluggable
+                            pluggableName={'NeedsTeamComponent'}
+                            pluggableId={plugin.id}
+                        />
+                    </Route>
                 ))}
                 <Route
                     render={(renderProps) => (
@@ -331,7 +330,7 @@ export default class NeedsTeam extends React.PureComponent<Props, State> {
                         />
                     )}
                 />
-            </Switch>
+            </Routes>
         );
     }
 }

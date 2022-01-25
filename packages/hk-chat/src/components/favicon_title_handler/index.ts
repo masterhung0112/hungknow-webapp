@@ -4,7 +4,9 @@
 import {ComponentProps} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
-import {withRouter, RouteChildrenProps, matchPath} from 'react-router-dom';
+import {PathRouteProps, matchPath} from 'react-router-dom';
+
+import {withRouter} from '../../hooks/withRouter';
 
 import {getCurrentChannel, getUnreadStatus} from 'hkclient-redux/selectors/entities/channels';
 import {getConfig} from 'hkclient-redux/selectors/entities/general';
@@ -14,9 +16,9 @@ import {GenericAction} from 'hkclient-redux/types/actions';
 
 import FaviconTitleHandler from './favicon_title_handler';
 
-type Props = RouteChildrenProps;
+type Props = PathRouteProps;
 
-function mapStateToProps(state: GlobalState, {location: {pathname}}: Props): ComponentProps<typeof FaviconTitleHandler> {
+function mapStateToProps(state: GlobalState, {path}: Props): ComponentProps<typeof FaviconTitleHandler> {
     const config = getConfig(state);
     const currentChannel = getCurrentChannel(state);
     const currentTeammate = (currentChannel && currentChannel.teammate_id) ? currentChannel : null;
@@ -28,7 +30,7 @@ function mapStateToProps(state: GlobalState, {location: {pathname}}: Props): Com
         currentTeammate,
         siteName: config.SiteName,
         unreadStatus: getUnreadStatus(state),
-        inGlobalThreads: matchPath(pathname, {path: '/:team/threads/:threadIdentifier?'}) != null,
+        inGlobalThreads: matchPath('/:team/threads/:threadIdentifier?', path) != null,
     };
 }
 

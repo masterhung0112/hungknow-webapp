@@ -138,5 +138,6 @@
     "jsx": "react",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   }
 }

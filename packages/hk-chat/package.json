@@ -11,6 +11,7 @@
   "scripts": {
     "build": "shx rm -rf dist && cross-env NODE_ENV=production rollup -c",
     "build:dev": "shx rm -rf dist && cross-env NODE_ENV=development rollup -c",
+    "type:check": "tsc",
     "rollup": "shx rm -rf dist && rollup -c",
     "webpack": "webpack --watch"
   },

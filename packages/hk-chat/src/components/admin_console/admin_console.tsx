@@ -4,7 +4,7 @@
 import 'bootstrap';
 
 import React from 'react';
-import {Route, Switch, Navigate} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 
 import AnnouncementBar from 'components/announcement_bar';
 
@@ -189,7 +189,7 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
         });
 
         return (
-            <Switch>
+            <Routes>
                 {schemaRoutes}
                 {
                     <Navigate
@@ -197,7 +197,7 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
                         to={`${this.props.match.url}/${defaultUrl}`}
                     />
                 }
-            </Switch>
+            </Routes>
         );
     }
 

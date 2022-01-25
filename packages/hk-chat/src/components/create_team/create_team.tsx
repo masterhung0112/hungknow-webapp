@@ -91,7 +91,7 @@ export default class CreateTeam extends React.PureComponent<Props & RouteCompone
                             siteName={siteName}
                         />
                         <div className='signup__content'>
-                            <Switch>
+                            <Routes>
                                 <Route
                                     path={`${this.props.match.url}/display_name`}
                                     render={(props) => (
@@ -113,7 +113,7 @@ export default class CreateTeam extends React.PureComponent<Props & RouteCompone
                                     )}
                                 />
                                 <Navigate to={`${match.url}/display_name`}/>
-                            </Switch>
+                            </Routes>
                         </div>
                     </div>
                 </div>

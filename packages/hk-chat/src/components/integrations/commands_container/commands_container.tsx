@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch, Navigate} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 
 import InstalledCommands from 'components/integrations/installed_commands';
 
@@ -117,7 +117,7 @@ export default class CommandsContainer extends React.PureComponent<Props, State>
         };
         return (
             <div>
-                <Switch>
+                <Routes>
                     <Route
                         exact={true}
                         path={`${this.props.match.url}/`}
@@ -143,7 +143,7 @@ export default class CommandsContainer extends React.PureComponent<Props, State>
                         path={`${this.props.match.url}/confirm`}
                         component={ConfirmIntegration}
                     />
-                </Switch>
+                </Routes>
             </div>
         );
     }

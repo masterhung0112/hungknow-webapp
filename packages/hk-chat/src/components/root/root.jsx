@@ -278,7 +278,7 @@ export default class Root extends React.PureComponent {
 
         return (
             <IntlProvider>
-                <Switch>
+                <Routes>
                     <Route
                         path={'/error'}
                         component={ErrorPage}
@@ -388,7 +388,7 @@ export default class Root extends React.PureComponent {
                             pathname: '/login',
                         }}
                     />
-                </Switch>
+                </Routes>
             </IntlProvider>
         );
     }

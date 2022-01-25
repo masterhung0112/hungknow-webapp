@@ -42,7 +42,7 @@
     "semver": "7.3.5",
     "reselect": "1.0.0",
     "hkclient-redux": "1.0.1",
-    "hk-chat": "1.0.0",
+    "hk-chat": "^1.0.0",
     "katex": "0.13.2",
     "immer": "^9.0.12"
   },
