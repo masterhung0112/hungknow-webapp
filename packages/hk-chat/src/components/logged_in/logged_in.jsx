@@ -3,7 +3,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {Redirect} from 'react-router';
+import {Navigate} from 'react-router';
 
 import semver from 'semver';
 
@@ -119,13 +119,21 @@ export default class LoggedIn extends React.PureComponent {
 
         if (this.props.mfaRequired) {
             if (this.props.location.pathname !== '/mfa/setup') {
-                return <Redirect to={'/mfa/setup'}/>;
+                return (
+                    <Navigate
+                        replace={true}
+                        to={'/mfa/setup'}
+                    />);
             }
         } else if (this.props.location.pathname === '/mfa/confirm') {
             // Nothing to do. Wait for MFA flow to complete before prompting TOS.
         } else if (this.props.showTermsOfService) {
             if (this.props.location.pathname !== '/terms_of_service') {
-                return <Redirect to={'/terms_of_service?redirect_to=' + encodeURIComponent(this.props.location.pathname)}/>;
+                return (
+                    <Navigate
+                        replace={true}
+                        to={'/terms_of_service?redirect_to=' + encodeURIComponent(this.props.location.pathname)}
+                    />);
             }
         }
 

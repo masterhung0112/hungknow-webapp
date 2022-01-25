@@ -4,7 +4,7 @@
 import 'bootstrap';
 
 import React from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch, Navigate} from 'react-router-dom';
 
 import AnnouncementBar from 'components/announcement_bar';
 
@@ -191,7 +191,12 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
         return (
             <Switch>
                 {schemaRoutes}
-                {<Redirect to={`${this.props.match.url}/${defaultUrl}`}/>}
+                {
+                    <Navigate
+                        replace={true}
+                        to={`${this.props.match.url}/${defaultUrl}`}
+                    />
+                }
             </Switch>
         );
     }
@@ -208,7 +213,10 @@ export default class AdminConsole extends React.PureComponent<Props, State> {
 
         if (!this.props.currentUserHasAnAdminRole) {
             return (
-                <Redirect to={this.props.unauthorizedRoute}/>
+                <Navigate
+                    to={this.props.unauthorizedRoute}
+                    replace={true}
+                />
             );
         }
 

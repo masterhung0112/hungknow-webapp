@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch, Navigate} from 'react-router-dom';
 import classNames from 'classnames';
 
 import LoadingScreen from 'components/loading_screen';
@@ -96,7 +96,7 @@ export default class CenterChannel extends React.PureComponent<Props, State> {
                                 component={LazyGlobalThreads}
                             />
                         ) : null}
-                        <Redirect to={lastChannelPath}/>
+                        <Navigate to={lastChannelPath}/>
                     </Switch>
                 </div>
             </div>

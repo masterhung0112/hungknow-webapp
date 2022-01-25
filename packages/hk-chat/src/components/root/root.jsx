@@ -53,6 +53,8 @@ import {setSystemEmojis} from 'hkclient-redux/actions/emojis';
 import {setUrl} from 'hkclient-redux/actions/general';
 import {Client4} from 'hkclient-redux/client';
 
+import {Navigate} from 'react-router';
+
 const FastClick = require('fastclick');
 
 const CreateTeam = makeAsyncComponent(LazyCreateTeam);
@@ -345,13 +347,23 @@ export default class Root extends React.PureComponent {
                         path={'/mfa'}
                         component={Mfa}
                     />
-                    <Redirect
-                        from={'/_redirect/integrations/:subpath*'}
-                        to={`/${this.props.permalinkRedirectTeamName}/integrations/:subpath*`}
+                    <Route
+                        path={'/_redirect/integrations/:subpath*'}
+                        element={
+                            <Navigate
+                                replace={true}
+                                to={`/${this.props.permalinkRedirectTeamName}/integrations/:subpath*`}
+                            />
+                        }
                     />
-                    <Redirect
-                        from={'/_redirect/pl/:postid'}
-                        to={`/${this.props.permalinkRedirectTeamName}/pl/:postid`}
+                    <Route
+                        path={'/_redirect/pl/:postid'}
+                        element={
+                            <Navigate
+                                replace={true}
+                                to={`/${this.props.permalinkRedirectTeamName}/pl/:postid`}
+                            />
+                        }
                     />
                     {this.props.plugins?.map((plugin) => (
                         <Route
@@ -369,7 +381,8 @@ export default class Root extends React.PureComponent {
                         path={'/:team'}
                         component={NeedsTeam}
                     />
-                    <Redirect
+                    <Navigate
+                        replace={true}
                         to={{
                             ...this.props.location,
                             pathname: '/login',

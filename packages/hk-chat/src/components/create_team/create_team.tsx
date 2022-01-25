@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch, Redirect, RouteComponentProps} from 'react-router-dom';
+import {Route, Switch, Navigate, RouteComponentProps} from 'react-router-dom';
 
 import AnnouncementBar from 'components/announcement_bar';
 import BackButton from 'components/common/back_button';
@@ -112,7 +112,7 @@ export default class CreateTeam extends React.PureComponent<Props & RouteCompone
                                         />
                                     )}
                                 />
-                                <Redirect to={`${match.url}/display_name`}/>
+                                <Navigate to={`${match.url}/display_name`}/>
                             </Switch>
                         </div>
                     </div>

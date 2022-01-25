@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch, Navigate} from 'react-router-dom';
 
 import InstalledCommands from 'components/integrations/installed_commands';
 
@@ -121,7 +121,7 @@ export default class CommandsContainer extends React.PureComponent<Props, State>
                     <Route
                         exact={true}
                         path={`${this.props.match.url}/`}
-                        render={() => (<Redirect to={`${this.props.match.url}/installed`}/>)}
+                        render={() => (<Navigate to={`${this.props.match.url}/installed`}/>)}
                     />
                     <CommandRoute
                         extraProps={extraProps}
