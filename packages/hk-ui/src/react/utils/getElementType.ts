@@ -35,7 +35,7 @@ export function getElementType<P extends { as?: React.ComponentType | keyof Reac
     }
 
     if (defaultProps && defaultProps.as) {
-        return defaultProps.as
+        return defaultProps.as!
     }
 
     // ----------------------------------------

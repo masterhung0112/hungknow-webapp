@@ -1,0 +1,38 @@
+/*
+Navbars
+Markup:
+<nav class="#{$ns}-navbar {{.modifier}}">
+  <div class="#{$ns}-navbar-group #{$ns}-align-left">
+    <div class="#{$ns}-navbar-heading">Blueprint</div>
+    <input class="#{$ns}-input" placeholder="Search files..." type="text" />
+  </div>
+  <div class="#{$ns}-navbar-group #{$ns}-align-right">
+    <button class="#{$ns}-button #{$ns}-minimal #{$ns}-icon-home">Home</button>
+    <button class="#{$ns}-button #{$ns}-minimal #{$ns}-icon-document">Files</button>
+    <span class="#{$ns}-navbar-divider"></span>
+    <button class="#{$ns}-button #{$ns}-minimal #{$ns}-icon-user"></button>
+    <button class="#{$ns}-button #{$ns}-minimal #{$ns}-icon-notifications"></button>
+    <button class="#{$ns}-button #{$ns}-minimal #{$ns}-icon-cog"></button>
+  </div>
+</nav>
+.#{$ns}-dark - Dark theme
+Styleguide navbar
+*/
+@import "hkuisass/abstracts/variables";
+@import "hkuisass/abstracts/colors";
+
+$navbar-background-color: $white !default;
+$dark-navbar-background-color: $dark-gray5 !default;
+
+$navbar-padding: $hk-grid-size * 1.5 !default;
+
+.#{$ns}-navbar {
+    position: relative;
+    width: 100%;
+    height: $hk-navbar-height;
+}
+
+.#{$ns}-navbar-heading {
+    font-size: $hk-font-size-large;
+    margin-right: $navbar-padding;
+}
