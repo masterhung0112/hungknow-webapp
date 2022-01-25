@@ -137,7 +137,7 @@
     },
     "plugins": [
         {
-          "transform": "@zerollup/ts-transform-paths",
+          "transform": "@hungknow/ts-tranform-paths",
           "exclude": [
             "*"
           ]
