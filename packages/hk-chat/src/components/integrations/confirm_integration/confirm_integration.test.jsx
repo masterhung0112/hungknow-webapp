@@ -3,7 +3,7 @@
 
 import React from 'react';
 import {shallow} from 'enzyme';
-import {Router} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 import {browserHistory} from 'utils/browser_history';
 import {renderWithIntl} from 'tests/react_testing_utils';
@@ -58,9 +58,9 @@ describe('components/integrations/ConfirmIntegration', () => {
     test('should match callback URLs of OAuth Apps', () => {
         props.location.search = getSearchString('oauth2-apps');
         const {container} = renderWithIntl(
-            <Router history={browserHistory}>
+            <BrowserRouter history={browserHistory}>
                 <ConfirmIntegration {...props}/>
-            </Router>,
+            </BrowserRouter>,
         );
 
         expect(container.querySelector('.word-break--all')).toHaveTextContent('URL(s): https://someCallback, https://anotherCallback');
