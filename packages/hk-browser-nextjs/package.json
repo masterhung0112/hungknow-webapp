@@ -54,7 +54,6 @@
     "@types/lodash": "4.14.168",
     "@types/mark.js": "8.11.5",
     "@types/marked": "2.0.0",
-    "@types/moment-timezone": "0.5.30",
     "@types/node": "14.14.35",
     "@types/react": "^17.0.38",
     "@types/react-beautiful-dnd": "13.0.0",
