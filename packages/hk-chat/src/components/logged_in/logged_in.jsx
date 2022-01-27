@@ -17,13 +17,14 @@ import WebSocketClient from 'client/web_websocket_client.jsx';
 import BrowserStore from 'stores/browser_store';
 
 import {viewChannel} from 'hkclient-redux/actions/channels';
+import {withRouter} from '../../hooks/withRouter';
 
 const dispatch = store.dispatch;
 const getState = store.getState;
 
 const BACKSPACE_CHAR = 8;
 
-export default class LoggedIn extends React.PureComponent {
+export class LoggedIn extends React.PureComponent {
     static propTypes = {
         currentUser: PropTypes.object,
         currentChannelId: PropTypes.string,
@@ -203,3 +204,4 @@ export default class LoggedIn extends React.PureComponent {
         WebSocketActions.close();
     }
 }
+export default withRouter(LoggedIn);

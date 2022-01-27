@@ -45,8 +45,8 @@ module.exports = async () => {
             '^plugins/(.*)$': '<rootDir>/src/plugins/$1',
             '^dispatcher/(.*)$': '<rootDir>/src/dispatcher/$1',
             '^bundle-loader\\?lazy\\!(.*)$': '$1',
-            '^hkclient-redux/test/(.*)$': '<rootDir>/packages/hkclient-redux/test/$1',
-            '^hkclient-redux/(.*)$': '<rootDir>/packages/hkclient-redux/src/$1',
+            '^hkclient-redux/test/(.*)$': '<rootDir>/../hkclient-redux/test/$1',
+            '^hkclient-redux/(.*)$': '<rootDir>/../hkclient-redux/dist/$1',
         },
         moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
     };

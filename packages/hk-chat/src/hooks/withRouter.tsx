@@ -1,19 +1,31 @@
 import React from 'react';
 import {
+    Location,
+    NavigateFunction,
+    Params,
     useLocation,
     useNavigate,
     useParams,
 } from 'react-router-dom';
 
-export function withRouter(Component: React.ComponentType<any>): React.ComponentType<any> {
-    function ComponentWithRouterProp(props) {
+export type RouterProps = {
+    location: Location;
+    navigate: NavigateFunction;
+    params: Readonly<Params<string>>;
+}
+
+export function withRouter<P extends RouterProps>(Component: React.ComponentType<P>): React.ComponentType<P> {
+    function ComponentWithRouterProp(props: Omit<P, keyof RouterProps>) {
         const location = useLocation();
         const navigate = useNavigate();
         const params = useParams();
+
         return (
             <Component
-                {...props}
-                router={{location, navigate, params}}
+                {...props as P}
+                location={location}
+                navigate={navigate}
+                params={params}
             />
         );
     }

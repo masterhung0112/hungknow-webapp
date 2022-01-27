@@ -68,10 +68,10 @@ const config = {
     ],
     ignore: [
         '**/__snapshots__', // ignore the whole __snapshots__ directory
-        '**/*.test.js',
-        '**/*.test.jsx',
-        '**/*.test.ts',
-        '**/*.test.tsx',
+        // '**/*.test.js',
+        // '**/*.test.jsx',
+        // '**/*.test.ts',
+        // '**/*.test.tsx',
     ],
 };
 

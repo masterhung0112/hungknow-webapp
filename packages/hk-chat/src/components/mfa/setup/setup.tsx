@@ -11,6 +11,7 @@ import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx'
 import LocalizedInput from 'components/localized_input/localized_input';
 
 import {UserProfile} from 'hkclient-redux/types/users';
+import {withRouter} from '../../../hooks/withRouter';
 
 type Props = {
     currentUser: UserProfile;
@@ -45,7 +46,7 @@ type State = {
     serverError?: string;
 }
 
-export default class Setup extends React.PureComponent<Props, State> {
+export class Setup extends React.PureComponent<Props, State> {
     private input: React.RefObject<HTMLInputElement>;
 
     public constructor(props: Props) {
@@ -59,7 +60,7 @@ export default class Setup extends React.PureComponent<Props, State> {
     public componentDidMount() {
         const user = this.props.currentUser;
         if (!user || user.mfa_active) {
-            this.props.history.push('/');
+            this.props.navigate('/');
             return;
         }
 
@@ -103,7 +104,7 @@ export default class Setup extends React.PureComponent<Props, State> {
                 return;
             }
 
-            this.props.history.push('/mfa/confirm');
+            this.props.navigate('/mfa/confirm');
         });
     }
 
@@ -203,3 +204,5 @@ export default class Setup extends React.PureComponent<Props, State> {
 const style = {
     qrCode: {maxHeight: 170},
 };
+
+export default withRouter(Setup);

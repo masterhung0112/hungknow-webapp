@@ -33,6 +33,7 @@
     "ci": "npm run check-types && npm run eslint:check && npm run test-ci",
     "updatesnapshot": "jest --updateSnapshot",
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu NODE_OPTIONS='--trace-warnings' TZ=Etc/UTC jest",
+    "test:chat": "lerna run test --scope hk-chat --stream --",
     "test:watch": "cross-env NODE_ICU_DATA=node_modules/full-icu TZ=Etc/UTC jest --watch",
     "test-ci": "cross-env NODE_ICU_DATA=node_modules/full-icu TZ=Etc/UTC jest --ci --maxWorkers=8",
     "css-def": "npm-run-all --parallel css-def:component css-def:style css-def:style-2nd",
