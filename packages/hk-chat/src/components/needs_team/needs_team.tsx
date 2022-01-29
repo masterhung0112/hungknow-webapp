@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import iNoBounce from 'inobounce';
 
 import {startPeriodicStatusUpdates, stopPeriodicStatusUpdates} from 'actions/status_actions.jsx';
@@ -24,6 +24,7 @@ import {UserStatus} from 'hkclient-redux/types/users';
 import {Group} from 'hkclient-redux/types/groups';
 import {Team, TeamMembership} from 'hkclient-redux/types/teams';
 import {Channel, ChannelMembership} from 'hkclient-redux/types/channels';
+import {withRouter} from '../../hooks/withRouter';
 
 const BackstageController = makeAsyncComponent(LazyBackstageController);
 
@@ -86,14 +87,14 @@ type State = {
     teamsList: Team[];
 }
 
-export default class NeedsTeam extends React.PureComponent<Props, State> {
+export class NeedsTeam extends React.PureComponent<Props, State> {
     public blurTime: number;
     constructor(props: Props) {
         super(props);
         this.blurTime = new Date().getTime();
 
         if (this.props.mfaRequired) {
-            this.props.history.push('/mfa/setup');
+            this.props.navigate('/mfa/setup');
             return;
         }
 
@@ -210,7 +211,7 @@ export default class NeedsTeam extends React.PureComponent<Props, State> {
         if (team && team.delete_at === 0) {
             const {error} = await props.actions.addUserToTeam(team.id, props.currentUser && props.currentUser.id);
             if (error) {
-                props.history.push('/error?type=team_not_found');
+                props.navigate('/error?type=team_not_found');
             } else {
                 if (firstLoad) {
                     LocalStorageStore.setTeamIdJoinedOnLoad(team.id);
@@ -219,7 +220,7 @@ export default class NeedsTeam extends React.PureComponent<Props, State> {
                 this.initTeam(team);
             }
         } else {
-            props.history.push('/error?type=team_not_found');
+            props.navigate('/error?type=team_not_found');
         }
     }
 
@@ -301,26 +302,25 @@ export default class NeedsTeam extends React.PureComponent<Props, State> {
         }
 
         return (
-            <Switch>
+            <Routes>
                 <Route
                     path={'/:team/integrations'}
-                    component={BackstageController}
+                    element={BackstageController}
                 />
                 <Route
                     path={'/:team/emoji'}
-                    component={BackstageController}
+                    element={BackstageController}
                 />
                 {this.props.plugins?.map((plugin: any) => (
                     <Route
                         key={plugin.id}
                         path={'/:team/' + plugin.route}
-                        render={() => (
-                            <Pluggable
-                                pluggableName={'NeedsTeamComponent'}
-                                pluggableId={plugin.id}
-                            />
-                        )}
-                    />
+                    >
+                        <Pluggable
+                            pluggableName={'NeedsTeamComponent'}
+                            pluggableId={plugin.id}
+                        />
+                    </Route>
                 ))}
                 <Route
                     render={(renderProps) => (
@@ -331,7 +331,9 @@ export default class NeedsTeam extends React.PureComponent<Props, State> {
                         />
                     )}
                 />
-            </Switch>
+            </Routes>
         );
     }
 }
+
+export default withRouter(NeedsTeam);

@@ -2,37 +2,27 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route} from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const HeaderFooterTemplate = React.lazy(() => import('components/header_footer_template'));
 const LoggedIn = React.lazy(() => import('components/logged_in'));
 
-export const HFTRoute = ({component: Component, ...rest}) => (
-    <Route
-        {...rest}
-        render={(props) => (
-            <React.Suspense fallback={null}>
-                <HeaderFooterTemplate {...props}>
-                    <Component {...props}/>
-                </HeaderFooterTemplate>
-            </React.Suspense>
-        )}
-    />
+export const HFTRoute = () => (
+    <React.Suspense fallback={null}>
+        <HeaderFooterTemplate>
+            <Outlet/>
+        </HeaderFooterTemplate>
+    </React.Suspense>
 );
 
-export const LoggedInHFTRoute = ({component: Component, ...rest}) => (
-    <Route
-        {...rest}
-        render={(props) => (
+export const LoggedInHFTRoute = () => (
+    <React.Suspense fallback={null}>
+        <LoggedIn>
             <React.Suspense fallback={null}>
-                <LoggedIn {...props}>
-                    <React.Suspense fallback={null}>
-                        <HeaderFooterTemplate {...props}>
-                            <Component {...props}/>
-                        </HeaderFooterTemplate>
-                    </React.Suspense>
-                </LoggedIn>
+                <HeaderFooterTemplate>
+                    <Outlet/>
+                </HeaderFooterTemplate>
             </React.Suspense>
-        )}
-    />
+        </LoggedIn>
+    </React.Suspense>
 );

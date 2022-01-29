@@ -3,7 +3,9 @@
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {withRouter, matchPath} from 'react-router-dom';
+import {matchPath} from 'react-router-dom';
+
+import {withRouter} from '../../hooks/withRouter';
 
 import {
     closeRightHandSide as closeRhs,
@@ -40,7 +42,7 @@ const mapStateToProps = (state, {location: {pathname}}) => ({
     isReadOnly: isCurrentChannelReadOnly(state),
     isRHSOpen: getIsRhsOpen(state),
     currentRelativeTeamUrl: getCurrentRelativeTeamUrl(state),
-    inGlobalThreads: Boolean(matchPath(pathname, {path: '/:team/threads/:threadIdentifier?'})),
+    inGlobalThreads: Boolean(matchPath('/:team/threads/:threadIdentifier?', pathname)),
 });
 
 const mapDispatchToProps = (dispatch) => ({

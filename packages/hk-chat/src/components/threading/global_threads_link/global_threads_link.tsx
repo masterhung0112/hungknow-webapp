@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React, {useEffect} from 'react';
-import {Link, useRouteMatch, useLocation, matchPath} from 'react-router-dom';
+import {Link, useMatch} from 'react-router-dom';
 import classNames from 'classnames';
 import {useIntl} from 'react-intl';
 import {useSelector, useDispatch} from 'react-redux';
@@ -28,9 +28,10 @@ const GlobalThreadsLink = () => {
     const dispatch = useDispatch();
     const isFeatureEnabled = useSelector(isCollapsedThreadsEnabled);
 
-    const {url} = useRouteMatch();
-    const {pathname} = useLocation();
-    const inGlobalThreads = matchPath(pathname, {path: '/:team/threads/:threadIdentifier?'}) != null;
+    const matching = useMatch('/:team/threads/:threadIdentifier');
+
+    // const {pathname} = useLocation();
+    const inGlobalThreads = matching != null;
     const {currentTeamId, currentUserId} = useThreadRouting();
 
     const counts = useSelector(getThreadCountsInCurrentTeam);
@@ -59,7 +60,7 @@ const GlobalThreadsLink = () => {
                 tabIndex={-1}
             >
                 <Link
-                    to={`${url}/threads`}
+                    to={`${matching.pathname}/threads`}
                     draggable='false'
                     className={classNames('SidebarLink sidebar-item', {
                         'unread-title': Boolean(someUnreadThreads),

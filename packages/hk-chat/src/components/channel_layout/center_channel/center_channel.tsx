@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import classNames from 'classnames';
 
 import LoadingScreen from 'components/loading_screen';
@@ -76,7 +76,7 @@ export default class CenterChannel extends React.PureComponent<Props, State> {
                     </div>
                 </div>
                 <div className={classNames('row main', {'CollapsedReplies___feature-enabled': isCollapsedThreadsEnabled})}>
-                    <Switch>
+                    <Routes>
                         <Route
                             path={`${url}/pl/:postid`}
                             render={(props) => (
@@ -88,16 +88,16 @@ export default class CenterChannel extends React.PureComponent<Props, State> {
                         />
                         <Route
                             path='/:team/:path(channels|messages)/:identifier/:postid?'
-                            component={ChannelIdentifierRouter}
+                            element={ChannelIdentifierRouter}
                         />
                         {isCollapsedThreadsEnabled ? (
                             <Route
                                 path='/:team/threads/:threadIdentifier?'
-                                component={LazyGlobalThreads}
+                                element={LazyGlobalThreads}
                             />
                         ) : null}
-                        <Redirect to={lastChannelPath}/>
-                    </Switch>
+                        <Navigate to={lastChannelPath}/>
+                    </Routes>
                 </div>
             </div>
         );

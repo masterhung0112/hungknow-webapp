@@ -30,6 +30,7 @@ import {Permissions} from 'hkclient-redux/constants';
 import InfiniteScroll from '../common/infinite_scroll';
 
 import SelectTeamItem from './components/select_team_item';
+import {withRouter} from '../../hooks/withRouter';
 
 export const TEAMS_PER_PAGE = 30;
 const TEAM_MEMBERSHIP_DENIAL_ERROR_ID = 'api.team.add_members.user_denied';
@@ -66,7 +67,7 @@ type State = {
     currentListableTeams: Team[];
 }
 
-export default class SelectTeam extends React.PureComponent<Props, State> {
+export class SelectTeam extends React.PureComponent<Props, State> {
     constructor(props: Props) {
         super(props);
 
@@ -118,8 +119,8 @@ export default class SelectTeam extends React.PureComponent<Props, State> {
         this.setState({loadingTeamId: team.id});
 
         const {data, error} = await this.props.actions.addUserToTeam(team.id, this.props.currentUserId);
-        if (data && this.props.history !== undefined) {
-            this.props.history.push(`/${team.name}/channels/${Constants.DEFAULT_CHANNEL}`);
+        if (data && this.props.navigate !== undefined) {
+            this.props.navigate(`/${team.name}/channels/${Constants.DEFAULT_CHANNEL}`);
         } else if (error) {
             let errorMsg = error.message;
 
@@ -368,3 +369,5 @@ export default class SelectTeam extends React.PureComponent<Props, State> {
         );
     }
 }
+
+export default withRouter(SelectTeam);
