@@ -78,9 +78,9 @@ export default class ChannelController extends React.Component {
                 <div className='container-fluid'>
                     <SidebarRight/>
                     <SidebarRightMenu/>
-                    <Route component={PreferredTeamSidebar}/>
-                    <Route component={PreferredSidebar}/>
-                    {!this.props.fetchingChannels && <Route component={CenterChannel}/>}
+                    <Route element={PreferredTeamSidebar}/>
+                    <Route element={PreferredSidebar}/>
+                    {!this.props.fetchingChannels && <Route element={CenterChannel}/>}
                     {this.props.fetchingChannels && <LoadingScreen/>}
                     <Pluggable pluggableName='Root'/>
                     <GetPublicLinkModal/>

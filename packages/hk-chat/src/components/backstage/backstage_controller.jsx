@@ -3,7 +3,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 
 import Bots from 'components/integrations/bots';
 import AddBot from 'components/integrations/bots/add_bot';
@@ -114,7 +114,7 @@ export default class BackstageController extends React.PureComponent {
                         canCreateOrDeleteCustomEmoji={this.props.canCreateOrDeleteCustomEmoji}
                         canManageIntegrations={this.props.canManageIntegrations}
                     />
-                    <Switch>
+                    <Routes>
                         <BackstageRoute
                             extraProps={extraProps}
                             exact={true}
@@ -205,7 +205,7 @@ export default class BackstageController extends React.PureComponent {
                             path={`${this.props.match.url}/bots`}
                             component={Bots}
                         />
-                    </Switch>
+                    </Routes>
                 </div>
             </div>
         );

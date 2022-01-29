@@ -1443,7 +1443,7 @@ exports[`components/admin_console/system_user_detail should match snapshot if us
 `;
 
 exports[`components/admin_console/system_user_detail should redirect if user id is not defined 1`] = `
-<Redirect
+<Navigate
   to={
     Object {
       "pathname": "/admin_console/user_management/users",

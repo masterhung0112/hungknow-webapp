@@ -1,33 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/needs_team should match snapshots for init with existing team 1`] = `
-<Switch>
+<Routes>
   <Route
-    component={[Function]}
+    element={[Function]}
     path="/:team/integrations"
   />
   <Route
-    component={[Function]}
+    element={[Function]}
     path="/:team/emoji"
   />
   <Route
     render={[Function]}
   />
-</Switch>
+</Routes>
 `;
 
 exports[`components/needs_team should match snapshots for init with existing team 2`] = `
-<Switch>
+<Routes>
   <Route
     component={[Function]}
     path="/:team/integrations"
   />
   <Route
-    component={[Function]}
+    element={[Function]}
     path="/:team/emoji"
   />
   <Route
     render={[Function]}
   />
-</Switch>
+</Routes>
 `;

@@ -3,7 +3,7 @@
 /* eslint-disable react/no-string-refs */
 
 import React from 'react';
-import {Redirect, RouteComponentProps} from 'react-router-dom';
+import {Navigate, RouteComponentProps} from 'react-router-dom';
 import {FormattedMessage} from 'react-intl';
 import {Overlay, Tooltip} from 'react-bootstrap';
 
@@ -353,7 +353,10 @@ export default class SystemUserDetail extends React.PureComponent<Props & RouteC
 
         if (!user.id) {
             return (
-                <Redirect to={{pathname: '/admin_console/user_management/users'}}/>
+                <Navigate 
+                    replace={true}
+                    to={{pathname: '/admin_console/user_management/users'}}
+                />
             );
         }
 

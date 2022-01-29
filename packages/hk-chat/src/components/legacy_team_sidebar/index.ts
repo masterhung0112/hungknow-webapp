@@ -4,7 +4,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators, Dispatch} from 'redux';
 
-import {withRouter} from 'react-router-dom';
+import {withRouter} from '../../hooks/withRouter';
 
 import {getCurrentLocale} from 'selectors/i18n';
 

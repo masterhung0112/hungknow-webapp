@@ -4,7 +4,7 @@
 // import {hot} from 'react-hot-loader/root';
 import React from 'react';
 import {Provider} from 'react-redux';
-import {Router, Route} from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 import {browserHistory} from 'utils/browser_history';
 import store from 'stores/redux_store';
@@ -26,12 +26,9 @@ class App extends React.PureComponent {
         return (
             <Provider store={store}>
                 <CRTPostsChannelResetWatcher/>
-                <Router history={browserHistory}>
-                    <Route
-                        path='/'
-                        component={Root}
-                    />
-                </Router>
+                <BrowserRouter history={browserHistory}>
+                    <Root/>
+                </BrowserRouter>
             </Provider>);
     }
 }

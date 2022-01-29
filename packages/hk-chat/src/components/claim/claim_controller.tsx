@@ -2,7 +2,7 @@
 // See LICENSE.txt for license information.
 
 import React from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 
 import logoImage from 'images/logo.png';
 import BackButton from 'components/common/back_button';
@@ -55,7 +55,7 @@ export default class ClaimController extends React.PureComponent<Props> {
                             src={logoImage}
                         />
                         <div id='claim'>
-                            <Switch>
+                            <Routes>
                                 <Route
                                     path={`${this.props.match.url}/oauth_to_email`}
                                     render={() => (
@@ -97,7 +97,7 @@ export default class ClaimController extends React.PureComponent<Props> {
                                         />
                                     )}
                                 />
-                            </Switch>
+                            </Routes>
                         </div>
                     </div>
                 </div>
