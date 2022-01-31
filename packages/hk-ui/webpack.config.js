@@ -10,11 +10,12 @@ const DEV = process.env === 'development';
 var config = {
     entry: ['./src/index.ts'],
     output: {
-
-        // publicPath,
         path: path.resolve(__dirname, 'dist'),
+        library: {
+            type: 'commonjs2',
+        },
 
-        // filename: 'index.js',
+        filename: 'hk-ui.js',
         // clean: false,
         // chunkFilename: '[name].[contenthash].js',
         // chunkLoading: 'import',
@@ -111,6 +112,9 @@ var config = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
-};
+    externals: [
+        'react',
+    ],
+}
 
-module.exports = config;
+module.exports = config

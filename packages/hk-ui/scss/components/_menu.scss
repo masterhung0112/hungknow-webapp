@@ -1,0 +1,110 @@
+/**
+Menus
+Vertical menu
+
+<ul class="#{$ns}-menu">
+    <li class="#{$ns}-menu-header"><h6 class="#{$ns}-heading">Layouts</h6></li>
+    <li class="#{$ns}-menu-message"><h6 class="#{$ns}-heading">Message goes here</h6></li>
+    <li>
+        <a class="#{$ns}-menu-item">Share...</a>
+    </li>
+    <li>
+        <a class="#{$ns}-menu-item #{$ns}-disabled">Move...</a>
+    </li>
+    <li class="#{$ns}-menu-divider"></li>
+    <li>
+        <a class="#{$ns}-menu-item #{$ns}-intent-danger">Delete</a>
+    </li>
+
+    /!-- Submenu -->
+    <li class="#{$ns}-menu">
+        <button>Click to open...</button>
+        <ul class="#{$ns}-menu">
+            <li class="#{$ns}-menu-item>Menu1...<li>
+        </ul>
+    </li>    
+</ul>
+
+<div class="#{$ns} menu">
+    <div class="submenu">
+        <div class="menu-item">
+            <span>Buy Crypto</span>
+            <span class="label">VND</span>
+        </div>
+
+        <div class="menu">
+            <li class="#{$ns}-menu-item">P2P Trading<li>
+        </div>
+    </div>
+    <a class="#{$ns}-menu-item">NFT<span class="label">New</span></a>
+
+    <a class="#{$ns}-menu-item">Share...</a>
+    <a class="#{$ns}-menu-item #{$ns}-disabled">Move...</a>
+    <div class="#{$ns}-menu-divider"></div>
+    <a class="#{$ns}-menu-item #{$ns}-intent-danger">Delete</a>
+
+    <!-- Submenu -->
+    <div class="submenu">
+        <button class="menu-item">Click to open...</button>
+        <div class="submenu">
+            <a class="menu-item">Menu1...</a>
+            <a class="submenu">
+                <a class="menu-item">Menu2</a>
+                <div class="menu">
+                  <a class="menu-item">This is the content</a>
+                </div>
+            </a>
+        </div>
+    </div>    
+</div>
+*/
+@import "../abstracts/variables";
+@import "menu_common";
+
+.#{$ns} {
+  &.menu {
+    background-color: $hk-menu-background-color;
+    border-radius: $hk-border-radius;
+    color: $hk-text-color;
+    list-style: none;
+    margin: 0;
+    min-width: $hk-menu-min-width;
+    padding: $hk-half-grid-size;
+    text-align: left;
+
+    .menu-item {
+      @include menu-item();
+  
+      &::before {
+        margin-right: $hk-menu-item-padding;
+      }
+  
+      &:hover {
+        color: inherit;
+      }
+  
+      &.active,
+      &:active {
+        background-color: $hk-menu-item-color-active;
+      }     
+    }
+
+    .menu-header {
+      @include menu-header($heading-selector: "> h6")
+    }
+
+    .sub-menu {
+      & > .menu {
+        display: none;
+        margin-left: $hk-grid-size;
+      }
+    }
+
+    button.menu-item {
+      background: none;
+      border: none;
+      text-align: left;
+      width: 100%;
+    }  
+  }  
+}

@@ -20,7 +20,7 @@
       "jsx": "react",
       "rootDir": "./src",
       "baseUrl": ".",
-      "outDir": "lib",
+      "outDir": "dist",
       "paths": {
       
       },
@@ -29,7 +29,7 @@
       "declaration": true
     },
     "include": [
-      "./src/**/*",
+      "./src/**/*", "sass",
     ],
     "exclude": [
       "dist",

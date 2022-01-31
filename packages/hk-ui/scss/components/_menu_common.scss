@@ -1,0 +1,49 @@
+@import "flex";
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+@mixin menu-item() {
+    @include hk-flex-container(row, $hk-menu-item-padding);
+    align-items: flex-start;
+    border-radius: $hk-menu-item-border-radius;
+    color: inherit;
+    line-height: $hk-menu-item-line-height;
+    padding: $hk-menu-item-padding-vertical $hk-menu-item-padding;
+    text-decoration: none;
+    user-select: none;
+}
+
+@mixin menu-divider() {
+    border-top: 1px solid $hk-divider-black;
+    display: block;
+    margin: $hk-half-grid-size;
+}
+
+@mixin menu-heading() {
+    @include heading-typography();
+    @include overflow-ellipsis();
+    // a little extra space to avoid clipping descenders (because overflow hidden)
+    line-height: $hk-icon-size-standard + 1px;
+    margin: 0;
+    padding: $hk-grid-size $hk-menu-item-padding 0 1px;
+}
+
+@mixin menu-header($heading-selector: null) {
+    @include menu-divider();
+    cursor: default;
+    padding-left: $hk-menu-item-padding - $hk-half-grid-size;
+
+    @if $heading-selector != null {
+        &:first-of-type {
+            border-top: none;
+        }
+
+        #{$heading-selector} {
+            @include menu-heading();
+        }
+
+        &:first-of-type #{$heading-selector} {
+            padding-top: 0;
+        }
+    }
+}

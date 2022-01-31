@@ -1,4 +1,8 @@
+//TODO: Add reset
+
 @import "abstracts/variables";
 @import "abstracts/colors";
 
+// Add all components
+@import "abstracts/reset";
 @import "components/index";

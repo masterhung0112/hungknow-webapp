@@ -1,0 +1,150 @@
+@import "colors";
+@import "color-aliases";
+@import "mixins";
+
+/**
+ * This file must contains only variables, no styling to avoid duplication when importing into multipl files
+ */
+
+@function rempx ($size) { @return calc(1px / $size);}   // Keep this, the generator breaks otherwise
+$base-root-font-size:     16px !default;        // Root font sizing for all elements (`px` only)
+$__1px: rempx($base-root-font-size) * 1rem !default;  // [Calculated] Calculated rem value of `1px`
+
+$universal-border-radius: 0.125rem !default;    // Universal border-radius for most elements
+$universal-margin:        0.5rem !default;      // Universal margin for the most elements
+$universal-padding:       0.5rem !default;      // Universal padding for the most elements
+
+$universal-margin-var:          '--universal-margin' !default;
+$universal-padding-var:         '--universal-padding' !default;
+$universal-border-radius-var:   '--universal-border-radius' !default;
+
+$ns: 'hk1' !default;
+
+// easily the most important variable, so it comes up top
+// (so other variables can use it to define themselves)
+$hk-grid-size: 10px !default;
+$hk-half-grid-size: calc($hk-grid-size / 2) !default;
+
+// see https://bitsofco.de/the-new-system-font-stack/
+$hk-font-family: -apple-system,
+                 "BlinkMacSystemFont",
+                 "Segoe UI",
+                 "Roboto",
+                 "Oxygen",
+                 "Ubuntu",
+                 "Cantarell",
+                 "Open Sans",
+                 "Helvetica Neue",
+                 "Icons16", // support inline Palantir icons
+                 sans-serif !default;
+
+$hk-font-size: $hk-grid-size * 1.4 !default;
+$hk-font-size-large: $hk-grid-size * 1.6 !default;
+$hk-font-size-small: $hk-grid-size * 1.2 !default;
+
+// a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
+$hk-line-height: calc(($hk-grid-size * 1.8) / $hk-font-size) + 0.0001 !default;
+
+$xs-prefix: 'xs' !default;
+$sm-prefix: 'sm' !default;
+$ld-prefix: 'ld' !default;
+$md-prefix: 'md' !default;
+$lg-prefix: 'lg' !default;
+$xl-prefix: 'xl' !default;
+$xxl-prefix: 'xxl' !default;
+
+// Media breakpoints
+$hk-grid-breakpoints: (
+    fs: 0,
+    xs: 360px,
+    sm: 576px,
+    ld: 640px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1452px,
+) !default;
+
+$mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
+$mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
+
+// Grid containers
+$hk-container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+:root {
+    #{$universal-border-radius-var}: $universal-border-radius;
+    #{$universal-margin-var}: $universal-margin;
+    #{$universal-padding-var}: $universal-padding;
+}
+
+// Grids & dimensions
+$hk-border-radius: floor(calc($hk-grid-size / 3)) !default;
+
+/**
+ * Icon Variables
+ */
+$hk-icon-size-standard: 16px !default;
+$hk-icon-size-large: 20px !default;
+
+/**
+ * Button Variables
+ */
+$hk-button-height: $hk-grid-size * 3 !default;
+$hk-button-height-small: $hk-grid-size * 2.4 !default;
+$hk-button-height-smaller: $hk-grid-size * 2 !default;
+$hk-button-height-large: $hk-grid-size * 4 !default;
+
+$hk-button-color-disabled: $hk-text-color-disabled !default;
+$hk-button-background-color: $light-gray5 !default;
+$hk-button-background-color-hover: $light-gray4 !default;
+$hk-button-background-color-active: $light-gray2 !default;
+$hk-button-background-color-disabled: rgba($light-gray1, 0.5) !default;
+$hk-button-background-color-active-disabled: rgba($light-gray1, 0.7) !default;
+$hk-button-intent-color-disabled: rgba($white, 0.6) !default;
+
+$hk-minimal-button-divider-width: 1px !default;
+$hk-minimal-button-background-color: none !default;
+$hk-minimal-button-background-color-hover: rgba($gray4, 0.3) !default;
+$hk-minimal-button-background-color-active: rgba($gray2, 0.3) !default;
+
+/**
+ * Nav bar
+ */
+$hk-navbar-height: $hk-grid-size * 5 !default;
+
+/**
+ * Menu
+ */
+
+$hk-menu-item-border-radius: $hk-border-radius - 1 !default;
+
+// menu Back groun
+$hk-menu-background-color: $white !default;
+$hk-dark-menu-background-color: $dark-gray4 !default;
+
+// Set line-height of menu items to be a multiple of the font size. This is
+// needed because if the line-height does not extend far enough past the font's
+// baseline, clipping will occur when the .#{$ns}-text-overflow-ellipsis class is
+// applied to it (#2177). Also, line-height should be an even value, or content
+// will be misaligned by one pixel (Chrome quirk).
+$hk-menu-item-line-height-factor: 1.4;
+$hk-menu-item-line-height: round($hk-font-size * $hk-menu-item-line-height-factor) !default;
+$hk-menu-item-line-height-large: round($hk-font-size-large * $hk-menu-item-line-height-factor) !default;
+
+$hk-menu-min-width: $hk-grid-size * 18 !default;
+$hk-menu-item-padding: calc(($hk-button-height - $hk-icon-size-standard) / 2) !default;
+$hk-menu-item-padding-large: calc(($hk-button-height-large - $hk-icon-size-large) / 2) !default;
+$hk-menu-item-padding-vertical: calc(($hk-button-height - $hk-menu-item-line-height) / 2)!default;
+$hk-menu-item-padding-vertical-large:
+  calc(($hk-button-height-large - $hk-menu-item-line-height-large) / 2) !default;
+
+$hk-menu-item-color-hover: $hk-minimal-button-background-color-hover !default;
+$hk-menu-item-color-active: $hk-minimal-button-background-color-active !default;
+// $hk-dark-menu-item-color-hover: $hk-dark-minimal-button-background-color-hover !default;
+// $hk-dark-menu-item-color-active: $hk-dark-minimal-button-background-color-active !default;

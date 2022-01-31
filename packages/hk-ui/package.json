@@ -1,23 +1,27 @@
 {
   "name": "hk-ui",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "style": "dist/hkui-styles.css",
+  "main": "dist/hk-ui.js",
+  "types": "dist/index.d.ts",
+  "style": "dist/css/hk-uikit.css",
   "license": "MIT",
   "sideEffects": ["**/*.css"],
   "files": [
-    "dist"
+    "dist",
+    "scss"
   ],
   "scripts": {
-    "build": "shx rm -rf dist && yarn build:css-def && cross-env NODE_ENV=production webpack",
-    "build:dev": "shx rm -rf dist && yarn build:css-def && cross-env NODE_ENV=development webpack",
-    "build:css": "sass src/sass:lib/css",
-    "build:css-def": "tsm \"src/sass/hk-ui.scss\" --aliasPrefixes.hkuisass src/sass --nameFormat none --exportType default",
+    "build": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=production webpack",
+    "build:dev": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=development webpack",
+    "build:css": "sass scss/hk-uikit.scss:dist/css/hk-uikit.css",
+    "build:css-def": "tsm \"scss/hk-uikit.scss\" --aliasPrefixes.hkuisass sass --nameFormat none --exportType default",
+    "build:ts": "cross-env NODE_ENV=development webpack",
     "dev:ts": "cross-env NODE_ENV=development webpack --watch",
     "dev:css": "yarn build:css --watch",
     "dev": "concurrently \"yarn dev:ts\" \"yarn dev:css\"",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "dist:variables": "generate-css-variables --retainDefault true scss/abstracts/_colors.scss scss/abstracts/_color-aliases.scss scss/abstracts/_variables.scss"
   },
   "dependencies": {   
     "react": "^17.0.2",

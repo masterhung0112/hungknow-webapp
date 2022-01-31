@@ -1,0 +1,19 @@
+/**
+ * Button
+ * <button type="button" class="hk1 button icon-add .modifier" :modifier>Button</button>
+ */
+
+@import "button_common";
+
+.#{$ns} {
+  &.button {
+    @include hk-button-base();
+    @include hk-button-height($hk-button-height);
+
+    &:empty {
+      // override padding from other modifiers (for CSS icon support)
+      /* stylelint-disable-next-line declaration-no-important */
+      padding: 0 !important;
+    }
+  }
+}

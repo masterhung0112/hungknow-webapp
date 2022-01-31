@@ -30,11 +30,24 @@ filename | usage | Initial Name
 **theme.config** | config file that stores each element's current theme for SASS | theme.config.example
 **site/** | folder storing all your site's variables and css overrides for each UI component | _site/
 
+## Theme Files
+Themes are made up of two files: a `.variables` file and a `.overrides` file.
+
+### Variable Files
+A `.variables` file specifies variables which should be adjusted for a theme.
+A theme's variable file only need to include variables which are different for a theme.
+
+### Override Files
+A `.overrides` file specifies additional CSS rules to be added to a definition for a theme. This file also has access to all inherited variables for a component.
+
 ## Inheritance
 
-There are three levels of inheritance in Semantic
+There are three levels of inheritance
 * Default theme - UI's neutral default theme
+   - The default theme provides baseline variables for a component.
 * Packaged theme - A specified packaged theme, like "amazon", or "material"
+   - Packaged themes are themes bundled together in a folder
+   - Packaged themes can be used by modifying values in your `theme.config` file.
 * Site theme - A theme specific to your site
 
 # Grid
@@ -148,3 +161,12 @@ Menu is the wrapper of the whole menu.
 The development tool workflow must satisfy the following points.
 - webpack should monitor ts and scss when running `yarn dev`
 - The `.d.ts` files are generated for each `scss` file, so that `ts` file can detect if there's any name change in `scss` file when compiling
+- There are two methods that use can overwrite the theme
+   - The client may build the bundle default css file, then overwrite theme variable by import another css file
+   - The client may import `.scss` file of `hk-ui` into their bundle `.css` file, then generate the final bundle `css` file
+
+
+# Deliverables
+- css bundle file or multiple component css files
+- scss folder for variable reference and theme change
+- react js bundle file
