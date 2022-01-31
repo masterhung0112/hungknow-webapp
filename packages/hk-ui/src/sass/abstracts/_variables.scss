@@ -1,4 +1,4 @@
-@function rempx ($size) { @return 1px/$size;}   // Keep this, the generator breaks otherwise
+@function rempx ($size) { @return calc(1px/$size);}   // Keep this, the generator breaks otherwise
 $base-root-font-size:     16px !default;        // Root font sizing for all elements (`px` only)
 $__1px: rempx($base-root-font-size) * 1rem !default;  // [Calculated] Calculated rem value of `1px`
 
@@ -10,7 +10,7 @@ $universal-margin-var:          '--universal-margin' !default;
 $universal-padding-var:         '--universal-padding' !default;
 $universal-border-radius-var:   '--universal-border-radius' !default;
 
-$ns: 'hk' !default;
+$ns: 'hk1' !default;
 
 // easily the most important variable, so it comes up top
 // (so other variables can use it to define themselves)
@@ -34,7 +34,7 @@ $hk-font-size-large: $hk-grid-size * 1.6 !default;
 $hk-font-size-small: $hk-grid-size * 1.2 !default;
 
 // a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
-$hk-line-height: ($hk-grid-size * 1.8) / $hk-font-size + 0.0001 !default;
+$hk-line-height: calc(($hk-grid-size * 1.8) / $hk-font-size) + 0.0001 !default;
 
 $xs-prefix: 'xs' !default;
 $sm-prefix: 'sm' !default;
@@ -64,7 +64,7 @@ $mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
 }
 
 // Grids & dimensions
-$hk-border-radius: floor($hk-grid-size / 3) !default;
+$hk-border-radius: floor(calc($hk-grid-size / 3)) !default;
 
 // Others
 $hk-navbar-height: $hk-grid-size * 5 !default;

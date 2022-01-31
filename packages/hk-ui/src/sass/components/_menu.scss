@@ -1,0 +1,64 @@
+/**
+Menus
+Horizon menu
+Vertical menu
+
+<ul class="#{$ns}-menu">
+    <li class="#{$ns}-menu-header"><h6 class="#{$ns}-heading">Layouts</h6></li>
+    <li class="#{$ns}-menu-message"><h6 class="#{$ns}-heading">Message goes here</h6></li>
+    <li>
+        <a class="#{$ns}-menu-item" tabindex="0">Share...</a>
+    </li>
+    <li>
+        <a class="#{$ns}-menu-item #{$ns}-disabled" tabindex="0">Move...</a>
+    </li>
+    <li class="#{$ns}-menu-divider"></li>
+    <li>
+        <a class="#{$ns}-menu-item #{$ns}-intent-danger" tabindex="0">Delete</a>
+    </li>
+
+    /!-- Submenu -->
+    <li class="#{$ns}-submenu">
+        <button>Click to open...</button>
+        <ul class="#{$ns}-menu">
+            <li class="#{$ns}-menu-item>Menu1...<li>
+        </ul>
+    </li>    
+</ul>
+
+<div class="#{$ns}-menu">
+    <div class="#{$ns}-submenu">
+        <div class="#{$ns}-menu-item">
+            <span>Buy Crypto</span>
+            <span class="label">VND</span>
+        </div>
+
+        <div class="#{$ns}-submenu-content">
+            <ul class="#{$ns}-menu">
+                <li class="#{$ns}-menu-item">P2P Trading<li>
+            </ul>
+        </div>
+    </div>
+    <a class="#{$ns}-menu-item" tabindex="0">NFT<span class="label">New</span></a>
+
+
+    <a class="#{$ns}-menu-item" tabindex="0">Share...</a>
+    <a class="#{$ns}-menu-item #{$ns}-disabled" tabindex="0">Move...</a>
+    <div class="#{$ns}-menu-divider"></div>
+    <a class="#{$ns}-menu-item #{$ns}-intent-danger" tabindex="0">Delete</a>
+
+    <!-- Submenu -->
+    <div class="#{$ns}-menu-item #{$ns}-has-submenu">
+        <button>Click to open...</button>
+        <div class="#{$ns}-submenu">
+            <a class="#{$ns}-menu-item">Menu1...</a>
+            <a class="#{$ns}-menu-item #{$ns}-has-submenu">
+                Menu2
+                <div class="#{$ns}-submenu">
+                    This is the content
+                </div>
+            </a>
+        </div>
+    </div>    
+</div>
+*/

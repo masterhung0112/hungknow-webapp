@@ -36,6 +36,7 @@
       "e2e",
       "!node_modules/@types",
       "storybook-static",
-      "coverage"
+      "coverage",
+      "./src/**/*.stories.tsx",
     ]
   }

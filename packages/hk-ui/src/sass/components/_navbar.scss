@@ -18,8 +18,8 @@ Markup:
 .#{$ns}-dark - Dark theme
 Styleguide navbar
 */
-@import "hkuisass/abstracts/variables";
-@import "hkuisass/abstracts/colors";
+@import "../abstracts/variables";
+@import "../abstracts/colors";
 
 $navbar-background-color: $white !default;
 $dark-navbar-background-color: $dark-gray5 !default;
@@ -35,4 +35,15 @@ $navbar-padding: $hk-grid-size * 1.5 !default;
 .#{$ns}-navbar-heading {
     font-size: $hk-font-size-large;
     margin-right: $navbar-padding;
+}
+
+.#{$ns}-navbar-group {
+  align-items: center;
+  display: flex;
+}
+
+.#{$ns}-navbar-divider {
+  border-left: 1px solid $hk-divider-black;
+  height: $hk-navbar-height - $hk-grid-size * 3;
+  margin: 0 $hk-grid-size;
 }
