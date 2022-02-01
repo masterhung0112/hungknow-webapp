@@ -1,29 +1,31 @@
-$dark-sidebar-background-color: #394b59;
-
 @use "@hungknow/uikit/scss/hk-uikit" as uikit;
-@use "@hungknow/uikit/themes/dark/hk-uikit-dark" as uikitdark with (
-    $hk-menu-background-color: $dark-sidebar-background-color
-);
 
+/*
+ * Set the new background color for sidebar on the left and the content on the right
+ */
 $container-width: uikit.$hk-grid-size * 110;
 $container-padding: uikit.$hk-grid-size / 2;
 
 $sidebar-width: uikit.$hk-grid-size * 27;
 $sidebar-padding: uikit.$hk-grid-size * 1.5;
 $sidebar-background-color: uikit.$white;
+$dark-sidebar-background-color: uikit.$dark-gray5;
 
 $content-width: $container-width - $sidebar-width;
 $content-padding: uikit.$hk-grid-size * 2;
 $content-background-color: uikit.$light-gray5;
 $dark-content-background-color: uikit.$dark-gray4;
 
-.red-1 {
-    color: uikit.$red5;
-}
+@use "@hungknow/uikit/themes/dark/hk-uikit-dark" as uikitdark with (
+    $hk-app-background-color: $dark-content-background-color,
+    $hk-menu-background-color: $dark-sidebar-background-color
+);
 
 .docs-root {
-    &.hk-dark {
-        background-color: uikitdark.$hk-app-background-color;
+    background-color: $content-background-color;
+
+    &.#{uikitdark.$themeid} {
+        background-color: $dark-content-background-color;
     }
 }
 
@@ -50,7 +52,7 @@ $dark-content-background-color: uikit.$dark-gray4;
     box-shadow: 1px 0 0 uikit.$hk-divider-black;
     height: 100vh;
 
-    .hk-dark & {
+    .#{uikitdark.$themeid} & {
         background-color: $dark-sidebar-background-color;
         box-shadow: 1px 0 0 rgba(uikit.$black, 0.4);
     }
@@ -59,6 +61,10 @@ $dark-content-background-color: uikit.$dark-gray4;
 .docs-content-wrapper {
     flex-basis: 830px;
     outline: none;
+
+    .#{uikitdark.$themeid} & {
+        background-color: $dark-content-background-color;
+    }
 }
 
 .docs-page {
