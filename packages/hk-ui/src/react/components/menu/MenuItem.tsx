@@ -54,7 +54,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({text = '', label, labelClassN
         },
         maybeRenderLabel,
         hasSubMenu ? <div className='menu-header'><h4 className='menu-heading'>{text}</h4></div> : text,
-        children,
+        hasSubMenu ? <ul>{children}</ul> : children,
     )
     return <li>{target}</li>
 }

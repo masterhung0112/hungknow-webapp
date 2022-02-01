@@ -65,4 +65,7 @@ $hk-dark-border-shadow-opacity: $hk-border-shadow-opacity * 2 !default;
 $hk-dark-drop-shadow-opacity: $hk-drop-shadow-opacity * 2 !default;
 
 @import "button/button-variables";
+@import "divider/divider-variables";
+@import "icon/icon-variables";
 @import "menu/menu-variables";
+@import "progress-bar/progress-bar-variables";

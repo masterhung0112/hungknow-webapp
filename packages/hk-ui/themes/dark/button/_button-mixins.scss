@@ -1,4 +1,5 @@
 @import "button-variables";
+@import "../progress-bar/progress-bar-variables";
 
 @mixin hk-dark-button() {
   background-color: $hk-button-background-color;
@@ -8,26 +9,48 @@
 
   &:hover,
   &:active,
-  &.#{$ns}-active {
+  &.active {
     color: $hk-text-color;
   }
 
-  // &:hover {
-  //   @include hk-dark-button-hover();
-  // }
+  &:hover {
+    @include hk-dark-button-hover();
+  }
 
-  // &:active,
-  // &.#{$ns}-active {
-  //   @include hk-dark-button-active();
-  // }
+  &:active,
+  &.active {
+    @include hk-dark-button-active();
+  }
 
-  // &:disabled,
-  // &.#{$ns}-disabled {
-  //   @include hk-dark-button-disabled();
-  // }
+  &:disabled,
+  &.disabled {
+    @include hk-dark-button-disabled();
+  }
 
-  // .#{$ns}-button-spinner .#{$ns}-spinner-head {
-  //   background: $dark-progress-track-color;
-  //   stroke: $dark-progress-head-color;
-  // }
+  .button-spinner .spinner-head {
+    background: $hk-progress-track-color;
+    stroke: $hk-progress-head-color;
+  }
+}
+
+@mixin hk-dark-button-hover() {
+  background-color: $hk-button-background-color-hover;
+  box-shadow: $hk-button-box-shadow;
+}
+
+@mixin hk-dark-button-active() {
+  background-color: $hk-button-background-color-active;
+  background-image: none;
+  box-shadow: $hk-button-box-shadow-active;
+}
+
+@mixin hk-dark-button-disabled() {
+  background-color: $hk-button-background-color-disabled;
+  background-image: none;
+  box-shadow: none;
+  color: $hk-button-color-disabled;
+
+  &.active {
+    background: $hk-button-background-color-active-disabled;
+  }
 }
