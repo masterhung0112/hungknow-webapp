@@ -1,6 +1,8 @@
+@import "../variables/core-variables";
+@import "../divider/divider-variables";
 @import "menu-variables";
 @import "menu-mixins";
-@import "scss/menu/menu-mixins";
+@import "@hungknow/uikit/scss/menu/menu-mixins";
 
 .#{$themeid} {
   .#{$ns} {

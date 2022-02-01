@@ -62,7 +62,16 @@ $hk-menu-background-color: black; // Change the background color of menu
 @import "~@hungknow/uikit/scss/components/menu";
 ```
 
-## Using the Build Process of the Themes
+## Override the theme in the custom scss file
+If your site is using `dark` theme, but you want to override some theme variables.
+
+The content of `index.scss` file
+```scss
+@use "@hungknow/uikit/themes/dark/hk-uikit-dark" with (
+    $hk-menu-background-color: #394b59
+);
+```
+Your output of index.scss will have all styles for `dark` theme with the updated menu background color.
 # Grid
 
 ## Grid classes vs. unit classes

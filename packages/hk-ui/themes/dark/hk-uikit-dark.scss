@@ -1,3 +1,4 @@
+@import "variables/core-variables";
 @import "variables/intents-variables";
 
 @import "button/button-variables";
@@ -8,7 +9,7 @@
 
 @import "variables";
 
-// @import "scss/variables";
+// @import "@hungknow/uikit/scss/variables";
 
 @import "button";
 @import "menu";

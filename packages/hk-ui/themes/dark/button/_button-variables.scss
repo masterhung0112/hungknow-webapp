@@ -1,7 +1,7 @@
-@import "scss/colors/basic-colors";
+@import "@hungknow/uikit/scss/colors/basic-colors";
 @import "../typography/typography-variables";
 @import "../icon/icon-variables";
-@import "scss/core/core-variables";
+@import "@hungknow/uikit/scss/variables/core-variables";
 
 $hk-button-gradient: linear-gradient(to bottom, rgba($white, 0.05), rgba($white, 0)) !default;
 $hk-button-color-disabled: $hk-text-color-disabled !default;
