@@ -3,7 +3,7 @@
  * <button type="button" class="hk1 button icon-add .modifier" :modifier>Button</button>
  */
 
-@import "button_common";
+@import "button-mixins";
 
 .#{$ns} {
   &.button {

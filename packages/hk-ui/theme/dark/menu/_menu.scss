@@ -1,0 +1,11 @@
+@import "menu-variables";
+// @import "menu-mixins";
+
+.#{$ns} {
+  &.menu {
+    .#{$themeid} & {
+      background-color: $hk-menu-background-color;
+      color: $hk-text-color;
+    }
+  }
+}

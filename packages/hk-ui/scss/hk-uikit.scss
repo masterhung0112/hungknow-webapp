@@ -1,8 +1,10 @@
-//TODO: Add reset
+//@import "functions"
+@import "variables";
+@import "mixins";
 
-@import "abstracts/variables";
-@import "abstracts/colors";
-
-// Add all components
-@import "abstracts/reset";
-@import "components/index";
+// components
+@import "core/reset";
+@import "button/index";
+@import "divider/index";
+@import "menu/index";
+@import "navbar/index";

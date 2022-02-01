@@ -1,0 +1,86 @@
+@import "core/core-variables";
+
+// see https://bitsofco.de/the-new-system-font-stack/
+$hk-font-family: -apple-system,
+                 "BlinkMacSystemFont",
+                 "Segoe UI",
+                 "Roboto",
+                 "Oxygen",
+                 "Ubuntu",
+                 "Cantarell",
+                 "Open Sans",
+                 "Helvetica Neue",
+                 "Icons16", // support inline Palantir icons
+                 sans-serif !default;
+
+$hk-font-size: $hk-grid-size * 1.4 !default;
+$hk-font-size-large: $hk-grid-size * 1.6 !default;
+$hk-font-size-small: $hk-grid-size * 1.2 !default;
+
+// a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
+$hk-line-height: calc(($hk-grid-size * 1.8) / $hk-font-size) + 0.0001 !default;
+
+$xs-prefix: 'xs' !default;
+$sm-prefix: 'sm' !default;
+$ld-prefix: 'ld' !default;
+$md-prefix: 'md' !default;
+$lg-prefix: 'lg' !default;
+$xl-prefix: 'xl' !default;
+$xxl-prefix: 'xxl' !default;
+
+// Media breakpoints
+$hk-grid-breakpoints: (
+    fs: 0,
+    xs: 360px,
+    sm: 576px,
+    ld: 640px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1452px,
+) !default;
+
+$mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
+$mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
+
+// Grid containers
+$hk-container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+:root {
+    #{$universal-border-radius-var}: $universal-border-radius;
+    #{$universal-margin-var}: $universal-margin;
+    #{$universal-padding-var}: $universal-padding;
+}
+
+// Grids & dimensions
+$hk-border-radius: floor(calc($hk-grid-size / 3)) !default;
+
+/**
+ * Icon Variables
+ */
+
+
+
+/**
+ * Nav bar
+ */
+$hk-navbar-height: $hk-grid-size * 5 !default;
+
+
+// $hk-dark-menu-item-color-hover: $hk-dark-minimal-button-background-color-hover !default;
+// $hk-dark-menu-item-color-active: $hk-dark-minimal-button-background-color-active !default;
+
+// Shadow opacities
+$hk-border-shadow-opacity: 0.1 !default;
+$hk-drop-shadow-opacity: 0.2 !default;
+$hk-dark-border-shadow-opacity: $hk-border-shadow-opacity * 2 !default;
+$hk-dark-drop-shadow-opacity: $hk-drop-shadow-opacity * 2 !default;
+
+@import "button/button-variables";
+@import "menu/menu-variables";

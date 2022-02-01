@@ -58,8 +58,8 @@ Vertical menu
     </div>    
 </div>
 */
-@import "../abstracts/variables";
-@import "menu_common";
+@import "menu-variables";
+@import "menu-mixins";
 
 .#{$ns} {
   &.menu {
@@ -74,23 +74,23 @@ Vertical menu
 
     .menu-item {
       @include menu-item();
-  
+
       &::before {
         margin-right: $hk-menu-item-padding;
       }
-  
+
       &:hover {
         color: inherit;
       }
-  
+
       &.active,
       &:active {
         background-color: $hk-menu-item-color-active;
-      }     
+      }
     }
 
     .menu-header {
-      @include menu-header($heading-selector: "> h6")
+      @include menu-header($heading-selector: "> h6");
     }
 
     .sub-menu {
@@ -105,6 +105,6 @@ Vertical menu
       border: none;
       text-align: left;
       width: 100%;
-    }  
-  }  
+    }
+  }
 }

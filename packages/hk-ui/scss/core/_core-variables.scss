@@ -1,0 +1,25 @@
+/**
+ * This file must contains only variables, no styling to avoid duplication when importing into multipl files
+ */
+
+@function rempx($size) {
+  @return calc(1px / $size);
+} // Keep this, the generator breaks otherwise
+
+$base-root-font-size: 16px !default; // Root font sizing for all elements (`px` only)
+$__1px: rempx($base-root-font-size) * 1rem !default; // [Calculated] Calculated rem value of `1px`
+
+$universal-border-radius: 0.125rem !default; // Universal border-radius for most elements
+$universal-margin: 0.5rem !default; // Universal margin for the most elements
+$universal-padding: 0.5rem !default; // Universal padding for the most elements
+
+$universal-margin-var: "--universal-margin" !default;
+$universal-padding-var: "--universal-padding" !default;
+$universal-border-radius-var: "--universal-border-radius" !default;
+
+$ns: "hk1" !default;
+
+// easily the most important variable, so it comes up top
+// (so other variables can use it to define themselves)
+$hk-grid-size: 10px !default;
+$hk-half-grid-size: calc($hk-grid-size / 2) !default;

@@ -1,0 +1,22 @@
+$hk-menu-item-border-radius: $hk-border-radius - 1 !default;
+
+// menu Background
+$hk-menu-background-color: $white !default;
+
+// Set line-height of menu items to be a multiple of the font size. This is
+// needed because if the line-height does not extend far enough past the font's
+// baseline, clipping will occur when the .#{$ns}-text-overflow-ellipsis class is
+// applied to it (#2177). Also, line-height should be an even value, or content
+// will be misaligned by one pixel (Chrome quirk).
+$hk-menu-item-line-height-factor: 1.4;
+$hk-menu-item-line-height: round($hk-font-size * $hk-menu-item-line-height-factor) !default;
+$hk-menu-item-line-height-large: round($hk-font-size-large * $hk-menu-item-line-height-factor) !default;
+
+$hk-menu-min-width: $hk-grid-size * 18 !default;
+$hk-menu-item-padding: calc(($hk-button-height - $hk-icon-size-standard) / 2) !default;
+$hk-menu-item-padding-large: calc(($hk-button-height-large - $hk-icon-size-large) / 2) !default;
+$hk-menu-item-padding-vertical: calc(($hk-button-height - $hk-menu-item-line-height) / 2) !default;
+$hk-menu-item-padding-vertical-large: calc(($hk-button-height-large - $hk-menu-item-line-height-large) / 2) !default;
+
+$hk-menu-item-color-hover: $hk-minimal-button-background-color-hover !default;
+$hk-menu-item-color-active: $hk-minimal-button-background-color-active !default;

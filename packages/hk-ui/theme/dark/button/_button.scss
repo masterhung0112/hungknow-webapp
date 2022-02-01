@@ -1,0 +1,11 @@
+
+@import "button-variables";
+@import "button-mixins";
+
+.#{$ns} {
+  &.button {
+    .#{$themeid} & {
+      @include hk-dark-button();
+    }
+  }
+}

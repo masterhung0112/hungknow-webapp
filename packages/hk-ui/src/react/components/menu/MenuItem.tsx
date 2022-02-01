@@ -1,7 +1,8 @@
 import React from 'react'
 import cx from 'clsx'
+import {ActionProps} from '../../common/ActionProps'
 
-export interface MenuItemProps {
+export interface MenuItemProps extends ActionProps {
     text: React.ReactNode | string;
     label?: string;
     labelClassName?: string;

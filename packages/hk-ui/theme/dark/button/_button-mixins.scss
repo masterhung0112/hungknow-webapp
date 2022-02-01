@@ -1,0 +1,33 @@
+@import "button-variables";
+
+@mixin hk-dark-button() {
+  background-color: $hk-button-background-color;
+  background-image: $hk-button-gradient;
+  box-shadow: $hk-button-box-shadow;
+  color: $hk-text-color;
+
+  &:hover,
+  &:active,
+  &.#{$ns}-active {
+    color: $hk-text-color;
+  }
+
+  // &:hover {
+  //   @include hk-dark-button-hover();
+  // }
+
+  // &:active,
+  // &.#{$ns}-active {
+  //   @include hk-dark-button-active();
+  // }
+
+  // &:disabled,
+  // &.#{$ns}-disabled {
+  //   @include hk-dark-button-disabled();
+  // }
+
+  // .#{$ns}-button-spinner .#{$ns}-spinner-head {
+  //   background: $dark-progress-track-color;
+  //   stroke: $dark-progress-head-color;
+  // }
+}

@@ -1,0 +1,14 @@
+$hk-app-background-color: $dark-gray3 !default;
+
+$hk-text-color: $light-gray5 !default;
+$hk-text-color-muted: $gray4 !default;
+$hk-text-color-disabled: rgba($hk-text-color-muted, 0.6) !default;
+$hk-heading-color: $hk-dark-text-color !default;
+$hk-link-color: $blue5 !default;
+
+$hk-divider-black: rgba($black, 0.4) !default;
+$hk-divider-white: rgba($white, 0.15) !default;
+
+$hk-code-text-color: $hk-text-color-muted !default;
+
+$hk-code-background-color: rgba($black, 0.3) !default;

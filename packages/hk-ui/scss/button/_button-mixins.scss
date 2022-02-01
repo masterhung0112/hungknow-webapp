@@ -1,11 +1,7 @@
-@import "flex";
-@import "../abstracts/variables";
-
-$button-padding: calc($hk-grid-size / 2) $hk-grid-size !default;
-$button-icon-spacing: calc(($hk-button-height - $hk-icon-size-standard) / 2) !default;
+@import "../flex/flex-mixins";
 
 @mixin hk-button-base() {
-  @include hk-flex-container(row, $button-icon-spacing, $inline: inline);
+  @include hk-flex-container(row, $hk-button-icon-spacing, $inline: inline);
   align-items: center;
 
   border: none;
@@ -13,7 +9,7 @@ $button-icon-spacing: calc(($hk-button-height - $hk-icon-size-standard) / 2) !de
   cursor: pointer;
   font-size: $hk-font-size;
   justify-content: center;
-  padding: $button-padding;
+  padding: $hk-button-padding;
   text-align: left;
   vertical-align: middle;
 }

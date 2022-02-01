@@ -1,5 +1,5 @@
 {
-  "name": "hk-ui",
+  "name": "@hungknow/uikit",
   "version": "1.0.0",
   "main": "dist/hk-ui.js",
   "types": "dist/index.d.ts",
@@ -14,6 +14,7 @@
     "build": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=production webpack",
     "build:dev": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=development webpack",
     "build:css": "sass scss/hk-uikit.scss:dist/css/hk-uikit.css",
+    "build:css:dark": "sass --load-path=./ theme/dark/hk-uikit-dark.scss:dist/css/hk-uikit-dark.css",
     "build:css-def": "tsm \"scss/hk-uikit.scss\" --aliasPrefixes.hkuisass sass --nameFormat none --exportType default",
     "build:ts": "cross-env NODE_ENV=development webpack",
     "dev:ts": "cross-env NODE_ENV=development webpack --watch",
@@ -21,7 +22,7 @@
     "dev": "concurrently \"yarn dev:ts\" \"yarn dev:css\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "dist:variables": "generate-css-variables --retainDefault true scss/abstracts/_colors.scss scss/abstracts/_color-aliases.scss scss/abstracts/_variables.scss"
+    "dist:variables": "generate-css-variables --retainDefault true scss/core/_colors.scss scss/core/_color-aliases.scss scss/core/_variables.scss"
   },
   "dependencies": {   
     "react": "^17.0.2",

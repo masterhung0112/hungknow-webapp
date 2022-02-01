@@ -1,0 +1,27 @@
+/**
+ * Button Variables
+ */
+
+@import "../icon/icon-variables";
+
+$hk-button-height: $hk-grid-size * 3 !default;
+$hk-button-height-small: $hk-grid-size * 2.4 !default;
+$hk-button-height-smaller: $hk-grid-size * 2 !default;
+$hk-button-height-large: $hk-grid-size * 4 !default;
+
+$hk-button-color-disabled: $hk-text-color-disabled !default;
+$hk-button-background-color: $light-gray5 !default;
+$hk-button-background-color-hover: $light-gray4 !default;
+$hk-button-background-color-active: $light-gray2 !default;
+$hk-button-background-color-disabled: rgba($light-gray1, 0.5) !default;
+$hk-button-background-color-active-disabled: rgba($light-gray1, 0.7) !default;
+$hk-button-intent-color-disabled: rgba($white, 0.6) !default;
+
+$hk-minimal-button-divider-width: 1px !default;
+$hk-minimal-button-background-color: none !default;
+$hk-minimal-button-background-color-hover: rgba($gray4, 0.3) !default;
+$hk-minimal-button-background-color-active: rgba($gray2, 0.3) !default;
+
+$hk-button-border-width: 1px !default;
+$hk-button-padding: calc($hk-grid-size / 2) $hk-grid-size !default;
+$hk-button-icon-spacing: calc(($hk-button-height - $hk-icon-size-standard) / 2) !default;

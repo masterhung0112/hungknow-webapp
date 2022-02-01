@@ -1,0 +1,22 @@
+@import "scss/colors/basic-colors";
+@import "../typography/typography-variables";
+@import "../icon/icon-variables";
+@import "scss/core/core-variables";
+
+$hk-button-gradient: linear-gradient(to bottom, rgba($white, 0.05), rgba($white, 0)) !default;
+$hk-button-color-disabled: $hk-text-color-disabled !default;
+$hk-button-background-color: $dark-gray5 !default;
+$hk-button-background-color-hover: $dark-gray4 !default;
+$hk-button-background-color-active: $dark-gray2 !default;
+$hk-button-background-color-disabled: rgba($dark-gray5, 0.5) !default;
+$hk-button-background-color-active-disabled: rgba($dark-gray5, 0.7) !default;
+
+$hk-button-border-width: 1px !default;
+$hk-button-box-shadow: 0 0 0 $hk-button-border-width rgba($black, 0.4) !default;
+$hk-button-box-shadow-active: 0 0 0 $hk-button-border-width rgba($black, 0.6), inset 0 1px 2px rgba($black, 0.2) !default;
+$hk-button-intent-box-shadow: 0 0 0 $hk-button-border-width rgba($black, 0.4) !default;
+$hk-button-intent-box-shadow-active: 0 0 0 $hk-button-border-width rgba($black, 0.4), inset 0 1px 2px rgba($black, 0.2) !default;
+
+$hk-button-gradient: linear-gradient(to bottom, rgba($white, 0.05), rgba($white, 0)) !default;
+
+@import "scss/button/button-variables";

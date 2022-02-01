@@ -18,8 +18,8 @@ Markup:
 .#{$ns}-dark - Dark theme
 Styleguide navbar
 */
-@import "../abstracts/variables";
-@import "../abstracts/colors";
+@import "../variables";
+@import "../colors/basic-colors";
 
 $navbar-background-color: $white !default;
 $dark-navbar-background-color: $dark-gray5 !default;

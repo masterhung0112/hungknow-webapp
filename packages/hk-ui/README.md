@@ -24,22 +24,6 @@ sass
          |- _card.scss
 ```
 
-## Config Files
-filename | usage | Initial Name
---- | --- | ---
-**theme.config** | config file that stores each element's current theme for SASS | theme.config.example
-**site/** | folder storing all your site's variables and css overrides for each UI component | _site/
-
-## Theme Files
-Themes are made up of two files: a `.variables` file and a `.overrides` file.
-
-### Variable Files
-A `.variables` file specifies variables which should be adjusted for a theme.
-A theme's variable file only need to include variables which are different for a theme.
-
-### Override Files
-A `.overrides` file specifies additional CSS rules to be added to a definition for a theme. This file also has access to all inherited variables for a component.
-
 ## Inheritance
 
 There are three levels of inheritance
@@ -50,6 +34,35 @@ There are three levels of inheritance
    - Packaged themes can be used by modifying values in your `theme.config` file.
 * Site theme - A theme specific to your site
 
+# Theme
+## Using the Build Process of the Application
+Install the uikit package
+
+```sh
+yarn install @hungknow/uikit
+```
+
+To the build the theme files, import tham into the styles.scss file
+```scss
+@import "node_modules/@hungknow/uikit/scss/hk-uikit.scss;
+```
+The `hk-uikit.scss` file adds the styles for all components that are available in the theme. To trim down the size of the generated CSS, import only the source for the components that you use in your application. Each of them could be found in `scss/` folder.
+
+```scss
+@import "~@hungknow/uikit/scss/components/menu";
+```
+
+To customize the variables that ared used in the theme, change the theme before you import the theme files.
+
+All customizable variables should have the `hk-` prefix.
+
+```scss
+$hk-menu-background-color: black; // Change the background color of menu
+
+@import "~@hungknow/uikit/scss/components/menu";
+```
+
+## Using the Build Process of the Themes
 # Grid
 
 ## Grid classes vs. unit classes

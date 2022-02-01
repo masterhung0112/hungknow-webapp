@@ -1,0 +1,7 @@
+@import "../typography/typography-variables";
+@import "scss/colors/intent-colors";
+
+$hk-icon-color: $hk-text-color-muted !default;
+$hk-icon-color-hover: $hk-text-color !default;
+$hk-icon-color-disabled: $hk-text-color-disabled !default;
+$hk-icon-color-selected: $hk-intent-primary !default;
