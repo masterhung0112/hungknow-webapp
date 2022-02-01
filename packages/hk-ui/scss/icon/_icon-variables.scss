@@ -1,6 +1,12 @@
 @import "../colors/intent-colors";
 @import "../typography/typography-variables";
 
+$hk-icon-classes: (
+  ".icon",
+  ".icon-standard",
+  ".icon-large"
+) !default;
+
 $hk-icon-size-standard: 16px !default;
 $hk-icon-size-large: 20px !default;
 

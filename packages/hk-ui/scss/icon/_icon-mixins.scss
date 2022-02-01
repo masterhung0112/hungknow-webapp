@@ -1,11 +1,5 @@
 @import "icon-variables";
 
-$icon-classes: (
-  ".icon",
-  ".icon-standard",
-  ".icon-large"
-) !default;
-
 @mixin hk-icon-font-smoothing() {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

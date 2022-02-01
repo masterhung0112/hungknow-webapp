@@ -1,5 +1,6 @@
 @import "button-variables";
 @import "../progress-bar/progress-bar-variables";
+@import "@hungknow/uikit/scss/button/button-variables";
 
 @mixin hk-dark-button() {
   background-color: $hk-button-background-color;
@@ -53,4 +54,28 @@
   &.active {
     background: $hk-button-background-color-active-disabled;
   }
+}
+
+@mixin hk-dark-button-intent() {
+  box-shadow: $hk-button-intent-box-shadow;
+
+  &:hover {
+    box-shadow: $hk-button-intent-box-shadow;
+  }
+
+  &:active,
+  &.active {
+    box-shadow: $hk-button-intent-box-shadow-active;
+  }
+
+  &:disabled,
+  &.disabled {
+    @include hk-dark-button-intent-disabled();
+  }
+}
+
+@mixin hk-dark-button-intent-disabled() {
+  background-image: none;
+  box-shadow: none;
+  color: $hk-button-intent-color-disabled;
 }
