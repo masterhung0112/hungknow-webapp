@@ -39,6 +39,6 @@ declare module "*.svg" {
 }
 
 declare module "*.mdx" {
-  let MDXComponent: (props: any) => JSX.Element;
+  let MDXComponent: (props: any) => React.ReactElement;
   export default MDXComponent;
 }

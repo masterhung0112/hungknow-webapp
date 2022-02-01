@@ -1,6 +1,29 @@
-@import "~@hungknow/uikit/scss/abstracts/colors";
+@import "~@hungknow/uikit/scss/colors";
 @import "~@hungknow/uikit/scss/hk-uikit.scss";
+@import "~@hungknow/uikit/dist/css/hk-uikit-dark.css";
 
 .red-1 {
     color: $red5;
+}
+
+.docs-app {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    max-width: 1100px;
+    min-height: 100vh;
+
+    & > fill {
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+}
+
+.docs-nav-wrapper {
+    flex-basis: 270px;
+}
+
+.docs-content-wrapper {
+    flex-basis: 830px;
+    outline: none;
 }
