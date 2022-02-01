@@ -1,8 +1,9 @@
-import React from 'react'
-import { ShowCaseRoutes } from './routes'
+import React, { useState } from 'react'
+import { DocRouteData } from './constant/routes'
+import { ShowCaseRoutes } from './ShowCaseRoutes'
 
 const Placeholder = () => null
-const LazyThing = ({filePath, ...props}) => {
+const LazyThing = ({ filePath, ...props }) => {
   // While the component is loading, we'll render a fallback placeholder.
   // (The Placeholder is a component that renders nothing).
   const [Component, setComponent] = React.useState(() => Placeholder)
@@ -17,12 +18,27 @@ const LazyThing = ({filePath, ...props}) => {
 }
 
 export default function Root(props) {
+  const [activeSectionId, setActiveSectionId] = useState('components/button')
+  const [docPath, setDocPath] = useState('./contents/components/button.mdx')
+
+  const onRouteClick = (routeData: DocRouteData) => {
+    if (typeof routeData.sourcePath === 'string' && routeData.sourcePath) {
+      setActiveSectionId(routeData.route)
+      setDocPath(routeData.sourcePath)
+    }
+  }
   return (
-    <div className='docs-app hk1 dark'>
-      <div className='docs-nav-wrapper'><ShowCaseRoutes /></div>
-      <main className='docs-content-wrapper fill' role="main">
-        <LazyThing filePath={'./contents/components/button.mdx'} />
-      </main>
+    <div className="docs-root hk1 hk-dark">
+      <div className='docs-app'>
+        <div className='docs-nav-wrapper'>
+          <ShowCaseRoutes onItemClick={onRouteClick} activeSectionId={activeSectionId} />
+        </div>
+        <main className='docs-content-wrapper fill' role="main">
+          <div className="docs-page">
+            <LazyThing filePath={docPath} />
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

@@ -151,6 +151,10 @@ Vertical menu
     // Don't display the menu inside the sub-menu by default
     display: none;
     margin-left: $hk-grid-size * 1.2;
+
+    .expanded + & {
+      display: block;
+    }
   }
 
   button.menu-item {

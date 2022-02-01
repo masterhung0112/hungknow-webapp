@@ -15,5 +15,41 @@
       /* stylelint-disable-next-line declaration-no-important */
       padding: 0 !important;
     }
+
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+    }
+
+    &.fill {
+      display: flex;
+      width: 100%;
+    }
+
+    &.align-right,
+    .align-right & {
+      text-align: right;
+    }
+
+    &.align-left,
+    .align-left & {
+      text-align: left;
+    }
+
+    // default styles
+    &:not([class*="intent-"]) {
+      @include hk-button();
+    }
+
+    // intents
+    @each $intent, $colors in $hk-button-intents {
+      &.intent-#{$intent} {
+        @include hk-button-intent($colors...);
+      }
+    }
+
+    &[class*="intent-"] .button-spinner .spinner-head {
+      stroke: $white;
+    }
   }
 }

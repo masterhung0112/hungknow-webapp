@@ -1,9 +1,31 @@
-@import "~@hungknow/uikit/scss/colors";
-@import "~@hungknow/uikit/scss/hk-uikit.scss";
-@import "~@hungknow/uikit/dist/css/hk-uikit-dark.css";
+@import "@hungknow/uikit/scss/colors/basic-colors";
+$dark-sidebar-background-color: #394b59;
+
+$hk-menu-background-color: $dark-sidebar-background-color;
+
+@use "@hungknow/uikit/scss/hk-uikit.scss";
+@use "@hungknow/uikit/theme/dark/hk-uikit-dark.scss";
+
+$container-width: $hk-grid-size * 110;
+$container-padding: $hk-grid-size / 2;
+
+$sidebar-width: $hk-grid-size * 27;
+$sidebar-padding: $hk-grid-size * 1.5;
+$sidebar-background-color: $white;
+
+$content-width: $container-width - $sidebar-width;
+$content-padding: $hk-grid-size * 2;
+$content-background-color: $light-gray5;
+$dark-content-background-color: $dark-gray4;
 
 .red-1 {
     color: $red5;
+}
+
+.docs-root {
+    &.hk-dark {
+        background-color: $dark-content-background-color;
+    }
 }
 
 .docs-app {
@@ -23,7 +45,28 @@
     flex-basis: 270px;
 }
 
+.docs-nav {
+    $background-shift: 999px;
+    background-color: $sidebar-background-color;
+    box-shadow: 1px 0 0 $hk-divider-black;
+    height: 100vh;
+
+    .hk-dark & {
+        background-color: $dark-sidebar-background-color;
+        box-shadow: 1px 0 0 rgba($black, 0.4);
+    }
+}
+
 .docs-content-wrapper {
     flex-basis: 830px;
     outline: none;
+}
+
+.docs-page {
+    max-width: $content-width;
+    padding-bottom: $content-padding * 2;
+    padding-left: $content-padding * 2;
+    padding-right: $container-padding;
+    padding-top: 0;
+    position: relative;
 }
