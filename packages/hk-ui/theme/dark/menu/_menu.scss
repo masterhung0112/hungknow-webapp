@@ -1,11 +1,26 @@
 @import "menu-variables";
-// @import "menu-mixins";
+@import "menu-mixins";
+@import "scss/menu/menu-mixins";
 
-.#{$ns} {
-  &.menu {
-    .#{$themeid} & {
+.#{$themeid} {
+  .#{$ns} {
+    &.menu {
       background-color: $hk-menu-background-color;
       color: $hk-text-color;
+
+      .menu-item {
+        @include menu-item();
+        @include menu-item-intent();
+      }
+
+      .menu-divider,
+      .menu-header {
+        border-color: $hk-divider-white;
+      }
+
+      .menu-header > h6 {
+        color: $hk-heading-color;
+      }
     }
   }
 }

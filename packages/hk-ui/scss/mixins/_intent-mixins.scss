@@ -1,0 +1,5 @@
+@import "../variables/intents-variables";
+
+@mixin intent-color($intentName) {
+  color: map-get($hk-intent-colors, $intentName);
+}

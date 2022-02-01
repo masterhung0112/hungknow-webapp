@@ -44,13 +44,13 @@ Vertical menu
     <a class="#{$ns}-menu-item #{$ns}-intent-danger">Delete</a>
 
     <!-- Submenu -->
-    <div class="submenu">
+    <div class="sub-menu">
         <button class="menu-item">Click to open...</button>
-        <div class="submenu">
+        <div class="sub-menu">
             <a class="menu-item">Menu1...</a>
-            <a class="submenu">
+            <a class="sub-menu">
                 <a class="menu-item">Menu2</a>
-                <div class="menu">
+                <div class="sub-menu">
                   <a class="menu-item">This is the content</a>
                 </div>
             </a>
@@ -58,53 +58,105 @@ Vertical menu
     </div>    
 </div>
 */
-@import "menu-variables";
-@import "menu-mixins";
+// @import "menu-variables";
+// @import "menu-mixins";
+// @import "../icon/icon-mixins";
 
-.#{$ns} {
-  &.menu {
-    background-color: $hk-menu-background-color;
-    border-radius: $hk-border-radius;
-    color: $hk-text-color;
-    list-style: none;
-    margin: 0;
-    min-width: $hk-menu-min-width;
-    padding: $hk-half-grid-size;
-    text-align: left;
+.#{$ns}.menu {
+  background-color: $hk-menu-background-color;
+  border-radius: $hk-border-radius;
+  color: $hk-text-color;
+  list-style: none;
+  margin: 0;
+  min-width: $hk-menu-min-width;
+  padding: $hk-half-grid-size;
+  text-align: left;
 
-    .menu-item {
-      @include menu-item();
+  .menu-item {
+    @include menu-item();
+    @include menu-item-intent();
+
+    &::before {
+      // support hk-icon-* classes directly on this element
+      @include hk-icon();
+      margin-right: $hk-menu-item-padding;
+    }
+
+    &::before,
+    > .icon {
+      color: $hk-icon-color;
+      margin-top: calc(($hk-menu-item-line-height - $hk-icon-size-standard) / 2);
+    }
+
+    .menu-item-label {
+      color: $hk-text-color-muted;
+    }
+
+    &:hover {
+      color: inherit;
+    }
+
+    &.active,
+    &:active {
+      background-color: $hk-menu-item-color-active;
+    }
+
+    &.disabled {
+      background-color: inherit !important;
+      color: $hk-text-color-disabled !important;
+      cursor: not-allowed !important;
+      // override global a:focus styles
+      outline: none !important;
+
+      &::before,
+      > .icon,
+      .menu-item-label {
+        color: $hk-icon-color-disabled !important;
+      }
+    }
+
+    .large & {
+      @include menu-item-large();
+
+      .icon {
+        // SVG icons remain standard size when menu is large
+        margin-top: calc(($hk-menu-item-line-height-large - $hk-icon-size-standard) / 2);
+      }
 
       &::before {
-        margin-right: $hk-menu-item-padding;
-      }
-
-      &:hover {
-        color: inherit;
-      }
-
-      &.active,
-      &:active {
-        background-color: $hk-menu-item-color-active;
+        @include hk-icon($hk-icon-size-large);
+        margin-right: $hk-menu-item-padding-large;
+        margin-top: calc(($hk-menu-item-line-height-large - $hk-icon-size-large) / 2);
       }
     }
+  }
 
-    .menu-header {
-      @include menu-header($heading-selector: "> h6");
-    }
+  /*
+   * Menu header
+   */
 
-    .sub-menu {
-      & > .menu {
-        display: none;
-        margin-left: $hk-grid-size;
-      }
-    }
+  .menu-header {
+    @include menu-header($heading-selector: "> h6");
 
-    button.menu-item {
-      background: none;
-      border: none;
-      text-align: left;
-      width: 100%;
+    .large & {
+      @include menu-header-large($heading-selector: "> h6");
     }
+  }
+
+  /*
+   * Sub Menu
+   */
+
+  .sub-menu > & {
+    // Don't display the menu inside the sub-menu by default
+    display: none;
+    margin-left: $hk-grid-size * 1.2;
+  }
+
+  button.menu-item {
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
   }
 }

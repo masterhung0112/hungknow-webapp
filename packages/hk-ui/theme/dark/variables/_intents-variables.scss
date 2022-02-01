@@ -1,0 +1,8 @@
+@import "scss/colors/basic-colors";
+
+$hk-intent-text-colors: (
+  "primary": $blue5,
+  "success": $green5,
+  "warning": $orange5,
+  "danger" : $red5,
+) !default;

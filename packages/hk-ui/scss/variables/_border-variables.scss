@@ -1,0 +1,4 @@
+@import "../core/core-variables";
+
+// Grids & dimensions
+$hk-border-radius: floor(calc($hk-grid-size / 3)) !default;

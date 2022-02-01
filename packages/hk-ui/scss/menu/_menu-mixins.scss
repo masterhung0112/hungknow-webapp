@@ -1,48 +1,121 @@
 @import "../flex/flex-mixins";
-@import "../variables";
+@import "menu-variables";
+@import "../variables/intents-variables";
 
-@mixin menu-item() {
-    @include hk-flex-container(row, $hk-menu-item-padding);
-    align-items: flex-start;
-    border-radius: $hk-menu-item-border-radius;
-    color: inherit;
-    line-height: $hk-menu-item-line-height;
-    padding: $hk-menu-item-padding-vertical $hk-menu-item-padding;
+@mixin menu-item($disabled-selector: ".disabled", $hover-selector: ":hover") {
+  @include hk-flex-container(row, $hk-menu-item-padding);
+  align-items: flex-start;
+  border-radius: $hk-menu-item-border-radius;
+  color: inherit;
+  line-height: $hk-menu-item-line-height;
+  padding: $hk-menu-item-padding-vertical $hk-menu-item-padding;
+  text-decoration: none;
+  user-select: none;
+
+  > .fill {
+    word-break: break-word;
+  }
+
+  &#{$hover-selector} {
+    background-color: $hk-menu-item-color-hover;
+    cursor: pointer;
     text-decoration: none;
-    user-select: none;
+  }
+
+  &#{$disabled-selector} {
+    background-color: inherit;
+    color: $hk-text-color-disabled;
+    cursor: not-allowed;
+  }
+}
+
+@mixin menu-item-large() {
+  font-size: $hk-font-size-large;
+  line-height: $hk-menu-item-line-height-large;
+  padding: $hk-menu-item-padding-vertical-large $hk-menu-item-padding;
 }
 
 @mixin menu-divider() {
-    border-top: 1px solid $hk-divider-black;
-    display: block;
-    margin: $hk-half-grid-size;
+  border-top: 1px solid $hk-divider-black;
+  display: block;
+  margin: $hk-half-grid-size;
 }
 
 @mixin menu-heading() {
-    @include heading-typography();
-    @include overflow-ellipsis();
-    // a little extra space to avoid clipping descenders (because overflow hidden)
-    line-height: $hk-icon-size-standard + 1px;
-    margin: 0;
-    padding: $hk-grid-size $hk-menu-item-padding 0 1px;
+  @include heading-typography();
+  @include overflow-ellipsis();
+  // a little extra space to avoid clipping descenders (because overflow hidden)
+  line-height: $hk-icon-size-standard + 1px;
+  margin: 0;
+  padding: $hk-grid-size $hk-menu-item-padding 0 1px;
 }
 
 @mixin menu-header($heading-selector: null) {
-    @include menu-divider();
-    cursor: default;
-    padding-left: $hk-menu-item-padding - $hk-half-grid-size;
+  @include menu-divider();
+  cursor: default;
+  padding-left: $hk-menu-item-padding - $hk-half-grid-size;
 
-    @if $heading-selector != null {
-        &:first-of-type {
-            border-top: none;
-        }
-
-        #{$heading-selector} {
-            @include menu-heading();
-        }
-
-        &:first-of-type #{$heading-selector} {
-            padding-top: 0;
-        }
+  @if $heading-selector != null {
+    &:first-of-type {
+      border-top: none;
     }
+
+    #{$heading-selector} {
+      @include menu-heading();
+    }
+
+    &:first-of-type #{$heading-selector} {
+      padding-top: 0;
+    }
+  }
+}
+
+@mixin menu-header-large($heading-selector) {
+  #{$heading-selector} {
+    font-size: $hk-grid-size * 1.8;
+    padding-bottom: calc($hk-grid-size / 2);
+    padding-top: $hk-grid-size * 1.5;
+  }
+
+  &:first-of-type #{$heading-selector} {
+    padding-top: 0;
+  }
+}
+
+@mixin menu-item-intent($text-colors: $hk-intent-text-colors) {
+  @each $intent, $color in $text-colors {
+    &.intent-#{$intent} {
+      color: $color;
+
+      .#{$ns}-icon {
+        color: inherit;
+      }
+
+      &::before,
+      &::after,
+      .#{$ns}-menu-item-label {
+        color: $color;
+      }
+
+      &:hover,
+      &.#{$ns}-active {
+        background-color: nth(map-get($hk-button-intents, $intent), 1);
+      }
+
+      &:active {
+        background-color: nth(map-get($hk-button-intents, $intent), 2);
+      }
+
+      &:hover,
+      &:active,
+      &.#{$ns}-active {
+        &,
+        &::before,
+        &::after,
+        .menu-item-label {
+          color: $white;
+        }
+      }
+    }
+  }
 }

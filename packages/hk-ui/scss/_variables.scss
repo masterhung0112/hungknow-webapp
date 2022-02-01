@@ -1,24 +1,7 @@
 @import "core/core-variables";
-
-// see https://bitsofco.de/the-new-system-font-stack/
-$hk-font-family: -apple-system,
-                 "BlinkMacSystemFont",
-                 "Segoe UI",
-                 "Roboto",
-                 "Oxygen",
-                 "Ubuntu",
-                 "Cantarell",
-                 "Open Sans",
-                 "Helvetica Neue",
-                 "Icons16", // support inline Palantir icons
-                 sans-serif !default;
-
-$hk-font-size: $hk-grid-size * 1.4 !default;
-$hk-font-size-large: $hk-grid-size * 1.6 !default;
-$hk-font-size-small: $hk-grid-size * 1.2 !default;
-
-// a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
-$hk-line-height: calc(($hk-grid-size * 1.8) / $hk-font-size) + 0.0001 !default;
+@import "variables/border-variables";
+@import "variables/font-variables";
+@import "variables/intents-variables";
 
 $xs-prefix: 'xs' !default;
 $sm-prefix: 'sm' !default;
@@ -58,8 +41,6 @@ $hk-container-max-widths: (
     #{$universal-padding-var}: $universal-padding;
 }
 
-// Grids & dimensions
-$hk-border-radius: floor(calc($hk-grid-size / 3)) !default;
 
 /**
  * Icon Variables

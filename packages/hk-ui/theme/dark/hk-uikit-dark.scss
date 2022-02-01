@@ -1,3 +1,5 @@
+@import "variables/intents-variables";
+
 @import "button/button-variables";
 @import "divider/divider-variables";
 @import "menu/menu-variables";
@@ -5,6 +7,8 @@
 @import "core/color-aliases";
 
 @import "variables";
+
+// @import "scss/variables";
 
 @import "button";
 @import "menu";

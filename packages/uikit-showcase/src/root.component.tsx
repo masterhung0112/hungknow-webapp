@@ -18,7 +18,7 @@ const LazyThing = ({filePath, ...props}) => {
 
 export default function Root(props) {
   return (
-    <div className='docs-app'>
+    <div className='docs-app hk1 dark'>
       <div className='docs-nav-wrapper'><ShowCaseRoutes /></div>
       <main className='docs-content-wrapper fill' role="main">
         <LazyThing filePath={'./contents/components/button.mdx'} />

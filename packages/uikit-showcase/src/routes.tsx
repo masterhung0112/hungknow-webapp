@@ -1,22 +1,44 @@
 import React from 'react';
 import { Menu, MenuItem } from '@hungknow/uikit';
 
-interface Route1 {
+interface RouteData {
     title: string
     route: string
-    children: Route1[]
+    children?: RouteData[]
     tag?: string
     sourcePath?: string
 }
 
-const routes = {
+const routes: RouteData = {
     tag: 'header',
     title: 'Components',
     route: 'components',
     children: [{
         route: 'components/button',
         title: 'Button',
+    },{
+        route: 'components/menu',
+        title: 'Menu',
     }],
+}
+
+const renderOneRoute = (routeData: RouteData) => {
+    let isHeader = false
+
+    switch(routeData.tag) {
+        case 'header':
+            isHeader = true
+            break
+        default:
+            break
+    }
+
+    return <MenuItem isHeader={isHeader} text={routeData.title}>
+        {Array.isArray(routeData.children) && routeData.children.length > 0 ? 
+        routeData.children.map((child) => {
+            return renderOneRoute(child)
+        }) : null }
+    </MenuItem>
 }
 
 export const ShowCaseRoutes: React.VFC = ({}) => {
@@ -28,18 +50,21 @@ export const ShowCaseRoutes: React.VFC = ({}) => {
     //         this.scrollToActiveSection();
     //     }
     // }
+    
     return (
-        <div className="hk1 dark">
+        <div className="hk1">
             <Menu>
-                <a className="menu-header"><h4>Elements</h4></a>
+                {/* <a className="menu-header"><h4>Elements</h4></a>
                 <div className="sub-menu">
                     <MenuItem text="Button" />
-                    <Menu>
+                    <MenuItem>
                         <MenuItem text="nav" />
                         <MenuItem text="CSS" />
-                    </Menu>
+                        <MenuItem text="Menu" />
+                    </MenuItem>
                 </div>
-                <a className="menu-item">Nav</a>
+                <a className="menu-item">Nav</a> */}
+                {renderOneRoute(routes)}
             </Menu>
         </div>
     )
