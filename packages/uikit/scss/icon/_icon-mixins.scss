@@ -9,10 +9,10 @@
   $font-size: $hk-icon-size-standard,
   $font-family-size: strip-unit($font-size)
 ) {
-  font-family: "Icons#{$font-family-size}", sans-serif;
+  font-family: bootstrap-icons, sans-serif;
   font-size: $font-size;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   line-height: 1;
 }
 
@@ -21,14 +21,6 @@
 
   &:hover {
     color: $hk-icon-color-hover;
-  }
-
-  .#{$ns}-dark & {
-    color: $hk-dark-icon-color;
-
-    &:hover {
-      color: $hk-dark-icon-color-hover;
-    }
   }
 }
 

@@ -18,7 +18,7 @@ const LazyThing = ({ filePath, ...props }) => {
 }
 
 export default function Root(props) {
-  const [activeSectionId, setActiveSectionId] = useState('components/button')
+  const [activeSectionId, setActiveSectionId] = useState('components/menu')
   const [docPath, setDocPath] = useState('./contents/components/button.mdx')
 
   const onRouteClick = (routeData: DocRouteData) => {
@@ -27,6 +27,7 @@ export default function Root(props) {
       setDocPath(routeData.sourcePath)
     }
   }
+
   return (
     <div className="docs-root hk1 hk-dark">
       <div className='docs-app'>

@@ -10,7 +10,7 @@
       &:not([class*="intent-"]) {
         @include hk-dark-button();
   
-        &[class*="icon-"]::before {
+        &[class*="#{$hk-icon-cls}-"]::before {
           color: $hk-icon-color;
         }
   

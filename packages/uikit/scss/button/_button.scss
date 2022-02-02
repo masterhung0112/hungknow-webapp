@@ -4,6 +4,7 @@
  */
 
 @import "button-mixins";
+@import "../icon/icon-mixins";
 
 .#{$ns} {
   &.button {
@@ -50,6 +51,14 @@
 
     &[class*="intent-"] .button-spinner .spinner-head {
       stroke: $white;
+    }
+
+    // icons
+    &[class*="#{$hk-icon-cls}-"] {
+      &::before {
+        @include hk-icon();
+        color: $hk-icon-color;
+      }
     }
   }
 }
