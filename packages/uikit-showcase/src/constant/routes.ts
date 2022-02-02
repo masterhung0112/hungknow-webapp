@@ -15,6 +15,10 @@ export const docRoutes: DocRouteData[] = [{
         title: 'Button',
         sourcePath: './contents/components/button.mdx'
     }, {
+        route: 'components/collapse',
+        title: 'Collapse',
+        sourcePath: './contents/components/collapse.mdx'
+    }, {
         route: 'components/menu',
         title: 'Menu',
         sourcePath: './contents/components/menu.mdx'

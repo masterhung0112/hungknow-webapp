@@ -58,9 +58,9 @@ Vertical menu
     </div>    
 </div>
 */
-// @import "menu-variables";
-// @import "menu-mixins";
-// @import "../icon/icon-mixins";
+@import "menu-variables";
+@import "menu-mixins";
+@import "../icon/icon-mixins";
 
 .#{$ns}.menu {
   background-color: $hk-menu-background-color;

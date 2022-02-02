@@ -1,0 +1,6 @@
+@import "../variables/core-variables";
+@import "typography-variables";
+
+.#{$ns}-rtl {
+  text-align: right;
+}

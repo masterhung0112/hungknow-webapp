@@ -1,0 +1,61 @@
+
+`popover-target` acts as the trigger for the popover.
+
+`popover-content` contains the content that will be shown in the popover itself.
+`popover` will wrap `popover-content`.
+
+`popover-wrapper` is present so that both the **popover** and the **target** will be wrapped in a single element.
+
+<span className="hk1 popover-wrapper">
+    <span className="hk1 popover-target">
+        <Button text="My target" />
+    </span>
+    <div className="hk1 popover">
+        <div className="hk1 popover-content">
+        </div>
+    </div>
+</span>
+
+<li className="submenu">
+    <div className="hk1 popover-wrapper">
+        <span aria-haspopup="true" className="popover-target">
+            <a className="menu-item">
+                <div className="fill">Miscellaneous</div>
+                <span className="hk icon-caret-right"></span>
+            </a>
+        </span>
+        <div className="hk1 overlay">
+            <div className="hk1 transition-container" style="position: absolute; top: 0px; left: 0px; opacity: 0; pointer-events: none;">
+                <div className="hk1 popover minimal submenu" style="transform-origin: left center 0px;">
+                    <div className="popover-content">
+                        <ul className="hk1 menu">
+                            <li className="">
+                                <a tabindex="0" className="hk1 menu-item popover-dismiss">
+                                <span icon="badge" aria-hidden="true" className="icon icon-badge"></span>
+                                <div className="fill text-overflow-ellipsis">Badge</div>
+                                </a>
+                            </li>
+                            <li className="">
+                                <a tabindex="0" className="hk1 menu-item popover-dismiss">
+                                    <span icon="book" aria-hidden="true" className="icon icon-book"></span>
+                                    <div className="fill text-overflow-ellipsis">Long items will truncate when they reach max-width</div>
+                                </a>
+                            </li>
+                            <li className="submenu">
+                                <span className="popover-wrapper">
+                                    <span aria-haspopup="true" className="popover-target">
+                                        <a tabindex="0" className="menu-item">
+                                            <span icon="more" aria-hidden="true" className="icon icon-more"></span>
+                                            <div className="fill text-overflow-ellipsis">Look in here for even more items</div>
+                                            <span icon="caret-right" className="icon icon-caret-right"></span>
+                                        </a>
+                                    </span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

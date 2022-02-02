@@ -61,6 +61,8 @@ $dark-content-background-color: uikit.$dark-gray4;
 }
 
 .docs-content-wrapper {
+    align-items: flex-start;
+    background-color: $content-background-color;
     flex-basis: 830px;
     outline: none;
 

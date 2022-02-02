@@ -1,0 +1,23 @@
+@import "../variables/core-variables";
+@import "collapse-variables.scss";
+
+.#{$ns}.collapse {
+  // height: 0;
+  // overflow-y: hidden;
+  // transition: height $hk-collapse-transaction;
+
+  // .collapse-body {
+  // transition: transform $hk-collapse-transaction;
+
+  // &[aria-show="true"],
+  &:not(.show) {
+    display: none;
+  }
+  // }
+}
+
+.#{$ns}.collapsing {
+  height: 0; // Start from zero of height to the height
+  overflow-y: hidden;
+  transition: height $hk-collapse-transaction;
+}

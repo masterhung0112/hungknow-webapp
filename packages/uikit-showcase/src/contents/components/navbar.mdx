@@ -1,0 +1,33 @@
+Navbar includes support for branding, navigation, collapse.
+
+Navbars come with built-in support for a handful of sub-components.
+Choose from the following as needed:
+- `.navbar-brand` for your company, project
+- `.navbar-toggler` for use with the collapse
+- `.collapse.navbar-collapse` for goruping and hiding navbar contents by a parent breakpoint.
+- `.navbar-nav` for a full-height navigation when the screen is in mobile
+- `.navbar-text` for adding vertically centered strings of text
+- `.navbar-scroll` to set a max-height and scrolled expanded navbar content
+
+<nav class="hk1 navbar">
+    <a class="navbar-brand" href="#">Brand</a>
+    <button class="navbar-toggler" type="button" data-hk-toggle="collapse" data-bs-target="#navbarContent" aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="hk1 collapse navbar-collapse show" id="navbarContent">
+        <ul class="navbar-nav">
+            <li>
+                <a className="nav-link active" href="#">Home</a>
+            </li>
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hk-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another Action</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
