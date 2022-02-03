@@ -4,22 +4,20 @@ Navbars come with built-in support for a handful of sub-components.
 Choose from the following as needed:
 - `.navbar-brand` for your company, project
 - `.navbar-toggler` for use with the collapse
-- `.collapse.navbar-collapse` for goruping and hiding navbar contents by a parent breakpoint.
+- `.collapse.navbar-collapse` for grouping and hiding navbar contents by a parent breakpoint.
 - `.navbar-nav` for a full-height navigation when the screen is in mobile
 - `.navbar-text` for adding vertically centered strings of text
 - `.navbar-scroll` to set a max-height and scrolled expanded navbar content
 
-<nav className="hk1 navbar">
+<nav className="hk1 navbar navbar-expand-lg">
     <a className="navbar-brand" href="#">Brand</a>
     <button className="navbar-toggler" type="button" data-hk-toggle="collapse" data-bs-target="#navbarContent" aria-expanded="false">
         <span className="navbar-toggler-icon"></span>
     </button>
     <div className="hk1 collapse navbar-collapse show" id="navbarContent">
-        <ul className="navbar-nav">
-            <li>
-                <a className="nav-link active" href="#">Home</a>
-            </li>
-            <li className="dropdown">
+        <nav className="navbar-nav">
+            <a className="nav-link active" href="#">Home</a>
+            <div className="dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hk-toggle="dropdown" aria-expanded="false">
                     Dropdown
                 </a>
@@ -27,7 +25,8 @@ Choose from the following as needed:
                     <li><a className="dropdown-item" href="#">Action</a></li>
                     <li><a className="dropdown-item" href="#">Another Action</a></li>
                 </ul>
-            </li>
-        </ul>
+            </div>
+            <a className="nav-link disabled">Disabled</a>
+        </nav>
     </div>
 </nav>

@@ -24,3 +24,25 @@ $hk-icon-cls: "bi";
 // (so other variables can use it to define themselves)
 $hk-grid-size: 10px !default;
 $hk-half-grid-size: calc($hk-grid-size / 2) !default;
+
+$xs-prefix: 'xs' !default;
+$sm-prefix: 'sm' !default;
+$ld-prefix: 'ld' !default;
+$md-prefix: 'md' !default;
+$lg-prefix: 'lg' !default;
+$xl-prefix: 'xl' !default;
+$xxl-prefix: 'xxl' !default;
+
+$hk-grid-breakpoints: (
+    fs: 0,
+    xs: 360px,
+    sm: 576px,
+    ld: 640px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl: 1452px,
+) !default;
+
+$mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
+$mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);

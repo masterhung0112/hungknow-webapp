@@ -1,0 +1,57 @@
+@import "../variables/core-variables";
+@import "navbar-variables";
+
+.#{$themeid} {
+  .#{$ns} {
+    &.navbar {
+      background-color: $hk-navbar-background-color;
+
+      & > .navbar-brand {
+        color: $hk-navbar-brand-color;
+
+        &:hover,
+        &:focus {
+          color: $hk-navbar-brand-hover-color;
+        }
+      }
+
+      .navbar-nav {
+        .nav-link {
+          color: $hk-navbar-color;
+
+          &:hover,
+          &:focus {
+            color: $hk-navbar-hover-color;
+          }
+
+          &.disabled {
+            color: $hk-navbar-disabled-color;
+          }
+        }
+
+        .show > .nav-link,
+        .nav-link.active {
+          color: $hk-navbar-active-color;
+        }
+      }
+
+      .navbar-toggler {
+        color: $hk-navbar-color;
+        border-color: $hk-navbar-toggler-border-color;
+      }
+
+      .navbar-toggler-icon {
+        // background-image: escape-svg($hk-navbar-toggler-icon-bg);
+      }
+
+      .navbar-text {
+        color: $hk-navbar-color;
+        a,
+        a:hover,
+        a:focus {
+          color: $hk-navbar-active-color;
+        }
+      }
+    }
+  }
+}

@@ -1,28 +1,28 @@
 @import "variables/core-variables";
 @import "colors/index";
 @import "variables/border-variables";
-@import "variables/font-variables";
+// @import "variables/font-variables";
 @import "variables/intents-variables";
 
-$xs-prefix: 'xs' !default;
-$sm-prefix: 'sm' !default;
-$ld-prefix: 'ld' !default;
-$md-prefix: 'md' !default;
-$lg-prefix: 'lg' !default;
-$xl-prefix: 'xl' !default;
-$xxl-prefix: 'xxl' !default;
+// $xs-prefix: 'xs' !default;
+// $sm-prefix: 'sm' !default;
+// $ld-prefix: 'ld' !default;
+// $md-prefix: 'md' !default;
+// $lg-prefix: 'lg' !default;
+// $xl-prefix: 'xl' !default;
+// $xxl-prefix: 'xxl' !default;
 
 // Media breakpoints
-$hk-grid-breakpoints: (
-    fs: 0,
-    xs: 360px,
-    sm: 576px,
-    ld: 640px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1452px,
-) !default;
+// $hk-grid-breakpoints: (
+//     fs: 0,
+//     xs: 360px,
+//     sm: 576px,
+//     ld: 640px,
+//     md: 768px,
+//     lg: 992px,
+//     xl: 1200px,
+//     xxl: 1452px,
+// ) !default;
 
 $mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
 $mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
@@ -52,7 +52,7 @@ $hk-container-max-widths: (
 /**
  * Nav bar
  */
-$hk-navbar-height: $hk-grid-size * 5 !default;
+// $hk-navbar-height: $hk-grid-size * 5 !default;
 
 
 // $hk-dark-menu-item-color-hover: $hk-dark-minimal-button-background-color-hover !default;
@@ -69,3 +69,4 @@ $hk-dark-drop-shadow-opacity: $hk-drop-shadow-opacity * 2 !default;
 @import "icon/icon-variables";
 @import "menu/menu-variables";
 @import "progress-bar/progress-bar-variables";
+@import "typography/typography-variables";

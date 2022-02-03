@@ -1,0 +1,13 @@
+@import "@hungknow/uikit/scss/colors/basic-colors";
+@import "@hungknow/uikit/scss/colors/border-colors";
+
+$hk-navbar-background-color: $dark-gray5 !default;
+
+$hk-navbar-color: $hk-link-color !default;
+$hk-navbar-hover-color: $hk-link-color !default;
+$hk-navbar-active-color: $hk-text-color !default;
+$hk-navbar-disabled-color: $hk-text-color-disabled !default;
+$hk-navbar-toggler-border-color: $hk-border-white-color !default;
+
+$hk-navbar-brand-color: $hk-navbar-active-color !default;
+$hk-navbar-brand-hover-color: $hk-navbar-active-color !default;
