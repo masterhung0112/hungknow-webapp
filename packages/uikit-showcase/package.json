@@ -4,6 +4,7 @@
   "scripts": {
     "start": "webpack serve",
     "dev": "webpack serve --env standalone",
+    "dev:build": "webpack --mode=development",
     "build": "concurrently yarn:build:*",
     "build:webpack": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",

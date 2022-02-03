@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=production webpack",
-    "build:dev": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=development webpack",
+    "dev:build": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=development webpack",
     "build:css": "sass scss/hk-uikit.scss:dist/css/hk-uikit.css",
     "build:css:dark": "sass --load-path=../../node_modules themes/dark/hk-uikit-dark.scss:dist/css/hk-uikit-dark.css",
     "build:css-def": "tsm \"scss/hk-uikit.scss\" --aliasPrefixes.hkuisass sass --nameFormat none --exportType default",

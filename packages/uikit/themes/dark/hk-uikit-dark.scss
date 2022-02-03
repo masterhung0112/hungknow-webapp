@@ -1,8 +1,6 @@
 @import "variables/core-variables";
 @import "variables/intents-variables";
 
-@import "typography/index";
-
 @import "button/button-variables";
 @import "divider/divider-variables";
 @import "menu/menu-variables";
@@ -10,6 +8,8 @@
 @import "core/color-aliases";
 
 @import "variables";
+
+@import "typography/index";
 
 // @import "@hungknow/uikit/scss/variables";
 

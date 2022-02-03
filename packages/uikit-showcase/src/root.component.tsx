@@ -18,12 +18,10 @@ const LazyThing = ({ filePath, ...props }) => {
 }
 
 export default function Root(props) {
-  const [activeSectionId, setActiveSectionId] = useState('components/menu')
-  const [docPath, setDocPath] = useState('./contents/components/button.mdx')
+  const [docPath, setDocPath] = useState('')
 
-  const onRouteClick = (routeData: DocRouteData) => {
-    if (typeof routeData.sourcePath === 'string' && routeData.sourcePath) {
-      setActiveSectionId(routeData.route)
+  const onDocRouteChanged = (routeData: DocRouteData) => {
+    if (routeData && typeof routeData.sourcePath === 'string' && routeData.sourcePath) {
       setDocPath(routeData.sourcePath)
     }
   }
@@ -32,7 +30,7 @@ export default function Root(props) {
     <div className="docs-root hk1 hk-dark">
       <div className='docs-app'>
         <div className='docs-nav-wrapper'>
-          <ShowCaseRoutes onItemClick={onRouteClick} activeSectionId={activeSectionId} />
+          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId='components/navbar' />
         </div>
         <main className='docs-content-wrapper fill' role="main">
           <div className="docs-page">

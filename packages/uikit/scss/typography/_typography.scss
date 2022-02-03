@@ -1,6 +1,34 @@
 @import "../variables/core-variables";
 @import "typography-variables";
+@import "../icon/icon-variables";
 
 .#{$ns}-rtl {
   text-align: right;
+}
+
+.#{$ns}.text-muted {
+  color: $hk-text-color-muted;
+}
+
+.#{$ns}.text-disabled {
+  color: $hk-text-color-disabled;
+}
+
+.#{$ns}.text-overflow-ellipsis {
+  @include overflow-ellipsis();
+}
+
+a {
+  color: $hk-link-color;
+  text-decoration: none;
+
+  &:hover {
+    color: $hk-link-color;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  #{$hk-icon-classes} {
+    color: inherit;
+  }
 }

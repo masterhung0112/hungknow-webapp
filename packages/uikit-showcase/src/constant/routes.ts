@@ -22,5 +22,17 @@ export const docRoutes: DocRouteData[] = [{
         route: 'components/menu',
         title: 'Menu',
         sourcePath: './contents/components/menu.mdx'
+    }, {
+        route: 'components/nav',
+        title: 'Nav',
+        sourcePath: './contents/components/nav.mdx'
+    }, {
+        route: 'components/navbar',
+        title: 'Navbar',
+        sourcePath: './contents/components/navbar.mdx'
+    }, {
+        route: 'components/popover',
+        title: 'Popover',
+        sourcePath: './contents/components/popover.mdx'
     }],
 }]

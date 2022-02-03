@@ -54,6 +54,17 @@ $dark-content-background-color: uikit.$dark-gray4;
     box-shadow: 1px 0 0 uikit.$hk-divider-black;
     height: 100vh;
 
+    & .#{uikit.$ns}.menu {
+        // Make font bold for selected menu item
+        & .menu-item:hover,
+        & .menu-item.active,
+        & .menu-item.docs-nav-expanded {
+        // bold text instead of background color
+        background-color: transparent;
+        font-weight: 600;
+        }
+    }
+
     .#{uikitdark.$themeid} & {
         background-color: $dark-sidebar-background-color;
         box-shadow: 1px 0 0 rgba(uikit.$black, 0.4);
