@@ -5,15 +5,15 @@ import {LinkProps} from '../../common/LinkProps'
 
 // MenuItem accept Link Props and Clickable Props
 export interface MenuItemProps extends ActionProps, LinkProps {
-    text: React.ReactNode | string;
-    label?: string;
-    labelClassName?: string;
-    labelElement?: React.ReactNode;
-    tagName?: keyof JSX.IntrinsicElements;
-    active?: boolean;
-    expanded?: boolean;
-    disabled?: boolean;
-    isHeader?: boolean;
+    text: React.ReactNode | string
+    label?: string
+    labelClassName?: string
+    labelElement?: React.ReactNode
+    tagName?: keyof JSX.IntrinsicElements
+    active?: boolean
+    expanded?: boolean
+    disabled?: boolean
+    isHeader?: boolean
 }
 
 /**

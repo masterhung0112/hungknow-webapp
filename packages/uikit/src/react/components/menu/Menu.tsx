@@ -1,8 +1,8 @@
 import React from 'react'
 
 export interface MenuProps {
-    tagName?: keyof JSX.IntrinsicElements;
-    large?: boolean;
+    tagName?: keyof JSX.IntrinsicElements
+    large?: boolean
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

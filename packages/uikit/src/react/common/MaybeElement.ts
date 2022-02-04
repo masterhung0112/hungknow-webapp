@@ -1,0 +1,1 @@
+export type MaybeElement = JSX.Element | false | null | undefined;
