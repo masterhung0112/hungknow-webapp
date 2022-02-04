@@ -15,6 +15,7 @@ html {
 // Style resets on top of Normalize.css
 
 body {
+  margin: 0;
   @include base-typography();
   color: $hk-text-color;
   font-family: $hk-font-family;

@@ -20,7 +20,7 @@ $hk-navbar-color: $hk-link-color !default;
 $hk-navbar-hover-color: $hk-link-color !default;
 $hk-navbar-active-color: $hk-text-color !default;
 $hk-navbar-disabled-color: $hk-text-color-disabled !default;
-// $hk-navbar-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$navbar-dark-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
+$hk-navbar-toggler-icon-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='#{$hk-navbar-color}' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !default;
 $hk-navbar-toggler-border-color: $hk-border-black-color !default;
 
 $hk-navbar-brand-color: $hk-navbar-active-color !default;

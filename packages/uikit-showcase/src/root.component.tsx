@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { DocRouteData } from './constant/routes'
+import { baseRoute, DocRouteData } from './constant/routes'
 import { ShowCaseRoutes } from './ShowCaseRoutes'
 
 const Placeholder = () => null
@@ -30,7 +30,7 @@ export default function Root(props) {
     <div className="docs-root hk1 hk-dark">
       <div className='docs-app'>
         <div className='docs-nav-wrapper'>
-          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId='components/navbar' />
+          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId={`${baseRoute}/components/navbar`} />
         </div>
         <main className='docs-content-wrapper fill' role="main">
           <div className="docs-page">

@@ -129,6 +129,11 @@ Markup:
       padding-bottom: $hk-nav-link-padding-y;
     }
 
+    .navbar-nav-scroll {
+      max-height: var(--#{$ns}-scroll-height, 75vh);
+      overflow-y: auto;
+    }
+
     // Display the header fixed at the top
     &.fixed-top {
       left: 0;
@@ -157,16 +162,20 @@ Markup:
                 padding-left: $hk-navbar-nav-link-padding-x;
               }
             }
-          }
 
-          // Hide the toggler button in the large screen
-          .navbar-toggler {
-            display: none;
-          }
+            .navbar-nav-scroll {
+              overflow: visible;
+            }
 
-          .navbar-collapse {
-            display: flex; // stylelint-disable-line declaration-no-important
-            flex-basis: auto;
+            // Hide the toggler button in the large screen
+            .navbar-toggler {
+              display: none;
+            }
+
+            .navbar-collapse {
+              display: flex; // stylelint-disable-line declaration-no-important
+              flex-basis: auto;
+            }
           }
         }
       }

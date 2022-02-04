@@ -7,7 +7,7 @@ Choose from the following as needed:
 - `.collapse.navbar-collapse` for grouping and hiding navbar contents by a parent breakpoint.
 - `.navbar-nav` for a full-height navigation when the screen is in mobile
 - `.navbar-text` for adding vertically centered strings of text
-- `.navbar-scroll` to set a max-height and scrolled expanded navbar content
+- `.navbar-nav-scroll` to set a max-height and scrolled expanded navbar content
 
 <nav className="hk1 navbar navbar-expand-lg">
     <a className="navbar-brand" href="#">Brand</a>
@@ -15,7 +15,7 @@ Choose from the following as needed:
         <span className="navbar-toggler-icon"></span>
     </button>
     <div className="hk1 collapse navbar-collapse show" id="navbarContent">
-        <nav className="navbar-nav">
+        <nav className="navbar-nav navbar-nav-scroll" style={{"--hk1-scroll-height": "50px"}}>
             <a className="nav-link active" href="#">Home</a>
             <div className="dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hk-toggle="dropdown" aria-expanded="false">
@@ -30,3 +30,7 @@ Choose from the following as needed:
         </nav>
     </div>
 </nav>
+
+# Scrolling
+Add `.navbar-nav-scroll` to a `.navbar-nav` to enable vertical scrolling within the toggleable contents of a collapsed navbar.
+By default, scrolling kicks in at 75% of the viewport height, but you can override that with the local custom property `--hk-navbar-height`.

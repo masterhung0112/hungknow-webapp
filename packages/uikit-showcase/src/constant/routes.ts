@@ -6,32 +6,34 @@ export interface DocRouteData {
     sourcePath?: string
 }
 
+export const baseRoute = 'uikit-docs'
+
 export const docRoutes: DocRouteData[] = [{
     tag: 'header',
     title: 'Components',
-    route: 'components',
+    route: `${baseRoute}/components`,
     children: [{
-        route: 'components/button',
+        route: `${baseRoute}/components/button`,
         title: 'Button',
         sourcePath: './contents/components/button.mdx'
     }, {
-        route: 'components/collapse',
+        route: `${baseRoute}/components/collapse`,
         title: 'Collapse',
         sourcePath: './contents/components/collapse.mdx'
     }, {
-        route: 'components/menu',
+        route: `${baseRoute}/components/menu`,
         title: 'Menu',
         sourcePath: './contents/components/menu.mdx'
     }, {
-        route: 'components/nav',
+        route: `${baseRoute}/components/nav`,
         title: 'Nav',
         sourcePath: './contents/components/nav.mdx'
     }, {
-        route: 'components/navbar',
+        route: `${baseRoute}/components/navbar`,
         title: 'Navbar',
         sourcePath: './contents/components/navbar.mdx'
     }, {
-        route: 'components/popover',
+        route: `${baseRoute}/components/popover`,
         title: 'Popover',
         sourcePath: './contents/components/popover.mdx'
     }],
