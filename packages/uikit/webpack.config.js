@@ -2,10 +2,11 @@
 // See LICENSE.txt for license information.
 
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 // eslint-disable-next-line no-process-env
-const DEV = process.env === 'development';
+const DEV = process.env === 'development'
 
 var config = {
     entry: ['./src/index.ts'],
@@ -32,6 +33,13 @@ var config = {
             filename: 'hkui.css',
             chunkFilename: '[name].[contenthash].css',
         }),
+        // Copy SVG of bootstrap icons
+        new CopyPlugin({
+            patterns: [{
+                from: '../../node_modules/bootstrap-icons/bootstrap-icons.svg',
+                to: 'public'
+            }]
+        })
     ],
     module: {
         rules: [
@@ -55,7 +63,7 @@ var config = {
                     },
                 },
             },
-            {test: /\.tsx?$/, loader: 'ts-loader'},
+            { test: /\.tsx?$/, loader: 'ts-loader' },
             {
                 test: /\.module.(s?css)$/,
                 use: [
@@ -106,6 +114,11 @@ var config = {
                         loader: 'css-loader',
                     },
                 ],
+            },
+            {
+                test: /\.(bmp|png|svg|jpg|jpeg|gif|webp)$/i,
+                // exclude: /node_modules/,
+                type: 'asset/resource',
             },
         ],
     },

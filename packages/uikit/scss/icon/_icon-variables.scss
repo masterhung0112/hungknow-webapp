@@ -2,9 +2,9 @@
 @import "../typography/typography-variables";
 
 $hk-icon-classes: (
-  ".icon",
-  ".icon-standard",
-  ".icon-large"
+  ".#{$ns}.icon",
+  ".#{$ns}.icon-standard",
+  ".#{$ns}.icon-large"
 ) !default;
 
 $hk-icon-size-standard: 16px !default;

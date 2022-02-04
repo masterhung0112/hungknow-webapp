@@ -4,6 +4,7 @@
 @import "button/button-variables";
 @import "divider/divider-variables";
 @import "menu/menu-variables";
+@import "icon/icon-variables";
 
 @import "core/color-aliases";
 
@@ -14,6 +15,8 @@
 // @import "@hungknow/uikit/scss/variables";
 
 @import "button";
+@import "divider";
+@import "icon";
 @import "menu";
 @import "navbar";
 @import "progress-bar";

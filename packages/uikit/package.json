@@ -17,7 +17,7 @@
     "build:css": "sass scss/hk-uikit.scss:dist/css/hk-uikit.css",
     "build:css:dark": "sass --load-path=../../node_modules themes/dark/hk-uikit-dark.scss:dist/css/hk-uikit-dark.css",
     "build:css-def": "tsm \"scss/hk-uikit.scss\" --aliasPrefixes.hkuisass sass --nameFormat none --exportType default",
-    "build:ts": "cross-env NODE_ENV=development webpack",
+    "dev:build:ts": "cross-env NODE_ENV=development webpack",
     "dev:ts": "cross-env NODE_ENV=development webpack --watch",
     "dev:css": "yarn build:css --watch",
     "dev": "concurrently \"yarn dev:ts\" \"yarn dev:css\"",

@@ -87,7 +87,7 @@
     &.intent-#{$intent} {
       color: $color;
 
-      .#{$ns}-icon {
+      .#{$ns}.icon {
         color: inherit;
       }
 

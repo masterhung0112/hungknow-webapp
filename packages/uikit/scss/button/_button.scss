@@ -54,10 +54,29 @@
     }
 
     // icons
-    &[class*="#{$hk-icon-cls}-"] {
+    &[class*="icon"] {
       &::before {
         @include hk-icon();
         color: $hk-icon-color;
+      }
+    }
+
+    #{$hk-icon-classes} {
+      color: $hk-icon-color;
+
+      &.align-right {
+        margin-left: $hk-button-icon-spacing;
+      }
+    }
+
+    // disabled and intent button icon should use same color as text
+    &:disabled,
+    &.disabled,
+    &[class*="intent-"] {
+      &::before,
+      #{$hk-icon-classes} {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: inherit !important;
       }
     }
   }

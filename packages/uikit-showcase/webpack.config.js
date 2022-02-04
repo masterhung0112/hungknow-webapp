@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
@@ -48,6 +49,15 @@ module.exports = (webpackConfigEnv, argv) => {
           ]
         }
       ]
-    }
+    },
+    plugins: [
+      // Copy public file from uikit
+      new CopyPlugin({
+          patterns: [{
+              from: '../../node_modules/@hungknow/uikit/dist/public',
+              to: 'public'
+          }]
+      })
+  ],
   });
 };
