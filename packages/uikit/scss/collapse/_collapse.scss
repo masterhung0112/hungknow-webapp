@@ -2,22 +2,16 @@
 @import "collapse-variables.scss";
 
 .#{$ns}.collapse {
-  // height: 0;
-  // overflow-y: hidden;
-  // transition: height $hk-collapse-transaction;
-
-  // .collapse-body {
-  // transition: transform $hk-collapse-transaction;
-
-  // &[aria-show="true"],
+  // Show the content if and only if .show class is added
   &:not(.show) {
     display: none;
   }
-  // }
 }
 
 .#{$ns}.collapsing {
-  height: 0; // Start from zero of height to the height
-  overflow-y: hidden;
+  // Don't display the content when adding collapsing class,
+  // we set the height value to `style` field
+  height: 0;
+  overflow: hidden;
   transition: height $hk-collapse-transaction;
 }

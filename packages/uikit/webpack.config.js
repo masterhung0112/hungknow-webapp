@@ -10,6 +10,7 @@ const DEV = process.env === 'development'
 
 var config = {
     entry: ['./src/index.ts'],
+    // devtool: DEV ? 'eval' : 'source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
         library: {

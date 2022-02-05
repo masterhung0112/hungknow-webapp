@@ -23,3 +23,6 @@ export const BUTTON = `${NS} button`
 export const BUTTON_GROUP = `${BUTTON}-group`
 export const BUTTON_SPINNER = `${BUTTON}-spinner`
 export const BUTTON_TEXT = `${BUTTON}-text`
+
+export const COLLAPSE = `${NS} collapse`
+export const COLLAPSING = `${NS} collapsing`
