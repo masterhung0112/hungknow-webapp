@@ -17,6 +17,10 @@ export const docRoutes: DocRouteData[] = [{
         title: 'Button',
         sourcePath: './contents/components/button.mdx'
     }, {
+        route: `${baseRoute}/components/button-group`,
+        title: 'Button Group',
+        sourcePath: './contents/components/buttongroup.mdx'
+    }, {
         route: `${baseRoute}/components/collapse`,
         title: 'Collapse',
         sourcePath: './contents/components/collapse.mdx'

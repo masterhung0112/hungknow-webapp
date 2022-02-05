@@ -1,5 +1,6 @@
 @import "../flex/flex-mixins";
 @import "button-variables";
+@import "../variables/intents-variables";
 
 @mixin hk-button-base() {
   @include hk-flex-container(row, $hk-button-icon-spacing, $inline: inline);
@@ -104,4 +105,83 @@
   border-color: transparent;
   box-shadow: none;
   color: $hk-button-intent-color-disabled;
+}
+
+@mixin hk-button-minimal-intent($intent-color, $text-color) {
+  color: $text-color;
+
+  &:hover,
+  &:active,
+  &.active {
+    background: none;
+    box-shadow: none;
+    color: $text-color;
+  }
+
+  &:hover {
+    background: rgba($intent-color, 0.15);
+    color: $text-color;
+  }
+
+  &:active,
+  &.active {
+    background: rgba($intent-color, 0.3);
+    color: $text-color;
+  }
+
+  &:disabled,
+  &.disabled {
+    background: none;
+    color: rgba($text-color, 0.5);
+
+    &.active {
+      background: rgba($intent-color, 0.3);
+    }
+  }
+
+  .button-spinner .spinner-head {
+    stroke: $text-color;
+  }
+}
+
+@mixin hk-button-minimal() {
+  background: $hk-minimal-button-background-color;
+  box-shadow: none;
+
+  &:hover {
+    background: $hk-minimal-button-background-color-hover;
+    box-shadow: none;
+    color: $hk-text-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    background: $hk-minimal-button-background-color-active;
+    box-shadow: none;
+    color: $hk-text-color;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &.disabled,
+  &.disabled:hover {
+    background: none;
+    color: $hk-text-color-disabled;
+    cursor: not-allowed;
+
+    &.active {
+      background: $hk-minimal-button-background-color-active;
+    }
+  }
+
+  @each $intent, $colors in $hk-button-intents {
+    &.intent-#{$intent} {
+      @include hk-button-minimal-intent(
+        map-get($hk-intent-colors, $intent),
+        map-get($hk-intent-text-colors, $intent),
+        // map-get($hk-dark-intent-text-colors, $intent)
+      );
+    }
+  }
 }
