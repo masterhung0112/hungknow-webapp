@@ -2,7 +2,7 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css");
 // @import "../../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
-//@import "functions"
+@import "core/functions";
 @import "variables";
 @import "mixins";
 
@@ -10,6 +10,7 @@
 @import "core/reset";
 @import "typography/index";
 @import "button/index";
+@import "container/index";
 @import "collapse/index";
 @import "divider/index";
 @import "icon/index";
@@ -17,3 +18,6 @@
 @import "nav/index";
 @import "navbar/index";
 @import "progress-bar/index";
+@import "grid/index";
+
+@import "utilities";

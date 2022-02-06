@@ -7,6 +7,7 @@ export interface ShowCaseRoutesProps {
     defaultPageId: string
     // activeSectionId: string
     onDocRouteChanged: OnDocRouteDataClick
+    hidden?: boolean
 }
 
 export interface ShowCaseMenuItemProps {
@@ -50,7 +51,7 @@ export const ShowCaseMenu: React.FC<ShowCaseMenuProps> = ({ onItemClick, routeDa
     })
 
     return (
-        <Collapse isOpen={!isClosed}>
+        <Collapse className='doc-nav-collapse' isOpen={!isClosed} keepChildrenMounted={true}>
             <Menu tagName="nav">
                 {menus}
             </Menu>
@@ -59,7 +60,7 @@ export const ShowCaseMenu: React.FC<ShowCaseMenuProps> = ({ onItemClick, routeDa
 }
 
 
-export const ShowCaseRoutes: React.VFC<ShowCaseRoutesProps> = ({ defaultPageId, onDocRouteChanged }) => {
+export const ShowCaseRoutes: React.VFC<ShowCaseRoutesProps> = ({ defaultPageId, onDocRouteChanged, hidden }) => {
     // const [activePageId, setActivePageId] = useState(defaultPageId)
     const [activeSectionId, setActiveSectionId] = useState(defaultPageId)
 
@@ -129,7 +130,7 @@ export const ShowCaseRoutes: React.VFC<ShowCaseRoutesProps> = ({ defaultPageId, 
 
     return (
         <div className="docs-nav">
-            <ShowCaseMenu activeSectionId={activeSectionId} routeDatas={docRoutes} onItemClick={handleNavigation} isClosed={false} />
+            <ShowCaseMenu activeSectionId={activeSectionId} routeDatas={docRoutes} onItemClick={handleNavigation} isClosed={hidden} />
         </div>
     )
 }

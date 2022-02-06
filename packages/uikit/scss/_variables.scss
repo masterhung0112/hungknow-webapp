@@ -1,8 +1,9 @@
 @import "variables/core-variables";
 @import "colors/index";
 @import "variables/border-variables";
-// @import "variables/font-variables";
+@import "variables/grid-variables";
 @import "variables/intents-variables";
+
 
 // $xs-prefix: 'xs' !default;
 // $sm-prefix: 'sm' !default;
@@ -28,13 +29,13 @@ $mediaBreakpointListMobile: $sm-prefix, $md-prefix, $lg-prefix;
 $mediaBreakpointListMobileLength: length($mediaBreakpointListMobile);
 
 // Grid containers
-$hk-container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1320px
-) !default;
+// $hk-container-max-widths: (
+//   sm: 540px,
+//   md: 720px,
+//   lg: 960px,
+//   xl: 1140px,
+//   xxl: 1320px
+// ) !default;
 
 :root {
     #{$universal-border-radius-var}: $universal-border-radius;
@@ -65,6 +66,7 @@ $hk-dark-border-shadow-opacity: $hk-border-shadow-opacity * 2 !default;
 $hk-dark-drop-shadow-opacity: $hk-drop-shadow-opacity * 2 !default;
 
 @import "typography/typography-variables";
+@import "container/container-variables";
 @import "button/button-variables";
 @import "divider/divider-variables";
 @import "icon/icon-variables";

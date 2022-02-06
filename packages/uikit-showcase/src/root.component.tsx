@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { baseRoute, DocRouteData } from './constant/routes'
 import { ShowCaseRoutes } from './ShowCaseRoutes'
+import {Navbar} from '@hungknow/uikit'
 
 const Placeholder = () => null
 const LazyThing = ({ filePath, ...props }) => {
@@ -19,7 +20,8 @@ const LazyThing = ({ filePath, ...props }) => {
 
 export default function Root(props) {
   const [docPath, setDocPath] = useState('')
-
+  const [navIsOpen, setNavOpen] = useState(false)
+  
   const onDocRouteChanged = (routeData: DocRouteData) => {
     if (routeData && typeof routeData.sourcePath === 'string' && routeData.sourcePath) {
       setDocPath(routeData.sourcePath)
@@ -28,11 +30,16 @@ export default function Root(props) {
 
   return (
     <div className="docs-root hk1 hk-dark">
-      <div className='docs-app'>
-        <div className='docs-nav-wrapper'>
-          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId={`${baseRoute}/components/navbar`} />
+      <Navbar>
+         <button className="navbar-toggler d-md-none py-0 px-1 ms-3" type="button" onClick={() => setNavOpen(!navIsOpen)}>
+             <span className="navbar-toggler-icon"></span>
+         </button>
+       </Navbar>
+      <div className='docs-app row'>
+        <div className='docs-nav-wrapper col-lg-3'>
+          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId={`${baseRoute}/components/navbar`} hidden={!navIsOpen} />
         </div>
-        <main className='docs-content-wrapper fill' role="main">
+        <main className='docs-content-wrapper col-lg-auto container-xll' role="main">
           <div className="docs-page">
             <LazyThing filePath={docPath} />
           </div>

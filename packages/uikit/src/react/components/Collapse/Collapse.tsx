@@ -91,7 +91,7 @@ const collapseOpenReducer = (state: CollapseOpenState, action: CollapseOpenActio
     }
 }
 
-export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = false, keepChildrenMounted = false, transitionDuration = 400, className, children }) => {
+export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = false, keepChildrenMounted = false, transitionDuration = 300, className, children }) => {
     const [{ animationState, contentHeight, contentHeightWhenOpen }, dispatchCollapseAnimation] = useReducer(collapseOpenReducer, {}, initAnimationState)
     const contentsRef = useRef<HTMLElement>()
     const isContentVisible = animationState !== AnimationStates.CLOSED
@@ -169,7 +169,7 @@ export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = 
 
         return () => {
             if (animationTimer) {
-                clearTimeout(animationTimer)
+                // clearTimeout(animationTimer)
             }
         }
     })
