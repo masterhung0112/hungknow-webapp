@@ -1,0 +1,34 @@
+@import "../variables/core-variables";
+@import "nav-variables";
+
+.#{$themeid} {
+  .#{$ns} {
+    &.nav {
+      .nav-link {
+        color: $hk-nav-link-color;
+
+        &:hover,
+        &:focus {
+          color: $hk-nav-link-color-hover;
+        }
+
+        &:active,
+        &.active {
+          color: $hk-nav-link-color-active;
+        }
+
+        &.disabled {
+          color: $hk-text-color-disabled;
+        }
+      }
+
+      &.fill {
+        > .nav-link,
+        .nav-item {
+          flex: 1 1 auto;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

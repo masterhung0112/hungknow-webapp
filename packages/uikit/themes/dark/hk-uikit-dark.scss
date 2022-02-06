@@ -5,6 +5,8 @@
 @import "divider/divider-variables";
 @import "menu/menu-variables";
 @import "icon/icon-variables";
+@import "nav/nav-variables";
+@import "navbar/navbar-variables";
 
 @import "core/color-aliases";
 
@@ -18,5 +20,6 @@
 @import "divider";
 @import "icon";
 @import "menu";
+@import "nav";
 @import "navbar";
 @import "progress-bar";

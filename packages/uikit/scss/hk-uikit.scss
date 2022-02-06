@@ -1,6 +1,6 @@
 //TODO: Don't import font by @import, it blocks parallel downloading
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css");
-@import "../../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+// @import "../../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 //@import "functions"
 @import "variables";
@@ -14,5 +14,6 @@
 @import "divider/index";
 @import "icon/index";
 @import "menu/index";
+@import "nav/index";
 @import "navbar/index";
 @import "progress-bar/index";

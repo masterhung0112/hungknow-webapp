@@ -96,24 +96,28 @@ export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = 
     const contentsRef = useRef<HTMLElement>()
     const isContentVisible = animationState !== AnimationStates.CLOSED
     const shouldRenderChildren = isContentVisible || keepChildrenMounted
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    const timeoutCallback = useRef<() => void>(() => {})
 
-    const onDelayedStateChange = () => {
-        switch (animationState) {
-            case AnimationStates.OPENING:
-                dispatchCollapseAnimation({ type: 'open', contentHeight: 'auto' })
-                break
-            case AnimationStates.CLOSING:
-                dispatchCollapseAnimation({ type: 'closed' })
-                break
-            default:
-                break
+    // create the new timeout callback according to the animation state
+    // setTimeout cannot access the new value of animationState,
+    // it refer to the animationState at the creation time.
+    useEffect(() => {
+        timeoutCallback.current = () => {
+            switch (animationState) {
+                case AnimationStates.OPENING:
+                    dispatchCollapseAnimation({ type: 'open', contentHeight: 'auto' })
+                    break
+                case AnimationStates.CLOSING:
+                    dispatchCollapseAnimation({ type: 'closed' })
+                    break
+                default:
+                    break
+            }
         }
-    }
+    }, [animationState])
 
-    const timeoutCallback = useRef(onDelayedStateChange)
-    timeoutCallback.current = onDelayedStateChange
-
-    // Update state when `isOpen` prop is changed
+    // Start the animation if the `isOpen` prop update and the component is in the valid state
     useEffect(() => {
         if (isOpen) {
             switch (animationState) {
@@ -138,7 +142,7 @@ export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = 
     // After rendering, we can get the valid clientHeight value now. So we update the style to trigger the animation
     useLayoutEffect(() => {
         const clientHeight = contentsRef.current?.scrollHeight
-
+        let animationTimer: ReturnType<typeof setTimeout> | null = null
         if (animationState == AnimationStates.OPEN_START) {
             if (clientHeight) {
                 dispatchCollapseAnimation({
@@ -146,7 +150,7 @@ export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = 
                     contentHeight: `${clientHeight}px`,
                     contentHeightWhenOpen: clientHeight
                 })
-                setTimeout(() => timeoutCallback.current(), transitionDuration)
+                animationTimer = setTimeout(() => timeoutCallback.current(), transitionDuration)
             } else {
                 console.error('unknown clientHeight for ', contentsRef.current?.outerHTML)
             }
@@ -157,7 +161,15 @@ export const Collapse: React.FC<CollapseProps> = ({ component = 'div', isOpen = 
                     contentHeight: '0px',
                     contentHeightWhenOpen: clientHeight
                 })
-                setTimeout(() => timeoutCallback.current(), transitionDuration)
+                animationTimer = setTimeout(() => timeoutCallback.current(), transitionDuration)
+            } else {
+                console.error('unknown clientHeight for ', contentsRef.current?.outerHTML)
+            }
+        }
+
+        return () => {
+            if (animationTimer) {
+                clearTimeout(animationTimer)
             }
         }
     })

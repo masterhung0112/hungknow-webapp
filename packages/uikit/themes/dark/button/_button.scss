@@ -39,6 +39,11 @@
       #{uikit.$hk-icon-classes} {
         color: $hk-icon-color;
       }
+
+      // minimal must come last to override all default styles
+      &.minimal {
+        @include hk-button-minimal();
+      }
     }
   }
 }

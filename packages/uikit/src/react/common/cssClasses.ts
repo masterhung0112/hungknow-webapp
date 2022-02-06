@@ -26,3 +26,8 @@ export const BUTTON_TEXT = `${BUTTON}-text`
 
 export const COLLAPSE = `${NS} collapse`
 export const COLLAPSING = `${NS} collapsing`
+
+export const NAVBAR = `${NS} navbar`
+
+export const NAV = `${NS} nav`
+export const NAVLINK = 'nav-link'

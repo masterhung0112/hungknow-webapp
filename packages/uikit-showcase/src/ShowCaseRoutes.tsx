@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Menu, MenuItem } from '@hungknow/uikit';
-import { DocRouteData, docRoutes } from './constant/routes';
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Menu, MenuItem, Collapse } from '@hungknow/uikit'
+import { DocRouteData, docRoutes } from './constant/routes'
 
 export type OnDocRouteDataClick = (docRouteData: DocRouteData) => void
 export interface ShowCaseRoutesProps {
@@ -9,9 +9,6 @@ export interface ShowCaseRoutesProps {
     onDocRouteChanged: OnDocRouteDataClick
 }
 
-const renderOneRoute = (routeData: DocRouteData, onItemClick: OnDocRouteDataClick) => {
-
-}
 export interface ShowCaseMenuItemProps {
     isActive: boolean
     isExpanded: boolean
@@ -19,31 +16,15 @@ export interface ShowCaseMenuItemProps {
     routeData: DocRouteData
 }
 
-// export const ShowCaseMenuItem: React.FC<ShowCaseMenuItemProps> = ({ isActive, isExpanded, onClick, routeData, children }) => {
-//     let isHeader = false
-
-//     switch (routeData.tag) {
-//         case 'header':
-//             isHeader = true
-//             break
-//         default:
-//             break
-//     }
-
-//     return
-//         {children}
-//     </MenuItem>
-// }
-
-
 export interface ShowCaseMenuProps {
     onItemClick: OnDocRouteDataClick
     routeDatas: DocRouteData[]
     activeSectionId: string
+    isClosed?: boolean
 }
 
 // With the list of routeDatas, display all routes in hierarchy
-export const ShowCaseMenu: React.FC<ShowCaseMenuProps> = ({ onItemClick, routeDatas, activeSectionId }) => {
+export const ShowCaseMenu: React.FC<ShowCaseMenuProps> = ({ onItemClick, routeDatas, activeSectionId, isClosed }) => {
     const menus = routeDatas.map((docRoute) => {
         const isActive = activeSectionId === docRoute.route
         const isExpanded = isActive || isParentOfRoute(docRoute.route, activeSectionId)
@@ -68,9 +49,13 @@ export const ShowCaseMenu: React.FC<ShowCaseMenuProps> = ({ onItemClick, routeDa
         </MenuItem>
     })
 
-    return <Menu tagName="nav">
-        {menus}
-    </Menu>
+    return (
+        <Collapse isOpen={!isClosed}>
+            <Menu tagName="nav">
+                {menus}
+            </Menu>
+        </Collapse>
+    )
 }
 
 
@@ -116,40 +101,40 @@ export const ShowCaseRoutes: React.VFC<ShowCaseRoutesProps> = ({ defaultPageId, 
     useEffect(() => {
         const updateHash = () => {
             // update state based on current hash location
-            let sectionId = location.hash.slice(1);
-            if (sectionId === "") {
+            let sectionId = location.hash.slice(1)
+            if (sectionId === '') {
                 sectionId = defaultPageId
             }
             handleNavigation(routePathToDocRoute.get(sectionId))
         }
         const handleHashChange = () => {
-            if (location.hostname.indexOf("hungknow") !== -1) {
+            if (location.hostname.indexOf('hungknow') !== -1) {
                 // captures a pageview for new location hashes that are dynamically rendered without a full page request
-                (window as any).ga("send", "pageview", {
+                (window as any).ga('send', 'pageview', {
                     page: location.pathname + location.search + location.hash,
-                });
+                })
             }
             // Don't call componentWillMount since the HotkeysTarget decorator will be invoked on every hashchange.
-            updateHash();
+            updateHash()
         }
-        window.addEventListener("hashchange", handleHashChange)
+        window.addEventListener('hashchange', handleHashChange)
 
         // Detect the current document from URL
-        updateHash();
+        updateHash()
 
         return () => {
-            window.removeEventListener("hashchange", handleHashChange)
+            window.removeEventListener('hashchange', handleHashChange)
         }
     }, [])
 
     return (
         <div className="docs-nav">
-            <ShowCaseMenu activeSectionId={activeSectionId} routeDatas={docRoutes} onItemClick={handleNavigation} />
+            <ShowCaseMenu activeSectionId={activeSectionId} routeDatas={docRoutes} onItemClick={handleNavigation} isClosed={false} />
         </div>
     )
 }
 ShowCaseRoutes.displayName = 'ShowCaseRoutes'
 
 function isParentOfRoute(parent: string, route: string) {
-    return route.indexOf(parent + "/") === 0 || route.indexOf(parent + ".") === 0;
+    return route.indexOf(parent + '/') === 0 || route.indexOf(parent + '.') === 0
 }

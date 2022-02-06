@@ -79,5 +79,10 @@
         color: inherit !important;
       }
     }
+
+    // minimal must come last to override all default styles
+    &.minimal {
+      @include hk-button-minimal();
+    }
   }
 }

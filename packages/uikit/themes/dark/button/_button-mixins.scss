@@ -79,3 +79,39 @@
   box-shadow: none;
   color: $hk-button-intent-color-disabled;
 }
+
+@mixin hk-button-minimal() {
+  background: $hk-minimal-button-background-color;
+  box-shadow: none;
+  color: inherit;
+
+  &:hover,
+  &:active,
+  &.active {
+    background: none;
+    box-shadow: none;
+  }
+
+  &:hover {
+    background: $hk-minimal-button-background-color-hover;
+  }
+
+  &:active,
+  &.active {
+    background: $hk-minimal-button-background-color-active;
+    color: $hk-text-color;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &.disabled,
+  &.disabled:hover {
+    background: none;
+    color: $hk-text-color-disabled;
+    cursor: not-allowed;
+
+    &.active {
+      background: $hk-minimal-button-background-color-active;
+    }
+  }
+}
