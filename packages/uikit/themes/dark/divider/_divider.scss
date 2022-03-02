@@ -1,0 +1,9 @@
+@import "divider-variables";
+
+.#{$ns} {
+    .#{$themeid} {
+        .divider {
+            border-color: $hk-divider-black;
+        }
+    }
+}

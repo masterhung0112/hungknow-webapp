@@ -1,0 +1,13 @@
+@mixin menu-item($disabled-selector: ".disabled", $hover-selector: ":hover") {
+  color: inherit;
+
+  &#{$hover-selector} {
+    background-color: $hk-menu-item-color-hover;
+    color: inherit;
+  }
+
+  &#{$disabled-selector} {
+    background-color: inherit;
+    color: $hk-text-color-disabled;
+  }
+}

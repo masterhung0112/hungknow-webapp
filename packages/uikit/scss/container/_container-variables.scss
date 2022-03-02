@@ -1,0 +1,12 @@
+@import "../variables/grid-variables";
+
+// Grid containers
+$hk-container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+$hk-container-padding-x: $hk-grid-gutter-width * .5 !default;

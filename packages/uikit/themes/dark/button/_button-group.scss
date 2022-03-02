@@ -1,0 +1,77 @@
+@use "@hungknow/uikit/scss/variables/intents-variables" as uikit-intents;
+@use "@hungknow/uikit/scss/button/button-mixins" as uikit-button-mixins;
+
+@import "../variables/intents-variables";
+@import "button-mixins";
+
+.#{$ns} {
+  &.button-group {
+    .#{$themeid} & {
+      // support wrapping buttons in a Blueprint.Tooltip, which adds a wrapper element
+      // in dark theme, we adjust the spacing between buttons for best visual results
+      &:not(.minimal) {
+        // deeply nested selector necessary to target the appropriate popover
+        // wrapper, yet ensure we only style buttons within the target.
+        > .popover-wrapper:not(:last-child) .#{$ns}.button,
+        > .#{$ns}.button:not(:last-child) {
+          margin-right: $hk-button-border-width;
+        }
+      }
+
+      &.minimal {
+        .#{$ns}.button {
+          background: $hk-minimal-button-background-color;
+          box-shadow: none;
+          color: inherit;
+
+          &:hover,
+          &:active,
+          &.active {
+            background: none;
+            box-shadow: none;
+          }
+
+          &:hover {
+            background: $hk-minimal-button-background-color-hover;
+          }
+
+          &:active,
+          &.active {
+            background: $hk-minimal-button-background-color-active;
+            color: $hk-text-color;
+          }
+
+          &:disabled,
+          &:disabled:hover,
+          &.disabled,
+          &.disabled:hover {
+            background: none;
+            color: $hk-text-color-disabled;
+            cursor: not-allowed;
+
+            &.active {
+              background: $hk-minimal-button-background-color-active;
+            }
+          }
+
+          // Change the text color of button for intent
+          @each $intent, $colors in uikit-intents.$hk-button-intents {
+            &.intent-#{$intent} {
+              @include uikit-button-mixins.hk-button-minimal-intent(
+                map-get(uikit-intents.$hk-intent-colors, $intent),
+                map-get($hk-intent-text-colors, $intent)
+              );
+            }
+          }
+        }
+      }
+
+      &.vertical {
+        > .popover-wrapper:not(:last-child) .#{$ns}.button,
+        > .#{$ns}.button:not(:last-child) {
+          margin-bottom: $hk-button-border-width;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+@use "@hungknow/uikit/scss/icon/index" as uikit;
+@import "button-variables";
+@import "button-mixins";
+@import "../icon/icon-variables";
+
+.#{$ns} {
+  &.button {
+    .#{$themeid} & {
+      &:not([class*="intent-"]) {
+        @include hk-dark-button();
+
+        &[class*="icon"]::before {
+          color: $hk-icon-color;
+        }
+
+        #{uikit.$hk-icon-classes} {
+          &:not([class*="intent-"]) {
+            color: $hk-icon-color;
+          }
+        }
+      }
+
+      &[class*="intent-"] {
+        @include hk-dark-button-intent();
+
+        .button-spinner .spinner-head {
+          stroke: $hk-progress-head-color;
+        }
+      }
+
+      // icons
+      &[class*="icon"] {
+        &::before {
+          @include uikit.hk-icon();
+          color: $hk-icon-color;
+        }
+      }
+
+      #{uikit.$hk-icon-classes} {
+        color: $hk-icon-color;
+      }
+
+      // minimal must come last to override all default styles
+      &.minimal {
+        @include hk-button-minimal();
+      }
+    }
+  }
+}

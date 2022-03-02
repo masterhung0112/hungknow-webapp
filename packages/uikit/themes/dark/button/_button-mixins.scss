@@ -1,0 +1,117 @@
+@import "button-variables";
+@import "../progress-bar/progress-bar-variables";
+@import "@hungknow/uikit/scss/button/button-variables";
+
+@mixin hk-dark-button() {
+  background-color: $hk-button-background-color;
+  background-image: $hk-button-gradient;
+  box-shadow: $hk-button-box-shadow;
+  color: $hk-text-color;
+
+  &:hover,
+  &:active,
+  &.active {
+    color: $hk-text-color;
+  }
+
+  &:hover {
+    @include hk-dark-button-hover();
+  }
+
+  &:active,
+  &.active {
+    @include hk-dark-button-active();
+  }
+
+  &:disabled,
+  &.disabled {
+    @include hk-dark-button-disabled();
+  }
+
+  .button-spinner .spinner-head {
+    background: $hk-progress-track-color;
+    stroke: $hk-progress-head-color;
+  }
+}
+
+@mixin hk-dark-button-hover() {
+  background-color: $hk-button-background-color-hover;
+  box-shadow: $hk-button-box-shadow;
+}
+
+@mixin hk-dark-button-active() {
+  background-color: $hk-button-background-color-active;
+  background-image: none;
+  box-shadow: $hk-button-box-shadow-active;
+}
+
+@mixin hk-dark-button-disabled() {
+  background-color: $hk-button-background-color-disabled;
+  background-image: none;
+  box-shadow: none;
+  color: $hk-button-color-disabled;
+
+  &.active {
+    background: $hk-button-background-color-active-disabled;
+  }
+}
+
+@mixin hk-dark-button-intent() {
+  box-shadow: $hk-button-intent-box-shadow;
+
+  &:hover {
+    box-shadow: $hk-button-intent-box-shadow;
+  }
+
+  &:active,
+  &.active {
+    box-shadow: $hk-button-intent-box-shadow-active;
+  }
+
+  &:disabled,
+  &.disabled {
+    @include hk-dark-button-intent-disabled();
+  }
+}
+
+@mixin hk-dark-button-intent-disabled() {
+  background-image: none;
+  box-shadow: none;
+  color: $hk-button-intent-color-disabled;
+}
+
+@mixin hk-button-minimal() {
+  background: $hk-minimal-button-background-color;
+  box-shadow: none;
+  color: inherit;
+
+  &:hover,
+  &:active,
+  &.active {
+    background: none;
+    box-shadow: none;
+  }
+
+  &:hover {
+    background: $hk-minimal-button-background-color-hover;
+  }
+
+  &:active,
+  &.active {
+    background: $hk-minimal-button-background-color-active;
+    color: $hk-text-color;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &.disabled,
+  &.disabled:hover {
+    background: none;
+    color: $hk-text-color-disabled;
+    cursor: not-allowed;
+
+    &.active {
+      background: $hk-minimal-button-background-color-active;
+    }
+  }
+}

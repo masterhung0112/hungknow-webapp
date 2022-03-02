@@ -1,0 +1,17 @@
+@import "../variables/core-variables";
+@import "collapse-variables.scss";
+
+.#{$ns}.collapse {
+  // Show the content if and only if .show class is added
+  &:not(.show) {
+    display: none;
+  }
+}
+
+.#{$ns}.collapsing {
+  // Don't display the content when adding collapsing class,
+  // we set the height value to `style` field
+  height: 0;
+  overflow: hidden;
+  transition: height $hk-collapse-transaction;
+}

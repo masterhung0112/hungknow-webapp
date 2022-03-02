@@ -1,0 +1,70 @@
+.#{$ns} {
+  &.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    .nav-link {
+      display: block;
+      padding: $hk-nav-link-padding-y $hk-nav-link-padding-x;
+      color: $hk-nav-link-color;
+      font-weight: $hk-nav-link-font-weight;
+      line-height: $hk-nav-link-height;
+      text-decoration: if($hk-link-decoration == none, null, none);
+
+      &:hover,
+      &:focus {
+        color: $hk-nav-link-color-hover;
+        text-decoration: if($hk-link-hover-decoration == underline, none, null);
+        font-weight: $hk-nav-link-font-weight-hover;
+      }
+
+      &:active,
+      &.active {
+        color: $hk-nav-link-color-active;
+        font-weight: $hk-nav-link-font-weight-active;
+      }
+
+      &.disabled {
+        color: $hk-text-color-disabled;
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+
+    &.fill {
+      > .nav-link,
+      .nav-item {
+        flex: 1 1 auto;
+        text-align: center;
+      }
+    }
+  
+    &.justified {
+      > .nav-link,
+      .nav-item {
+        flex-basis: 0;
+        flex-grow: 1;
+        text-align: center;
+      }
+    }
+
+    &.fill,
+    &.justified {
+      .nav-item .nav-link {
+        width: 100%; // make sure button will grow
+      }
+    }
+
+    &.vertical {
+      flex-direction: column;
+    }
+
+    // Nested `nav`
+    .nav {
+      margin-left: $hk-grid-size;
+    }
+  }
+}

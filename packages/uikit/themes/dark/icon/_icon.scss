@@ -1,0 +1,17 @@
+@import "icon-variables";
+@import "../variables/intents-variables";
+
+.#{$themeid} {
+  .#{$ns} {
+    &.icon {
+      // intent support for both SVG and font icons
+      #{$hk-icon-classes} {
+        @each $intent, $color in $hk-intent-text-colors {
+          &.intent-#{$intent} {
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+@use "@hungknow/uikit/scss/hk-uikit" as uikit;
+
+/*
+ * Set the new background color for sidebar on the left and the content on the right
+ */
+$container-width: uikit.$hk-grid-size * 110;
+$container-padding: uikit.$hk-grid-size / 2;
+
+$sidebar-width: uikit.$hk-grid-size * 27;
+$sidebar-padding: uikit.$hk-grid-size * 1.5;
+$sidebar-background-color: uikit.$white;
+$dark-sidebar-background-color: uikit.$dark-gray5;
+
+$content-width: $container-width - $sidebar-width;
+$content-padding: uikit.$hk-grid-size * 2;
+$content-background-color: uikit.$light-gray5;
+$dark-content-background-color: uikit.$dark-gray4;
+
+@use "@hungknow/uikit/themes/dark/hk-uikit-dark" as uikitdark with (
+    $hk-app-background-color: $dark-content-background-color,
+    $hk-menu-background-color: $dark-sidebar-background-color
+);
+
+// @import url("https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css");
+
+.docs-root {
+    background-color: $content-background-color;
+
+    &.#{uikitdark.$themeid} {
+        background-color: $dark-content-background-color;
+    }
+}
+
+.docs-app {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    max-width: 1100px;
+    min-height: 100vh;
+
+    & > fill {
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+}
+
+.docs-nav-wrapper {
+    // flex-basis: 270px;
+}
+
+.docs-nav {
+    $background-shift: 999px;
+    background-color: $sidebar-background-color;
+    box-shadow: 1px 0 0 uikit.$hk-divider-black;
+    // height: 100vh;
+
+    & .#{uikit.$ns}.menu {
+        // Make font bold for selected menu item
+        & .menu-item:hover,
+        & .menu-item.active,
+        & .menu-item.docs-nav-expanded {
+            // bold text instead of background color
+            background-color: transparent;
+            font-weight: 600;
+        }
+    }
+
+    .#{uikitdark.$themeid} & {
+        background-color: $dark-sidebar-background-color;
+        box-shadow: 1px 0 0 rgba(uikit.$black, 0.4);
+    }
+}
+
+.docs-content-wrapper {
+    align-items: flex-start;
+    background-color: $content-background-color;
+    // flex-basis: 830px;
+    outline: none;
+
+    .#{uikitdark.$themeid} & {
+        background-color: $dark-content-background-color;
+    }
+}
+
+.docs-page {
+    max-width: $content-width;
+    padding-bottom: $content-padding * 2;
+    padding-left: $content-padding * 2;
+    padding-right: $container-padding;
+    padding-top: 0;
+    position: relative;
+}
+
+.doc-nav-collapse {
+    @include uikit.media-breakpoint-up(md) {
+        display: block !important;
+    }
+}

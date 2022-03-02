@@ -1,0 +1,11 @@
+@import "container-variables";
+
+@mixin make-container($gutter: $hk-container-padding-x) {
+  --#{$ns}-gutter-x: #{$gutter};
+  --#{$ns}-gutter-y: 0;
+  width: 100%;
+  padding-right: var(--#{$ns}-gutter-x, #{$gutter});
+  padding-left: var(--#{$ns}-gutter-x, #{$gutter});
+  margin-right: auto;
+  margin-left: auto;
+}

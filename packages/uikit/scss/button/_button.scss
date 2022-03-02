@@ -1,0 +1,88 @@
+/**
+ * Button
+ * <button type="button" class="hk1 button icon-add .modifier" :modifier>Button</button>
+ */
+
+@import "button-mixins";
+@import "../icon/icon-mixins";
+
+.#{$ns} {
+  &.button {
+    @include hk-button-base();
+    @include hk-button-height($hk-button-height);
+
+    &:empty {
+      // override padding from other modifiers (for CSS icon support)
+      /* stylelint-disable-next-line declaration-no-important */
+      padding: 0 !important;
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+    }
+
+    &.fill {
+      display: flex;
+      width: 100%;
+    }
+
+    &.align-right,
+    .align-right & {
+      text-align: right;
+    }
+
+    &.align-left,
+    .align-left & {
+      text-align: left;
+    }
+
+    // default styles
+    &:not([class*="intent-"]) {
+      @include hk-button();
+    }
+
+    // intents
+    @each $intent, $colors in $hk-button-intents {
+      &.intent-#{$intent} {
+        @include hk-button-intent($colors...);
+      }
+    }
+
+    &[class*="intent-"] .button-spinner .spinner-head {
+      stroke: $white;
+    }
+
+    // icons
+    &[class*="icon"] {
+      &::before {
+        @include hk-icon();
+        color: $hk-icon-color;
+      }
+    }
+
+    #{$hk-icon-classes} {
+      color: $hk-icon-color;
+
+      &.align-right {
+        margin-left: $hk-button-icon-spacing;
+      }
+    }
+
+    // disabled and intent button icon should use same color as text
+    &:disabled,
+    &.disabled,
+    &[class*="intent-"] {
+      &::before,
+      #{$hk-icon-classes} {
+        /* stylelint-disable-next-line declaration-no-important */
+        color: inherit !important;
+      }
+    }
+
+    // minimal must come last to override all default styles
+    &.minimal {
+      @include hk-button-minimal();
+    }
+  }
+}

@@ -1,0 +1,3 @@
+@import "../variables/transition-variables";
+
+$hk-collapse-transaction: ($hk-transition-duration * 1.5) $hk-transition-ease !default;
