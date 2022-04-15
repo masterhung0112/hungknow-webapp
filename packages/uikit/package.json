@@ -28,8 +28,10 @@
     "dist:variables": "generate-css-variables --retainDefault true scss/core/_colors.scss scss/core/_color-aliases.scss scss/core/_variables.scss"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
     "bootstrap-icons": "^1.8.0",
     "clsx": "^1.1.1",
+    "dequal": "^2.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
