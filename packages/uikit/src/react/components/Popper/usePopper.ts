@@ -45,6 +45,7 @@ const ariaDescribedByModifier: Modifier<"ariaDescribedBy", undefined> = {
     ({ state }) =>
     () => {
       const { reference, popper } = state.elements;
+      
       if ("removeAttribute" in reference) {
         const ids = (reference.getAttribute("aria-describedby") || "")
           .split(",")
@@ -167,7 +168,7 @@ export const usePopper = (
       ],
     });
   }, [strategy, placement, updateModifier, enabled, nextModifiers]);
-  
+ 
   useEffect(() => {
     if (!enabled || referenceElement == null || popperElement == null) {
       return undefined;

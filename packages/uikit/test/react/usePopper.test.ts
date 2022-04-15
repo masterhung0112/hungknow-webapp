@@ -19,6 +19,11 @@ describe("usePopper", () => {
     elements.popper = document.createElement("div");
   });
 
+  afterEach(() => {
+    elements.reference.remove()
+    elements.popper.remove()
+  })
+
   it("should return state", async () => {
     const setupResult = setup();
    
@@ -35,14 +40,9 @@ describe("usePopper", () => {
 
     const setupResult = setup();
     await setupResult.waitForNextUpdate()
-    expect(document.querySelector('[aria-describedby="example123"]')).toEqual(
-      elements.reference
-    );
+    expect(elements.reference.getAttribute('aria-describedby')).toEqual('example123')
 
     setupResult.unmount();
-
-    expect(document.querySelector('[aria-describedby="example123"]')).toEqual(
-      null
-    );
+    expect(elements.reference.getAttribute('aria-describedby')).not.toEqual('example123')
   });
 });
