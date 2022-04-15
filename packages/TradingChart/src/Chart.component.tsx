@@ -231,7 +231,6 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
         this.interval_ms = tf || Utils.detect_interval(this.ohlcv);
         this.interval = this.props.ib ? 1 : this.interval_ms;
 
-        // this.interval = this.props.ib ? 1 : this.interval_ms
         Utils.warn(() => this.props.ib && !this.chart.tf, IB_TF_WARN, SECOND);
     }
     set_ytransform(s: any) {

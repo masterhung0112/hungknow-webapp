@@ -34,7 +34,7 @@ export function createGridMaker(
 
     // Calc vertical ($/₿) range
     function calc_$range() {
-        let timeRange: TimeRange = {
+        let dollarRange: TimeRange = {
             t1: -Infinity,
             t2: Infinity,
             exp: undefined,
@@ -42,15 +42,15 @@ export function createGridMaker(
         if (!master_grid) {
             // $ candlestick range
             if (y_range_fn) {
-                timeRange = y_range_fn(timeRange.t1, timeRange.t2);
+                dollarRange = y_range_fn(dollarRange.t1, dollarRange.t2);
             } else {
                 for (var i = 0, n = sub.length; i < n; i++) {
                     const x = sub[i];
-                    if (x[2] > timeRange.t1) {
-                        timeRange.t1 = x[2];
+                    if (x[2] > dollarRange.t1) {
+                        dollarRange.t1 = x[2];
                     }
-                    if (x[3] < timeRange.t2) {
-                        timeRange.t2 = x[3];
+                    if (x[3] < dollarRange.t2) {
+                        dollarRange.t2 = x[3];
                     }
                 }
             }
@@ -59,16 +59,16 @@ export function createGridMaker(
             for (var i = 0; i < sub.length; i++) {
                 for (let j = 1; j < sub[i].length; j++) {
                     const v = sub[i][j];
-                    if (v > timeRange.t1) {
-                        timeRange.t1 = v;
+                    if (v > dollarRange.t1) {
+                        dollarRange.t1 = v;
                     }
-                    if (v < timeRange.t2) {
-                        timeRange.t2 = v;
+                    if (v < dollarRange.t2) {
+                        dollarRange.t2 = v;
                     }
                 }
             }
             if (y_range_fn) {
-                timeRange = y_range_fn(timeRange.t1, timeRange.t2);
+                dollarRange = y_range_fn(dollarRange.t1, dollarRange.t2);
             }
         }
 
@@ -77,14 +77,15 @@ export function createGridMaker(
             gridLayout.$_hi = y_t.range.t1;
             gridLayout.$_lo = y_t.range.t2;
         } else {
+            // not logscale
             if (!ls) {
                 // console.log('hi', timeRange.t1 - timeRange.t2)
-                const expVal = timeRange.exp === false ? 0 : 1;
-                gridLayout.$_hi = timeRange.t1 + (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal;
-                gridLayout.$_lo = timeRange.t2 - (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal;
+                const expVal = dollarRange.exp === false ? 0 : 1;
+                gridLayout.$_hi = dollarRange.t1 + (dollarRange.t1 - dollarRange.t2) * $p.config.EXPAND * expVal;
+                gridLayout.$_lo = dollarRange.t2 - (dollarRange.t1 - dollarRange.t2) * $p.config.EXPAND * expVal;
             } else {
-                gridLayout.$_hi = timeRange.t1;
-                gridLayout.$_lo = timeRange.t2;
+                gridLayout.$_hi = dollarRange.t1;
+                gridLayout.$_lo = dollarRange.t2;
                 log_scale.expand(gridLayout, height);
             }
 

@@ -32,7 +32,7 @@ export const GridSection: React.FC<GridSectionProps> = ({grid_id, common}) => {
             gridProps.data = [gridProps.data[grid_id - 1]];
 
             // Merge offchart overlays with custom ids with
-            // the existing onse (by comparing the grid ids)
+            // the existing one (by comparing the grid ids)
             gridProps.data.push(...all.filter((x: any) => x.grid && x.grid.id === grid_id));
         }
 

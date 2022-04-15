@@ -107,7 +107,7 @@ export default {
         let min = Infinity;
         ohlcv.slice(0, len).forEach((x, i) => {
             const d = ohlcv[i + 1][0] - x[0];
-            if (d === d && d < min) {
+            if (d < min) {
                 min = d;
             }
         });
