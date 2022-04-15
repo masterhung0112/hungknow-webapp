@@ -35,6 +35,7 @@ There are three levels of inheritance
 * Site theme - A theme specific to your site
 
 # Theme
+
 ## Using the Build Process of the Application
 Install the uikit package
 
@@ -71,7 +72,30 @@ The content of `index.scss` file
     $hk-menu-background-color: #394b59
 );
 ```
+
 Your output of index.scss will have all styles for `dark` theme with the updated menu background color.
+
+# Component Lists
+- Grid: [Usage](), [Theme Color]()
+- Button: [Usage](), [Theme Color]()
+- Dropdown
+- Input
+- Scrollbar
+- Badge
+- Progress bar
+- Lists and trees
+- Activity bar
+- Side bar
+- Panel
+- Title Bar
+- Menu Bar
+- Notification
+- Banner
+- Breadcrumb
+- Navbar [Usage](), [Theme Color]()
+- Menu: [Usage](), [Theme Color](docs/theme-colors.md#menu)
+- Tab
+- Settings: [Usage](), [Theme Color]()
 # Grid
 
 ## Grid classes vs. unit classes

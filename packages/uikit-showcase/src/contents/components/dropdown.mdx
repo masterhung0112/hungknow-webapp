@@ -1,0 +1,42 @@
+Dropdown is toggleable, contextual overlay for displaying a list of items.
+
+<Dropdown>
+    <Dropdown.Toggle>
+        Dropdown Button
+    </Dropdown.Toggle>
+    <Dropdown.Menu>
+        <Dropdown.Header>Dropdown header</Dropdown.Header>
+        <Dropdown.Item href="">Action</Dropdown.Item>
+        <Dropdown.Item href="">Another action</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item>Separated link</Dropdown.Item>
+    </Dropdown.Menu>
+</Dropdown>
+
+<DropdownButton title="Dropdown button">
+    <Dropdown.Item href="">Action</Dropdown.Item>
+    <Dropdown.Item href="">Another action</Dropdown.Item>
+    <Dropdown.Divider />
+    <Dropdown.Item>Separated link</Dropdown.Item>
+</DropdownButton>
+
+Create a split dropdown by combining the Dropdown components with another button and a ButtonGroup
+
+<Dropdown>
+    <Button>Split Button</Button>
+    <Dropdown.Toggle split />
+    <Dropdown.Menu>
+        <Dropdown.Header>Dropdown header</Dropdown.Header>
+        <Dropdown.Item href="">Action</Dropdown.Item>
+    </Dropdown.Menu>
+</Dropdown>
+
+Scrolling DropDown Menu
+<Dropdown>
+    <Dropdown.Menu scrolling>
+        <Dropdown.Item key={'1'} value={'Hello'} />
+        <Dropdown.Item key={'1'} value={'Hello'} />
+        <Dropdown.Item key={'1'} value={'Hello'} />
+        <Dropdown.Item key={'1'} value={'Hello'} />
+    </Dropdown.Menu>
+</Dropdown>
