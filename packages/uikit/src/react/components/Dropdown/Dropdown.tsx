@@ -11,9 +11,19 @@ type DropdownComponentType = React.FC & {
   Header: typeof DropdownHeader;
 };
 
-export const DropdownComponent: DropdownComponentType = () => {
-  return <div>hello</div>;
+export interface DropdownProps {
+  navbar?: boolean
+}
+export const DropdownComponent: DropdownComponentType = React.forwardRef<HTMLElement, DropdownProps>(props, ref) => {
+  const Component = 'div'
+  // render lables
+  // render text
+  // render icon
+  // render menu
+  return <Component ref={ref}>hello</Component>;
 };
+
+DropdownComponent.displayName = 'Dorpdown'
 
 DropdownComponent.Divider = DropdownDivider;
 DropdownComponent.Item = DropdownItem;
