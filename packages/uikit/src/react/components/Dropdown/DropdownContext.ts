@@ -1,4 +1,5 @@
 import React from 'react'
+import type { Placement } from '../Popper/usePopper'
 
 export type DropdownContextValue = {
     toggle: (nextShow: boolean, event?: React.SyntheticEvent | Event) => void
@@ -7,6 +8,7 @@ export type DropdownContextValue = {
     setMenu: (ref: HTMLElement | null) => void
     setToggle: (ref: HTMLElement | null) => void
     show: boolean
+    placement: Placement
 }
 
 export const DropdownContext = React.createContext<DropdownContextValue | null>(null)

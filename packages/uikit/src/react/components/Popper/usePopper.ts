@@ -18,6 +18,23 @@ export type Placement = Popper.Placement;
 export type VirtualElement = Popper.VirtualElement;
 export type State = Popper.State;
 
+export type OffsetValue = [
+  number | null | undefined,
+  number | null | undefined,
+];
+export type OffsetFunction = (details: {
+  popper: Popper.Rect;
+  reference: Popper.Rect;
+  placement: Placement;
+}) => OffsetValue;
+
+export type Offset = OffsetFunction | OffsetValue;
+
+export type ModifierMap = Record<string, Partial<Modifier<any, any>>>;
+export type Modifiers =
+  | Popper.Options['modifiers']
+  | Record<string, Partial<Modifier<any, any>>>;
+  
 export interface UsePopperState {
   placement: Placement;
   update: () => void;
