@@ -33,7 +33,8 @@
     "clsx": "^1.1.1",
     "dequal": "^2.0.2",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "uncontrollable": "^7.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",

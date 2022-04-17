@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { MouseEvent, KeyboardEvent } from 'react'
 import type { Placement } from '../Popper/usePopper'
 
 export type DropdownContextValue = {
-    toggle: (nextShow: boolean, event?: React.SyntheticEvent | Event) => void
+    toggle: (nextShow: boolean, event?: React.SyntheticEvent | MouseEvent | KeyboardEvent) => void
     menuElement: HTMLElement | null
     toggleElement: HTMLElement | null
     setMenu: (ref: HTMLElement | null) => void
