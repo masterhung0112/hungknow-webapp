@@ -1,5 +1,4 @@
 import React, {
-  ElementType,
   useCallback,
   useMemo,
   KeyboardEvent,
@@ -17,7 +16,7 @@ import { SelectCallback } from "../../types";
 import { useRefWithUpdate } from "src/react/hooks/useRefWithUpdate";
 import { DropdownToggle } from "./DropdownToggle";
 
-export type ToggleEvent = React.SyntheticEvent | KeyboardEvent | MouseEvent;
+export type ToggleEvent = React.SyntheticEvent | KeyboardEvent | MouseEvent | Event;
 
 export interface ToggleMetadata {
   source: string | undefined;
