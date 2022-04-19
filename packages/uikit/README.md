@@ -1,3 +1,9 @@
+# Compilation
+
+From the root folder
+`yarn build:uikit`
+
+
 # Theme
 
 My purpose is that you have a default theme.

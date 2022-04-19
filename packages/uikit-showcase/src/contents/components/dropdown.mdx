@@ -40,3 +40,28 @@ Scrolling DropDown Menu
         <Dropdown.Item key={'1'} value={'Hello'} />
     </Dropdown.Menu>
 </Dropdown>
+
+<Dropdown>
+  <Dropdown.Toggle>
+    {(props) => (
+      <Button {...props} className="caret">
+        Open
+      </Button>
+    )}
+  </Dropdown.Toggle>
+  <Dropdown.Menu flip offset={[0, 8]}>
+    {(menuProps, meta) => (
+      <ul
+        {...menuProps}
+        className="p-4 border shadow-md bg-white absolute z-10"
+        style={{
+          transition: "visibility 500ms, opacity 500ms",
+          visibility: meta.show ? "visible" : "hidden",
+          opacity: meta.show ? "1" : "0",
+        }}
+      >
+        <p>Hey there</p>
+      </ul>
+    )}
+  </Dropdown.Menu>
+</Dropdown>

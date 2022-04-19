@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from "react";
-import { useSSRSafeId } from "src/react/hooks/useSSRSafeId";
+import { useSSRSafeId } from "../../hooks/useSSRSafeId";
 import { DropdownContext, DropdownContextValue } from "./DropdownContext";
 
 export interface UseDropdownToggleProps {

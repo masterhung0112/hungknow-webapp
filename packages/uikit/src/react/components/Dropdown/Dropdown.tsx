@@ -8,12 +8,12 @@ import { useUncontrolled, useUncontrolledProp } from "uncontrollable";
 import { DropdownContext, DropdownContextValue } from "./DropdownContext";
 import { DropdownDivider } from "./DropdownDivider";
 import { DropdownHeader } from "./DropdownHeader";
-import { DropdownItem } from "./DropDownItem";
+import { DropdownItem } from "./DropdownItem";
 import { DropdownMenu } from "./DropdownMenu";
 import { useEventCallback } from "../../hooks/useEventCallback";
 import { Placement } from "../Popper/usePopper";
 import { SelectCallback } from "../../types";
-import { useRefWithUpdate } from "src/react/hooks/useRefWithUpdate";
+import { useRefWithUpdate } from "../../hooks/useRefWithUpdate";
 import { DropdownToggle } from "./DropdownToggle";
 
 export type ToggleEvent = React.SyntheticEvent | KeyboardEvent | MouseEvent | Event;
