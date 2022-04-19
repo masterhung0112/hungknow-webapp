@@ -40,6 +40,11 @@ yarn nextbrowser:dev
 
 My own theme components that was written in React
 
+Command to start working with ui kit
+```sh
+yarn dev:uikit
+```
+
 # CI
 
 CI was tested on the following platform:
