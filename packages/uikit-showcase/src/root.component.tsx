@@ -18,7 +18,7 @@ const LazyThing = ({ filePath, ...props }) => {
   return <Component {...props} />
 }
 
-export default function Root(props) {
+export default function Root() {
   const [docPath, setDocPath] = useState('')
   const [navIsOpen, setNavOpen] = useState(false)
   
