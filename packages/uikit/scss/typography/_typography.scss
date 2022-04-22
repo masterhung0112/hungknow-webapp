@@ -1,5 +1,6 @@
 @import "../variables/core-variables";
 @import "typography-variables";
+@import "typography-mixins";
 @import "../icon/icon-variables";
 
 .#{$ns}-rtl {

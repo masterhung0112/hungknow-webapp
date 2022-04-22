@@ -1,5 +1,5 @@
+// @use "../typography/typography-variables";
 @import "../colors/intent-colors";
-@import "../typography/typography-variables";
 
 $hk-icon-classes: (
   ".#{$ns}.icon",
@@ -10,7 +10,7 @@ $hk-icon-classes: (
 $hk-icon-size-standard: 16px !default;
 $hk-icon-size-large: 20px !default;
 
-$hk-icon-color: $hk-text-color-muted !default;
+$hk-icon-color: gray1!default;
 $hk-icon-color-hover: $hk-text-color !default;
 $hk-icon-color-disabled: $hk-text-color-disabled !default;
 $hk-icon-color-selected: $hk-intent-primary !default;

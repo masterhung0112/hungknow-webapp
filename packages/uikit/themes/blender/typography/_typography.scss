@@ -1,0 +1,21 @@
+@import "typography-variables";
+
+@import "@hungknow/uikit/scss/typography/typography-mixins" ;
+@import "../variables/core-variables";
+
+.#{$themeid} {
+  // color: $hk-text-color;
+  @include typography-default();
+  // @include defaultTypography.button;
+  // .#{$ns} {
+  //   &.text-muted {
+  //     color: $hk-text-color-muted;
+  //   }
+
+  //   &.text-disabled {
+  //     color: $hk-text-color-disabled;
+  //   }
+
+  //   a
+  // }
+}

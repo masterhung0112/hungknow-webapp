@@ -1,0 +1,11 @@
+@use "@hungknow/uikit/scss/icon/index" as uikit;
+@import "button-variables";
+
+.#{$themeid} .#{ns} {
+  &.button {
+    // For normal button
+    &:not([class*="intent-"]) {
+      @include hk-blender-button();
+    }
+  }
+}
