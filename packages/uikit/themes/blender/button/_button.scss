@@ -1,5 +1,6 @@
 @use "@hungknow/uikit/scss/icon/index" as uikit;
 @import "button-variables";
+@import "button-mixins";
 
 .#{$themeid} .#{ns} {
   &.button {

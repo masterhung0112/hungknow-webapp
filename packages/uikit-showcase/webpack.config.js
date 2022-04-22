@@ -5,6 +5,7 @@ const { merge } = require("webpack-merge");
 const devWebConfig = require("./webpack.config.dev");
 const webpack = require("webpack");
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CSP_UNSAFE_EVAL_IF_DEV = " 'unsafe-eval'";
 
 module.exports = (env, argv) => {
@@ -35,15 +36,18 @@ module.exports = (env, argv) => {
           sideEffects: true,
           use: [
             "style-loader",
-            {
-              loader: "css-loader",
-              options: {
-                modules: {
-                  localIdentName: "[local]",
-                },
-                sourceMap: true,
-              },
-            },
+            // In production, use MiniCSSExtractPlugin to extract css to separate files.
+            isDev
+              ? {
+                  loader: "css-loader",
+                  options: {
+                    modules: {
+                      localIdentName: "[local]",
+                    },
+                    sourceMap: true,
+                  },
+                }
+              : { loader: MiniCssExtractPlugin.loader },
             {
               loader: "sass-loader",
               options: {
@@ -98,6 +102,10 @@ module.exports = (env, argv) => {
         "process.env.NODE_ENV": JSON.stringify(
           isDev ? "development" : "production"
         ),
+      }),
+      new MiniCssExtractPlugin({
+        filename: "[name].[contenthash].css",
+        chunkFilename: "[name].[contenthash].css",
       }),
     ],
   };
