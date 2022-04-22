@@ -18,6 +18,8 @@ const LazyThing = ({ filePath, ...props }) => {
   return <Component {...props} />
 }
 
+const defaultComponent = 'dropdown'
+
 export default function Root() {
   const [docPath, setDocPath] = useState('')
   const [navIsOpen, setNavOpen] = useState(false)
@@ -37,7 +39,7 @@ export default function Root() {
        </Navbar>
       <div className='docs-app row'>
         <div className='docs-nav-wrapper col-lg-3'>
-          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId={`${baseRoute}/components/navbar`} hidden={!navIsOpen} />
+          <ShowCaseRoutes onDocRouteChanged={onDocRouteChanged} defaultPageId={`${baseRoute}/components/${defaultComponent}`} hidden={!navIsOpen} />
         </div>
         <main className='docs-content-wrapper col-lg-auto container-xll' role="main">
           <div className="docs-page">

@@ -1,6 +1,51 @@
-import { Dropdown } from "@hungknow/uikit"
+import { Button, Dropdown } from "@hungknow/uikit";
 
 Dropdown is toggleable, contextual overlay for displaying a list of items.
+
+<!--(menuProps, meta) => (
+
+<ul
+  {...menuProps}
+  className="p-4 border shadow-md bg-white absolute z-10"
+  style={{
+    transition: "visibility 500ms, opacity 500ms",
+    visibility: meta.show ? "visible" : "hidden",
+    opacity: meta.show ? "1" : "0",
+  }}
+>
+  <p>Menu Item</p>
+</ul>
+)-->
+
+<div className="default">
+  <Dropdown>
+    <Dropdown.Toggle>
+      {(props) => (
+        <Button {...props} className="caret" primary>
+          Open
+        </Button>
+      )}
+    </Dropdown.Toggle>
+    <Dropdown.Menu flip offset={[0, 8]}>
+      {(menuProps, meta) => {
+        return (
+          <div
+            {...menuProps}
+            style={{
+              visibility: meta.show ? "visible" : "hidden",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <Dropdown.Item>Hello</Dropdown.Item>
+            <Dropdown.Item>How are you</Dropdown.Item>
+          </div>
+        );
+      }}
+    </Dropdown.Menu>
+  </Dropdown>
+</div>
+
 <!--
 <Dropdown>
     <Dropdown.Toggle>
@@ -14,7 +59,6 @@ Dropdown is toggleable, contextual overlay for displaying a list of items.
         <Dropdown.Item>Separated link</Dropdown.Item>
     </Dropdown.Menu>
 </Dropdown>
-
 <DropdownButton title="Dropdown button">
     <Dropdown.Item href="">Action</Dropdown.Item>
     <Dropdown.Item href="">Another action</Dropdown.Item>
@@ -43,27 +87,3 @@ Scrolling DropDown Menu
     </Dropdown.Menu>
 </Dropdown>
 -->
-<Dropdown>
-  <Dropdown.Toggle>
-    {(props) => (
-      <Button {...props} className="caret">
-        Open
-      </Button>
-    )}
-  </Dropdown.Toggle>
-  <Dropdown.Menu flip offset={[0, 8]}>
-    {(menuProps, meta) => (
-      <ul
-        {...menuProps}
-        className="p-4 border shadow-md bg-white absolute z-10"
-        style={{
-          transition: "visibility 500ms, opacity 500ms",
-          visibility: meta.show ? "visible" : "hidden",
-          opacity: meta.show ? "1" : "0",
-        }}
-      >
-        <p>Hey there</p>
-      </ul>
-    )}
-  </Dropdown.Menu>
-</Dropdown>
