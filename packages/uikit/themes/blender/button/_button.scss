@@ -2,7 +2,7 @@
 @import "button-variables";
 @import "button-mixins";
 
-.#{$themeid} .#{ns} {
+.#{$themeid} .#{$ns} {
   &.button {
     // For normal button
     &:not([class*="intent-"]) {

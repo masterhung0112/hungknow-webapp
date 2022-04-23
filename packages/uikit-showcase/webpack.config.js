@@ -37,17 +37,16 @@ module.exports = (env, argv) => {
           use: [
             "style-loader",
             // In production, use MiniCSSExtractPlugin to extract css to separate files.
-            isDev
-              ? {
-                  loader: "css-loader",
-                  options: {
-                    modules: {
-                      localIdentName: "[local]",
-                    },
-                    sourceMap: true,
-                  },
-                }
-              : { loader: MiniCssExtractPlugin.loader },
+            isDev ? "style-loader" : { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  localIdentName: "[local]",
+                },
+                sourceMap: true,
+              },
+            },
             {
               loader: "sass-loader",
               options: {
