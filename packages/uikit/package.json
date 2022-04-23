@@ -1,11 +1,13 @@
 {
   "name": "@hungknow/uikit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/hk-ui.js",
   "types": "dist/index.d.ts",
   "style": "dist/css/hk-uikit.css",
   "license": "MIT",
-  "sideEffects": ["**/*.css"],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist",
     "scss",
@@ -16,6 +18,7 @@
     "dev:build": "shx rm -rf dist && yarn build:css-def && yarn build:css && cross-env NODE_ENV=development webpack",
     "build:css": "sass scss/hk-uikit.scss:dist/css/hk-uikit.css",
     "build:css:dark": "sass --load-path=../../node_modules themes/dark/hk-uikit-dark.scss:dist/css/hk-uikit-dark.css",
+    "build:css:blender": "sass --load-path=../../node_modules themes/blender/hk-uikit-blender.scss:dist/css/hk-uikit-blender.css",
     "build:css-def": "tsm \"scss/hk-uikit.scss\" --aliasPrefixes.hkuisass sass --nameFormat none --exportType default",
     "dev:build:ts": "cross-env NODE_ENV=development webpack",
     "dev:ts": "cross-env NODE_ENV=development webpack --watch",
@@ -25,11 +28,14 @@
     "build-storybook": "build-storybook",
     "dist:variables": "generate-css-variables --retainDefault true scss/core/_colors.scss scss/core/_color-aliases.scss scss/core/_variables.scss"
   },
-  "dependencies": {   
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bootstrap-icons": "^1.8.0",
+    "clsx": "^1.1.1",
+    "dequal": "^2.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "clsx": "^1.1.1",
-    "bootstrap-icons": "^1.8.0"
+    "uncontrollable": "^7.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -40,6 +46,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@blueprintjs/icons": "^3.25.1",
     "@hot-loader/react-dom": "^17.0.2",
+    "@hungknow/eslint-config": "^1.0.0",
     "@storybook/addon-actions": "^6.4.16",
     "@storybook/addon-essentials": "^6.1.21",
     "@storybook/addon-links": "^6.4.16",
@@ -48,6 +55,7 @@
     "@testing-library/dom": "^7.30.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.2.5",
+    "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^12.8.3",
     "@types/classnames": "^2.2.10",
     "@types/enzyme": "^3.10.6",
@@ -55,19 +63,21 @@
     "@types/jest": "^26.0.13",
     "@types/node": "14.14.35",
     "@types/react": "^17.0.38",
-    "typed-scss-modules": "^4.1.2",
+    "babel-loader": "^8.1.0",
+    "concurrently": "^7.0.0",
+    "css-loader": "^6.5.1",
+    "jest": "^27.5.1",
     "sass": "^1.49.0",
     "sass-loader": "^12.4.0",
-    "css-loader": "^6.5.1",
-    "style-loader": "^3.3.1",
-    "babel-loader": "^8.1.0",
     "source-map-loader": "^3.0.1",
+    "style-loader": "^3.3.1",
+    "ts-jest": "^27.1.4",
     "ts-loader": "^9.2.6",
-    "concurrently": "^7.0.0",
-    "@hungknow/eslint-config": "^1.0.0"
+    "typed-scss-modules": "^4.1.2",
+    "typescript": "^4.3.5"
   },
   "peerDependencies": {
-    "react": "^15.3.0 || 16 || 17",
-    "react-dom": "^15.3.0 || 16 || 17"
+    "react": "16 || 17",
+    "react-dom": "16 || 17"
   }
 }

@@ -1,3 +1,9 @@
+# Compilation
+
+From the root folder
+`yarn build:uikit`
+
+
 # Theme
 
 My purpose is that you have a default theme.
@@ -14,10 +20,9 @@ sass
 |- theme.config
 |- theme.scss
 |- themes
-   |- core
-      |- components
-          |- card
-              |- _card.scss
+   |- dark 
+      |- card
+         |- _card.scss
 |- core
    |- components
       |- card
@@ -35,6 +40,7 @@ There are three levels of inheritance
 * Site theme - A theme specific to your site
 
 # Theme
+
 ## Using the Build Process of the Application
 Install the uikit package
 
@@ -71,7 +77,53 @@ The content of `index.scss` file
     $hk-menu-background-color: #394b59
 );
 ```
+
 Your output of index.scss will have all styles for `dark` theme with the updated menu background color.
+
+
+# Create new theme
+
+In folder `theme`, create new folder with your target theme name.
+Create the basic folder and file structure.
+
+```
+<theme_name>
+.
+|- variables
+   |- _core-variables.scss
+|- _variables.scss
+|_ hk-uikit-<theme_name>.scss
+```
+
+## Basic SCSS Structure
+| File | Description | 
+| --- | --- |
+| colors/_app-color | Application background color 
+| colors/_border-colors | Border color |
+| colors/_intent-colors | The colors for 4 primary intent |
+
+
+# Component Lists
+- Grid: [Usage](), [Theme Color]()
+- Button: [Usage](), [Theme Color]()
+- Dropdown
+- Input
+- Scrollbar
+- Badge
+- Progress bar
+- Lists and trees
+- Activity bar
+- Side bar
+- Panel
+- Title Bar
+- Menu Bar
+- Notification
+- Banner
+- Breadcrumb
+- Navbar [Usage](), [Theme Color]()
+- Menu: [Usage](), [Theme Color](docs/theme-colors.md#menu)
+- Tab
+- Settings: [Usage](), [Theme Color]()
 # Grid
 
 ## Grid classes vs. unit classes

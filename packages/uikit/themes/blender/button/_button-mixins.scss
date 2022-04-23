@@ -1,0 +1,6 @@
+@import "../typography/typography-variables";
+
+@mixin hk-blender-button() {
+  background-color: $hk-button-background-color;
+  color: $hk-text-color;
+}

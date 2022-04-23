@@ -1,6 +1,7 @@
 export * from './Button'
 export * from './ButtonGroup'
 export * from './Collapse'
+export * from './Dropdown'
 export * from './Icon'
 export * from './menu'
 export * from './Nav'

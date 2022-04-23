@@ -3,9 +3,9 @@
 @import "button-mixins";
 @import "../icon/icon-variables";
 
-.#{$ns} {
-  &.button {
-    .#{$themeid} & {
+.#{$themeid} {
+  .#{$ns} {
+    &.button {
       &:not([class*="intent-"]) {
         @include hk-dark-button();
 

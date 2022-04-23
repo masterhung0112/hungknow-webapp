@@ -1,0 +1,48 @@
+@import "typography-variables";
+
+@mixin base-typography() {
+  font-size: $hk-font-size;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: $hk-line-height;
+  text-transform: none;
+}
+
+@mixin heading-typography() {
+  color: $hk-heading-color;
+  font-weight: 600;
+}
+
+@mixin overflow-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+@mixin typography-default() {
+  .text-muted {
+    color: $hk-text-color-muted;
+  }
+
+  .text-disabled {
+    color: $hk-text-color-disabled;
+  }
+
+  .text-overflow-ellipsis {
+    @include overflow-ellipsis();
+  }
+
+  a {
+    color: $hk-link-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $hk-link-color;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    
+  }
+}

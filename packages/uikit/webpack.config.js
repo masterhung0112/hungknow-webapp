@@ -1,6 +1,3 @@
-// Copyright (c) 2021-present HungKnow, Inc. All Rights Reserved.
-// See LICENSE.txt for license information.
-
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
