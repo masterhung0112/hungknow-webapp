@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import { useSSRSafeId } from "../../hooks/useSSRSafeId";
 import { DropdownContext, DropdownContextValue } from "./DropdownContext";
 
@@ -44,12 +44,15 @@ export function useDropdownToggle(): [
     [show, toggle]
   );
 
-  const props: UseDropdownToggleProps = {
-    id,
-    ref: setToggle || noop,
-    onClick: handleClick,
-    "aria-expanded": !!show,
-  };
+  const props: UseDropdownToggleProps = useMemo(
+    () => ({
+      id,
+      ref: setToggle || noop,
+      onClick: handleClick,
+      "aria-expanded": !!show,
+    }),
+    [id, setToggle, handleClick, show]
+  );
 
   if (menuElement && isRoleMenu(menuElement)) {
     props["aria-haspopup"] = true;

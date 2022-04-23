@@ -3,6 +3,9 @@ import React, {
   useMemo,
   KeyboardEvent,
   MouseEvent,
+  useContext,
+  useRef,
+  useEffect,
 } from "react";
 import { useUncontrolled, useUncontrolledProp } from "uncontrollable";
 import { DropdownContext, DropdownContextValue } from "./DropdownContext";
@@ -14,9 +17,16 @@ import { useEventCallback } from "../../hooks/useEventCallback";
 import { Placement } from "../Popper/usePopper";
 import { SelectCallback } from "../../types";
 import { useRefWithUpdate } from "../../hooks/useRefWithUpdate";
-import { DropdownToggle } from "./DropdownToggle";
+import { DropdownToggle, isRoleMenu } from "./DropdownToggle";
+import { SelectableContext } from "../../context/SelectableContext";
+import { usePrevious } from "../../hooks/usePrevious";
+import { dataAttr } from "../../utils/dataKey";
 
-export type ToggleEvent = React.SyntheticEvent | KeyboardEvent | MouseEvent | Event;
+export type ToggleEvent =
+  | React.SyntheticEvent
+  | KeyboardEvent
+  | MouseEvent
+  | Event;
 
 export interface ToggleMetadata {
   source: string | undefined;
@@ -55,13 +65,14 @@ export const Dropdown: DropdownComponentType = (pProps) => {
     show: rawShow,
     className,
     //align,
-    onSelect,
-    onToggle: rawOnToggle,
+    onSelect, // select the item displayed inside the menu
+    onToggle: rawOnToggle, // Hide the menu
     focusFirstItemOnShow,
     navbar: _4,
     autoClose,
     defaultShow,
     children,
+    itemSelector = `* [*${dataAttr("dropdown-item")}]`,
     // ...props
   } = useUncontrolled(pProps, { show: "onToggle" });
 
@@ -80,6 +91,13 @@ export const Dropdown: DropdownComponentType = (pProps) => {
   const [toggleRef, setToggle] = useRefWithUpdate<HTMLElement>();
   const toggleElement = toggleRef.current;
 
+  const lastShow = usePrevious(show);
+
+  const onSelectCtx = useContext(SelectableContext);
+  const lastSourceEvent = useRef<string | null>(null);
+  const focusInDropdown = useRef(false);
+
+  // Toggle the display of menu under the dropdown
   const toggle = useCallback(
     (
       nextShow: boolean,
@@ -116,6 +134,20 @@ export const Dropdown: DropdownComponentType = (pProps) => {
     }
   );
 
+  const handleSelect = useEventCallback(() => {
+    (key: string | null, event: React.SyntheticEvent) => {
+      // Select the item displayed inside the menu
+      onSelect?.(key, event);
+
+      // false: hide the menu
+      toggle(false, event, "select");
+
+      if (!event.isPropagationStopped()) {
+        onSelectCtx?.(key, event);
+      }
+    };
+  });
+
   const context: DropdownContextValue = useMemo(
     () => ({
       toggle,
@@ -129,10 +161,56 @@ export const Dropdown: DropdownComponentType = (pProps) => {
     [toggle, placement, show, menuElement, toggleElement, setMenu, setToggle]
   );
 
+  if (menuElement && lastShow && !show) {
+    focusInDropdown.current = menuElement.contains(
+      menuElement.ownerDocument.activeElement
+    );
+  }
+
+  const focusToggle = useEventCallback(() => {
+    if (toggleElement && toggleElement.focus) {
+      toggleElement.focus();
+    }
+  });
+
+  const maybeFocusFirst = useEventCallback(() => {
+    const type = lastSourceEvent.current;
+    let focusType = focusFirstItemOnShow;
+
+    if (focusType == null) {
+      focusType =
+        menuRef.current && isRoleMenu(menuRef.current) ? "keyboard" : false;
+    }
+
+    if (
+      focusType === false ||
+      (focusType === "keyboard" && !/^key.+$/.test(type!))
+    ) {
+      return;
+    }
+
+    //TODO: Help
+    // const first = qsa(menuRef.current!, itemSelector)[0]
+    // if (first && first.focus) first.focus()
+  });
+
+  useEffect(() => {
+    if (show) {
+      maybeFocusFirst();
+    } else if (focusInDropdown.current) {
+      focusInDropdown.current = false;
+      focusToggle();
+    }
+
+    // only `show` should be changing
+  }, [show, focusInDropdown, focusToggle, maybeFocusFirst]);
+
   return (
-    <DropdownContext.Provider value={context}>
-      {children}
-    </DropdownContext.Provider>
+    <SelectableContext.Provider value={handleSelect}>
+      <DropdownContext.Provider value={context}>
+        {children}
+      </DropdownContext.Provider>
+    </SelectableContext.Provider>
   );
 };
 

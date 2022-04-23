@@ -1,8 +1,9 @@
 import React from 'react'
 import { AbstractButton, AbstractButtonProps } from './AbstractButton'
+import { AnchorOptions } from './useButtonProps'
 
-export type AnchorButtonProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & Omit<AbstractButtonProps, 'tagName'>
+export type AnchorButtonProps = AnchorOptions & React.AnchorHTMLAttributes<HTMLAnchorElement> & Omit<AbstractButtonProps, 'tagName'>
 
 export const AnchorButton: React.VFC<AnchorButtonProps> = ({disabled, href, ...props}) => {
-    return <AbstractButton tagName="a" role="button" href={disabled ? undefined: href} {...props} />
+    return <AbstractButton href={disabled ? undefined: href} {...props} />
 }

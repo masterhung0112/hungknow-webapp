@@ -33,15 +33,17 @@ export function useDropdownItem({
   onClick,
 }: UseDropdownItemOptions) {
   const onSelectCtx = useContext(SelectableContext);
-  const navContext = useContext(NavContext);
 
-  const { activeKey } = navContext || {};
+  // Fetch activeKey from Dropdown.Menu
+  const { activeKey } = useContext(NavContext) || {};
   const eventKey = makeEventKey(key, href);
 
+  // Compare the activeKey with this item's key
   const isActive =
     active === null && key !== null
       ? makeEventKey(activeKey) === eventKey
       : active;
+
   const handleClick = useEventCallback((event) => {
     if (disabled) return;
 
