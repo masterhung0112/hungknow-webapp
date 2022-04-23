@@ -1,6 +1,6 @@
 {
   "name": "@hungknow/uikit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/hk-ui.js",
   "types": "dist/index.d.ts",
   "style": "dist/css/hk-uikit.css",

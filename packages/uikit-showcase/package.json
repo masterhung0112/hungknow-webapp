@@ -1,6 +1,6 @@
 {
   "name": "@hungknow/uikit-showcase",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "start": "webpack serve",
     "dev": "webpack serve --env standalone --mode=development",
