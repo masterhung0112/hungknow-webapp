@@ -1,6 +1,9 @@
 @import "divider-variables";
 
-$divider-margin: calc($hk-grid-size / 2) !default;
+/**
+ * Class names:
+ * .divider
+ */
 
 .#{$ns} {
     &.divider {
@@ -9,6 +12,6 @@ $divider-margin: calc($hk-grid-size / 2) !default;
         // the appropriate border based on direction of container.
         border-right: 1px solid $hk-divider-black;
 
-        margin: $divider-margin;
+        margin: $hk-divider-margin;
     }
 }

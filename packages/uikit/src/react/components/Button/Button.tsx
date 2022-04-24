@@ -1,6 +1,5 @@
 import React from 'react'
 import { AbstractButton, AbstractButtonProps } from './AbstractButton'
-import { useButtonProps } from './useButtonProps'
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & Omit<AbstractButtonProps, 'tagName'>
 

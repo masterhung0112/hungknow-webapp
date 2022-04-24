@@ -15,7 +15,11 @@ import {
   useButtonProps,
   UseButtonPropsMetadata,
 } from "./useButtonProps";
-import { ChildrenFn, isChildrenFn } from "../../utils/isChildrenFn";
+import {
+  ChildrenFn,
+  ChildrenFnProps,
+  isChildrenFn,
+} from "../../utils/isChildrenFn";
 
 export interface AbstractButtonProps extends IntentProps, ActionProps, Props {
   //   tagName: string;
@@ -30,9 +34,8 @@ export interface AbstractButtonProps extends IntentProps, ActionProps, Props {
 export const AbstractButton = <
   P extends
     | HTMLButtonElement
-    | (HTMLAnchorElement & {
-        children: ChildrenFn<AriaButtonProps, UseButtonPropsMetadata>;
-      })
+    | (HTMLAnchorElement &
+        ChildrenFnProps<AriaButtonProps, UseButtonPropsMetadata>)
 >({
   active,
   fill,

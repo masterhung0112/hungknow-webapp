@@ -17,7 +17,7 @@ export interface MenuItemProps extends ActionProps, LinkProps {
 }
 
 /**
- * If the parent menu is the <ul> tag, you better
+ * 
  */
 export const MenuItem: React.FC<MenuItemProps> = ({text = '', label, labelClassName, labelElement, tagName = 'a', active, expanded, disabled, isHeader, children, ...htmlProps}) => {
     const maybeRenderLabel = React.useMemo(() => {

@@ -124,6 +124,7 @@ Create the basic folder and file structure.
 - Menu: [Usage](), [Theme Color](docs/theme-colors.md#menu)
 - Tab
 - Settings: [Usage](), [Theme Color]()
+- Icon [Usage](#icon)
 # Grid
 
 ## Grid classes vs. unit classes
@@ -230,6 +231,13 @@ Menu is the wrapper of the whole menu.
 - `hk1-menu-header` solely contains text and icon
 - `hk1-menu-message` solely contains text and icon
 - `hk1-menu-divider` solely contains text and icon
+
+# Icon
+
+The Icon component use [Bootstrap Icons](https://icons.getbootstrap.com/).
+
+In case that you want to different icon library,
+define a new icon component.
 
 # Development
 The development tool workflow must satisfy the following points.

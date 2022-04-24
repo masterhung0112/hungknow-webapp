@@ -1,7 +1,5 @@
-import { noop } from "@babel/types";
-import React, { useContext, useRef } from "react";
-import { ChildrenFn, isChildrenFn } from "../../utils/isChildrenFn";
-import { useCallbackRef } from "../..//hooks/useCallbackRef";
+import { useContext, useRef } from "react";
+import { useCallbackRef } from "../../hooks/useCallbackRef";
 import {
   ClickOutsideOptions,
   useClickOutside,
@@ -14,9 +12,11 @@ import {
   UsePopperOptions,
   UsePopperState,
 } from "../Popper/usePopper";
-import { DropdownContext, DropdownContextValue } from "./DropdownContext";
+import { DropdownContext, DropdownContextValue } from "../Dropdown/DropdownContext";
+import { ChildrenFn } from "../../utils/isChildrenFn";
+import { noop } from "../../utils/noop";
 
-export interface UseDropdownMenuOptions {
+export interface UseMenuOptions {
   key?: string;
 
   // Allowing the Dropdown to automatically adjust its placement in case of overlap with the viewport
@@ -42,37 +42,31 @@ export interface UseDropdownMenuOptions {
   popperConfig?: Omit<UsePopperOptions, "enabled" | "placement">;
 }
 
-export type UserDropdownMenuProps = Record<string, any> & {
+export type UserMenuArrowProps = Record<string, any> & {
+  ref: React.RefCallback<HTMLElement>;
+  style: React.CSSProperties;
+};
+
+export interface UseMenuMetadata {
+  show: boolean;
+  placement?: Placement;
+  hasShown: boolean;
+  toggle?: DropdownContextValue["toggle"];
+  popper: UsePopperState | null;
+  arrowProps: Partial<UserMenuArrowProps>;
+}
+export type UserMenuProps = Record<string, any> & {
   key?: string;
   ref: React.RefCallback<HTMLElement>;
   style?: React.CSSProperties;
   "aria-labelledby"?: string;
 };
 
-export type UserDropdownMenuArrowProps = Record<string, any> & {
-  ref: React.RefCallback<HTMLElement>;
-  style: React.CSSProperties;
-};
-
-export interface UseDropdownMenuMetadata {
-  show: boolean;
-  placement?: Placement;
-  hasShown: boolean;
-  toggle?: DropdownContextValue["toggle"];
-  popper: UsePopperState | null;
-  arrowProps: Partial<UserDropdownMenuArrowProps>;
-}
-
-export interface DropdownMenuProps extends UseDropdownMenuOptions {
-  children:
-    | ChildrenFn<UserDropdownMenuProps, UseDropdownMenuMetadata>
-    | React.ReactNode;
-}
-
-const useDropdownMenu = (options: UseDropdownMenuOptions = {}) => {
-  const context = useContext(DropdownContext);
+export const useMenu = (options: UseMenuOptions = {}) => {
+  // Menu can be embedded inside the dropdown
+  const dropdownContext = useContext(DropdownContext);
   const hasShownRef = useRef(false);
-  const show = context && context.show !== null ? context.show : !!options.show;
+  const show = dropdownContext && dropdownContext.show !== null ? dropdownContext.show : !!options.show;
 
   if (show && !hasShownRef.current) {
     hasShownRef.current = true;
@@ -89,14 +83,14 @@ const useDropdownMenu = (options: UseDropdownMenuOptions = {}) => {
     placement: placementOverride,
     popperConfig = {},
     enableEventListeners = true,
-    usePopper: shouldUsePopper = !!context,
+    usePopper: shouldUsePopper = !!dropdownContext,
   } = options;
 
   const handleClose = (e: React.SyntheticEvent | Event) => {
-    context?.toggle(false, e);
+    dropdownContext?.toggle(false, e);
   };
 
-  const { setMenu, menuElement, placement, toggleElement } = context || {};
+  const { setMenu, menuElement, placement, toggleElement } = dropdownContext || {};
 
   const popper = usePopper(
     toggleElement,
@@ -113,7 +107,7 @@ const useDropdownMenu = (options: UseDropdownMenuOptions = {}) => {
     })
   );
 
-  const menuProps: UserDropdownMenuProps = {
+  const menuProps: UserMenuProps = {
     key: key,
     ref: setMenu || noop,
     "aria-labelledby": toggleElement?.id,
@@ -121,11 +115,11 @@ const useDropdownMenu = (options: UseDropdownMenuOptions = {}) => {
     style: popper.styles.popper as any,
   };
 
-  const menuMetadata: UseDropdownMenuMetadata = {
+  const menuMetadata: UseMenuMetadata = {
     show,
     placement,
     hasShown: hasShownRef.current,
-    toggle: context?.toggle,
+    toggle: dropdownContext?.toggle,
     popper: shouldUsePopper ? popper : null,
     arrowProps: shouldUsePopper
       ? {
@@ -143,30 +137,3 @@ const useDropdownMenu = (options: UseDropdownMenuOptions = {}) => {
 
   return { menuProps, menuMetadata } as const;
 };
-
-export const DropdownMenu: React.FC<DropdownMenuProps> = ({
-  children,
-  ...options
-}) => {
-  const { menuProps, menuMetadata } = useDropdownMenu(options);
-
-  return (
-    <>
-      {isChildrenFn(children) ? (
-        children(menuProps, menuMetadata)
-      ) : (
-        <div
-          {...menuProps}
-          style={{
-            visibility: menuMetadata.show ? "visible" : "hidden",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          {children}
-        </div>
-      )}
-    </>
-  );
-};
-DropdownMenu.displayName = "DropdownMenu";

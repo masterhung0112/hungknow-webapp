@@ -1,6 +1,32 @@
 /**
 Menus
-Vertical menu
+
+# Class names:
+.menu
+
+.menu .menu-item
+  &::before
+  & > .icon
+  & > .sub-menu-icon
+  &:hover
+  &:active, &.active
+  &.disabled
+    &::before
+    > .icon
+    .menu-item-label
+  .large &
+    .icon
+    &::before
+
+.menu .menu-header
+  .large &
+
+.menu .sub-menu > .menu
+  .expanded + &
+
+button.menu-item
+
+# Vertical menu
 
 <ul class="#{$ns}-menu">
     <li class="#{$ns}-menu-header"><h6 class="#{$ns}-heading">Layouts</h6></li>

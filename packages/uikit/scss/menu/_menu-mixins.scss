@@ -27,6 +27,25 @@
     color: $hk-text-color-disabled;
     cursor: not-allowed;
   }
+
+  // Display icon indicating there's submenu
+  &::before,
+  > .icon,
+  > .sub-menu-icon {
+    color: $hk-icon-color;
+  }
+
+  &::before,
+  > .sub-menu-icon {
+    margin-top: ($hk-menu-item-line-height - $hk-icon-size-standard) * 0.5;
+  }
+
+  > .icon {
+    display: flex;
+    flex-direction: column;
+    height: $hk-menu-item-line-height;
+    justify-content: center;
+  }
 }
 
 @mixin menu-item-large() {
