@@ -8,7 +8,7 @@ export type SelectCallback = (
 ) => void
 
 export interface TransitionCallbacks {
-    setEnter?(node: HTMLElement, isAppearing: boolean): any
+    onEnter?(node: HTMLElement, isAppearing: boolean): any
     onEntering?(node: HTMLElement, isAppearing: boolean): any;
     onEntered?(node: HTMLElement, isAppearing: boolean): any;
     onExit?(node: HTMLElement): any;
