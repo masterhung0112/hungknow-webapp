@@ -18,7 +18,7 @@ const LazyThing = ({ filePath, ...props }) => {
   return <Component {...props} />
 }
 
-const defaultComponent = 'menu'
+const defaultComponent = 'popover'
 
 export default function Root() {
   const [docPath, setDocPath] = useState('')

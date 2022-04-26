@@ -1,8 +1,11 @@
-import React from 'react'
-import { AbstractButton, AbstractButtonProps } from './AbstractButton'
+import React from "react";
+import { AbstractButton, AbstractButtonProps } from "./AbstractButton";
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & Omit<AbstractButtonProps, 'tagName'>
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  Omit<AbstractButtonProps, "tagName">;
 
-export const Button: React.VFC<ButtonProps> = ({...props}) => {
-    return <AbstractButton {...props} />
-}
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ ...props }, ref) => {
+    return <AbstractButton {...props} ref={ref} />;
+  }
+);
