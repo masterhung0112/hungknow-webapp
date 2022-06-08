@@ -1,45 +1,90 @@
+import { Menu, MenuItem } from '@hungknow/uikit'
+
 <ul className="hk1 menu">
-    <li className="menu-header"><h4 className="heading">Layouts</h4></li>
-    <li className="menu-message"><h4 className="heading">Message goes here</h4></li>
-    <a className="menu-item">Share...</a>
-    <a className="menu-item disabled">Move...</a>
-    <li className="menu-divider"></li>
-    <a className="menu-item intent-danger">Delete</a>
-    <li className="submenu">
-        <button>Click to open...</button>
-        <ul className="submenu">
-            <li className="menu-item">Menu1...</li>
-        </ul>
-    </li>
+  <li className="menu-header">
+    <h4 className="heading">Layouts</h4>
+  </li>
+  <li className="menu-message">
+    <h4 className="heading">Message goes here</h4>
+  </li>
+  <a className="menu-item">Share...</a>
+  <a className="menu-item disabled">Move...</a>
+  <li className="menu-divider"></li>
+  <a className="menu-item intent-danger">Delete</a>
+  <li className="submenu">
+    <button>Click to open...</button>
+    <ul className="submenu">
+      <li className="menu-item">Menu1...</li>
+    </ul>
+  </li>
 </ul>
 
 New content
 
 <div className="hk1 menu">
-    <div className="submenu">
-        <div className="menu-item">
-            <span>Buy Crypto</span>
-            <span className="label">VND</span>
-        </div>
-        <div className="submenu">
-            <li className="menu-item">P2P Trading</li>
-        </div>
+  <div className="submenu">
+    <div className="menu-item">
+      <span>Buy Crypto</span>
+      <span className="label">VND</span>
     </div>
-    <a className="menu-item">NFT<span className="label">New</span></a>
-    <a className="menu-item">Share...</a>
-    <a className="menu-item disabled">Move...</a>
-    <div className="menu-divider"></div>
-    <a className="menu-item intent-danger">Delete</a>
     <div className="submenu">
-        <button className="menu-item">Click to open...</button>
+      <li className="menu-item">P2P Trading</li>
+    </div>
+  </div>
+  <a className="menu-item">
+    NFT<span className="label">New</span>
+  </a>
+  <a className="menu-item">Share...</a>
+  <a className="menu-item disabled">Move...</a>
+  <div className="menu-divider"></div>
+  <a className="menu-item intent-danger">Delete</a>
+  <div className="submenu">
+    <button className="menu-item">Click to open...</button>
+    <div className="submenu">
+      <a className="menu-item">Menu1...</a>
+      <a className="submenu">
+        <a className="menu-item">Menu2</a>
         <div className="submenu">
-            <a className="menu-item">Menu1...</a>
-            <a className="submenu">
-                <a className="menu-item">Menu2</a>
-                <div className="submenu">
-                  <a className="menu-item">This is the content</a>
-                </div>
-            </a>
+          <a className="menu-item">This is the content</a>
         </div>
-    </div>    
+      </a>
+    </div>
+  </div>
 </div>
+
+# React components
+
+<Menu show={true}>
+    {/* <Menu.ItemBase>
+        {(menuItemProps, menuItemMeta) => ({
+            <li {...menuItemProps}>
+                Hello
+            </li>
+        })}
+    </Menu.ItmeBase> */}
+    <MenuItem text="Child one" href="#" onClick={() => {}}/>
+    <MenuItem text="Open in..." >
+        <MenuItem  text="Open" />
+    </MenuItem>
+</Menu>
+
+
+```tsx
+const ref = useRef(null)
+menu = useMenu()
+
+<MenuItem text="Sub menu">
+    <div ref={ref}>
+        <Menu>
+            <MenuItem text="Sub item1" />
+        </Menu>
+    </div>
+</MenuItem>
+```
+
+# Menu Item
+
+## `onClick`
+Each menu item can has its own `onClick` handler.
+Furthermore, if the Menu is wrapped in the `SelectableContext`, 
+the `onClick` callback of this context will receive the event as well.

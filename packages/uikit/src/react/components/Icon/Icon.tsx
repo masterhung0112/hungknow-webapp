@@ -11,7 +11,7 @@ export enum IconSize {
     LARGE = 20,
 }
 
-export interface IconProps extends IntentProps, Props {
+export interface IconProps extends IntentProps, Props, Omit<React.HTMLAttributes<HTMLElement>, 'title'> {
     icon: IconName | MaybeElement
     color?: string
     size?: number

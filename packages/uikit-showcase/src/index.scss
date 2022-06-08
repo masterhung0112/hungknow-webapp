@@ -97,5 +97,9 @@ $dark-content-background-color: uikit.$dark-gray4;
     }
 }
 
+.absolute {
+    position: absolute;
+}
+
 // Import blender theme, so the mdx can display UI in blender theme
 @import "@hungknow/uikit/themes/blender/hk-uikit-blender";

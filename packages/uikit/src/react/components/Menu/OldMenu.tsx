@@ -1,4 +1,5 @@
 import React from 'react'
+import { NS } from '../../common/cssClasses'
 
 export interface MenuProps {
     tagName?: keyof JSX.IntrinsicElements
@@ -11,7 +12,7 @@ export const Menu: React.FC<MenuProps> = ({tagName = 'ul', large, children, ...h
         tagName,
         {
             ...htmlProps,
-            className: 'hk1 menu',
+            className: `${NS} menu`,
         },
         children,
     )

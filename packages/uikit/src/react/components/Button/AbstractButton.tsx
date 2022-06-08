@@ -15,7 +15,11 @@ import {
   useButtonProps,
   UseButtonPropsMetadata,
 } from "./useButtonProps";
-import { ChildrenFn, isChildrenFn } from "../../utils/isChildrenFn";
+import {
+  ChildrenFn,
+  ChildrenFnProps,
+  isChildrenFn,
+} from "../../utils/isChildrenFn";
 
 export interface AbstractButtonProps extends IntentProps, ActionProps, Props {
   //   tagName: string;
@@ -26,62 +30,75 @@ export interface AbstractButtonProps extends IntentProps, ActionProps, Props {
   rightIcon?: IconName | MaybeElement;
   type?: "submit" | "reset" | "button";
 }
+// PropsWithChildren<
+//   AbstractButtonProps &
+//     (P extends HTMLButtonElement
+//       ? React.ButtonHTMLAttributes<HTMLButtonElement>
+//       : React.AnchorHTMLAttributes<HTMLAnchorElement>)
 
-export const AbstractButton = <
-  P extends
-    | HTMLButtonElement
-    | (HTMLAnchorElement & {
-        children: ChildrenFn<AriaButtonProps, UseButtonPropsMetadata>;
-      })
->({
-  active,
-  fill,
-  loading,
-  minimal,
-  rightIcon,
-  text,
-  children,
-  icon,
-  className,
-  intent,
-  ...htmlProps
-}: PropsWithChildren<
-  AbstractButtonProps &
-    (P extends HTMLButtonElement
-      ? React.ButtonHTMLAttributes<HTMLButtonElement>
-      : React.AnchorHTMLAttributes<HTMLAnchorElement>)
->) => {
-  const [buttonProps, buttonMeta] = useButtonProps({ ...htmlProps });
-
-  if (isChildrenFn(children)) {
-    return <>{children(buttonProps, buttonMeta)}</>;
-  }
-  const classes = clsx(
-    "hk1 button",
-    active && "active",
-    fill && "fill",
-    loading && "loading",
-    minimal && MINIMAL,
-    intent && intentClass(intent),
-    className
-  );
-
-  return React.createElement(
-    buttonMeta.tagName,
+//  P extends
+//     | HTMLButtonElement
+//     | (HTMLAnchorElement &
+//         ChildrenFnProps<AriaButtonProps, UseButtonPropsMetadata>)
+export const AbstractButton = React.forwardRef<
+  HTMLElement,
+  PropsWithChildren<
+    AbstractButtonProps &
+      (
+        | React.ButtonHTMLAttributes<HTMLButtonElement>
+        | React.AnchorHTMLAttributes<HTMLAnchorElement>
+      )
+  >
+>(
+  (
     {
-      ...buttonProps,
-      ...htmlProps,
-      className: classes,
+      active,
+      fill,
+      loading,
+      minimal,
+      rightIcon,
+      text,
+      children,
+      icon,
+      className,
+      intent,
+      ...htmlProps
     },
-    // loading && <
-    <Icon key="leftIcon" icon={icon} />,
-    (!isReactNodeEmpty(text) || !isReactNodeEmpty(children)) && (
-      <span key="text" className={"hk1 button-text"}>
-        {text}
-        {children}
-      </span>
-    ),
-    <Icon key="rightIcon" icon={rightIcon} />
-  );
-};
+    ref
+  ) => {
+    const [buttonProps, buttonMeta] = useButtonProps({ ...htmlProps });
+
+    if (isChildrenFn(children)) {
+      return <>{children(buttonProps, buttonMeta)}</>;
+    }
+    const classes = clsx(
+      "hk1 button",
+      active && "active",
+      fill && "fill",
+      loading && "loading",
+      minimal && MINIMAL,
+      intent && intentClass(intent),
+      className
+    );
+
+    return React.createElement(
+      buttonMeta.tagName,
+      {
+        ...buttonProps,
+        ...htmlProps,
+        className: classes,
+        ref: ref,
+      },
+      // loading && <
+      <Icon key="leftIcon" icon={icon} />,
+      (!isReactNodeEmpty(text) || !isReactNodeEmpty(children)) && (
+        <span key="text" className={"hk1 button-text"}>
+          {text}
+          {children}
+        </span>
+      ),
+      <Icon key="rightIcon" icon={rightIcon} />
+    );
+  }
+);
 AbstractButton.displayName = "AbstractButton";

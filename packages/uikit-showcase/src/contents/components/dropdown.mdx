@@ -27,21 +27,9 @@ Dropdown is toggleable, contextual overlay for displaying a list of items.
       )}
     </Dropdown.Toggle>
     <Dropdown.Menu flip offset={[0, 8]}>
-      {(menuProps, meta) => {
-        return (
-          <div
-            {...menuProps}
-            style={{
-              visibility: meta.show ? "visible" : "hidden",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <Dropdown.Item>Hello</Dropdown.Item>
-            <Dropdown.Item>How are you</Dropdown.Item>
-          </div>
-        );
-      }}
+      <Dropdown.Item text="Hello" />
+      <Dropdown.Divider />
+      <Dropdown.Item text="How are you" />
     </Dropdown.Menu>
   </Dropdown>
 </div>

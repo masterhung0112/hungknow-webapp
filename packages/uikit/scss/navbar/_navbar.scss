@@ -1,5 +1,17 @@
 /*
 Navbars
+
+Class names:
+.navbar
+.navbar > .navbar-toggler
+  &:hover
+  &:focus
+.navbar .navbar-collapse
+.navbar > navbar-brand
+  &:hover
+  &:focus
+.navbar .navbar-nav
+
 Markup:
 <nav class="hk1 navbar">
   <div class="navbar-group align-left">

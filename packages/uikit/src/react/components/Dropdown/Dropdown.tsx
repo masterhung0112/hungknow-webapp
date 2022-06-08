@@ -9,15 +9,15 @@ import React, {
 } from "react";
 import { useUncontrolled, useUncontrolledProp } from "uncontrollable";
 import { DropdownContext, DropdownContextValue } from "./DropdownContext";
-import { DropdownDivider } from "./DropdownDivider";
+import { DropdownDivider } from "./MenuDivider";
 import { DropdownHeader } from "./DropdownHeader";
-import { DropdownItem } from "./DropdownItem";
-import { DropdownMenu } from "./DropdownMenu";
+import { MenuItem } from "../Menu/MenuItem";
+import { Menu } from "../Menu/Menu";
 import { useEventCallback } from "../../hooks/useEventCallback";
 import { Placement } from "../Popper/usePopper";
 import { SelectCallback } from "../../types";
 import { useRefWithUpdate } from "../../hooks/useRefWithUpdate";
-import { DropdownToggle, isRoleMenu } from "./DropdownToggle";
+import { DropdownToggle, isRoleMenu } from "./MenuToggle";
 import { SelectableContext } from "../../context/SelectableContext";
 import { usePrevious } from "../../hooks/usePrevious";
 import { dataAttr } from "../../utils/dataKey";
@@ -51,8 +51,8 @@ export interface DropdownProps
 
 type DropdownComponentType = React.FC<DropdownProps> & {
   Divider: typeof DropdownDivider;
-  Item: typeof DropdownItem;
-  Menu: typeof DropdownMenu;
+  Item: typeof MenuItem;
+  Menu: typeof Menu;
   Header: typeof DropdownHeader;
   Toggle: typeof DropdownToggle;
 };
@@ -217,7 +217,7 @@ export const Dropdown: DropdownComponentType = (pProps) => {
 Dropdown.displayName = "Dropdown";
 
 Dropdown.Divider = DropdownDivider;
-Dropdown.Item = DropdownItem;
-Dropdown.Menu = DropdownMenu;
+Dropdown.Item = MenuItem;
+Dropdown.Menu = Menu;
 Dropdown.Header = DropdownHeader;
 Dropdown.Toggle = DropdownToggle;

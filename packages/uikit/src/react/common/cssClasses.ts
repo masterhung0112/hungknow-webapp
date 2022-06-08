@@ -31,3 +31,10 @@ export const NAVBAR = `${NS} navbar`
 
 export const NAV = `${NS} nav`
 export const NAVLINK = 'nav-link'
+
+export const MENU = `${NS} menu`
+export const MENU_ITEM = `menu-item`
+export const MENU_HEADER = `menu-header`
+export const MENU_ITEM_ICON = `${NS} icon`
+export const MENU_SUBMENU = `${NS} sub-menu`
+export const MENU_SUBMENU_ICON = `sub-menu-icon`

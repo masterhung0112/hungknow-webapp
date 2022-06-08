@@ -7,31 +7,27 @@ import { useEventCallback } from "../../hooks/useEventCallback";
 import { dataAttr } from "../../utils/dataKey";
 import { EventKey } from "../../types";
 import { NavContext } from "../Nav/NavContext";
-import { AnchorButton } from "../Button/AnchorButton";
 
-export interface DropdownItemProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
-  active?: boolean;
-  disabled?: boolean;
-  eventKey?: EventKey;
-  href?: string;
-}
-
-export interface UseDropdownItemOptions {
+export interface UseMenuItemOptions {
   key?: EventKey | null;
   href?: string;
   active?: boolean;
   disabled?: boolean;
+
+  // Allow the menu item to have its own click handler
+  // The SelectableContext also receive the onClick callback
   onClick?: React.MouseEventHandler;
+
+  label?: React.ReactNode
 }
 
-export function useDropdownItem({
+export function useMenuItem({
   key,
   href,
   active,
   disabled,
   onClick,
-}: UseDropdownItemOptions) {
+}: UseMenuItemOptions) {
   const onSelectCtx = useContext(SelectableContext);
 
   // Fetch activeKey from Dropdown.Menu
@@ -64,29 +60,3 @@ export function useDropdownItem({
     { isActive },
   ] as const;
 }
-
-export const DropdownItem = React.forwardRef<
-  typeof AnchorButton,
-  DropdownItemProps
->(
-  (
-    {
-      eventKey,
-      disabled,
-      onClick,
-      active,
-      as: Component = AnchorButton,
-      ...props
-    },
-    ref
-  ) => {
-    const [dropdownItemProps] = useDropdownItem({
-      key: eventKey,
-      href: props.href,
-      disabled,
-      onClick,
-      active,
-    });
-    return <Component {...props} ref={ref} {...dropdownItemProps} />;
-  }
-);
