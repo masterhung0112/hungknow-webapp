@@ -47,8 +47,8 @@ export const PopperSC: React.VFC = () => {
         container={containerRef}
         target={triggerRef}
       >
-        {(props, { arrowProps, popper, show }) => (
-          <div {...props} className="absolute">
+        {(props, { arrowProps, popper }) => (
+          <div className="absolute" {...props} >
             <div
               {...arrowProps}
               style={arrowProps.style}
