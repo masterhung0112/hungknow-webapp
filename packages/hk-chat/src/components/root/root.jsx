@@ -54,10 +54,6 @@ import {setUrl} from 'hkclient-redux/actions/general';
 import {Client4} from 'hkclient-redux/client';
 import {withRouter} from '../../hooks/withRouter';
 
-// import {Navigate} from 'react-router';
-
-import {Navigate} from 'react-router';
-
 const FastClick = require('fastclick');
 
 const CreateTeam = makeAsyncComponent(LazyCreateTeam);
@@ -389,27 +385,14 @@ export class Root extends React.PureComponent {
                         path={'/:team'}
                         element={<LoggedInRoute><NeedsTeam/></LoggedInRoute>}
                     />
-<<<<<<< HEAD
+          
                     <Navigate
                         replace={true}
                         to={{
                             ...this.props.location,
                             pathname: '/login',
                         }}
-=======
-                    <Route
-                        path='*'
-                        element={
-                            <Navigate
-                                replace={true}
-                                to={{
-                                    ...this.props.location,
-                                    pathname: '/login',
-                                }}
-                            />
-                        }
->>>>>>> master
-                    />
+                   />
                 </Routes>
             </IntlProvider>
         );

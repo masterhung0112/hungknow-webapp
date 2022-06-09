@@ -18,12 +18,12 @@ yarn task start_server
 
 For hk-browser, run the following commands
 ```
-yarn dev-server
+yarn browser:dev-server
 ```
 
 For hk-browser-nextjs, run the following commands
 ```
-yarn nextbrowser:dev
+yarn nextbrowser:dev-server
 ```
 
 # Typescript/Javascript compilers
@@ -44,6 +44,8 @@ Command to start working with ui kit
 ```sh
 yarn dev:uikit
 ```
+
+This command starts the watch on uikit and dev server for uikit-showcase.
 
 # CI
 
