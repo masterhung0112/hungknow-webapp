@@ -1,0 +1,63 @@
+{
+  "name": "hk-ui",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "style": "dist/hkui-styles.css",
+  "license": "MIT",
+  "sideEffects": ["*.css"],
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "shx rm -rf dist && yarn build:css-def && cross-env NODE_ENV=production webpack",
+    "build:dev": "shx rm -rf dist && yarn build:css-def && cross-env NODE_ENV=development webpack",
+    "build:css": "sass-compile src/**/*.scss",
+    "build:css-def": "tsm \"src/**/*.scss\" --aliasPrefixes.hkuisass src/sass --nameFormat none --exportType default",
+    "webpack": "webpack --watch",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {   
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "clsx": "^1.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@blueprintjs/icons": "^3.25.1",
+    "@hot-loader/react-dom": "^17.0.2",
+    "@storybook/addon-actions": "6.4.14",
+    "@storybook/addon-essentials": "^6.1.21",
+    "@storybook/addon-knobs": "6.2.1",
+    "@storybook/addon-links": "6.2.1",
+    "@storybook/addons": "6.2.1",
+    "@storybook/react": "^6.1.21",
+    "@testing-library/dom": "^7.30.0",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/classnames": "^2.2.10",
+    "@types/enzyme": "^3.10.6",
+    "@types/history": "4.7.8",
+    "@types/jest": "^26.0.13",
+    "@types/node": "14.14.35",
+    "@types/react": "^17.0.38",
+    "typed-scss-modules": "^4.1.2",
+    "sass": "1.49.0",
+    "sass-loader": "^12.4.0",
+    "css-loader": "^6.5.1",
+    "style-loader": "^3.3.1",
+    "babel-loader": "^8.1.0",
+    "source-map-loader": "^3.0.1",
+    "ts-loader": "^9.2.6"
+  },
+  "peerDependencies": {
+    "react": "^15.3.0 || 16 || 17",
+    "react-dom": "^15.3.0 || 16 || 17"
+  }
+}

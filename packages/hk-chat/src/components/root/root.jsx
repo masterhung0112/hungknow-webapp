@@ -56,6 +56,8 @@ import {withRouter} from '../../hooks/withRouter';
 
 // import {Navigate} from 'react-router';
 
+import {Navigate} from 'react-router';
+
 const FastClick = require('fastclick');
 
 const CreateTeam = makeAsyncComponent(LazyCreateTeam);
@@ -335,6 +337,10 @@ export class Root extends React.PureComponent {
                         path={'/landing'}
                         element={<LinkingLandingPage/>}
                     />
+                    <LoggedInRoute
+                        path={'/mfa'}
+                        component={Mfa}
+                    />
                     <Route element={<LoggedInHFTRoute/>}>
                         <Route
                             path={'/select_team'}
@@ -383,6 +389,14 @@ export class Root extends React.PureComponent {
                         path={'/:team'}
                         element={<LoggedInRoute><NeedsTeam/></LoggedInRoute>}
                     />
+<<<<<<< HEAD
+                    <Navigate
+                        replace={true}
+                        to={{
+                            ...this.props.location,
+                            pathname: '/login',
+                        }}
+=======
                     <Route
                         path='*'
                         element={
@@ -394,6 +408,7 @@ export class Root extends React.PureComponent {
                                 }}
                             />
                         }
+>>>>>>> master
                     />
                 </Routes>
             </IntlProvider>

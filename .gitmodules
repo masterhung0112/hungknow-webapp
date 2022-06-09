@@ -1,0 +1,3 @@
+[submodule "packages/hungknow-root-config"]
+	path = packages/hungknow-root-config
+	url = git@github.com:masterhung0112/hungknow-root-config.git
