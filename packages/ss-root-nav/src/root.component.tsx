@@ -1,7 +1,35 @@
 import React from "react";
 import { navigateToUrl } from "single-spa";
 import { BrowserRouter, Route, NavLink } from "react-router-dom";
-import { Button } from '@hungknow/uikit';
+import { Button } from "@hungknow/uikit";
+import '@hungknow/uikit/scss';
+
+interface RouteData {
+  routeType: "group" | "app";
+  displayName: string;
+  to?: string;
+  children?: RouteData[];
+  tags?: string[];
+}
+const routeData: RouteData[] = [
+  // List of apps for Trading
+  {
+    routeType: "group",
+    displayName: "Trading",
+    children: [
+      {
+        routeType: "app",
+        displayName: "Chart",
+        to: "chart",
+      },
+    ],
+  },
+  // List of apps for utilities
+  {
+    routeType: "group",
+    displayName: "Utilities",
+  },
+];
 
 export default function Root() {
   return (
@@ -14,9 +42,6 @@ export default function Root() {
         </div>
         <div className="hk1 collapse navbar-collapse" id="main-navbar-content">
           <nav className="navbar-nav navbar-nav-scroll">
-            <a href="/" className="hk-button" onClick={navigateToUrl}>
-              Home
-            </a>
             <NavLink to="/nft" className="hk-button" onClick={navigateToUrl}>
               NFT
             </NavLink>
