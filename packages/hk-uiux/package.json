@@ -1,8 +1,8 @@
 {
-  "name": "@hungknow/react-spa-example2",
+  "name": "@hungknow/uiux",
   "version": "0.0.1",
   "scripts": {
-    "start": "webpack serve --port 9003",
+    "start": "webpack serve",
     "start:standalone": "webpack serve --env standalone",
     "build": "concurrently yarn:build:*",
     "build:webpack": "webpack --mode=production",
@@ -52,15 +52,15 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-router-dom": "^6.2.1",
     "react-dom": "^17.0.2",
     "single-spa-react": "^4.3.1",
     "@types/jest": "^27.0.1",
     "@types/systemjs": "^6.1.1",
     "@types/webpack-env": "^1.16.2",
-    "single-spa": "^5.9.4",
+    "single-spa": "^5.9.3",
     "@types/react": "^17.0.19",
-    "@types/react-dom": "^17.0.9"
+    "@types/react-dom": "^17.0.9",
+    "@hungknow/uikit" :"^1.0.1"
   },
-  "types": "dist/hungknow-react-spa-example.d.ts"
+  "types": "dist/hungknow-uiux.d.ts"
 }

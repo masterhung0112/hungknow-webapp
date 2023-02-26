@@ -1,9 +1,9 @@
 {
-  "name": "@hungknow/root-nav",
+  "name": "@hungknow/ss-root-nav",
   "version": "0.0.1",
   "scripts": {
     "start": "webpack serve --port 9001",
-    "start:standalone": "webpack serve --env standalone --port 9001",
+    "start:standalone": "webpack serve --env isLocal --port 9001",
     "build": "concurrently yarn:build:webpack",
     "build:dev": "webpack --mode=development",
     "build:webpack": "webpack --mode=production",
@@ -62,5 +62,5 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.2"
   },
-  "types": "dist/hungknow-root-nav.d.ts"
+  "types": "dist/hungknow-ss-root-nav.d.ts"
 }

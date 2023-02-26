@@ -92,3 +92,9 @@ gcloud builds submit --config=build/cloudbuild-ci-gcr.yaml
     * List of folders and files that we don't want to check lint syntax
 * .npmignore
     * List of folders and files that we don't want npm to keep when this package is installed as a dependency in another package
+
+# Single SPA
+
+## Application connection
+Application can be React, angular, vanilla javascript project, which then compiled into the **Systemjs** bundle.
+`ss-root-config` loads the target application by route.

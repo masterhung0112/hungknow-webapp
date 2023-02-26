@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "declarationDir": "dist"
   },
-  "files": ["src/hungknow-root-nav.tsx"],
+  "files": ["src/hungknow-ss-root-nav.tsx"],
   "include": ["src/**/*"],
   "exclude": ["src/**/*.test*"]
 }
