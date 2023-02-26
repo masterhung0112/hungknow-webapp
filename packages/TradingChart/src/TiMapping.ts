@@ -22,16 +22,20 @@ export default class TI {
     ib: boolean
     ti_map: any[] = []
     it_map: any[] = []
-    sub_i: any[] = []
+    sub_i: number[][] = []
     sub: any
-    ss: any
-    tf: any
+    ss: number = 0
+    tf: number = 0
 
     constructor() {
         this.ib = false;
     }
 
-    init(params: any, res: any) {
+    init(params: {
+        interval_ms: number,
+        sub_start: number,
+        ib: boolean,
+    }, res: number[][]) {
         const {interval_ms, sub_start, ib} = params;
 
         this.ti_map = [];
@@ -51,11 +55,15 @@ export default class TI {
     }
 
     // Make maps for the main subset
-    map_sub(res: any) {
+    map_sub(res: number[][]) {
         for (let i = 0; i < res.length; i++) {
+            // Get timestamp
             const t = res[i][0];
+            // Convert the local index to the global index
             const _i = this.ss + i;
+            // Timestamp to global index
             this.ti_map[t] = _i;
+            // Global index to timestamp
             this.it_map[_i] = t;
 
             // Overwrite t with i
@@ -67,7 +75,7 @@ export default class TI {
 
     // Map overlay data
     // TODO: parse() called 3 times instead of 2 for 'spx_sample.json'
-    parse(data: any, mode: any) {
+    parse(data: number[][], mode: string) {
         if (!this.ib || !this.sub[0] || mode === 'data') {
             return data;
         }
@@ -175,7 +183,7 @@ export default class TI {
     }
 
     // Map or bypass depending on the mode
-    i2t_mode(i: any, mode: any) {
+    i2t_mode(i: any, mode?: string) {
         return mode === 'data' ? i : this.i2t(i);
     }
 

@@ -5,7 +5,7 @@
 // one components size can depend on other component
 // data formatting (e.g. grid width depends on sidebar precision)
 
-import {Layout, GridMakerParams, LayoutParams, GridLayout, GridMaker} from 'types/TradingChart';
+import {Layout, GridMakerParams, LayoutParams, GridLayout, GridMaker, GridSetting} from './types';
 
 import {createGridMaker} from './GridMaker';
 import {t2screen} from './layoutFn';
@@ -30,7 +30,7 @@ export class generateLayout {
 
         // Splits space between main chart
         // and offchart indicator grids
-        function grid_hs() {
+        function grid_hs(): number[] {
             const height = $p.height - $p.config.BOTBAR;
 
             // When at least one height defined (default = 1),
@@ -50,7 +50,7 @@ export class generateLayout {
             return [m].concat(Array(n).fill(px));
         }
 
-        function weighted_hs(grid: GridLayout, height: number) {
+        function weighted_hs(grid: GridLayout, height: number): number[] {
             let hs = [{grid}, ...offsub].map((x) => x.grid.height || 1);
             let sum = hs.reduce((a, b) => a + b, 0);
             hs = hs.map((x) => Math.floor((x / sum) * height));
@@ -129,7 +129,8 @@ export class generateLayout {
         const gms: GridMaker[] = [createGridMaker(0, specs)];
 
         // Sub grids
-        for (var [i, {data, grid}] of offsub.entries()) {
+        for (let i = 0; i < offsub.length; ++i) {
+            const {data, grid} = offsub[i]
             specs.sub = data;
             specs.height = hs[i + 1];
             specs.y_t = y_ts[i + 1];
@@ -137,13 +138,13 @@ export class generateLayout {
             gms.push(createGridMaker(i + 1, specs, gms[0].layout));
         }
 
-        // Max sidebar among all grinds
+        // Max sidebar among all grids
         const sb = Math.max(...gms.map((x) => x.sidebar));
 
         const grids = [];
         let offset = 0;
 
-        for (i = 0; i < gms.length; i++) {
+        for (let i = 0; i < gms.length; i++) {
             gms[i].sidebar = sb;
             grids.push(gms[i].create());
             grids[i].id = i;
@@ -151,6 +152,7 @@ export class generateLayout {
             offset += grids[i].height;
         }
 
+        // Main Grid
         const self = grids[0];
 
         candles_n_vol();

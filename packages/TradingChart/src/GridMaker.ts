@@ -1,6 +1,6 @@
-import {GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout, TimeRange} from './Models';
+import { GridMaker, Layout, GridMakerParams, TimeRangeCreator, GridLayout, TimeRange } from './types';
 
-import {TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY} from './constants';
+import { TIMESCALES, $SCALES, WEEK, MONTH, YEAR, HOUR, DAY } from './constants';
 import Utils from './utils';
 import log_scale from './logScale';
 import * as math from './math';
@@ -15,15 +15,15 @@ export function createGridMaker(
     GridMakerParams: GridMakerParams,
     master_grid: Layout | null = null,
 ): GridMaker {
-    const {sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone} = GridMakerParams;
+    const { sub, interval, range, ctx, $p, layers_meta, height, y_t, ti_map, grid, timezone } = GridMakerParams;
 
-    const gridLayout: GridLayout = {ti_map} as GridLayout;
+    const gridLayout: GridLayout = { ti_map } as GridLayout;
     const lm = layers_meta[id];
     let y_range_fn: TimeRangeCreator = null;
     const ls = grid.logScale;
 
     if (lm && Object.keys(lm).length) {
-    // Gets last y_range fn()
+        // Gets last y_range fn()
         const yrs = Object.values(lm).filter((x) => x.y_range);
 
         // The first y_range() determines the range
@@ -46,9 +46,11 @@ export function createGridMaker(
             } else {
                 for (var i = 0, n = sub.length; i < n; i++) {
                     const x = sub[i];
+                    // max high value of candle
                     if (x[2] > timeRange.t1) {
                         timeRange.t1 = x[2];
                     }
+                    // max low value of candle
                     if (x[3] < timeRange.t2) {
                         timeRange.t2 = x[3];
                     }
@@ -77,23 +79,23 @@ export function createGridMaker(
             gridLayout.$_hi = y_t.range.t1;
             gridLayout.$_lo = y_t.range.t2;
         } else {
-            if (!ls) {
-                // console.log('hi', timeRange.t1 - timeRange.t2)
-                const expVal = timeRange.exp === false ? 0 : 1;
-                gridLayout.$_hi = timeRange.t1 + (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal;
-                gridLayout.$_lo = timeRange.t2 - (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal;
+            if (ls) {
+                gridLayout.$_hi = timeRange.t1
+                gridLayout.$_lo = timeRange.t2
+                log_scale.expand(gridLayout, height)
             } else {
-                gridLayout.$_hi = timeRange.t1;
-                gridLayout.$_lo = timeRange.t2;
-                log_scale.expand(gridLayout, height);
+                // console.log('hi', timeRange.t1 - timeRange.t2)
+                const expVal = timeRange.exp === false ? 0 : 1
+                gridLayout.$_hi = timeRange.t1 + (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal
+                gridLayout.$_lo = timeRange.t2 - (timeRange.t1 - timeRange.t2) * $p.config.EXPAND * expVal
             }
 
             if (gridLayout.$_hi === gridLayout.$_lo) {
-                if (!ls) {
+                if (ls) {
+                    log_scale.expand(gridLayout, height);
+                } else {
                     gridLayout.$_hi *= 1.05; // Expand if height range === 0
                     gridLayout.$_lo *= 0.95;
-                } else {
-                    log_scale.expand(gridLayout, height);
                 }
             }
         }
@@ -156,7 +158,7 @@ export function createGridMaker(
                 if (!r) {
                     r = '';
                 }
-                r = {length: r.length + parseInt(rs) || 0} as string;
+                r = { length: r.length + parseInt(rs) || 0 } as string;
             } else {
                 var [l, r] = str.split('.');
             }
@@ -214,9 +216,9 @@ export function createGridMaker(
             gridLayout.B = -math.log(gridLayout.$_hi) * gridLayout.A;
         }
 
-    // gridLayout.A = -6.498271312812643
-    // gridLayout.B = 337.61538461538464
-    // console.log('gridLayout.A', height, gridLayout.$_hi, gridLayout.$_lo, gridLayout.A, gridLayout.B)
+        // gridLayout.A = -6.498271312812643
+        // gridLayout.B = 337.61538461538464
+        // console.log('gridLayout.A', height, gridLayout.$_hi, gridLayout.$_lo, gridLayout.A, gridLayout.B)
     }
 
     // Select nearest good-loking t step (m is target scale)
@@ -283,8 +285,8 @@ export function createGridMaker(
     }
 
     function grid_x() {
-    // If this is a subgrid, no need to calc a timeline,
-    // we just borrow it from the master_grid
+        // If this is a subgrid, no need to calc a timeline,
+        // we just borrow it from the master_grid
         if (!master_grid) {
             gridLayout.t_step = time_step();
             gridLayout.xs = [];
@@ -401,7 +403,7 @@ export function createGridMaker(
     }
 
     function grid_y() {
-    // Prevent duplicate levels
+        // Prevent duplicate levels
         const m = Math.pow(10, -gridLayout.prec);
         gridLayout.$_step = Math.max(m, dollar_step());
         gridLayout.ys = [];
@@ -418,8 +420,8 @@ export function createGridMaker(
     }
 
     function grid_y_log() {
-    // TODO: Prevent duplicate levels, is this even
-    // a problem here ?
+        // TODO: Prevent duplicate levels, is this even
+        // a problem here ?
         gridLayout.$_mult = dollar_mult();
         gridLayout.ys = [];
 
@@ -470,7 +472,7 @@ export function createGridMaker(
             yp = y;
         }
 
-    // TODO: remove lines near to 0
+        // TODO: remove lines near to 0
     }
 
     // Search a start for the top grid so that

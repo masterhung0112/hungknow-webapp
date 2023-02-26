@@ -2,6 +2,7 @@ import IndexedArray from 'arrayslicer';
 import {TimeRange} from 'types/TradingChart';
 
 import {DAY, MAP_UNIT, MONTH} from './constants';
+import { ChartItem, Ohlcv } from './types';
 
 export default {
     clamp(num: number, min: number, max: number) {
@@ -102,10 +103,11 @@ export default {
     },
 
     // Detects candles interval
-    detect_interval(ohlcv: any[]) {
+    detect_interval(ohlcv: Ohlcv) {
         const len = Math.min(ohlcv.length - 1, 99);
         let min = Infinity;
         ohlcv.slice(0, len).forEach((x, i) => {
+            // x[0] is timestamp
             const d = ohlcv[i + 1][0] - x[0];
             if (d === d && d < min) {
                 min = d;
@@ -125,7 +127,7 @@ export default {
     },
 
     // Fast filter. Really fast, like 10X
-    fast_filter(arr: number[][], t1: number, t2: number) {
+    fast_filter(arr: number[][], t1: number, t2: number): [number[][], number | undefined] {
         if (!arr.length) {
             return [arr, undefined];
         }
@@ -142,7 +144,7 @@ export default {
     },
 
     // Fast filter (index-based)
-    fast_filter_i(arr: number[], t1: number, t2: number) {
+    fast_filter_i(arr: number[][], t1: number, t2: number): [number[][], number | undefined] {
         if (!arr.length) {
             return [arr, undefined];
         }
@@ -200,11 +202,17 @@ export default {
     },
 
     // Parse timeframe or return value in ms
-    parse_tf(smth: any): any {
+    parse_tf(smth: any): number {
         if (typeof smth === 'string') {
+            if (Object.keys(MAP_UNIT).indexOf(smth) === -1) {
+                throw new Error(`failed to find timeframe for value ${smth}`)
+            }
             return MAP_UNIT[smth];
         }
-        return smth;
+        if (typeof smth === 'number') {
+            return smth
+        }
+        throw new Error(`failed to find timeframe for value ${smth}`)        
     },
 
     // Detect index shift between the main data sub
@@ -312,7 +320,7 @@ export default {
 
     // Format names such 'RSI, $length', where
     // length - is one of the settings
-    format_name(ov: any) {
+    format_name(ov: ChartItem) {
         if (!ov.name) {
             return undefined;
         }
