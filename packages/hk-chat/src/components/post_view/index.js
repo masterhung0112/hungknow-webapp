@@ -2,7 +2,8 @@
 // See LICENSE.txt for license information.
 
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+
+import {withRouter} from '../../hooks/withRouter';
 
 import {Constants} from 'utils/constants';
 

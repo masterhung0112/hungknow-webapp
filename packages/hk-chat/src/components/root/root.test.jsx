@@ -3,6 +3,7 @@
 
 import {shallow} from 'enzyme';
 import React from 'react';
+import {MemoryRouter} from 'react-router-dom';
 
 import Root from 'components/root/root';
 import * as GlobalActions from 'actions/global_actions';
@@ -67,7 +68,7 @@ describe('components/Root', () => {
             },
         };
 
-        const wrapper = shallow(<Root {...props}/>);
+        const wrapper = shallow(<MemoryRouter><Root {...props}/></MemoryRouter>);
 
         expect(props.actions.loadMeAndConfig).toHaveBeenCalledTimes(1);
 

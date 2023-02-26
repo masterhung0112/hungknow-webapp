@@ -137,10 +137,7 @@
     },
     "plugins": [
         {
-          "transform": "@zerollup/ts-transform-paths",
-          "exclude": [
-            "*"
-          ]
+          "transform": "ts-transform-paths"
         }
       ],
     "jsx": "react",

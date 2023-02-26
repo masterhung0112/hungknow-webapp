@@ -1,0 +1,18 @@
+@import "@hungknow/uikit/scss/variables/core-variables";
+
+.#{$themeid} .#{$ns} {
+  &.dropdown {
+    align-items: center;
+    display: flex;
+    margin: 5px 0;
+
+    &.dropdown-item-label {
+      color: $hk-text-color;
+      flex: 1;
+      min-width: 50px;
+      padding-left: 10px;
+      padding-right: 5px;
+      white-space: nowrap;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import "../variables/core-variables";
+@import "../colors/basic-colors";
+// @import "../icon/icon-variables";
+
+// see https://bitsofco.de/the-new-system-font-stack/
+$hk-font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Open Sans",
+  "Helvetica Neue", "Icons16",
+  // support inline Palantir icons
+  bootstrap-icons,
+  // Support Bootstrap Icon font
+  sans-serif !default;
+
+$hk-font-size: $hk-grid-size * 1.4 !default;
+$hk-font-size-large: $hk-grid-size * 1.6 !default;
+$hk-font-size-small: $hk-grid-size * 1.2 !default;
+
+$hk-line-height-base: 1.5 !default;
+// a little bit extra to ensure the height comes out to just over 18px (and browser rounds to 18px)
+$hk-line-height: $hk-line-height-base !default; //calc(($hk-grid-size * 1.8) / $hk-font-size) + 0.0001 !default;
+
+$hk-text-color: $dark-gray1 !default; // Default text color
+$hk-text-color-muted: $gray1 !default; // Muted text color
+$hk-text-color-disabled: rgba($hk-text-color-muted, 0.6) !default; // Disabled text color
+$hk-heading-color: $hk-text-color !default; // Text color for headers
+
+// Default text selection color using #7dbcff
+$hk-text-selection-color: rgba(125, 188, 255, 0.6) !default;
+
+/**
+ * Link
+ */
+$hk-link-color: $blue2 !default; // Text color for link
+$hk-link-color-hover: $blue1 !default;
+$hk-link-color-active: $blue1 !default;
+$hk-link-decoration: underline !default;
+$hk-link-hover-decoration: null !default;

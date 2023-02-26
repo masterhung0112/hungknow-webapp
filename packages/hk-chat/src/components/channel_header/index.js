@@ -3,7 +3,8 @@
 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+
+import {withRouter} from '../../hooks/withRouter';
 
 import {goToLastViewedChannel} from 'actions/views/channel';
 

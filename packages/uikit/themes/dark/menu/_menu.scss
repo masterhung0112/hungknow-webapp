@@ -1,0 +1,28 @@
+@import "../variables/core-variables";
+@import "../divider/divider-variables";
+@import "menu-variables";
+@import "menu-mixins";
+@import "@hungknow/uikit/scss/menu/menu-mixins";
+
+.#{$themeid} {
+  .#{$ns} {
+    &.menu {
+      background-color: $hk-menu-background-color;
+      color: $hk-text-color;
+
+      .menu-item {
+        @include menu-item();
+        @include menu-item-intent();
+      }
+
+      .menu-divider,
+      .menu-header {
+        border-color: $hk-divider-white;
+      }
+
+      .menu-header > h6 {
+        color: $hk-heading-color;
+      }
+    }
+  }
+}

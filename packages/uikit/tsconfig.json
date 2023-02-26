@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "lib": [
+        "dom",
+        "es2015"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "noEmit": false,
+      "experimentalDecorators": true,
+      "jsx": "react",
+      "rootDir": "./src",
+      "baseUrl": ".",
+      "outDir": "dist",
+      "paths": {
+      
+      },
+      "isolatedModules": true,
+      "sourceMap": true,
+      "declaration": true
+    },
+    "include": [
+      "./src/**/*", "sass",
+    ],
+    "exclude": [
+      "dist",
+      "e2e",
+      "!node_modules/@types",
+      "storybook-static",
+      "coverage",
+      "./src/**/*.stories.tsx",
+    ]
+  }

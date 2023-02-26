@@ -3,7 +3,8 @@
 
 import {ActionCreatorsMapObject, bindActionCreators, Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+
+import {withRouter} from '../../hooks/withRouter';
 
 import {GlobalState} from 'types/store';
 

@@ -1,0 +1,26 @@
+import { CollapseSC } from "../../showcases/CollapseSC"
+
+Collapse includes two items:
+- A button or an anchor are used to trigger the collapse
+- The content inside the collapse
+
+There are three States:
+- `.collapse` hides content
+- `.collapsing` is added when the trnsition starts and removed when it finishes
+- `.collapse.show` shows content
+
+When replacing `.collapse` by `.collapsing`, 
+you must add `height` css field to indicate the height for animation.
+
+After the animation is done, replace `.collapsing` by `.collapse.show` and remove `height` css.
+
+<CollapseSC />
+
+```html
+<div>
+    <button data-hk-target="collapseContentId">Toggler</button>
+    <div className="hk1 collapse show" id="collapseContentId">
+        Content to toggle
+    </div>
+</div>
+```

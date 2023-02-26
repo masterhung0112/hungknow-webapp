@@ -33,6 +33,7 @@ import Markdown from 'components/markdown';
 import {Client4} from 'hkclient-redux/client';
 
 import LoginMfa from '../login_mfa.jsx';
+import {withRouter} from '../../../hooks/withRouter';
 
 class LoginController extends React.PureComponent {
     static propTypes = {
@@ -882,4 +883,4 @@ class LoginController extends React.PureComponent {
     }
 }
 
-export default injectIntl(LoginController);
+export default injectIntl(withRouter(LoginController));

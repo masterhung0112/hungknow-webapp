@@ -1,0 +1,33 @@
+@import "icon-variables";
+
+@mixin hk-icon-font-smoothing() {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+@mixin hk-icon-sized(
+  $font-size: $hk-icon-size-standard,
+  $font-family-size: strip-unit($font-size)
+) {
+  font-family: bootstrap-icons, sans-serif;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
+
+@mixin hk-icon-colors() {
+  color: $hk-icon-color;
+
+  &:hover {
+    color: $hk-icon-color-hover;
+  }
+}
+
+@mixin hk-icon(
+  $font-size: $hk-icon-size-standard,
+  $font-family-size: strip-unit($font-size)
+) {
+  @include hk-icon-sized($font-size, $font-family-size);
+  @include hk-icon-font-smoothing();
+}

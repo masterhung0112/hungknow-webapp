@@ -1,13 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/AdminConsole should generate the routes 1`] = `
-<Redirect
+<Navigate
   to="/team-id/channels/town-square"
+  replace={true}
 />
 `;
 
 exports[`components/AdminConsole should redirect to town-square when not system admin 1`] = `
-<Redirect
+<Navigate
   to="/team-id/channels/town-square"
+  replace={true}
 />
 `;

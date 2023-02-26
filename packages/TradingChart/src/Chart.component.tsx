@@ -79,13 +79,21 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
 
         // Crosshair states
         this.cursor = {
+            // Current x position (px)
             x: null,
+            // Current y position (px)
             y: null,
+            // Current timestamp (ms)
             t: null,
+            // Current price level
             y$: null,
+            // Current grid id
             grid_id: null,
+            // true during scrolling, false otherwise
             locked: false,
+            // Current indicator values in a specific format
             values: {},
+            // True when scrolling is locked (drawing mode)
             scroll_lock: false,
             mode: Utils.xmode(),
         };
@@ -177,10 +185,15 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
         }
     }
 
+    // Goto to a specific timestamp
+    // Arguments: t (Number) Target timestamp | Index (in IB mode)
     goto(t: number) {
         const dt = this.range.t2 - this.range.t1;
         this.range_changed(Utils.timeRange(t - dt, t));
     }
+    // Sets custom time range.
+    // Arguments: t1 (Number) Left-bound of the range | Index (in IB mode)
+    // Arguments: t2 (Number) Right-bound of the range | Index (in IB mode)
     setRange(t1: number, t2: number) {
         this.range_changed(Utils.timeRange(t1, t2));
     }
@@ -399,6 +412,9 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
     }
 
     // Set hooks list (called from an extension)
+    // Set hooks to the internal events. You'll get events like this ?<hook name>
+    // Arguments: ...args (Strings) hook names
+    // Currently supports: xchanged, xlocked, update, resize, data
     hooks(...list: any[]) {
     // list.forEach((x) => (this[`_hook_${x}`] = true))
     }
@@ -487,6 +503,7 @@ export class ChartNoShader extends React.Component<ChartProps, ChartState> {
             activated: this.activated,
         };
     }
+    // Forced timeframe
     get forced_tf() {
         return this.chart.tf;
     }

@@ -6,31 +6,35 @@ import resolve from 'rollup-plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import commonjs from 'rollup-plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
+import json from '@rollup/plugin-json';
 
 // eslint-disable-next-line no-process-env
 const production = process.env.NODE_ENV === 'production'
 
 // , 'websocket_client'
-const inputs = ['hkclient']
+const inputs = ['index']
 // eslint-disable-next-line no-process-env
-const buildFolder = process.env.OUTPUT_FOLDER || '.'
+// const buildFolder = process.env.OUTPUT_FOLDER || '.'
 
 module.exports = inputs.map((input) => ({
-  input: `./src/hkclient/${input}.ts`,
+  input: `./src/${input}.ts`,
   treeshake: Boolean(production),
   output: [
     {
       format: 'cjs',
-      file: `${buildFolder}/${input}.js`,
+      file: `dist/hk-client-redux.js`,
+      sourcemap: true,
+      exports: 'named',
+    },
+    {
+      format: 'esm',
+      file: `dist/hk-client-redux.esm.js`,
       sourcemap: true,
       exports: 'named',
     },
   ],
   plugins: [
     resolve(),
-    commonjs({
-      include: ['node_modules/**'],
-    }),
     typescript({
       tsconfigOverride: {
         compilerOptions: { module: 'esnext' },
@@ -41,6 +45,14 @@ module.exports = inputs.map((input) => ({
       exclude: '**/__tests__/**',
       clean: true,
     }),
+    commonjs({
+      include: ['./node_modules/**', '../../node_modules/**', '../hkreselect/dist/**'],
+    }),
+    json({
+      exclude: [
+          'src/**',
+      ],
+  }),
 
     // only minify if in production
     production && terser(),

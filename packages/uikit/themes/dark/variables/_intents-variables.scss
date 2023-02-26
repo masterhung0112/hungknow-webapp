@@ -1,0 +1,8 @@
+@use "@hungknow/uikit/scss/colors/basic-colors" as uikit_basiccolors;
+
+$hk-intent-text-colors: (
+  "primary": uikit_basiccolors.$blue5,
+  "success": uikit_basiccolors.$green5,
+  "warning": uikit_basiccolors.$orange5,
+  "danger" : uikit_basiccolors.$red5,
+) !default;

@@ -1,0 +1,33 @@
+@import "../variables/core-variables";
+@import "typography-variables";
+
+.#{$themeid} {
+  color: $hk-text-color;
+
+  .#{$ns} {
+    &.text-muted {
+      color: $hk-text-color-muted;
+    }
+
+    &.text-disabled {
+      color: $hk-text-color-disabled;
+    }
+
+    a {
+      color: $hk-link-color;
+
+      code,
+      & code {
+        color: inherit;
+      }
+
+      &:hover {
+        color: $hk-link-color;
+
+        // #{$hk-icon-classes} {
+        //   color: inherit;
+        // }
+      }
+    }    
+  }
+}

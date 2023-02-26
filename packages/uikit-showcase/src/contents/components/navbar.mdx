@@ -1,0 +1,54 @@
+Navbar includes support for branding, navigation, collapse.
+
+Navbars come with built-in support for a handful of sub-components.
+Choose from the following as needed:
+- `.navbar-brand` for your company, project
+- `.navbar-toggler` for use with the collapse
+- `.collapse.navbar-collapse` for grouping and hiding navbar contents by a parent breakpoint.
+- `.navbar-nav` for a full-height navigation when the screen is in mobile
+- `.navbar-text` for adding vertically centered strings of text
+- `.navbar-nav-scroll` to set a max-height and scrolled expanded navbar content
+<!--
+<Navbar>
+    <Navbar.Toggler>
+    </Navbar.Toggler>
+    <Navbar.Collapse>
+        <a className="nav-link active" href="">Home</a>
+        <Dropdown>
+            <Dropdown.Toggle>
+
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+                <Dropdown.Item>
+
+                </Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
+    </Navbar.Collapse>
+</Navbar>
+-->
+<nav className="hk1 navbar navbar-expand-lg">
+    <a className="navbar-brand" href="#">Brand</a>
+    <button className="navbar-toggler" type="button" data-hk-toggle="collapse" data-bs-target="#navbarContent" aria-expanded="false">
+        <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="hk1 collapse navbar-collapse show" id="navbarContent">
+        <nav className="navbar-nav navbar-nav-scroll" style={{"--hk1-scroll-height": "50px"}}>
+            <a className="nav-link active" href="#">Home</a>
+            <div className="dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-hk-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a className="dropdown-item" href="#">Action</a></li>
+                    <li><a className="dropdown-item" href="#">Another Action</a></li>
+                </ul>
+            </div>
+            <a className="nav-link disabled">Disabled</a>
+        </nav>
+    </div>
+</nav>
+
+# Scrolling
+Add `.navbar-nav-scroll` to a `.navbar-nav` to enable vertical scrolling within the toggleable contents of a collapsed navbar.
+By default, scrolling kicks in at 75% of the viewport height, but you can override that with the local custom property `--hk-navbar-height`.

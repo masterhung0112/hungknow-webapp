@@ -1,0 +1,5 @@
+{
+  "extends": [
+      "@hungknow/eslint-config"
+  ]
+}

@@ -3,7 +3,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Routes, Navigate, Outlet} from 'react-router-dom';
 
 import {rudderAnalytics, RudderTelemetryHandler} from 'hkclient-redux/client/rudder';
 
@@ -52,6 +52,7 @@ import {getConfig} from 'hkclient-redux/selectors/entities/general';
 import {setSystemEmojis} from 'hkclient-redux/actions/emojis';
 import {setUrl} from 'hkclient-redux/actions/general';
 import {Client4} from 'hkclient-redux/client';
+import {withRouter} from '../../hooks/withRouter';
 
 const FastClick = require('fastclick');
 
@@ -74,18 +75,13 @@ const SelectTeam = makeAsyncComponent(LazySelectTeam);
 const Authorize = makeAsyncComponent(LazyAuthorize);
 const Mfa = makeAsyncComponent(LazyMfa);
 
-const LoggedInRoute = ({component: Component, ...rest}) => (
-    <Route
-        {...rest}
-        render={(props) => (
-            <LoggedIn {...props}>
-                <Component {...props}/>
-            </LoggedIn>
-        )}
-    />
+const LoggedInRoute = () => (
+    <LoggedIn>
+        <Outlet/>
+    </LoggedIn>
 );
 
-export default class Root extends React.PureComponent {
+export class Root extends React.PureComponent {
     static propTypes = {
         telemetryEnabled: PropTypes.bool,
         telemetryId: PropTypes.string,
@@ -186,7 +182,7 @@ export default class Root extends React.PureComponent {
         }
 
         if (this.props.location.pathname === '/' && this.props.noAccounts) {
-            this.props.history.push('/signup_user_complete');
+            this.props.navigate('/signup_user_complete');
         }
 
         initializePlugins().then(() => {
@@ -213,7 +209,7 @@ export default class Root extends React.PureComponent {
         }
 
         if (mobileLanding && !BrowserStore.hasSeenLandingPage() && !toResetPasswordScreen && !this.props.location.pathname.includes('/landing')) {
-            this.props.history.push('/landing#' + this.props.location.pathname + this.props.location.search);
+            this.props.navigate('/landing#' + this.props.location.pathname + this.props.location.search);
             BrowserStore.setLandingPageSeen(true);
         }
     }
@@ -221,9 +217,9 @@ export default class Root extends React.PureComponent {
     componentDidUpdate(prevProps) {
         if (this.props.location.pathname === '/') {
             if (this.props.noAccounts) {
-                prevProps.history.push('/signup_user_complete');
+                prevProps.navigate('/signup_user_complete');
             } else if (this.props.showTermsOfService) {
-                prevProps.history.push('/terms_of_service');
+                prevProps.navigate('/terms_of_service');
             }
         }
     }
@@ -276,107 +272,131 @@ export default class Root extends React.PureComponent {
 
         return (
             <IntlProvider>
-                <Switch>
+                <Routes>
                     <Route
                         path={'/error'}
-                        component={ErrorPage}
+                        element={ErrorPage}
                     />
-                    <HFTRoute
-                        path={'/login'}
-                        component={LoginController}
-                    />
-                    <HFTRoute
-                        path={'/reset_password'}
-                        component={PasswordResetSendLink}
-                    />
-                    <HFTRoute
-                        path={'/reset_password_complete'}
-                        component={PasswordResetForm}
-                    />
-                    <HFTRoute
-                        path={'/signup_user_complete'}
-                        component={SignupController}
-                    />
-                    <HFTRoute
-                        path={'/signup_email'}
-                        component={SignupEmail}
-                    />
-                    <HFTRoute
-                        path={'/should_verify_email'}
-                        component={ShouldVerifyEmail}
-                    />
-                    <HFTRoute
-                        path={'/do_verify_email'}
-                        component={DoVerifyEmail}
-                    />
-                    <HFTRoute
-                        path={'/claim'}
-                        component={ClaimController}
-                    />
-                    <HFTRoute
-                        path={'/help'}
-                        component={HelpController}
-                    />
-                    <LoggedInRoute
-                        path={'/terms_of_service'}
-                        component={TermsOfService}
-                    />
+                    <Route element={<HFTRoute/>}>
+                        <Route
+                            path={'/login'}
+                            element={<LoginController/>}
+                        />
+                        <Route
+                            path={'/reset_password'}
+                            element={<PasswordResetSendLink/>}
+                        />
+                        <Route
+                            path={'/reset_password_complete'}
+                            element={<PasswordResetForm/>}
+                        />
+                        <Route
+                            path={'/signup_user_complete'}
+                            element={<SignupController/>}
+                        />
+                        <Route
+                            path={'/signup_email'}
+                            element={<SignupEmail/>}
+                        />
+                        <Route
+                            path={'/should_verify_email'}
+                            element={<ShouldVerifyEmail/>}
+                        />
+                        <Route
+                            path={'/do_verify_email'}
+                            element={<DoVerifyEmail/>}
+                        />
+                        <Route
+                            path={'/claim'}
+                            element={<ClaimController/>}
+                        />
+                        <Route
+                            path={'/help'}
+                            element={<HelpController/>}
+                        />
+                    </Route>
+                    <Route element={<LoggedInRoute/>}>
+                        <Route
+                            path={'/terms_of_service'}
+                            element={<TermsOfService/>}
+                        />
+                        <Route
+                            path={'/admin_console'}
+                            element={<AdminConsole/>}
+                        />
+                        <Route
+                            path={'/mfa'}
+                            element={<Mfa/>}
+                        />
+                    </Route>
                     <Route
                         path={'/landing'}
-                        component={LinkingLandingPage}
-                    />
-                    <LoggedInRoute
-                        path={'/admin_console'}
-                        component={AdminConsole}
-                    />
-                    <LoggedInHFTRoute
-                        path={'/select_team'}
-                        component={SelectTeam}
-                    />
-                    <LoggedInHFTRoute
-                        path={'/oauth/authorize'}
-                        component={Authorize}
-                    />
-                    <LoggedInHFTRoute
-                        path={'/create_team'}
-                        component={CreateTeam}
+                        element={<LinkingLandingPage/>}
                     />
                     <LoggedInRoute
                         path={'/mfa'}
                         component={Mfa}
                     />
-                    <Redirect
-                        from={'/_redirect/integrations/:subpath*'}
-                        to={`/${this.props.permalinkRedirectTeamName}/integrations/:subpath*`}
+                    <Route element={<LoggedInHFTRoute/>}>
+                        <Route
+                            path={'/select_team'}
+                            element={<SelectTeam/>}
+                        />
+                        <Route
+                            path={'/oauth/authorize'}
+                            element={<Authorize/>}
+                        />
+                        <Route
+                            path={'/create_team'}
+                            element={<CreateTeam/>}
+                        />
+                    </Route>
+                    <Route
+                        path={'/_redirect/integrations/:subpath*'}
+                        element={
+                            <Navigate
+                                replace={true}
+                                to={`/${this.props.permalinkRedirectTeamName}/integrations/:subpath*`}
+                            />
+                        }
                     />
-                    <Redirect
-                        from={'/_redirect/pl/:postid'}
-                        to={`/${this.props.permalinkRedirectTeamName}/pl/:postid`}
+                    <Route
+                        path={'/_redirect/pl/:postid'}
+                        element={
+                            <Navigate
+                                replace={true}
+                                to={`/${this.props.permalinkRedirectTeamName}/pl/:postid`}
+                            />
+                        }
                     />
                     {this.props.plugins?.map((plugin) => (
                         <Route
                             key={plugin.id}
                             path={'/plug/' + plugin.route}
-                            render={() => (
+                            element={
                                 <Pluggable
                                     pluggableName={'CustomRouteComponent'}
                                     pluggableId={plugin.id}
                                 />
-                            )}
+                            }
                         />
                     ))}
-                    <LoggedInRoute
+                    <Route
                         path={'/:team'}
-                        component={NeedsTeam}
+                        element={<LoggedInRoute><NeedsTeam/></LoggedInRoute>}
                     />
-                    <Redirect
+          
+                    <Navigate
+                        replace={true}
                         to={{
                             ...this.props.location,
                             pathname: '/login',
                         }}
-                    />
-                </Switch>
+                   />
+                </Routes>
             </IntlProvider>
         );
     }
 }
+
+export default withRouter(Root);

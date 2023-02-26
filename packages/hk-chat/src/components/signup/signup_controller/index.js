@@ -15,6 +15,7 @@ import {getCurrentUserId} from 'hkclient-redux/selectors/entities/users';
 import {getTeamInviteInfo} from 'hkclient-redux/actions/teams';
 
 import SignupController from './signup_controller.jsx';
+import {withRouter} from '../../../hooks/withRouter';
 
 function mapStateToProps(state, ownProps) {
     const license = getLicense(state);
@@ -74,4 +75,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupController);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignupController));

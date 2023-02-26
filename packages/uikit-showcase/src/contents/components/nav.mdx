@@ -1,0 +1,55 @@
+import { Nav, NavLink, Collapse, AnchorButton } from "@hungknow/uikit"
+
+Several types of nav:
+- Tab
+- Horizontal Alignment
+- Vertical Alignment
+
+Nav group may content the header and a list of sub-nav items
+
+<Nav>
+    <NavLink active="true">Link 1</NavLink>
+    <NavLink>Link 2</NavLink>
+    <NavLink disabled={true}>Disabled Link</NavLink>
+</Nav>
+
+Vertical nav
+
+<Nav vertical={true}>
+    <NavLink active="true">Link 1</NavLink>
+    <NavLink>Link 2</NavLink>
+    <NavLink disabled={true}>Disabled Link</NavLink>
+</Nav>
+
+Nested Nav
+
+<Nav vertical={true}>
+    <NavLink active="true">Link 1</NavLink>
+    <NavLink>Link 2</NavLink>
+    <Nav vertical={true}>
+        <NavLink>Link in Sub-Nav</NavLink>
+        <Nav vertical={true}>
+            <NavLink>Link in Next Sub-Nav</NavLink>
+        </Nav>
+        <NavLink>Link 2 in Sub-Nav</NavLink>
+    </Nav>
+</Nav>
+
+Collapsed Nested Nav
+
+<Nav vertical={true}>
+    <NavLink active="true">Link 1</NavLink>
+    <NavLink>Link 2</NavLink>
+    <AnchorButton className="nav-link" minimal={true}>Open Collapse</AnchorButton>
+    <Collapse isOpen={true}>
+        <Nav vertical={true}>
+            <NavLink>Link in Sub-Nav</NavLink>
+            <NavLink>Link 2 in Sub-Nav</NavLink>
+            <Collapse isOpen="true">
+                <Nav>
+                    <NavLink>Link in Sub2</NavLink>
+                </Nav>
+            </Collapse>
+        </Nav>
+    </Collapse>
+</Nav>

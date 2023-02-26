@@ -1,0 +1,22 @@
+@import "../colors/intent-colors";
+
+$hk-button-intents: (
+  "primary": ($hk-intent-primary, $blue2, $blue1),
+  "success": ($hk-intent-success, $green2, $green1),
+  "warning": ($hk-intent-warning, $orange2, $orange1),
+  "danger": ($hk-intent-danger, $red2, $red1)
+) !default;
+
+$hk-intent-colors: (
+  "primary": $hk-intent-primary,
+  "success": $hk-intent-success,
+  "warning": $hk-intent-warning,
+  "danger" : $hk-intent-danger,
+) !default;
+
+$hk-intent-text-colors: (
+  "primary": $blue2,
+  "success": $green2,
+  "warning": $orange2,
+  "danger" : $red2,
+) !default;

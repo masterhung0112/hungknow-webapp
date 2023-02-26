@@ -4,7 +4,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {FormattedMessage} from 'react-intl';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 
 import {emitUserLoggedOutEvent} from 'actions/global_actions';
 import logoImage from 'images/logo.png';
@@ -74,7 +74,7 @@ export default class MFAController extends React.PureComponent {
                                     src={logoImage}
                                 />
                                 <div id='mfa'>
-                                    <Switch>
+                                    <Routes>
                                         <Route
                                             path={`${this.props.match.url}/setup`}
                                             render={(props) => (
@@ -95,7 +95,7 @@ export default class MFAController extends React.PureComponent {
                                                 />
                                             )}
                                         />
-                                    </Switch>
+                                    </Routes>
                                 </div>
                             </div>
                         </div>

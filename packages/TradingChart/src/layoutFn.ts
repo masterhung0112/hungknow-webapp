@@ -32,7 +32,7 @@ export function screen2$(layout: Layout, y: number): number {
     return (y - layout.B) / layout.A;
 }
 
-// time -> nearest candle x
+// Returns x-coordinate of nearest candle for given time
 export function t_magnet(layout: Layout, t: number): number | undefined {
     const {ti_map} = layout;
 
@@ -60,6 +60,7 @@ export function screen2t(layout: Layout, x: number, range: TimeRange): number {
 // $-axis nearest step
 // export function $_magnet(price) {}
 // Nearest candlestick
+// Returns nearest candle for given time
 export function c_magnet(layout: Layout, t: number): CandleData {
     const cn = layout.candles || layout.master_grid.candles;
     const arr = cn.map((x) => x.raw[0]);

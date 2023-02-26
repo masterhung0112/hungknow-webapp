@@ -18,12 +18,12 @@ yarn task start_server
 
 For hk-browser, run the following commands
 ```
-yarn dev-server
+yarn browser:dev-server
 ```
 
 For hk-browser-nextjs, run the following commands
 ```
-yarn nextbrowser:dev
+yarn nextbrowser:dev-server
 ```
 
 # Typescript/Javascript compilers
@@ -33,6 +33,19 @@ yarn nextbrowser:dev
 - hk-browser-nextjs: nextjs
 - hkclient-redux: tsc
 - hkreselect: babel
+
+# Project
+
+## [uikit](packages/uikit/README.md)
+
+My own theme components that was written in React
+
+Command to start working with ui kit
+```sh
+yarn dev:uikit
+```
+
+This command starts the watch on uikit and dev server for uikit-showcase.
 
 # CI
 
@@ -79,3 +92,9 @@ gcloud builds submit --config=build/cloudbuild-ci-gcr.yaml
     * List of folders and files that we don't want to check lint syntax
 * .npmignore
     * List of folders and files that we don't want npm to keep when this package is installed as a dependency in another package
+
+# Single SPA
+
+## Application connection
+Application can be React, angular, vanilla javascript project, which then compiled into the **Systemjs** bundle.
+`ss-root-config` loads the target application by route.

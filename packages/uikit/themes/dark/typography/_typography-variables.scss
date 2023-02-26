@@ -1,0 +1,14 @@
+/***
+ * Text-related dark version
+ */
+$hk-text-color: $light-gray5 !default;
+$hk-text-color-muted: $gray4 !default;
+$hk-text-color-disabled: rgba($hk-text-color-muted, 0.6) !default;
+$hk-heading-color: $hk-text-color !default;
+
+/**
+ * Link
+ */
+$hk-link-color: $blue5 !default;
+$hk-link-color-hover: $blue5 !default;
+$hk-link-color-active: $blue5 !default;

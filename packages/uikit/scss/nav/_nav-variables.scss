@@ -1,0 +1,15 @@
+@import "../typography/typography-variables";
+
+$hk-nav-link-padding-y: $hk-font-size * 0.5 !default;
+$hk-nav-link-padding-x: $hk-font-size !default;
+
+// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
+$hk-nav-link-height: $hk-font-size * $hk-line-height-base + $hk-nav-link-padding-y * 2 !default;
+
+$hk-nav-link-color: $hk-link-color !default;
+$hk-nav-link-font-weight: 400 !default;
+
+$hk-nav-link-color-hover: $hk-link-color-hover !default;
+$hk-nav-link-color-active: $hk-link-color-active !default;
+$hk-nav-link-font-weight-active: 900 !default;
+$hk-nav-link-font-weight-hover: 900 !default;

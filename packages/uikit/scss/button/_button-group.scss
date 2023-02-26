@@ -1,0 +1,91 @@
+@import "button-mixins";
+@import "../variables/stack-variables";
+
+.#{$ns}.button-group {
+  display: inline-flex;
+
+  & .#{$ns}.button {
+    // ensure button can never be smaller than its default size
+    flex: 0 0 auto;
+    position: relative;
+    z-index: index($hk-control-group-stack, "button-default");
+  }
+
+  // No border radius for the middle buttons.
+  // We only display border radius for the first and the last buttons
+  &:not(.minimal) {
+    > .popover-wrapper:not(:first-child) .#{$ns}.button,
+    > .#{$ns}.button:not(:first-child) {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    > .popover-wrapper:not(:last-child) .#{$ns}.button,
+    > .#{$ns}.button:not(:last-child) {
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      margin-right: -$hk-button-border-width;
+    }
+  }
+
+  &.minimal {
+    .#{$ns}.button {
+      @include hk-button-minimal();
+    }
+  }
+
+  /*
+   * Vertical layout
+   */
+
+  &.vertical {
+    align-items: stretch;
+    flex-direction: column;
+    vertical-align: top;
+
+    &.fill {
+      height: 100%;
+      width: unset;
+    }
+
+    .#{$ns}.button {
+      // margin-right help display border on the right in horizon. It's not necessary when vertical
+      margin-right: 0;
+      // needed to ensure buttons take up the full width when wrapped in a Popover
+      width: 100%;
+    }
+
+    &:not(.minimal) {
+      // The first button display two top border radius
+      > .popover-wrapper:first-child .#{$ns}.button,
+      > .#{$ns}.button:first-child {
+        border-radius: $hk-border-radius $hk-border-radius 0 0;
+      }
+
+      // The last button display two bottom border radius
+      > .popover-wrapper:last-child .#{$ns}.button,
+      > .#{$ns}.button:last-child {
+        border-radius: 0 0 $hk-border-radius $hk-border-radius;
+      }
+
+      // Keep space for displaying the top border of the next button
+      > .popover-wrapper:not(:last-child) .#{$ns}.button,
+      > .#{$ns}.button:not(:last-child) {
+        margin-bottom: -$hk-button-border-width;
+      }
+    }
+  }
+
+  /*
+   * Responsive design
+   */
+  &.fill {
+    display: flex;
+    width: 100%;
+  }
+
+  .#{$ns}.button.fill,
+  &.fill .#{$ns}.button:not(.fixed) {
+    flex: 1 1 auto;
+  }
+}

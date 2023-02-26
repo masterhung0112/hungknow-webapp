@@ -1,0 +1,39 @@
+import { Button, AnchorButton, ButtonGroup } from '@hungknow/uikit'
+
+## Normal Button Group
+<ButtonGroup>
+    <Button icon="arrow-repeat">Queries</Button>
+    <Button icon="funnel">Functions</Button>
+    <Button rightIcon="caret-down-fill">Options</Button>
+    <Button intent="success">Success</Button>
+</ButtonGroup>
+
+## Vertical Button Group
+
+<ButtonGroup vertical={true}>
+    <Button icon="arrow-repeat">Queries</Button>
+    <Button icon="funnel">Functions</Button>
+    <Button rightIcon="caret-down-fill">Options</Button>
+    <Button intent="success">Success</Button>
+</ButtonGroup>
+
+## Responsive Button Group
+
+<ButtonGroup fill={true}>
+    <Button>Button</Button>
+    <Button fill={true}>Fill Button</Button>
+</ButtonGroup>
+
+## Vertical Responsive Button Group
+
+<ButtonGroup vertical={true} fill={true}>
+    <Button>Button</Button>
+    <Button fill={true}>Fill Button</Button>
+</ButtonGroup>
+
+```html
+<div class="hk1 button-group">
+    <button type="button" class="hk1 button intent-success">Save</button>
+    <button type="button" class="hk1 button intent-success" bi-caret-down-fill></button>
+</div>
+```

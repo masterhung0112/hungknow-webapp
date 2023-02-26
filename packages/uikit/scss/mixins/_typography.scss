@@ -1,0 +1,19 @@
+@mixin base-typography() {
+  font-size: $hk-font-size;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: $hk-line-height;
+  text-transform: none;
+}
+
+@mixin heading-typography() {
+  color: $hk-heading-color;
+  font-weight: 600;
+}
+
+@mixin overflow-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}

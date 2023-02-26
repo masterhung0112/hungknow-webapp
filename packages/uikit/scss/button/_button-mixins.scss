@@ -1,0 +1,187 @@
+@import "../flex/flex-mixins";
+@import "button-variables";
+@import "../variables/intents-variables";
+
+@mixin hk-button-base() {
+  @include hk-flex-container(row, $hk-button-icon-spacing, $inline: inline);
+  align-items: center;
+
+  border: none;
+  border-radius: $hk-border-radius;
+  cursor: pointer;
+  font-size: $hk-font-size;
+  justify-content: center;
+  padding: $hk-button-padding;
+  text-align: left;
+  vertical-align: middle;
+}
+
+@mixin hk-button-height($height) {
+  min-height: $height;
+  min-width: $height;
+}
+
+@mixin hk-button() {
+  background-color: $hk-button-background-color;
+  background-image: $hk-button-gradient;
+  box-shadow: $hk-button-box-shadow;
+  color: $hk-text-color;
+
+  &:hover {
+    @include hk-button-hover();
+  }
+
+  &:active,
+  &.#{$ns}-active {
+    @include hk-button-active();
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    @include hk-button-disabled();
+  }
+}
+
+
+@mixin hk-button-hover() {
+  background-clip: padding-box;
+  background-color: $hk-button-background-color-hover;
+  box-shadow: $hk-button-box-shadow;
+}
+
+@mixin hk-button-active() {
+  background-color: $hk-button-background-color-active;
+  background-image: none;
+  box-shadow: $hk-button-box-shadow-active;
+}
+
+@mixin hk-button-disabled() {
+  background-color: $hk-button-background-color-disabled;
+  background-image: none;
+  box-shadow: none;
+  color: $hk-button-color-disabled;
+  cursor: not-allowed;
+  outline: none;
+
+  &.#{$ns}-active,
+  &.#{$ns}-active:hover {
+    background: $hk-button-background-color-active-disabled;
+  }
+}
+
+@mixin hk-button-intent($default-color, $hover-color, $active-color) {
+  background-color: $default-color;
+  background-image: $hk-button-intent-gradient;
+  box-shadow: $hk-button-intent-box-shadow;
+  color: $white;
+
+  &:hover,
+  &:active,
+  &.#{$ns}-active {
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $hover-color;
+    box-shadow: $hk-button-intent-box-shadow;
+  }
+
+  &:active,
+  &.#{$ns}-active {
+    background-color: $active-color;
+    background-image: none;
+    box-shadow: $hk-button-intent-box-shadow-active;
+  }
+
+  &:disabled,
+  &.#{$ns}-disabled {
+    @include hk-button-intent-disabled($default-color);
+  }
+}
+
+@mixin hk-button-intent-disabled($default-color) {
+  background-color: rgba($default-color, 0.5);
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  color: $hk-button-intent-color-disabled;
+}
+
+@mixin hk-button-minimal-intent($intent-color, $text-color) {
+  color: $text-color;
+
+  &:hover,
+  &:active,
+  &.active {
+    background: none;
+    box-shadow: none;
+    color: $text-color;
+  }
+
+  &:hover {
+    background: rgba($intent-color, 0.15);
+    color: $text-color;
+  }
+
+  &:active,
+  &.active {
+    background: rgba($intent-color, 0.3);
+    color: $text-color;
+  }
+
+  &:disabled,
+  &.disabled {
+    background: none;
+    color: rgba($text-color, 0.5);
+
+    &.active {
+      background: rgba($intent-color, 0.3);
+    }
+  }
+
+  .button-spinner .spinner-head {
+    stroke: $text-color;
+  }
+}
+
+@mixin hk-button-minimal() {
+  background: $hk-minimal-button-background-color;
+  box-shadow: none;
+
+  &:hover {
+    background: $hk-minimal-button-background-color-hover;
+    box-shadow: none;
+    color: $hk-text-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    background: $hk-minimal-button-background-color-active;
+    box-shadow: none;
+    color: $hk-text-color;
+  }
+
+  &:disabled,
+  &:disabled:hover,
+  &.disabled,
+  &.disabled:hover {
+    background: none;
+    color: $hk-text-color-disabled;
+    cursor: not-allowed;
+
+    &.active {
+      background: $hk-minimal-button-background-color-active;
+    }
+  }
+
+  @each $intent, $colors in $hk-button-intents {
+    &.intent-#{$intent} {
+      @include hk-button-minimal-intent(
+        map-get($hk-intent-colors, $intent),
+        map-get($hk-intent-text-colors, $intent),
+        // map-get($hk-dark-intent-text-colors, $intent)
+      );
+    }
+  }
+}

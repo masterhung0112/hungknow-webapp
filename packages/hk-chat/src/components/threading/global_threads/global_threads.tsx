@@ -4,7 +4,7 @@
 import React, {memo, useCallback, useEffect} from 'react';
 import {useIntl} from 'react-intl';
 import {isEmpty} from 'lodash';
-import {Link, useRouteMatch} from 'react-router-dom';
+import {Link, useMatch} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import classNames from 'classnames';
 
@@ -47,7 +47,7 @@ const GlobalThreads = () => {
     const {formatMessage} = useIntl();
     const dispatch = useDispatch();
 
-    const {url, params: {threadIdentifier}} = useRouteMatch<{threadIdentifier?: string}>();
+    const {pathname: url, params: {threadIdentifier}} = useMatch('/:team/threads/:threadIdentifier');
     const [filter, setFilter] = useGlobalState(ThreadFilter.none, FILTER_STORAGE_KEY);
     const {currentTeamId, currentUserId, clear} = useThreadRouting();
 

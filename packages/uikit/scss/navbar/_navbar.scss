@@ -1,0 +1,226 @@
+/*
+Navbars
+
+Class names:
+.navbar
+.navbar > .navbar-toggler
+  &:hover
+  &:focus
+.navbar .navbar-collapse
+.navbar > navbar-brand
+  &:hover
+  &:focus
+.navbar .navbar-nav
+
+Markup:
+<nav class="hk1 navbar">
+  <div class="navbar-group align-left">
+    <div class="navbar-heading">Blueprint</div>
+    <input class="hk1 input" placeholder="Search files..." type="text" />
+  </div>
+  <div class="navbar-group align-right">
+    <button class="hk1 button minimal icon-home">Home</button>
+    <button class="hk1 button minimal icon-document">Files</button>
+    <span class="navbar-divider"></span>
+    <button class="hk1 button minimal icon-user"></button>
+    <button class="hk1 button minimal icon-notifications"></button>
+    <button class="hk1 button minimal icon-cog"></button>
+  </div>
+</nav>
+*/
+@import "navbar-variables";
+
+.#{$ns} {
+  &.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap; // allow us to do the line break for collapsing content
+    align-items: center;
+    justify-content: space-between;
+    background-color: $hk-navbar-background-color;
+    padding: $hk-navbar-padding-y $hk-navbar-padding-x;
+    // height: $hk-navbar-height;
+
+    // Button for toggling the navbar when in its collapsed state
+    & > .navbar-toggler {
+      line-height: 1;
+      background-color: transparent;
+      // bor
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:focus {
+        text-decoration: none;
+        outline: 0;
+        // box-shadow:
+      }
+    }
+
+    // Responsive navbar
+    //
+    // Custom styles for responsive collapsing and toggling of navbar contents.
+    // When collapsed, prevent the toggleable navbar contents from appearing in
+    // the default flexbox row orientation. Requires the use of `flex-wrap: wrap`
+    // on the `.navbar` parent.
+    .navbar-collapse {
+      flex-basis: 100%;
+      flex-grow: 1;
+      // For always expanded or extra full navbars, ensure content aligns itself
+      // properly vertically. Can be easily overridden with flex utilities.
+      align-items: center;
+    }
+
+    & > .navbar-brand {
+      color: $hk-navbar-brand-color;
+      padding-top: $hk-navbar-brand-padding-y;
+      padding-bottom: $hk-navbar-brand-padding-y;
+      margin-right: $hk-navbar-brand-margin-end;
+      font-size: $hk-navbar-brand-font-size;
+      white-space: nowrap;
+
+      &:hover,
+      &:focus {
+        color: $hk-navbar-brand-hover-color;
+        text-decoration: if($hk-link-hover-decoration == underline, none, null);
+      }
+    }
+
+    // Style for vertical navbar
+    .navbar-nav {
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+
+      // In vertical list, there's no padding on left and right
+      .nav-link {
+        color: $hk-navbar-color;
+        padding-right: 0;
+        padding-left: 0;
+
+        &:hover,
+        &:focus {
+          color: $hk-navbar-hover-color;
+        }
+
+        &.disabled {
+          color: $hk-navbar-disabled-color;
+        }
+      }
+
+      .show > .nav-link,
+      .nav-link.active {
+        color: $hk-navbar-active-color;
+      }
+
+      .dropdown-menu {
+        position: static;
+      }
+    }
+
+    .navbar-heading {
+      font-size: $hk-font-size-large;
+      margin-right: $hk-navbar-padding-x;
+    }
+
+    .navbar-group {
+      align-items: center;
+      display: flex;
+    }
+
+    .navbar-divider {
+      border-left: 1px solid $hk-divider-black;
+      height: auto; //$hk-navbar-height - $hk-grid-size * 3;
+      margin: 0 $hk-grid-size;
+    }
+
+    .navbar-text {
+      padding-top: $hk-nav-link-padding-y;
+      padding-bottom: $hk-nav-link-padding-y;
+    }
+
+    .navbar-nav-scroll {
+      max-height: var(--#{$ns}-scroll-height, 75vh);
+      overflow-y: auto;
+    }
+
+    // Display the header fixed at the top
+    &.fixed-top {
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+    }
+
+    &.navbar-expand {
+      @each $breakpoint in map-keys($hk-grid-breakpoints) {
+        $next: breakpoint-next($breakpoint, $hk-grid-breakpoints);
+        $infix: breakpoint-infix($next, $hk-grid-breakpoints);
+
+        &#{$infix} {
+          @include media-breakpoint-up($next) {
+            .navbar-nav {
+              flex-direction: row;
+
+              .dropdown-menu {
+                position: absolute;
+              }
+
+              // In horizontal list, there's padding on left and right
+              .nav-link {
+                padding-right: $hk-navbar-nav-link-padding-x;
+                padding-left: $hk-navbar-nav-link-padding-x;
+              }
+            }
+
+            .navbar-nav-scroll {
+              overflow: visible;
+            }
+
+            // Hide the toggler button in the large screen
+            .navbar-toggler {
+              display: none;
+            }
+
+            .navbar-collapse {
+              display: flex; // stylelint-disable-line declaration-no-important
+              flex-basis: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Keep as a separate element so folks can easily override it with another icon
+  // or image file as needed.
+  .navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+  }
+
+  .navbar-toggler {
+    color: $hk-navbar-color;
+    border-color: $hk-navbar-toggler-border-color;
+  }
+
+  .navbar-toggler-icon {
+    // background-image: escape-svg($hk-navbar-toggler-icon-bg);
+  }
+
+  .navbar-text {
+    color: $hk-navbar-color;
+    a,
+    a:hover,
+    a:focus {
+      color: $hk-navbar-active-color;
+    }
+  }
+}
