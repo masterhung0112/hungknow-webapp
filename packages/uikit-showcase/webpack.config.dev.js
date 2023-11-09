@@ -5,7 +5,7 @@ module.exports = {
   devtool: "inline-source-map",
   devServer: {
     // Serve index.html as the base
-    contentBase: path.join(__dirname, "dist"),
+    // contentBase: path.join(__dirname, "dist"),
     // static: {
     //     directory: path.join(__dirname, './dist'),
     // },
